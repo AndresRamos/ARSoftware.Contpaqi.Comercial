@@ -43,7 +43,6 @@ namespace Comercial
 
 ## Como utilizar el SDK de Comercial
 
-
 ```csharp
 using Contpaqi.SistemasComerciales.Sdk;
 using Contpaqi.SistemasComerciales.Sdk.Extras;
@@ -81,6 +80,80 @@ namespace Comercial
                     System.Console.WriteLine($"{empresaId} {nombre} | {ruta}");
                 } while (true);
                 ComercialSdk.fTerminaSDK();
+            }
+        }
+    }
+}
+```
+
+# Adminpaq
+## Como inicializar el SDK de Adminpaq
+
+```csharp
+using Contpaqi.SistemasComerciales.Sdk;
+using Contpaqi.SistemasComerciales.Sdk.Extras;
+using System.Text;
+
+namespace Adminpaq
+{
+     class Program
+    {
+        static void Main(string[] args)
+        {
+            int contpaqResult = 1; // 0 = exito. > 0 = error
+            contpaqResult = InicializacionAdminpaqSdk.InicializarSDK();
+            if (contpaqResult != 0)
+            {
+                System.Console.WriteLine(ErroresAdminpaq.LeerError(contpaqResult));
+            }
+            else
+            {
+                AdminpaqSdk.fTerminaSDK();
+            }
+        }
+    }
+}
+```
+
+## Como utilizar el SDK de Adminpaq
+
+```csharp
+using Contpaqi.SistemasComerciales.Sdk;
+using Contpaqi.SistemasComerciales.Sdk.Extras;
+using System.Text;
+
+namespace Adminpaq
+{
+     class Program
+    {
+        static void Main(string[] args)
+        {
+            int contpaqResult = 1; // 0 = exito. > 0 = error
+            contpaqResult = InicializacionAdminpaqSdk.InicializarSDK();
+            if (contpaqResult != 0)
+            {
+                System.Console.WriteLine(ErroresAdminpaq.LeerError(contpaqResult));
+            }
+            else
+            {
+                int empresaId = 0;
+                StringBuilder nombre = new StringBuilder(AdminpaqSdk.kLongNombre);
+                StringBuilder ruta = new StringBuilder(AdminpaqSdk.kLongRuta);
+                contpaqResult = AdminpaqSdk.fPosPrimerEmpresa(ref empresaId, nombre, ruta);
+                System.Console.WriteLine($"Id {empresaId} Nombre {nombre} Ruta{ruta}");
+                do
+                {
+                    empresaId = 0;
+                    nombre = new StringBuilder(AdminpaqSdk.kLongNombre);
+                    ruta = new StringBuilder(AdminpaqSdk.kLongRuta);
+                    int isFinDeLaTabla = AdminpaqSdk.fPosSiguienteEmpresa(ref empresaId, nombre, ruta);
+                    if (isFinDeLaTabla != 0)
+                    {
+                        break;
+                    }
+                    System.Console.WriteLine($"{empresaId} {nombre} | {ruta}");
+                } while (true);
+                AdminpaqSdk.fTerminaSDK();
             }
         }
     }
