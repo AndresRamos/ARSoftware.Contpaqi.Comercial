@@ -12,11 +12,13 @@ Esta libreria la uso para todos mis proyectos y es la base para otras librerias 
 
 Tratare de incluir ejemplos de como usar la libreria despues.
 
+# Comercial
 ## Como inicializar el SDK de Comercial
 
 ```csharp
 using Contpaqi.SistemasComerciales.Sdk;
 using Contpaqi.SistemasComerciales.Sdk.Extras;
+using System.Text;
 
 namespace Comercial
 {
@@ -39,3 +41,48 @@ namespace Comercial
 }
 ```
 
+## Como utilizar el SDK de Comercial
+
+
+```csharp
+using Contpaqi.SistemasComerciales.Sdk;
+using Contpaqi.SistemasComerciales.Sdk.Extras;
+using System.Text;
+
+namespace Comercial
+{
+     class Program
+    {
+        static void Main(string[] args)
+        {
+            int contpaqResult = 1; // 0 = exito. > 0 = error
+            contpaqResult = InicializacionComercialSdk.InicializarSDK();
+            if (contpaqResult != 0)
+            {
+                System.Console.WriteLine(ErroresComercial.LeerError(contpaqResult));
+            }
+            else
+            {
+                int empresaId = 0;
+                StringBuilder nombre = new StringBuilder(ComercialSdk.kLongNombre);
+                StringBuilder ruta = new StringBuilder(ComercialSdk.kLongRuta);
+                contpaqResult = ComercialSdk.fPosPrimerEmpresa(ref empresaId, nombre, ruta);
+                System.Console.WriteLine($"Id {empresaId} Nombre {nombre} Ruta{ruta}");
+                do
+                {
+                    empresaId = 0;
+                    nombre = new StringBuilder(ComercialSdk.kLongNombre);
+                    ruta = new StringBuilder(ComercialSdk.kLongRuta);
+                    int isFinDeLaTabla = ComercialSdk.fPosSiguienteEmpresa(ref empresaId, nombre, ruta);
+                    if (isFinDeLaTabla != 0)
+                    {
+                        break;
+                    }
+                    System.Console.WriteLine($"{empresaId} {nombre} | {ruta}");
+                } while (true);
+                ComercialSdk.fTerminaSDK();
+            }
+        }
+    }
+}
+```
