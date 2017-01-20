@@ -52,8 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SistemasComerciales\Sdk\AdminpaqSdk.cs" />
+    <Compile Include="SistemasComerciales\Sdk\Constantes.cs" />
+    <Compile Include="SistemasComerciales\Sdk\DatosAbstractos.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\ErroresAdminpaq.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\InicializacionAdminpaqSdk.cs" />
+    <Compile Include="SistemasComerciales\Sdk\Extras\Interfaces\ISistemasComercialesSdk.cs" />
+    <Compile Include="SistemasComerciales\Sdk\Extras\ServicioAdminpaqSdk.cs" />
+    <Compile Include="SistemasComerciales\Sdk\Extras\ServicioComercialSdk.cs" />
     <Compile Include="SistemasComerciales\Sql\Empresas\Modelo\admAcumulados.cs" />
     <Compile Include="SistemasComerciales\Sql\Empresas\Modelo\admAcumuladosTipos.cs" />
     <Compile Include="SistemasComerciales\Sql\Empresas\Modelo\admAgentes.cs" />
