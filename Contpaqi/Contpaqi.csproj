@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SistemasComerciales\Sdk\AdminpaqSDK.cs" />
+    <Compile Include="SistemasComerciales\Sdk\AdminpaqSdk.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\ErroresAdminpaq.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\InicializacionAdminpaqSdk.cs" />
     <Compile Include="SistemasComerciales\Sql\Empresas\Modelo\admAcumulados.cs" />

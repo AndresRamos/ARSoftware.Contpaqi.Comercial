@@ -397,7 +397,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         public static extern int fSetDescripcionProducto(string aCampo, string aValor);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fAltaProducto")]
-        public static extern int fAltaProducto(ref int aIdProducto, tProduto astProducto);
+        public static extern int fAltaProducto(ref int aIdProducto, tProducto astProducto);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fLeeDatoProducto")]
         public static extern int fLeeDatoProducto(string aCampo, StringBuilder aValor, int aLen);
@@ -436,13 +436,13 @@ namespace Contpaqi.SistemasComerciales.Sdk
         public static extern int fPosEOFProducto();
 
         [DllImport("MGWServicios.dll", EntryPoint = "AltaProducto")]
-        public static extern int AltaProducto(ref int aIdProducto, tProduto astProducto);
+        public static extern int AltaProducto(ref int aIdProducto, tProducto astProducto);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fActualizaProducto")]
-        public static extern int fActualizaProducto(ref int aCodigoProducto, tProduto astProducto);
+        public static extern int fActualizaProducto(ref int aCodigoProducto, tProducto astProducto);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fLlenaRegistroProducto")]
-        public static extern int fLlenaRegistroProducto(tProduto astProducto, int aEsAlta);
+        public static extern int fLlenaRegistroProducto(tProducto astProducto, int aEsAlta);
 
         #endregion
 
@@ -1068,45 +1068,45 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
         public struct tMovimientoDesc
         {
-            int aConsecutivo;
+            public int aConsecutivo;
 
-            double aUnidades;
+            public double aUnidades;
 
-            double aPrecio;
+            public double aPrecio;
 
-            double aCosto;
+            public double aCosto;
 
-            double aPorcDescto1;
+            public double aPorcDescto1;
 
-            double aImporteDescto1;
+            public double aImporteDescto1;
 
-            double aPorcDescto2;
+            public double aPorcDescto2;
 
-            double aImporteDescto2;
+            public double aImporteDescto2;
 
-            double aPorcDescto3;
+            public double aPorcDescto3;
 
-            double aImporteDescto3;
+            public double aImporteDescto3;
 
-            double aPorcDescto4;
+            public double aPorcDescto4;
 
-            double aImporteDescto4;
+            public double aImporteDescto4;
 
-            double aPorcDescto5;
+            public double aPorcDescto5;
 
-            double aImporteDescto5;
-
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongCodigo)]
-            string aCodProdSer;
+            public double aImporteDescto5;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongCodigo)]
-            string aCodAlmacen;
+            public string aCodProdSer;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongCodigo)]
+            public string aCodAlmacen;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongReferencia)]
-            string aReferencia;
+            public string aReferencia;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongCodigo)]
-            string aCodClasificacion;
+            public string aCodClasificacion;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
@@ -1141,38 +1141,38 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
         public struct tCaracteristicas
         {
-            double aUnidades;
+            public double aUnidades;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongDescripcion)]
-            string aValorCaracteristica1;
+            public string aValorCaracteristica1;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongDescripcion)]
-            string aValorCaracteristica2;
+            public string aValorCaracteristica2;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongDescripcion)]
-            string aValorCaracteristica3;
+            public string aValorCaracteristica3;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
         public struct tTipoProducto
         {
-            tSeriesCapas aSeriesCapas;
+            public tSeriesCapas aSeriesCapas;
 
-            tCaracteristicas aCaracteristicas;
+            public tCaracteristicas aCaracteristicas;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
         public struct tLlaveAper
         {
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongCodigo)]
-            string aCodCaja;
+            public string aCodCaja;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongFecha)]
-            string aFechaApe;
+            public string aFechaApe;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
-        public struct tProduto
+        public struct tProducto
         {
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongCodigo)]
             public string cCodigoProducto;
@@ -1446,87 +1446,84 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
         public struct tValorClasificacion
         {
+            public int cClasificacionDe;
 
-            int cClasificacionDe;
-
-            int cNumClasificacion;
+            public int cNumClasificacion;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongCodValorClasif)]
-            string cCodigoValorClasificacion;
+            public string cCodigoValorClasificacion;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongDescripcion)]
-            string cValorClasificacion;
+            public string cValorClasificacion;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
         public struct tUnidad
         {
-
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongNombre)]
-            string cNombreUnidad;
+            public string cNombreUnidad;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongAbreviatura)]
-            string cAbreviatura;
+            public string cAbreviatura;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongAbreviatura)]
-            string cDespliegue;
+            public string cDespliegue;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
         public struct tDireccion
         {
-
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongCodigo)]
-            string cCodCteProv;
+            public string cCodCteProv;
 
-            int cTipoCatalogo;
+            public int cTipoCatalogo;
 
-            int cTipoDireccion;
-
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongDescripcion)]
-            string cNombreCalle;
-
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongNumeroExpandido)]
-            string cNumeroExterior;
-
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongNumeroExpandido)]
-            string cNumeroInterior;
+            public int cTipoDireccion;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongDescripcion)]
-            string cColonia;
+            public string cNombreCalle;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongNumeroExpandido)]
+            public string cNumeroExterior;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongNumeroExpandido)]
+            public string cNumeroInterior;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongDescripcion)]
+            public string cColonia;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongCodigoPostal)]
-            string cCodigoPostal;
+            public string cCodigoPostal;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongTelefono)]
-            string cTelefono1;
+            public string cTelefono1;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongTelefono)]
-            string cTelefono2;
+            public string cTelefono2;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongTelefono)]
-            string cTelefono3;
+            public string cTelefono3;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongTelefono)]
-            string cTelefono4;
+            public string cTelefono4;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongEmailWeb)]
-            string cEmail;
+            public string cEmail;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongEmailWeb)]
-            string cDireccionWeb;
+            public string cDireccionWeb;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongDescripcion)]
-            string cCiudad;
+            public string cCiudad;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongDescripcion)]
-            string cEstado;
+            public string cEstado;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongDescripcion)]
-            string cPais;
+            public string cPais;
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = kLongDescripcion)]
-            string cTextoExtra;
+            public string cTextoExtra;
         }
 
         #endregion
