@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Contpaqi.SistemasComerciales.Sdk
+﻿namespace Contpaqi.SistemasComerciales.Sdk
 {
     public static class Constantes
     {
