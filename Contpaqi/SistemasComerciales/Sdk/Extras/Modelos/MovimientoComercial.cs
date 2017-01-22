@@ -5,6 +5,7 @@
         public MovimientoComercial()
         {
             Producto = new ProductoComercial();
+            Almacen = new AlmacenComercial();
         }
         // Propiedades tMovimiento
         public int Consecutivo { get; set; }
@@ -22,5 +23,6 @@
         public int IdAlmacen { get; set; }
         public int IdProducto { get; set; }
         public ProductoComercial Producto { get; set; }
+        public AlmacenComercial Almacen { get; set; }
     }
 }

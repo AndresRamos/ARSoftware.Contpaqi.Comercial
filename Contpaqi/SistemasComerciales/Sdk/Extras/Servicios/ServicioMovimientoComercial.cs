@@ -10,12 +10,14 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
         private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioErrorComercial _errorComercialServicio;
         private readonly ServicioProductoComercial _servicioProductoComercial;
+        private readonly ServicioAlmacenComercial _servicioAlmacenComercial;
 
         public ServicioMovimientoComercial(ISistemasComercialesSdk sdk)
         {
             _sdk = sdk;
             _servicioProductoComercial = new ServicioProductoComercial(sdk);
             _errorComercialServicio = new ServicioErrorComercial(sdk);
+            _servicioAlmacenComercial = new ServicioAlmacenComercial(sdk);
         }
 
         public List<MovimientoComercial> TraerMovimientos()
@@ -105,8 +107,9 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             movimiento.IdAlmacen = int.Parse(almacenId.ToString());
             movimiento.IdProducto = int.Parse(productoId.ToString());
             movimiento.Producto = _servicioProductoComercial.BuscarProducto(movimiento.IdProducto);
-            //movimiento.CodigoProducto = ;
-            //movimiento.CodigoAlmacen = ;
+            movimiento.CodigoProducto = movimiento.Producto.CodigoProducto;
+            movimiento.Almacen = _servicioAlmacenComercial.BuscarAlmacen(movimiento.IdAlmacen);
+            movimiento.CodigoAlmacen = movimiento.Almacen.CodigoAlmacen;
             return movimiento;
         }
     }
