@@ -13,6 +13,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
         private readonly ServicioConceptoDocumentoComercial _servicioConceptoDeDocumentoComercial;
         private readonly ServicioClienteProveedorComercial _servicioClienteProveedorComercial;
         private readonly ServicioMovimientoComercial _servicioMovimientoComercial;
+        private readonly ServicioAgenteComercial _servicioAgenteComercial;
 
         public ServicioDocumentoComercial(ISistemasComercialesSdk sdk)
         {
@@ -21,6 +22,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _servicioConceptoDeDocumentoComercial = new ServicioConceptoDocumentoComercial(sdk);
             _servicioClienteProveedorComercial = new ServicioClienteProveedorComercial(sdk);
             _servicioMovimientoComercial = new ServicioMovimientoComercial(sdk);
+            _servicioAgenteComercial = new ServicioAgenteComercial(sdk);
         }
 
         public List<DocumentoComercial> TraerDocumentos()
@@ -159,10 +161,11 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             documento.FechaExtra = DateTime.ParseExact(fechaExtra.ToString(), "M/d/yyyy HH:mm:ss:fff", null);
             documento.ConceptoDocumento = _servicioConceptoDeDocumentoComercial.BuscarConceptoDocumento(documento.IdConceptoDocumento);
             documento.ClienteProveedor = _servicioClienteProveedorComercial.BuscarClienteProveedor(documento.IdClienteProveedor);
+            documento.Agente = _servicioAgenteComercial.BuscarAgente(documento.IdAgente);
             documento.Movimientos = new List<MovimientoComercial>(_servicioMovimientoComercial.TraerMovimientos(documento.IdDocumento));
             documento.CodigoConcepto = documento.ConceptoDocumento.CodigoConcepto;
             documento.CodigoClienteProveedor = documento.ClienteProveedor.CodigoCliente;
-            // TODO: Falta crear la propiedad agente y el servicio de agente
+            documento.CodigoAgente = documento.Agente.CodigoAgente;
             return documento;
         }
     }

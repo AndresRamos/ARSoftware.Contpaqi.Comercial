@@ -58,6 +58,7 @@
     <Compile Include="SistemasComerciales\Sdk\Extras\Excepciones\SistemasComercialesSdkException.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\InicializacionAdminpaqSdk.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Interfaces\ISistemasComercialesSdk.cs" />
+    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\AgenteComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ClienteProveedorComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ConceptoDocumentoComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\DocumentoComercial.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ProductoComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\ServicioAdminpaqSdk.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\ServicioComercialSdk.cs" />
+    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioAgenteComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioClienteProveedorComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioConceptoDocumentoComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioDocumentoComercial.cs" />

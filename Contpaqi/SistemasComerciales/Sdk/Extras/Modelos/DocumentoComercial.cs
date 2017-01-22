@@ -9,6 +9,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Modelos
         {
             ClienteProveedor = new ClienteProveedorComercial();
             ConceptoDocumento = new ConceptoDocumentoComercial();
+            Agente = new AgenteComercial();
             Movimientos = new List<MovimientoComercial>();
         }
         // Propiedes de Tipo tDocumento
@@ -33,14 +34,15 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Modelos
         public int IdDocumento { get; set; }
         public int IdConceptoDocumento { get; set; }
         public int IdClienteProveedor { get; set; }
-        public string Observaciones { get; set; }
         public int IdAgente { get; set; }
+        public string Observaciones { get; set; }
         public string TextoExtra1 { get; set; }
         public string TextoExtra2 { get; set; }
         public string TextoExtra3 { get; set; }
         public DateTime FechaExtra { get; set; }
-        public ClienteProveedorComercial ClienteProveedor { get; set; }
         public ConceptoDocumentoComercial ConceptoDocumento { get; set; }
+        public ClienteProveedorComercial ClienteProveedor { get; set; }
+        public AgenteComercial Agente { get; set; }
         public List<MovimientoComercial> Movimientos { get; set; }
     }
 }
