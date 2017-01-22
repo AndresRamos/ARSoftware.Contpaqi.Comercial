@@ -2,6 +2,21 @@
 {
     public class ClienteProveedorComercial
     {
+        public ClienteProveedorComercial()
+        {
+            ValorClasificacionCliente1 = new ValorClasificacionComercial();
+            ValorClasificacionCliente2 = new ValorClasificacionComercial();
+            ValorClasificacionCliente3 = new ValorClasificacionComercial();
+            ValorClasificacionCliente4 = new ValorClasificacionComercial();
+            ValorClasificacionCliente5 = new ValorClasificacionComercial();
+            ValorClasificacionCliente6 = new ValorClasificacionComercial();
+            ValorClasificacionProveedor1 = new ValorClasificacionComercial();
+            ValorClasificacionProveedor2 = new ValorClasificacionComercial();
+            ValorClasificacionProveedor3 = new ValorClasificacionComercial();
+            ValorClasificacionProveedor4 = new ValorClasificacionComercial();
+            ValorClasificacionProveedor5 = new ValorClasificacionComercial();
+            ValorClasificacionProveedor6 = new ValorClasificacionComercial();
+        }
         // Propiedades tCteProv
         public string CodigoCliente;
         public string RazonSocial;
@@ -69,5 +84,29 @@
         public double ImporteExtra4;
         // Propiedades Extras
         public int IdCliente { get; set; }
+        public int IdValorClasificacionCliente1 { get; set; }
+        public int IdValorClasificacionCliente2 { get; set; }
+        public int IdValorClasificacionCliente3 { get; set; }
+        public int IdValorClasificacionCliente4 { get; set; }
+        public int IdValorClasificacionCliente5 { get; set; }
+        public int IdValorClasificacionCliente6 { get; set; }
+        public int IdValorClasificacionProveedor1 { get; set; }
+        public int IdValorClasificacionProveedor2 { get; set; }
+        public int IdValorClasificacionProveedor3 { get; set; }
+        public int IdValorClasificacionProveedor4 { get; set; }
+        public int IdValorClasificacionProveedor5 { get; set; }
+        public int IdValorClasificacionProveedor6 { get; set; }
+        public ValorClasificacionComercial ValorClasificacionCliente1 { get; set; }
+        public ValorClasificacionComercial ValorClasificacionCliente2 { get; set; }
+        public ValorClasificacionComercial ValorClasificacionCliente3 { get; set; }
+        public ValorClasificacionComercial ValorClasificacionCliente4 { get; set; }
+        public ValorClasificacionComercial ValorClasificacionCliente5 { get; set; }
+        public ValorClasificacionComercial ValorClasificacionCliente6 { get; set; }
+        public ValorClasificacionComercial ValorClasificacionProveedor1 { get; set; }
+        public ValorClasificacionComercial ValorClasificacionProveedor2 { get; set; }
+        public ValorClasificacionComercial ValorClasificacionProveedor3 { get; set; }
+        public ValorClasificacionComercial ValorClasificacionProveedor4 { get; set; }
+        public ValorClasificacionComercial ValorClasificacionProveedor5 { get; set; }
+        public ValorClasificacionComercial ValorClasificacionProveedor6 { get; set; }
     }
 }
