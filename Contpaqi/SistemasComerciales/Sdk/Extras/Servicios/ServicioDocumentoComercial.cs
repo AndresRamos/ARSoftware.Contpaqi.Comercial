@@ -162,7 +162,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             documento.ConceptoDocumento = _servicioConceptoDeDocumentoComercial.BuscarConceptoDocumento(documento.IdConceptoDocumento);
             documento.ClienteProveedor = _servicioClienteProveedorComercial.BuscarClienteProveedor(documento.IdClienteProveedor);
             documento.Agente = _servicioAgenteComercial.BuscarAgente(documento.IdAgente);
-            documento.Movimientos = new List<MovimientoComercial>(_servicioMovimientoComercial.TraerMovimientos(documento.IdDocumento));
+            documento.Movimientos = _servicioMovimientoComercial.TraerMovimientos(documento.IdDocumento);
             documento.CodigoConcepto = documento.ConceptoDocumento.CodigoConcepto;
             documento.CodigoClienteProveedor = documento.ClienteProveedor.CodigoCliente;
             documento.CodigoAgente = documento.Agente.CodigoAgente;

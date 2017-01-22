@@ -11,6 +11,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
         private readonly ServicioErrorComercial _errorComercialServicio;
         private readonly ServicioProductoComercial _servicioProductoComercial;
         private readonly ServicioAlmacenComercial _servicioAlmacenComercial;
+        private readonly ServicioValorClasificacionComercial _servicioValorClasificacionComercial;
 
         public ServicioMovimientoComercial(ISistemasComercialesSdk sdk)
         {
@@ -18,6 +19,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _servicioProductoComercial = new ServicioProductoComercial(sdk);
             _errorComercialServicio = new ServicioErrorComercial(sdk);
             _servicioAlmacenComercial = new ServicioAlmacenComercial(sdk);
+            _servicioValorClasificacionComercial = new ServicioValorClasificacionComercial(sdk);
         }
 
         public List<MovimientoComercial> TraerMovimientos()
@@ -66,7 +68,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             nuevoTMovimiento.aCodProdSer = movimiento.CodigoProducto;
             nuevoTMovimiento.aCodAlmacen = movimiento.CodigoAlmacen;
             nuevoTMovimiento.aReferencia = movimiento.Referencia;
-            nuevoTMovimiento.aCodClasificacion = movimiento.CodigoClasificacion;
+            nuevoTMovimiento.aCodClasificacion = movimiento.CodigoValorClasificacion;
             return nuevoTMovimiento;
         }
 
@@ -77,7 +79,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             StringBuilder precio = new StringBuilder(9);
             StringBuilder costo = new StringBuilder(9);
             StringBuilder referencia = new StringBuilder(Constantes.kLongReferencia);
-            StringBuilder codigoClasificacion = new StringBuilder(Constantes.kLongCodigo);
+            StringBuilder idValorClasificacion = new StringBuilder(Constantes.kLongCodigo);
             StringBuilder id = new StringBuilder(12);
             StringBuilder textoExtra1 = new StringBuilder(Constantes.kLongTextoExtra);
             StringBuilder productoId = new StringBuilder(Constantes.kLongCodigo);
@@ -88,7 +90,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _sdk.fLeeDatoMovimiento("CPRECIO", precio, 9);
             _sdk.fLeeDatoMovimiento("CCOSTOCAPTURADO", costo, 9);
             _sdk.fLeeDatoMovimiento("CREFERENCIA", referencia, Constantes.kLongReferencia);
-            _sdk.fLeeDatoMovimiento("CIDVALORCLASIFICACION", codigoClasificacion, Constantes.kLongCodigo);
+            _sdk.fLeeDatoMovimiento("CIDVALORCLASIFICACION", idValorClasificacion, Constantes.kLongCodigo);
             _sdk.fLeeDatoMovimiento("CIDMOVIMIENTO", id, 12);
             _sdk.fLeeDatoMovimiento("CTEXTOEXTRA1", textoExtra1, Constantes.kLongTextoExtra);
             _sdk.fLeeDatoMovimiento("CIDPRODUCTO", productoId, Constantes.kLongCodigo);
@@ -100,7 +102,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             movimiento.Precio = double.Parse(precio.ToString());
             movimiento.Costo = double.Parse(costo.ToString());
             movimiento.Referencia = referencia.ToString();
-            movimiento.CodigoClasificacion = codigoClasificacion.ToString();
+            movimiento.IdValorClasificacion = int.Parse(idValorClasificacion.ToString());
             movimiento.IdMovimiento = int.Parse(id.ToString());
             movimiento.TextoExtra1 = textoExtra1.ToString();
             movimiento.Observaciones = observaciones.ToString();
@@ -110,6 +112,8 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             movimiento.CodigoProducto = movimiento.Producto.CodigoProducto;
             movimiento.Almacen = _servicioAlmacenComercial.BuscarAlmacen(movimiento.IdAlmacen);
             movimiento.CodigoAlmacen = movimiento.Almacen.CodigoAlmacen;
+            movimiento.ValorClasificacion = _servicioValorClasificacionComercial.BuscaValorClasificacion(movimiento.IdValorClasificacion);
+            movimiento.CodigoValorClasificacion = movimiento.ValorClasificacion.CodigoValorClasificacion;
             return movimiento;
         }
     }
