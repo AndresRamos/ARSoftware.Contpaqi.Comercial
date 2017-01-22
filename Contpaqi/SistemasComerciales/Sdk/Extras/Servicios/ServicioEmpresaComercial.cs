@@ -8,10 +8,12 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
     public class ServicioEmpresaComercial
     {
         private readonly ISistemasComercialesSdk _sdk;
+        private readonly ServicioErrorComercial _errorComercialServicio;
 
         public ServicioEmpresaComercial(ISistemasComercialesSdk sdk)
         {
             _sdk = sdk;
+            _errorComercialServicio = new ServicioErrorComercial(sdk);
         }
 
         public List<EmpresaComercial> TraerEmpresas()
@@ -20,7 +22,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             int id = 0;
             StringBuilder nombre = new StringBuilder(Constantes.kLongNombre);
             StringBuilder ruta = new StringBuilder(Constantes.kLongRuta);
-            int result = _sdk.fPosPrimerEmpresa(ref id, nombre, ruta);
+            _errorComercialServicio.ResultadoSdk = _sdk.fPosPrimerEmpresa(ref id, nombre, ruta);
             EmpresaComercial empresa = new EmpresaComercial
             {
                 IdEmpresa = id,
