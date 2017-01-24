@@ -20,6 +20,5 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             System.IO.Directory.SetCurrentDirectory(rutaDirectorio);
             return ComercialSdk.fSetNombrePAQ(NombrePaqAdminpaq);
         }
-
     }
 }

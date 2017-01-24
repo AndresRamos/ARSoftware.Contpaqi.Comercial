@@ -6,6 +6,7 @@
         {
             ClienteProveedor = new ClienteProveedorComercial();
         }
+
         public string CodCteProv;
         public int TipoCatalogo;
         public int TipoDireccion;
@@ -24,9 +25,12 @@
         public string Estado;
         public string Pais;
         public string TextoExtra;
+
         // Propiedades Extras
         public int IdDireccion { get; set; }
+
         public int IdCatalogo { get; set; }
+
         public ClienteProveedorComercial ClienteProveedor { get; set; }
     }
 }

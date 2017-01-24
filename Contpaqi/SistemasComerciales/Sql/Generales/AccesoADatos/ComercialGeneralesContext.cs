@@ -17,26 +17,47 @@ namespace Contpaqi.SistemasComerciales.Sql.Generales.AccesoADatos
         }
 
         public virtual DbSet<admVistasCampos> admVistasCampos { get; set; }
+
         public virtual DbSet<admVistasConsultas> admVistasConsultas { get; set; }
+
         public virtual DbSet<admVistasPorModulo> admVistasPorModulo { get; set; }
+
         public virtual DbSet<admVistasRelaciones> admVistasRelaciones { get; set; }
+
         public virtual DbSet<admVistasTablas> admVistasTablas { get; set; }
+
         public virtual DbSet<Anexos20> Anexos20 { get; set; }
+
         public virtual DbSet<CAC00003> CAC00003 { get; set; }
+
         public virtual DbSet<CAC0000C> CAC0000C { get; set; }
+
         public virtual DbSet<CAC0000I> CAC0000I { get; set; }
+
         public virtual DbSet<CACIdiom> CACIdiom { get; set; }
+
         public virtual DbSet<Modelo.Empresas> Empresas { get; set; }
+
         public virtual DbSet<EmpresasModelo> EmpresasModelo { get; set; }
+
         public virtual DbSet<EstructuraAddendas> EstructuraAddendas { get; set; }
+
         public virtual DbSet<Etiquetas> Etiquetas { get; set; }
+
         public virtual DbSet<FormatosEtiquetas> FormatosEtiquetas { get; set; }
+
         public virtual DbSet<Formulas> Formulas { get; set; }
+
         public virtual DbSet<IdxAdminPAQ> IdxAdminPAQ { get; set; }
+
         public virtual DbSet<ModelosFinancieros> ModelosFinancieros { get; set; }
+
         public virtual DbSet<SATBancos> SATBancos { get; set; }
+
         public virtual DbSet<SATMonedas> SATMonedas { get; set; }
+
         public virtual DbSet<UsuariosActivos> UsuariosActivos { get; set; }
+
         public virtual DbSet<UsuariosActivosBloqueos> UsuariosActivosBloqueos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

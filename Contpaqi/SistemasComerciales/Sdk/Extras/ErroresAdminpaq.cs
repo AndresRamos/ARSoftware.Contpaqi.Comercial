@@ -12,4 +12,3 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
         }
     }
 }
-

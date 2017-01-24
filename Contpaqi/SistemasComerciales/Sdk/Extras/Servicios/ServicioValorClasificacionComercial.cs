@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
-    class ServicioValorClasificacionComercial
+    internal class ServicioValorClasificacionComercial
     {
         private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioErrorComercial _errorComercialServicio;

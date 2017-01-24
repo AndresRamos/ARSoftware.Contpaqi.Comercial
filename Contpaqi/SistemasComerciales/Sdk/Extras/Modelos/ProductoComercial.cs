@@ -4,6 +4,7 @@
     {
         // Propiedades tProducto
         public string CodigoProducto;
+
         public string NombreProducto;
         public string DescripcionProducto;
         public int TipoProducto;
@@ -46,8 +47,10 @@
         public double ImporteExtra2;
         public double ImporteExtra3;
         public double ImporteExtra4;
+
         // Propiedades Extra
         public int IdProducto { get; set; }
+
         public string SegmentoContable1 { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
     {
         private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioErrorComercial _errorComercialServicio;
+
         public ServicioAlmacenComercial(ISistemasComercialesSdk sdk)
         {
             _sdk = sdk;
@@ -30,6 +31,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             }
             return almacenesList;
         }
+
         public AlmacenComercial BuscarAlmacen(int idAlmacen)
         {
             return _sdk.fBuscaIdAlmacen(idAlmacen) == 0 ? LeerDatosAlmacenActual() : null;

@@ -19,64 +19,118 @@ namespace Contpaqi.SistemasComerciales.Sql.Empresas.AccesoADatos
         public ComercialEmpresasContext(DbConnection connection, bool ownsConnection)
             : base(connection, ownsConnection)
         {
-
         }
 
         public virtual DbSet<admAcumulados> admAcumulados { get; set; }
+
         public virtual DbSet<admAcumuladosTipos> admAcumuladosTipos { get; set; }
+
         public virtual DbSet<admAgentes> admAgentes { get; set; }
+
         public virtual DbSet<admAlmacenes> admAlmacenes { get; set; }
+
         public virtual DbSet<admAsientosContables> admAsientosContables { get; set; }
+
         public virtual DbSet<admAsocAcumConceptos> admAsocAcumConceptos { get; set; }
+
         public virtual DbSet<admAsocCargosAbonos> admAsocCargosAbonos { get; set; }
+
         public virtual DbSet<admBanderas> admBanderas { get; set; }
+
         public virtual DbSet<admBitacoras> admBitacoras { get; set; }
+
         public virtual DbSet<admCapasProducto> admCapasProducto { get; set; }
+
         public virtual DbSet<admCaracteristicas> admCaracteristicas { get; set; }
+
         public virtual DbSet<admCaracteristicasValores> admCaracteristicasValores { get; set; }
+
         public virtual DbSet<admCertificadosProveeedor> admCertificadosProveeedor { get; set; }
+
         public virtual DbSet<admClasificaciones> admClasificaciones { get; set; }
+
         public virtual DbSet<admClasificacionesValores> admClasificacionesValores { get; set; }
+
         public virtual DbSet<admClientes> admClientes { get; set; }
+
         public virtual DbSet<admComponentesPaquete> admComponentesPaquete { get; set; }
+
         public virtual DbSet<admConceptos> admConceptos { get; set; }
+
         public virtual DbSet<admConceptosBack> admConceptosBack { get; set; }
+
         public virtual DbSet<admConversionesUnidad> admConversionesUnidad { get; set; }
+
         public virtual DbSet<admCostosHistoricos> admCostosHistoricos { get; set; }
+
         public virtual DbSet<admDatosAddenda> admDatosAddenda { get; set; }
+
         public virtual DbSet<admDocumentos> admDocumentos { get; set; }
+
         public virtual DbSet<admDocumentosModelo> admDocumentosModelo { get; set; }
+
         public virtual DbSet<admDocumentosModelosBack> admDocumentosModelosBack { get; set; }
+
         public virtual DbSet<admDocumentosXMLTemp> admDocumentosXMLTemp { get; set; }
+
         public virtual DbSet<admDomicilios> admDomicilios { get; set; }
+
         public virtual DbSet<admEjercicios> admEjercicios { get; set; }
+
         public virtual DbSet<admExistenciaCosto> admExistenciaCosto { get; set; }
+
         public virtual DbSet<admFoliosDigitales> admFoliosDigitales { get; set; }
+
         public virtual DbSet<admMaximosMinimos> admMaximosMinimos { get; set; }
+
         public virtual DbSet<admMonedas> admMonedas { get; set; }
+
         public virtual DbSet<admMovimientos> admMovimientos { get; set; }
+
         public virtual DbSet<admMovimientosCapas> admMovimientosCapas { get; set; }
+
         public virtual DbSet<admMovimientosContables> admMovimientosContables { get; set; }
+
         public virtual DbSet<admMovimientosPrepoliza> admMovimientosPrepoliza { get; set; }
+
         public virtual DbSet<admMovimientosSerie> admMovimientosSerie { get; set; }
+
         public virtual DbSet<admMovtosInvFisico> admMovtosInvFisico { get; set; }
+
         public virtual DbSet<admMovtosInvFisicoSerieCa> admMovtosInvFisicoSerieCa { get; set; }
+
         public virtual DbSet<admNumerosSerie> admNumerosSerie { get; set; }
+
         public virtual DbSet<admParametros> admParametros { get; set; }
+
         public virtual DbSet<admParametrosBack> admParametrosBack { get; set; }
+
         public virtual DbSet<admPreciosCompra> admPreciosCompra { get; set; }
+
         public virtual DbSet<admPrepolizas> admPrepolizas { get; set; }
+
         public virtual DbSet<admProductos> admProductos { get; set; }
+
         public virtual DbSet<admProductosDetalles> admProductosDetalles { get; set; }
+
         public virtual DbSet<admProductosFotos> admProductosFotos { get; set; }
+
         public virtual DbSet<admPromociones> admPromociones { get; set; }
+
         public virtual DbSet<admTiposCambio> admTiposCambio { get; set; }
+
         public virtual DbSet<admUnidadesMedidaPeso> admUnidadesMedidaPeso { get; set; }
+
         public virtual DbSet<admVistasCampos> admVistasCampos { get; set; }
+
         public virtual DbSet<admVistasConsultas> admVistasConsultas { get; set; }
+
         public virtual DbSet<admVistasPorModulo> admVistasPorModulo { get; set; }
+
         public virtual DbSet<admVistasRecursos> admVistasRecursos { get; set; }
+
         public virtual DbSet<admVistasRelaciones> admVistasRelaciones { get; set; }
+
         public virtual DbSet<admVistasTablas> admVistasTablas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
