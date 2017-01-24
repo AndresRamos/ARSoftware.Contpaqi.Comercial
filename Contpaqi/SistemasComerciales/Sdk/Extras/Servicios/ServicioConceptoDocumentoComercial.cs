@@ -18,7 +18,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         public ConceptoDocumentoComercial BuscarConceptoDocumento(int idConcepto)
         {
-            return _sdk.fBuscaIdConceptoDocto(idConcepto) == 9 ? LeerDatosConceptoDocumentoActual() : null;
+            return _sdk.fBuscaIdConceptoDocto(idConcepto) == 0 ? LeerDatosConceptoDocumentoActual() : null;
         }
 
         public ConceptoDocumentoComercial BuscarConceptoDocumento(string codigoConcepto)
