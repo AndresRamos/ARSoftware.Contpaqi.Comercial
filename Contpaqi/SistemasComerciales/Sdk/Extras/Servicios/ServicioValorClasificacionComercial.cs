@@ -6,8 +6,8 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
     internal class ServicioValorClasificacionComercial
     {
-        private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioErrorComercial _errorComercialServicio;
+        private readonly ISistemasComercialesSdk _sdk;
 
         public ServicioValorClasificacionComercial(ISistemasComercialesSdk sdk)
         {

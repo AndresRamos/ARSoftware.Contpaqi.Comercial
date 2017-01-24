@@ -7,13 +7,23 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
     public class ServicioConceptoDocumentoComercial
     {
-        private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioErrorComercial _errorComercialServicio;
+        private readonly ISistemasComercialesSdk _sdk;
 
         public ServicioConceptoDocumentoComercial(ISistemasComercialesSdk sdk)
         {
             _sdk = sdk;
             _errorComercialServicio = new ServicioErrorComercial(sdk);
+        }
+
+        public ConceptoDocumentoComercial BuscarConceptoDocumento(int idConcepto)
+        {
+            return _sdk.fBuscaIdConceptoDocto(idConcepto) == 9 ? LeerDatosConceptoDocumentoActual() : null;
+        }
+
+        public ConceptoDocumentoComercial BuscarConceptoDocumento(string codigoConcepto)
+        {
+            return _sdk.fBuscaConceptoDocto(codigoConcepto) == 0 ? LeerDatosConceptoDocumentoActual() : null;
         }
 
         public IEnumerable<ConceptoDocumentoComercial> TraerConceptosDocumento()
@@ -30,16 +40,6 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
                 }
             }
             return conceptosList;
-        }
-
-        public ConceptoDocumentoComercial BuscarConceptoDocumento(int idConcepto)
-        {
-            return _sdk.fBuscaIdConceptoDocto(idConcepto) == 9 ? LeerDatosConceptoDocumentoActual() : null;
-        }
-
-        public ConceptoDocumentoComercial BuscarConceptoDocumento(string codigoConcepto)
-        {
-            return _sdk.fBuscaConceptoDocto(codigoConcepto) == 0 ? LeerDatosConceptoDocumentoActual() : null;
         }
 
         private ConceptoDocumentoComercial LeerDatosConceptoDocumentoActual()

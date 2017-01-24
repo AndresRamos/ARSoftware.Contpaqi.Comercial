@@ -7,8 +7,8 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
     public class ServicioClienteProveedorComercial
     {
-        private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioErrorComercial _errorComercialServicio;
+        private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioValorClasificacionComercial _servicioValorClasificacionComercial;
 
         public ServicioClienteProveedorComercial(ISistemasComercialesSdk sdk)
@@ -16,6 +16,16 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _sdk = sdk;
             _errorComercialServicio = new ServicioErrorComercial(sdk);
             _servicioValorClasificacionComercial = new ServicioValorClasificacionComercial(sdk);
+        }
+
+        public ClienteProveedorComercial BuscarClienteProveedor(int idCliente)
+        {
+            return _sdk.fBuscaIdCteProv(idCliente) == 0 ? LeerDatosClienteProveedorActual() : null;
+        }
+
+        public ClienteProveedorComercial BuscarClienteProveedor(string codigoCliente)
+        {
+            return _sdk.fBuscaCteProv(codigoCliente) == 0 ? LeerDatosClienteProveedorActual() : null;
         }
 
         public List<ClienteProveedorComercial> TraerClientesProveedores(int tipoCliente)
@@ -41,16 +51,6 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
                 }
             };
             return clientesList;
-        }
-
-        public ClienteProveedorComercial BuscarClienteProveedor(int idCliente)
-        {
-            return _sdk.fBuscaIdCteProv(idCliente) == 0 ? LeerDatosClienteProveedorActual() : null;
-        }
-
-        public ClienteProveedorComercial BuscarClienteProveedor(string codigoCliente)
-        {
-            return _sdk.fBuscaCteProv(codigoCliente) == 0 ? LeerDatosClienteProveedorActual() : null;
         }
 
         private ClienteProveedorComercial LeerDatosClienteProveedorActual()

@@ -7,13 +7,23 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
     public class ServicioProductoComercial
     {
-        private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioErrorComercial _errorComercialServicio;
+        private readonly ISistemasComercialesSdk _sdk;
 
         public ServicioProductoComercial(ISistemasComercialesSdk sdk)
         {
             _sdk = sdk;
             _errorComercialServicio = new ServicioErrorComercial(sdk);
+        }
+
+        public ProductoComercial BuscarProducto(int id)
+        {
+            return _sdk.fBuscaIdProducto(id) == 0 ? LeerDatosProductoActual() : null;
+        }
+
+        public ProductoComercial BuscarProducto(string codigo)
+        {
+            return _sdk.fBuscaProducto(codigo) == 0 ? LeerDatosProductoActual() : null;
         }
 
         public List<ProductoComercial> TraerProductos()
@@ -30,16 +40,6 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
                 }
             };
             return productosList;
-        }
-
-        public ProductoComercial BuscarProducto(int id)
-        {
-            return _sdk.fBuscaIdProducto(id) == 0 ? LeerDatosProductoActual() : null;
-        }
-
-        public ProductoComercial BuscarProducto(string codigo)
-        {
-            return _sdk.fBuscaProducto(codigo) == 0 ? LeerDatosProductoActual() : null;
         }
 
         private ProductoComercial LeerDatosProductoActual()

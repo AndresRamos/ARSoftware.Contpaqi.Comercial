@@ -7,10 +7,10 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
     public class ServicioMovimientoComercial
     {
-        private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioErrorComercial _errorComercialServicio;
-        private readonly ServicioProductoComercial _servicioProductoComercial;
+        private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioAlmacenComercial _servicioAlmacenComercial;
+        private readonly ServicioProductoComercial _servicioProductoComercial;
         private readonly ServicioValorClasificacionComercial _servicioValorClasificacionComercial;
 
         public ServicioMovimientoComercial(ISistemasComercialesSdk sdk)
@@ -20,6 +20,20 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _errorComercialServicio = new ServicioErrorComercial(sdk);
             _servicioAlmacenComercial = new ServicioAlmacenComercial(sdk);
             _servicioValorClasificacionComercial = new ServicioValorClasificacionComercial(sdk);
+        }
+
+        public tMovimiento ExtraerTMovimiento(MovimientoComercial movimiento)
+        {
+            tMovimiento nuevoTMovimiento = new tMovimiento();
+            nuevoTMovimiento.aConsecutivo = movimiento.Consecutivo;
+            nuevoTMovimiento.aUnidades = movimiento.Unidades;
+            nuevoTMovimiento.aPrecio = movimiento.Precio;
+            nuevoTMovimiento.aCosto = movimiento.Costo;
+            nuevoTMovimiento.aCodProdSer = movimiento.CodigoProducto;
+            nuevoTMovimiento.aCodAlmacen = movimiento.CodigoAlmacen;
+            nuevoTMovimiento.aReferencia = movimiento.Referencia;
+            nuevoTMovimiento.aCodClasificacion = movimiento.CodigoValorClasificacion;
+            return nuevoTMovimiento;
         }
 
         public List<MovimientoComercial> TraerMovimientos()
@@ -56,20 +70,6 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             }
             _errorComercialServicio.ResultadoSdk = _sdk.fCancelaFiltroMovimiento();
             return movimientosList;
-        }
-
-        public tMovimiento ExtraerTMovimiento(MovimientoComercial movimiento)
-        {
-            tMovimiento nuevoTMovimiento = new tMovimiento();
-            nuevoTMovimiento.aConsecutivo = movimiento.Consecutivo;
-            nuevoTMovimiento.aUnidades = movimiento.Unidades;
-            nuevoTMovimiento.aPrecio = movimiento.Precio;
-            nuevoTMovimiento.aCosto = movimiento.Costo;
-            nuevoTMovimiento.aCodProdSer = movimiento.CodigoProducto;
-            nuevoTMovimiento.aCodAlmacen = movimiento.CodigoAlmacen;
-            nuevoTMovimiento.aReferencia = movimiento.Referencia;
-            nuevoTMovimiento.aCodClasificacion = movimiento.CodigoValorClasificacion;
-            return nuevoTMovimiento;
         }
 
         private MovimientoComercial LeerDatosMovimientoActual()

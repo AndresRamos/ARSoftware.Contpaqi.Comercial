@@ -7,13 +7,23 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
     public class ServicioAgenteComercial
     {
-        private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioErrorComercial _errorComercialServicio;
+        private readonly ISistemasComercialesSdk _sdk;
 
         public ServicioAgenteComercial(ISistemasComercialesSdk sdk)
         {
             _sdk = sdk;
             _errorComercialServicio = new ServicioErrorComercial(sdk);
+        }
+
+        public AgenteComercial BuscarAgente(int idAgente)
+        {
+            return _sdk.fBuscaIdAgente(idAgente) == 0 ? LeerDatosAgenteActual() : null;
+        }
+
+        public AgenteComercial BuscarAgente(string codigoAgente)
+        {
+            return _sdk.fBuscaAgente(codigoAgente) == 0 ? LeerDatosAgenteActual() : null;
         }
 
         public List<AgenteComercial> TraerAgentes()
@@ -32,17 +42,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             return agentes;
         }
 
-        public AgenteComercial BuscarAgente(int idAgente)
-        {
-            return _sdk.fBuscaIdAgente(idAgente) == 0 ? LeerDatosAgenteActual() : null;
-        }
-
-        public AgenteComercial BuscarAgente(string codigoAgente)
-        {
-            return _sdk.fBuscaAgente(codigoAgente) == 0 ? LeerDatosAgenteActual() : null;
-        }
-
-        public AgenteComercial LeerDatosAgenteActual()
+        private AgenteComercial LeerDatosAgenteActual()
         {
             StringBuilder idAgente = new StringBuilder(12);
             StringBuilder codigoAgente = new StringBuilder(31);

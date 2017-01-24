@@ -7,13 +7,23 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
     public class ServicioAlmacenComercial
     {
-        private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioErrorComercial _errorComercialServicio;
+        private readonly ISistemasComercialesSdk _sdk;
 
         public ServicioAlmacenComercial(ISistemasComercialesSdk sdk)
         {
             _sdk = sdk;
             _errorComercialServicio = new ServicioErrorComercial(sdk);
+        }
+
+        public AlmacenComercial BuscarAlmacen(int idAlmacen)
+        {
+            return _sdk.fBuscaIdAlmacen(idAlmacen) == 0 ? LeerDatosAlmacenActual() : null;
+        }
+
+        public AlmacenComercial BuscarAlmacen(string codigoAlmacen)
+        {
+            return _sdk.fBuscaAlmacen(codigoAlmacen) == 0 ? LeerDatosAlmacenActual() : null;
         }
 
         public List<AlmacenComercial> TraerAlmacenes()
@@ -32,17 +42,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             return almacenesList;
         }
 
-        public AlmacenComercial BuscarAlmacen(int idAlmacen)
-        {
-            return _sdk.fBuscaIdAlmacen(idAlmacen) == 0 ? LeerDatosAlmacenActual() : null;
-        }
-
-        public AlmacenComercial BuscarAlmacen(string codigoAlmacen)
-        {
-            return _sdk.fBuscaAlmacen(codigoAlmacen) == 0 ? LeerDatosAlmacenActual() : null;
-        }
-
-        public AlmacenComercial LeerDatosAlmacenActual()
+        private AlmacenComercial LeerDatosAlmacenActual()
         {
             StringBuilder idAlmacen = new StringBuilder(12);
             StringBuilder codigoAlmacen = new StringBuilder(31);

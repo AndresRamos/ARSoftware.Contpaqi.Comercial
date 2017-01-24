@@ -6,8 +6,8 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
     public class ServicioDireccionComercial
     {
-        private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioErrorComercial _errorComercialServicio;
+        private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioClienteProveedorComercial _servicioClienteProveedorComercial;
 
         public ServicioDireccionComercial(ISistemasComercialesSdk sdk)

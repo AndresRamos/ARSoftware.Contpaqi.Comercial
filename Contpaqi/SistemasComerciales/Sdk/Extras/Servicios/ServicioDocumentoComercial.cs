@@ -8,12 +8,12 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
     public class ServicioDocumentoComercial
     {
-        private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioErrorComercial _errorComercialServicio;
-        private readonly ServicioConceptoDocumentoComercial _servicioConceptoDeDocumentoComercial;
-        private readonly ServicioClienteProveedorComercial _servicioClienteProveedorComercial;
-        private readonly ServicioMovimientoComercial _servicioMovimientoComercial;
+        private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioAgenteComercial _servicioAgenteComercial;
+        private readonly ServicioClienteProveedorComercial _servicioClienteProveedorComercial;
+        private readonly ServicioConceptoDocumentoComercial _servicioConceptoDeDocumentoComercial;
+        private readonly ServicioMovimientoComercial _servicioMovimientoComercial;
 
         public ServicioDocumentoComercial(ISistemasComercialesSdk sdk)
         {
@@ -23,6 +23,53 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _servicioClienteProveedorComercial = new ServicioClienteProveedorComercial(sdk);
             _servicioMovimientoComercial = new ServicioMovimientoComercial(sdk);
             _servicioAgenteComercial = new ServicioAgenteComercial(sdk);
+        }
+
+        public void AsignarSerieYFolioAlDocumento(string codigoConcepto, DocumentoComercial documento)
+        {
+            double folio = 0;
+            StringBuilder serie = new StringBuilder();
+            _errorComercialServicio.ResultadoSdk = _sdk.fSiguienteFolio(codigoConcepto, serie, ref folio);
+            documento.Serie = serie.ToString();
+            documento.Folio = folio;
+        }
+
+        public DocumentoComercial BuscarDocumento(int idDocumento)
+        {
+            return _sdk.fBuscarIdDocumento(idDocumento) == 0 ? LeerDatosDocumentoActual() : null;
+        }
+
+        public DocumentoComercial BuscarDocumento(string codigoConcepto, string serie, string folio)
+        {
+            return _sdk.fBuscarDocumento(codigoConcepto, serie, folio) == 0 ? LeerDatosDocumentoActual() : null;
+        }
+
+        public DocumentoComercial BuscarDocumento(tLlaveDoc tLlaveDocumento)
+        {
+            return _sdk.fBuscaDocumento(ref tLlaveDocumento) == 0 ? LeerDatosDocumentoActual() : null;
+        }
+
+        public tDocumento ExtraerTDocumento(DocumentoComercial documento)
+        {
+            tDocumento _tdocumento = new tDocumento();
+            _tdocumento.aFolio = documento.Folio;
+            _tdocumento.aNumMoneda = documento.NumeroMoneda;
+            _tdocumento.aTipoCambio = documento.TipoDeCambio;
+            _tdocumento.aImporte = documento.Importe;
+            _tdocumento.aDescuentoDoc1 = documento.DescuentoDoc1;
+            _tdocumento.aDescuentoDoc2 = documento.DescuentoDoc2;
+            _tdocumento.aSistemaOrigen = documento.SistemaDeOrigen;
+            _tdocumento.aCodConcepto = documento.CodigoConcepto;
+            _tdocumento.aSerie = documento.Serie;
+            _tdocumento.aFecha = documento.Fecha.ToString("MM/dd/yyyy");
+            _tdocumento.aCodigoCteProv = documento.CodigoClienteProveedor;
+            _tdocumento.aCodigoAgente = documento.CodigoAgente;
+            _tdocumento.aReferencia = documento.Referencia;
+            _tdocumento.aAfecta = documento.Afecta;
+            _tdocumento.aGasto1 = documento.Gasto1;
+            _tdocumento.aGasto2 = documento.Gasto2;
+            _tdocumento.aGasto3 = documento.Gasto3;
+            return _tdocumento;
         }
 
         public List<DocumentoComercial> TraerDocumentos()
@@ -47,53 +94,6 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             List<DocumentoComercial> documentos = TraerDocumentos();
             _errorComercialServicio.ResultadoSdk = _sdk.fCancelaFiltroDocumento();
             return documentos;
-        }
-
-        public DocumentoComercial BuscarDocumento(int idDocumento)
-        {
-            return _sdk.fBuscarIdDocumento(idDocumento) == 0 ? LeerDatosDocumentoActual() : null;
-        }
-
-        public DocumentoComercial BuscarDocumento(string codigoConcepto, string serie, string folio)
-        {
-            return _sdk.fBuscarDocumento(codigoConcepto, serie, folio) == 0 ? LeerDatosDocumentoActual() : null;
-        }
-
-        public DocumentoComercial BuscarDocumento(tLlaveDoc tLlaveDocumento)
-        {
-            return _sdk.fBuscaDocumento(ref tLlaveDocumento) == 0 ? LeerDatosDocumentoActual() : null;
-        }
-
-        public void AsignarSerieYFolioAlDocumento(string codigoConcepto, DocumentoComercial documento)
-        {
-            double folio = 0;
-            StringBuilder serie = new StringBuilder();
-            _errorComercialServicio.ResultadoSdk = _sdk.fSiguienteFolio(codigoConcepto, serie, ref folio);
-            documento.Serie = serie.ToString();
-            documento.Folio = folio;
-        }
-
-        public tDocumento ExtraerTDocumento(DocumentoComercial documento)
-        {
-            tDocumento _tdocumento = new tDocumento();
-            _tdocumento.aFolio = documento.Folio;
-            _tdocumento.aNumMoneda = documento.NumeroMoneda;
-            _tdocumento.aTipoCambio = documento.TipoDeCambio;
-            _tdocumento.aImporte = documento.Importe;
-            _tdocumento.aDescuentoDoc1 = documento.DescuentoDoc1;
-            _tdocumento.aDescuentoDoc2 = documento.DescuentoDoc2;
-            _tdocumento.aSistemaOrigen = documento.SistemaDeOrigen;
-            _tdocumento.aCodConcepto = documento.CodigoConcepto;
-            _tdocumento.aSerie = documento.Serie;
-            _tdocumento.aFecha = documento.Fecha.ToString("MM/dd/yyyy");
-            _tdocumento.aCodigoCteProv = documento.CodigoClienteProveedor;
-            _tdocumento.aCodigoAgente = documento.CodigoAgente;
-            _tdocumento.aReferencia = documento.Referencia;
-            _tdocumento.aAfecta = documento.Afecta;
-            _tdocumento.aGasto1 = documento.Gasto1;
-            _tdocumento.aGasto2 = documento.Gasto2;
-            _tdocumento.aGasto3 = documento.Gasto3;
-            return _tdocumento;
         }
 
         private DocumentoComercial LeerDatosDocumentoActual()
