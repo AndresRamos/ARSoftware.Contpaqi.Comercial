@@ -85,17 +85,17 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             StringBuilder productoId = new StringBuilder(Constantes.kLongCodigo);
             StringBuilder almacenId = new StringBuilder(Constantes.kLongCodigo);
             StringBuilder observaciones = new StringBuilder(250);
-            _sdk.fLeeDatoMovimiento("CNUMEROMOVIMIENTO", consecutivo, 9);
-            _sdk.fLeeDatoMovimiento("CUNIDADES", unidades, 9);
-            _sdk.fLeeDatoMovimiento("CPRECIO", precio, 9);
-            _sdk.fLeeDatoMovimiento("CCOSTOCAPTURADO", costo, 9);
-            _sdk.fLeeDatoMovimiento("CREFERENCIA", referencia, Constantes.kLongReferencia);
-            _sdk.fLeeDatoMovimiento("CIDVALORCLASIFICACION", idValorClasificacion, Constantes.kLongCodigo);
-            _sdk.fLeeDatoMovimiento("CIDMOVIMIENTO", id, 12);
-            _sdk.fLeeDatoMovimiento("CTEXTOEXTRA1", textoExtra1, Constantes.kLongTextoExtra);
-            _sdk.fLeeDatoMovimiento("CIDPRODUCTO", productoId, Constantes.kLongCodigo);
-            _sdk.fLeeDatoMovimiento("CIDALMACEN", almacenId, Constantes.kLongCodigo); // Lee el id del almacen
-            _sdk.fLeeDatoMovimiento("COBSERVAMOV", observaciones, 250);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CNUMEROMOVIMIENTO", consecutivo, 9);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CUNIDADES", unidades, 9);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CPRECIO", precio, 9);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CCOSTOCAPTURADO", costo, 9);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CREFERENCIA", referencia, Constantes.kLongReferencia);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CIDVALORCLASIFICACION", idValorClasificacion, Constantes.kLongCodigo);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CIDMOVIMIENTO", id, 12);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CTEXTOEXTRA1", textoExtra1, Constantes.kLongTextoExtra);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CIDPRODUCTO", productoId, Constantes.kLongCodigo);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CIDALMACEN", almacenId, Constantes.kLongCodigo); // Lee el id del almacen
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("COBSERVAMOV", observaciones, 250);
             MovimientoComercial movimiento = new MovimientoComercial();
             movimiento.Consecutivo = int.Parse(consecutivo.ToString());
             movimiento.Unidades = double.Parse(unidades.ToString());

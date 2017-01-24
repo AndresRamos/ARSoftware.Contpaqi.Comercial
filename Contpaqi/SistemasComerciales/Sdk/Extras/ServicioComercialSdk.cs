@@ -37,7 +37,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             ComercialSdk.fSetModoImportacion(aImportacion);
         }
 
-        #endregion
+        #endregion Generales
 
         #region Empresas
 
@@ -61,7 +61,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             ComercialSdk.fCierraEmpresa();
         }
 
-        #endregion
+        #endregion Empresas
 
         #region Documentos
 
@@ -205,14 +205,14 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fAltaDocumento(ref aIdDocumento, ref aDocumento);
         }
 
-        public int fAltaDocumentoCargoAbono(tDocumento aDocumento)
+        public int fAltaDocumentoCargoAbono(ref tDocumento aDocumento)
         {
-            return ComercialSdk.fAltaDocumentoCargoAbono(aDocumento);
+            return ComercialSdk.fAltaDocumentoCargoAbono(ref aDocumento);
         }
 
-        public int fAltaDocumentoCargoAbonoExtras(tDocumento aDocumento, string aTextoExtra1, string aTextoExtra2, string aTextoExtra3, string aFechaExtra, double aImporteExtra1, double aImporteExtra2, double aImporteExtra3, double aImporteExtra4)
+        public int fAltaDocumentoCargoAbonoExtras(ref tDocumento aDocumento, string aTextoExtra1, string aTextoExtra2, string aTextoExtra3, string aFechaExtra, double aImporteExtra1, double aImporteExtra2, double aImporteExtra3, double aImporteExtra4)
         {
-            return ComercialSdk.fAltaDocumentoCargoAbonoExtras(aDocumento, aTextoExtra1, aTextoExtra2, aTextoExtra3, aFechaExtra, aImporteExtra1, aImporteExtra2, aImporteExtra3, aImporteExtra4);
+            return ComercialSdk.fAltaDocumentoCargoAbonoExtras(ref aDocumento, aTextoExtra1, aTextoExtra2, aTextoExtra3, aFechaExtra, aImporteExtra1, aImporteExtra2, aImporteExtra3, aImporteExtra4);
         }
 
         public int fAfectaDocto(ref tLlaveDoc aLlaveDocto, bool aAfecta)
@@ -335,10 +335,9 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fBuscaDocumento(ref aLlaveDocto);
         }
 
-        #endregion
+        #endregion Documentos
 
         #region Movimientos
-
 
         public int fInsertarMovimiento()
         {
@@ -479,6 +478,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
         {
             return ComercialSdk.fAltaMovimiento(aIdDocumento, ref aIdMovimiento, ref astMovimiento);
         }
+
         public int fAltaMovimientoEx(ref int aIdMovimiento, tTipoProducto aTipoProducto)
         {
             return ComercialSdk.fAltaMovimientoEx(ref aIdMovimiento, aTipoProducto);
@@ -504,7 +504,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fAltaMovimientoSeriesCapas(aIdMovimiento, ref aSeriesCapas);
         }
 
-        #endregion
+        #endregion Movimientos
 
         #region Clientes y Proveedores
 
@@ -608,7 +608,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fLlenaRegistroCteProv(astCteProv, aEsAlta);
         }
 
-        #endregion
+        #endregion Clientes y Proveedores
 
         #region Productos
 
@@ -727,7 +727,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fLlenaRegistroProducto(astProducto, aEsAlta);
         }
 
-        #endregion
+        #endregion Productos
 
         #region Addendas
 
@@ -786,7 +786,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fCancelaNominaUUID(aUUID, aIdDConcepto, aPass);
         }
 
-        #endregion
+        #endregion Addendas
 
         #region Direcciones
 
@@ -880,7 +880,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fLlenaRegistroDireccion(ref astDireccion, aEsAlta);
         }
 
-        #endregion
+        #endregion Direcciones
 
         #region Existencias
 
@@ -894,7 +894,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fRegresaExistenciaCaracteristicas(aCodigoProducto, aCodigoAlmacen, aAnio, aMes, aDia, aValorCaracteristica1, aValorCaracteristica2, aValorCaracteristica3, ref aExistencia);
         }
 
-        #endregion
+        #endregion Existencias
 
         #region Costo Historico
 
@@ -918,7 +918,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fRegresaCostoCapa(aCodigoProducto, aCodigoAlmacen, aUnidades, aImporteCosto);
         }
 
-        #endregion
+        #endregion Costo Historico
 
         #region Conceptos De Documentos
 
@@ -987,7 +987,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fPosEOFConceptoDocto();
         }
 
-        #endregion
+        #endregion Conceptos De Documentos
 
         #region Paramentros
 
@@ -1011,7 +1011,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fSetDatoParametros(aCampo, aValor);
         }
 
-        #endregion
+        #endregion Paramentros
 
         #region Catalago De Clasificaciones
 
@@ -1024,6 +1024,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
         {
             return ComercialSdk.fGuardaClasificacion();
         }
+
         public int fCancelarModificacionClasificacion()
         {
             return ComercialSdk.fGuardaClasificacion();
@@ -1084,7 +1085,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fPosEOFClasificacion();
         }
 
-        #endregion
+        #endregion Catalago De Clasificaciones
 
         #region Catalogo De Valores De Clasificaciones
 
@@ -1157,6 +1158,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
         {
             return ComercialSdk.fPosAnteriorValorClasif();
         }
+
         public int fPosBOFValorClasif()
         {
             return ComercialSdk.fPosBOFValorClasif();
@@ -1182,7 +1184,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fLlenaRegistroValorClasif(ref astValorClasif);
         }
 
-        #endregion
+        #endregion Catalogo De Valores De Clasificaciones
 
         #region Catalogo De Unidades De Medida Y Peso
 
@@ -1281,7 +1283,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fLlenaRegistroUnidad(ref astUnidad);
         }
 
-        #endregion
+        #endregion Catalogo De Unidades De Medida Y Peso
 
         #region Catalogo De Agentes
 
@@ -1355,7 +1357,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fPosEOFAgente();
         }
 
-        #endregion
+        #endregion Catalogo De Agentes
 
         #region Catalago De Almacenes
 
@@ -1429,7 +1431,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fPosEOFAlmacen();
         }
 
-        #endregion
+        #endregion Catalago De Almacenes
 
         #region Movimientos Contables
 
@@ -1468,7 +1470,6 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fPosEOFMovtoContable();
         }
 
-        #endregion
-
+        #endregion Movimientos Contables
     }
 }

@@ -25,7 +25,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fSetModoImportacion")]
         public static extern void fSetModoImportacion(bool aImportacion);
 
-        #endregion
+        #endregion Generales
 
         #region Empresas
 
@@ -41,7 +41,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fCierraEmpresa")]
         public static extern void fCierraEmpresa();
 
-        #endregion
+        #endregion Empresas
 
         #region Documentos
 
@@ -130,10 +130,10 @@ namespace Contpaqi.SistemasComerciales.Sdk
         public static extern int fAltaDocumento(ref int aIdDocumento, ref tDocumento aDocumento);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fAltaDocumentoCargoAbono")]
-        public static extern int fAltaDocumentoCargoAbono(tDocumento aDocumento);
+        public static extern int fAltaDocumentoCargoAbono(ref tDocumento aDocumento);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fAltaDocumentoCargoAbonoExtras")]
-        public static extern int fAltaDocumentoCargoAbonoExtras(tDocumento aDocumento, string aTextoExtra1, string aTextoExtra2, string aTextoExtra3, string aFechaExtra, double aImporteExtra1, double aImporteExtra2, double aImporteExtra3, double aImporteExtra4);
+        public static extern int fAltaDocumentoCargoAbonoExtras(ref tDocumento aDocumento, string aTextoExtra1, string aTextoExtra2, string aTextoExtra3, string aFechaExtra, double aImporteExtra1, double aImporteExtra2, double aImporteExtra3, double aImporteExtra4);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fAfectaDocto")]
         public static extern int fAfectaDocto(ref tLlaveDoc aLlaveDocto, bool aAfecta);
@@ -207,7 +207,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fBuscaDocumento")]
         public static extern int fBuscaDocumento(ref tLlaveDoc aLlaveDocto);
 
-        #endregion
+        #endregion Documentos
 
         #region Movimientos
 
@@ -310,7 +310,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fAltaMovimientoSeriesCapas")]
         public static extern int fAltaMovimientoSeriesCapas(int aIdMovimiento, ref tSeriesCapas aSeriesCapas);
 
-        #endregion
+        #endregion Movimientos
 
         #region Clientes y Proveedores
 
@@ -374,7 +374,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fLlenaRegistroCteProv")]
         public static extern int fLlenaRegistroCteProv(tCteProv astCteProv, int aEsAlta);
 
-        #endregion
+        #endregion Clientes y Proveedores
 
         #region Productos
 
@@ -447,7 +447,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fLlenaRegistroProducto")]
         public static extern int fLlenaRegistroProducto(tProducto astProducto, int aEsAlta);
 
-        #endregion
+        #endregion Productos
 
         #region Addendas
 
@@ -484,7 +484,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fCancelaNominaUUID")]
         public static extern int fCancelaNominaUUID(string aUUID, string aIdDConcepto, string aPass);
 
-        #endregion
+        #endregion Addendas
 
         #region Direcciones
 
@@ -542,7 +542,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fLlenaRegistroDireccion")]
         public static extern int fLlenaRegistroDireccion(ref tDireccion astDireccion, int aEsAlta);
 
-        #endregion
+        #endregion Direcciones
 
         #region Existencias
 
@@ -552,7 +552,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fRegresaExistenciaCaracteristicas")]
         public static extern int fRegresaExistenciaCaracteristicas(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3, ref double aExistencia);
 
-        #endregion
+        #endregion Existencias
 
         #region Costo Historico
 
@@ -568,7 +568,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fRegresaCostoCapa")]
         public static extern int fRegresaCostoCapa(string aCodigoProducto, string aCodigoAlmacen, double aUnidades, StringBuilder aImporteCosto);
 
-        #endregion
+        #endregion Costo Historico
 
         #region Conceptos De Documentos
 
@@ -611,7 +611,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fPosEOFConceptoDocto")]
         public static extern int fPosEOFConceptoDocto();
 
-        #endregion
+        #endregion Conceptos De Documentos
 
         #region Paramentros
 
@@ -627,7 +627,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGW_SDK.dll", EntryPoint = "fSetDatoParametros")]
         public static extern int fSetDatoParametros(string aCampo, StringBuilder aValor);
 
-        #endregion
+        #endregion Paramentros
 
         #region Catalago De Clasificaciones
 
@@ -673,7 +673,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fPosEOFClasificacion")]
         public static extern int fPosEOFClasificacion();
 
-        #endregion
+        #endregion Catalago De Clasificaciones
 
         #region Catalogo De Valores De Clasificaciones
 
@@ -734,7 +734,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fLlenaRegistroValorClasif")]
         public static extern int fLlenaRegistroValorClasif(ref tValorClasificacion astValorClasif);
 
-        #endregion
+        #endregion Catalogo De Valores De Clasificaciones
 
         #region Catalogo De Unidades De Medida Y Peso
 
@@ -795,7 +795,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fLlenaRegistroUnidad")]
         public static extern int fLlenaRegistroUnidad(ref tUnidad astUnidad);
 
-        #endregion
+        #endregion Catalogo De Unidades De Medida Y Peso
 
         #region Catalogo De Agentes
 
@@ -841,7 +841,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fPosEOFAgente")]
         public static extern int fPosEOFAgente();
 
-        #endregion
+        #endregion Catalogo De Agentes
 
         #region Catalago De Almacenes
 
@@ -887,7 +887,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fPosEOFAlmacen")]
         public static extern int fPosEOFAlmacen();
 
-        #endregion
+        #endregion Catalago De Almacenes
 
         #region Movimientos Contables
 
@@ -912,6 +912,6 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fPosEOFMovtoContable")]
         public static extern int fPosEOFMovtoContable();
 
-        #endregion
+        #endregion Movimientos Contables
     }
 }
