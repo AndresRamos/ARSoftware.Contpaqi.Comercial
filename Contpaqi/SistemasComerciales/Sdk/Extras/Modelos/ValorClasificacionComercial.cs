@@ -2,9 +2,12 @@
 {
     public class ValorClasificacionComercial
     {
-        public int NumClasificacion;
-        public int ClasificacionDe;
-        public string CodigoValorClasificacion;
-        public string ValorClasificacion;
+        public int NumClasificacion { get; set; }
+
+        public int ClasificacionDe { get; set; }
+
+        public string CodigoValorClasificacion { get; set; }
+
+        public string ValorClasificacion { get; set; }
     }
 }

@@ -3,50 +3,91 @@
     public class ProductoComercial
     {
         // Propiedades tProducto
-        public string CodigoProducto;
+        public string CodigoProducto { get; set; }
 
-        public string NombreProducto;
-        public string DescripcionProducto;
-        public int TipoProducto;
-        public string FechaAltaProducto;
-        public string FechaBaja;
-        public int StatusProducto;
-        public int ControlExistencia;
-        public int MetodoCosteo;
-        public string CodigoUnidadBase;
-        public string CodigoUnidadNoConvertible;
-        public double Precio1;
-        public double Precio2;
-        public double Precio3;
-        public double Precio4;
-        public double Precio5;
-        public double Precio6;
-        public double Precio7;
-        public double Precio8;
-        public double Precio9;
-        public double Precio10;
-        public double Impuesto1;
-        public double Impuesto2;
-        public double Impuesto3;
-        public double Retencion1;
-        public double Retencion2;
-        public string NombreCaracteristica1;
-        public string NombreCaracteristica2;
-        public string NombreCaracteristica3;
-        public string CodigoValorClasificacion1;
-        public string CodigoValorClasificacion2;
-        public string CodigoValorClasificacion3;
-        public string CodigoValorClasificacion4;
-        public string CodigoValorClasificacion5;
-        public string CodigoValorClasificacion6;
-        public string TextoExtra1;
-        public string TextoExtra2;
-        public string TextoExtra3;
-        public string FechaExtra;
-        public double ImporteExtra1;
-        public double ImporteExtra2;
-        public double ImporteExtra3;
-        public double ImporteExtra4;
+        public string NombreProducto { get; set; }
+
+        public string DescripcionProducto { get; set; }
+
+        public int TipoProducto { get; set; }
+
+        public string FechaAltaProducto { get; set; }
+
+        public string FechaBaja { get; set; }
+
+        public int StatusProducto { get; set; }
+
+        public int ControlExistencia { get; set; }
+
+        public int MetodoCosteo { get; set; }
+
+        public string CodigoUnidadBase { get; set; }
+
+        public string CodigoUnidadNoConvertible { get; set; }
+
+        public double Precio1 { get; set; }
+
+        public double Precio2 { get; set; }
+
+        public double Precio3 { get; set; }
+
+        public double Precio4 { get; set; }
+
+        public double Precio5 { get; set; }
+
+        public double Precio6 { get; set; }
+
+        public double Precio7 { get; set; }
+
+        public double Precio8 { get; set; }
+
+        public double Precio9 { get; set; }
+
+        public double Precio10 { get; set; }
+
+        public double Impuesto1 { get; set; }
+
+        public double Impuesto2 { get; set; }
+
+        public double Impuesto3 { get; set; }
+
+        public double Retencion1 { get; set; }
+
+        public double Retencion2 { get; set; }
+
+        public string NombreCaracteristica1 { get; set; }
+
+        public string NombreCaracteristica2 { get; set; }
+
+        public string NombreCaracteristica3 { get; set; }
+
+        public string CodigoValorClasificacion1 { get; set; }
+
+        public string CodigoValorClasificacion2 { get; set; }
+
+        public string CodigoValorClasificacion3 { get; set; }
+
+        public string CodigoValorClasificacion4 { get; set; }
+
+        public string CodigoValorClasificacion5 { get; set; }
+
+        public string CodigoValorClasificacion6 { get; set; }
+
+        public string TextoExtra1 { get; set; }
+
+        public string TextoExtra2 { get; set; }
+
+        public string TextoExtra3 { get; set; }
+
+        public string FechaExtra { get; set; }
+
+        public double ImporteExtra1 { get; set; }
+
+        public double ImporteExtra2 { get; set; }
+
+        public double ImporteExtra3 { get; set; }
+
+        public double ImporteExtra4 { get; set; }
 
         // Propiedades Extra
         public int IdProducto { get; set; }

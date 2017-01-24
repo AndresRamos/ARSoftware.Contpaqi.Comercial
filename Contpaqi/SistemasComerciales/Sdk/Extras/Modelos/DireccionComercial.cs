@@ -7,24 +7,41 @@
             ClienteProveedor = new ClienteProveedorComercial();
         }
 
-        public string CodCteProv;
-        public int TipoCatalogo;
-        public int TipoDireccion;
-        public string NombreCalle;
-        public string NumeroExterior;
-        public string NumeroInterior;
-        public string Colonia;
-        public string CodigoPostal;
-        public string Telefono1;
-        public string Telefono2;
-        public string Telefono3;
-        public string Telefono4;
-        public string Email;
-        public string DireccionWeb;
-        public string Ciudad;
-        public string Estado;
-        public string Pais;
-        public string TextoExtra;
+        public string CodCteProv { get; set; }
+
+        public int TipoCatalogo { get; set; }
+
+        public int TipoDireccion { get; set; }
+
+        public string NombreCalle { get; set; }
+
+        public string NumeroExterior { get; set; }
+
+        public string NumeroInterior { get; set; }
+
+        public string Colonia { get; set; }
+
+        public string CodigoPostal { get; set; }
+
+        public string Telefono1 { get; set; }
+
+        public string Telefono2 { get; set; }
+
+        public string Telefono3 { get; set; }
+
+        public string Telefono4 { get; set; }
+
+        public string Email { get; set; }
+
+        public string DireccionWeb { get; set; }
+
+        public string Ciudad { get; set; }
+
+        public string Estado { get; set; }
+
+        public string Pais { get; set; }
+
+        public string TextoExtra { get; set; }
 
         // Propiedades Extras
         public int IdDireccion { get; set; }

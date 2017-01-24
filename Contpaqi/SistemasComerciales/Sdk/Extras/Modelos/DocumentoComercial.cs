@@ -15,24 +15,39 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Modelos
         }
 
         // Propiedes de Tipo tDocumento
-        public double Folio;
+        public double Folio { get; set; }
 
-        public int NumeroMoneda;
-        public double TipoDeCambio;
-        public double Importe;
-        public double DescuentoDoc1;
-        public double DescuentoDoc2;
-        public int SistemaDeOrigen;
-        public string CodigoConcepto;
-        public string Serie;
-        public DateTime Fecha;
-        public string CodigoClienteProveedor;
-        public string CodigoAgente;
-        public string Referencia;
-        public int Afecta;
-        public double Gasto1;
-        public double Gasto2;
-        public double Gasto3;
+        public int NumeroMoneda { get; set; }
+
+        public double TipoDeCambio { get; set; }
+
+        public double Importe { get; set; }
+
+        public double DescuentoDoc1 { get; set; }
+
+        public double DescuentoDoc2 { get; set; }
+
+        public int SistemaDeOrigen { get; set; }
+
+        public string CodigoConcepto { get; set; }
+
+        public string Serie { get; set; }
+
+        public DateTime Fecha { get; set; }
+
+        public string CodigoClienteProveedor { get; set; }
+
+        public string CodigoAgente { get; set; }
+
+        public string Referencia { get; set; }
+
+        public int Afecta { get; set; }
+
+        public double Gasto1 { get; set; }
+
+        public double Gasto2 { get; set; }
+
+        public double Gasto3 { get; set; }
 
         // Propiedades Extra
         public int IdDocumento { get; set; }

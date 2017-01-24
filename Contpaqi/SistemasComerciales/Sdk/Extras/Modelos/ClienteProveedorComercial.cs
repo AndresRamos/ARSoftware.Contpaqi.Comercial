@@ -19,71 +19,133 @@
         }
 
         // Propiedades tCteProv
-        public string CodigoCliente;
+        public string CodigoCliente { get; set; }
 
-        public string RazonSocial;
-        public string FechaAlta;
-        public string RFC;
-        public string CURP;
-        public string DenominacionComercial;
-        public string RepresentanteLegal;
-        public string NombreMoneda;
-        public int ListaPreciosCliente;
-        public double DescuentoMovimiento;
-        public int BanderaVentaCredito;
-        public string CodigoValorClasificacionCliente1;
-        public string CodigoValorClasificacionCliente2;
-        public string CodigoValorClasificacionCliente3;
-        public string CodigoValorClasificacionCliente4;
-        public string CodigoValorClasificacionCliente5;
-        public string CodigoValorClasificacionCliente6;
-        public int TipoCliente;
-        public int Estatus;
-        public string FechaBaja;
-        public string FechaUltimaRevision;
-        public double LimiteCreditoCliente;
-        public int DiasCreditoCliente;
-        public int BanderaExcederCredito;
-        public double DescuentoProntoPago;
-        public int DiasProntoPago;
-        public double InteresMoratorio;
-        public int DiaPago;
-        public int DiasRevision;
-        public string Mensajeria;
-        public string CuentaMensajeria;
-        public int DiasEmbarqueCliente;
-        public string CodigoAlmacen;
-        public string CodigoAgenteVenta;
-        public string CodigoAgenteCobro;
-        public int RestriccionAgente;
-        public double Impuesto1;
-        public double Impuesto2;
-        public double Impuesto3;
-        public double RetencionCliente1;
-        public double RetencionCliente2;
-        public string CodigoValorClasificacionProveedor1;
-        public string CodigoValorClasificacionProveedor2;
-        public string CodigoValorClasificacionProveedor3;
-        public string CodigoValorClasificacionProveedor4;
-        public string CodigoValorClasificacionProveedor5;
-        public string CodigoValorClasificacionProveedor6;
-        public double LimiteCreditoProveedor;
-        public int DiasCreditoProveedor;
-        public int TiempoEntrega;
-        public int DiasEmbarqueProveedor;
-        public double ImpuestoProveedor1;
-        public double ImpuestoProveedor2;
-        public double ImpuestoProveedor3;
-        public double RetencionProveedor1;
-        public double RetencionProveedor2;
-        public int BanderaInteresMoratorio;
-        public string TextoExtra1;
-        public string TextoExtra2;
-        public string TextoExtra3;
-        public double ImporteExtra1;
-        public double ImporteExtra2;
-        public double ImporteExtra3;
-        public double ImporteExtra4;
+        public string RazonSocial { get; set; }
+
+        public string FechaAlta { get; set; }
+
+        public string RFC { get; set; }
+
+        public string CURP { get; set; }
+
+        public string DenominacionComercial { get; set; }
+
+        public string RepresentanteLegal { get; set; }
+
+        public string NombreMoneda { get; set; }
+
+        public int ListaPreciosCliente { get; set; }
+
+        public double DescuentoMovimiento { get; set; }
+
+        public int BanderaVentaCredito { get; set; }
+
+        public string CodigoValorClasificacionCliente1 { get; set; }
+
+        public string CodigoValorClasificacionCliente2 { get; set; }
+
+        public string CodigoValorClasificacionCliente3 { get; set; }
+
+        public string CodigoValorClasificacionCliente4 { get; set; }
+
+        public string CodigoValorClasificacionCliente5 { get; set; }
+
+        public string CodigoValorClasificacionCliente6 { get; set; }
+
+        public int TipoCliente { get; set; }
+
+        public int Estatus { get; set; }
+
+        public string FechaBaja { get; set; }
+
+        public string FechaUltimaRevision { get; set; }
+
+        public double LimiteCreditoCliente { get; set; }
+
+        public int DiasCreditoCliente { get; set; }
+
+        public int BanderaExcederCredito { get; set; }
+
+        public double DescuentoProntoPago { get; set; }
+
+        public int DiasProntoPago { get; set; }
+
+        public double InteresMoratorio { get; set; }
+
+        public int DiaPago { get; set; }
+
+        public int DiasRevision { get; set; }
+
+        public string Mensajeria { get; set; }
+
+        public string CuentaMensajeria { get; set; }
+
+        public int DiasEmbarqueCliente { get; set; }
+
+        public string CodigoAlmacen { get; set; }
+
+        public string CodigoAgenteVenta { get; set; }
+
+        public string CodigoAgenteCobro { get; set; }
+
+        public int RestriccionAgente { get; set; }
+
+        public double Impuesto1 { get; set; }
+
+        public double Impuesto2 { get; set; }
+
+        public double Impuesto3 { get; set; }
+
+        public double RetencionCliente1 { get; set; }
+
+        public double RetencionCliente2 { get; set; }
+
+        public string CodigoValorClasificacionProveedor1 { get; set; }
+
+        public string CodigoValorClasificacionProveedor2 { get; set; }
+
+        public string CodigoValorClasificacionProveedor3 { get; set; }
+
+        public string CodigoValorClasificacionProveedor4 { get; set; }
+
+        public string CodigoValorClasificacionProveedor5 { get; set; }
+
+        public string CodigoValorClasificacionProveedor6 { get; set; }
+
+        public double LimiteCreditoProveedor { get; set; }
+
+        public int DiasCreditoProveedor { get; set; }
+
+        public int TiempoEntrega { get; set; }
+
+        public int DiasEmbarqueProveedor { get; set; }
+
+        public double ImpuestoProveedor1 { get; set; }
+
+        public double ImpuestoProveedor2 { get; set; }
+
+        public double ImpuestoProveedor3 { get; set; }
+
+        public double RetencionProveedor1 { get; set; }
+
+        public double RetencionProveedor2 { get; set; }
+
+        public int BanderaInteresMoratorio { get; set; }
+
+        public string TextoExtra1 { get; set; }
+
+        public string TextoExtra2 { get; set; }
+
+        public string TextoExtra3 { get; set; }
+
+        public double ImporteExtra1 { get; set; }
+
+        public double ImporteExtra2 { get; set; }
+
+        public double ImporteExtra3 { get; set; }
+
+        public double ImporteExtra4 { get; set; }
 
         // Propiedades Extras
         public int IdCliente { get; set; }
