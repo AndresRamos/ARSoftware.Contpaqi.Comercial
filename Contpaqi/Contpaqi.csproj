@@ -263,11 +263,41 @@
     <Compile Include="SistemasContables\Sql\Generales\Modelo\Temps.cs" />
     <Compile Include="SistemasContables\Sql\Generales\Modelo\Usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\Asc10001.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\Asc10002.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\Asc10003.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\Asc10004.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\CAC10000.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\CAC20000.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\CAC30000.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\CAC40000.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\CAC50000.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\CACIdiom.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\DDFIELD.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\DDTABLE.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\FechaCatalogosSAT.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\NOM10000.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\Nom20000.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\NOM30000.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\Nom40000.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\Nom50000.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\Nom60000.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\NomIdiom.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\NomIDX.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\AccesoADatos\NominasGeneralesContext.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\RELACION.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\REPORTS.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\SATCatFormasPago.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\VistaRelacion.cs" />
+    <Compile Include="SistemasNominas\Sql\Generales\Modelo\VistaTabla.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="SistemasNominas\Sql\Empresas\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
