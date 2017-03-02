@@ -19,7 +19,8 @@ namespace Contpaqi.SistemasNominas.Sql.Generales.Modelo
         [StringLength(40)]
         public string ApPaternoRepresentante { get; set; }
 
-        public int? CodigoPostal { get; set; }
+        [StringLength(5)]
+        public string CodigoPostal { get; set; }
 
         public bool Contratista { get; set; }
 

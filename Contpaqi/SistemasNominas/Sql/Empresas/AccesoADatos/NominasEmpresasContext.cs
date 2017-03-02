@@ -2,12 +2,23 @@ using Contpaqi.SistemasNominas.Sql.Empresas.Modelo;
 
 namespace Contpaqi.SistemasNominas.Sql.Empresas.AccesoADatos
 {
+    using System.Data.Common;
     using System.Data.Entity;
 
     public partial class NominasEmpresasContext : DbContext
     {
+        static NominasEmpresasContext()
+        {
+            Database.SetInitializer(new NullDatabaseInitializer<NominasEmpresasContext>());
+        }
+
         public NominasEmpresasContext()
             : base("name=NominasEmpresasContext")
+        {
+        }
+
+        public NominasEmpresasContext(DbConnection connection, bool ownsConnection)
+            : base(connection, ownsConnection)
         {
         }
 
