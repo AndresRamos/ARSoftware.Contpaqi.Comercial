@@ -263,6 +263,56 @@
     <Compile Include="SistemasContables\Sql\Generales\Modelo\Temps.cs" />
     <Compile Include="SistemasContables\Sql\Generales\Modelo\Usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\AccesoADatos\NominasEmpresasContext.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10000.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10001.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10002.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10003.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10004.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10005.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10006.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10007.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10008.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10009.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\Nom1000x.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10010.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10011.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10012.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10013.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10014.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10015.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10016.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10017.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10018.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10019.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10020.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10021.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10022.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10023.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10024.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10025.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10026.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10027.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10028.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10029.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10030.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10031.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10032.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10033.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10034.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10035.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10036.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10037.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10038.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10039.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10040.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10041.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10042.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10043.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10044.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom10045.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\Nom10046.cs" />
+    <Compile Include="SistemasNominas\Sql\Empresas\Modelo\nom100xx.cs" />
     <Compile Include="SistemasNominas\Sql\Generales\Modelo\Asc10001.cs" />
     <Compile Include="SistemasNominas\Sql\Generales\Modelo\Asc10002.cs" />
     <Compile Include="SistemasNominas\Sql\Generales\Modelo\Asc10003.cs" />
@@ -295,9 +345,7 @@
     <None Include="App.Config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SistemasNominas\Sql\Empresas\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
