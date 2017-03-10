@@ -10,29 +10,29 @@ namespace Contpaqi.SistemasComerciales.Sql.Empresas.Modelo
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CIDCLIENTEPROVEEDOR { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(30)]
         public string CCODIGOCLIENTE { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CRAZONSOCIAL { get; set; }
 
         public DateTime CFECHAALTA { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CRFC { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CCURP { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CDENCOMERCIAL { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CREPLEGAL { get; set; }
 
@@ -82,11 +82,11 @@ namespace Contpaqi.SistemasComerciales.Sql.Empresas.Modelo
 
         public int CDIASREVISION { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CMENSAJERIA { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CCUENTAMENSAJERIA { get; set; }
 
@@ -148,71 +148,71 @@ namespace Contpaqi.SistemasComerciales.Sql.Empresas.Modelo
 
         public int CBANPRODUCTOCONSIGNACION { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CSEGCONTCLIENTE1 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CSEGCONTCLIENTE2 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CSEGCONTCLIENTE3 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CSEGCONTCLIENTE4 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CSEGCONTCLIENTE5 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CSEGCONTCLIENTE6 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CSEGCONTCLIENTE7 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CSEGCONTPROVEEDOR1 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CSEGCONTPROVEEDOR2 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CSEGCONTPROVEEDOR3 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CSEGCONTPROVEEDOR4 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CSEGCONTPROVEEDOR5 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CSEGCONTPROVEEDOR6 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CSEGCONTPROVEEDOR7 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CTEXTOEXTRA1 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CTEXTOEXTRA2 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CTEXTOEXTRA3 { get; set; }
 
@@ -238,7 +238,7 @@ namespace Contpaqi.SistemasComerciales.Sql.Empresas.Modelo
 
         public int CBANPRECIO { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(23)]
         public string CTIMESTAMP { get; set; }
 
@@ -250,15 +250,15 @@ namespace Contpaqi.SistemasComerciales.Sql.Empresas.Modelo
 
         public int CIDMONEDA2 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CEMAIL1 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CEMAIL2 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CEMAIL3 { get; set; }
 
@@ -274,11 +274,11 @@ namespace Contpaqi.SistemasComerciales.Sql.Empresas.Modelo
 
         public int CBANCFD { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CTEXTOEXTRA4 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CTEXTOEXTRA5 { get; set; }
 
@@ -290,11 +290,11 @@ namespace Contpaqi.SistemasComerciales.Sql.Empresas.Modelo
 
         public int CENVACUSE { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CCON1NOM { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(15)]
         public string CCON1TEL { get; set; }
 
@@ -308,19 +308,19 @@ namespace Contpaqi.SistemasComerciales.Sql.Empresas.Modelo
 
         public int CLIMDOCTOS { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CSITIOFTP { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CUSRFTP { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(100)]
         public string CMETODOPAG { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(100)]
         public string CNUMCTAPAG { get; set; }
     }

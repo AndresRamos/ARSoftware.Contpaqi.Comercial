@@ -15,75 +15,75 @@ namespace Contpaqi.SistemasComerciales.Sql.Empresas.Modelo
 
         public int CTIPODIRECCION { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CNOMBRECALLE { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(30)]
         public string CNUMEROEXTERIOR { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(30)]
         public string CNUMEROINTERIOR { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CCOLONIA { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(6)]
         public string CCODIGOPOSTAL { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(15)]
         public string CTELEFONO1 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(15)]
         public string CTELEFONO2 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(15)]
         public string CTELEFONO3 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(15)]
         public string CTELEFONO4 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CEMAIL { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CDIRECCIONWEB { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CPAIS { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CESTADO { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CCIUDAD { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CTEXTOEXTRA { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(23)]
         public string CTIMESTAMP { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CMUNICIPIO { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CSUCURSAL { get; set; }
     }
