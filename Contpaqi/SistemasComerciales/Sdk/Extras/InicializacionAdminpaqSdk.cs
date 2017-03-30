@@ -12,13 +12,13 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             RegistryKey keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistroAdminpaq);
             object lEntrada = keySistema.GetValue("DirectorioBase");
             System.IO.Directory.SetCurrentDirectory(lEntrada.ToString());
-            return ComercialSdk.fSetNombrePAQ(NombrePaqAdminpaq);
+            return AdminpaqSdk.fSetNombrePAQ(NombrePaqAdminpaq);
         }
 
         public static int InicializarSDK(string rutaDirectorio)
         {
             System.IO.Directory.SetCurrentDirectory(rutaDirectorio);
-            return ComercialSdk.fSetNombrePAQ(NombrePaqAdminpaq);
+            return AdminpaqSdk.fSetNombrePAQ(NombrePaqAdminpaq);
         }
     }
 }
