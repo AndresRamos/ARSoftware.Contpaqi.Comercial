@@ -93,5 +93,13 @@
         public int IdProducto { get; set; }
 
         public string SegmentoContable1 { get; set; }
+
+        public int IdUnidadBase { get; set; }
+
+        public int IdUnidadNoConvertible { get; set; }
+
+        public UnidadComercial UnidadBase { get; set; }
+
+        public UnidadComercial UnidadNoConvertible { get; set; }
     }
 }

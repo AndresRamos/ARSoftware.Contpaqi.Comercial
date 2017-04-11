@@ -8,11 +8,13 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
     public class ServicioProductoComercial
     {
         private readonly ServicioErrorComercial _errorComercialServicio;
+        private readonly ServicioUnidadComercial _servicioUnidadComercial;
         private readonly ISistemasComercialesSdk _sdk;
 
         public ServicioProductoComercial(ISistemasComercialesSdk sdk)
         {
             _sdk = sdk;
+            _servicioUnidadComercial = new ServicioUnidadComercial(sdk);
             _errorComercialServicio = new ServicioErrorComercial(sdk);
         }
 
@@ -53,8 +55,6 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             StringBuilder statusProducto = new StringBuilder(7);
             StringBuilder controlExistencia = new StringBuilder(7);
             StringBuilder metodoCosteo = new StringBuilder(7);
-            StringBuilder codigoUnidadBase = new StringBuilder(12);
-            StringBuilder codigoUnidadNoConvertible = new StringBuilder(12);
             StringBuilder precio1 = new StringBuilder(9);
             StringBuilder precio2 = new StringBuilder(9);
             StringBuilder precio3 = new StringBuilder(9);
@@ -89,6 +89,8 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             StringBuilder importeExtra4 = new StringBuilder(9);
             StringBuilder id = new StringBuilder(12);
             StringBuilder segmentoContable1 = new StringBuilder(21);
+            StringBuilder idUnidadBase = new StringBuilder(12);
+            StringBuilder idUnidadNoConvertible = new StringBuilder(12);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CCODIGOPRODUCTO", codigoProducto, Constantes.kLongCodigo);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CNOMBREPRODUCTO", nombreProducto, Constantes.kLongNombre);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CDESCRIPCIONPRODUCTO", descripcionProducto, Constantes.kLongNombreProducto);
@@ -98,8 +100,8 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CSTATUSPRODUCTO", statusProducto, 7);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CCONTROLEXISTENCIA", controlExistencia, 7);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CMETODOCOSTEO", metodoCosteo, 7);
-            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CIDUNIDADBASE", codigoUnidadBase, 12);
-            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CIDUNIDADNOCONVERTIBLE", codigoUnidadNoConvertible, 12);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CIDUNIDADBASE", idUnidadBase, 12);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CIDUNIDADNOCONVERTIBLE", idUnidadNoConvertible, 12);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CPRECIO1", precio1, 9);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CPRECIO2", precio2, 9);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CPRECIO3", precio3, 9);
@@ -144,8 +146,8 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             ProductoComercial.StatusProducto = int.Parse(statusProducto.ToString());
             ProductoComercial.ControlExistencia = int.Parse(controlExistencia.ToString());
             ProductoComercial.MetodoCosteo = int.Parse(metodoCosteo.ToString());
-            ProductoComercial.CodigoUnidadBase = codigoUnidadBase.ToString();
-            ProductoComercial.CodigoUnidadNoConvertible = codigoUnidadNoConvertible.ToString();
+            ProductoComercial.IdUnidadBase = int.Parse(idUnidadBase.ToString());
+            ProductoComercial.IdUnidadNoConvertible = int.Parse(idUnidadNoConvertible.ToString());
             ProductoComercial.Precio1 = double.Parse(precio1.ToString());
             ProductoComercial.Precio2 = double.Parse(precio2.ToString());
             ProductoComercial.Precio3 = double.Parse(precio3.ToString());
@@ -180,6 +182,10 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             ProductoComercial.ImporteExtra4 = double.Parse(importeExtra4.ToString());
             ProductoComercial.IdProducto = int.Parse(id.ToString());
             ProductoComercial.SegmentoContable1 = segmentoContable1.ToString();
+            ProductoComercial.UnidadBase = _servicioUnidadComercial.BuscarUnidad(ProductoComercial.IdUnidadBase);
+            ProductoComercial.UnidadNoConvertible = _servicioUnidadComercial.BuscarUnidad(ProductoComercial.IdUnidadNoConvertible);
+            ProductoComercial.CodigoUnidadBase = ProductoComercial.UnidadBase.NombreUnidad;
+            ProductoComercial.CodigoUnidadNoConvertible = ProductoComercial.UnidadNoConvertible.NombreUnidad;
             return ProductoComercial;
         }
     }
