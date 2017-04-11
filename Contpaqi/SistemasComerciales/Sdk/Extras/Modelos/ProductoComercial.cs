@@ -98,8 +98,32 @@
 
         public int IdUnidadNoConvertible { get; set; }
 
+        public int IdValorClasificacion1 { get; set; }
+
+        public int IdValorClasificacion2 { get; set; }
+
+        public int IdValorClasificacion3 { get; set; }
+
+        public int IdValorClasificacion4 { get; set; }
+
+        public int IdValorClasificacion5 { get; set; }
+
+        public int IdValorClasificacion6 { get; set; }
+
         public UnidadComercial UnidadBase { get; set; }
 
         public UnidadComercial UnidadNoConvertible { get; set; }
+
+        public ValorClasificacionComercial ValorClasificacion1 { get; set; }
+
+        public ValorClasificacionComercial ValorClasificacion2 { get; set; }
+
+        public ValorClasificacionComercial ValorClasificacion3 { get; set; }
+
+        public ValorClasificacionComercial ValorClasificacion4 { get; set; }
+
+        public ValorClasificacionComercial ValorClasificacion5 { get; set; }
+
+        public ValorClasificacionComercial ValorClasificacion6 { get; set; }
     }
 }

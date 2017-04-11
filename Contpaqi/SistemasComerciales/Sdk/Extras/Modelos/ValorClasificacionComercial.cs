@@ -2,9 +2,9 @@
 {
     public class ValorClasificacionComercial
     {
-        public int NumClasificacion { get; set; }
+        public int IdValorClasificacion { get; set; }
 
-        public int ClasificacionDe { get; set; }
+        public int IdClasificacion { get; set; }
 
         public string CodigoValorClasificacion { get; set; }
 
