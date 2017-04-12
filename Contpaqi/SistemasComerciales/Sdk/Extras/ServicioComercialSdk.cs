@@ -638,9 +638,9 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fActualizaProducto(ref aCodigoProducto, astProducto);
         }
 
-        public int fAltaProducto(ref int aIdProducto, tProducto astProducto)
+        public int fAltaProducto(ref int aIdProducto, ref tProducto astProducto)
         {
-            return ComercialSdk.fAltaProducto(ref aIdProducto, astProducto);
+            return ComercialSdk.fAltaProducto(ref aIdProducto, ref astProducto);
         }
 
         public int fBorraProducto()

@@ -62,7 +62,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces
 
         int fAltaMovtoCaracteristicasUnidades_Param(string aIdMovimiento, string aIdMovtoCaracteristicas, string aUnidad, string aUnidades, string aUnidadesNC, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3);
 
-        int fAltaProducto(ref int aIdProducto, tProducto astProducto);
+        int fAltaProducto(ref int aIdProducto, ref tProducto astProducto);
 
         int fAltaUnidad(ref int aIdUnidad, ref tUnidad astUnidad);
 

@@ -184,12 +184,12 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             productoComercial.CodigoUnidadBase = productoComercial.UnidadBase.NombreUnidad;
             productoComercial.CodigoUnidadNoConvertible = productoComercial.UnidadNoConvertible.NombreUnidad;
             // Clasificaciones
-            productoComercial.IdValorClasificacion1 = int.Parse(idValorClasificacion1.ToString());
-            productoComercial.IdValorClasificacion2 = int.Parse(idValorClasificacion2.ToString());
-            productoComercial.IdValorClasificacion3 = int.Parse(idValorClasificacion3.ToString());
-            productoComercial.IdValorClasificacion4 = int.Parse(idValorClasificacion4.ToString());
-            productoComercial.IdValorClasificacion5 = int.Parse(idValorClasificacion5.ToString());
-            productoComercial.IdValorClasificacion6 = int.Parse(idValorClasificacion6.ToString());
+            productoComercial.IdValorClasificacion1 = int.TryParse(idValorClasificacion1.ToString(), out int _idValorClasificacion1) ? _idValorClasificacion1 : 0;
+            productoComercial.IdValorClasificacion2 = int.TryParse(idValorClasificacion2.ToString(), out int _idValorClasificacion2) ? _idValorClasificacion2 : 0;
+            productoComercial.IdValorClasificacion3 = int.TryParse(idValorClasificacion3.ToString(), out int _idValorClasificacion3) ? _idValorClasificacion3 : 0;
+            productoComercial.IdValorClasificacion4 = int.TryParse(idValorClasificacion4.ToString(), out int _idValorClasificacion4) ? _idValorClasificacion4 : 0;
+            productoComercial.IdValorClasificacion5 = int.TryParse(idValorClasificacion5.ToString(), out int _idValorClasificacion5) ? _idValorClasificacion5 : 0;
+            productoComercial.IdValorClasificacion6 = int.TryParse(idValorClasificacion6.ToString(), out int _idValorClasificacion6) ? _idValorClasificacion6 : 0;
             productoComercial.ValorClasificacion1 = _servicioValorClasificacionComercial.BuscaValorClasificacion(productoComercial.IdValorClasificacion1);
             productoComercial.ValorClasificacion2 = _servicioValorClasificacionComercial.BuscaValorClasificacion(productoComercial.IdValorClasificacion2);
             productoComercial.ValorClasificacion3 = _servicioValorClasificacionComercial.BuscaValorClasificacion(productoComercial.IdValorClasificacion3);

@@ -403,7 +403,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         public static extern int fSetDescripcionProducto(string aCampo, string aValor);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fAltaProducto")]
-        public static extern int fAltaProducto(ref int aIdProducto, tProducto astProducto);
+        public static extern int fAltaProducto(ref int aIdProducto, ref tProducto astProducto);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fLeeDatoProducto")]
         public static extern int fLeeDatoProducto(string aCampo, StringBuilder aValor, int aLen);
