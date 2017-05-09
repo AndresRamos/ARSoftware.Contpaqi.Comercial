@@ -214,9 +214,9 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces
 
         int fEliminarValorClasif(int aClasificacionDe, int aNumClasificacion, string aCodigoValorClasif);
 
-        int fEmitirDocumento(StringBuilder aCodConcepto, StringBuilder aSerie, double aFolio, StringBuilder aPassword, StringBuilder aArchivoAdicional);
+        int fEmitirDocumento(string aCodConcepto, string aSerie, double aFolio, string aPassword, string aArchivoAdicional);
 
-        int fEntregEnDiscoXML(StringBuilder aCodConcepto, StringBuilder aSerie, double aFolio, int aFormato, StringBuilder aFormatoAmig);
+        int fEntregEnDiscoXML(string aCodConcepto, string aSerie, double aFolio, int aFormato, string aFormatoAmig);
 
         void fError(int aNumError, StringBuilder aMensaje, int aLen);
 

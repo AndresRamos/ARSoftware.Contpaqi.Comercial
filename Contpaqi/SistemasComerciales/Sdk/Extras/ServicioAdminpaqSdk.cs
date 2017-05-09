@@ -1,7 +1,6 @@
 ﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
-using System.Text;
-using System;
 using Microsoft.Win32;
+using System.Text;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras
 {
@@ -201,12 +200,12 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return AdminpaqSdk.fEditarDocumentoCheqpaq();
         }
 
-        public int fEmitirDocumento(StringBuilder aCodConcepto, StringBuilder aSerie, double aFolio, StringBuilder aPassword, StringBuilder aArchivoAdicional)
+        public int fEmitirDocumento(string aCodConcepto, string aSerie, double aFolio, string aPassword, string aArchivoAdicional)
         {
             return AdminpaqSdk.fEmitirDocumento(aCodConcepto, aSerie, aFolio, aPassword, aArchivoAdicional);
         }
 
-        public int fEntregEnDiscoXML(StringBuilder aCodConcepto, StringBuilder aSerie, double aFolio, int aFormato, StringBuilder aFormatoAmig)
+        public int fEntregEnDiscoXML(string aCodConcepto, string aSerie, double aFolio, int aFormato, string aFormatoAmig)
         {
             return AdminpaqSdk.fEntregEnDiscoXML(aCodConcepto, aSerie, aFolio, aFormato, aFormatoAmig);
         }

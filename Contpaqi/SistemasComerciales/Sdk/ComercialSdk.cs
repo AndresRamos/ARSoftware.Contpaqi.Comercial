@@ -175,7 +175,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         public static extern int fInicializaLicenseInfo(char aSistema);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fEmitirDocumento")]
-        public static extern int fEmitirDocumento(StringBuilder aCodConcepto, StringBuilder aSerie, double aFolio, StringBuilder aPassword, StringBuilder aArchivoAdicional);
+        public static extern int fEmitirDocumento(string aCodConcepto, string aSerie, double aFolio, string aPassword, string aArchivoAdicional);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fDocumentoUUID")]
         public static extern int fDocumentoUUID(StringBuilder aCodConcepto, StringBuilder aSerie, double aFolio, StringBuilder atPtrCFDIUUID);
@@ -196,7 +196,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         public static extern int fDocumentoDevuelto(ref int aDevuelto);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fEntregEnDiscoXML")]
-        public static extern int fEntregEnDiscoXML(StringBuilder aCodConcepto, StringBuilder aSerie, double aFolio, int aFormato, StringBuilder aFormatoAmig);
+        public static extern int fEntregEnDiscoXML(string aCodConcepto, string aSerie, double aFolio, int aFormato, string aFormatoAmig);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fObtieneDatosCFDI")]
         public static extern int fObtieneDatosCFDI(StringBuilder atPtrPassword);
