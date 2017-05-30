@@ -172,7 +172,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         public static extern int fGetSelloDigitalYCadena(StringBuilder atPtrPassword, StringBuilder atPtrSelloDigital, StringBuilder atPtrCadenaOriginal);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fInicializaLicenseInfo")]
-        public static extern int fInicializaLicenseInfo(char aSistema);
+        public static extern int fInicializaLicenseInfo(int aSistema);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fEmitirDocumento")]
         public static extern int fEmitirDocumento(string aCodConcepto, string aSerie, double aFolio, string aPassword, string aArchivoAdicional);
@@ -199,7 +199,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         public static extern int fEntregEnDiscoXML(string aCodConcepto, string aSerie, double aFolio, int aFormato, string aFormatoAmig);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fObtieneDatosCFDI")]
-        public static extern int fObtieneDatosCFDI(StringBuilder atPtrPassword);
+        public static extern int fObtieneDatosCFDI(string atPtrPassword);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fLeeDatoCFDI")]
         public static extern int fLeeDatoCFDI(StringBuilder aValor, int aDato);
@@ -366,7 +366,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         public static extern int fInformacionCliente(StringBuilder aCodigo, ref int aPermiteCredito, ref double aLimiteCredito, ref int aLimiteDoctosVencidos, ref int aPermiteExcederCredito, StringBuilder aFecha, ref double aSaldo, ref double aSaldoPendiente, ref int aDoctosVencidos);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaCteProv")]
-        public static extern int fAltaCteProv(StringBuilder aIdCteProv, tCteProv astCteProv);
+        public static extern int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fActualizaCteProv")]
         public static extern int fActualizaCteProv(StringBuilder aCodigoCteProv, tCteProv astCteProv);

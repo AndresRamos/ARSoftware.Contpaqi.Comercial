@@ -1,5 +1,6 @@
 ﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
 using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -97,12 +98,12 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CIDALMACEN", almacenId, Constantes.kLongCodigo); // Lee el id del almacen
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("COBSERVAMOV", observaciones, 250);
             MovimientoComercial movimiento = new MovimientoComercial();
-            movimiento.Consecutivo = int.Parse(consecutivo.ToString());
+            movimiento.Consecutivo = double.TryParse(consecutivo.ToString(), out double _consecutivo) ? Convert.ToInt32(_consecutivo) : 0; // Int.Parse falla por que regresa 1.00
             movimiento.Unidades = double.Parse(unidades.ToString());
             movimiento.Precio = double.Parse(precio.ToString());
             movimiento.Costo = double.Parse(costo.ToString());
             movimiento.Referencia = referencia.ToString();
-            movimiento.IdValorClasificacion = int.Parse(idValorClasificacion.ToString());
+            movimiento.IdValorClasificacion = int.TryParse(idValorClasificacion.ToString(), out int _idValorClasificacion) ? _idValorClasificacion : 0;
             movimiento.IdMovimiento = int.Parse(id.ToString());
             movimiento.TextoExtra1 = textoExtra1.ToString();
             movimiento.Observaciones = observaciones.ToString();

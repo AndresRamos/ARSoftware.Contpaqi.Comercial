@@ -12,6 +12,9 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Modelos
             ConceptoDocumento = new ConceptoDocumentoComercial();
             Agente = new AgenteComercial();
             Movimientos = new List<MovimientoComercial>();
+            NumeroMoneda = 1;
+            TipoDeCambio = 1;
+            Fecha = DateTime.Today;
         }
 
         // Propiedes de Tipo tDocumento

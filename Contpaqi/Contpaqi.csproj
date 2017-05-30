@@ -82,6 +82,7 @@
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioErrorComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioMovimientoComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioProductoComercial.cs" />
+    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioSistemasComerciales.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioUnidadComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioValorClasificacionComercial.cs" />
     <Compile Include="SistemasComerciales\Sql\Empresas\Modelo\admAcumulados.cs" />

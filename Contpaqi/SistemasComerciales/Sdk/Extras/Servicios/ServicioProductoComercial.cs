@@ -1,5 +1,6 @@
 ﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
 using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -52,7 +53,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             StringBuilder nombreProducto = new StringBuilder(Constantes.kLongNombre);
             StringBuilder descripcionProducto = new StringBuilder(Constantes.kLongNombreProducto);
             StringBuilder tipoProducto = new StringBuilder(7);
-            StringBuilder fechaAltaProducto = new StringBuilder(9);
+            StringBuilder fechaAltaProducto = new StringBuilder(Constantes.kLongFecha);
             StringBuilder fechaBaja = new StringBuilder(9);
             StringBuilder statusProducto = new StringBuilder(7);
             StringBuilder controlExistencia = new StringBuilder(7);
@@ -97,7 +98,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CNOMBREPRODUCTO", nombreProducto, Constantes.kLongNombre);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CDESCRIPCIONPRODUCTO", descripcionProducto, Constantes.kLongNombreProducto);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CTIPOPRODUCTO", tipoProducto, 7);
-            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CFECHAALTAPRODUCTO", fechaAltaProducto, 9);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CFECHAALTAPRODUCTO", fechaAltaProducto, Constantes.kLongFecha);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CFECHABAJA", fechaBaja, 9);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CSTATUSPRODUCTO", statusProducto, 7);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CCONTROLEXISTENCIA", controlExistencia, 7);

@@ -240,7 +240,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return AdminpaqSdk.fGuardaDocumento();
         }
 
-        public int fInicializaLicenseInfo(char aSistema)
+        public int fInicializaLicenseInfo(int aSistema)
         {
             return AdminpaqSdk.fInicializaLicenseInfo(aSistema);
         }
@@ -260,7 +260,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return AdminpaqSdk.fLeeDatoDocumento(aCampo, aValor, aLongitud);
         }
 
-        public int fObtieneDatosCFDI(StringBuilder atPtrPassword)
+        public int fObtieneDatosCFDI(string atPtrPassword)
         {
             return AdminpaqSdk.fObtieneDatosCFDI(atPtrPassword);
         }
@@ -533,9 +533,9 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return AdminpaqSdk.fActualizaCteProv(aCodigoCteProv, astCteProv);
         }
 
-        public int fAltaCteProv(StringBuilder aIdCteProv, tCteProv astCteProv)
+        public int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv)
         {
-            return AdminpaqSdk.fAltaCteProv(aIdCteProv, astCteProv);
+            return AdminpaqSdk.fAltaCteProv(ref aIdCteProv, ref astCteProv);
         }
 
         public int fBorraCteProv()

@@ -143,7 +143,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             documento.NumeroMoneda = int.Parse(numeroMoneda.ToString());
             documento.TipoDeCambio = double.Parse(tipoDeCambio.ToString());
             documento.Importe = double.Parse(importe.ToString());
-            documento.SistemaDeOrigen = int.Parse(sistemaDeOrigen.ToString());
+            documento.SistemaDeOrigen = int.TryParse(sistemaDeOrigen.ToString(), out int _sistemaOrigen) ? _sistemaOrigen : 0;
             documento.Fecha = DateTime.ParseExact(fecha.ToString(), "M/d/yyyy HH:mm:ss:fff", null);
             documento.Serie = serie.ToString();
             documento.Referencia = referencia.ToString();
@@ -153,7 +153,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             documento.IdDocumento = int.Parse(id.ToString());
             documento.IdConceptoDocumento = int.Parse(conceptoId.ToString());
             documento.IdClienteProveedor = int.Parse(clienteId.ToString());
-            documento.IdAgente = int.Parse(agenteId.ToString());
+            documento.IdAgente = int.TryParse(agenteId.ToString(), out int _agenteId) ? _agenteId : 0;
             documento.Observaciones = observaciones.ToString();
             documento.TextoExtra1 = textoExtra1.ToString();
             documento.TextoExtra2 = textoExtra2.ToString();

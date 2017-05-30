@@ -30,7 +30,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces
 
         int fAfectaSerie(int aIdMovto, string aNumeroSerie);
 
-        int fAltaCteProv(StringBuilder aIdCteProv, tCteProv astCteProv);
+        int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv);
 
         int fAltaDireccion(ref int aIdDireccion, ref tDireccion astDireccion);
 
@@ -258,7 +258,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces
 
         int fInformacionCliente(StringBuilder aCodigo, ref int aPermiteCredito, ref double aLimiteCredito, ref int aLimiteDoctosVencidos, ref int aPermiteExcederCredito, StringBuilder aFecha, ref double aSaldo, ref double aSaldoPendiente, ref int aDoctosVencidos);
 
-        int fInicializaLicenseInfo(char aSistema);
+        int fInicializaLicenseInfo(int aSistema);
 
         int fInicializaSDK();
 
@@ -330,7 +330,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces
 
         int fObtenCeryKey(int aIdFirmarl, string aRutaKey, string aRutaCer);
 
-        int fObtieneDatosCFDI(StringBuilder atPtrPassword);
+        int fObtieneDatosCFDI(string atPtrPassword);
 
         int fObtieneLicencia(StringBuilder aCodAcvtiva, StringBuilder aCodSitio, StringBuilder aSerie, StringBuilder aTagVersion);
 
