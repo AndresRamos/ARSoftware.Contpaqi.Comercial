@@ -7,6 +7,7 @@
             Producto = new ProductoComercial();
             Almacen = new AlmacenComercial();
             ValorClasificacion = new ValorClasificacionComercial();
+            CodigoAlmacen = "1";
         }
 
         // Propiedades tMovimiento

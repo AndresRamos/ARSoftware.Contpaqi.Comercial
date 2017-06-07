@@ -240,7 +240,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return AdminpaqSdk.fGuardaDocumento();
         }
 
-        public int fInicializaLicenseInfo(int aSistema)
+        public int fInicializaLicenseInfo(byte aSistema)
         {
             return AdminpaqSdk.fInicializaLicenseInfo(aSistema);
         }

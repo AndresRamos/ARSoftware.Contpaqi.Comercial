@@ -172,7 +172,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         public static extern int fGetSelloDigitalYCadena(StringBuilder atPtrPassword, StringBuilder atPtrSelloDigital, StringBuilder atPtrCadenaOriginal);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fInicializaLicenseInfo")]
-        public static extern int fInicializaLicenseInfo(int aSistema);
+        public static extern int fInicializaLicenseInfo(byte aSistema);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fEmitirDocumento")]
         public static extern int fEmitirDocumento(string aCodConcepto, string aSerie, double aFolio, string aPassword, string aArchivoAdicional);

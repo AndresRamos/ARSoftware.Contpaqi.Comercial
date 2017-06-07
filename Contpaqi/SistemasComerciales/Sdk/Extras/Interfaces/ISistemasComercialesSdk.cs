@@ -258,7 +258,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces
 
         int fInformacionCliente(StringBuilder aCodigo, ref int aPermiteCredito, ref double aLimiteCredito, ref int aLimiteDoctosVencidos, ref int aPermiteExcederCredito, StringBuilder aFecha, ref double aSaldo, ref double aSaldoPendiente, ref int aDoctosVencidos);
 
-        int fInicializaLicenseInfo(int aSistema);
+        int fInicializaLicenseInfo(byte aSistema);
 
         int fInicializaSDK();
 
