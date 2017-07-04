@@ -73,10 +73,10 @@ namespace Contpaqi.SistemasComerciales.Sdk
         public static extern int fAfectaDocto_Param(string aCodConcepto, string aSerie, double aFolio, bool aAfecta);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fSaldarDocumento_Param")]
-        public static extern int fSaldarDocumento_Param(string aCodConcepto_Pagar, string aSerie_Pagar, string aFolio_Pagar, string aCodConcepto_Pago, string aSerie_Pago, string aFolio_Pago, double aImporte, int aIdMoneda, string aFecha);
+        public static extern int fSaldarDocumento_Param(string aCodConcepto_Pagar, string aSerie_Pagar, double aFolio_Pagar, string aCodConcepto_Pago, string aSerie_Pago, double aFolio_Pago, double aImporte, int aIdMoneda, string aFecha);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fBorrarAsociacion_Param")]
-        public static extern int fBorrarAsociacion_Param(string aCodConcepto_Pagar, string aSerie_Pagar, string aFolio_Pagar, string aCodConcepto_Pago, string aSerie_Pago, string aFolio_Pago);
+        public static extern int fBorrarAsociacion_Param(string aCodConcepto_Pagar, string aSerie_Pagar, double aFolio_Pagar, string aCodConcepto_Pago, string aSerie_Pago, double aFolio_Pago);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fEditarDocumentoCheqpaq")]
         public static extern int fEditarDocumentoCheqpaq();
