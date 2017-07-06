@@ -1,5 +1,6 @@
 ﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
 using Microsoft.Win32;
+using System;
 using System.Text;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras
@@ -1498,6 +1499,11 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             object lEntrada = keySistema.GetValue("DirectorioBase");
             System.IO.Directory.SetCurrentDirectory(lEntrada.ToString());
             return AdminpaqSdk.fSetNombrePAQ(NombrePaq);
+        }
+
+        public void fInicioSesionSDKCONTPAQi(string aUsuario, string aContrasenia)
+        {
+            throw new NotImplementedException();
         }
     }
 }

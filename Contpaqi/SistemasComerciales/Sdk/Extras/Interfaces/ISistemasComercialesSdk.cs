@@ -566,6 +566,8 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces
 
         int fTimbraXML(StringBuilder aRutaXML, StringBuilder aCodCOncepto, StringBuilder aUUID, StringBuilder aRutaDDA, StringBuilder aRutaResultado, StringBuilder aPass, StringBuilder aRutaFormato);
 
+        void fInicioSesionSDKCONTPAQi(string aUsuario, string aContrasenia);
+
         int InicializarSDK();
     }
 }

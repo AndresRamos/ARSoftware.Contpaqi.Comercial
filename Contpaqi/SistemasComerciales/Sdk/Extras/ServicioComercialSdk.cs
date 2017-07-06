@@ -1499,5 +1499,10 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             System.IO.Directory.SetCurrentDirectory(lEntrada.ToString());
             return ComercialSdk.fSetNombrePAQ(NombrePaq);
         }
+
+        public void fInicioSesionSDKCONTPAQi(string aUsuario, string aContrasenia)
+        {
+            ComercialSdk.fInicioSesionSDKCONTPAQi(aUsuario, aContrasenia);
+        }
     }
 }

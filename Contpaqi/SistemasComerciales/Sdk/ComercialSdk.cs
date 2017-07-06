@@ -25,6 +25,9 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fSetModoImportacion")]
         public static extern void fSetModoImportacion(bool aImportacion);
 
+        [DllImport("MGWServicios.dll", EntryPoint = "fInicioSesionSDKCONTPAQi")]
+        public static extern void fInicioSesionSDKCONTPAQi(string aUsuario, string aContrasenia);
+
         #endregion Generales
 
         #region Empresas
