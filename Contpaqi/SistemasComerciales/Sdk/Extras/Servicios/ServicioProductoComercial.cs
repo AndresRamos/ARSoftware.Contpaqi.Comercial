@@ -1,6 +1,5 @@
 ﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
 using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
-using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,9 +8,9 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
     public class ServicioProductoComercial
     {
         private readonly ServicioErrorComercial _errorComercialServicio;
+        private readonly ISistemasComercialesSdk _sdk;
         private readonly ServicioUnidadComercial _servicioUnidadComercial;
         private readonly ServicioValorClasificacionComercial _servicioValorClasificacionComercial;
-        private readonly ISistemasComercialesSdk _sdk;
 
         public ServicioProductoComercial(ISistemasComercialesSdk sdk)
         {

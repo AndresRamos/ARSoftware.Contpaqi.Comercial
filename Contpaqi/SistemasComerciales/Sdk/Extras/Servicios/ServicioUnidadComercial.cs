@@ -1,10 +1,7 @@
 ﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
 using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {

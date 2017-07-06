@@ -264,6 +264,8 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces
 
         void fInicioSesionSDK(string aUsuario, string aContrasenia);
 
+        void fInicioSesionSDKCONTPAQi(string aUsuario, string aContrasenia);
+
         int fInsertaAgente();
 
         int fInsertaAlmacen();
@@ -565,8 +567,6 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces
         int fTimbraNominaXML(StringBuilder aRutaXML, StringBuilder aCodCOncepto, StringBuilder aUUID, StringBuilder aRutaDDA, StringBuilder aRutaResultado, StringBuilder aPass, StringBuilder aRutaFormato);
 
         int fTimbraXML(StringBuilder aRutaXML, StringBuilder aCodCOncepto, StringBuilder aUUID, StringBuilder aRutaDDA, StringBuilder aRutaResultado, StringBuilder aPass, StringBuilder aRutaFormato);
-
-        void fInicioSesionSDKCONTPAQi(string aUsuario, string aContrasenia);
 
         int InicializarSDK();
     }
