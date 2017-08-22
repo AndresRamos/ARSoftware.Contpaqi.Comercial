@@ -1,5 +1,6 @@
 ﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
 using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
@@ -33,6 +34,22 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             tValorClasificacion.cCodigoValorClasificacion = valorClasificacion.CodigoValorClasificacion;
             tValorClasificacion.cValorClasificacion = valorClasificacion.ValorClasificacion;
             return tValorClasificacion;
+        }
+
+        public List<ValorClasificacionComercial> TraerValoresClasificacion()
+        {
+            List<ValorClasificacionComercial> valresClasificacion = new List<ValorClasificacionComercial>();
+            _errorComercialServicio.ResultadoSdk = _sdk.fPosPrimerValorClasif();
+            valresClasificacion.Add(LeerDatosValorClasificacionActual());
+            while (_sdk.fPosSiguienteValorClasif() == 0)
+            {
+                valresClasificacion.Add(LeerDatosValorClasificacionActual());
+                if (_sdk.fPosEOFValorClasif() == 1)
+                {
+                    break;
+                }
+            };
+            return valresClasificacion;
         }
 
         private ValorClasificacionComercial LeerDatosValorClasificacionActual()

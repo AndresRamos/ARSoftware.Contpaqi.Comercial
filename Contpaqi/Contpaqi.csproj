@@ -59,12 +59,14 @@
     <Compile Include="SistemasComerciales\Sdk\Extras\Interfaces\ISistemasComercialesSdk.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\AgenteComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\AlmacenComercial.cs" />
+    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ClasificacionComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ClienteProveedorComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ConceptoDocumentoComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ContpaqiSdkEnum.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\DireccionComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\DocumentoComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\EmpresaComercial.cs" />
+    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\Enums\TipoClasificacionEnum.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\MovimientoComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ProductoComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\UnidadComercial.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\FabricaContpaqiSdk.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioAgenteComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioAlmacenComercial.cs" />
+    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioClasificacionComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioClienteProveedorComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioConceptoDocumentoComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioDireccionComercial.cs" />
