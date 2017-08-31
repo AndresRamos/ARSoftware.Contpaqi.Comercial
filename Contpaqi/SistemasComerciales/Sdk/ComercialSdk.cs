@@ -326,6 +326,9 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fGetCantidadParcialidades")]
         public static extern int fGetCantidadParcialidades(StringBuilder atPtrPassword, StringBuilder aCantidadParcialidades);
 
+        [DllImport("MGWServicios.dll", EntryPoint = "fGetDatosCFDI")]
+        public static extern int fGetDatosCFDI(StringBuilder aSerieCertEmisor, StringBuilder aFolioFiscalUUID, StringBuilder aSerieCertSAT, StringBuilder aFechaHora, StringBuilder aSelloDigCFDI, StringBuilder aSelloSAAT, StringBuilder aCadOrigComplSAT, StringBuilder aRegimen, StringBuilder aLugarExpedicion, StringBuilder aMoneda, StringBuilder aFolioFiscalOrig, StringBuilder aSerieFolioFiscalOrig, StringBuilder aFechaFolioFiscalOrig, StringBuilder aMontoFolioFiscalOrig);
+
         [DllImport("MGWServicios.dll", EntryPoint = "fGetNumParcialidades")]
         public static extern int fGetNumParcialidades(StringBuilder atPtrPassword, StringBuilder aNumParcialidades);
 

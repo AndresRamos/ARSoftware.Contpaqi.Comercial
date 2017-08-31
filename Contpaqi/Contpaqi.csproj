@@ -83,7 +83,7 @@
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioDocumentoComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioEmpresaComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioErrorComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioFacturaElectronicaSdk.cs" />
+    <Compile Include="SistemasComerciales\Sdk\Extras\ServicioFacturaElectronicaSdk.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioMovimientoComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioProductoComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioSistemasComerciales.cs" />

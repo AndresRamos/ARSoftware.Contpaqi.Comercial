@@ -222,6 +222,8 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces
 
         int fGetCantidadParcialidades(StringBuilder atPtrPassword, StringBuilder aCantidadParcialidades);
 
+        int fGetDatosCFDI(StringBuilder aSerieCertEmisor, StringBuilder aFolioFiscalUUID, StringBuilder aSerieCertSAT, StringBuilder aFechaHora, StringBuilder aSelloDigCFDI, StringBuilder aSelloSAAT, StringBuilder aCadOrigComplSAT, StringBuilder aRegimen, StringBuilder aLugarExpedicion, StringBuilder aMoneda, StringBuilder aFolioFiscalOrig, StringBuilder aSerieFolioFiscalOrig, StringBuilder aFechaFolioFiscalOrig, StringBuilder aMontoFolioFiscalOrig);
+
         int fGetNumParcialidades(StringBuilder atPtrPassword, StringBuilder aNumParcialidades);
 
         int fGetSelloDigitalYCadena(StringBuilder atPtrPassword, StringBuilder atPtrSelloDigital, StringBuilder atPtrCadenaOriginal);
@@ -569,5 +571,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces
         int fTimbraXML(StringBuilder aRutaXML, StringBuilder aCodCOncepto, StringBuilder aUUID, StringBuilder aRutaDDA, StringBuilder aRutaResultado, StringBuilder aPass, StringBuilder aRutaFormato);
 
         int InicializarSDK();
+
+        int InicializarSDK(string usuario, string password);
     }
 }

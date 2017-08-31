@@ -560,6 +560,11 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fGetCantidadParcialidades(atPtrPassword, aCantidadParcialidades);
         }
 
+        public int fGetDatosCFDI(StringBuilder aSerieCertEmisor, StringBuilder aFolioFiscalUUID, StringBuilder aSerieCertSAT, StringBuilder aFechaHora, StringBuilder aSelloDigCFDI, StringBuilder aSelloSAAT, StringBuilder aCadOrigComplSAT, StringBuilder aRegimen, StringBuilder aLugarExpedicion, StringBuilder aMoneda, StringBuilder aFolioFiscalOrig, StringBuilder aSerieFolioFiscalOrig, StringBuilder aFechaFolioFiscalOrig, StringBuilder aMontoFolioFiscalOrig)
+        {
+            return ComercialSdk.fGetDatosCFDI(aSerieCertEmisor, aFolioFiscalUUID, aSerieCertSAT, aFechaHora, aSelloDigCFDI, aSelloSAAT, aCadOrigComplSAT, aRegimen, aLugarExpedicion, aMoneda, aFolioFiscalOrig, aSerieFolioFiscalOrig, aFechaFolioFiscalOrig, aMontoFolioFiscalOrig);
+        }
+
         public int fGetNumParcialidades(StringBuilder atPtrPassword, StringBuilder aNumParcialidades)
         {
             return ComercialSdk.fGetNumParcialidades(atPtrPassword, aNumParcialidades);
@@ -1431,6 +1436,15 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             object lEntrada = keySistema.GetValue("DirectorioBase");
             System.IO.Directory.SetCurrentDirectory(lEntrada.ToString());
             return ComercialSdk.fSetNombrePAQ(NombrePaq);
+        }
+
+        public int InicializarSDK(string usuario, string password)
+        {
+            RegistryKey keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistroComercial);
+            object lEntrada = keySistema.GetValue("DirectorioBase");
+            System.IO.Directory.SetCurrentDirectory(lEntrada.ToString());
+            ComercialSdk.fInicioSesionSDK(usuario, password);
+            return ComercialSdk.fSetNombrePAQ(NombrePaqComercial);
         }
     }
 }

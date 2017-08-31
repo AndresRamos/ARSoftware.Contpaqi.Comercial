@@ -3,7 +3,7 @@ using Microsoft.Win32;
 using System;
 using System.Text;
 
-namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
+namespace Contpaqi.SistemasComerciales.Sdk.Extras
 {
     public class ServicioFacturaElectronicaSdk : ISistemasComercialesSdk
     {
@@ -559,6 +559,11 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
         public int fGetCantidadParcialidades(StringBuilder atPtrPassword, StringBuilder aCantidadParcialidades)
         {
             return AdminpaqSdk.fGetCantidadParcialidades(atPtrPassword, aCantidadParcialidades);
+        }
+
+        public int fGetDatosCFDI(StringBuilder aSerieCertEmisor, StringBuilder aFolioFiscalUUID, StringBuilder aSerieCertSAT, StringBuilder aFechaHora, StringBuilder aSelloDigCFDI, StringBuilder aSelloSAAT, StringBuilder aCadOrigComplSAT, StringBuilder aRegimen, StringBuilder aLugarExpedicion, StringBuilder aMoneda, StringBuilder aFolioFiscalOrig, StringBuilder aSerieFolioFiscalOrig, StringBuilder aFechaFolioFiscalOrig, StringBuilder aMontoFolioFiscalOrig)
+        {
+            throw new NotImplementedException();
         }
 
         public int fGetNumParcialidades(StringBuilder atPtrPassword, StringBuilder aNumParcialidades)
@@ -1432,6 +1437,11 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             object lEntrada = keySistema.GetValue("DirectorioBase");
             System.IO.Directory.SetCurrentDirectory(lEntrada.ToString());
             return AdminpaqSdk.fSetNombrePAQ(NombrePaq);
+        }
+
+        public int InicializarSDK(string usuario, string password)
+        {
+            throw new NotImplementedException();
         }
     }
 }
