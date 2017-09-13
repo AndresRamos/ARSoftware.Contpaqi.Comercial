@@ -62,7 +62,7 @@
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ClasificacionComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ClienteProveedorComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ConceptoDocumentoComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ContpaqiSdkEnum.cs" />
+    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\Enums\ContpaqiSdkEnum.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\DireccionComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\DocumentoComercial.cs" />
     <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\EmpresaComercial.cs" />

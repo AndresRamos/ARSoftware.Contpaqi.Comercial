@@ -1,5 +1,5 @@
 ﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
-using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos.Enums;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {

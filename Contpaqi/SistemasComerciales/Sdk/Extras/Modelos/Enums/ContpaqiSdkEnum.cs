@@ -1,4 +1,4 @@
-﻿namespace Contpaqi.SistemasComerciales.Sdk.Extras.Modelos
+﻿namespace Contpaqi.SistemasComerciales.Sdk.Extras.Modelos.Enums
 {
     public enum ContpaqiSdkEnum
     {

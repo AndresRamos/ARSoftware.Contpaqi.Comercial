@@ -90,7 +90,16 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         public List<DocumentoComercial> TraerDocumentos(DateTime fechaInicio, DateTime fechaFin, string codigoConcepto, string codigoClienteProveedor)
         {
-            _errorComercialServicio.ResultadoSdk = _sdk.fSetFiltroDocumento(fechaInicio.ToString("MM/dd/yyyy"), fechaFin.ToString("MM/dd/yyyy"), codigoConcepto, codigoClienteProveedor);
+            int result = _sdk.fSetFiltroDocumento(fechaInicio.ToString("MM/dd/yyyy"), fechaFin.ToString("MM/dd/yyyy"), codigoConcepto, codigoClienteProveedor);
+            if (result != 0 && result == 2)
+            {
+                _errorComercialServicio.ResultadoSdk = _sdk.fCancelaFiltroDocumento();
+                return new List<DocumentoComercial>();
+            }
+            else
+            {
+                _errorComercialServicio.ResultadoSdk = result;
+            }
             List<DocumentoComercial> documentos = TraerDocumentos();
             _errorComercialServicio.ResultadoSdk = _sdk.fCancelaFiltroDocumento();
             return documentos;

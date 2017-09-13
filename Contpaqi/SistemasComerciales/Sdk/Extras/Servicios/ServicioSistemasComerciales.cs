@@ -4,6 +4,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
     public class ServicioSistemasComerciales
     {
+        private readonly ISistemasComercialesSdk _sistemasComercialesSdk;
         private ServicioAgenteComercial _servicioAgenteComercial;
         private ServicioAlmacenComercial _servicioAlmacenComercial;
         private ServicioClasificacionComercial _servicioClasificacionComercial;
@@ -20,6 +21,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         public ServicioSistemasComerciales(ISistemasComercialesSdk sdk)
         {
+            _sistemasComercialesSdk = sdk;
             _servicioAgenteComercial = new ServicioAgenteComercial(sdk);
             _servicioAlmacenComercial = new ServicioAlmacenComercial(sdk);
             _servicioClienteProveedorComercial = new ServicioClienteProveedorComercial(sdk);
@@ -111,5 +113,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             get { return _servicioValorClasificacionComercial; }
             private set { _servicioValorClasificacionComercial = value; }
         }
+
+        public ISistemasComercialesSdk SistemasComercialesSdk => _sistemasComercialesSdk;
     }
 }
