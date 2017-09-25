@@ -136,6 +136,8 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces
 
         int fCancelaCambiosMovimiento();
 
+        int fCancelaComplementoPagoUUID(string aUUID, string aIdDConcepto, string aPass);
+
         int fCancelaDocumento();
 
         int fCancelaDocumento_CW();
@@ -563,6 +565,8 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces
         int fSiguienteFolio(string aCodigoConcepto, StringBuilder aSerie, ref double aFolio);
 
         void fTerminaSDK();
+
+        int fTimbraComplementoPagoXML(string aRutaXML, string aCodConcepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato);
 
         int fTimbraComplementoXML(string aRutaXML, string aCodCOncepto, string aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato, int aComplemento);
 

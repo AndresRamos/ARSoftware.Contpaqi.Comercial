@@ -7,5 +7,7 @@
         public string CodigoConcepto { get; set; }
 
         public string NombreConcepto { get; set; }
+
+        public bool EsCfd { get; set; }
     }
 }

@@ -197,6 +197,9 @@ namespace Contpaqi.SistemasComerciales.Sdk
         [DllImport("MGW_SDK.dll", EntryPoint = "fCancelaCambiosMovimiento")]
         public static extern int fCancelaCambiosMovimiento();
 
+        [DllImport("MGW_SDK.dll", EntryPoint = "fCancelaComplementoPagoUUID")]
+        public static extern int fCancelaComplementoPagoUUID(string aUUID, string aIdDConcepto, string aPass);
+
         [DllImport("MGW_SDK.dll", EntryPoint = "fCancelaDocumento")]
         public static extern int fCancelaDocumento();
 
@@ -832,6 +835,9 @@ namespace Contpaqi.SistemasComerciales.Sdk
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fTerminaSDK")]
         public static extern void fTerminaSDK();
+
+        [DllImport("MGW_SDK.dll", EntryPoint = "fTimbraComplementoPagoXML")]
+        public static extern int fTimbraComplementoPagoXML(string aRutaXML, string aCodConcepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fTimbraComplementoXML")]
         public static extern int fTimbraComplementoXML(string aRutaXML, string aCodCOncepto, string aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato, int aComplemento);

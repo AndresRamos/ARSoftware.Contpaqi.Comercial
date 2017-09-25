@@ -345,6 +345,11 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return ComercialSdk.fCancelaCambiosMovimiento();
         }
 
+        public int fCancelaComplementoPagoUUID(string aUUID, string aIdDConcepto, string aPass)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public int fCancelaDocumento()
         {
             return ComercialSdk.fCancelaDocumento();
@@ -1413,6 +1418,11 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
         public void fTerminaSDK()
         {
             ComercialSdk.fTerminaSDK();
+        }
+
+        public int fTimbraComplementoPagoXML(string aRutaXML, string aCodConcepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato)
+        {
+            throw new System.NotImplementedException();
         }
 
         public int fTimbraComplementoXML(string aRutaXML, string aCodCOncepto, string aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato, int aComplemento)

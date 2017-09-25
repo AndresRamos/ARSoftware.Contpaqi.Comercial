@@ -346,6 +346,11 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return AdminpaqSdk.fCancelaCambiosMovimiento();
         }
 
+        public int fCancelaComplementoPagoUUID(string aUUID, string aIdDConcepto, string aPass)
+        {
+            return AdminpaqSdk.fCancelaComplementoPagoUUID(aUUID, aIdDConcepto, aPass);
+        }
+
         public int fCancelaDocumento()
         {
             return AdminpaqSdk.fCancelaDocumento();
@@ -1414,6 +1419,11 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
         public void fTerminaSDK()
         {
             AdminpaqSdk.fTerminaSDK();
+        }
+
+        public int fTimbraComplementoPagoXML(string aRutaXML, string aCodConcepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato)
+        {
+            return AdminpaqSdk.fTimbraComplementoPagoXML(aRutaXML, aCodConcepto, aUUID, aRutaDDA, aRutaResultado, aPass, aRutaFormato);
         }
 
         public int fTimbraComplementoXML(string aRutaXML, string aCodCOncepto, string aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato, int aComplemento)

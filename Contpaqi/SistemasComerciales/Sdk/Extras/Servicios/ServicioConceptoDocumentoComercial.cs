@@ -47,13 +47,16 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             StringBuilder id = new StringBuilder(12);
             StringBuilder codigo = new StringBuilder(Constantes.kLongCodigo);
             StringBuilder nombre = new StringBuilder(Constantes.kLongNombre);
+            StringBuilder esCfd = new StringBuilder(6);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoConceptoDocto("CIDCONCEPTODOCUMENTO", id, 12);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoConceptoDocto("CCODIGOCONCEPTO", codigo, Constantes.kLongCodigo);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoConceptoDocto("CNOMBRECONCEPTO", nombre, Constantes.kLongNombre);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoConceptoDocto("CESCFD", esCfd, 6);
             ConceptoDocumentoComercial conceptoDeDocumento = new ConceptoDocumentoComercial();
             conceptoDeDocumento.IdConcepto = int.Parse(id.ToString());
             conceptoDeDocumento.CodigoConcepto = codigo.ToString();
             conceptoDeDocumento.NombreConcepto = nombre.ToString();
+            conceptoDeDocumento.EsCfd = esCfd.ToString() == "0" ? false : true;
             return conceptoDeDocumento;
         }
     }
