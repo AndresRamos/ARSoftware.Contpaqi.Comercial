@@ -52,6 +52,31 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             return valresClasificacion;
         }
 
+        public List<ValorClasificacionComercial> TraerValoresClasificacion(int idClasificacion)
+        {
+            List<ValorClasificacionComercial> valresClasificacion = new List<ValorClasificacionComercial>();
+            StringBuilder id = new StringBuilder(12);
+            _errorComercialServicio.ResultadoSdk = _sdk.fPosPrimerValorClasif();
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoValorClasif("CIDCLASIFICACION", id, 12);
+            if (idClasificacion.ToString() == id.ToString())
+            {
+                valresClasificacion.Add(LeerDatosValorClasificacionActual());
+            }
+            while (_sdk.fPosSiguienteValorClasif() == 0)
+            {
+                _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoValorClasif("CIDCLASIFICACION", id, 12);
+                if (idClasificacion.ToString() == id.ToString())
+                {
+                    valresClasificacion.Add(LeerDatosValorClasificacionActual());
+                }
+                if (_sdk.fPosEOFValorClasif() == 1)
+                {
+                    break;
+                }
+            };
+            return valresClasificacion;
+        }
+
         private ValorClasificacionComercial LeerDatosValorClasificacionActual()
         {
             StringBuilder idValorClasificacion = new StringBuilder(12);

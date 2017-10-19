@@ -53,6 +53,23 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             return clientesList;
         }
 
+        public List<ClienteProveedorComercial> TraerClientesProveedores()
+        {
+            List<ClienteProveedorComercial> clientesList = new List<ClienteProveedorComercial>();
+            _errorComercialServicio.ResultadoSdk = _sdk.fPosPrimerCteProv();
+
+            clientesList.Add(LeerDatosClienteProveedorActual());
+            while (_sdk.fPosSiguienteCteProv() == 0)
+            {
+                clientesList.Add(LeerDatosClienteProveedorActual());
+                if (_sdk.fPosEOFCteProv() == 1)
+                {
+                    break;
+                }
+            };
+            return clientesList;
+        }
+
         private ClienteProveedorComercial LeerDatosClienteProveedorActual()
         {
             StringBuilder codigo = new StringBuilder(Constantes.kLongCodigo);

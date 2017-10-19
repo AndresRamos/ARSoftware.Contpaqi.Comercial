@@ -24,6 +24,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _sistemasComercialesSdk = sdk;
             _servicioAgenteComercial = new ServicioAgenteComercial(sdk);
             _servicioAlmacenComercial = new ServicioAlmacenComercial(sdk);
+            _servicioClasificacionComercial = new ServicioClasificacionComercial(sdk);
             _servicioClienteProveedorComercial = new ServicioClienteProveedorComercial(sdk);
             _servicioConceptoDocumentoComercial = new ServicioConceptoDocumentoComercial(sdk);
             _servicioDireccionComercial = new ServicioDireccionComercial(sdk);
