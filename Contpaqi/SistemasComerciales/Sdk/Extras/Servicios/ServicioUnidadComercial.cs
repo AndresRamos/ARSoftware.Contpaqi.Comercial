@@ -44,19 +44,25 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         private UnidadComercial LeerDatosUnindadActual()
         {
-            StringBuilder id = new StringBuilder(12);
-            StringBuilder nombre = new StringBuilder(Constantes.kLongNombre);
-            StringBuilder abreviatura = new StringBuilder(Constantes.kLongAbreviatura);
-            StringBuilder despliegue = new StringBuilder(Constantes.kLongAbreviatura);
+            var id = new StringBuilder(12);
+            var nombre = new StringBuilder(Constantes.kLongNombre);
+            var abreviatura = new StringBuilder(Constantes.kLongAbreviatura);
+            var despliegue = new StringBuilder(Constantes.kLongAbreviatura);
+            var claveSat = new StringBuilder(4);
+            var claveSatComercioExterior = new StringBuilder(4);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoUnidad("CIDUNIDAD", id, 12);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoUnidad("CNOMBREUNIDAD", nombre, Constantes.kLongNombre);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoUnidad("CABREVIATURA", abreviatura, Constantes.kLongAbreviatura);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoUnidad("CDESPLIEGUE", despliegue, Constantes.kLongAbreviatura);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoUnidad("CCLAVEINT", claveSat, Constantes.kLongAbreviatura);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoUnidad("CCLAVESAT", claveSatComercioExterior, Constantes.kLongAbreviatura);
             UnidadComercial unidad = new UnidadComercial();
             unidad.IdUnidad = int.Parse(id.ToString());
             unidad.NombreUnidad = nombre.ToString();
             unidad.Abreviatura = abreviatura.ToString();
             unidad.Despliegue = despliegue.ToString();
+            unidad.ClaveSat = claveSat.ToString();
+            unidad.ClaveSatComercioExterior = claveSatComercioExterior.ToString();
             return unidad;
         }
     }

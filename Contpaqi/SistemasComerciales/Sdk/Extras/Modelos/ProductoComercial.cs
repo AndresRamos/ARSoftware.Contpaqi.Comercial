@@ -94,6 +94,8 @@
 
         public string SegmentoContable1 { get; set; }
 
+        public string ClaveSat { get; set; }
+
         public int IdUnidadBase { get; set; }
 
         public int IdUnidadNoConvertible { get; set; }

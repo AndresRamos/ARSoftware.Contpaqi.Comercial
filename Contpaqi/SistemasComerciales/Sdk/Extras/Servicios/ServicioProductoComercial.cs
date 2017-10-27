@@ -91,6 +91,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             StringBuilder importeExtra4 = new StringBuilder(9);
             StringBuilder id = new StringBuilder(12);
             StringBuilder segmentoContable1 = new StringBuilder(21);
+            StringBuilder claveSat = new StringBuilder(9);
             StringBuilder idUnidadBase = new StringBuilder(12);
             StringBuilder idUnidadNoConvertible = new StringBuilder(12);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CCODIGOPRODUCTO", codigoProducto, Constantes.kLongCodigo);
@@ -138,6 +139,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CIMPORTEEXTRA4", importeExtra4, 9);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CIDPRODUCTO", id, 12);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CSEGCONTPRODUCTO1", segmentoContable1, 12);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CCLAVESAT", claveSat, 9);
             ProductoComercial productoComercial = new ProductoComercial();
             productoComercial.CodigoProducto = codigoProducto.ToString();
             productoComercial.NombreProducto = nombreProducto.ToString();
@@ -176,6 +178,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             productoComercial.ImporteExtra4 = double.Parse(importeExtra4.ToString());
             productoComercial.IdProducto = int.Parse(id.ToString());
             productoComercial.SegmentoContable1 = segmentoContable1.ToString();
+            productoComercial.ClaveSat = claveSat.ToString();
             // Unidades
             productoComercial.IdUnidadBase = int.Parse(idUnidadBase.ToString());
             productoComercial.IdUnidadNoConvertible = int.Parse(idUnidadNoConvertible.ToString());

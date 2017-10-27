@@ -44,19 +44,22 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         private ConceptoDocumentoComercial LeerDatosConceptoDocumentoActual()
         {
-            StringBuilder id = new StringBuilder(12);
-            StringBuilder codigo = new StringBuilder(Constantes.kLongCodigo);
-            StringBuilder nombre = new StringBuilder(Constantes.kLongNombre);
-            StringBuilder esCfd = new StringBuilder(6);
+            var id = new StringBuilder(12);
+            var codigo = new StringBuilder(Constantes.kLongCodigo);
+            var nombre = new StringBuilder(Constantes.kLongNombre);
+            var esCfd = new StringBuilder(6);
+            var versionEsquemaSat = new StringBuilder(7);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoConceptoDocto("CIDCONCEPTODOCUMENTO", id, 12);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoConceptoDocto("CCODIGOCONCEPTO", codigo, Constantes.kLongCodigo);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoConceptoDocto("CNOMBRECONCEPTO", nombre, Constantes.kLongNombre);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoConceptoDocto("CESCFD", esCfd, 6);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoConceptoDocto("CVERESQUE", versionEsquemaSat, 7);
             ConceptoDocumentoComercial conceptoDeDocumento = new ConceptoDocumentoComercial();
             conceptoDeDocumento.IdConcepto = int.Parse(id.ToString());
             conceptoDeDocumento.CodigoConcepto = codigo.ToString();
             conceptoDeDocumento.NombreConcepto = nombre.ToString();
             conceptoDeDocumento.EsCfd = esCfd.ToString() == "0" ? false : true;
+            conceptoDeDocumento.VersionEsquemaSat = versionEsquemaSat.ToString();
             return conceptoDeDocumento;
         }
     }

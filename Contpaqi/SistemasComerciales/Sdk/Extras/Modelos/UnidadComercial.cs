@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Contpaqi.SistemasComerciales.Sdk.Extras.Modelos
+﻿namespace Contpaqi.SistemasComerciales.Sdk.Extras.Modelos
 {
     public class UnidadComercial
     {
@@ -19,5 +13,9 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Modelos
         // Propiedades Extra
 
         public int IdUnidad { get; set; }
+
+        public string ClaveSat { get; set; }
+
+        public string ClaveSatComercioExterior { get; set; }
     }
 }

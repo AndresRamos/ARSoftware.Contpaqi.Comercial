@@ -137,6 +137,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             StringBuilder importeExtra3 = new StringBuilder(9);
             StringBuilder importeExtra4 = new StringBuilder(9);
             StringBuilder id = new StringBuilder(12);
+            var usoCfdi = new StringBuilder(31);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoCteProv("CCODIGOCLIENTE", codigo, Constantes.kLongCodigo);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoCteProv("CRAZONSOCIAL", razonSocial, Constantes.kLongNombre);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoCteProv("CFECHAALTA", fechaAlta, 9);
@@ -202,6 +203,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoCteProv("CIMPORTEEXTRA3", importeExtra3, 9);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoCteProv("CIMPORTEEXTRA4", importeExtra4, 9);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoCteProv("CIDCLIENTEPROVEEDOR", id, 12);
+            _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoCteProv("CUSOCFDI", usoCfdi, 31);
             ClienteProveedorComercial clienteProveedor = new ClienteProveedorComercial();
             clienteProveedor.CodigoCliente = codigo.ToString();
             clienteProveedor.RazonSocial = razonSocial.ToString();
@@ -268,6 +270,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             clienteProveedor.ImporteExtra3 = double.Parse(importeExtra3.ToString());
             clienteProveedor.ImporteExtra4 = double.Parse(importeExtra4.ToString());
             clienteProveedor.IdCliente = int.Parse(id.ToString());
+            clienteProveedor.UsoCfdi = usoCfdi.ToString();
             clienteProveedor.ValorClasificacionCliente1 = _servicioValorClasificacionComercial.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionCliente1);
             clienteProveedor.ValorClasificacionCliente2 = _servicioValorClasificacionComercial.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionCliente2);
             clienteProveedor.ValorClasificacionCliente3 = _servicioValorClasificacionComercial.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionCliente3);

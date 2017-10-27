@@ -150,6 +150,8 @@
         // Propiedades Extras
         public int IdCliente { get; set; }
 
+        public string UsoCfdi { get; set; }
+
         public int IdValorClasificacionCliente1 { get; set; }
 
         public int IdValorClasificacionCliente2 { get; set; }

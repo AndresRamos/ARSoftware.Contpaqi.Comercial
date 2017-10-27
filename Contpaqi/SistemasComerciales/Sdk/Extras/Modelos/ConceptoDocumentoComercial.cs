@@ -9,5 +9,7 @@
         public string NombreConcepto { get; set; }
 
         public bool EsCfd { get; set; }
+
+        public string VersionEsquemaSat { get; set; }
     }
 }
