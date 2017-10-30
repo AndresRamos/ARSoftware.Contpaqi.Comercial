@@ -1,7 +1,7 @@
-﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
-using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
@@ -32,7 +32,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         public List<ProductoComercial> TraerProductos()
         {
-            List<ProductoComercial> productosList = new List<ProductoComercial>();
+            var productosList = new List<ProductoComercial>();
             _errorComercialServicio.ResultadoSdk = _sdk.fPosPrimerProducto();
             productosList.Add(LeerDatosProductoActual());
             while (_sdk.fPosSiguienteProducto() == 0)
@@ -42,58 +42,58 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
                 {
                     break;
                 }
-            };
+            }
             return productosList;
         }
 
         private ProductoComercial LeerDatosProductoActual()
         {
-            StringBuilder codigoProducto = new StringBuilder(Constantes.kLongCodigo);
-            StringBuilder nombreProducto = new StringBuilder(Constantes.kLongNombre);
-            StringBuilder descripcionProducto = new StringBuilder(Constantes.kLongNombreProducto);
-            StringBuilder tipoProducto = new StringBuilder(7);
-            StringBuilder fechaAltaProducto = new StringBuilder(Constantes.kLongFecha);
-            StringBuilder fechaBaja = new StringBuilder(9);
-            StringBuilder statusProducto = new StringBuilder(7);
-            StringBuilder controlExistencia = new StringBuilder(7);
-            StringBuilder metodoCosteo = new StringBuilder(7);
-            StringBuilder precio1 = new StringBuilder(9);
-            StringBuilder precio2 = new StringBuilder(9);
-            StringBuilder precio3 = new StringBuilder(9);
-            StringBuilder precio4 = new StringBuilder(9);
-            StringBuilder precio5 = new StringBuilder(9);
-            StringBuilder precio6 = new StringBuilder(9);
-            StringBuilder precio7 = new StringBuilder(9);
-            StringBuilder precio8 = new StringBuilder(9);
-            StringBuilder precio9 = new StringBuilder(9);
-            StringBuilder precio10 = new StringBuilder(9);
-            StringBuilder impuesto1 = new StringBuilder(9);
-            StringBuilder impuesto2 = new StringBuilder(9);
-            StringBuilder impuesto3 = new StringBuilder(9);
-            StringBuilder retencion1 = new StringBuilder(9);
-            StringBuilder retencion2 = new StringBuilder(9);
-            StringBuilder nombreCaracteristica1 = new StringBuilder(12);
-            StringBuilder nombreCaracteristica2 = new StringBuilder(12);
-            StringBuilder nombreCaracteristica3 = new StringBuilder(12);
-            StringBuilder idValorClasificacion1 = new StringBuilder(12);
-            StringBuilder idValorClasificacion2 = new StringBuilder(12);
-            StringBuilder idValorClasificacion3 = new StringBuilder(12);
-            StringBuilder idValorClasificacion4 = new StringBuilder(12);
-            StringBuilder idValorClasificacion5 = new StringBuilder(12);
-            StringBuilder idValorClasificacion6 = new StringBuilder(12);
-            StringBuilder textoExtra1 = new StringBuilder(51);
-            StringBuilder textoExtra2 = new StringBuilder(51);
-            StringBuilder textoExtra3 = new StringBuilder(51);
-            StringBuilder fechaExtra = new StringBuilder(9);
-            StringBuilder importeExtra1 = new StringBuilder(9);
-            StringBuilder importeExtra2 = new StringBuilder(9);
-            StringBuilder importeExtra3 = new StringBuilder(9);
-            StringBuilder importeExtra4 = new StringBuilder(9);
-            StringBuilder id = new StringBuilder(12);
-            StringBuilder segmentoContable1 = new StringBuilder(21);
-            StringBuilder claveSat = new StringBuilder(9);
-            StringBuilder idUnidadBase = new StringBuilder(12);
-            StringBuilder idUnidadNoConvertible = new StringBuilder(12);
+            var codigoProducto = new StringBuilder(Constantes.kLongCodigo);
+            var nombreProducto = new StringBuilder(Constantes.kLongNombre);
+            var descripcionProducto = new StringBuilder(Constantes.kLongNombreProducto);
+            var tipoProducto = new StringBuilder(7);
+            var fechaAltaProducto = new StringBuilder(Constantes.kLongFecha);
+            var fechaBaja = new StringBuilder(9);
+            var statusProducto = new StringBuilder(7);
+            var controlExistencia = new StringBuilder(7);
+            var metodoCosteo = new StringBuilder(7);
+            var precio1 = new StringBuilder(9);
+            var precio2 = new StringBuilder(9);
+            var precio3 = new StringBuilder(9);
+            var precio4 = new StringBuilder(9);
+            var precio5 = new StringBuilder(9);
+            var precio6 = new StringBuilder(9);
+            var precio7 = new StringBuilder(9);
+            var precio8 = new StringBuilder(9);
+            var precio9 = new StringBuilder(9);
+            var precio10 = new StringBuilder(9);
+            var impuesto1 = new StringBuilder(9);
+            var impuesto2 = new StringBuilder(9);
+            var impuesto3 = new StringBuilder(9);
+            var retencion1 = new StringBuilder(9);
+            var retencion2 = new StringBuilder(9);
+            var nombreCaracteristica1 = new StringBuilder(12);
+            var nombreCaracteristica2 = new StringBuilder(12);
+            var nombreCaracteristica3 = new StringBuilder(12);
+            var idValorClasificacion1 = new StringBuilder(12);
+            var idValorClasificacion2 = new StringBuilder(12);
+            var idValorClasificacion3 = new StringBuilder(12);
+            var idValorClasificacion4 = new StringBuilder(12);
+            var idValorClasificacion5 = new StringBuilder(12);
+            var idValorClasificacion6 = new StringBuilder(12);
+            var textoExtra1 = new StringBuilder(51);
+            var textoExtra2 = new StringBuilder(51);
+            var textoExtra3 = new StringBuilder(51);
+            var fechaExtra = new StringBuilder(9);
+            var importeExtra1 = new StringBuilder(9);
+            var importeExtra2 = new StringBuilder(9);
+            var importeExtra3 = new StringBuilder(9);
+            var importeExtra4 = new StringBuilder(9);
+            var id = new StringBuilder(12);
+            var segmentoContable1 = new StringBuilder(21);
+            var claveSat = new StringBuilder(9);
+            var idUnidadBase = new StringBuilder(12);
+            var idUnidadNoConvertible = new StringBuilder(12);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CCODIGOPRODUCTO", codigoProducto, Constantes.kLongCodigo);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CNOMBREPRODUCTO", nombreProducto, Constantes.kLongNombre);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CDESCRIPCIONPRODUCTO", descripcionProducto, Constantes.kLongNombreProducto);
@@ -140,7 +140,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CIDPRODUCTO", id, 12);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CSEGCONTPRODUCTO1", segmentoContable1, 12);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoProducto("CCLAVESAT", claveSat, 9);
-            ProductoComercial productoComercial = new ProductoComercial();
+            var productoComercial = new ProductoComercial();
             productoComercial.CodigoProducto = codigoProducto.ToString();
             productoComercial.NombreProducto = nombreProducto.ToString();
             productoComercial.DescripcionProducto = descripcionProducto.ToString();
@@ -187,12 +187,12 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             productoComercial.CodigoUnidadBase = productoComercial.UnidadBase.NombreUnidad;
             productoComercial.CodigoUnidadNoConvertible = productoComercial.UnidadNoConvertible.NombreUnidad;
             // Clasificaciones
-            productoComercial.IdValorClasificacion1 = int.TryParse(idValorClasificacion1.ToString(), out int _idValorClasificacion1) ? _idValorClasificacion1 : 0;
-            productoComercial.IdValorClasificacion2 = int.TryParse(idValorClasificacion2.ToString(), out int _idValorClasificacion2) ? _idValorClasificacion2 : 0;
-            productoComercial.IdValorClasificacion3 = int.TryParse(idValorClasificacion3.ToString(), out int _idValorClasificacion3) ? _idValorClasificacion3 : 0;
-            productoComercial.IdValorClasificacion4 = int.TryParse(idValorClasificacion4.ToString(), out int _idValorClasificacion4) ? _idValorClasificacion4 : 0;
-            productoComercial.IdValorClasificacion5 = int.TryParse(idValorClasificacion5.ToString(), out int _idValorClasificacion5) ? _idValorClasificacion5 : 0;
-            productoComercial.IdValorClasificacion6 = int.TryParse(idValorClasificacion6.ToString(), out int _idValorClasificacion6) ? _idValorClasificacion6 : 0;
+            productoComercial.IdValorClasificacion1 = int.TryParse(idValorClasificacion1.ToString(), out var _idValorClasificacion1) ? _idValorClasificacion1 : 0;
+            productoComercial.IdValorClasificacion2 = int.TryParse(idValorClasificacion2.ToString(), out var _idValorClasificacion2) ? _idValorClasificacion2 : 0;
+            productoComercial.IdValorClasificacion3 = int.TryParse(idValorClasificacion3.ToString(), out var _idValorClasificacion3) ? _idValorClasificacion3 : 0;
+            productoComercial.IdValorClasificacion4 = int.TryParse(idValorClasificacion4.ToString(), out var _idValorClasificacion4) ? _idValorClasificacion4 : 0;
+            productoComercial.IdValorClasificacion5 = int.TryParse(idValorClasificacion5.ToString(), out var _idValorClasificacion5) ? _idValorClasificacion5 : 0;
+            productoComercial.IdValorClasificacion6 = int.TryParse(idValorClasificacion6.ToString(), out var _idValorClasificacion6) ? _idValorClasificacion6 : 0;
             productoComercial.ValorClasificacion1 = _servicioValorClasificacionComercial.BuscaValorClasificacion(productoComercial.IdValorClasificacion1);
             productoComercial.ValorClasificacion2 = _servicioValorClasificacionComercial.BuscaValorClasificacion(productoComercial.IdValorClasificacion2);
             productoComercial.ValorClasificacion3 = _servicioValorClasificacionComercial.BuscaValorClasificacion(productoComercial.IdValorClasificacion3);

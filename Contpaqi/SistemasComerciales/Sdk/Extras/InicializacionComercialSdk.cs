@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using System.IO;
+using Microsoft.Win32;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras
 {
@@ -9,30 +10,30 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
 
         public static int InicializarSDK()
         {
-            RegistryKey keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistroComercial);
-            object lEntrada = keySistema.GetValue("DirectorioBase");
-            System.IO.Directory.SetCurrentDirectory(lEntrada.ToString());
+            var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistroComercial);
+            var lEntrada = keySistema.GetValue("DirectorioBase");
+            Directory.SetCurrentDirectory(lEntrada.ToString());
             return ComercialSdk.fSetNombrePAQ(NombrePaqComercial);
         }
 
         public static int InicializarSDK(string usuario, string password)
         {
-            RegistryKey keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistroComercial);
-            object lEntrada = keySistema.GetValue("DirectorioBase");
-            System.IO.Directory.SetCurrentDirectory(lEntrada.ToString());
+            var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistroComercial);
+            var lEntrada = keySistema.GetValue("DirectorioBase");
+            Directory.SetCurrentDirectory(lEntrada.ToString());
             ComercialSdk.fInicioSesionSDK(usuario, password);
             return ComercialSdk.fSetNombrePAQ(NombrePaqComercial);
         }
 
         public static int InicializarSDK(string rutaDirectorio)
         {
-            System.IO.Directory.SetCurrentDirectory(rutaDirectorio);
+            Directory.SetCurrentDirectory(rutaDirectorio);
             return ComercialSdk.fSetNombrePAQ(NombrePaqComercial);
         }
 
         public static int InicializarSDK(string rutaDirectorio, string usuario, string password)
         {
-            System.IO.Directory.SetCurrentDirectory(rutaDirectorio);
+            Directory.SetCurrentDirectory(rutaDirectorio);
             ComercialSdk.fInicioSesionSDK(usuario, password);
             return ComercialSdk.fSetNombrePAQ(NombrePaqComercial);
         }

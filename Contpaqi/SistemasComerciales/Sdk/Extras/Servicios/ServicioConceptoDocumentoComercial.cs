@@ -1,7 +1,7 @@
-﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
-using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
@@ -28,7 +28,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         public IEnumerable<ConceptoDocumentoComercial> TraerConceptosDocumento()
         {
-            List<ConceptoDocumentoComercial> conceptosList = new List<ConceptoDocumentoComercial>();
+            var conceptosList = new List<ConceptoDocumentoComercial>();
             _errorComercialServicio.ResultadoSdk = _sdk.fPosPrimerConceptoDocto();
             conceptosList.Add(LeerDatosConceptoDocumentoActual());
             while (_sdk.fPosSiguienteConceptoDocto() == 0)
@@ -54,11 +54,11 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoConceptoDocto("CNOMBRECONCEPTO", nombre, Constantes.kLongNombre);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoConceptoDocto("CESCFD", esCfd, 6);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoConceptoDocto("CVERESQUE", versionEsquemaSat, 7);
-            ConceptoDocumentoComercial conceptoDeDocumento = new ConceptoDocumentoComercial();
+            var conceptoDeDocumento = new ConceptoDocumentoComercial();
             conceptoDeDocumento.IdConcepto = int.Parse(id.ToString());
             conceptoDeDocumento.CodigoConcepto = codigo.ToString();
             conceptoDeDocumento.NombreConcepto = nombre.ToString();
-            conceptoDeDocumento.EsCfd = esCfd.ToString() == "0" ? false : true;
+            conceptoDeDocumento.EsCfd = esCfd.ToString() != "0";
             conceptoDeDocumento.VersionEsquemaSat = versionEsquemaSat.ToString();
             return conceptoDeDocumento;
         }

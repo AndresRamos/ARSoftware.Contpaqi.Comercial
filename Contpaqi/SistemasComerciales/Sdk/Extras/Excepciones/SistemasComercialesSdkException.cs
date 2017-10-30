@@ -4,7 +4,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Excepciones
 {
     public class SistemasComercialesSdkException : Exception
     {
-        public SistemasComercialesSdkException(int? error) : base()
+        public SistemasComercialesSdkException(int? error)
         {
             ErrorSdk = error;
         }

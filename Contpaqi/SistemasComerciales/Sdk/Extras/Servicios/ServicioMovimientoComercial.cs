@@ -1,8 +1,8 @@
-﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
-using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
@@ -25,7 +25,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         public tMovimiento ExtraerTMovimiento(MovimientoComercial movimiento)
         {
-            tMovimiento nuevoTMovimiento = new tMovimiento();
+            var nuevoTMovimiento = new tMovimiento();
             nuevoTMovimiento.aConsecutivo = movimiento.Consecutivo;
             nuevoTMovimiento.aUnidades = movimiento.Unidades;
             nuevoTMovimiento.aPrecio = movimiento.Precio;
@@ -39,7 +39,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         public List<MovimientoComercial> TraerMovimientos()
         {
-            List<MovimientoComercial> movimientosList = new List<MovimientoComercial>();
+            var movimientosList = new List<MovimientoComercial>();
             _errorComercialServicio.ResultadoSdk = _sdk.fPosPrimerMovimiento();
             movimientosList.Add(LeerDatosMovimientoActual());
             while (_sdk.fPosSiguienteMovimiento() == 0)
@@ -49,13 +49,13 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
                 {
                     break;
                 }
-            };
+            }
             return movimientosList;
         }
 
         public List<MovimientoComercial> TraerMovimientos(int idDocumento)
         {
-            List<MovimientoComercial> movimientosList = new List<MovimientoComercial>();
+            var movimientosList = new List<MovimientoComercial>();
             if (_sdk.fSetFiltroMovimiento(idDocumento) == 0)
             {
                 _errorComercialServicio.ResultadoSdk = _sdk.fPosPrimerMovimiento();
@@ -67,7 +67,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
                     {
                         break;
                     }
-                };
+                }
             }
             _errorComercialServicio.ResultadoSdk = _sdk.fCancelaFiltroMovimiento();
             return movimientosList;
@@ -75,17 +75,17 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         private MovimientoComercial LeerDatosMovimientoActual()
         {
-            StringBuilder consecutivo = new StringBuilder(9);
-            StringBuilder unidades = new StringBuilder(9);
-            StringBuilder precio = new StringBuilder(9);
-            StringBuilder costo = new StringBuilder(9);
-            StringBuilder referencia = new StringBuilder(Constantes.kLongReferencia);
-            StringBuilder idValorClasificacion = new StringBuilder(Constantes.kLongCodigo);
-            StringBuilder id = new StringBuilder(12);
-            StringBuilder textoExtra1 = new StringBuilder(Constantes.kLongTextoExtra);
-            StringBuilder productoId = new StringBuilder(Constantes.kLongCodigo);
-            StringBuilder almacenId = new StringBuilder(Constantes.kLongCodigo);
-            StringBuilder observaciones = new StringBuilder(250);
+            var consecutivo = new StringBuilder(9);
+            var unidades = new StringBuilder(9);
+            var precio = new StringBuilder(9);
+            var costo = new StringBuilder(9);
+            var referencia = new StringBuilder(Constantes.kLongReferencia);
+            var idValorClasificacion = new StringBuilder(Constantes.kLongCodigo);
+            var id = new StringBuilder(12);
+            var textoExtra1 = new StringBuilder(Constantes.kLongTextoExtra);
+            var productoId = new StringBuilder(Constantes.kLongCodigo);
+            var almacenId = new StringBuilder(Constantes.kLongCodigo);
+            var observaciones = new StringBuilder(250);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CNUMEROMOVIMIENTO", consecutivo, 9);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CUNIDADES", unidades, 9);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CPRECIO", precio, 9);
@@ -97,13 +97,13 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CIDPRODUCTO", productoId, Constantes.kLongCodigo);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CIDALMACEN", almacenId, Constantes.kLongCodigo); // Lee el id del almacen
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoMovimiento("COBSERVAMOV", observaciones, 250);
-            MovimientoComercial movimiento = new MovimientoComercial();
-            movimiento.Consecutivo = double.TryParse(consecutivo.ToString(), out double _consecutivo) ? Convert.ToInt32(_consecutivo) : 0; // Int.Parse falla por que regresa 1.00
+            var movimiento = new MovimientoComercial();
+            movimiento.Consecutivo = double.TryParse(consecutivo.ToString(), out var _consecutivo) ? Convert.ToInt32(_consecutivo) : 0; // Int.Parse falla por que regresa 1.00
             movimiento.Unidades = double.Parse(unidades.ToString());
             movimiento.Precio = double.Parse(precio.ToString());
             movimiento.Costo = double.Parse(costo.ToString());
             movimiento.Referencia = referencia.ToString();
-            movimiento.IdValorClasificacion = int.TryParse(idValorClasificacion.ToString(), out int _idValorClasificacion) ? _idValorClasificacion : 0;
+            movimiento.IdValorClasificacion = int.TryParse(idValorClasificacion.ToString(), out var _idValorClasificacion) ? _idValorClasificacion : 0;
             movimiento.IdMovimiento = int.Parse(id.ToString());
             movimiento.TextoExtra1 = textoExtra1.ToString();
             movimiento.Observaciones = observaciones.ToString();

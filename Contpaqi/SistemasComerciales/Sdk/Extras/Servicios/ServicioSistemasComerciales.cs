@@ -4,117 +4,50 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
     public class ServicioSistemasComerciales
     {
-        private readonly ISistemasComercialesSdk _sistemasComercialesSdk;
-        private ServicioAgenteComercial _servicioAgenteComercial;
-        private ServicioAlmacenComercial _servicioAlmacenComercial;
-        private ServicioClasificacionComercial _servicioClasificacionComercial;
-        private ServicioClienteProveedorComercial _servicioClienteProveedorComercial;
-        private ServicioConceptoDocumentoComercial _servicioConceptoDocumentoComercial;
-        private ServicioDireccionComercial _servicioDireccionComercial;
-        private ServicioDocumentoComercial _servicioDocumentoComercial;
-        private ServicioEmpresaComercial _servicioEmpresaComercial;
-        private ServicioErrorComercial _servicioErrorComercial;
-        private ServicioMovimientoComercial _servicioMovimientoComercial;
-        private ServicioProductoComercial _servicioProductoComercial;
-        private ServicioUnidadComercial _servicioUnidadComercial;
-        private ServicioValorClasificacionComercial _servicioValorClasificacionComercial;
-
         public ServicioSistemasComerciales(ISistemasComercialesSdk sdk)
         {
-            _sistemasComercialesSdk = sdk;
-            _servicioAgenteComercial = new ServicioAgenteComercial(sdk);
-            _servicioAlmacenComercial = new ServicioAlmacenComercial(sdk);
-            _servicioClasificacionComercial = new ServicioClasificacionComercial(sdk);
-            _servicioClienteProveedorComercial = new ServicioClienteProveedorComercial(sdk);
-            _servicioConceptoDocumentoComercial = new ServicioConceptoDocumentoComercial(sdk);
-            _servicioDireccionComercial = new ServicioDireccionComercial(sdk);
-            _servicioDocumentoComercial = new ServicioDocumentoComercial(sdk);
-            _servicioEmpresaComercial = new ServicioEmpresaComercial(sdk);
-            _servicioErrorComercial = new ServicioErrorComercial(sdk);
-            _servicioMovimientoComercial = new ServicioMovimientoComercial(sdk);
-            _servicioProductoComercial = new ServicioProductoComercial(sdk);
-            _servicioUnidadComercial = new ServicioUnidadComercial(sdk);
-            _servicioValorClasificacionComercial = new ServicioValorClasificacionComercial(sdk);
+            SistemasComercialesSdk = sdk;
+            ServicioAgenteComercial = new ServicioAgenteComercial(sdk);
+            ServicioAlmacenComercial = new ServicioAlmacenComercial(sdk);
+            ServicioClasificacionComercial = new ServicioClasificacionComercial(sdk);
+            ServicioClienteProveedorComercial = new ServicioClienteProveedorComercial(sdk);
+            ServicioConceptoDocumentoComercial = new ServicioConceptoDocumentoComercial(sdk);
+            ServicioDireccionComercial = new ServicioDireccionComercial(sdk);
+            ServicioDocumentoComercial = new ServicioDocumentoComercial(sdk);
+            ServicioEmpresaComercial = new ServicioEmpresaComercial(sdk);
+            ServicioErrorComercial = new ServicioErrorComercial(sdk);
+            ServicioMovimientoComercial = new ServicioMovimientoComercial(sdk);
+            ServicioProductoComercial = new ServicioProductoComercial(sdk);
+            ServicioUnidadComercial = new ServicioUnidadComercial(sdk);
+            ServicioValorClasificacionComercial = new ServicioValorClasificacionComercial(sdk);
         }
 
-        public ServicioAgenteComercial ServicioAgenteComercial
-        {
-            get { return _servicioAgenteComercial; }
-            private set { _servicioAgenteComercial = value; }
-        }
+        public ServicioAgenteComercial ServicioAgenteComercial { get; }
 
-        public ServicioAlmacenComercial ServicioAlmacenComercial
-        {
-            get { return _servicioAlmacenComercial; }
-            private set { _servicioAlmacenComercial = value; }
-        }
+        public ServicioAlmacenComercial ServicioAlmacenComercial { get; }
 
-        public ServicioClasificacionComercial ServicioClasificacionComercial
-        {
-            get { return _servicioClasificacionComercial; }
-            private set { _servicioClasificacionComercial = value; }
-        }
+        public ServicioClasificacionComercial ServicioClasificacionComercial { get; }
 
-        public ServicioClienteProveedorComercial ServicioClienteProveedorComercial
-        {
-            get { return _servicioClienteProveedorComercial; }
-            private set { _servicioClienteProveedorComercial = value; }
-        }
+        public ServicioClienteProveedorComercial ServicioClienteProveedorComercial { get; }
 
-        public ServicioConceptoDocumentoComercial ServicioConceptoDocumentoComercial
-        {
-            get { return _servicioConceptoDocumentoComercial; }
-            private set { _servicioConceptoDocumentoComercial = value; }
-        }
+        public ServicioConceptoDocumentoComercial ServicioConceptoDocumentoComercial { get; }
 
-        public ServicioDireccionComercial ServicioDireccionComercial
-        {
-            get { return _servicioDireccionComercial; }
-            private set { _servicioDireccionComercial = value; }
-        }
+        public ServicioDireccionComercial ServicioDireccionComercial { get; }
 
-        public ServicioDocumentoComercial ServicioDocumentoComercial
-        {
-            get { return _servicioDocumentoComercial; }
-            private set { _servicioDocumentoComercial = value; }
-        }
+        public ServicioDocumentoComercial ServicioDocumentoComercial { get; }
 
-        public ServicioEmpresaComercial ServicioEmpresaComercial
-        {
-            get { return _servicioEmpresaComercial; }
-            private set { _servicioEmpresaComercial = value; }
-        }
+        public ServicioEmpresaComercial ServicioEmpresaComercial { get; }
 
-        public ServicioErrorComercial ServicioErrorComercial
-        {
-            get { return _servicioErrorComercial; }
-            private set { _servicioErrorComercial = value; }
-        }
+        public ServicioErrorComercial ServicioErrorComercial { get; }
 
-        public ServicioMovimientoComercial ServicioMovimientoComercial
-        {
-            get { return _servicioMovimientoComercial; }
-            private set { _servicioMovimientoComercial = value; }
-        }
+        public ServicioMovimientoComercial ServicioMovimientoComercial { get; }
 
-        public ServicioProductoComercial ServicioProductoComercial
-        {
-            get { return _servicioProductoComercial; }
-            private set { _servicioProductoComercial = value; }
-        }
+        public ServicioProductoComercial ServicioProductoComercial { get; }
 
-        public ServicioUnidadComercial ServicioUnidadComercial
-        {
-            get { return _servicioUnidadComercial; }
-            private set { _servicioUnidadComercial = value; }
-        }
+        public ServicioUnidadComercial ServicioUnidadComercial { get; }
 
-        public ServicioValorClasificacionComercial ServicioValorClasificacionComercial
-        {
-            get { return _servicioValorClasificacionComercial; }
-            private set { _servicioValorClasificacionComercial = value; }
-        }
+        public ServicioValorClasificacionComercial ServicioValorClasificacionComercial { get; }
 
-        public ISistemasComercialesSdk SistemasComercialesSdk => _sistemasComercialesSdk;
+        public ISistemasComercialesSdk SistemasComercialesSdk { get; }
     }
 }

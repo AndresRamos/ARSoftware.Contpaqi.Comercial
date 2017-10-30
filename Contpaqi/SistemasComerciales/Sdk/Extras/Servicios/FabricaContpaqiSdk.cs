@@ -5,10 +5,6 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
     public class FabricaContpaqiSdk
     {
-        public FabricaContpaqiSdk()
-        {
-        }
-
         public ISistemasComercialesSdk Crear(ContpaqiSdkEnum sdk)
         {
             switch (sdk)

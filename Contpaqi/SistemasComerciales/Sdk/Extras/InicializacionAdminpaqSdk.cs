@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using System.IO;
+using Microsoft.Win32;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras
 {
@@ -9,15 +10,15 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
 
         public static int InicializarSDK()
         {
-            RegistryKey keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistroAdminpaq);
-            object lEntrada = keySistema.GetValue("DirectorioBase");
-            System.IO.Directory.SetCurrentDirectory(lEntrada.ToString());
+            var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistroAdminpaq);
+            var lEntrada = keySistema.GetValue("DirectorioBase");
+            Directory.SetCurrentDirectory(lEntrada.ToString());
             return AdminpaqSdk.fSetNombrePAQ(NombrePaqAdminpaq);
         }
 
         public static int InicializarSDK(string rutaDirectorio)
         {
-            System.IO.Directory.SetCurrentDirectory(rutaDirectorio);
+            Directory.SetCurrentDirectory(rutaDirectorio);
             return AdminpaqSdk.fSetNombrePAQ(NombrePaqAdminpaq);
         }
     }

@@ -1,8 +1,8 @@
-﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
-using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
@@ -28,7 +28,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
         public void AsignarSerieYFolioAlDocumento(string codigoConcepto, DocumentoComercial documento)
         {
             double folio = 0;
-            StringBuilder serie = new StringBuilder();
+            var serie = new StringBuilder();
             _errorComercialServicio.ResultadoSdk = _sdk.fSiguienteFolio(codigoConcepto, serie, ref folio);
             documento.Serie = serie.ToString();
             documento.Folio = folio;
@@ -51,30 +51,30 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         public tDocumento ExtraerTDocumento(DocumentoComercial documento)
         {
-            tDocumento _tdocumento = new tDocumento();
-            _tdocumento.aFolio = documento.Folio;
-            _tdocumento.aNumMoneda = documento.NumeroMoneda;
-            _tdocumento.aTipoCambio = documento.TipoDeCambio;
-            _tdocumento.aImporte = documento.Importe;
-            _tdocumento.aDescuentoDoc1 = documento.DescuentoDoc1;
-            _tdocumento.aDescuentoDoc2 = documento.DescuentoDoc2;
-            _tdocumento.aSistemaOrigen = documento.SistemaDeOrigen;
-            _tdocumento.aCodConcepto = documento.CodigoConcepto;
-            _tdocumento.aSerie = documento.Serie;
-            _tdocumento.aFecha = documento.Fecha.ToString("MM/dd/yyyy");
-            _tdocumento.aCodigoCteProv = documento.CodigoClienteProveedor;
-            _tdocumento.aCodigoAgente = documento.CodigoAgente;
-            _tdocumento.aReferencia = documento.Referencia;
-            _tdocumento.aAfecta = documento.Afecta;
-            _tdocumento.aGasto1 = documento.Gasto1;
-            _tdocumento.aGasto2 = documento.Gasto2;
-            _tdocumento.aGasto3 = documento.Gasto3;
-            return _tdocumento;
+            var tdocumento = new tDocumento();
+            tdocumento.aFolio = documento.Folio;
+            tdocumento.aNumMoneda = documento.NumeroMoneda;
+            tdocumento.aTipoCambio = documento.TipoDeCambio;
+            tdocumento.aImporte = documento.Importe;
+            tdocumento.aDescuentoDoc1 = documento.DescuentoDoc1;
+            tdocumento.aDescuentoDoc2 = documento.DescuentoDoc2;
+            tdocumento.aSistemaOrigen = documento.SistemaDeOrigen;
+            tdocumento.aCodConcepto = documento.CodigoConcepto;
+            tdocumento.aSerie = documento.Serie;
+            tdocumento.aFecha = documento.Fecha.ToString("MM/dd/yyyy");
+            tdocumento.aCodigoCteProv = documento.CodigoClienteProveedor;
+            tdocumento.aCodigoAgente = documento.CodigoAgente;
+            tdocumento.aReferencia = documento.Referencia;
+            tdocumento.aAfecta = documento.Afecta;
+            tdocumento.aGasto1 = documento.Gasto1;
+            tdocumento.aGasto2 = documento.Gasto2;
+            tdocumento.aGasto3 = documento.Gasto3;
+            return tdocumento;
         }
 
         public List<DocumentoComercial> TraerDocumentos()
         {
-            List<DocumentoComercial> documentosList = new List<DocumentoComercial>();
+            var documentosList = new List<DocumentoComercial>();
             _errorComercialServicio.ResultadoSdk = _sdk.fPosPrimerDocumento();
             documentosList.Add(LeerDatosDocumentoActual());
             while (_sdk.fPosSiguienteDocumento() == 0)
@@ -90,43 +90,40 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         public List<DocumentoComercial> TraerDocumentos(DateTime fechaInicio, DateTime fechaFin, string codigoConcepto, string codigoClienteProveedor)
         {
-            int result = _sdk.fSetFiltroDocumento(fechaInicio.ToString("MM/dd/yyyy"), fechaFin.ToString("MM/dd/yyyy"), codigoConcepto, codigoClienteProveedor);
+            var result = _sdk.fSetFiltroDocumento(fechaInicio.ToString("MM/dd/yyyy"), fechaFin.ToString("MM/dd/yyyy"), codigoConcepto, codigoClienteProveedor);
             if (result != 0 && result == 2)
             {
                 _errorComercialServicio.ResultadoSdk = _sdk.fCancelaFiltroDocumento();
                 return new List<DocumentoComercial>();
             }
-            else
-            {
-                _errorComercialServicio.ResultadoSdk = result;
-            }
-            List<DocumentoComercial> documentos = TraerDocumentos();
+            _errorComercialServicio.ResultadoSdk = result;
+            var documentos = TraerDocumentos();
             _errorComercialServicio.ResultadoSdk = _sdk.fCancelaFiltroDocumento();
             return documentos;
         }
 
         private DocumentoComercial LeerDatosDocumentoActual()
         {
-            StringBuilder folio = new StringBuilder(Constantes.kLongitudFolio);
-            StringBuilder numeroMoneda = new StringBuilder(Constantes.kLongitudMoneda);
-            StringBuilder tipoDeCambio = new StringBuilder(9);
-            StringBuilder importe = new StringBuilder(9);
-            StringBuilder sistemaDeOrigen = new StringBuilder(7);
-            StringBuilder fecha = new StringBuilder(Constantes.kLongFecha);
-            StringBuilder serie = new StringBuilder(Constantes.kLongSerie);
-            StringBuilder referencia = new StringBuilder(Constantes.kLongReferencia);
-            StringBuilder gasto1 = new StringBuilder(9);
-            StringBuilder gasto2 = new StringBuilder(9);
-            StringBuilder gasto3 = new StringBuilder(9);
-            StringBuilder id = new StringBuilder(12);
-            StringBuilder conceptoId = new StringBuilder(12);
-            StringBuilder clienteId = new StringBuilder(12);
-            StringBuilder agenteId = new StringBuilder(12);
-            StringBuilder observaciones = new StringBuilder(Constantes.kLongMensaje);
-            StringBuilder textoExtra1 = new StringBuilder(Constantes.kLongTextoExtra);
-            StringBuilder textoExtra2 = new StringBuilder(Constantes.kLongTextoExtra);
-            StringBuilder textoExtra3 = new StringBuilder(Constantes.kLongTextoExtra);
-            StringBuilder fechaExtra = new StringBuilder(Constantes.kLongFecha);
+            var folio = new StringBuilder(Constantes.kLongitudFolio);
+            var numeroMoneda = new StringBuilder(Constantes.kLongitudMoneda);
+            var tipoDeCambio = new StringBuilder(9);
+            var importe = new StringBuilder(9);
+            var sistemaDeOrigen = new StringBuilder(7);
+            var fecha = new StringBuilder(Constantes.kLongFecha);
+            var serie = new StringBuilder(Constantes.kLongSerie);
+            var referencia = new StringBuilder(Constantes.kLongReferencia);
+            var gasto1 = new StringBuilder(9);
+            var gasto2 = new StringBuilder(9);
+            var gasto3 = new StringBuilder(9);
+            var id = new StringBuilder(12);
+            var conceptoId = new StringBuilder(12);
+            var clienteId = new StringBuilder(12);
+            var agenteId = new StringBuilder(12);
+            var observaciones = new StringBuilder(Constantes.kLongMensaje);
+            var textoExtra1 = new StringBuilder(Constantes.kLongTextoExtra);
+            var textoExtra2 = new StringBuilder(Constantes.kLongTextoExtra);
+            var textoExtra3 = new StringBuilder(Constantes.kLongTextoExtra);
+            var fechaExtra = new StringBuilder(Constantes.kLongFecha);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoDocumento("CFOLIO", folio, Constantes.kLongitudFolio);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoDocumento("CIDMONEDA", numeroMoneda, Constantes.kLongitudMoneda);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoDocumento("CTIPOCAM01", tipoDeCambio, 9);
@@ -147,12 +144,12 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoDocumento("CTEXTOEXTRA2", textoExtra2, Constantes.kLongTextoExtra);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoDocumento("CTEXTOEXTRA3", textoExtra3, Constantes.kLongTextoExtra);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoDocumento("CFECHAEXTRA", fechaExtra, Constantes.kLongFecha);
-            DocumentoComercial documento = new DocumentoComercial();
+            var documento = new DocumentoComercial();
             documento.Folio = double.Parse(folio.ToString());
             documento.NumeroMoneda = int.Parse(numeroMoneda.ToString());
             documento.TipoDeCambio = double.Parse(tipoDeCambio.ToString());
             documento.Importe = double.Parse(importe.ToString());
-            documento.SistemaDeOrigen = int.TryParse(sistemaDeOrigen.ToString(), out int _sistemaOrigen) ? _sistemaOrigen : 0;
+            documento.SistemaDeOrigen = int.TryParse(sistemaDeOrigen.ToString(), out var _sistemaOrigen) ? _sistemaOrigen : 0;
             documento.Fecha = DateTime.ParseExact(fecha.ToString(), "M/d/yyyy HH:mm:ss:fff", null);
             documento.Serie = serie.ToString();
             documento.Referencia = referencia.ToString();
@@ -162,7 +159,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             documento.IdDocumento = int.Parse(id.ToString());
             documento.IdConceptoDocumento = int.Parse(conceptoId.ToString());
             documento.IdClienteProveedor = int.Parse(clienteId.ToString());
-            documento.IdAgente = int.TryParse(agenteId.ToString(), out int _agenteId) ? _agenteId : 0;
+            documento.IdAgente = int.TryParse(agenteId.ToString(), out var _agenteId) ? _agenteId : 0;
             documento.Observaciones = observaciones.ToString();
             documento.TextoExtra1 = textoExtra1.ToString();
             documento.TextoExtra2 = textoExtra2.ToString();

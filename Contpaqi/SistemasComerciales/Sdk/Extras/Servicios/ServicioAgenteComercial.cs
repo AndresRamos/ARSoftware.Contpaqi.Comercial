@@ -1,7 +1,7 @@
-﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
-using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
@@ -28,7 +28,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         public List<AgenteComercial> TraerAgentes()
         {
-            List<AgenteComercial> agentes = new List<AgenteComercial>();
+            var agentes = new List<AgenteComercial>();
             _errorComercialServicio.ResultadoSdk = _sdk.fPosPrimerAgente();
             agentes.Add(LeerDatosAgenteActual());
             while (_sdk.fPosSiguienteAgente() == 0)
@@ -44,15 +44,15 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         private AgenteComercial LeerDatosAgenteActual()
         {
-            StringBuilder idAgente = new StringBuilder(12);
-            StringBuilder codigoAgente = new StringBuilder(31);
-            StringBuilder nombreAgente = new StringBuilder(61);
-            StringBuilder tipoAgente = new StringBuilder(7);
+            var idAgente = new StringBuilder(12);
+            var codigoAgente = new StringBuilder(31);
+            var nombreAgente = new StringBuilder(61);
+            var tipoAgente = new StringBuilder(7);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoAgente("CIDAGENTE", idAgente, 12);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoAgente("CCODIGOAGENTE", codigoAgente, 31);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoAgente("CNOMBREAGENTE", nombreAgente, 61);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoAgente("CTIPOAGENTE", tipoAgente, 7);
-            AgenteComercial agente = new AgenteComercial();
+            var agente = new AgenteComercial();
             agente.IdAgente = int.Parse(idAgente.ToString());
             agente.CodigoAgente = codigoAgente.ToString();
             agente.NombreAgente = nombreAgente.ToString();

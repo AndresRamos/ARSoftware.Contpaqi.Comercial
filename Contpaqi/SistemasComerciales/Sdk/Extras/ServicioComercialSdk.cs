@@ -1,6 +1,8 @@
-﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
-using Microsoft.Win32;
+﻿using System;
+using System.IO;
 using System.Text;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
+using Microsoft.Win32;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras
 {
@@ -9,21 +11,9 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
         public const string NombreLlaveRegistroComercial = @"SOFTWARE\\Computación en Acción, SA CV\\CONTPAQ I COMERCIAL";
         public const string NombrePaqComercial = "CONTPAQ I COMERCIAL";
 
-        public string NombreLlaveRegistro
-        {
-            get
-            {
-                return NombreLlaveRegistroComercial;
-            }
-        }
+        public string NombreLlaveRegistro => NombreLlaveRegistroComercial;
 
-        public string NombrePaq
-        {
-            get
-            {
-                return NombrePaqComercial;
-            }
-        }
+        public string NombrePaq => NombrePaqComercial;
 
         public int fAbreEmpresa(string aDirectorioEmpresa)
         {
@@ -347,7 +337,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
 
         public int fCancelaComplementoPagoUUID(string aUUID, string aIdDConcepto, string aPass)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public int fCancelaDocumento()
@@ -1422,7 +1412,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
 
         public int fTimbraComplementoPagoXML(string aRutaXML, string aCodConcepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public int fTimbraComplementoXML(string aRutaXML, string aCodCOncepto, string aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato, int aComplemento)
@@ -1442,17 +1432,17 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
 
         public int InicializarSDK()
         {
-            RegistryKey keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistro);
-            object lEntrada = keySistema.GetValue("DirectorioBase");
-            System.IO.Directory.SetCurrentDirectory(lEntrada.ToString());
+            var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistro);
+            var lEntrada = keySistema.GetValue("DirectorioBase");
+            Directory.SetCurrentDirectory(lEntrada.ToString());
             return ComercialSdk.fSetNombrePAQ(NombrePaq);
         }
 
         public int InicializarSDK(string usuario, string password)
         {
-            RegistryKey keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistroComercial);
-            object lEntrada = keySistema.GetValue("DirectorioBase");
-            System.IO.Directory.SetCurrentDirectory(lEntrada.ToString());
+            var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistroComercial);
+            var lEntrada = keySistema.GetValue("DirectorioBase");
+            Directory.SetCurrentDirectory(lEntrada.ToString());
             ComercialSdk.fInicioSesionSDK(usuario, password);
             return ComercialSdk.fSetNombrePAQ(NombrePaqComercial);
         }

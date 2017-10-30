@@ -1,7 +1,7 @@
-﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
-using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
@@ -28,18 +28,18 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         public IEnumerable<UnidadComercial> TraerUnidades()
         {
-            List<UnidadComercial> UnidadesList = new List<UnidadComercial>();
+            var unidadesList = new List<UnidadComercial>();
             _errorComercialServicio.ResultadoSdk = _sdk.fPosPrimerUnidad();
-            UnidadesList.Add(LeerDatosUnindadActual());
+            unidadesList.Add(LeerDatosUnindadActual());
             while (_sdk.fPosSiguienteUnidad() == 0)
             {
-                UnidadesList.Add(LeerDatosUnindadActual());
+                unidadesList.Add(LeerDatosUnindadActual());
                 if (_sdk.fPosEOFUnidad() == 1)
                 {
                     break;
                 }
             }
-            return UnidadesList;
+            return unidadesList;
         }
 
         private UnidadComercial LeerDatosUnindadActual()
@@ -56,7 +56,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoUnidad("CDESPLIEGUE", despliegue, Constantes.kLongAbreviatura);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoUnidad("CCLAVEINT", claveSat, Constantes.kLongAbreviatura);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoUnidad("CCLAVESAT", claveSatComercioExterior, Constantes.kLongAbreviatura);
-            UnidadComercial unidad = new UnidadComercial();
+            var unidad = new UnidadComercial();
             unidad.IdUnidad = int.Parse(id.ToString());
             unidad.NombreUnidad = nombre.ToString();
             unidad.Abreviatura = abreviatura.ToString();

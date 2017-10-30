@@ -1,7 +1,8 @@
-﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
-using Microsoft.Win32;
-using System;
+﻿using System;
+using System.IO;
 using System.Text;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
+using Microsoft.Win32;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras
 {
@@ -10,21 +11,9 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
         private const string NombreLlaveRegistroAdminpaq = @"SOFTWARE\\Computación en Acción, SA CV\\CONTPAQ I Facturacion";
         private const string NombrePaqAdminpaq = "CONTPAQ I Facturacion";
 
-        public string NombreLlaveRegistro
-        {
-            get
-            {
-                return NombreLlaveRegistroAdminpaq;
-            }
-        }
+        public string NombreLlaveRegistro => NombreLlaveRegistroAdminpaq;
 
-        public string NombrePaq
-        {
-            get
-            {
-                return NombrePaqAdminpaq;
-            }
-        }
+        public string NombrePaq => NombrePaqAdminpaq;
 
         public int fAbreEmpresa(string aDirectorioEmpresa)
         {
@@ -1443,9 +1432,9 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
 
         public int InicializarSDK()
         {
-            RegistryKey keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistro);
-            object lEntrada = keySistema.GetValue("DirectorioBase");
-            System.IO.Directory.SetCurrentDirectory(lEntrada.ToString());
+            var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistro);
+            var lEntrada = keySistema.GetValue("DirectorioBase");
+            Directory.SetCurrentDirectory(lEntrada.ToString());
             return AdminpaqSdk.fSetNombrePAQ(NombrePaq);
         }
 

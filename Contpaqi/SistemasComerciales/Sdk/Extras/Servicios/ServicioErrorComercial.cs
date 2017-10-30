@@ -1,6 +1,6 @@
-﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Excepciones;
+﻿using System.Text;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Excepciones;
 using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
-using System.Text;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
@@ -19,7 +19,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
             {
                 if (value != 0)
                 {
-                    string mensageDelError = LeerError(value);
+                    var mensageDelError = LeerError(value);
                     throw new SistemasComercialesSdkException(value, mensageDelError);
                 }
             }
@@ -27,7 +27,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         public string LeerError(int error)
         {
-            StringBuilder mensageDelError = new StringBuilder(512);
+            var mensageDelError = new StringBuilder(512);
             _sdk.fError(error, mensageDelError, 512);
             return mensageDelError.ToString();
         }

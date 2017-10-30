@@ -6,7 +6,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
     {
         public static string LeerError(int error)
         {
-            StringBuilder mensageDelError = new StringBuilder(512);
+            var mensageDelError = new StringBuilder(512);
             AdminpaqSdk.fError(error, mensageDelError, 512);
             return mensageDelError.ToString();
         }

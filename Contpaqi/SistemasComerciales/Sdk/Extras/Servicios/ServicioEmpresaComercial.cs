@@ -1,7 +1,7 @@
-﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
-using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
@@ -18,12 +18,12 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         public List<EmpresaComercial> TraerEmpresas()
         {
-            List<EmpresaComercial> empresasList = new List<EmpresaComercial>();
-            int id = 0;
-            StringBuilder nombre = new StringBuilder(Constantes.kLongNombre);
-            StringBuilder ruta = new StringBuilder(Constantes.kLongRuta);
+            var empresasList = new List<EmpresaComercial>();
+            var id = 0;
+            var nombre = new StringBuilder(Constantes.kLongNombre);
+            var ruta = new StringBuilder(Constantes.kLongRuta);
             _errorComercialServicio.ResultadoSdk = _sdk.fPosPrimerEmpresa(ref id, nombre, ruta);
-            EmpresaComercial empresa = new EmpresaComercial
+            var empresa = new EmpresaComercial
             {
                 IdEmpresa = id,
                 NombreEmpresa = nombre.ToString(),

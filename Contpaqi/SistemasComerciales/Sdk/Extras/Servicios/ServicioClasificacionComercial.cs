@@ -1,8 +1,8 @@
-﻿using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
+﻿using System.Collections.Generic;
+using System.Text;
+using Contpaqi.SistemasComerciales.Sdk.Extras.Interfaces;
 using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos;
 using Contpaqi.SistemasComerciales.Sdk.Extras.Modelos.Enums;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 {
@@ -19,7 +19,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         public ClasificacionComercial BuscaClasificacion(TipoClasificacionEnum tipo, int numero)
         {
-            return _sdk.fBuscaClasificacion((int)tipo, numero) == 0 ? LeerDatosClasificacionActual() : null;
+            return _sdk.fBuscaClasificacion((int) tipo, numero) == 0 ? LeerDatosClasificacionActual() : null;
         }
 
         public ClasificacionComercial BuscaClasificacion(int idClasificacion)
@@ -29,8 +29,8 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         public List<ClasificacionComercial> TraerClasificaciones(TipoClasificacionEnum tipo)
         {
-            List<ClasificacionComercial> clasificaciones = new List<ClasificacionComercial>();
-            for (int i = 1; i < 7; i++)
+            var clasificaciones = new List<ClasificacionComercial>();
+            for (var i = 1; i < 7; i++)
             {
                 var clasificacion = BuscaClasificacion(tipo, i);
                 if (clasificacion != null)
@@ -43,11 +43,11 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras.Servicios
 
         private ClasificacionComercial LeerDatosClasificacionActual()
         {
-            StringBuilder idClasificacion = new StringBuilder(12);
-            StringBuilder nombreClasificacion = new StringBuilder(61);
+            var idClasificacion = new StringBuilder(12);
+            var nombreClasificacion = new StringBuilder(61);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoClasificacion("CIDCLASIFICACION", idClasificacion, 12);
             _errorComercialServicio.ResultadoSdk = _sdk.fLeeDatoClasificacion("CNOMBRECLASIFICACION", nombreClasificacion, 61);
-            ClasificacionComercial clasificacion = new ClasificacionComercial();
+            var clasificacion = new ClasificacionComercial();
             clasificacion.IdClasificacion = int.Parse(idClasificacion.ToString());
             clasificacion.NombreClasificacion = nombreClasificacion.ToString();
             return clasificacion;
