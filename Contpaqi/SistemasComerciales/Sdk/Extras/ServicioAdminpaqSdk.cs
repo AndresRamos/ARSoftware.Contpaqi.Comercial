@@ -240,7 +240,7 @@ namespace Contpaqi.SistemasComerciales.Sdk.Extras
             return AdminpaqSdk.fBuscaDireccionCteProv(aCodCteProv, aTipoDireccion);
         }
 
-        public int fBuscaDireccionDocumento(int aIdDocumento, int aTipoDireccion)
+        public int fBuscaDireccionDocumento(int aIdDocumento, byte aTipoDireccion)
         {
             return AdminpaqSdk.fBuscaDireccionDocumento(aIdDocumento, aTipoDireccion);
         }

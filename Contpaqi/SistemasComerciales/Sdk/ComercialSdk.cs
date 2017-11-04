@@ -141,7 +141,7 @@ namespace Contpaqi.SistemasComerciales.Sdk
         public static extern int fBuscaDireccionCteProv(string aCodCteProv, int aTipoDireccion);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fBuscaDireccionDocumento")]
-        public static extern int fBuscaDireccionDocumento(int aIdDocumento, int aTipoDireccion);
+        public static extern int fBuscaDireccionDocumento(int aIdDocumento, byte aTipoDireccion);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fBuscaDireccionEmpresa")]
         public static extern int fBuscaDireccionEmpresa();
