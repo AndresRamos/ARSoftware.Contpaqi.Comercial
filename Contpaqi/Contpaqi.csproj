@@ -53,42 +53,6 @@
     <Compile Include="SistemasComerciales\Sdk\AdminpaqSdk.cs" />
     <Compile Include="SistemasComerciales\Sdk\Constantes.cs" />
     <Compile Include="SistemasComerciales\Sdk\DatosAbstractos.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\ErroresAdminpaq.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Excepciones\SistemasComercialesSdkException.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\InicializacionAdminpaqSdk.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Interfaces\ISistemasComercialesSdk.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\AgenteComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\AlmacenComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ClasificacionComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ClienteProveedorComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ConceptoDocumentoComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\Enums\ContpaqiSdkEnum.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\DireccionComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\DocumentoComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\EmpresaComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\Enums\TipoClasificacionEnum.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\MovimientoComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ProductoComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\UnidadComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Modelos\ValorClasificacionComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\ServicioAdminpaqSdk.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\ServicioComercialSdk.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\FabricaContpaqiSdk.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioAgenteComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioAlmacenComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioClasificacionComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioClienteProveedorComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioConceptoDocumentoComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioDireccionComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioDocumentoComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioEmpresaComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioErrorComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\ServicioFacturaElectronicaSdk.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioMovimientoComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioProductoComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioSistemasComerciales.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioUnidadComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\Servicios\ServicioValorClasificacionComercial.cs" />
     <Compile Include="SistemasComerciales\Sql\Empresas\Modelo\admAcumulados.cs" />
     <Compile Include="SistemasComerciales\Sql\Empresas\Modelo\admAcumuladosTipos.cs" />
     <Compile Include="SistemasComerciales\Sql\Empresas\Modelo\admAgentes.cs" />
@@ -170,8 +134,6 @@
     <Compile Include="SistemasComerciales\Sql\Generales\Modelo\UsuariosActivos.cs" />
     <Compile Include="SistemasComerciales\Sql\Generales\Modelo\UsuariosActivosBloqueos.cs" />
     <Compile Include="SistemasComerciales\Sdk\ComercialSdk.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\ErroresComercial.cs" />
-    <Compile Include="SistemasComerciales\Sdk\Extras\InicializacionComercialSdk.cs" />
     <Compile Include="SistemasContables\Sql\Empresas\Modelo\ActivosFijos.cs" />
     <Compile Include="SistemasContables\Sql\Empresas\Modelo\Afectaciones.cs" />
     <Compile Include="SistemasContables\Sql\Empresas\Modelo\AfectacionesPresupuestos.cs" />
@@ -351,6 +313,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SistemasComerciales\Sdk\Extras\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
