@@ -318,7 +318,7 @@ namespace Contpaqi.Sdk
         public static extern int fEliminarValorClasif(int aClasificacionDe, int aNumClasificacion, string aCodigoValorClasif);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fEmitirDocumento")]
-        public static extern int fEmitirDocumento(string aCodConcepto, string aSerie, double aFolio, string aPassword, string aArchivoAdicional);
+        public static extern int fEmitirDocumento([MarshalAs(UnmanagedType.LPStr)] string aCodConcepto, [MarshalAs(UnmanagedType.LPStr)] string aSerie, double aFolio, [MarshalAs(UnmanagedType.LPStr)] string aPassword, [MarshalAs(UnmanagedType.LPStr)] string aArchivoAdicional);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fEntregEnDiscoXML")]
         public static extern int fEntregEnDiscoXML(string aCodConcepto, string aSerie, double aFolio, int aFormato, string aFormatoAmig);
