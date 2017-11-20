@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/AndresRamos/Contpaqi</licenseUrl>
+    <projectUrl>https://github.com/AndresRamos/Contpaqi</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Librerias que utilizan el SDK de Contpaqi.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>Contpaqi SDK Extras Adminpaq Comercial</tags>
+  </metadata>
+</package>

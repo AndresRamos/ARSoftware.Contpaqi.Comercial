@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Contpaqi.Sdk.Extras")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Librerias que utilizan el SDK de Contpaqi.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HP Inc.")]
+[assembly: AssemblyCompany("AR Software")]
 [assembly: AssemblyProduct("Contpaqi.Sdk.Extras")]
-[assembly: AssemblyCopyright("Copyright © HP Inc. 2017")]
+[assembly: AssemblyCopyright("Copyright © AR Software 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/AndresRamos/Contpaqi</licenseUrl>
+    <projectUrl>https://github.com/AndresRamos/Contpaqi</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Incluye clases para conectarse al SDK de Adminpaq y Comercial.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>Contpaqi SDK Adminpaq Comercial</tags>
+  </metadata>
+</package>
