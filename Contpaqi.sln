@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contpaqi.Sdk.Extras", "Cont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contpaqi.Sql.Comercial.Generales", "Contpaqi.Sql.Comercial.Generales\Contpaqi.Sql.Comercial.Generales.csproj", "{8AE4448C-5106-4C44-820E-E42309CE0521}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contpaqi.Sql.Comercial.Empresa", "Contpaqi.Sql.Comercial.Empresa\Contpaqi.Sql.Comercial.Empresa.csproj", "{6242E17D-976F-4591-BC5F-75349BF3185C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{8AE4448C-5106-4C44-820E-E42309CE0521}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AE4448C-5106-4C44-820E-E42309CE0521}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AE4448C-5106-4C44-820E-E42309CE0521}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6242E17D-976F-4591-BC5F-75349BF3185C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6242E17D-976F-4591-BC5F-75349BF3185C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6242E17D-976F-4591-BC5F-75349BF3185C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6242E17D-976F-4591-BC5F-75349BF3185C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

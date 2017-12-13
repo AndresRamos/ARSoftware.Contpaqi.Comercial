@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6242E17D-976F-4591-BC5F-75349BF3185C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Contpaqi.Sql.Comercial.Empresa</RootNamespace>
+    <AssemblyName>Contpaqi.Sql.Comercial.Empresa</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="admAcumulados.cs" />
+    <Compile Include="admAcumuladosTipos.cs" />
+    <Compile Include="admAgentes.cs" />
+    <Compile Include="admAlmacenes.cs" />
+    <Compile Include="admAsientosContables.cs" />
+    <Compile Include="admAsocAcumConceptos.cs" />
+    <Compile Include="admAsocCargosAbonos.cs" />
+    <Compile Include="admBanderas.cs" />
+    <Compile Include="admBitacoras.cs" />
+    <Compile Include="admCapasProducto.cs" />
+    <Compile Include="admCaracteristicas.cs" />
+    <Compile Include="admCaracteristicasValores.cs" />
+    <Compile Include="admClasificaciones.cs" />
+    <Compile Include="admClasificacionesValores.cs" />
+    <Compile Include="admClientes.cs" />
+    <Compile Include="admComponentesPaquete.cs" />
+    <Compile Include="admConceptos.cs" />
+    <Compile Include="admConceptosBack.cs" />
+    <Compile Include="admConversionesUnidad.cs" />
+    <Compile Include="admCostosHistoricos.cs" />
+    <Compile Include="admCuentasBancarias.cs" />
+    <Compile Include="admDatosAddenda.cs" />
+    <Compile Include="admDocumentos.cs" />
+    <Compile Include="admDocumentosModelo.cs" />
+    <Compile Include="admDocumentosModelosBack.cs" />
+    <Compile Include="admDomicilios.cs" />
+    <Compile Include="admEjercicios.cs" />
+    <Compile Include="admExistenciaCosto.cs" />
+    <Compile Include="admFoliosDigitales.cs" />
+    <Compile Include="admMaximosMinimos.cs" />
+    <Compile Include="admMonedas.cs" />
+    <Compile Include="admMovimientos.cs" />
+    <Compile Include="admMovimientosCapas.cs" />
+    <Compile Include="admMovimientosContables.cs" />
+    <Compile Include="admMovimientosPrepoliza.cs" />
+    <Compile Include="admMovimientosSerie.cs" />
+    <Compile Include="admMovtosBancarios.cs" />
+    <Compile Include="admMovtosCEPs.cs" />
+    <Compile Include="admMovtosInvFisico.cs" />
+    <Compile Include="admMovtosInvFisicoSerieCa.cs" />
+    <Compile Include="admNumerosSerie.cs" />
+    <Compile Include="admParametros.cs" />
+    <Compile Include="admParametrosBack.cs" />
+    <Compile Include="admPreciosCompra.cs" />
+    <Compile Include="admPrepolizas.cs" />
+    <Compile Include="admProductos.cs" />
+    <Compile Include="admProductosDetalles.cs" />
+    <Compile Include="admProductosFotos.cs" />
+    <Compile Include="admPromociones.cs" />
+    <Compile Include="admProyectos.cs" />
+    <Compile Include="admTiposCambio.cs" />
+    <Compile Include="admUnidadesMedidaPeso.cs" />
+    <Compile Include="admVistasCampos.cs" />
+    <Compile Include="admVistasConsultas.cs" />
+    <Compile Include="admVistasPorModulo.cs" />
+    <Compile Include="admVistasRecursos.cs" />
+    <Compile Include="admVistasRelaciones.cs" />
+    <Compile Include="admVistasTablas.cs" />
+    <Compile Include="EmpresaDbContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
