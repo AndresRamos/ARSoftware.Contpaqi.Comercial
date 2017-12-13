@@ -240,3 +240,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/Contpaqi.Sql.Comercial.Generales/App.config
