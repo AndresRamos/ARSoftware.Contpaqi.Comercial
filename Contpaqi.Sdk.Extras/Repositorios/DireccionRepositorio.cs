@@ -22,6 +22,11 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             return _sdk.fBuscaDireccionCteProv(codigoClienteProveedor, tipoDireccion) == 0 ? LeerDatosDireccionActual() : null;
         }
 
+        public Direccion BuscarDireccion(int idDocumento, byte tipoDireccion)
+        {
+            return _sdk.fBuscaDireccionDocumento(idDocumento, tipoDireccion) == 0 ? LeerDatosDireccionActual() : null;
+        }
+
         private Direccion LeerDatosDireccionActual()
         {
             var tipoCatalogo = new StringBuilder(7);
