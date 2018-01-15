@@ -235,7 +235,7 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fBuscaCteProv(aCodCteProv);
         }
 
-        public int fBuscaDireccionCteProv(string aCodCteProv, int aTipoDireccion)
+        public int fBuscaDireccionCteProv(string aCodCteProv, byte aTipoDireccion)
         {
             return ComercialSdk.fBuscaDireccionCteProv(aCodCteProv, aTipoDireccion);
         }

@@ -235,7 +235,7 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fBuscaCteProv(aCodCteProv);
         }
 
-        public int fBuscaDireccionCteProv(string aCodCteProv, int aTipoDireccion)
+        public int fBuscaDireccionCteProv(string aCodCteProv, byte aTipoDireccion)
         {
             return AdminpaqSdk.fBuscaDireccionCteProv(aCodCteProv, aTipoDireccion);
         }

@@ -138,7 +138,7 @@ namespace Contpaqi.Sdk
         public static extern int fBuscaCteProv(string aCodCteProv);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fBuscaDireccionCteProv")]
-        public static extern int fBuscaDireccionCteProv(string aCodCteProv, int aTipoDireccion);
+        public static extern int fBuscaDireccionCteProv(string aCodCteProv, byte aTipoDireccion);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fBuscaDireccionDocumento")]
         public static extern int fBuscaDireccionDocumento(int aIdDocumento, byte aTipoDireccion);

@@ -96,7 +96,7 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fBuscaCteProv(string aCodCteProv);
 
-        int fBuscaDireccionCteProv(string aCodCteProv, int aTipoDireccion);
+        int fBuscaDireccionCteProv(string aCodCteProv, byte aTipoDireccion);
 
         int fBuscaDireccionDocumento(int aIdDocumento, byte aTipoDireccion);
 

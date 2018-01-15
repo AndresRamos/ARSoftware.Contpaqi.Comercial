@@ -17,7 +17,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             _clienteProveedorRepositorio = new ClienteProveedorRepositorio(sdk);
         }
 
-        public Direccion BuscarDireccion(string codigoClienteProveedor, int tipoDireccion)
+        public Direccion BuscarDireccion(string codigoClienteProveedor, byte tipoDireccion)
         {
             return _sdk.fBuscaDireccionCteProv(codigoClienteProveedor, tipoDireccion) == 0 ? LeerDatosDireccionActual() : null;
         }
