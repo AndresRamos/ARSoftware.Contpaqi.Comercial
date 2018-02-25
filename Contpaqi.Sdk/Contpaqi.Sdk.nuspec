@@ -10,8 +10,8 @@
     <projectUrl>https://github.com/AndresRamos/Contpaqi</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Incluye clases para conectarse al SDK de Adminpaq y Comercial.</releaseNotes>
-    <copyright>Copyright 2017</copyright>
-    <tags>Contpaqi SDK Adminpaq Comercial</tags>
+    <releaseNotes>Actualizacion de declaraciones.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>Contpaqi SDK Adminpaq Comercial Factura Electronica</tags>
   </metadata>
 </package>

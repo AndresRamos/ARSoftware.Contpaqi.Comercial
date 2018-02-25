@@ -10,8 +10,8 @@
     <projectUrl>https://github.com/AndresRamos/Contpaqi</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Librerias que utilizan el SDK de Contpaqi.</releaseNotes>
-    <copyright>Copyright 2017</copyright>
-    <tags>Contpaqi SDK Extras Adminpaq Comercial</tags>
+    <releaseNotes>Actualizacion de declaraciones.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>Contpaqi SDK Extras Adminpaq Comercial Factura Electronica</tags>
   </metadata>
 </package>
