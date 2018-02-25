@@ -120,9 +120,9 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fAltaMovimientoCaracteristicas_Param(aIdMovimiento, aIdMovtoCaracteristicas, aUnidades, aValorCaracteristica1, aValorCaracteristica2, aValorCaracteristica3);
         }
 
-        public int fAltaMovimientoCDesct(int aIdDocumento, int aIdMovimiento, tMovimientoDesc astMovimiento)
+        public int fAltaMovimientoCDesct(int aIdDocumento, ref int aIdMovimiento, ref tMovimientoDesc astMovimiento)
         {
-            return AdminpaqSdk.fAltaMovimientoCDesct(aIdDocumento, aIdMovimiento, astMovimiento);
+            return AdminpaqSdk.fAltaMovimientoCDesct(aIdDocumento, ref aIdMovimiento, ref astMovimiento);
         }
 
         public int fAltaMovimientoEx(ref int aIdMovimiento, tTipoProducto aTipoProducto)

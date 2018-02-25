@@ -69,7 +69,7 @@ namespace Contpaqi.Sdk
         public static extern int fAltaMovimientoCaracteristicas_Param(string aIdMovimiento, string aIdMovtoCaracteristicas, string aUnidades, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fAltaMovimientoCDesct")]
-        public static extern int fAltaMovimientoCDesct(int aIdDocumento, int aIdMovimiento, tMovimientoDesc astMovimiento);
+        public static extern int fAltaMovimientoCDesct(int aIdDocumento, ref int aIdMovimiento, ref tMovimientoDesc astMovimiento);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fAltaMovimientoEx")]
         public static extern int fAltaMovimientoEx(ref int aIdMovimiento, tTipoProducto aTipoProducto);

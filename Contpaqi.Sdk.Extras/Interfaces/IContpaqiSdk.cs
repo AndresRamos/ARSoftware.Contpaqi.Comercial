@@ -50,7 +50,7 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fAltaMovimientoCaracteristicas_Param(string aIdMovimiento, string aIdMovtoCaracteristicas, string aUnidades, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3);
 
-        int fAltaMovimientoCDesct(int aIdDocumento, int aIdMovimiento, tMovimientoDesc astMovimiento);
+        int fAltaMovimientoCDesct(int aIdDocumento, ref int aIdMovimiento, ref tMovimientoDesc astMovimiento);
 
         int fAltaMovimientoEx(ref int aIdMovimiento, tTipoProducto aTipoProducto);
 
