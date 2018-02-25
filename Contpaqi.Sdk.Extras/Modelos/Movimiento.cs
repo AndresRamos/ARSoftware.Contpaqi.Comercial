@@ -27,6 +27,27 @@
 
         public string CodigoValorClasificacion { get; set; }
 
+        // Propiedades tMovimientoDesc
+        public double ImporteDescuento1 { get; set; }
+
+        public double PorcentajeDescuento1 { get; set; }
+
+        public double ImporteDescuento2 { get; set; }
+
+        public double PorcentajeDescuento2 { get; set; }
+
+        public double ImporteDescuento3 { get; set; }
+
+        public double PorcentajeDescuento3 { get; set; }
+
+        public double ImporteDescuento4 { get; set; }
+
+        public double PorcentajeDescuento4 { get; set; }
+
+        public double ImporteDescuento5 { get; set; }
+
+        public double PorcentajeDescuento5 { get; set; }
+
         // Propiedades Extras
         public int Id { get; set; }
 

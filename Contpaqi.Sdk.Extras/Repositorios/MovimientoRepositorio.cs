@@ -37,6 +37,30 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             return nuevoTMovimiento;
         }
 
+        public tMovimientoDesc ExtraerTMovimientoDesc(Movimiento movimiento)
+        {
+            var nuevoTMovimientoDesc = new tMovimientoDesc();
+            nuevoTMovimientoDesc.aConsecutivo = movimiento.Consecutivo;
+            nuevoTMovimientoDesc.aUnidades = movimiento.Unidades;
+            nuevoTMovimientoDesc.aPrecio = movimiento.Precio;
+            nuevoTMovimientoDesc.aCosto = movimiento.Costo;
+            nuevoTMovimientoDesc.aCodProdSer = movimiento.CodigoProducto;
+            nuevoTMovimientoDesc.aCodAlmacen = movimiento.CodigoAlmacen;
+            nuevoTMovimientoDesc.aReferencia = movimiento.Referencia;
+            nuevoTMovimientoDesc.aCodClasificacion = movimiento.CodigoValorClasificacion;
+            nuevoTMovimientoDesc.aImporteDescto1 = movimiento.ImporteDescuento1;
+            nuevoTMovimientoDesc.aImporteDescto2 = movimiento.ImporteDescuento2;
+            nuevoTMovimientoDesc.aImporteDescto3 = movimiento.ImporteDescuento3;
+            nuevoTMovimientoDesc.aImporteDescto4 = movimiento.ImporteDescuento4;
+            nuevoTMovimientoDesc.aImporteDescto5 = movimiento.ImporteDescuento5;
+            nuevoTMovimientoDesc.aPorcDescto1 = movimiento.PorcentajeDescuento1;
+            nuevoTMovimientoDesc.aPorcDescto2 = movimiento.PorcentajeDescuento2;
+            nuevoTMovimientoDesc.aPorcDescto3 = movimiento.PorcentajeDescuento3;
+            nuevoTMovimientoDesc.aPorcDescto4 = movimiento.PorcentajeDescuento4;
+            nuevoTMovimientoDesc.aPorcDescto5 = movimiento.PorcentajeDescuento5;
+            return nuevoTMovimientoDesc;
+        }
+
         public List<Movimiento> TraerMovimientos()
         {
             var movimientosList = new List<Movimiento>();
@@ -86,6 +110,16 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             var productoId = new StringBuilder(Constantes.kLongCodigo);
             var almacenId = new StringBuilder(Constantes.kLongCodigo);
             var observaciones = new StringBuilder(250);
+            var importeDescuento1 = new StringBuilder(9);
+            var importeDescuento2 = new StringBuilder(9);
+            var importeDescuento3 = new StringBuilder(9);
+            var importeDescuento4 = new StringBuilder(9);
+            var importeDescuento5 = new StringBuilder(9);
+            var porcentajeDescuento1 = new StringBuilder(9);
+            var porcentajeDescuento2 = new StringBuilder(9);
+            var porcentajeDescuento3 = new StringBuilder(9);
+            var porcentajeDescuento4 = new StringBuilder(9);
+            var porcentajeDescuento5 = new StringBuilder(9);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CNUMEROMOVIMIENTO", consecutivo, 9);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CUNIDADES", unidades, 9);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CPRECIO", precio, 9);
@@ -97,6 +131,17 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CIDPRODUCTO", productoId, Constantes.kLongCodigo);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CIDALMACEN", almacenId, Constantes.kLongCodigo); // Lee el id del almacen
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("COBSERVAMOV", observaciones, 250);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CDESCUENTO1", importeDescuento1, 9);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CDESCUENTO2", importeDescuento2, 9);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CDESCUENTO3", importeDescuento3, 9);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CDESCUENTO4", importeDescuento4, 9);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CDESCUENTO4", importeDescuento5, 9);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CPORCENTAJEDESCUENTO1", porcentajeDescuento1, 9);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CPORCENTAJEDESCUENTO2", porcentajeDescuento2, 9);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CPORCENTAJEDESCUENTO3", porcentajeDescuento3, 9);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CPORCENTAJEDESCUENTO4", porcentajeDescuento4, 9);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CPORCENTAJEDESCUENTO5", porcentajeDescuento5, 9);
+
             var movimiento = new Movimiento();
             movimiento.Consecutivo = double.TryParse(consecutivo.ToString(), out var _consecutivo) ? Convert.ToInt32(_consecutivo) : 0; // Int.Parse falla por que regresa 1.00
             movimiento.Unidades = double.Parse(unidades.ToString());
@@ -115,6 +160,16 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             movimiento.CodigoAlmacen = movimiento.Almacen.Codigo;
             movimiento.ValorClasificacion = _valorClasificacionRepositorio.BuscaValorClasificacion(movimiento.IdValorClasificacion);
             movimiento.CodigoValorClasificacion = movimiento.ValorClasificacion.Codigo;
+            movimiento.ImporteDescuento1 = double.Parse(importeDescuento1.ToString());
+            movimiento.ImporteDescuento2 = double.Parse(importeDescuento2.ToString());
+            movimiento.ImporteDescuento3 = double.Parse(importeDescuento3.ToString());
+            movimiento.ImporteDescuento4 = double.Parse(importeDescuento4.ToString());
+            movimiento.ImporteDescuento5 = double.Parse(importeDescuento5.ToString());
+            movimiento.PorcentajeDescuento1 = double.Parse(porcentajeDescuento1.ToString());
+            movimiento.PorcentajeDescuento2 = double.Parse(porcentajeDescuento2.ToString());
+            movimiento.PorcentajeDescuento3 = double.Parse(porcentajeDescuento3.ToString());
+            movimiento.PorcentajeDescuento4 = double.Parse(porcentajeDescuento4.ToString());
+            movimiento.PorcentajeDescuento5 = double.Parse(porcentajeDescuento5.ToString());
             return movimiento;
         }
     }
