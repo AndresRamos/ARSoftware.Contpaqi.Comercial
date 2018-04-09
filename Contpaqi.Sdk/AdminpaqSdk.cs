@@ -847,5 +847,18 @@ namespace Contpaqi.Sdk
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fTimbraXML")]
         public static extern int fTimbraXML(StringBuilder aRutaXML, StringBuilder aCodCOncepto, StringBuilder aUUID, StringBuilder aRutaDDA, StringBuilder aRutaResultado, StringBuilder aPass, StringBuilder aRutaFormato);
+
+        [DllImport("MGW_SDK.dll", EntryPoint = "fRecuperarRelacionesCFDIs")]
+        public static extern int fRecuperarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, StringBuilder aUUIDs, string aRutaNombreArchivoInfo);
+
+        [DllImport("MGW_SDK.dll", EntryPoint = "fAgregarRelacionCFDI")]
+        public static extern int fAgregarRelacionCFDI(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aConceptoRelacionar, string aSerieRelacionar, string aFolioRelacionar);
+
+        [DllImport("MGW_SDK.dll", EntryPoint = "fAgregarRelacionCFDI2")]
+        public static extern int fAgregarRelacionCFDI2(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aUUID);
+
+        [DllImport("MGW_SDK.dll", EntryPoint = "fEliminarRelacionesCFDIs")]
+        public static extern int fEliminarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio);
+
     }
 }

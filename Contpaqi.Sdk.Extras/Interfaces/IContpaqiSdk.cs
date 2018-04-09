@@ -577,5 +577,13 @@ namespace Contpaqi.Sdk.Extras.Interfaces
         int InicializarSDK();
 
         int InicializarSDK(string usuario, string password);
+
+        int fRecuperarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, StringBuilder aUUIDs, string aRutaNombreArchivoInfo);
+
+        int fAgregarRelacionCFDI(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aConceptoRelacionar, string aSerieRelacionar, string aFolioRelacionar);
+
+        int fAgregarRelacionCFDI2(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aUUID);
+
+        int fEliminarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio);
     }
 }

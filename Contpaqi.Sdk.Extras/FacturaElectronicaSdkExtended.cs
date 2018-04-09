@@ -1442,5 +1442,24 @@ namespace Contpaqi.Sdk.Extras
         {
             throw new NotImplementedException();
         }
+        public int fRecuperarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, StringBuilder aUUIDs, string aRutaNombreArchivoInfo)
+        {
+            return AdminpaqSdk.fRecuperarRelacionesCFDIs(aCodConcepto, aSerie, aFolio, aTipoRelacion, aUUIDs, aRutaNombreArchivoInfo);
+        }
+
+        public int fAgregarRelacionCFDI(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aConceptoRelacionar, string aSerieRelacionar, string aFolioRelacionar)
+        {
+            return AdminpaqSdk.fAgregarRelacionCFDI(aCodConcepto, aSerie, aFolio, aTipoRelacion, aConceptoRelacionar, aSerieRelacionar, aFolioRelacionar);
+        }
+
+        public int fAgregarRelacionCFDI2(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aUUID)
+        {
+            return AdminpaqSdk.fAgregarRelacionCFDI2(aCodConcepto, aSerie, aFolio, aTipoRelacion, aUUID);
+        }
+
+        public int fEliminarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio)
+        {
+            return AdminpaqSdk.fEliminarRelacionesCFDIs(aCodConcepto, aSerie, aFolio);
+        }
     }
 }
