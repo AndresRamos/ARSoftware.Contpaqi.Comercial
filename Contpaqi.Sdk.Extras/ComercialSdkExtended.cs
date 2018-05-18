@@ -1466,5 +1466,10 @@ namespace Contpaqi.Sdk.Extras
         {
             return ComercialSdk.fEliminarRelacionesCFDIs(aCodConcepto, aSerie, aFolio);
         }
+
+        public int fRegresaExistenciaLotePedimento(string aCodigoProducto, string aCodigoAlmacen, string aPedimento, string aLote, ref double aExistencia)
+        {
+            return ComercialSdk.fRegresaExistenciaLotePedimento(aCodigoProducto, aCodigoAlmacen, aPedimento, aLote, ref aExistencia);
+        }
     }
 }
