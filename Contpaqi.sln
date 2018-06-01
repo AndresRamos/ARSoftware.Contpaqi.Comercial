@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contpaqi.Sql.Comercial.Gene
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contpaqi.Sql.Comercial.Empresa", "Contpaqi.Sql.Comercial.Empresa\Contpaqi.Sql.Comercial.Empresa.csproj", "{6242E17D-976F-4591-BC5F-75349BF3185C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contpaqi.Sql.Contabilidad.Generales", "Contpaqi.Sql.Contabilidad.Generales\Contpaqi.Sql.Contabilidad.Generales.csproj", "{7FE158CB-988F-42E2-B3C6-C89D636309AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contpaqi.Sql.Contabilidad.Empresa", "Contpaqi.Sql.Contabilidad.Empresa\Contpaqi.Sql.Contabilidad.Empresa.csproj", "{DAA17F6B-185A-41EE-81AD-2522EC114823}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +60,22 @@ Global
 		{6242E17D-976F-4591-BC5F-75349BF3185C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6242E17D-976F-4591-BC5F-75349BF3185C}.Release|x86.ActiveCfg = Release|x86
 		{6242E17D-976F-4591-BC5F-75349BF3185C}.Release|x86.Build.0 = Release|x86
+		{7FE158CB-988F-42E2-B3C6-C89D636309AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FE158CB-988F-42E2-B3C6-C89D636309AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FE158CB-988F-42E2-B3C6-C89D636309AF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7FE158CB-988F-42E2-B3C6-C89D636309AF}.Debug|x86.Build.0 = Debug|Any CPU
+		{7FE158CB-988F-42E2-B3C6-C89D636309AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FE158CB-988F-42E2-B3C6-C89D636309AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FE158CB-988F-42E2-B3C6-C89D636309AF}.Release|x86.ActiveCfg = Release|Any CPU
+		{7FE158CB-988F-42E2-B3C6-C89D636309AF}.Release|x86.Build.0 = Release|Any CPU
+		{DAA17F6B-185A-41EE-81AD-2522EC114823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAA17F6B-185A-41EE-81AD-2522EC114823}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAA17F6B-185A-41EE-81AD-2522EC114823}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DAA17F6B-185A-41EE-81AD-2522EC114823}.Debug|x86.Build.0 = Debug|Any CPU
+		{DAA17F6B-185A-41EE-81AD-2522EC114823}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAA17F6B-185A-41EE-81AD-2522EC114823}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAA17F6B-185A-41EE-81AD-2522EC114823}.Release|x86.ActiveCfg = Release|Any CPU
+		{DAA17F6B-185A-41EE-81AD-2522EC114823}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
