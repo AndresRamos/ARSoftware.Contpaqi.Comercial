@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Contpaqi.Sql.Contabilidad.Empresa")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Modelo de datos para las tablas de empresa de Contpaqi Contabilidad.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HP Inc.")]
+[assembly: AssemblyCompany("AR Software")]
 [assembly: AssemblyProduct("Contpaqi.Sql.Contabilidad.Empresa")]
-[assembly: AssemblyCopyright("Copyright © HP Inc. 2018")]
+[assembly: AssemblyCopyright("Copyright © AR Software 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

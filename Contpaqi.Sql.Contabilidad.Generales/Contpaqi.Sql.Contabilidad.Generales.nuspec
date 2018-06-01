@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/AndresRamos/Contpaqi</licenseUrl>
+    <projectUrl>https://github.com/AndresRamos/Contpaqi</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Modelo de datos para las tablas generales de Contpaqi Contabilidad.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>Contpaqi SQL Contabilidad</tags>
+  </metadata>
+</package>
