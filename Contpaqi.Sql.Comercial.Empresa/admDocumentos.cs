@@ -16,7 +16,7 @@ namespace Contpaqi.Sql.Comercial.Empresa
 
         public int CIDCONCEPTODOCUMENTO { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(11)]
         public string CSERIEDOCUMENTO { get; set; }
 
@@ -26,11 +26,11 @@ namespace Contpaqi.Sql.Comercial.Empresa
 
         public int CIDCLIENTEPROVEEDOR { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CRAZONSOCIAL { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CRFC { get; set; }
 
@@ -48,7 +48,7 @@ namespace Contpaqi.Sql.Comercial.Empresa
 
         public double CTIPOCAMBIO { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CREFERENCIA { get; set; }
 
@@ -123,15 +123,15 @@ namespace Contpaqi.Sql.Comercial.Empresa
 
         public double CPORCENTAJEINTERES { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CTEXTOEXTRA1 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CTEXTOEXTRA2 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CTEXTOEXTRA3 { get; set; }
 
@@ -145,19 +145,19 @@ namespace Contpaqi.Sql.Comercial.Empresa
 
         public double CIMPORTEEXTRA4 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CDESTINATARIO { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CNUMEROGUIA { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CMENSAJERIA { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(120)]
         public string CCUENTAMENSAJERIA { get; set; }
 
@@ -175,7 +175,7 @@ namespace Contpaqi.Sql.Comercial.Empresa
 
         public double CUNIDADESPENDIENTES { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(23)]
         public string CTIMESTAMP { get; set; }
 
@@ -191,11 +191,11 @@ namespace Contpaqi.Sql.Comercial.Empresa
 
         public int CTIENECFD { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(380)]
         public string CLUGAREXPE { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(100)]
         public string CMETODOPAG { get; set; }
 
@@ -203,19 +203,19 @@ namespace Contpaqi.Sql.Comercial.Empresa
 
         public int CCANTPARCI { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(253)]
         public string CCONDIPAGO { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(100)]
         public string CNUMCTAPAG { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(40)]
         public string CGUIDDOCUMENTO { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(15)]
         public string CUSUARIO { get; set; }
 
@@ -223,7 +223,7 @@ namespace Contpaqi.Sql.Comercial.Empresa
 
         public int CIDCUENTA { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(26)]
         public string CTRANSACTIONID { get; set; }
     }
