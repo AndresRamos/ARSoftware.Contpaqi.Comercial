@@ -1471,5 +1471,10 @@ namespace Contpaqi.Sdk.Extras
         {
             return ComercialSdk.fRegresaExistenciaLotePedimento(aCodigoProducto, aCodigoAlmacen, aPedimento, aLote, ref aExistencia);
         }
+
+        public int fProyectoEmpresaDoctos(string aCodigoProyecto)
+        {
+            return ComercialSdk.fProyectoEmpresaDoctos(aCodigoProyecto);
+        }
     }
 }

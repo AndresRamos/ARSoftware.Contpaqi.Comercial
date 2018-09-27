@@ -587,5 +587,7 @@ namespace Contpaqi.Sdk.Extras.Interfaces
         int fEliminarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio);
 
         int fRegresaExistenciaLotePedimento(string aCodigoProducto, string aCodigoAlmacen, string aPedimento, string aLote, ref double aExistencia);
+
+        int fProyectoEmpresaDoctos(string aCodigoProyecto);
     }
 }

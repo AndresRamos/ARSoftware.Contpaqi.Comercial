@@ -1466,5 +1466,10 @@ namespace Contpaqi.Sdk.Extras
         {
             return AdminpaqSdk.fRegresaExistenciaLotePedimento(aCodigoProducto, aCodigoAlmacen, aPedimento, aLote, ref aExistencia);
         }
+
+        public int fProyectoEmpresaDoctos(string aCodigoProyecto)
+        {
+            return AdminpaqSdk.fProyectoEmpresaDoctos(aCodigoProyecto);
+        }
     }
 }
