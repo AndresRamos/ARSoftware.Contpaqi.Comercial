@@ -685,17 +685,17 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fInsertaCteProv();
         }
 
-        public int fInsertaDatoAddendaDocto(int aIdAddenda, int aIdCatalogo, int aNumCampo, StringBuilder aDato)
+        public int fInsertaDatoAddendaDocto(int aIdAddenda, int aIdCatalogo, int aNumCampo, string aDato)
         {
             return ComercialSdk.fInsertaDatoAddendaDocto(aIdAddenda, aIdCatalogo, aNumCampo, aDato);
         }
 
-        public int fInsertaDatoAddendaMovto(int aIdAddenda, int aIdCatalogo, int aNumCampo, StringBuilder aDato)
+        public int fInsertaDatoAddendaMovto(int aIdAddenda, int aIdCatalogo, int aNumCampo, string aDato)
         {
             return ComercialSdk.fInsertaDatoAddendaMovto(aIdAddenda, aIdCatalogo, aNumCampo, aDato);
         }
 
-        public int fInsertaDatoCompEducativo(int aIdServicio, int aNumCampo, StringBuilder aDato)
+        public int fInsertaDatoCompEducativo(int aIdServicio, int aNumCampo, string aDato)
         {
             return ComercialSdk.fInsertaDatoCompEducativo(aIdServicio, aNumCampo, aDato);
         }

@@ -276,11 +276,11 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fInsertaCteProv();
 
-        int fInsertaDatoAddendaDocto(int aIdAddenda, int aIdCatalogo, int aNumCampo, StringBuilder aDato);
+        int fInsertaDatoAddendaDocto(int aIdAddenda, int aIdCatalogo, int aNumCampo, string aDato);
 
-        int fInsertaDatoAddendaMovto(int aIdAddenda, int aIdCatalogo, int aNumCampo, StringBuilder aDato);
+        int fInsertaDatoAddendaMovto(int aIdAddenda, int aIdCatalogo, int aNumCampo, string aDato);
 
-        int fInsertaDatoCompEducativo(int aIdServicio, int aNumCampo, StringBuilder aDato);
+        int fInsertaDatoCompEducativo(int aIdServicio, int aNumCampo, string aDato);
 
         int fInsertaDireccion();
 

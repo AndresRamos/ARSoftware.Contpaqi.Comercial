@@ -402,13 +402,13 @@ namespace Contpaqi.Sdk
         public static extern int fInsertaCteProv();
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fInsertaDatoAddendaDocto")]
-        public static extern int fInsertaDatoAddendaDocto(int aIdAddenda, int aIdCatalogo, int aNumCampo, StringBuilder aDato);
+        public static extern int fInsertaDatoAddendaDocto(int aIdAddenda, int aIdCatalogo, int aNumCampo, string aDato);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fInsertaDatoAddendaMovto")]
-        public static extern int fInsertaDatoAddendaMovto(int aIdAddenda, int aIdCatalogo, int aNumCampo, StringBuilder aDato);
+        public static extern int fInsertaDatoAddendaMovto(int aIdAddenda, int aIdCatalogo, int aNumCampo, string aDato);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fInsertaDatoCompEducativo")]
-        public static extern int fInsertaDatoCompEducativo(int aIdServicio, int aNumCampo, StringBuilder aDato);
+        public static extern int fInsertaDatoCompEducativo(int aIdServicio, int aNumCampo, string aDato);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fInsertaDireccion")]
         public static extern int fInsertaDireccion();

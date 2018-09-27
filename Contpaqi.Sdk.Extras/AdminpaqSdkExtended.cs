@@ -686,17 +686,17 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fInsertaCteProv();
         }
 
-        public int fInsertaDatoAddendaDocto(int aIdAddenda, int aIdCatalogo, int aNumCampo, StringBuilder aDato)
+        public int fInsertaDatoAddendaDocto(int aIdAddenda, int aIdCatalogo, int aNumCampo, string aDato)
         {
             return AdminpaqSdk.fInsertaDatoAddendaDocto(aIdAddenda, aIdCatalogo, aNumCampo, aDato);
         }
 
-        public int fInsertaDatoAddendaMovto(int aIdAddenda, int aIdCatalogo, int aNumCampo, StringBuilder aDato)
+        public int fInsertaDatoAddendaMovto(int aIdAddenda, int aIdCatalogo, int aNumCampo, string aDato)
         {
             return AdminpaqSdk.fInsertaDatoAddendaMovto(aIdAddenda, aIdCatalogo, aNumCampo, aDato);
         }
 
-        public int fInsertaDatoCompEducativo(int aIdServicio, int aNumCampo, StringBuilder aDato)
+        public int fInsertaDatoCompEducativo(int aIdServicio, int aNumCampo, string aDato)
         {
             return AdminpaqSdk.fInsertaDatoCompEducativo(aIdServicio, aNumCampo, aDato);
         }
