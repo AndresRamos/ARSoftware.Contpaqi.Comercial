@@ -309,7 +309,7 @@ namespace Contpaqi.Sdk
         public static extern int fEliminarCteProv(string aCodigoCteProv);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fEliminarProducto")]
-        public static extern int fEliminarProducto();
+        public static extern int fEliminarProducto(string aCodigoProducto);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fEliminarUnidad")]
         public static extern int fEliminarUnidad(string aNombreUnidad);

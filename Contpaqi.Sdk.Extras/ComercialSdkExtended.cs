@@ -520,9 +520,9 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fEliminarCteProv(aCodigoCteProv);
         }
 
-        public int fEliminarProducto()
+        public int fEliminarProducto(string aCodigoProducto)
         {
-            return ComercialSdk.fEliminarProducto();
+            return ComercialSdk.fEliminarProducto(aCodigoProducto);
         }
 
         public int fEliminarUnidad(string aNombreUnidad)

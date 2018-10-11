@@ -210,7 +210,7 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fEliminarCteProv(string aCodigoCteProv);
 
-        int fEliminarProducto();
+        int fEliminarProducto(string aCodigoProducto);
 
         int fEliminarUnidad(string aNombreUnidad);
 

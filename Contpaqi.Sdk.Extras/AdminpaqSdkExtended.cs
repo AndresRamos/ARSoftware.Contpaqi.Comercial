@@ -521,9 +521,9 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fEliminarCteProv(aCodigoCteProv);
         }
 
-        public int fEliminarProducto()
+        public int fEliminarProducto(string aCodigoProducto)
         {
-            return AdminpaqSdk.fEliminarProducto();
+            return AdminpaqSdk.fEliminarProducto(aCodigoProducto);
         }
 
         public int fEliminarUnidad(string aNombreUnidad)
