@@ -24,7 +24,7 @@ namespace Contpaqi.Sql.Comercial.Empresa
 
         public int CNOORDEN { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(10)]
         public string CSERIE { get; set; }
 
@@ -40,15 +40,15 @@ namespace Contpaqi.Sql.Comercial.Empresa
 
         public DateTime CFECHAEMI { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(8)]
         public string CHORAEMI { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CEMAIL { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(253)]
         public string CARCHDIDIS { get; set; }
 
@@ -56,7 +56,7 @@ namespace Contpaqi.Sql.Comercial.Empresa
 
         public DateTime CFECHACANC { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(8)]
         public string CHORACANC { get; set; }
 
@@ -65,7 +65,7 @@ namespace Contpaqi.Sql.Comercial.Empresa
         [Column(TypeName = "text")]
         public string CCADPEDI { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CARCHCBB { get; set; }
 
@@ -73,21 +73,21 @@ namespace Contpaqi.Sql.Comercial.Empresa
 
         public DateTime CFINVIG { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(1)]
         public string CTIPO { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(25)]
         public string CSERIEREC { get; set; }
 
         public double? CFOLIOREC { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CRFC { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(253)]
         public string CRAZON { get; set; }
 
@@ -101,99 +101,99 @@ namespace Contpaqi.Sql.Comercial.Empresa
 
         public int CNUMPOL { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(100)]
         public string CTIPOLDESC { get; set; }
 
         public double CTOTAL { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CALIASBDCT { get; set; }
 
         public int CCFDPRUEBA { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(50)]
         public string CDESESTADO { get; set; }
 
         public int CPAGADOBAN { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CDESPAGBAN { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CREFEREN01 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(253)]
         public string COBSERVA01 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(30)]
         public string CCODCONCBA { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(100)]
         public string CDESCONCBA { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(30)]
         public string CNUMCTABAN { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CFOLIOBAN { get; set; }
 
         public int CIDDOCDEBA { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CUSUAUTBAN { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(60)]
         public string CUUID { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CUSUBAN01 { get; set; }
 
         public int CAUTUSBA01 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CUSUBAN02 { get; set; }
 
         public int CAUTUSBA02 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CUSUBAN03 { get; set; }
 
         public int CAUTUSBA03 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CDESCAUT01 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CDESCAUT02 { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(20)]
         public string CDESCAUT03 { get; set; }
 
         public int CERRORVAL { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(30)]
         public string CACUSECAN { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         [StringLength(40)]
         public string CIDDOCTODSL { get; set; }
     }
