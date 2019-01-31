@@ -25,7 +25,6 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             }
         }
 
-
         public string LeerError(int error)
         {
             var mensageDelError = new StringBuilder(512);

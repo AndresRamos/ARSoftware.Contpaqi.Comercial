@@ -1313,7 +1313,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fSetDatoAgente(string aCampo, string aValor)
         {
-            return AdminpaqSdk.fCancelarModificacionAgente();
+            return AdminpaqSdk.fSetDatoAgente(aCampo, aValor);
         }
 
         public int fSetDatoAlmacen(string aCampo, string aValor)

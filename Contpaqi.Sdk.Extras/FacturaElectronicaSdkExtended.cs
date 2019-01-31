@@ -8,12 +8,12 @@ namespace Contpaqi.Sdk.Extras
 {
     public class FacturaElectronicaSdkExtended : IContpaqiSdk
     {
-        private const string NombreLlaveRegistroAdminpaq = @"SOFTWARE\\Computación en Acción, SA CV\\CONTPAQ I Facturacion";
-        private const string NombrePaqAdminpaq = "CONTPAQ I Facturacion";
+        private const string NombreLlaveRegistroFacturaElectronica = @"SOFTWARE\\Computación en Acción, SA CV\\CONTPAQ I Facturacion";
+        private const string NombrePaqFacturaElectronica = "CONTPAQ I Facturacion";
 
-        public string NombreLlaveRegistro => NombreLlaveRegistroAdminpaq;
+        public string NombreLlaveRegistro => NombreLlaveRegistroFacturaElectronica;
 
-        public string NombrePaq => NombrePaqAdminpaq;
+        public string NombrePaq => NombrePaqFacturaElectronica;
 
         public int fAbreEmpresa(string aDirectorioEmpresa)
         {
@@ -1312,7 +1312,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fSetDatoAgente(string aCampo, string aValor)
         {
-            return AdminpaqSdk.fCancelarModificacionAgente();
+            return AdminpaqSdk.fSetDatoAgente(aCampo, aValor);
         }
 
         public int fSetDatoAlmacen(string aCampo, string aValor)

@@ -1312,7 +1312,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fSetDatoAgente(string aCampo, string aValor)
         {
-            return ComercialSdk.fCancelarModificacionAgente();
+            return ComercialSdk.fSetDatoAgente(aCampo, aValor);
         }
 
         public int fSetDatoAlmacen(string aCampo, string aValor)
@@ -1440,11 +1440,11 @@ namespace Contpaqi.Sdk.Extras
 
         public int InicializarSDK(string usuario, string password)
         {
-            var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistroComercial);
+            var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistro);
             var lEntrada = keySistema.GetValue("DirectorioBase");
             Directory.SetCurrentDirectory(lEntrada.ToString());
             ComercialSdk.fInicioSesionSDK(usuario, password);
-            return ComercialSdk.fSetNombrePAQ(NombrePaqComercial);
+            return ComercialSdk.fSetNombrePAQ(NombrePaq);
         }
 
         public int fRecuperarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, StringBuilder aUUIDs, string aRutaNombreArchivoInfo)
