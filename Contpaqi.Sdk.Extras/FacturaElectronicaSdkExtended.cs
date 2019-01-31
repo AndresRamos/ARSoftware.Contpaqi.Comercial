@@ -377,7 +377,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fCancelarModificacionClasificacion()
         {
-            return AdminpaqSdk.fGuardaClasificacion();
+            return AdminpaqSdk.fCancelarModificacionClasificacion();
         }
 
         public int fCancelarModificacionCteProv()
@@ -402,12 +402,12 @@ namespace Contpaqi.Sdk.Extras
 
         public int fCancelarModificacionUnidad()
         {
-            return AdminpaqSdk.fBorraUnidad();
+            return AdminpaqSdk.fCancelarModificacionUnidad();
         }
 
         public int fCancelarModificacionValorClasif()
         {
-            return AdminpaqSdk.fBorraValorClasif();
+            return AdminpaqSdk.fCancelarModificacionValorClasif();
         }
 
         public int fCancelaUUID(string aUUID, string aIdDConcepto, string aPass)
@@ -642,7 +642,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fGuardaValorClasif()
         {
-            return AdminpaqSdk.fEditaValorClasif();
+            return AdminpaqSdk.fGuardaValorClasif();
         }
 
         public int fInformacionCliente(StringBuilder aCodigo, ref int aPermiteCredito, ref double aLimiteCredito, ref int aLimiteDoctosVencidos, ref int aPermiteExcederCredito, StringBuilder aFecha, ref double aSaldo, ref double aSaldoPendiente, ref int aDoctosVencidos)
@@ -1012,7 +1012,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fPosEOFUnidad()
         {
-            return AdminpaqSdk.fPosBOFUnidad();
+            return AdminpaqSdk.fPosEOFUnidad();
         }
 
         public int fPosEOFValorClasif()
@@ -1197,7 +1197,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fPosUltimoMovimiento()
         {
-            return AdminpaqSdk.fPosPrimerMovimiento();
+            return AdminpaqSdk.fPosUltimoMovimiento();
         }
 
         public int fPosUltimoProducto()
