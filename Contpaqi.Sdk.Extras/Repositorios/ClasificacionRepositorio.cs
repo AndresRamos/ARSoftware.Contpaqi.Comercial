@@ -38,6 +38,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
                     clasificaciones.Add(clasificacion);
                 }
             }
+
             return clasificaciones;
         }
 

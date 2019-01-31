@@ -1442,6 +1442,7 @@ namespace Contpaqi.Sdk.Extras
         {
             throw new NotImplementedException();
         }
+
         public int fRecuperarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, StringBuilder aUUIDs, string aRutaNombreArchivoInfo)
         {
             return AdminpaqSdk.fRecuperarRelacionesCFDIs(aCodConcepto, aSerie, aFolio, aTipoRelacion, aUUIDs, aRutaNombreArchivoInfo);

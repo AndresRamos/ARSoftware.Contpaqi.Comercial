@@ -39,6 +39,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
                     break;
                 }
             }
+
             return conceptosList;
         }
 

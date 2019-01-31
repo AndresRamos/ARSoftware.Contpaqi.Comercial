@@ -38,6 +38,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             {
                 clientesList.Add(LeerDatosClienteProveedorActual());
             }
+
             while (_sdk.fPosSiguienteCteProv() == 0)
             {
                 _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7);
@@ -45,11 +46,13 @@ namespace Contpaqi.Sdk.Extras.Repositorios
                 {
                     clientesList.Add(LeerDatosClienteProveedorActual());
                 }
+
                 if (_sdk.fPosEOFCteProv() == 1)
                 {
                     break;
                 }
             }
+
             return clientesList;
         }
 
@@ -67,6 +70,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
                     break;
                 }
             }
+
             return clientesList;
         }
 

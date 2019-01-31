@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using Contpaqi.Sdk.Extras.Ayudantes;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Microsoft.Win32;
 

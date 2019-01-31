@@ -40,6 +40,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
                 };
                 empresasList.Add(empresa);
             }
+
             return empresasList;
         }
     }

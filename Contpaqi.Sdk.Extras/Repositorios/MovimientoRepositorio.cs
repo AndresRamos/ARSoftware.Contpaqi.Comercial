@@ -74,6 +74,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
                     break;
                 }
             }
+
             return movimientosList;
         }
 
@@ -93,6 +94,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
                     }
                 }
             }
+
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fCancelaFiltroMovimiento();
             return movimientosList;
         }

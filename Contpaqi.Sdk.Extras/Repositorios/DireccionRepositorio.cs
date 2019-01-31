@@ -92,6 +92,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
                 direccion.ClienteProveedor = _clienteProveedorRepositorio.BuscarClienteProveedor(direccion.IdCatalogo);
                 direccion.CodCteProv = direccion.ClienteProveedor.Codigo;
             }
+
             return direccion;
         }
     }

@@ -49,6 +49,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
                     break;
                 }
             }
+
             return valresClasificacion;
         }
 
@@ -62,6 +63,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             {
                 valresClasificacion.Add(LeerDatosValorClasificacionActual());
             }
+
             while (_sdk.fPosSiguienteValorClasif() == 0)
             {
                 _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoValorClasif("CIDCLASIFICACION", id, 12);
@@ -69,11 +71,13 @@ namespace Contpaqi.Sdk.Extras.Repositorios
                 {
                     valresClasificacion.Add(LeerDatosValorClasificacionActual());
                 }
+
                 if (_sdk.fPosEOFValorClasif() == 1)
                 {
                     break;
                 }
             }
+
             return valresClasificacion;
         }
 

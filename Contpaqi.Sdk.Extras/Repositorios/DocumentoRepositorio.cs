@@ -85,6 +85,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
                     break;
                 }
             }
+
             return documentosList;
         }
 
@@ -96,6 +97,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
                 _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fCancelaFiltroDocumento();
                 return new List<Documento>();
             }
+
             _errorContpaqiSdkRepositorio.ResultadoSdk = result;
             var documentos = TraerDocumentos();
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fCancelaFiltroDocumento();
