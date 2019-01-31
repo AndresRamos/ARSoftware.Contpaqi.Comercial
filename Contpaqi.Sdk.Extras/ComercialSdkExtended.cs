@@ -1476,5 +1476,10 @@ namespace Contpaqi.Sdk.Extras
         {
             return ComercialSdk.fProyectoEmpresaDoctos(aCodigoProyecto);
         }
+
+        public int fCancelaDoctoInfo(string aPass)
+        {
+            return ComercialSdk.fCancelaDoctoInfo(aPass);
+        }
     }
 }

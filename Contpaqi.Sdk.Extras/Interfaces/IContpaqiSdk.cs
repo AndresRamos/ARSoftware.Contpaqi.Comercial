@@ -589,5 +589,7 @@ namespace Contpaqi.Sdk.Extras.Interfaces
         int fRegresaExistenciaLotePedimento(string aCodigoProducto, string aCodigoAlmacen, string aPedimento, string aLote, ref double aExistencia);
 
         int fProyectoEmpresaDoctos(string aCodigoProyecto);
+
+        int fCancelaDoctoInfo(string aPass);
     }
 }

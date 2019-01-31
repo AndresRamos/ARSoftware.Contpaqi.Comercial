@@ -865,5 +865,8 @@ namespace Contpaqi.Sdk
 
         [DllImport("MGWServicios.dll", EntryPoint = "fProyectoEmpresaDoctos")]
         public static extern int fProyectoEmpresaDoctos(string aCodigoProyecto);
+
+        [DllImport("MGWServicios.dll", EntryPoint = "fCancelaDoctoInfo")]
+        public static extern int fCancelaDoctoInfo(string aPass);
     }
 }
