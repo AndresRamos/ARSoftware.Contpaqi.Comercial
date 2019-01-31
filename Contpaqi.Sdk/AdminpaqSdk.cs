@@ -809,7 +809,7 @@ namespace Contpaqi.Sdk
         [DllImport("MGW_SDK.dll", EntryPoint = "fSetDatoProducto")]
         public static extern int fSetDatoProducto(string aCampo, string aValor);
 
-        [DllImport("MGW_SDK.dll", EntryPoint = "fSetDatoValorClasif")]
+        [DllImport("MGW_SDK.dll", EntryPoint = "fSetDatoUnidad")]
         public static extern int fSetDatoUnidad(string aCampo, string aValor);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fSetDatoValorClasif")]

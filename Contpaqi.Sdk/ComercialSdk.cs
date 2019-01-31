@@ -812,7 +812,7 @@ namespace Contpaqi.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fSetDatoProducto")]
         public static extern int fSetDatoProducto(string aCampo, string aValor);
 
-        [DllImport("MGWServicios.dll", EntryPoint = "fSetDatoValorClasif")]
+        [DllImport("MGWServicios.dll", EntryPoint = "fSetDatoUnidad")]
         public static extern int fSetDatoUnidad(string aCampo, string aValor);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fSetDatoValorClasif")]
