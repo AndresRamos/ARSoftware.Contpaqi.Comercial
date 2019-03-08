@@ -51,6 +51,14 @@
         // Propiedades Extras
         public int Id { get; set; }
 
+        public double Neto { get; set; }
+
+        public double PorcentajeImpuesto1 { get; set; }
+
+        public double Impuesto1 { get; set; }
+
+        public double Total { get; set; }
+
         public string TextoExtra1 { get; set; }
 
         public string Observaciones { get; set; }

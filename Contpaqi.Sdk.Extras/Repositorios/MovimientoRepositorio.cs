@@ -108,6 +108,10 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             var referencia = new StringBuilder(Constantes.kLongReferencia);
             var idValorClasificacion = new StringBuilder(Constantes.kLongCodigo);
             var id = new StringBuilder(12);
+            var neto = new StringBuilder(9);
+            var porcentajeImpuesto1 = new StringBuilder(9);
+            var impuesto1 = new StringBuilder(9);
+            var total = new StringBuilder(9);
             var textoExtra1 = new StringBuilder(Constantes.kLongTextoExtra);
             var productoId = new StringBuilder(Constantes.kLongCodigo);
             var almacenId = new StringBuilder(Constantes.kLongCodigo);
@@ -129,6 +133,10 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CREFERENCIA", referencia, Constantes.kLongReferencia);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CIDVALORCLASIFICACION", idValorClasificacion, Constantes.kLongCodigo);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CIDMOVIMIENTO", id, 12);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CNETO", neto, 9);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CPORCENTAJEIMPUESTO1", porcentajeImpuesto1, 9);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CIMPUESTO1", impuesto1, 9);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CTOTAL", total, 9);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CTEXTOEXTRA1", textoExtra1, Constantes.kLongTextoExtra);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CIDPRODUCTO", productoId, Constantes.kLongCodigo);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoMovimiento("CIDALMACEN", almacenId, Constantes.kLongCodigo); // Lee el id del almacen
@@ -152,6 +160,10 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             movimiento.Referencia = referencia.ToString();
             movimiento.IdValorClasificacion = int.TryParse(idValorClasificacion.ToString(), out var _idValorClasificacion) ? _idValorClasificacion : 0;
             movimiento.Id = int.Parse(id.ToString());
+            movimiento.Neto = double.Parse(neto.ToString());
+            movimiento.PorcentajeImpuesto1= double.Parse(porcentajeImpuesto1.ToString());
+            movimiento.Impuesto1 = double.Parse(impuesto1.ToString());
+            movimiento.Total = double.Parse(total.ToString());
             movimiento.TextoExtra1 = textoExtra1.ToString();
             movimiento.Observaciones = observaciones.ToString();
             movimiento.IdAlmacen = int.Parse(almacenId.ToString());
