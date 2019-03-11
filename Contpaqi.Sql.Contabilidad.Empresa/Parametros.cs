@@ -163,5 +163,7 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
 
         [StringLength(36)]
         public string GuidCertificadoEntrega { get; set; }
+
+        public int? Provider { get; set; }
     }
 }

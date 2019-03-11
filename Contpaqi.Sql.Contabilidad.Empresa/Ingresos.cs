@@ -121,5 +121,10 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
 
         [StringLength(100)]
         public string NumeroCheque { get; set; }
+
+        [StringLength(36)]
+        public string UUIDRep { get; set; }
+
+        public int? NodoPago { get; set; }
     }
 }

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Contpaqi.Sql.Contabilidad.Empresa</RootNamespace>
     <AssemblyName>Contpaqi.Sql.Contabilidad.Empresa</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -60,6 +61,7 @@
     <Compile Include="AsocCargosAbonos.cs" />
     <Compile Include="AsocCategorias.cs" />
     <Compile Include="AsocCategoriasPlantillas.cs" />
+    <Compile Include="AsocCFDINodosDePago.cs" />
     <Compile Include="AsocCFDIs.cs" />
     <Compile Include="AsocComprasVentas.cs" />
     <Compile Include="AsocCuentasGrupos.cs" />
@@ -75,9 +77,11 @@
     <Compile Include="ComprobantesExtranjeros.cs" />
     <Compile Include="Conceptos.cs" />
     <Compile Include="ConceptosIETU.cs" />
+    <Compile Include="ContabilidadEmpresaDbContext.cs" />
     <Compile Include="Counters.cs" />
     <Compile Include="Cuentas.cs" />
     <Compile Include="CuentasCheques.cs" />
+    <Compile Include="CuentasChequesAlias.cs" />
     <Compile Include="CuentasDeGastosYRetenciones.cs" />
     <Compile Include="DatosExtra.cs" />
     <Compile Include="Depositos.cs" />
@@ -94,7 +98,6 @@
     <Compile Include="EmisionesContabilidadElectronica.cs" />
     <Compile Include="EmisionesDPIVA.cs" />
     <Compile Include="EmisionesSAT.cs" />
-    <Compile Include="EmpresaDbContext.cs" />
     <Compile Include="Folios.cs" />
     <Compile Include="FoliosDigitales.cs" />
     <Compile Include="FoliosUsados.cs" />
@@ -113,6 +116,7 @@
     <Compile Include="MovimientosPrepoliza.cs" />
     <Compile Include="MovtosEdoCtaBancos.cs" />
     <Compile Include="NombresValoresCV.cs" />
+    <Compile Include="PagosProvisionalISR.cs" />
     <Compile Include="Parametros.cs" />
     <Compile Include="PeriodosCausacionIVA.cs" />
     <Compile Include="Personas.cs" />

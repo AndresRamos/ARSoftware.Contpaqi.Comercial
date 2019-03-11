@@ -128,5 +128,10 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
 
         [StringLength(2)]
         public string OtroMetodoDePago { get; set; }
+
+        [StringLength(36)]
+        public string UUIDRep { get; set; }
+
+        public int? NodoPago { get; set; }
     }
 }

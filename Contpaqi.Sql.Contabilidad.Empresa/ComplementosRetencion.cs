@@ -25,8 +25,14 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
         [StringLength(100)]
         public string Nombre { get; set; }
 
+        [Required]
+        [StringLength(20)]
+        public string Version { get; set; }
+
         [Column(TypeName = "ntext")]
         [Required]
         public string XMLComplemento { get; set; }
+
+        public bool? EsActivo { get; set; }
     }
 }

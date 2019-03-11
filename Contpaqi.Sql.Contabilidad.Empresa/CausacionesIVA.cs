@@ -86,5 +86,13 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
         public double? IVATasa11NoAcred { get; set; }
 
         public double? IEPS { get; set; }
+
+        public double? TotTasa8 { get; set; }
+
+        public double? BaseTasa8 { get; set; }
+
+        public double? IVATasa8 { get; set; }
+
+        public double? IVATasa8NoAcred { get; set; }
     }
 }
