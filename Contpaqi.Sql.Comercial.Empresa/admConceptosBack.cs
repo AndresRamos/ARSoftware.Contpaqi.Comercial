@@ -430,5 +430,9 @@ namespace Contpaqi.Sql.Comercial.Empresa
         [Required]
         [StringLength(52)]
         public string CORDENCAPTURA { get; set; }
+
+        [Required]
+        [StringLength(8)]
+        public string CCLAVESAT { get; set; }
     }
 }

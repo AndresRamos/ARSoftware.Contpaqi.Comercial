@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Contpaqi.Sql.Comercial.Empresa</RootNamespace>
     <AssemblyName>Contpaqi.Sql.Comercial.Empresa</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -117,6 +118,7 @@
     <Compile Include="admProductosFotos.cs" />
     <Compile Include="admPromociones.cs" />
     <Compile Include="admProyectos.cs" />
+    <Compile Include="admSATSegmentos.cs" />
     <Compile Include="admTiposCambio.cs" />
     <Compile Include="admUnidadesMedidaPeso.cs" />
     <Compile Include="admVistasCampos.cs" />
@@ -125,7 +127,7 @@
     <Compile Include="admVistasRecursos.cs" />
     <Compile Include="admVistasRelaciones.cs" />
     <Compile Include="admVistasTablas.cs" />
-    <Compile Include="EmpresaDbContext.cs" />
+    <Compile Include="ComercialEmpresaDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Contpaqi.Sql.Comercial.Generales</RootNamespace>
     <AssemblyName>Contpaqi.Sql.Comercial.Generales</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -77,18 +78,19 @@
     <Compile Include="CAC0000C.cs" />
     <Compile Include="CAC0000I.cs" />
     <Compile Include="CACIdiom.cs" />
+    <Compile Include="ComercialGeneralesDbContext.cs" />
     <Compile Include="Empresas.cs" />
     <Compile Include="EmpresasModelo.cs" />
     <Compile Include="EstructuraAddendas.cs" />
     <Compile Include="Etiquetas.cs" />
     <Compile Include="FormatosEtiquetas.cs" />
     <Compile Include="Formulas.cs" />
-    <Compile Include="GeneralesDbContext.cs" />
     <Compile Include="IdxAdminPAQ.cs" />
     <Compile Include="ModelosFinancieros.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SATBancos.cs" />
     <Compile Include="SATClaveProdServ.cs" />
+    <Compile Include="SATFracciones.cs" />
     <Compile Include="SATMonedas.cs" />
     <Compile Include="SATUnidades.cs" />
     <Compile Include="UsuariosActivos.cs" />

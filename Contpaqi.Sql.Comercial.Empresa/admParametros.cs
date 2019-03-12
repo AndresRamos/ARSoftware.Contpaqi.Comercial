@@ -606,5 +606,13 @@ namespace Contpaqi.Sql.Comercial.Empresa
         public int CPROTEGERCOSTOS { get; set; }
 
         public int CIDCUENTA { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string CSEGCIVA8 { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string CSEGPIVA8 { get; set; }
     }
 }

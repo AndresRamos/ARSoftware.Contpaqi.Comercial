@@ -435,5 +435,9 @@ namespace Contpaqi.Sql.Comercial.Empresa
         public int CIDMONEDA { get; set; }
 
         public int CIDCUENTA { get; set; }
+
+        [Required]
+        [StringLength(8)]
+        public string CCLAVESAT { get; set; }
     }
 }

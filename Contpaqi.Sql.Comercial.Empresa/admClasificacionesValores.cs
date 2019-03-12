@@ -21,5 +21,17 @@ namespace Contpaqi.Sql.Comercial.Empresa
         [Required]
         [StringLength(3)]
         public string CCODIGOVALORCLASIFICACION { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string CSEGCONT1 { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string CSEGCONT2 { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string CSEGCONT3 { get; set; }
     }
 }
