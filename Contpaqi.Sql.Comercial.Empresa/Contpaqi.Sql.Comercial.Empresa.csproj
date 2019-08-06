@@ -75,6 +75,7 @@
     <Compile Include="admAsientosContables.cs" />
     <Compile Include="admAsocAcumConceptos.cs" />
     <Compile Include="admAsocCargosAbonos.cs" />
+    <Compile Include="admAsocCargosAbonosImp.cs" />
     <Compile Include="admBanderas.cs" />
     <Compile Include="admBitacoras.cs" />
     <Compile Include="admCapasProducto.cs" />

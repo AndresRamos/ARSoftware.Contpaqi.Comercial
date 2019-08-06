@@ -52,6 +52,7 @@ namespace Contpaqi.Sql.Comercial.Empresa
         public virtual DbSet<admAsientosContables> admAsientosContables { get; set; }
         public virtual DbSet<admAsocAcumConceptos> admAsocAcumConceptos { get; set; }
         public virtual DbSet<admAsocCargosAbonos> admAsocCargosAbonos { get; set; }
+        public virtual DbSet<admAsocCargosAbonosImp> admAsocCargosAbonosImp { get; set; }
         public virtual DbSet<admBanderas> admBanderas { get; set; }
         public virtual DbSet<admBitacoras> admBitacoras { get; set; }
         public virtual DbSet<admCapasProducto> admCapasProducto { get; set; }
@@ -205,6 +206,10 @@ namespace Contpaqi.Sql.Comercial.Empresa
 
             modelBuilder.Entity<admAsientosContables>()
                 .Property(e => e.CTIMESTAMP)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<admAsocCargosAbonosImp>()
+                .Property(e => e.CTEXTOTASA)
                 .IsUnicode(false);
 
             modelBuilder.Entity<admBanderas>()
