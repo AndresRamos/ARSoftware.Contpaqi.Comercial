@@ -4,7 +4,10 @@ using System.Data.Entity.Infrastructure;
 
 namespace Contpaqi.Sql.Contabilidad.Generales
 {
+    using System;
     using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     public partial class ContabilidadGeneralesDbContext : DbContext
     {
