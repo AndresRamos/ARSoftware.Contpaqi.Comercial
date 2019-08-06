@@ -112,5 +112,26 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
         public string CodigoCtaGastosComplementaria { get; set; }
 
         public bool? TasaIVA8 { get; set; }
+
+        [StringLength(30)]
+        public string SegContProveedor1 { get; set; }
+
+        [StringLength(30)]
+        public string SegContProveedor2 { get; set; }
+
+        [StringLength(30)]
+        public string SegContProveedor3 { get; set; }
+
+        [StringLength(30)]
+        public string SegContProveedor4 { get; set; }
+
+        [StringLength(30)]
+        public string SegContProveedor5 { get; set; }
+
+        [StringLength(30)]
+        public string SegContProveedor6 { get; set; }
+
+        [StringLength(30)]
+        public string SegContProveedor7 { get; set; }
     }
 }

@@ -83,5 +83,26 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
         public int? IdCategoria { get; set; }
 
         public int? IdSubCategoria { get; set; }
+
+        [StringLength(30)]
+        public string SegContPersona1 { get; set; }
+
+        [StringLength(30)]
+        public string SegContPersona2 { get; set; }
+
+        [StringLength(30)]
+        public string SegContPersona3 { get; set; }
+
+        [StringLength(30)]
+        public string SegContPersona4 { get; set; }
+
+        [StringLength(30)]
+        public string SegContPersona5 { get; set; }
+
+        [StringLength(30)]
+        public string SegContPersona6 { get; set; }
+
+        [StringLength(30)]
+        public string SegContPersona7 { get; set; }
     }
 }

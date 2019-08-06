@@ -6,7 +6,8 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Asientos
+    [Table("PlantillasAsiento")]
+    public partial class PlantillasAsiento
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
@@ -31,9 +32,6 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
 
         [StringLength(100)]
         public string DescripcionConcepto { get; set; }
-
-        [StringLength(20)]
-        public string AsientoDe { get; set; }
 
         public int? TipoXML { get; set; }
 

@@ -36,5 +36,26 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
 
         [StringLength(50)]
         public string CuentaOrigen { get; set; }
+
+        [StringLength(30)]
+        public string SegContCliente1 { get; set; }
+
+        [StringLength(30)]
+        public string SegContCliente2 { get; set; }
+
+        [StringLength(30)]
+        public string SegContCliente3 { get; set; }
+
+        [StringLength(30)]
+        public string SegContCliente4 { get; set; }
+
+        [StringLength(30)]
+        public string SegContCliente5 { get; set; }
+
+        [StringLength(30)]
+        public string SegContCliente6 { get; set; }
+
+        [StringLength(30)]
+        public string SegContCliente7 { get; set; }
     }
 }

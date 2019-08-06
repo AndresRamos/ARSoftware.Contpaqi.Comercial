@@ -6,8 +6,8 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("MovimientosAsiento")]
-    public partial class MovimientosAsiento
+    [Table("MovimientosPlantillaAsiento")]
+    public partial class MovimientosPlantillaAsiento
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
@@ -16,15 +16,9 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
 
         public int NumeroMovto { get; set; }
 
-        public int IdAsiento { get; set; }
-
-        public int? IdConceptoCta { get; set; }
-
-        public int? IdCuenta { get; set; }
+        public int IdPlantillaAsiento { get; set; }
 
         public int? TipoMovto { get; set; }
-
-        public int? ImporteBase { get; set; }
 
         public int? Referencia { get; set; }
 

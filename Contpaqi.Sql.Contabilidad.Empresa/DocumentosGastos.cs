@@ -48,5 +48,14 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
         [Required]
         [StringLength(36)]
         public string Guid { get; set; }
+
+        [StringLength(20)]
+        public string TipoOperacion { get; set; }
+
+        public int? SistOrig { get; set; }
+
+        public int? Ejercicio { get; set; }
+
+        public int? Periodo { get; set; }
     }
 }

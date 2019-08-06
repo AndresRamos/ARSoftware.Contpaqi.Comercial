@@ -6,8 +6,7 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("SegmentosNegocio")]
-    public partial class SegmentosNegocio
+    public partial class Productos
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
@@ -22,28 +21,32 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
         [StringLength(100)]
         public string Nombre { get; set; }
 
-        [StringLength(20)]
-        public string TimeStamp { get; set; }
+        [StringLength(8)]
+        public string ClaveProdServ { get; set; }
+
+        public int? IdTipoOperacion { get; set; }
 
         [StringLength(30)]
-        public string SegContSegmento1 { get; set; }
+        public string SegContProducto1 { get; set; }
 
         [StringLength(30)]
-        public string SegContSegmento2 { get; set; }
+        public string SegContProducto2 { get; set; }
 
         [StringLength(30)]
-        public string SegContSegmento3 { get; set; }
+        public string SegContProducto3 { get; set; }
 
         [StringLength(30)]
-        public string SegContSegmento4 { get; set; }
+        public string SegContProducto4 { get; set; }
 
         [StringLength(30)]
-        public string SegContSegmento5 { get; set; }
+        public string SegContProducto5 { get; set; }
 
         [StringLength(30)]
-        public string SegContSegmento6 { get; set; }
+        public string SegContProducto6 { get; set; }
 
         [StringLength(30)]
-        public string SegContSegmento7 { get; set; }
+        public string SegContProducto7 { get; set; }
+
+        public int? SistOrig { get; set; }
     }
 }
