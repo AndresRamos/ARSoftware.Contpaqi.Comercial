@@ -10,8 +10,8 @@
     <projectUrl>https://github.com/AndresRamos/Contpaqi</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Modelo de datos para las tablas de empresa de Contpaqi Comercial.</releaseNotes>
-    <copyright>Copyright 2018</copyright>
+    <releaseNotes>$description$</releaseNotes>
+    <copyright>$copyright$</copyright>
     <tags>Contpaqi SQL Comercial</tags>
   </metadata>
 </package>
