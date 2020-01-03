@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/AndresRamos/Contpaqi</projectUrl>
+    <iconUrl>https://github.com/AndresRamos/Contpaqi</iconUrl>
+    <description>$description$</description>
+    <releaseNotes>$description$</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>Contpaqi SQL Nominas</tags>
+  </metadata>
+</package>
