@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8750EC4C-1857-4F85-9D66-C918B75685D2}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,6 +19,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contpaqi.Sql.Contabilidad.Generales", "Contpaqi.Sql.Contabilidad.Generales\Contpaqi.Sql.Contabilidad.Generales.csproj", "{7FE158CB-988F-42E2-B3C6-C89D636309AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contpaqi.Sql.Contabilidad.Empresa", "Contpaqi.Sql.Contabilidad.Empresa\Contpaqi.Sql.Contabilidad.Empresa.csproj", "{DAA17F6B-185A-41EE-81AD-2522EC114823}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contpaqi.Sql.Nominas.Generales", "Contpaqi.Sql.Nominas.Generales\Contpaqi.Sql.Nominas.Generales.csproj", "{292DB87A-1956-42CD-BBA2-60451C82CEA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contpaqi.Sql.Nominas.Empresa", "Contpaqi.Sql.Nominas.Empresa\Contpaqi.Sql.Nominas.Empresa.csproj", "{7A830DF4-4B2E-4A1D-83D0-3E3A76C02FC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,6 +80,22 @@ Global
 		{DAA17F6B-185A-41EE-81AD-2522EC114823}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DAA17F6B-185A-41EE-81AD-2522EC114823}.Release|x86.ActiveCfg = Release|Any CPU
 		{DAA17F6B-185A-41EE-81AD-2522EC114823}.Release|x86.Build.0 = Release|Any CPU
+		{292DB87A-1956-42CD-BBA2-60451C82CEA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{292DB87A-1956-42CD-BBA2-60451C82CEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{292DB87A-1956-42CD-BBA2-60451C82CEA1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{292DB87A-1956-42CD-BBA2-60451C82CEA1}.Debug|x86.Build.0 = Debug|Any CPU
+		{292DB87A-1956-42CD-BBA2-60451C82CEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{292DB87A-1956-42CD-BBA2-60451C82CEA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{292DB87A-1956-42CD-BBA2-60451C82CEA1}.Release|x86.ActiveCfg = Release|Any CPU
+		{292DB87A-1956-42CD-BBA2-60451C82CEA1}.Release|x86.Build.0 = Release|Any CPU
+		{7A830DF4-4B2E-4A1D-83D0-3E3A76C02FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A830DF4-4B2E-4A1D-83D0-3E3A76C02FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A830DF4-4B2E-4A1D-83D0-3E3A76C02FC7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7A830DF4-4B2E-4A1D-83D0-3E3A76C02FC7}.Debug|x86.Build.0 = Debug|Any CPU
+		{7A830DF4-4B2E-4A1D-83D0-3E3A76C02FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A830DF4-4B2E-4A1D-83D0-3E3A76C02FC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A830DF4-4B2E-4A1D-83D0-3E3A76C02FC7}.Release|x86.ActiveCfg = Release|Any CPU
+		{7A830DF4-4B2E-4A1D-83D0-3E3A76C02FC7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

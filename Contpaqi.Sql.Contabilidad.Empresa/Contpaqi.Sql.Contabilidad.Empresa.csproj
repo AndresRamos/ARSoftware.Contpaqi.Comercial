@@ -66,6 +66,7 @@
     <Compile Include="AsocComprasVentas.cs" />
     <Compile Include="AsocCuentasGrupos.cs" />
     <Compile Include="AsocDoctoCategorias.cs" />
+    <Compile Include="AsocDoctosAdministrativos.cs" />
     <Compile Include="Asociaciones.cs" />
     <Compile Include="Bancos.cs" />
     <Compile Include="Categorias.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="DevolucionesIVA.cs" />
     <Compile Include="DiariosEspeciales.cs" />
     <Compile Include="Digitos.cs" />
+    <Compile Include="DocumentosAdministrativos.cs" />
     <Compile Include="DocumentosBancarios.cs" />
     <Compile Include="DocumentosDe.cs" />
     <Compile Include="DocumentosGastos.cs" />
@@ -110,8 +112,10 @@
     <Compile Include="Modulos.cs" />
     <Compile Include="ModulosListados.cs" />
     <Compile Include="Monedas.cs" />
+    <Compile Include="MovimientosAdministrativos.cs" />
     <Compile Include="MovimientosAsiento.cs" />
     <Compile Include="MovimientosCFD.cs" />
+    <Compile Include="MovimientosPlantillaAsiento.cs" />
     <Compile Include="MovimientosPoliza.cs" />
     <Compile Include="MovimientosPrepoliza.cs" />
     <Compile Include="MovtosEdoCtaBancos.cs" />
@@ -121,12 +125,14 @@
     <Compile Include="PeriodosCausacionIVA.cs" />
     <Compile Include="Personas.cs" />
     <Compile Include="Plantillas.cs" />
+    <Compile Include="PlantillasAsiento.cs" />
     <Compile Include="PlantillasEstadosCuentas.cs" />
     <Compile Include="Polizas.cs" />
     <Compile Include="PorcentajesPresupuesto.cs" />
     <Compile Include="Prepolizas.cs" />
     <Compile Include="Presupuestos.cs" />
     <Compile Include="PresupuestosCategorias.cs" />
+    <Compile Include="Productos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedores.cs" />
     <Compile Include="Recordatorios.cs" />
@@ -139,6 +145,7 @@
     <Compile Include="SegmentosNegocio.cs" />
     <Compile Include="TiposCambio.cs" />
     <Compile Include="TiposDocumentos.cs" />
+    <Compile Include="TiposOperacion.cs" />
     <Compile Include="TiposPolizas.cs" />
     <Compile Include="TiposPolizasSAT.cs" />
     <Compile Include="ValoresAuxiliaresCV.cs" />

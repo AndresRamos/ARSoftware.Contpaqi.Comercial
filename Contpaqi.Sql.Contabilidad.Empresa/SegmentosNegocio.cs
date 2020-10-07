@@ -24,5 +24,26 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
 
         [StringLength(20)]
         public string TimeStamp { get; set; }
+
+        [StringLength(30)]
+        public string SegContSegmento1 { get; set; }
+
+        [StringLength(30)]
+        public string SegContSegmento2 { get; set; }
+
+        [StringLength(30)]
+        public string SegContSegmento3 { get; set; }
+
+        [StringLength(30)]
+        public string SegContSegmento4 { get; set; }
+
+        [StringLength(30)]
+        public string SegContSegmento5 { get; set; }
+
+        [StringLength(30)]
+        public string SegContSegmento6 { get; set; }
+
+        [StringLength(30)]
+        public string SegContSegmento7 { get; set; }
     }
 }

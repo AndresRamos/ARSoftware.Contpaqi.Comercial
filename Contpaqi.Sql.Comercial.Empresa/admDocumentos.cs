@@ -226,5 +226,7 @@ namespace Contpaqi.Sql.Comercial.Empresa
         [Required]
         [StringLength(26)]
         public string CTRANSACTIONID { get; set; }
+
+        public int CIDCOPIADE { get; set; }
     }
 }

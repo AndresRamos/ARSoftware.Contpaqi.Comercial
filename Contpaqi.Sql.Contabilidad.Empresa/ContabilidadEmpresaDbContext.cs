@@ -4,7 +4,10 @@ using System.Data.Entity.Infrastructure;
 
 namespace Contpaqi.Sql.Contabilidad.Empresa
 {
+    using System;
     using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     public partial class ContabilidadEmpresaDbContext : DbContext
     {
@@ -57,6 +60,7 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
         public virtual DbSet<AsocComprasVentas> AsocComprasVentas { get; set; }
         public virtual DbSet<AsocCuentasGrupos> AsocCuentasGrupos { get; set; }
         public virtual DbSet<AsocDoctoCategorias> AsocDoctoCategorias { get; set; }
+        public virtual DbSet<AsocDoctosAdministrativos> AsocDoctosAdministrativos { get; set; }
         public virtual DbSet<Asociaciones> Asociaciones { get; set; }
         public virtual DbSet<Bancos> Bancos { get; set; }
         public virtual DbSet<Categorias> Categorias { get; set; }
@@ -78,6 +82,7 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
         public virtual DbSet<DevolucionesIVA> DevolucionesIVA { get; set; }
         public virtual DbSet<DiariosEspeciales> DiariosEspeciales { get; set; }
         public virtual DbSet<Digitos> Digitos { get; set; }
+        public virtual DbSet<DocumentosAdministrativos> DocumentosAdministrativos { get; set; }
         public virtual DbSet<DocumentosBancarios> DocumentosBancarios { get; set; }
         public virtual DbSet<DocumentosDe> DocumentosDe { get; set; }
         public virtual DbSet<DocumentosGastos> DocumentosGastos { get; set; }
@@ -100,8 +105,10 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
         public virtual DbSet<Modulos> Modulos { get; set; }
         public virtual DbSet<ModulosListados> ModulosListados { get; set; }
         public virtual DbSet<Monedas> Monedas { get; set; }
+        public virtual DbSet<MovimientosAdministrativos> MovimientosAdministrativos { get; set; }
         public virtual DbSet<MovimientosAsiento> MovimientosAsiento { get; set; }
         public virtual DbSet<MovimientosCFD> MovimientosCFD { get; set; }
+        public virtual DbSet<MovimientosPlantillaAsiento> MovimientosPlantillaAsiento { get; set; }
         public virtual DbSet<MovimientosPoliza> MovimientosPoliza { get; set; }
         public virtual DbSet<MovimientosPrepoliza> MovimientosPrepoliza { get; set; }
         public virtual DbSet<MovtosEdoCtaBancos> MovtosEdoCtaBancos { get; set; }
@@ -111,12 +118,14 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
         public virtual DbSet<PeriodosCausacionIVA> PeriodosCausacionIVA { get; set; }
         public virtual DbSet<Personas> Personas { get; set; }
         public virtual DbSet<Plantillas> Plantillas { get; set; }
+        public virtual DbSet<PlantillasAsiento> PlantillasAsiento { get; set; }
         public virtual DbSet<PlantillasEstadosCuentas> PlantillasEstadosCuentas { get; set; }
         public virtual DbSet<Polizas> Polizas { get; set; }
         public virtual DbSet<PorcentajesPresupuesto> PorcentajesPresupuesto { get; set; }
         public virtual DbSet<Prepolizas> Prepolizas { get; set; }
         public virtual DbSet<Presupuestos> Presupuestos { get; set; }
         public virtual DbSet<PresupuestosCategorias> PresupuestosCategorias { get; set; }
+        public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<Proveedores> Proveedores { get; set; }
         public virtual DbSet<Recordatorios> Recordatorios { get; set; }
         public virtual DbSet<Retenciones> Retenciones { get; set; }
@@ -128,12 +137,20 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
         public virtual DbSet<SegmentosNegocio> SegmentosNegocio { get; set; }
         public virtual DbSet<TiposCambio> TiposCambio { get; set; }
         public virtual DbSet<TiposDocumentos> TiposDocumentos { get; set; }
+        public virtual DbSet<TiposOperacion> TiposOperacion { get; set; }
         public virtual DbSet<TiposPolizas> TiposPolizas { get; set; }
         public virtual DbSet<TiposPolizasSAT> TiposPolizasSAT { get; set; }
         public virtual DbSet<ValoresAuxiliaresCV> ValoresAuxiliaresCV { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AsocCFDIs>()
+                .Property(e => e.UUID)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DocumentosAdministrativos>()
+                .Property(e => e.UUID)
+                .IsUnicode(false);
         }
     }
 }

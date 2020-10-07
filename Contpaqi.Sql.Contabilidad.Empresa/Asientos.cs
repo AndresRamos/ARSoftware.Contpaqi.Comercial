@@ -34,5 +34,26 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
 
         [StringLength(20)]
         public string AsientoDe { get; set; }
+
+        public int? TipoXML { get; set; }
+
+        public int? IdDiario { get; set; }
+
+        public bool? CrearPolizasSinAfectar { get; set; }
+
+        public bool? SuprimirMovtosEnCero { get; set; }
+
+        public int? IdCtaBancaria { get; set; }
+
+        public bool? CrearDoctoBancario { get; set; }
+
+        public bool? EsBaja { get; set; }
+
+        public bool? CrearPoliza { get; set; }
+
+        [StringLength(20)]
+        public string TipoCFDI { get; set; }
+
+        public bool? EsGasto { get; set; }
     }
 }

@@ -128,5 +128,26 @@ namespace Contpaqi.Sql.Contabilidad.Empresa
         public string CodigoConceptoComercialIngresoNDCFD { get; set; }
 
         public bool? permitirCambiarConceptoComercial { get; set; }
+
+        [StringLength(30)]
+        public string SegContCuentaCheque1 { get; set; }
+
+        [StringLength(30)]
+        public string SegContCuentaCheque2 { get; set; }
+
+        [StringLength(30)]
+        public string SegContCuentaCheque3 { get; set; }
+
+        [StringLength(30)]
+        public string SegContCuentaCheque4 { get; set; }
+
+        [StringLength(30)]
+        public string SegContCuentaCheque5 { get; set; }
+
+        [StringLength(30)]
+        public string SegContCuentaCheque6 { get; set; }
+
+        [StringLength(30)]
+        public string SegContCuentaCheque7 { get; set; }
     }
 }
