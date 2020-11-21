@@ -146,15 +146,15 @@
         public double ImporteExtra3 { get; set; }
 
         public double ImporteExtra4 { get; set; }
+       
+        // Propiedades Extras
+        public int Id { get; set; }
 
         public string Email1 { get; set; }
 
         public string Email2 { get; set; }
 
         public string Email3 { get; set; }
-
-        // Propiedades Extras
-        public int Id { get; set; }
 
         public string UsoCfdi { get; set; }
 
