@@ -141,6 +141,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             var importeExtra3 = new StringBuilder(9);
             var importeExtra4 = new StringBuilder(9);
             var id = new StringBuilder(12);
+            var nombreLargo = new StringBuilder(254);
             var email1 = new StringBuilder(60);
             var email2 = new StringBuilder(60);
             var email3 = new StringBuilder(60);
@@ -210,6 +211,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CIMPORTEEXTRA3", importeExtra3, 9);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CIMPORTEEXTRA4", importeExtra4, 9);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CIDCLIENTEPROVEEDOR", id, 12);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CNOMBRELARGO", nombreLargo, 254);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CEMAIL1", email1, 60);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CEMAIL2", email2, 60);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CEMAIL3", email3, 60);
@@ -280,6 +282,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             clienteProveedor.ImporteExtra3 = double.Parse(importeExtra3.ToString());
             clienteProveedor.ImporteExtra4 = double.Parse(importeExtra4.ToString());
             clienteProveedor.Id = int.Parse(id.ToString());
+            clienteProveedor.NombreLargo = nombreLargo.ToString();
             clienteProveedor.Email1 = email1.ToString();
             clienteProveedor.Email2 = email2.ToString();
             clienteProveedor.Email3 = email3.ToString();

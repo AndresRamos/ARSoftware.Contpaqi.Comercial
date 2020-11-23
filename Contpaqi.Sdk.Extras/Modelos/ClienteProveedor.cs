@@ -146,9 +146,11 @@
         public double ImporteExtra3 { get; set; }
 
         public double ImporteExtra4 { get; set; }
-       
+
         // Propiedades Extras
         public int Id { get; set; }
+
+        public string NombreLargo { get; set; }
 
         public string Email1 { get; set; }
 
