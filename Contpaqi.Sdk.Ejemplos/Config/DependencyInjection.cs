@@ -31,6 +31,7 @@ namespace Contpaqi.Sdk.Ejemplos.Config
 
             // Clientes
             services.AddTransient<ListadoClientesViewModel>();
+            services.AddTransient<ListadoProveedoresViewModel>();
 
             // Empresas
             services.AddTransient<SeleccionarEmpresaViewModel>();

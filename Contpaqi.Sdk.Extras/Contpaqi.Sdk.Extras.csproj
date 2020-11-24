@@ -95,6 +95,7 @@
     <Compile Include="Repositorios\ErrorContpaqiSdkRepositorio.cs" />
     <Compile Include="Interfaces\IEmpresaRepositorio.cs" />
     <Compile Include="Interfaces\IClienteProveedorRepositorio.cs" />
+    <Compile Include="Interfaces\IAgenteRepositorio.cs" />
     <Compile Include="Repositorios\MovimientoRepositorio.cs" />
     <Compile Include="Repositorios\ProductoRepositorio.cs" />
     <Compile Include="Repositorios\ContpaqiSdkUnidadTrabajo.cs" />

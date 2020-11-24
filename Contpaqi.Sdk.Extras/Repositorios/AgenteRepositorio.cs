@@ -5,7 +5,7 @@ using Contpaqi.Sdk.Extras.Modelos;
 
 namespace Contpaqi.Sdk.Extras.Repositorios
 {
-    public class AgenteRepositorio
+    public class AgenteRepositorio : IAgenteRepositorio
     {
         private readonly ErrorContpaqiSdkRepositorio _errorContpaqiSdkRepositorio;
         private readonly IContpaqiSdk _sdk;
@@ -26,7 +26,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             return _sdk.fBuscaAgente(codigoAgente) == 0 ? LeerDatosAgenteActual() : null;
         }
 
-        public List<Agente> TraerAgentes()
+        public IEnumerable<Agente> TraerAgentes()
         {
             var agentes = new List<Agente>();
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fPosPrimerAgente();

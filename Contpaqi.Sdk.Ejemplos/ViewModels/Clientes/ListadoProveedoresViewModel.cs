@@ -13,27 +13,27 @@ using Microsoft.Toolkit.Mvvm.Input;
 
 namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
 {
-    public class ListadoClientesViewModel : ObservableRecipient
+    public class ListadoProveedoresViewModel : ObservableRecipient
     {
         private readonly IClienteProveedorRepositorio _clienteProveedorRepositorio;
         private readonly IDialogCoordinator _dialogCoordinator;
-        private ClienteProveedor _clienteSeleccionado;
-        private string _filtro;
+        private ClienteProveedor _proveedorSeleccionado;
         private string _duracionBusqueda;
+        private string _filtro;
         private bool _buscarObjectosRelacionados = true;
 
-        public ListadoClientesViewModel(IClienteProveedorRepositorio clienteProveedorRepositorio, IDialogCoordinator dialogCoordinator)
+        public ListadoProveedoresViewModel(IClienteProveedorRepositorio clienteProveedorRepositorio, IDialogCoordinator dialogCoordinator)
         {
             _clienteProveedorRepositorio = clienteProveedorRepositorio;
             _dialogCoordinator = dialogCoordinator;
-            Clientes = new ObservableCollection<ClienteProveedor>();
-            ClientesView = CollectionViewSource.GetDefaultView(Clientes);
-            ClientesView.Filter = ClientesView_Filter;
+            Proveedores = new ObservableCollection<ClienteProveedor>();
+            ProveedoresView = CollectionViewSource.GetDefaultView(Proveedores);
+            ProveedoresView.Filter = ClientesView_Filter;
 
-            BuscarClientesCommand = new AsyncRelayCommand(BuscarClientesAsync);
+            BuscarProveedoresCommand = new AsyncRelayCommand(BuscarProveedoresAsync);
         }
 
-        public string Title => "Clientes";
+        public string Title => "Proveedores";
 
         public string Filtro
         {
@@ -41,27 +41,27 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
             set
             {
                 SetProperty(ref _filtro, value);
-                ClientesView.Refresh();
+                ProveedoresView.Refresh();
             }
         }
 
-        public ObservableCollection<ClienteProveedor> Clientes { get; }
+        public ObservableCollection<ClienteProveedor> Proveedores { get; }
 
-        public ICollectionView ClientesView { get; }
+        public ICollectionView ProveedoresView { get; }
 
-        public ClienteProveedor ClienteSeleccionado
+        public ClienteProveedor ProveedorSeleccionado
         {
-            get => _clienteSeleccionado;
-            set => SetProperty(ref _clienteSeleccionado, value);
+            get => _proveedorSeleccionado;
+            set => SetProperty(ref _proveedorSeleccionado, value);
         }
-        
+
         public bool BuscarObjectosRelacionados
         {
             get => _buscarObjectosRelacionados;
             set => SetProperty(ref _buscarObjectosRelacionados , value);
         }
 
-        public int NumeroClientes => ClientesView.Cast<object>().Count();
+        public int NumeroProveedores => ProveedoresView.Cast<object>().Count();
 
         public string DuracionBusqueda
         {
@@ -69,19 +69,20 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
             private set => SetProperty(ref _duracionBusqueda, value);
         }
 
-        public IAsyncRelayCommand BuscarClientesCommand { get; }
+        public IAsyncRelayCommand BuscarProveedoresCommand { get; }
 
-        public async Task BuscarClientesAsync()
+        public async Task BuscarProveedoresAsync()
         {
             try
             {
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
-                Clientes.Clear();
-                foreach (var cliente in _clienteProveedorRepositorio.TraerClientes(BuscarObjectosRelacionados))
+                Proveedores.Clear();
+                foreach (var proveedor in _clienteProveedorRepositorio.TraerProveedores(BuscarObjectosRelacionados))
                 {
-                    Clientes.Add(cliente);
+                    Proveedores.Add(proveedor);
                 }
+
                 stopwatch.Stop();
                 DuracionBusqueda = stopwatch.Elapsed.ToString("g");
             }
@@ -91,23 +92,23 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
             }
             finally
             {
-                OnPropertyChanged(nameof(NumeroClientes));
+                OnPropertyChanged(nameof(NumeroProveedores));
             }
         }
 
         private bool ClientesView_Filter(object obj)
         {
-            var cliente = obj as ClienteProveedor;
-            if (cliente is null)
+            var proveedor = obj as ClienteProveedor;
+            if (proveedor is null)
             {
                 throw new ArgumentNullException(nameof(obj));
             }
 
             return string.IsNullOrWhiteSpace(Filtro) ||
-                   cliente.Id.ToString().IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   cliente.Codigo.IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   cliente.RazonSocial.IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   cliente.NombreLargo.IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0;
+                   proveedor.Id.ToString().IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   proveedor.Codigo.IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   proveedor.RazonSocial.IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   proveedor.NombreLargo.IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0;
         }
     }
 }

@@ -273,7 +273,14 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CIMPORTEEXTRA3", importeExtra3, 9);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CIMPORTEEXTRA4", importeExtra4, 9);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CIDCLIENTEPROVEEDOR", id, 12);
-            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CNOMBRELARGO", nombreLargo, 254);
+            if (TipoClienteHelper.EsCliente(tipoCliente.ToString()))
+            {
+                // Al parecer solo los clientes pueden tener un nombre largo
+                // Falla al buscar el nombre largo si es proveedor
+                _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CNOMBRELARGO", nombreLargo, 254);
+            }
+            //_errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CNOMBRELARGO", nombreLargo, 254);
+
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CEMAIL1", email1, 60);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CEMAIL2", email2, 60);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CEMAIL3", email3, 60);

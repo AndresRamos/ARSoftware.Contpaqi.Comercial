@@ -25,6 +25,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
             AbrirEmpresaCommand = new AsyncRelayCommand(AbrirEmpresaAsync, CanAbrirEmpresaAsync);
             CerrarEmpresaCommand = new AsyncRelayCommand(CerrarEmpresaAsync, CanCerrarEmpresaAsync);
             MostarListadoClientesViewCommand = new RelayCommand(MostarListadoClientesView, CanMostarListadoClientesView);
+            MostarListadoProveedoresViewCommand = new RelayCommand(MostarListadoProveedoresView, CanMostarListadoProveedoresView);
         }
 
         public IAsyncRelayCommand MostrarIniciarSesionViewCommand { get; }
@@ -32,6 +33,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
         public IAsyncRelayCommand AbrirEmpresaCommand { get; }
         public IAsyncRelayCommand CerrarEmpresaCommand { get; }
         public IRelayCommand MostarListadoClientesViewCommand { get; }
+        public IRelayCommand MostarListadoProveedoresViewCommand { get; }
 
         public async Task MostrarIniciarSesionViewAsync()
         {
@@ -134,6 +136,17 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
             return _comercialSdkSesionServicio.SdkInicializado && _comercialSdkSesionServicio.EmpresaAbierta;
         }
 
+        public void MostarListadoProveedoresView()
+        {
+            var window = new ListadoProveedoresView();
+            window.Show();
+        }
+
+        public bool CanMostarListadoProveedoresView()
+        {
+            return _comercialSdkSesionServicio.SdkInicializado && _comercialSdkSesionServicio.EmpresaAbierta;
+        }
+
         private void RaiseGuards()
         {
             MostrarIniciarSesionViewCommand.NotifyCanExecuteChanged();
@@ -141,6 +154,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
             AbrirEmpresaCommand.NotifyCanExecuteChanged();
             CerrarEmpresaCommand.NotifyCanExecuteChanged();
             MostarListadoClientesViewCommand.NotifyCanExecuteChanged();
+            MostarListadoProveedoresViewCommand.NotifyCanExecuteChanged();
         }
     }
 }
