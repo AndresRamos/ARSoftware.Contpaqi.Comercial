@@ -5,7 +5,7 @@ using Contpaqi.Sdk.Extras.Modelos;
 
 namespace Contpaqi.Sdk.Extras.Repositorios
 {
-    public class EmpresaRepositorio
+    public class EmpresaRepositorio : IEmpresaRepositorio
     {
         private readonly ErrorContpaqiSdkRepositorio _errorContpaqiSdkRepositorio;
         private readonly IContpaqiSdk _sdk;
@@ -16,7 +16,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             _errorContpaqiSdkRepositorio = new ErrorContpaqiSdkRepositorio(sdk);
         }
 
-        public List<Empresa> TraerEmpresas()
+        public IEnumerable<Empresa> TraerEmpresas()
         {
             var empresasList = new List<Empresa>();
             var id = 0;

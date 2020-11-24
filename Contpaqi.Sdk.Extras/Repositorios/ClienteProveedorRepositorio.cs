@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using Contpaqi.Sdk.Extras.Ayudantes;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Modelos;
 
 namespace Contpaqi.Sdk.Extras.Repositorios
 {
-    public class ClienteProveedorRepositorio
+    public class ClienteProveedorRepositorio : IClienteProveedorRepositorio
     {
         private readonly ErrorContpaqiSdkRepositorio _errorContpaqiSdkRepositorio;
         private readonly IContpaqiSdk _sdk;
@@ -18,25 +19,26 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             _valorClasificacionRepositorio = new ValorClasificacionRepositorio(sdk);
         }
 
-        public ClienteProveedor BuscarClienteProveedor(int idCliente)
+        public ClienteProveedor BuscarClienteProveedor(int idCliente, bool buscarObjectosRelacionados = true)
         {
-            return _sdk.fBuscaIdCteProv(idCliente) == 0 ? LeerDatosClienteProveedorActual() : null;
+            return _sdk.fBuscaIdCteProv(idCliente) == 0 ? LeerDatosClienteProveedorActual(buscarObjectosRelacionados) : null;
         }
 
-        public ClienteProveedor BuscarClienteProveedor(string codigoCliente)
+        public ClienteProveedor BuscarClienteProveedor(string codigoCliente, bool buscarObjectosRelacionados = true)
         {
-            return _sdk.fBuscaCteProv(codigoCliente) == 0 ? LeerDatosClienteProveedorActual() : null;
+            return _sdk.fBuscaCteProv(codigoCliente) == 0 ? LeerDatosClienteProveedorActual(buscarObjectosRelacionados) : null;
         }
 
-        public List<ClienteProveedor> TraerClientesProveedores(int tipoCliente)
+        public IEnumerable<ClienteProveedor> TraerClientesProveedores(int tipoCliente, bool buscarObjectosRelacionados = true)
         {
             var clientesList = new List<ClienteProveedor>();
+
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fPosPrimerCteProv();
             var tipoDeCliente = new StringBuilder(7);
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7);
             if (tipoDeCliente.ToString() == tipoCliente.ToString())
             {
-                clientesList.Add(LeerDatosClienteProveedorActual());
+                clientesList.Add(LeerDatosClienteProveedorActual(buscarObjectosRelacionados));
             }
 
             while (_sdk.fPosSiguienteCteProv() == 0)
@@ -44,7 +46,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
                 _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7);
                 if (tipoDeCliente.ToString() == tipoCliente.ToString())
                 {
-                    clientesList.Add(LeerDatosClienteProveedorActual());
+                    clientesList.Add(LeerDatosClienteProveedorActual(buscarObjectosRelacionados));
                 }
 
                 if (_sdk.fPosEOFCteProv() == 1)
@@ -56,15 +58,15 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             return clientesList;
         }
 
-        public List<ClienteProveedor> TraerClientesProveedores()
+        public IEnumerable<ClienteProveedor> TraerClientesProveedores(bool buscarObjectosRelacionados = true)
         {
             var clientesList = new List<ClienteProveedor>();
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fPosPrimerCteProv();
 
-            clientesList.Add(LeerDatosClienteProveedorActual());
+            clientesList.Add(LeerDatosClienteProveedorActual(buscarObjectosRelacionados));
             while (_sdk.fPosSiguienteCteProv() == 0)
             {
-                clientesList.Add(LeerDatosClienteProveedorActual());
+                clientesList.Add(LeerDatosClienteProveedorActual(buscarObjectosRelacionados));
                 if (_sdk.fPosEOFCteProv() == 1)
                 {
                     break;
@@ -74,7 +76,67 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             return clientesList;
         }
 
-        private ClienteProveedor LeerDatosClienteProveedorActual()
+        public IEnumerable<ClienteProveedor> TraerClientes(bool buscarObjectosRelacionados)
+        {
+            var clientesList = new List<ClienteProveedor>();
+
+            var tipoDeCliente = new StringBuilder(7);
+
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fPosPrimerCteProv();
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7);
+            if (TipoClienteHelper.EsCliente(tipoDeCliente.ToString()))
+            {
+                clientesList.Add(LeerDatosClienteProveedorActual(buscarObjectosRelacionados));
+            }
+
+            while (_sdk.fPosSiguienteCteProv() == 0)
+            {
+                _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7);
+                if (TipoClienteHelper.EsCliente(tipoDeCliente.ToString()))
+                {
+                    clientesList.Add(LeerDatosClienteProveedorActual(buscarObjectosRelacionados));
+                }
+
+                if (_sdk.fPosEOFCteProv() == 1)
+                {
+                    break;
+                }
+            }
+
+            return clientesList;
+        }
+
+        public IEnumerable<ClienteProveedor> TraerProveedores(bool buscarObjectosRelacionados = true)
+        {
+            var proveedoresList = new List<ClienteProveedor>();
+
+            var tipoDeCliente = new StringBuilder(7);
+
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fPosPrimerCteProv();
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7);
+            if (TipoClienteHelper.EsProveedor(tipoDeCliente.ToString()))
+            {
+                proveedoresList.Add(LeerDatosClienteProveedorActual(buscarObjectosRelacionados));
+            }
+
+            while (_sdk.fPosSiguienteCteProv() == 0)
+            {
+                _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7);
+                if (TipoClienteHelper.EsProveedor(tipoDeCliente.ToString()))
+                {
+                    proveedoresList.Add(LeerDatosClienteProveedorActual(buscarObjectosRelacionados));
+                }
+
+                if (_sdk.fPosEOFCteProv() == 1)
+                {
+                    break;
+                }
+            }
+
+            return proveedoresList;
+        }
+
+        private ClienteProveedor LeerDatosClienteProveedorActual(bool buscarObjectosRelacionados = true)
         {
             var codigo = new StringBuilder(Constantes.kLongCodigo);
             var razonSocial = new StringBuilder(Constantes.kLongNombre);
@@ -287,18 +349,6 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             clienteProveedor.Email2 = email2.ToString();
             clienteProveedor.Email3 = email3.ToString();
             clienteProveedor.UsoCfdi = usoCfdi.ToString();
-            clienteProveedor.ValorClasificacionCliente1 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionCliente1);
-            clienteProveedor.ValorClasificacionCliente2 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionCliente2);
-            clienteProveedor.ValorClasificacionCliente3 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionCliente3);
-            clienteProveedor.ValorClasificacionCliente4 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionCliente4);
-            clienteProveedor.ValorClasificacionCliente5 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionCliente5);
-            clienteProveedor.ValorClasificacionCliente6 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionCliente6);
-            clienteProveedor.ValorClasificacionProveedor1 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionProveedor1);
-            clienteProveedor.ValorClasificacionProveedor2 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionProveedor2);
-            clienteProveedor.ValorClasificacionProveedor3 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionProveedor3);
-            clienteProveedor.ValorClasificacionProveedor4 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionProveedor4);
-            clienteProveedor.ValorClasificacionProveedor5 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionProveedor5);
-            clienteProveedor.ValorClasificacionProveedor6 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionProveedor6);
             clienteProveedor.CodigoValorClasificacionCliente1 = clienteProveedor.ValorClasificacionCliente1.Codigo;
             clienteProveedor.CodigoValorClasificacionCliente2 = clienteProveedor.ValorClasificacionCliente2.Codigo;
             clienteProveedor.CodigoValorClasificacionCliente3 = clienteProveedor.ValorClasificacionCliente3.Codigo;
@@ -311,7 +361,29 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             clienteProveedor.CodigoValorClasificacionProveedor4 = clienteProveedor.ValorClasificacionProveedor4.Codigo;
             clienteProveedor.CodigoValorClasificacionProveedor5 = clienteProveedor.ValorClasificacionProveedor5.Codigo;
             clienteProveedor.CodigoValorClasificacionProveedor6 = clienteProveedor.ValorClasificacionProveedor6.Codigo;
+
+            if (buscarObjectosRelacionados)
+            {
+                BuscarObjectosRelacionados(clienteProveedor);
+            }
+
             return clienteProveedor;
+        }
+
+        private void BuscarObjectosRelacionados(ClienteProveedor clienteProveedor)
+        {
+            clienteProveedor.ValorClasificacionCliente1 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionCliente1);
+            clienteProveedor.ValorClasificacionCliente2 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionCliente2);
+            clienteProveedor.ValorClasificacionCliente3 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionCliente3);
+            clienteProveedor.ValorClasificacionCliente4 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionCliente4);
+            clienteProveedor.ValorClasificacionCliente5 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionCliente5);
+            clienteProveedor.ValorClasificacionCliente6 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionCliente6);
+            clienteProveedor.ValorClasificacionProveedor1 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionProveedor1);
+            clienteProveedor.ValorClasificacionProveedor2 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionProveedor2);
+            clienteProveedor.ValorClasificacionProveedor3 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionProveedor3);
+            clienteProveedor.ValorClasificacionProveedor4 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionProveedor4);
+            clienteProveedor.ValorClasificacionProveedor5 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionProveedor5);
+            clienteProveedor.ValorClasificacionProveedor6 = _valorClasificacionRepositorio.BuscaValorClasificacion(clienteProveedor.IdValorClasificacionProveedor6);
         }
     }
 }

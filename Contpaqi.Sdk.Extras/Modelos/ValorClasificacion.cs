@@ -9,5 +9,10 @@
         public string Codigo { get; set; }
 
         public string Valor { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Codigo} - {Valor}";
+        }
     }
 }

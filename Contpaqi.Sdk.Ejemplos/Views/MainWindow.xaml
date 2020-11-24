@@ -1,0 +1,34 @@
+﻿<controls:MetroWindow x:Class="Contpaqi.Sdk.Ejemplos.Views.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:Contpaqi.Sdk.Ejemplos"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      xmlns:viewModels="clr-namespace:Contpaqi.Sdk.Ejemplos.ViewModels"
+                      mc:Ignorable="d"
+                      Height="600" Width="900"
+                      WindowStartupLocation="CenterScreen"
+                      d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel, IsDesignTimeCreatable=False}"
+                      dialog:DialogParticipation.Register="{Binding}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Menu IsMainMenu="True">
+            <MenuItem Header="Archivo">
+                <MenuItem Header="Iniciar Sesion" Command="{Binding MostrarIniciarSesionViewCommand}" />
+                <MenuItem Header="Terminar Sesion" Command="{Binding TerminarSesionCommand}" />
+                <Separator />
+                <MenuItem Header="Abrir Empresa" Command="{Binding AbrirEmpresaCommand}" />
+                <MenuItem Header="Cerrar Empresa" Command="{Binding CerrarEmpresaCommand}" />
+            </MenuItem>
+            <MenuItem Header="Catalogos">
+                <MenuItem Header="Clientes" Command="{Binding MostarListadoClientesViewCommand}" />
+            </MenuItem>
+        </Menu>
+    </Grid>
+</controls:MetroWindow>

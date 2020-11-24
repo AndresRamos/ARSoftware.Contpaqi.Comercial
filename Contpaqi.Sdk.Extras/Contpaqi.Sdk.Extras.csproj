@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ayudantes\TipoClienteHelper.cs" />
     <Compile Include="Excepciones\ContpaqiSdkException.cs" />
     <Compile Include="Ayudantes\InicializacionAdminpaqSdk.cs" />
     <Compile Include="Ayudantes\InicializacionComercialSdk.cs" />
@@ -72,8 +73,10 @@
     <Compile Include="Modelos\Empresa.cs" />
     <Compile Include="Modelos\Enums\ContpaqiSdkEnum.cs" />
     <Compile Include="Modelos\Enums\TipoClasificacionEnum.cs" />
+    <Compile Include="Modelos\Enums\TipoClienteEnum.cs" />
     <Compile Include="Modelos\Movimiento.cs" />
     <Compile Include="Modelos\Producto.cs" />
+    <Compile Include="Modelos\SdkResult.cs" />
     <Compile Include="Modelos\UnidadMedida.cs" />
     <Compile Include="Modelos\ValorClasificacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,11 +93,15 @@
     <Compile Include="Repositorios\DocumentoRepositorio.cs" />
     <Compile Include="Repositorios\EmpresaRepositorio.cs" />
     <Compile Include="Repositorios\ErrorContpaqiSdkRepositorio.cs" />
+    <Compile Include="Interfaces\IEmpresaRepositorio.cs" />
+    <Compile Include="Interfaces\IClienteProveedorRepositorio.cs" />
     <Compile Include="Repositorios\MovimientoRepositorio.cs" />
     <Compile Include="Repositorios\ProductoRepositorio.cs" />
     <Compile Include="Repositorios\ContpaqiSdkUnidadTrabajo.cs" />
     <Compile Include="Repositorios\UnidadMedidaRepositorio.cs" />
     <Compile Include="Repositorios\ValorClasificacionRepositorio.cs" />
+    <Compile Include="Servicios\ComercialSdkSesionServicio.cs" />
+    <Compile Include="Interfaces\IComercialSdkSesionServicio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contpaqi.Sdk\Contpaqi.Sdk.csproj">
@@ -102,5 +109,6 @@
       <Name>Contpaqi.Sdk</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
