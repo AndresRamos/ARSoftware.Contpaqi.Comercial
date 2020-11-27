@@ -5,7 +5,7 @@ using Contpaqi.Sdk.Extras.Modelos;
 
 namespace Contpaqi.Sdk.Extras.Repositorios
 {
-    public class AlmacenRepositorio
+    public class AlmacenRepositorio : IAlmacenRepositorio
     {
         private readonly ErrorContpaqiSdkRepositorio _errorContpaqiSdkRepositorio;
         private readonly IContpaqiSdk _sdk;

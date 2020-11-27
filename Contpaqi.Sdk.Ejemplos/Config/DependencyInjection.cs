@@ -1,5 +1,7 @@
 ﻿using System;
 using Contpaqi.Sdk.Ejemplos.ViewModels;
+using Contpaqi.Sdk.Ejemplos.ViewModels.Agentes;
+using Contpaqi.Sdk.Ejemplos.ViewModels.Almacenes;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Clientes;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Empresas;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Sesion;
@@ -27,7 +29,13 @@ namespace Contpaqi.Sdk.Ejemplos.Config
 
         private static void RegisterViewModels(this IServiceCollection services)
         {
-            services.AddTransient<MainWindowViewModel>();
+            services.AddTransient<MainViewModel>();
+
+            // Agentes
+            services.AddTransient<ListadoAgentesViewModel>();
+
+            // Almacenes
+            services.AddTransient<ListadoAlmacenesViewModel>();
 
             // Clientes
             services.AddTransient<ListadoClientesViewModel>();
@@ -43,6 +51,12 @@ namespace Contpaqi.Sdk.Ejemplos.Config
         private static void RegisterSdkServices(this IServiceCollection services)
         {
             services.AddSingleton<IContpaqiSdk, ComercialSdkExtended>();
+
+            // Agentes
+            services.AddSingleton<IAgenteRepositorio, AgenteRepositorio>();
+
+            // Almacenes
+            services.AddTransient<IAlmacenRepositorio, AlmacenRepositorio>();
 
             //Clientes
             services.AddSingleton<IClienteProveedorRepositorio, ClienteProveedorRepositorio>();

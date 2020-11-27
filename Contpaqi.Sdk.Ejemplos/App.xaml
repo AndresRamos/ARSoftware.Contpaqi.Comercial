@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Contpaqi.Sdk.Ejemplos"
              DispatcherUnhandledException="App_OnDispatcherUnhandledException"
-             StartupUri="Views/MainWindow.xaml">
+             StartupUri="Views/MainView.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

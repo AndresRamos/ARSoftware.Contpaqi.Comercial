@@ -6,14 +6,14 @@ namespace Contpaqi.Sdk.Ejemplos.Views
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class MainView
     {
-        public MainWindow()
+        public MainView()
         {
             InitializeComponent();
-            DataContext = Ioc.Default.GetService<MainWindowViewModel>();
+            DataContext = Ioc.Default.GetService<MainViewModel>();
         }
 
-        public MainWindowViewModel ViewModel => (MainWindowViewModel) DataContext;
+        public MainViewModel ViewModel => (MainViewModel) DataContext;
     }
 }

@@ -1,4 +1,4 @@
-﻿<controls:MetroWindow x:Class="Contpaqi.Sdk.Ejemplos.Views.MainWindow"
+﻿<controls:MetroWindow x:Class="Contpaqi.Sdk.Ejemplos.Views.MainView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,7 +9,7 @@
                       mc:Ignorable="d"
                       Height="600" Width="1200"
                       WindowStartupLocation="CenterScreen"
-                      d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel, IsDesignTimeCreatable=False}"
+                      d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=False}"
                       dialog:DialogParticipation.Register="{Binding}">
     <Grid>
         <Grid.RowDefinitions>
@@ -26,8 +26,10 @@
                 <MenuItem Header="Cerrar Empresa" Command="{Binding CerrarEmpresaCommand}" />
             </MenuItem>
             <MenuItem Header="Catalogos">
-                <MenuItem Header="Clientes" Command="{Binding MostarListadoClientesViewCommand}" />
-                <MenuItem Header="Proveedores" Command="{Binding MostarListadoProveedoresViewCommand}" />
+                <MenuItem Header="Clientes" Command="{Binding MostrarListadoClientesViewCommand}" />
+                <MenuItem Header="Proveedores" Command="{Binding MostrarListadoProveedoresViewCommand}" />
+                <MenuItem Header="Agentes" Command="{Binding MostrarListadoAgentesViewCommand}" />
+                <MenuItem Header="Almacenes" Command="{Binding MostrarListadoAlmacenesViewCommand}" />
             </MenuItem>
         </Menu>
     </Grid>
