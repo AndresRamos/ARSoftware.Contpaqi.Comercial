@@ -4,6 +4,7 @@ using Contpaqi.Sdk.Ejemplos.Views.Agentes;
 using Contpaqi.Sdk.Ejemplos.Views.Almacenes;
 using Contpaqi.Sdk.Ejemplos.Views.Clientes;
 using Contpaqi.Sdk.Ejemplos.Views.Empresas;
+using Contpaqi.Sdk.Ejemplos.Views.Productos;
 using Contpaqi.Sdk.Ejemplos.Views.Sesion;
 using Contpaqi.Sdk.Extras.Interfaces;
 using MahApps.Metro.Controls.Dialogs;
@@ -27,9 +28,9 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
             AbrirEmpresaCommand = new AsyncRelayCommand(AbrirEmpresaAsync, CanAbrirEmpresaAsync);
             CerrarEmpresaCommand = new AsyncRelayCommand(CerrarEmpresaAsync, CanCerrarEmpresaAsync);
             MostrarListadoClientesViewCommand = new RelayCommand(MostrarListadoClientesView, IsSdkListo);
-            MostrarListadoProveedoresViewCommand = new RelayCommand(MostrarListadoProveedoresView, IsSdkListo);
             MostrarListadoAgentesViewCommand = new RelayCommand(MostrarListadoAgentesView, IsSdkListo);
             MostrarListadoAlmacenesViewCommand = new RelayCommand(MostrarListadoAlmacenesView, IsSdkListo);
+            MostrarListadoProductosViewCommand = new RelayCommand(MostrarListadoProductosView, IsSdkListo);
         }
 
         public IAsyncRelayCommand MostrarIniciarSesionViewCommand { get; }
@@ -37,9 +38,9 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
         public IAsyncRelayCommand AbrirEmpresaCommand { get; }
         public IAsyncRelayCommand CerrarEmpresaCommand { get; }
         public IRelayCommand MostrarListadoClientesViewCommand { get; }
-        public IRelayCommand MostrarListadoProveedoresViewCommand { get; }
         public IRelayCommand MostrarListadoAgentesViewCommand { get; }
         public IRelayCommand MostrarListadoAlmacenesViewCommand { get; }
+        public IRelayCommand MostrarListadoProductosViewCommand { get; }
 
         public async Task MostrarIniciarSesionViewAsync()
         {
@@ -142,12 +143,6 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
             window.Show();
         }
 
-        public void MostrarListadoProveedoresView()
-        {
-            var window = new ListadoProveedoresView();
-            window.Show();
-        }
-
         public void MostrarListadoAgentesView()
         {
             var window = new ListadoAgentesView();
@@ -160,6 +155,11 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
             window.Show();
         }
 
+        public void MostrarListadoProductosView()
+        {
+            var window = new ListadoProductosView();
+            window.Show();
+        }
         private void RaiseGuards()
         {
             MostrarIniciarSesionViewCommand.NotifyCanExecuteChanged();
@@ -167,9 +167,9 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
             AbrirEmpresaCommand.NotifyCanExecuteChanged();
             CerrarEmpresaCommand.NotifyCanExecuteChanged();
             MostrarListadoClientesViewCommand.NotifyCanExecuteChanged();
-            MostrarListadoProveedoresViewCommand.NotifyCanExecuteChanged();
             MostrarListadoAgentesViewCommand.NotifyCanExecuteChanged();
             MostrarListadoAlmacenesViewCommand.NotifyCanExecuteChanged();
+            MostrarListadoProductosViewCommand.NotifyCanExecuteChanged();
         }
     }
 }

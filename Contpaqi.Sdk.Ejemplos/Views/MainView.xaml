@@ -26,10 +26,11 @@
                 <MenuItem Header="Cerrar Empresa" Command="{Binding CerrarEmpresaCommand}" />
             </MenuItem>
             <MenuItem Header="Catalogos">
-                <MenuItem Header="Clientes" Command="{Binding MostrarListadoClientesViewCommand}" />
-                <MenuItem Header="Proveedores" Command="{Binding MostrarListadoProveedoresViewCommand}" />
+                <MenuItem Header="Clientes/Proveedores" Command="{Binding MostrarListadoClientesViewCommand}" />
                 <MenuItem Header="Agentes" Command="{Binding MostrarListadoAgentesViewCommand}" />
                 <MenuItem Header="Almacenes" Command="{Binding MostrarListadoAlmacenesViewCommand}" />
+                <Separator />
+                <MenuItem Header="Productos/Servicios/Paquetes" Command="{Binding MostrarListadoProductosViewCommand}" />
             </MenuItem>
         </Menu>
     </Grid>

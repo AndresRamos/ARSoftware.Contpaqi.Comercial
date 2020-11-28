@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ayudantes\TipoProductoHelper.cs" />
     <Compile Include="Ayudantes\TipoClienteHelper.cs" />
     <Compile Include="Excepciones\ContpaqiSdkException.cs" />
     <Compile Include="Ayudantes\InicializacionAdminpaqSdk.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Modelos\Enums\ContpaqiSdkEnum.cs" />
     <Compile Include="Modelos\Enums\TipoClasificacionEnum.cs" />
     <Compile Include="Modelos\Enums\TipoClienteEnum.cs" />
+    <Compile Include="Modelos\Enums\TipoProductoEnum.cs" />
     <Compile Include="Modelos\Movimiento.cs" />
     <Compile Include="Modelos\Producto.cs" />
     <Compile Include="Modelos\SdkResult.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Interfaces\IClienteProveedorRepositorio.cs" />
     <Compile Include="Interfaces\IAgenteRepositorio.cs" />
     <Compile Include="Interfaces\IAlmacenRepositorio.cs" />
+    <Compile Include="Interfaces\IProductoRepositorio.cs" />
     <Compile Include="Repositorios\MovimientoRepositorio.cs" />
     <Compile Include="Repositorios\ProductoRepositorio.cs" />
     <Compile Include="Repositorios\ContpaqiSdkUnidadTrabajo.cs" />

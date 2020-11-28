@@ -168,7 +168,7 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             movimiento.Observaciones = observaciones.ToString();
             movimiento.IdAlmacen = int.Parse(almacenId.ToString());
             movimiento.IdProducto = int.Parse(productoId.ToString());
-            movimiento.Producto = _productoRepositorio.BuscarProducto(movimiento.IdProducto);
+            movimiento.Producto = _productoRepositorio.BuscarPorId(movimiento.IdProducto);
             movimiento.CodigoProducto = movimiento.Producto.Codigo;
             movimiento.Almacen = _almacenRepositorio.BuscarAlmacen(movimiento.IdAlmacen);
             movimiento.CodigoAlmacen = movimiento.Almacen.Codigo;

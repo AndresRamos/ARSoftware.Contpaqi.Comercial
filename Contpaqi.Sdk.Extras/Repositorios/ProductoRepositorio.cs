@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using Contpaqi.Sdk.Extras.Ayudantes;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Modelos;
+using Contpaqi.Sdk.Extras.Modelos.Enums;
 
 namespace Contpaqi.Sdk.Extras.Repositorios
 {
-    public class ProductoRepositorio
+    public class ProductoRepositorio : IProductoRepositorio
     {
         private readonly ErrorContpaqiSdkRepositorio _errorContpaqiSdkRepositorio;
         private readonly IContpaqiSdk _sdk;
@@ -20,31 +22,67 @@ namespace Contpaqi.Sdk.Extras.Repositorios
             _errorContpaqiSdkRepositorio = new ErrorContpaqiSdkRepositorio(sdk);
         }
 
-        public Producto BuscarProducto(int id)
+        public Producto BuscarPorId(int idProducto)
         {
-            return _sdk.fBuscaIdProducto(id) == 0 ? LeerDatosProductoActual() : null;
+            return _sdk.fBuscaIdProducto(idProducto) == 0 ? LeerDatosProductoActual() : null;
         }
 
-        public Producto BuscarProducto(string codigo)
+        public Producto BuscarPorCodigo(string codigoProducto)
         {
-            return _sdk.fBuscaProducto(codigo) == 0 ? LeerDatosProductoActual() : null;
+            return _sdk.fBuscaProducto(codigoProducto) == 0 ? LeerDatosProductoActual() : null;
         }
 
-        public List<Producto> TraerProductos()
+        public IEnumerable<Producto> TraerTodo()
         {
-            var productosList = new List<Producto>();
+            //var productosList = new List<Producto>();
+
             _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fPosPrimerProducto();
-            productosList.Add(LeerDatosProductoActual());
+            //productosList.Add(LeerDatosProductoActual());
+            yield return LeerDatosProductoActual();
             while (_sdk.fPosSiguienteProducto() == 0)
             {
-                productosList.Add(LeerDatosProductoActual());
+                //productosList.Add(LeerDatosProductoActual());
+                yield return LeerDatosProductoActual();
                 if (_sdk.fPosEOFProducto() == 1)
                 {
                     break;
                 }
             }
 
-            return productosList;
+            //return productosList;
+        }
+
+        public IEnumerable<Producto> TraerPorTipo(TipoProductoEnum tipoProducto)
+        {
+            //var productosList = new List<Producto>();
+
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fPosPrimerProducto();
+
+            var tipoProductoDato = new StringBuilder(7);
+            _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoProducto("CTIPOPRODUCTO", tipoProductoDato, 7);
+            if (tipoProducto == TipoProductoHelper.ToTipoProductoEnum(tipoProductoDato.ToString()))
+            {
+                //productosList.Add(LeerDatosProductoActual());
+                yield return LeerDatosProductoActual();
+            }
+
+            while (_sdk.fPosSiguienteProducto() == 0)
+            {
+                _errorContpaqiSdkRepositorio.ResultadoSdk = _sdk.fLeeDatoProducto("CTIPOPRODUCTO", tipoProductoDato, 7);
+
+                if (tipoProducto == TipoProductoHelper.ToTipoProductoEnum(tipoProductoDato.ToString()))
+                {
+                    //productosList.Add(LeerDatosProductoActual());
+                    yield return LeerDatosProductoActual();
+                }
+
+                if (_sdk.fPosEOFProducto() == 1)
+                {
+                    break;
+                }
+            }
+
+            //return productosList;
         }
 
         private Producto LeerDatosProductoActual()

@@ -4,6 +4,7 @@ using Contpaqi.Sdk.Ejemplos.ViewModels.Agentes;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Almacenes;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Clientes;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Empresas;
+using Contpaqi.Sdk.Ejemplos.ViewModels.Productos;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Sesion;
 using Contpaqi.Sdk.Extras;
 using Contpaqi.Sdk.Extras.Interfaces;
@@ -39,10 +40,12 @@ namespace Contpaqi.Sdk.Ejemplos.Config
 
             // Clientes
             services.AddTransient<ListadoClientesViewModel>();
-            services.AddTransient<ListadoProveedoresViewModel>();
 
             // Empresas
             services.AddTransient<SeleccionarEmpresaViewModel>();
+
+            // Productos
+            services.AddTransient<ListadoProductosViewModel>();
 
             // Sesion
             services.AddTransient<IniciarSesionViewModel>();
@@ -63,6 +66,9 @@ namespace Contpaqi.Sdk.Ejemplos.Config
 
             // Empresas
             services.AddSingleton<IEmpresaRepositorio, EmpresaRepositorio>();
+
+            // Productos
+            services.AddSingleton<IProductoRepositorio, ProductoRepositorio>();
 
             // Sesion
             services.AddSingleton<IComercialSdkSesionServicio, ComercialSdkSesionServicio>();

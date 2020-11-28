@@ -78,10 +78,35 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Clientes.Clear();
-                foreach (var cliente in _clienteProveedorRepositorio.TraerClientes(BuscarObjectosRelacionados))
+                foreach (var cliente in _clienteProveedorRepositorio.TraerClientes())
                 {
                     Clientes.Add(cliente);
                 }
+                stopwatch.Stop();
+                DuracionBusqueda = stopwatch.Elapsed.ToString("g");
+            }
+            catch (Exception e)
+            {
+                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+            }
+            finally
+            {
+                OnPropertyChanged(nameof(NumeroClientes));
+            }
+        }
+
+        public async Task BuscarProveedoresAsync()
+        {
+            try
+            {
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+                Clientes.Clear();
+                foreach (var proveedor in _clienteProveedorRepositorio.TraerProveedores())
+                {
+                    Clientes.Add(proveedor);
+                }
+
                 stopwatch.Stop();
                 DuracionBusqueda = stopwatch.Elapsed.ToString("g");
             }

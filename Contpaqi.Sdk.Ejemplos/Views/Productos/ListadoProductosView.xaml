@@ -1,14 +1,13 @@
-﻿<controls:MetroWindow x:Class="Contpaqi.Sdk.Ejemplos.Views.Clientes.ListadoProveedoresView"
+﻿<controls:MetroWindow x:Class="Contpaqi.Sdk.Ejemplos.Views.Productos.ListadoProductosView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:local="clr-namespace:Contpaqi.Sdk.Ejemplos.Views.Clientes"
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-                      xmlns:viewModels="clr-namespace:Contpaqi.Sdk.Ejemplos.ViewModels.Clientes"
+                      xmlns:viewModels="clr-namespace:Contpaqi.Sdk.Ejemplos.ViewModels.Productos"
                       mc:Ignorable="d"
-                      d:DataContext="{d:DesignInstance viewModels:ListadoProveedoresViewModel, IsDesignTimeCreatable=False}"
+                      d:DataContext="{d:DesignInstance viewModels:ListadoProductosViewModel, IsDesignTimeCreatable=False}"
                       Title="{Binding Title}"
                       WindowStartupLocation="CenterScreen"
                       Width="1200" Height="600"
@@ -23,11 +22,20 @@
         <TextBlock Grid.Row="0" Text="{Binding Title, Mode=OneWay}" FontWeight="Bold" FontSize="20"
                    VerticalAlignment="Center" Margin="5" />
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button Content="Buscar Proveedores" Command="{Binding BuscarProveedoresCommand}" Width="150"
+            <Button Content="Buscar Todo" Command="{Binding BuscarTodoCommand}" Width="150"
                     VerticalAlignment="Center"
                     Margin="5" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
-            <CheckBox IsChecked="{Binding BuscarObjectosRelacionados}" Content="Buscar Objectos Relacionados"
-                      FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <Button Content="Buscar Productos" Command="{Binding BuscarProductosCommand}" Width="150"
+                    VerticalAlignment="Center"
+                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square}" />
+            <Button Content="Buscar Servicios" Command="{Binding BuscarServiciosCommand}" Width="150"
+                    VerticalAlignment="Center"
+                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square}" />
+            <Button Content="Buscar Paquetes" Command="{Binding BuscarPaquetesCommand}" Width="150"
+                    VerticalAlignment="Center"
+                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square}" />
+            <TextBlock Text="# Productos:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="{Binding Productos.Count}" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
             <TextBlock Text="Duracion Busqueda:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
             <TextBlock Text="{Binding DuracionBusqueda}" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
         </StackPanel>
@@ -35,11 +43,11 @@
             <TextBox Text="{Binding Filtro, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      VerticalAlignment="Center" Width="200" Margin="5" controls:TextBoxHelper.Watermark="Filtro"
                      controls:TextBoxHelper.ClearTextButton="True" />
-            <TextBlock Text="# Proveedores:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
-            <TextBlock Text="{Binding NumeroProveedores}" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="# Productos:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="{Binding NumeroProductos}" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
         </StackPanel>
-        <DataGrid Grid.Row="3" ItemsSource="{Binding Proveedores}"
-                  SelectedItem="{Binding ProveedorSeleccionado}"
+        <DataGrid Grid.Row="3" ItemsSource="{Binding Productos}"
+                  SelectedItem="{Binding ProductoSeleccionado}"
                   IsReadOnly="True"
                   Margin="5"
                   VirtualizingStackPanel.VirtualizationMode="Standard"
