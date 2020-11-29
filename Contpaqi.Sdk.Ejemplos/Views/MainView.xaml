@@ -36,5 +36,15 @@
                 <MenuItem Header="Unidades De Medida" Command="{Binding MostrarListadoUnidadesMedidaViewCommand}" />
             </MenuItem>
         </Menu>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" Source="../Images/AR_LOGO01.jpg" Width="600" />
+            <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="30" TextWrapping="Wrap" HorizontalAlignment="Center"
+                       Text="{Binding Mensaje}" />
+
+        </Grid>
     </Grid>
 </controls:MetroWindow>

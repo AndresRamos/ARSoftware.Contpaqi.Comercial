@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
 using Contpaqi.Sdk.Ejemplos.Views.Agentes;
 using Contpaqi.Sdk.Ejemplos.Views.Almacenes;
@@ -195,6 +196,17 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
         {
             var window = new ListadoDocumentosView();
             window.Show();
+        }
+
+        public string Mensaje => GetMensage();
+
+        public string GetMensage()
+        {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("En este proyecto podran enonctrar varios ejemplos de como utilizar el SDK para listar los multiples catalogos del sistema.");
+            stringBuilder.AppendLine("Para mas informacion visiten la documentscion en Github en https://github.com/AndresRamos/Contpaqi");
+            stringBuilder.AppendLine("Tambien pueden encontrar mas informacion acerca de otras utilerias en https://www.arsoft.net");
+            return stringBuilder.ToString();
         }
 
         private void RaiseGuards()

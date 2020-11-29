@@ -62,6 +62,10 @@
     <Compile Include="Helpers\FacturaElectronicaSdkConstants.cs" />
     <Compile Include="Helpers\MovimientoHelper.cs" />
     <Compile Include="Helpers\ResultadoSdkHelper.cs" />
+    <Compile Include="Interfaces\IDocumentoModeloRepository.cs" />
+    <Compile Include="Interfaces\IDocumentoModelo.cs" />
+    <Compile Include="Models\DocumentoModelo.cs" />
+    <Compile Include="Models\Enumeration.cs" />
     <Compile Include="Models\Enums\TipoCatalogoDireccion.cs" />
     <Compile Include="Helpers\TipoProductoHelper.cs" />
     <Compile Include="Helpers\TipoClienteHelper.cs" />
@@ -115,6 +119,7 @@
     <Compile Include="Repositories\ClienteProveedorRepository.cs" />
     <Compile Include="Repositories\ConceptoDocumentoRepository.cs" />
     <Compile Include="Repositories\DireccionRepository.cs" />
+    <Compile Include="Repositories\DocumentoModeloRepository.cs" />
     <Compile Include="Repositories\DocumentoRepository.cs" />
     <Compile Include="Repositories\EmpresaRepository.cs" />
     <Compile Include="Repositories\SdkErrorRepository.cs" />
