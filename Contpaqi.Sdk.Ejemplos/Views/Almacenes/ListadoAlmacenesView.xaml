@@ -25,6 +25,8 @@
             <Button Content="Buscar Almacenes" Command="{Binding BuscarAlmacenesCommand}" Width="150"
                     VerticalAlignment="Center"
                     Margin="5" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+            <TextBlock Text="# Almacenes:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="{Binding Almacenes.Count}" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
             <TextBlock Text="Duracion Busqueda:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
             <TextBlock Text="{Binding DuracionBusqueda}" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
         </StackPanel>

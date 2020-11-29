@@ -6,8 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Modelos;
-using Contpaqi.Sdk.Extras.Modelos.Enums;
+using Contpaqi.Sdk.Extras.Models;
+using Contpaqi.Sdk.Extras.Models.Enums;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -17,15 +17,15 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Productos
     public class ListadoProductosViewModel : ObservableRecipient
     {
         private readonly IDialogCoordinator _dialogCoordinator;
-        private readonly IProductoRepositorio _productoRepositorio;
+        private readonly IProductoRepository<Producto> _productoRepository;
         private bool _buscarObjectosRelacionados;
         private string _duracionBusqueda;
         private string _filtro;
         private Producto _productoSeleccionado;
 
-        public ListadoProductosViewModel(IProductoRepositorio productoRepositorio, IDialogCoordinator dialogCoordinator)
+        public ListadoProductosViewModel(IProductoRepository<Producto> productoRepository, IDialogCoordinator dialogCoordinator)
         {
-            _productoRepositorio = productoRepositorio;
+            _productoRepository = productoRepository;
             _dialogCoordinator = dialogCoordinator;
             ProductosView = CollectionViewSource.GetDefaultView(Productos);
             ProductosView.Filter = ProductosView_Filter;
@@ -88,7 +88,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Productos
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Productos.Clear();
-                foreach (var producto in _productoRepositorio.TraerTodo())
+                foreach (var producto in _productoRepository.GetAll())
                 {
                     Productos.Add(producto);
                     progressDialogController.SetMessage($"Numero de productos: {Productos.Count}");
@@ -119,7 +119,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Productos
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Productos.Clear();
-                foreach (var producto in _productoRepositorio.TraerPorTipo(TipoProductoEnum.Producto))
+                foreach (var producto in _productoRepository.GetAllByTipo(TipoProductoEnum.Producto))
                 {
                     Productos.Add(producto);
                     progressDialogController.SetMessage($"Numero de productos: {Productos.Count}");
@@ -151,7 +151,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Productos
                 stopwatch.Start();
                 Productos.Clear();
 
-                foreach (var servicio in _productoRepositorio.TraerPorTipo(TipoProductoEnum.Servicio))
+                foreach (var servicio in _productoRepository.GetAllByTipo(TipoProductoEnum.Servicio))
                 {
                     Productos.Add(servicio);
                     progressDialogController.SetMessage($"Numero de servicios: {Productos.Count}");
@@ -182,7 +182,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Productos
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Productos.Clear();
-                foreach (var paquete in _productoRepositorio.TraerPorTipo(TipoProductoEnum.Paquete))
+                foreach (var paquete in _productoRepository.GetAllByTipo(TipoProductoEnum.Paquete))
                 {
                     Productos.Add(paquete);
                     progressDialogController.SetMessage($"Numero de paquetes: {Productos.Count}");

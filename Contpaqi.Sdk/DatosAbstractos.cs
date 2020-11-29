@@ -1,5 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 
+// ReSharper disable InconsistentNaming
+
 namespace Contpaqi.Sdk
 {
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]

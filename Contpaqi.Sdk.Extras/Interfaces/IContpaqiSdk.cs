@@ -1,5 +1,7 @@
 ﻿using System.Text;
 
+// ReSharper disable InconsistentNaming
+
 namespace Contpaqi.Sdk.Extras.Interfaces
 {
     public interface IContpaqiSdk

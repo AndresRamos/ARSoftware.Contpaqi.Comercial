@@ -1,4 +1,6 @@
-﻿namespace Contpaqi.Sdk
+﻿// ReSharper disable InconsistentNaming
+
+namespace Contpaqi.Sdk
 {
     public static class Constantes
     {
@@ -30,11 +32,14 @@
         public const int kLongRepLegal = 51;
         public const int kLongRFC = 21;
         public const int kLongRuta = 254;
-        public const int kLongSelloCFDI = 176;
-        public const int kLongSelloSat = 176;
+        public const int kLongSelloCFDI = 691;
+        public const int kLongSelloSat = 691;
         public const int kLongSerie = 12;
         public const int kLongTelefono = 16;
         public const int kLongTextoExtra = 51;
         public const int kLonSerieCertSAT = 21;
+        public const int kSDKLonSerieCertSAT = 190;
+        public const int kSDKLongitudUUID = 206;
+        public const int kLongitudNomBanExtranjero = 255;
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 using System.Text;
 
+// ReSharper disable InconsistentNaming
+
 namespace Contpaqi.Sdk
 {
     public static class AdminpaqSdk

@@ -12,14 +12,14 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Sesion
 {
     public sealed class IniciarSesionViewModel : ObservableRecipient
     {
-        private readonly IComercialSdkSesionServicio _comercialSdkSesionServicio;
+        private readonly IComercialSdkSesionService _comercialSdkSesionService;
         private readonly IDialogCoordinator _dialogCoordinator;
         private string _contrasena = string.Empty;
         private string _nombreUsuario = "SUPERVISOR";
 
-        public IniciarSesionViewModel(IComercialSdkSesionServicio comercialSdkSesionServicio, IDialogCoordinator dialogCoordinator)
+        public IniciarSesionViewModel(IComercialSdkSesionService comercialSdkSesionService, IDialogCoordinator dialogCoordinator)
         {
-            _comercialSdkSesionServicio = comercialSdkSesionServicio;
+            _comercialSdkSesionService = comercialSdkSesionService;
             _dialogCoordinator = dialogCoordinator;
             IniciarSesionSdkCommand = new AsyncRelayCommand(IniciarSesionSdkAsync);
             IniciarSesionSdkParametrosCommand = new AsyncRelayCommand(IniciarSesionSdkParametrosAsync, CanIniciarSesionSdkParametrosAsync);
@@ -48,7 +48,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Sesion
         {
             try
             {
-                _comercialSdkSesionServicio.IniciarSesionSdk();
+                _comercialSdkSesionService.IniciarSesionSdk();
                 CerrarVista();
             }
             catch (Exception e)
@@ -61,7 +61,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Sesion
         {
             try
             {
-                _comercialSdkSesionServicio.IniciarSesionSdk(NombreUsuario, Contrasena);
+                _comercialSdkSesionService.IniciarSesionSdk(NombreUsuario, Contrasena);
                 CerrarVista();
             }
             catch (Exception e)

@@ -1,19 +1,20 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using Contpaqi.Sdk.Extras.Exceptions;
+using Contpaqi.Sdk.Extras.Helpers;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Microsoft.Win32;
+
+// ReSharper disable InconsistentNaming
 
 namespace Contpaqi.Sdk.Extras
 {
     public class ComercialSdkExtended : IContpaqiSdk
     {
-        public const string NombreLlaveRegistroComercial = @"SOFTWARE\\Computación en Acción, SA CV\\CONTPAQ I COMERCIAL";
-        public const string NombrePaqComercial = "CONTPAQ I COMERCIAL";
+        public string NombreLlaveRegistro => ComercialSdkConstants.NombreLlaveRegistro;
 
-        public string NombreLlaveRegistro => NombreLlaveRegistroComercial;
-
-        public string NombrePaq => NombrePaqComercial;
+        public string NombrePaq => ComercialSdkConstants.NombrePaq;
 
         public int fAbreEmpresa(string aDirectorioEmpresa)
         {
@@ -917,7 +918,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fPosBOF()
         {
-            return fPosBOF();
+            return ComercialSdk.fPosBOF();
         }
 
         public int fPosBOFAgente()
@@ -1433,6 +1434,10 @@ namespace Contpaqi.Sdk.Extras
         public int InicializarSDK()
         {
             var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistro);
+            if (keySistema is null)
+            {
+                throw new ContpaqiSdkException(null, $"No se encontro la llave del registro {NombreLlaveRegistro}");
+            }
             var lEntrada = keySistema.GetValue("DirectorioBase");
             Directory.SetCurrentDirectory(lEntrada.ToString());
             return ComercialSdk.fSetNombrePAQ(NombrePaq);
@@ -1441,6 +1446,10 @@ namespace Contpaqi.Sdk.Extras
         public int InicializarSDK(string usuario, string password)
         {
             var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistro);
+            if (keySistema is null)
+            {
+                throw new ContpaqiSdkException(null, $"No se encontro la llave del registro {NombreLlaveRegistro}");
+            }
             var lEntrada = keySistema.GetValue("DirectorioBase");
             Directory.SetCurrentDirectory(lEntrada.ToString());
             ComercialSdk.fInicioSesionSDK(usuario, password);

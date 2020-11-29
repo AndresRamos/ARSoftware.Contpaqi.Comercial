@@ -1,19 +1,20 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using Contpaqi.Sdk.Extras.Exceptions;
+using Contpaqi.Sdk.Extras.Helpers;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Microsoft.Win32;
+
+// ReSharper disable InconsistentNaming
 
 namespace Contpaqi.Sdk.Extras
 {
     public class FacturaElectronicaSdkExtended : IContpaqiSdk
     {
-        private const string NombreLlaveRegistroFacturaElectronica = @"SOFTWARE\\Computación en Acción, SA CV\\CONTPAQ I Facturacion";
-        private const string NombrePaqFacturaElectronica = "CONTPAQ I Facturacion";
+        public string NombreLlaveRegistro => FacturaElectronicaSdkConstants.NombreLlaveRegistro;
 
-        public string NombreLlaveRegistro => NombreLlaveRegistroFacturaElectronica;
-
-        public string NombrePaq => NombrePaqFacturaElectronica;
+        public string NombrePaq => FacturaElectronicaSdkConstants.NombrePaq;
 
         public int fAbreEmpresa(string aDirectorioEmpresa)
         {
@@ -917,7 +918,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fPosBOF()
         {
-            return fPosBOF();
+            return AdminpaqSdk.fPosBOF();
         }
 
         public int fPosBOFAgente()
@@ -1433,6 +1434,10 @@ namespace Contpaqi.Sdk.Extras
         public int InicializarSDK()
         {
             var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistro);
+            if (keySistema is null)
+            {
+                throw new ContpaqiSdkException(null, $"No se encontro la llave del registro {NombreLlaveRegistro}");
+            }
             var lEntrada = keySistema.GetValue("DirectorioBase");
             Directory.SetCurrentDirectory(lEntrada.ToString());
             return AdminpaqSdk.fSetNombrePAQ(NombrePaq);

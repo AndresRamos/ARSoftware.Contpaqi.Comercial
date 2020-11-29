@@ -22,11 +22,18 @@
         <TextBlock Grid.Row="0" Text="{Binding Title, Mode=OneWay}" FontWeight="Bold" FontSize="20"
                    VerticalAlignment="Center" Margin="5" />
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button Content="Buscar Clientes" Command="{Binding BuscarClientesCommand}" Width="150"
+            <Button Content="Buscar Todo" Command="{Binding BuscarTodoCommand}" Width="150"
                     VerticalAlignment="Center"
                     Margin="5" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
-            <CheckBox IsChecked="{Binding BuscarObjectosRelacionados}" Content="Buscar Objectos Relacionados"
-                      FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <Button Content="Buscar Clientes" Command="{Binding BuscarClientesCommand}" Width="150"
+                    VerticalAlignment="Center"
+                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square}" />
+            <Button Content="Buscar Clientes" Command="{Binding BuscarClientesCommand}" Width="150"
+                    VerticalAlignment="Center"
+                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square}" />
+            <TextBlock Text="# Clientes/Proveedores:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="{Binding ClientesProveedores.Count}" FontWeight="Bold" VerticalAlignment="Center"
+                       Margin="5" />
             <TextBlock Text="Duracion Busqueda:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
             <TextBlock Text="{Binding DuracionBusqueda}" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
         </StackPanel>
@@ -34,11 +41,12 @@
             <TextBox Text="{Binding Filtro, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      VerticalAlignment="Center" Width="200" Margin="5" controls:TextBoxHelper.Watermark="Filtro"
                      controls:TextBoxHelper.ClearTextButton="True" />
-            <TextBlock Text="# Clientes:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
-            <TextBlock Text="{Binding NumeroClientes}" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="# Clientes/Proveedores:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="{Binding NumeroClientesProveedores}" FontWeight="Bold" VerticalAlignment="Center"
+                       Margin="5" />
         </StackPanel>
-        <DataGrid Grid.Row="3" ItemsSource="{Binding Clientes}"
-                  SelectedItem="{Binding ClienteSeleccionado}"
+        <DataGrid Grid.Row="3" ItemsSource="{Binding ClientesProveedores}"
+                  SelectedItem="{Binding ClienteProveedorSeleccionado}"
                   IsReadOnly="True"
                   Margin="5"
                   VirtualizingStackPanel.VirtualizationMode="Standard"

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Modelos;
+using Contpaqi.Sdk.Extras.Models;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -15,16 +15,16 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Almacenes
 {
     public class ListadoAlmacenesViewModel : ObservableRecipient
     {
-        private readonly IAlmacenRepositorio _almacenRepositorio;
+        private readonly IAlmacenRepository<Almacen> _almacenRepository;
         private readonly IDialogCoordinator _dialogCoordinator;
         private Almacen _almacenSeleccionado;
         private bool _buscarObjectosRelacionados = true;
         private string _duracionBusqueda;
         private string _filtro;
 
-        public ListadoAlmacenesViewModel(IAlmacenRepositorio almacenRepositorio, IDialogCoordinator dialogCoordinator)
+        public ListadoAlmacenesViewModel(IAlmacenRepository<Almacen> almacenRepository, IDialogCoordinator dialogCoordinator)
         {
-            _almacenRepositorio = almacenRepositorio;
+            _almacenRepository = almacenRepository;
             _dialogCoordinator = dialogCoordinator;
             Almacenes = new ObservableCollection<Almacen>();
             AlmacenesView = CollectionViewSource.GetDefaultView(Almacenes);
@@ -42,6 +42,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Almacenes
             {
                 SetProperty(ref _filtro, value);
                 AlmacenesView.Refresh();
+                OnPropertyChanged(nameof(NumeroAlmacenes));
             }
         }
 
@@ -73,14 +74,19 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Almacenes
 
         public async Task BuscarAlmacenesAsync()
         {
+            var progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
+            await Task.Delay(1000);
+
             try
             {
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Almacenes.Clear();
-                foreach (var almacen in _almacenRepositorio.TraerAlmacenes())
+                foreach (var almacen in _almacenRepository.GetAll())
                 {
                     Almacenes.Add(almacen);
+                    progressDialogController.SetMessage($"Numero de almacenes: {Almacenes.Count}");
+                    await Task.Delay(50);
                 }
 
                 stopwatch.Stop();
@@ -92,14 +98,14 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Almacenes
             }
             finally
             {
+                await progressDialogController.CloseAsync();
                 OnPropertyChanged(nameof(NumeroAlmacenes));
             }
         }
 
         private bool AlmacenesView_Filter(object obj)
         {
-            var almacen = obj as Almacen;
-            if (almacen is null)
+            if (!(obj is Almacen almacen))
             {
                 throw new ArgumentNullException(nameof(obj));
             }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using Contpaqi.Sdk.Ejemplos.Messages;
 using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Modelos;
+using Contpaqi.Sdk.Extras.Models;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -16,13 +16,13 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Empresas
     public class SeleccionarEmpresaViewModel : ObservableRecipient
     {
         private readonly IDialogCoordinator _dialogCoordinator;
-        private readonly IEmpresaRepositorio _empresaRepositorio;
+        private readonly IEmpresaRepository<Empresa> _empresaRepository;
         private Empresa _empresaSeleccionada;
         private string _filtro;
 
-        public SeleccionarEmpresaViewModel(IEmpresaRepositorio empresaRepositorio, IDialogCoordinator dialogCoordinator)
+        public SeleccionarEmpresaViewModel(IEmpresaRepository<Empresa> empresaRepository, IDialogCoordinator dialogCoordinator)
         {
-            _empresaRepositorio = empresaRepositorio;
+            _empresaRepository = empresaRepository;
             _dialogCoordinator = dialogCoordinator;
 
             Empresas = new ObservableCollection<Empresa>();
@@ -71,7 +71,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Empresas
             try
             {
                 Empresas.Clear();
-                foreach (var empresa in _empresaRepositorio.TraerEmpresas())
+                foreach (var empresa in _empresaRepository.GetAll())
                 {
                     Empresas.Add(empresa);
                 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Modelos;
+using Contpaqi.Sdk.Extras.Models;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -15,16 +15,16 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Agentes
 {
     public class ListadoAgentesViewModel : ObservableRecipient
     {
-        private readonly IAgenteRepositorio _agenteRepositorio;
+        private readonly IAgenteRepository<Agente> _agenteRepository;
         private readonly IDialogCoordinator _dialogCoordinator;
         private Agente _agenteSeleccionado;
         private bool _buscarObjectosRelacionados = true;
         private string _duracionBusqueda;
         private string _filtro;
 
-        public ListadoAgentesViewModel(IAgenteRepositorio agenteRepositorio, IDialogCoordinator dialogCoordinator)
+        public ListadoAgentesViewModel(IAgenteRepository<Agente> agenteRepository, IDialogCoordinator dialogCoordinator)
         {
-            _agenteRepositorio = agenteRepositorio;
+            _agenteRepository = agenteRepository;
             _dialogCoordinator = dialogCoordinator;
             Agentes = new ObservableCollection<Agente>();
             AgentesView = CollectionViewSource.GetDefaultView(Agentes);
@@ -42,6 +42,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Agentes
             {
                 SetProperty(ref _filtro, value);
                 AgentesView.Refresh();
+                OnPropertyChanged(nameof(NumeroAgentes));
             }
         }
 
@@ -73,14 +74,19 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Agentes
 
         public async Task BuscarAgentesAsync()
         {
+            var progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
+            await Task.Delay(1000);
+
             try
             {
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Agentes.Clear();
-                foreach (var agente in _agenteRepositorio.TraerAgentes())
+                foreach (var agente in _agenteRepository.GetAll())
                 {
                     Agentes.Add(agente);
+                    progressDialogController.SetMessage($"Numero de agentes: {Agentes.Count}");
+                    await Task.Delay(50);
                 }
 
                 stopwatch.Stop();
@@ -92,6 +98,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Agentes
             }
             finally
             {
+                await progressDialogController.CloseAsync();
                 OnPropertyChanged(nameof(NumeroAgentes));
             }
         }
