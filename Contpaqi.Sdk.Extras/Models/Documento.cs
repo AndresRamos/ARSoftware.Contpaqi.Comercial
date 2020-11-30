@@ -70,6 +70,44 @@ namespace Contpaqi.Sdk.Extras.Models
         public string TextoExtra3 { get; set; }
 
         public DateTime FechaExtra { get; set; }
+        
+        public DateTime FechaVencimiento { get; set; }
+
+        public DateTime FechaEntregaRecepcion { get; set; }
+
+        public string LugaExpedicion { get; set; }
+
+        public string FormaPago { get; set; }
+
+        public string MetodoPago { get; set; }
+
+        public string CondicionesPago { get; set; }
+
+        public string Destinatario { get; set; }
+
+        public string NumeroGuia { get; set; }
+
+        public string MensajeriaNombre { get; set; }
+
+        public string MensajeriaCuenta { get; set; }
+
+        public double NumeroCajas { get; set; }
+
+        public double PesoEnvio { get; set; }
+
+        public double TotalUnidades { get; set; }
+
+        public double Neto { get; set; }
+
+        public double TotalImpuesto1 { get; set; }
+
+        public double TotalImpuesto2 { get; set; }
+
+        public double TotalImpuesto3 { get; set; }
+
+        public double TotalDescuentos { get; set; }
+
+        public double Total { get; set; }
 
         public ConceptoDocumento ConceptoDocumento { get; set; }
 
@@ -77,6 +115,11 @@ namespace Contpaqi.Sdk.Extras.Models
 
         public Agente Agente { get; set; }
 
+        public Direccion DireccionFiscal { get; set; }
+
+        public Direccion DireccionEnvio { get; set; }
+
         public List<Movimiento> Movimientos { get; set; }
+
     }
 }

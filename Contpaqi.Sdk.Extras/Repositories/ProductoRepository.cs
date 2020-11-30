@@ -20,17 +20,17 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _valorClasificacionRepository = new ValorClasificacionRepository(sdk);
         }
 
-        public Producto FindById(int idProducto)
+        public Producto BuscarPorId(int idProducto)
         {
             return _sdk.fBuscaIdProducto(idProducto) == SdkResultConstants.Success ? LeerDatosProductoActual() : null;
         }
 
-        public Producto FindByCodigo(string codigoProducto)
+        public Producto BuscarPorCodigo(string codigoProducto)
         {
             return _sdk.fBuscaProducto(codigoProducto) == SdkResultConstants.Success ? LeerDatosProductoActual() : null;
         }
 
-        public IEnumerable<Producto> GetAll()
+        public IEnumerable<Producto> TraerTodo()
         {
             _sdk.fPosPrimerProducto().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosProductoActual();
@@ -44,7 +44,7 @@ namespace Contpaqi.Sdk.Extras.Repositories
             }
         }
 
-        public IEnumerable<Producto> GetAllByTipo(TipoProductoEnum tipoProducto)
+        public IEnumerable<Producto> TraerPorTipo(TipoProductoEnum tipoProducto)
         {
             _sdk.fPosPrimerProducto().ToResultadoSdk(_sdk).ThrowIfError();
 
@@ -207,8 +207,8 @@ namespace Contpaqi.Sdk.Extras.Repositories
             // Unidades
             productoComercial.IdUnidadBase = int.Parse(idUnidadBase.ToString());
             productoComercial.IdUnidadNoConvertible = int.Parse(idUnidadNoConvertible.ToString());
-            productoComercial.UnidadBase = _unidadMedidaRepository.FindById(productoComercial.IdUnidadBase);
-            productoComercial.UnidadNoConvertible = _unidadMedidaRepository.FindById(productoComercial.IdUnidadNoConvertible);
+            productoComercial.UnidadBase = _unidadMedidaRepository.BuscarPorId(productoComercial.IdUnidadBase);
+            productoComercial.UnidadNoConvertible = _unidadMedidaRepository.BuscarPorId(productoComercial.IdUnidadNoConvertible);
             productoComercial.CodigoUnidadBase = productoComercial.UnidadBase.Nombre;
             productoComercial.CodigoUnidadNoConvertible = productoComercial.UnidadNoConvertible.Nombre;
             // Clasificaciones
@@ -218,12 +218,12 @@ namespace Contpaqi.Sdk.Extras.Repositories
             productoComercial.IdValorClasificacion4 = int.TryParse(idValorClasificacion4.ToString(), out var idValorClasificacion4Result) ? idValorClasificacion4Result : 0;
             productoComercial.IdValorClasificacion5 = int.TryParse(idValorClasificacion5.ToString(), out var idValorClasificacion5Result) ? idValorClasificacion5Result : 0;
             productoComercial.IdValorClasificacion6 = int.TryParse(idValorClasificacion6.ToString(), out var idValorClasificacion6Result) ? idValorClasificacion6Result : 0;
-            productoComercial.ValorClasificacion1 = _valorClasificacionRepository.FindById(productoComercial.IdValorClasificacion1);
-            productoComercial.ValorClasificacion2 = _valorClasificacionRepository.FindById(productoComercial.IdValorClasificacion2);
-            productoComercial.ValorClasificacion3 = _valorClasificacionRepository.FindById(productoComercial.IdValorClasificacion3);
-            productoComercial.ValorClasificacion4 = _valorClasificacionRepository.FindById(productoComercial.IdValorClasificacion4);
-            productoComercial.ValorClasificacion5 = _valorClasificacionRepository.FindById(productoComercial.IdValorClasificacion5);
-            productoComercial.ValorClasificacion6 = _valorClasificacionRepository.FindById(productoComercial.IdValorClasificacion6);
+            productoComercial.ValorClasificacion1 = _valorClasificacionRepository.BuscarPorId(productoComercial.IdValorClasificacion1);
+            productoComercial.ValorClasificacion2 = _valorClasificacionRepository.BuscarPorId(productoComercial.IdValorClasificacion2);
+            productoComercial.ValorClasificacion3 = _valorClasificacionRepository.BuscarPorId(productoComercial.IdValorClasificacion3);
+            productoComercial.ValorClasificacion4 = _valorClasificacionRepository.BuscarPorId(productoComercial.IdValorClasificacion4);
+            productoComercial.ValorClasificacion5 = _valorClasificacionRepository.BuscarPorId(productoComercial.IdValorClasificacion5);
+            productoComercial.ValorClasificacion6 = _valorClasificacionRepository.BuscarPorId(productoComercial.IdValorClasificacion6);
             productoComercial.CodigoValorClasificacion1 = productoComercial.ValorClasificacion1.Codigo;
             productoComercial.CodigoValorClasificacion2 = productoComercial.ValorClasificacion2.Codigo;
             productoComercial.CodigoValorClasificacion3 = productoComercial.ValorClasificacion3.Codigo;

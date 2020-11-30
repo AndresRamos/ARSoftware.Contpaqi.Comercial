@@ -16,17 +16,17 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk = sdk;
         }
 
-        public ClienteProveedorLookup FindById(int idCliente)
+        public ClienteProveedorLookup BuscarPorId(int idCliente)
         {
             return _sdk.fBuscaIdCteProv(idCliente) == SdkResultConstants.Success ? LeerDatosClienteProveedorActual() : null;
         }
 
-        public ClienteProveedorLookup FindByCodigo(string codigoCliente)
+        public ClienteProveedorLookup BuscarPorCodigo(string codigoCliente)
         {
             return _sdk.fBuscaCteProv(codigoCliente) == SdkResultConstants.Success ? LeerDatosClienteProveedorActual() : null;
         }
 
-        public IEnumerable<ClienteProveedorLookup> GetAllByTipo(TipoClienteEnum tipoCliente)
+        public IEnumerable<ClienteProveedorLookup> TraerPorTipo(TipoClienteEnum tipoCliente)
         {
             _sdk.fPosPrimerCteProv().ToResultadoSdk(_sdk).ThrowIfError();
             var tipoDeCliente = new StringBuilder(7);
@@ -51,7 +51,7 @@ namespace Contpaqi.Sdk.Extras.Repositories
             }
         }
 
-        public IEnumerable<ClienteProveedorLookup> GetAll()
+        public IEnumerable<ClienteProveedorLookup> TraerTodo()
         {
             _sdk.fPosPrimerCteProv().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosClienteProveedorActual();
@@ -65,7 +65,7 @@ namespace Contpaqi.Sdk.Extras.Repositories
             }
         }
 
-        public IEnumerable<ClienteProveedorLookup> GetClientes()
+        public IEnumerable<ClienteProveedorLookup> TraerClientes()
         {
             var tipoDeCliente = new StringBuilder(7);
 
@@ -91,7 +91,7 @@ namespace Contpaqi.Sdk.Extras.Repositories
             }
         }
 
-        public IEnumerable<ClienteProveedorLookup> GetProveedores()
+        public IEnumerable<ClienteProveedorLookup> TraerProveedores()
         {
             var tipoDeCliente = new StringBuilder(7);
 

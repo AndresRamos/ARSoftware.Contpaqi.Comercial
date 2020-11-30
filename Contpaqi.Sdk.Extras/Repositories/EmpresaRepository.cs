@@ -15,7 +15,7 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk = sdk;
         }
 
-        public IEnumerable<Empresa> GetAll()
+        public IEnumerable<Empresa> TraerTodo()
         {
             var id = 0;
             var nombre = new StringBuilder(Constantes.kLongNombre);

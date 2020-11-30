@@ -75,7 +75,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.UnidadesMedida
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 UnidadesMedida.Clear();
-                foreach (var unidadMedida in _unidadMedidaRepository.GetAll())
+                foreach (var unidadMedida in _unidadMedidaRepository.TraerTodo())
                 {
                     UnidadesMedida.Add(unidadMedida);
                     progressDialogController.SetMessage($"Numero de unidades: {UnidadesMedida.Count}");

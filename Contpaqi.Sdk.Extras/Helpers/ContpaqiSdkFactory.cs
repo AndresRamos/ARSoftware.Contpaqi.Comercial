@@ -5,7 +5,7 @@ namespace Contpaqi.Sdk.Extras.Helpers
 {
     public class ContpaqiSdkFactory
     {
-        public IContpaqiSdk Create(ContpaqiSdkEnum sdk)
+        public IContpaqiSdk Crear(ContpaqiSdkEnum sdk)
         {
             switch (sdk)
             {

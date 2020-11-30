@@ -63,6 +63,10 @@ namespace Contpaqi.Sdk.Extras.Models
 
         public string TextoExtra1 { get; set; }
 
+        public string TextoExtra2 { get; set; }
+
+        public string TextoExtra3 { get; set; }
+
         public string Observaciones { get; set; }
 
         public int IdAlmacen { get; set; }

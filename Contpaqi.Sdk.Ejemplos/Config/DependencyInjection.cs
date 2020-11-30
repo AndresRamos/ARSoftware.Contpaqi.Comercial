@@ -1,4 +1,5 @@
 ﻿using System;
+using Contpaqi.Sdk.Ejemplos.Models;
 using Contpaqi.Sdk.Ejemplos.ViewModels;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Agentes;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Almacenes;
@@ -7,6 +8,8 @@ using Contpaqi.Sdk.Ejemplos.ViewModels.Clientes;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Conceptos;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Documentos;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Empresas;
+using Contpaqi.Sdk.Ejemplos.ViewModels.Facturas;
+using Contpaqi.Sdk.Ejemplos.ViewModels.Movimientos;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Productos;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Sesion;
 using Contpaqi.Sdk.Ejemplos.ViewModels.UnidadesMedida;
@@ -35,6 +38,7 @@ namespace Contpaqi.Sdk.Ejemplos.Config
 
         private static void RegisterViewModels(this IServiceCollection services)
         {
+            services.AddSingleton<ConfiguracionAplicacion>();
             services.AddTransient<MainViewModel>();
 
             // Agentes
@@ -52,11 +56,20 @@ namespace Contpaqi.Sdk.Ejemplos.Config
             // Conceptos
             services.AddTransient<ListadoConceptosViewModel>();
 
-            // Conceptos
+            // Documentos
             services.AddTransient<ListadoDocumentosViewModel>();
 
             // Empresas
             services.AddTransient<SeleccionarEmpresaViewModel>();
+
+            // Facturas
+            services.AddTransient<CrearFacturaViewModel>();
+            services.AddTransient<DetallesFacturaViewModel>();
+            services.AddTransient<ListadoFacturasViewModel>();
+
+            // Movimientos
+            services.AddTransient<CrearMovimientoViewModel>();
+            services.AddTransient<EditarMovimientoViewModel>();
 
             // Productos
             services.AddTransient<ListadoProductosViewModel>();
@@ -64,7 +77,7 @@ namespace Contpaqi.Sdk.Ejemplos.Config
             // Sesion
             services.AddTransient<IniciarSesionViewModel>();
 
-            // Sesion
+            // Unidades
             services.AddTransient<ListadoUnidadesMedidaViewModel>();
         }
 
@@ -88,19 +101,33 @@ namespace Contpaqi.Sdk.Ejemplos.Config
             // Conceptos
             services.AddSingleton<IConceptoDocumentoRepository<ConceptoDocumento>, ConceptoDocumentoRepository>();
 
-            // Conceptos
+            // Datos CFDI
+            services.AddSingleton<IDatosCfdiRepository, DatosCfdiRepository>();
+
+            // Direcciones
+            services.AddSingleton<IDireccionRepository<Direccion>, DireccionRepository>();
+
+            // Documentos
             services.AddSingleton<IDocumentoRepository<Documento>, DocumentoRepository>();
 
             // Empresas
             services.AddSingleton<IEmpresaRepository<Empresa>, EmpresaRepository>();
 
+            // Documentos
+            services.AddSingleton<IDocumentoService, DocumentoService>();
+
+            // Movimientos
+            services.AddSingleton<IMovimientoRepository<Movimiento>, MovimientoRepository>();
+            services.AddSingleton<IMovimientoService, MovimientoService>();
+
             // Productos
             services.AddSingleton<IProductoRepository<Producto>, ProductoRepository>();
+            services.AddSingleton<IProductoRepository<ProductoLookup>, ProductoLookupRepository>();
 
             // Sesion
             services.AddSingleton<IComercialSdkSesionService, ComercialSdkSesionService>();
 
-            // Sesion
+            // Unidades
             services.AddSingleton<IUnidadMedidaRepository<UnidadMedida>, UnidadMedidaRepository>();
         }
 

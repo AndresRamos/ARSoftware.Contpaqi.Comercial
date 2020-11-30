@@ -6,8 +6,13 @@ namespace Contpaqi.Sdk.Extras.Helpers
     {
         public static tValorClasificacion ToTValorClasificacion(this ValorClasificacion valorClasificacion)
         {
-            var tValorClasificacion = new tValorClasificacion {cNumClasificacion = valorClasificacion.Id, cClasificacionDe = valorClasificacion.IdClasificacion, cCodigoValorClasificacion = valorClasificacion.Codigo, cValorClasificacion = valorClasificacion.Valor};
-            return tValorClasificacion;
+            return new tValorClasificacion
+            {
+                cNumClasificacion = valorClasificacion.Id,
+                cClasificacionDe = valorClasificacion.IdClasificacion,
+                cCodigoValorClasificacion = valorClasificacion.Codigo,
+                cValorClasificacion = valorClasificacion.Valor
+            };
         }
     }
 }

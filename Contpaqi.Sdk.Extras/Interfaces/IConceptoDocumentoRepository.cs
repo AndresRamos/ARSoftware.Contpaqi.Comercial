@@ -4,8 +4,9 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 {
     public interface IConceptoDocumentoRepository<T> where T : IConceptoDocumento
     {
-        T FindById(int idConcepto);
-        T FindByCodigo(string codigoConcepto);
-        IEnumerable<T> GetAll();
+        T BuscarPorId(int idConcepto);
+        T BuscarPorCodigo(string codigoConcepto);
+        IEnumerable<T> TraerTodo();
+        IEnumerable<T> TraerPorDocumentoModeloId(int documentoModeloId);
     }
 }

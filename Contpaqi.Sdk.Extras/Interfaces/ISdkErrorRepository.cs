@@ -2,7 +2,7 @@
 {
     public interface ISdkErrorRepository<T> where T : ISdkError
     {
-        string FindMensajeByNumero(int numeroError);
-        T FindByNumero(int numeroError);
+        string BuscarMensajePorNumero(int numeroError);
+        T BuscarPorNumero(int numeroError);
     }
 }

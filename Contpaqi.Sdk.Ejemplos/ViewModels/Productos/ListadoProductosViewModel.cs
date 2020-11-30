@@ -88,7 +88,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Productos
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Productos.Clear();
-                foreach (var producto in _productoRepository.GetAll())
+                foreach (var producto in _productoRepository.TraerTodo())
                 {
                     Productos.Add(producto);
                     progressDialogController.SetMessage($"Numero de productos: {Productos.Count}");
@@ -119,7 +119,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Productos
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Productos.Clear();
-                foreach (var producto in _productoRepository.GetAllByTipo(TipoProductoEnum.Producto))
+                foreach (var producto in _productoRepository.TraerPorTipo(TipoProductoEnum.Producto))
                 {
                     Productos.Add(producto);
                     progressDialogController.SetMessage($"Numero de productos: {Productos.Count}");
@@ -151,7 +151,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Productos
                 stopwatch.Start();
                 Productos.Clear();
 
-                foreach (var servicio in _productoRepository.GetAllByTipo(TipoProductoEnum.Servicio))
+                foreach (var servicio in _productoRepository.TraerPorTipo(TipoProductoEnum.Servicio))
                 {
                     Productos.Add(servicio);
                     progressDialogController.SetMessage($"Numero de servicios: {Productos.Count}");
@@ -182,7 +182,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Productos
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Productos.Clear();
-                foreach (var paquete in _productoRepository.GetAllByTipo(TipoProductoEnum.Paquete))
+                foreach (var paquete in _productoRepository.TraerPorTipo(TipoProductoEnum.Paquete))
                 {
                     Productos.Add(paquete);
                     progressDialogController.SetMessage($"Numero de paquetes: {Productos.Count}");

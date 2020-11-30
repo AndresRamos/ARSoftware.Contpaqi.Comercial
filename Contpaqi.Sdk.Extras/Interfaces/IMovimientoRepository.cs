@@ -4,7 +4,8 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 {
     public interface IMovimientoRepository<T> where T : IMovimiento
     {
-        IEnumerable<T> GetAll();
-        IEnumerable<T> GetAllByDocumentoId(int idDocumento);
+        T BuscarPorId(int idMovimiento);
+        IEnumerable<T> TraerTodo();
+        IEnumerable<T> TraerPorDocumentoId(int idDocumento);
     }
 }

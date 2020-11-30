@@ -15,17 +15,17 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk = sdk;
         }
 
-        public ConceptoDocumento FindById(int idConcepto)
+        public ConceptoDocumento BuscarPorId(int idConcepto)
         {
             return _sdk.fBuscaIdConceptoDocto(idConcepto) == SdkResultConstants.Success ? LeerDatosConceptoDocumentoActual() : null;
         }
 
-        public ConceptoDocumento FindByCodigo(string codigoConcepto)
+        public ConceptoDocumento BuscarPorCodigo(string codigoConcepto)
         {
             return _sdk.fBuscaConceptoDocto(codigoConcepto) == SdkResultConstants.Success ? LeerDatosConceptoDocumentoActual() : null;
         }
 
-        public IEnumerable<ConceptoDocumento> GetAll()
+        public IEnumerable<ConceptoDocumento> TraerTodo()
         {
             _sdk.fPosPrimerConceptoDocto().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosConceptoDocumentoActual();
@@ -40,6 +40,32 @@ namespace Contpaqi.Sdk.Extras.Repositories
             }
         }
 
+        public IEnumerable<ConceptoDocumento> TraerPorDocumentoModeloId(int documentoModeloId)
+        {
+            var idDocumentoModelo = new StringBuilder(12);
+
+            _sdk.fPosPrimerConceptoDocto().ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoConceptoDocto("CIDDOCUMENTODE", idDocumentoModelo, 12).ToResultadoSdk(_sdk).ThrowIfError();
+            if (documentoModeloId == int.Parse(idDocumentoModelo.ToString()))
+            {
+                yield return LeerDatosConceptoDocumentoActual();
+            }
+
+            while (_sdk.fPosSiguienteConceptoDocto() == SdkResultConstants.Success)
+            {
+                _sdk.fLeeDatoConceptoDocto("CIDDOCUMENTODE", idDocumentoModelo, 12).ToResultadoSdk(_sdk).ThrowIfError();
+                if (documentoModeloId == int.Parse(idDocumentoModelo.ToString()))
+                {
+                    yield return LeerDatosConceptoDocumentoActual();
+                }
+
+                if (_sdk.fPosEOFConceptoDocto() == 1)
+                {
+                    break;
+                }
+            }
+        }
+
         private ConceptoDocumento LeerDatosConceptoDocumentoActual()
         {
             var id = new StringBuilder(12);
@@ -47,10 +73,12 @@ namespace Contpaqi.Sdk.Extras.Repositories
             var nombre = new StringBuilder(Constantes.kLongNombre);
             var esCfd = new StringBuilder(6);
             var versionEsquemaSat = new StringBuilder(7);
+            var idDocumentoModelo = new StringBuilder(12);
 
             _sdk.fLeeDatoConceptoDocto("CIDCONCEPTODOCUMENTO", id, 12).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoConceptoDocto("CCODIGOCONCEPTO", codigo, Constantes.kLongCodigo).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoConceptoDocto("CNOMBRECONCEPTO", nombre, Constantes.kLongNombre).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoConceptoDocto("CIDDOCUMENTODE", idDocumentoModelo, 12).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoConceptoDocto("CESCFD", esCfd, 6).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoConceptoDocto("CVERESQUE", versionEsquemaSat, 7).ToResultadoSdk(_sdk).ThrowIfError();
 
@@ -58,6 +86,7 @@ namespace Contpaqi.Sdk.Extras.Repositories
             conceptoDeDocumento.Id = int.Parse(id.ToString());
             conceptoDeDocumento.Codigo = codigo.ToString();
             conceptoDeDocumento.Nombre = nombre.ToString();
+            conceptoDeDocumento.IdDocumentoModelo = int.Parse(idDocumentoModelo.ToString());
             conceptoDeDocumento.EsCfd = esCfd.ToString() != "0";
             conceptoDeDocumento.VersionEsquemaSat = versionEsquemaSat.ToString();
 

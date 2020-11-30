@@ -18,17 +18,17 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _valorClasificacionRepository = new ValorClasificacionRepository(sdk);
         }
 
-        public ClienteProveedor FindById(int idCliente)
+        public ClienteProveedor BuscarPorId(int idCliente)
         {
             return _sdk.fBuscaIdCteProv(idCliente) == SdkResultConstants.Success ? LeerDatosClienteProveedorActual() : null;
         }
 
-        public ClienteProveedor FindByCodigo(string codigoCliente)
+        public ClienteProveedor BuscarPorCodigo(string codigoCliente)
         {
             return _sdk.fBuscaCteProv(codigoCliente) == SdkResultConstants.Success ? LeerDatosClienteProveedorActual() : null;
         }
 
-        public IEnumerable<ClienteProveedor> GetAllByTipo(TipoClienteEnum tipoCliente)
+        public IEnumerable<ClienteProveedor> TraerPorTipo(TipoClienteEnum tipoCliente)
         {
             _sdk.fPosPrimerCteProv().ToResultadoSdk(_sdk).ThrowIfError();
             var tipoDeCliente = new StringBuilder(7);
@@ -53,7 +53,7 @@ namespace Contpaqi.Sdk.Extras.Repositories
             }
         }
 
-        public IEnumerable<ClienteProveedor> GetAll()
+        public IEnumerable<ClienteProveedor> TraerTodo()
         {
             _sdk.fPosPrimerCteProv().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosClienteProveedorActual();
@@ -67,7 +67,7 @@ namespace Contpaqi.Sdk.Extras.Repositories
             }
         }
 
-        public IEnumerable<ClienteProveedor> GetClientes()
+        public IEnumerable<ClienteProveedor> TraerClientes()
         {
             var tipoDeCliente = new StringBuilder(7);
 
@@ -93,7 +93,7 @@ namespace Contpaqi.Sdk.Extras.Repositories
             }
         }
 
-        public IEnumerable<ClienteProveedor> GetProveedores()
+        public IEnumerable<ClienteProveedor> TraerProveedores()
         {
             var tipoDeCliente = new StringBuilder(7);
 
@@ -340,18 +340,18 @@ namespace Contpaqi.Sdk.Extras.Repositories
             clienteProveedor.Email2 = email2.ToString();
             clienteProveedor.Email3 = email3.ToString();
             clienteProveedor.UsoCfdi = usoCfdi.ToString();
-            clienteProveedor.ValorClasificacionCliente1 = _valorClasificacionRepository.FindById(clienteProveedor.IdValorClasificacionCliente1);
-            clienteProveedor.ValorClasificacionCliente2 = _valorClasificacionRepository.FindById(clienteProveedor.IdValorClasificacionCliente2);
-            clienteProveedor.ValorClasificacionCliente3 = _valorClasificacionRepository.FindById(clienteProveedor.IdValorClasificacionCliente3);
-            clienteProveedor.ValorClasificacionCliente4 = _valorClasificacionRepository.FindById(clienteProveedor.IdValorClasificacionCliente4);
-            clienteProveedor.ValorClasificacionCliente5 = _valorClasificacionRepository.FindById(clienteProveedor.IdValorClasificacionCliente5);
-            clienteProveedor.ValorClasificacionCliente6 = _valorClasificacionRepository.FindById(clienteProveedor.IdValorClasificacionCliente6);
-            clienteProveedor.ValorClasificacionProveedor1 = _valorClasificacionRepository.FindById(clienteProveedor.IdValorClasificacionProveedor1);
-            clienteProveedor.ValorClasificacionProveedor2 = _valorClasificacionRepository.FindById(clienteProveedor.IdValorClasificacionProveedor2);
-            clienteProveedor.ValorClasificacionProveedor3 = _valorClasificacionRepository.FindById(clienteProveedor.IdValorClasificacionProveedor3);
-            clienteProveedor.ValorClasificacionProveedor4 = _valorClasificacionRepository.FindById(clienteProveedor.IdValorClasificacionProveedor4);
-            clienteProveedor.ValorClasificacionProveedor5 = _valorClasificacionRepository.FindById(clienteProveedor.IdValorClasificacionProveedor5);
-            clienteProveedor.ValorClasificacionProveedor6 = _valorClasificacionRepository.FindById(clienteProveedor.IdValorClasificacionProveedor6);
+            clienteProveedor.ValorClasificacionCliente1 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionCliente1);
+            clienteProveedor.ValorClasificacionCliente2 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionCliente2);
+            clienteProveedor.ValorClasificacionCliente3 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionCliente3);
+            clienteProveedor.ValorClasificacionCliente4 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionCliente4);
+            clienteProveedor.ValorClasificacionCliente5 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionCliente5);
+            clienteProveedor.ValorClasificacionCliente6 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionCliente6);
+            clienteProveedor.ValorClasificacionProveedor1 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionProveedor1);
+            clienteProveedor.ValorClasificacionProveedor2 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionProveedor2);
+            clienteProveedor.ValorClasificacionProveedor3 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionProveedor3);
+            clienteProveedor.ValorClasificacionProveedor4 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionProveedor4);
+            clienteProveedor.ValorClasificacionProveedor5 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionProveedor5);
+            clienteProveedor.ValorClasificacionProveedor6 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionProveedor6);
             clienteProveedor.CodigoValorClasificacionCliente1 = clienteProveedor.ValorClasificacionCliente1.Codigo;
             clienteProveedor.CodigoValorClasificacionCliente2 = clienteProveedor.ValorClasificacionCliente2.Codigo;
             clienteProveedor.CodigoValorClasificacionCliente3 = clienteProveedor.ValorClasificacionCliente3.Codigo;

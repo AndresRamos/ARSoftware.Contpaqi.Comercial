@@ -21,7 +21,7 @@ namespace Contpaqi.Sdk.Ejemplos
         protected override void OnExit(ExitEventArgs e)
         {
             var comercialSdkSesionServicio = Ioc.Default.GetService<IComercialSdkSesionService>();
-            if (comercialSdkSesionServicio != null && comercialSdkSesionServicio.SdkInicializado)
+            if (comercialSdkSesionServicio != null && comercialSdkSesionServicio.IsSdkInicializado)
             {
                 comercialSdkSesionServicio.TerminarSesionSdk();
             }

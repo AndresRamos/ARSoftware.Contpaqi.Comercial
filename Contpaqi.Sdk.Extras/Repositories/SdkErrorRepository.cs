@@ -13,16 +13,16 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk = sdk;
         }
 
-        public string FindMensajeByNumero(int numeroError)
+        public string BuscarMensajePorNumero(int numeroError)
         {
             var mensajeError = new StringBuilder(512);
             _sdk.fError(numeroError, mensajeError, 512);
             return mensajeError.ToString();
         }
 
-        public SdkError FindByNumero(int numeroError)
+        public SdkError BuscarPorNumero(int numeroError)
         {
-            return new SdkError {Numero = numeroError, Mensaje = FindMensajeByNumero(numeroError)};
+            return new SdkError {Numero = numeroError, Mensaje = BuscarMensajePorNumero(numeroError)};
         }
     }
 }

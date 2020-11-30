@@ -15,17 +15,17 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk = sdk;
         }
 
-        public UnidadMedida FindByNombre(string nombreUnidad)
+        public UnidadMedida BuscarPorNombre(string nombreUnidad)
         {
             return _sdk.fBuscaUnidad(nombreUnidad) == SdkResultConstants.Success ? LeerDatosUnindadActual() : null;
         }
 
-        public UnidadMedida FindById(int idUnidad)
+        public UnidadMedida BuscarPorId(int idUnidad)
         {
             return _sdk.fBuscaIdUnidad(idUnidad) == SdkResultConstants.Success ? LeerDatosUnindadActual() : null;
         }
 
-        public IEnumerable<UnidadMedida> GetAll()
+        public IEnumerable<UnidadMedida> TraerTodo()
         {
             _sdk.fPosPrimerUnidad().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosUnindadActual();

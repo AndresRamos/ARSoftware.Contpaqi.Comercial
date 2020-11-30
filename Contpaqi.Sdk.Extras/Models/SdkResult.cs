@@ -25,7 +25,7 @@ namespace Contpaqi.Sdk.Extras.Models
             set
             {
                 _result = value;
-                SdkError = value != 0 ? _sdkErrorRepository.FindByNumero(value) : new SdkError();
+                SdkError = value != 0 ? _sdkErrorRepository.BuscarPorNumero(value) : new SdkError();
             }
         }
 

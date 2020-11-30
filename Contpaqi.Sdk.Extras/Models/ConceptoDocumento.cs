@@ -10,6 +10,8 @@ namespace Contpaqi.Sdk.Extras.Models
 
         public string Nombre { get; set; }
 
+        public int IdDocumentoModelo { get; set; }
+
         public bool EsCfd { get; set; }
 
         public string VersionEsquemaSat { get; set; }

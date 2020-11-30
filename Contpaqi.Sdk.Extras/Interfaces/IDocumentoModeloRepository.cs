@@ -4,6 +4,6 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 {
     public interface IDocumentoModeloRepository<T> where T : IDocumentoModelo
     {
-        IEnumerable<T> GetAll();
+        IEnumerable<T> TraerTodo();
     }
 }

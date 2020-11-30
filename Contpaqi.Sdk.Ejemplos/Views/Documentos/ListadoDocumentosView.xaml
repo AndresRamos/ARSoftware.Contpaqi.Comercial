@@ -11,7 +11,7 @@
                       d:DataContext="{d:DesignInstance viewModels:ListadoDocumentosViewModel, IsDesignTimeCreatable=False}"
                       Title="{Binding Title}"
                       WindowStartupLocation="CenterScreen"
-                      Width="1200" Height="600"
+                      Width="1300" Height="800"
                       dialog:DialogParticipation.Register="{Binding}">
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">

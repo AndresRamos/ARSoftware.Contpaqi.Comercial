@@ -6,7 +6,7 @@ namespace Contpaqi.Sdk.Extras.Repositories
 {
     public class DocumentoModeloRepository : IDocumentoModeloRepository<DocumentoModelo>
     {
-        public IEnumerable<DocumentoModelo> GetAll()
+        public IEnumerable<DocumentoModelo> TraerTodo()
         {
             return DocumentoModelo.ToList();
         }

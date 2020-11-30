@@ -79,7 +79,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 ClientesProveedores.Clear();
-                foreach (var cliente in _clienteProveedorRepository.GetAll())
+                foreach (var cliente in _clienteProveedorRepository.TraerTodo())
                 {
                     ClientesProveedores.Add(cliente);
                     progressDialogController.SetMessage($"Numero de clientes: {ClientesProveedores.Count}");
@@ -110,7 +110,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 ClientesProveedores.Clear();
-                foreach (var cliente in _clienteProveedorRepository.GetClientes())
+                foreach (var cliente in _clienteProveedorRepository.TraerClientes())
                 {
                     ClientesProveedores.Add(cliente);
                     progressDialogController.SetMessage($"Numero de clientes: {ClientesProveedores.Count}");
@@ -140,7 +140,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 ClientesProveedores.Clear();
-                foreach (var proveedor in _clienteProveedorRepository.GetProveedores())
+                foreach (var proveedor in _clienteProveedorRepository.TraerProveedores())
                 {
                     ClientesProveedores.Add(proveedor);
                     progressDialogController.SetMessage($"Numero de proveedores: {ClientesProveedores.Count}");

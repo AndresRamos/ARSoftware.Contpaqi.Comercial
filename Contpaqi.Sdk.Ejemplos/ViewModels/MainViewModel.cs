@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
+using Contpaqi.Sdk.Ejemplos.Models;
 using Contpaqi.Sdk.Ejemplos.Views.Agentes;
 using Contpaqi.Sdk.Ejemplos.Views.Almacenes;
 using Contpaqi.Sdk.Ejemplos.Views.Clasificaciones;
@@ -8,6 +9,7 @@ using Contpaqi.Sdk.Ejemplos.Views.Clientes;
 using Contpaqi.Sdk.Ejemplos.Views.Conceptos;
 using Contpaqi.Sdk.Ejemplos.Views.Documentos;
 using Contpaqi.Sdk.Ejemplos.Views.Empresas;
+using Contpaqi.Sdk.Ejemplos.Views.Facturas;
 using Contpaqi.Sdk.Ejemplos.Views.Productos;
 using Contpaqi.Sdk.Ejemplos.Views.Sesion;
 using Contpaqi.Sdk.Ejemplos.Views.UnidadesMedida;
@@ -21,12 +23,14 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
     public class MainViewModel : ObservableRecipient
     {
         private readonly IComercialSdkSesionService _comercialSdkSesionService;
+        private readonly ConfiguracionAplicacion _configuracionAplicacion;
         private readonly IDialogCoordinator _dialogCoordinator;
 
-        public MainViewModel(IDialogCoordinator dialogCoordinator, IComercialSdkSesionService comercialSdkSesionService)
+        public MainViewModel(IDialogCoordinator dialogCoordinator, IComercialSdkSesionService comercialSdkSesionService, ConfiguracionAplicacion configuracionAplicacion)
         {
             _dialogCoordinator = dialogCoordinator;
             _comercialSdkSesionService = comercialSdkSesionService;
+            _configuracionAplicacion = configuracionAplicacion;
 
             MostrarIniciarSesionViewCommand = new AsyncRelayCommand(MostrarIniciarSesionViewAsync, CanMostrarIniciarSesionView);
             TerminarSesionCommand = new AsyncRelayCommand(TerminarSesionAsync, CanTerminarSesionAsync);
@@ -40,6 +44,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
             MostrarListadoUnidadesMedidaViewCommand = new RelayCommand(MostrarListadoUnidadesMedidaView, IsSdkListo);
             MostrarListadoClasificacionesViewCommand = new RelayCommand(MostrarListadoClasificacionesView, IsSdkListo);
             MostrarListadoDocumentosViewCommand = new RelayCommand(MostrarListadoDocumentosViewAsync, IsSdkListo);
+            MostrarListadoFacturasViewCommand = new RelayCommand(MostrarListadoFacturasViewAsync, IsSdkListo);
         }
 
         public IAsyncRelayCommand MostrarIniciarSesionViewCommand { get; }
@@ -54,6 +59,9 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
         public IRelayCommand MostrarListadoUnidadesMedidaViewCommand { get; }
         public IRelayCommand MostrarListadoClasificacionesViewCommand { get; }
         public IRelayCommand MostrarListadoDocumentosViewCommand { get; }
+        public IRelayCommand MostrarListadoFacturasViewCommand { get; }
+
+        public string Mensaje => GetMensage();
 
         public async Task MostrarIniciarSesionViewAsync()
         {
@@ -74,7 +82,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
 
         public bool CanMostrarIniciarSesionView()
         {
-            return _comercialSdkSesionService.PuedeIniciarSesion;
+            return _comercialSdkSesionService.CanIniciarSesion;
         }
 
         public async Task TerminarSesionAsync()
@@ -95,7 +103,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
 
         public bool CanTerminarSesionAsync()
         {
-            return _comercialSdkSesionService.PuedeTerminarSesion;
+            return _comercialSdkSesionService.CanTerminarSesion;
         }
 
         public async Task AbrirEmpresaAsync()
@@ -107,6 +115,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
                 if (window.ViewModel.SeleccionoEmpresa)
                 {
                     _comercialSdkSesionService.AbrirEmpresa(window.ViewModel.EmpresaSeleccionada.Ruta);
+                    _configuracionAplicacion.Empresa = window.ViewModel.EmpresaSeleccionada;
                 }
             }
             catch (Exception e)
@@ -121,7 +130,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
 
         public bool CanAbrirEmpresaAsync()
         {
-            return _comercialSdkSesionService.PuedeAbrirEmpresa;
+            return _comercialSdkSesionService.CanAbrirEmpresa;
         }
 
         public async Task CerrarEmpresaAsync()
@@ -129,6 +138,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
             try
             {
                 _comercialSdkSesionService.CerrarEmpresa();
+                _configuracionAplicacion.Empresa = null;
             }
             catch (Exception e)
             {
@@ -142,12 +152,12 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
 
         public bool CanCerrarEmpresaAsync()
         {
-            return _comercialSdkSesionService.PuedeCerrarEmpresa;
+            return _comercialSdkSesionService.CanCerrarEmpresa;
         }
 
         public bool IsSdkListo()
         {
-            return _comercialSdkSesionService.SdkInicializado && _comercialSdkSesionService.EmpresaAbierta;
+            return _comercialSdkSesionService.IsSdkInicializado && _comercialSdkSesionService.IsEmpresaAbierta;
         }
 
         public void MostrarListadoClientesView()
@@ -198,14 +208,16 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
             window.Show();
         }
 
-        public string Mensaje => GetMensage();
+        public void MostrarListadoFacturasViewAsync()
+        {
+            var window = new ListadoFacturasView();
+            window.Show();
+        }
 
         public string GetMensage()
         {
             var stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine("En este proyecto podran enonctrar varios ejemplos de como utilizar el SDK para listar los multiples catalogos del sistema.");
-            stringBuilder.AppendLine("Para mas informacion visiten la documentscion en Github en https://github.com/AndresRamos/Contpaqi");
-            stringBuilder.AppendLine("Tambien pueden encontrar mas informacion acerca de otras utilerias en https://www.arsoft.net");
+            stringBuilder.AppendLine("En este proyecto podran enonctrar varios ejemplos de como utilizar el SDK para listar los multiples catalogos del sistema y tambien como dar de alta documentos como facturas.");
             return stringBuilder.ToString();
         }
 
@@ -223,6 +235,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
             MostrarListadoUnidadesMedidaViewCommand.NotifyCanExecuteChanged();
             MostrarListadoClasificacionesViewCommand.NotifyCanExecuteChanged();
             MostrarListadoDocumentosViewCommand.NotifyCanExecuteChanged();
+            MostrarListadoFacturasViewCommand.NotifyCanExecuteChanged();
         }
     }
 }

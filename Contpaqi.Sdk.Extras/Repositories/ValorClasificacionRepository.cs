@@ -16,17 +16,17 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk = sdk;
         }
 
-        public ValorClasificacion FindByTipoClasificacionNumeroAndCodigo(TipoClasificacionEnum tipoClasificacion, int numeroClasificacion, string codigoValorClasificacion)
+        public ValorClasificacion BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacionEnum tipoClasificacion, int numeroClasificacion, string codigoValorClasificacion)
         {
             return _sdk.fBuscaValorClasif((int) tipoClasificacion, numeroClasificacion, codigoValorClasificacion) == SdkResultConstants.Success ? LeerDatosValorClasificacionActual() : null;
         }
 
-        public ValorClasificacion FindById(int idValorClasificacion)
+        public ValorClasificacion BuscarPorId(int idValorClasificacion)
         {
             return _sdk.fBuscaIdValorClasif(idValorClasificacion) == SdkResultConstants.Success ? LeerDatosValorClasificacionActual() : null;
         }
 
-        public IEnumerable<ValorClasificacion> GetAll()
+        public IEnumerable<ValorClasificacion> TraerTodo()
         {
             _sdk.fPosPrimerValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosValorClasificacionActual();
@@ -40,7 +40,7 @@ namespace Contpaqi.Sdk.Extras.Repositories
             }
         }
 
-        public IEnumerable<ValorClasificacion> GetAllByClasificacionId(int idClasificacion)
+        public IEnumerable<ValorClasificacion> TraerPorClasificacionId(int idClasificacion)
         {
             _sdk.fPosPrimerValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
             var id = new StringBuilder(12);

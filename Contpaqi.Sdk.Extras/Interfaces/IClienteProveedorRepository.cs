@@ -5,11 +5,11 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 {
     public interface IClienteProveedorRepository<T> where T : IClienteProveedor
     {
-        T FindById(int idCliente);
-        T FindByCodigo(string codigoCliente);
-        IEnumerable<T> GetAllByTipo(TipoClienteEnum tipoCliente);
-        IEnumerable<T> GetAll();
-        IEnumerable<T> GetClientes();
-        IEnumerable<T> GetProveedores();
+        T BuscarPorId(int idCliente);
+        T BuscarPorCodigo(string codigoCliente);
+        IEnumerable<T> TraerPorTipo(TipoClienteEnum tipoCliente);
+        IEnumerable<T> TraerTodo();
+        IEnumerable<T> TraerClientes();
+        IEnumerable<T> TraerProveedores();
     }
 }

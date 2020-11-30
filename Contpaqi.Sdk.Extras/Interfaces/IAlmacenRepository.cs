@@ -4,8 +4,8 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 {
     public interface IAlmacenRepository<T> where T : IAlmacen
     {
-        T FindById(int idAlmacen);
-        T FindByCodigo(string codigoAlmacen);
-        IEnumerable<T> GetAll();
+        T BuscarPorId(int idAlmacen);
+        T BuscarPorCodigo(string codigoAlmacen);
+        IEnumerable<T> TraerTodo();
     }
 }

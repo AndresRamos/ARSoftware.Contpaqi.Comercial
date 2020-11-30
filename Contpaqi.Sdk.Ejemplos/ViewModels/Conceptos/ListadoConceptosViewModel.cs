@@ -75,7 +75,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Conceptos
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Conceptos.Clear();
-                foreach (var concepto in _conceptoDocumentoRepository.GetAll())
+                foreach (var concepto in _conceptoDocumentoRepository.TraerTodo())
                 {
                     Conceptos.Add(concepto);
                     progressDialogController.SetMessage($"Numero de conceptos: {Conceptos.Count}");

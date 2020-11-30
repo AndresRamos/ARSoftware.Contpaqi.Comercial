@@ -71,7 +71,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Empresas
             try
             {
                 Empresas.Clear();
-                foreach (var empresa in _empresaRepository.GetAll())
+                foreach (var empresa in _empresaRepository.TraerTodo())
                 {
                     Empresas.Add(empresa);
                 }

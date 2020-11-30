@@ -2,7 +2,7 @@
 {
     public interface IDireccionRepository<T> where T : IDireccion
     {
-        T FindByCliente(string codigoClienteProveedor, byte tipoDireccion);
-        T FindByDocumento(int idDocumento, byte tipoDireccion);
+        T BuscarPorCliente(string codigoClienteProveedor, byte tipoDireccion);
+        T BuscarPorDocumento(int idDocumento, byte tipoDireccion);
     }
 }

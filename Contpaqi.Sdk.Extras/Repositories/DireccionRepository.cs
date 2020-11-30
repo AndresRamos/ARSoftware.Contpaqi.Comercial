@@ -15,12 +15,12 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk = sdk;
         }
 
-        public Direccion FindByCliente(string codigoClienteProveedor, byte tipoDireccion)
+        public Direccion BuscarPorCliente(string codigoClienteProveedor, byte tipoDireccion)
         {
             return _sdk.fBuscaDireccionCteProv(codigoClienteProveedor, tipoDireccion) == SdkResultConstants.Success ? LeerDatosDireccionActual() : null;
         }
 
-        public Direccion FindByDocumento(int idDocumento, byte tipoDireccion)
+        public Direccion BuscarPorDocumento(int idDocumento, byte tipoDireccion)
         {
             return _sdk.fBuscaDireccionDocumento(idDocumento, tipoDireccion) == SdkResultConstants.Success ? LeerDatosDireccionActual() : null;
         }

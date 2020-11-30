@@ -59,13 +59,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\DocumentoHelper.cs" />
+    <Compile Include="Helpers\ArchivoDigitalHelper.cs" />
     <Compile Include="Helpers\FacturaElectronicaSdkConstants.cs" />
     <Compile Include="Helpers\MovimientoHelper.cs" />
     <Compile Include="Helpers\ResultadoSdkHelper.cs" />
+    <Compile Include="Helpers\SdkDateTimeHelper.cs" />
     <Compile Include="Interfaces\IDocumentoModeloRepository.cs" />
     <Compile Include="Interfaces\IDocumentoModelo.cs" />
+    <Compile Include="Models\DatosCfdi.cs" />
     <Compile Include="Models\DocumentoModelo.cs" />
     <Compile Include="Models\Enumeration.cs" />
+    <Compile Include="Models\Enums\TipoArchivoDigitalEnum.cs" />
     <Compile Include="Models\Enums\TipoCatalogoDireccion.cs" />
     <Compile Include="Helpers\TipoProductoHelper.cs" />
     <Compile Include="Helpers\TipoClienteHelper.cs" />
@@ -102,6 +106,7 @@
     <Compile Include="Interfaces\ISdkError.cs" />
     <Compile Include="Models\Movimiento.cs" />
     <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\ProductoLookup.cs" />
     <Compile Include="Models\SdkResult.cs" />
     <Compile Include="Models\SdkError.cs" />
     <Compile Include="Models\SdkResultConstants.cs" />
@@ -118,10 +123,13 @@
     <Compile Include="Repositories\ClienteProveedorLookupRepository.cs" />
     <Compile Include="Repositories\ClienteProveedorRepository.cs" />
     <Compile Include="Repositories\ConceptoDocumentoRepository.cs" />
+    <Compile Include="Repositories\DatosCfdiRepository.cs" />
     <Compile Include="Repositories\DireccionRepository.cs" />
     <Compile Include="Repositories\DocumentoModeloRepository.cs" />
     <Compile Include="Repositories\DocumentoRepository.cs" />
     <Compile Include="Repositories\EmpresaRepository.cs" />
+    <Compile Include="Interfaces\IDatosCfdiRepository.cs" />
+    <Compile Include="Repositories\ProductoLookupRepository.cs" />
     <Compile Include="Repositories\SdkErrorRepository.cs" />
     <Compile Include="Interfaces\IEmpresaRepository.cs" />
     <Compile Include="Interfaces\IClienteProveedorRepository.cs" />
@@ -143,6 +151,10 @@
     <Compile Include="Repositories\ValorClasificacionRepository.cs" />
     <Compile Include="Services\ComercialSdkSesionService.cs" />
     <Compile Include="Interfaces\IComercialSdkSesionService.cs" />
+    <Compile Include="Services\DocumentoService.cs" />
+    <Compile Include="Interfaces\IDocumentoService.cs" />
+    <Compile Include="Interfaces\IMovimientoService.cs" />
+    <Compile Include="Services\MovimientoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contpaqi.Sdk\Contpaqi.Sdk.csproj">

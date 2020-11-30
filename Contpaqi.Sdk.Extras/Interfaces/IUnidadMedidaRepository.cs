@@ -4,8 +4,8 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 {
     public interface IUnidadMedidaRepository<T> where T : IUnidadMedida
     {
-        T FindByNombre(string nombreUnidad);
-        T FindById(int idUnidad);
-        IEnumerable<T> GetAll();
+        T BuscarPorNombre(string nombreUnidad);
+        T BuscarPorId(int idUnidad);
+        IEnumerable<T> TraerTodo();
     }
 }

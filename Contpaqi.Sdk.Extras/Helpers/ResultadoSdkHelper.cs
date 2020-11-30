@@ -7,8 +7,7 @@ namespace Contpaqi.Sdk.Extras.Helpers
     {
         public static SdkResult ToResultadoSdk(this int numeroResultadoSdk, IContpaqiSdk sdk)
         {
-            var resultadoSDk = new SdkResult(sdk) {Result = numeroResultadoSdk};
-            return resultadoSDk;
+            return new SdkResult(sdk) {Result = numeroResultadoSdk};
         }
     }
 }

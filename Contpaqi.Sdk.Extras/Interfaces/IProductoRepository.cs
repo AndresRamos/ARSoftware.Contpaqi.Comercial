@@ -5,9 +5,9 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 {
     public interface IProductoRepository<T> where T : IProducto
     {
-        T FindById(int idProducto);
-        T FindByCodigo(string codigoProducto);
-        IEnumerable<T> GetAll();
-        IEnumerable<T> GetAllByTipo(TipoProductoEnum tipoProducto);
+        T BuscarPorId(int idProducto);
+        T BuscarPorCodigo(string codigoProducto);
+        IEnumerable<T> TraerTodo();
+        IEnumerable<T> TraerPorTipo(TipoProductoEnum tipoProducto);
     }
 }

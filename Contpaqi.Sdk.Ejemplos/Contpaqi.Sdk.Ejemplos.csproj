@@ -40,8 +40,4 @@
     <ProjectReference Include="..\Contpaqi.Sdk\Contpaqi.Sdk.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\Facturas\" />
-  </ItemGroup>
-
 </Project>

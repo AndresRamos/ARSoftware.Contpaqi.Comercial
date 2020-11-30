@@ -22,7 +22,12 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _valorClasificacionRepository = new ValorClasificacionRepository(sdk);
         }
 
-        public IEnumerable<Movimiento> GetAll()
+        public Movimiento BuscarPorId(int idMovimiento)
+        {
+            return _sdk.fBuscarIdMovimiento(idMovimiento) == SdkResultConstants.Success ? LeerDatosMovimientoActual() : null;
+        }
+
+        public IEnumerable<Movimiento> TraerTodo()
         {
             _sdk.fPosPrimerMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosMovimientoActual();
@@ -36,9 +41,23 @@ namespace Contpaqi.Sdk.Extras.Repositories
             }
         }
 
-        public IEnumerable<Movimiento> GetAllByDocumentoId(int idDocumento)
+        public IEnumerable<Movimiento> TraerPorDocumentoId(int idDocumento)
         {
-            _sdk.fSetFiltroMovimiento(idDocumento).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fCancelaFiltroMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
+
+            var resultadoSdk = _sdk.fSetFiltroMovimiento(idDocumento).ToResultadoSdk(_sdk);
+
+            if (!resultadoSdk.IsSuccess)
+            {
+                _sdk.fCancelaFiltroMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
+
+                if (resultadoSdk.Result == 2) // Si el resultado es "2" significa que no hay movimientos en el filtro pero no creo que se considere un error para tirar una excepcion
+                {
+                    yield break;
+                }
+
+                resultadoSdk.ThrowIfError();
+            }
 
             _sdk.fPosPrimerMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosMovimientoActual();
@@ -69,6 +88,8 @@ namespace Contpaqi.Sdk.Extras.Repositories
             var impuesto1 = new StringBuilder(9);
             var total = new StringBuilder(9);
             var textoExtra1 = new StringBuilder(Constantes.kLongTextoExtra);
+            var textoExtra2 = new StringBuilder(Constantes.kLongTextoExtra);
+            var textoExtra3 = new StringBuilder(Constantes.kLongTextoExtra);
             var productoId = new StringBuilder(Constantes.kLongCodigo);
             var almacenId = new StringBuilder(Constantes.kLongCodigo);
             var observaciones = new StringBuilder(250);
@@ -94,6 +115,8 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk.fLeeDatoMovimiento("CIMPUESTO1", impuesto1, 9).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoMovimiento("CTOTAL", total, 9).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoMovimiento("CTEXTOEXTRA1", textoExtra1, Constantes.kLongTextoExtra).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoMovimiento("CTEXTOEXTRA2", textoExtra2, Constantes.kLongTextoExtra).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoMovimiento("CTEXTOEXTRA3", textoExtra3, Constantes.kLongTextoExtra).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoMovimiento("CIDPRODUCTO", productoId, Constantes.kLongCodigo).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoMovimiento("CIDALMACEN", almacenId, Constantes.kLongCodigo).ToResultadoSdk(_sdk).ThrowIfError(); // Lee el id del almacen
             _sdk.fLeeDatoMovimiento("COBSERVAMOV", observaciones, 250).ToResultadoSdk(_sdk).ThrowIfError();
@@ -121,14 +144,16 @@ namespace Contpaqi.Sdk.Extras.Repositories
             movimiento.Impuesto1 = double.Parse(impuesto1.ToString());
             movimiento.Total = double.Parse(total.ToString());
             movimiento.TextoExtra1 = textoExtra1.ToString();
+            movimiento.TextoExtra2 = textoExtra2.ToString();
+            movimiento.TextoExtra3 = textoExtra3.ToString();
             movimiento.Observaciones = observaciones.ToString();
             movimiento.IdAlmacen = int.Parse(almacenId.ToString());
             movimiento.IdProducto = int.Parse(productoId.ToString());
-            movimiento.Producto = _productoRepository.FindById(movimiento.IdProducto);
+            movimiento.Producto = _productoRepository.BuscarPorId(movimiento.IdProducto);
             movimiento.CodigoProducto = movimiento.Producto.Codigo;
-            movimiento.Almacen = _almacenRepository.FindById(movimiento.IdAlmacen);
+            movimiento.Almacen = _almacenRepository.BuscarPorId(movimiento.IdAlmacen);
             movimiento.CodigoAlmacen = movimiento.Almacen.Codigo;
-            movimiento.ValorClasificacion = _valorClasificacionRepository.FindById(movimiento.IdValorClasificacion);
+            movimiento.ValorClasificacion = _valorClasificacionRepository.BuscarPorId(movimiento.IdValorClasificacion);
             movimiento.CodigoValorClasificacion = movimiento.ValorClasificacion.Codigo;
             movimiento.ImporteDescuento1 = double.Parse(importeDescuento1.ToString());
             movimiento.ImporteDescuento2 = double.Parse(importeDescuento2.ToString());

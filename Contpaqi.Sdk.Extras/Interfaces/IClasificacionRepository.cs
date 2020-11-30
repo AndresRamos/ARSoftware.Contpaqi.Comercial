@@ -5,9 +5,9 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 {
     public interface IClasificacionRepository<T> where T : IClasificacion
     {
-        T FindByTipoAndNumero(TipoClasificacionEnum tipo, int numero);
-        T FindById(int idClasificacion);
-        IEnumerable<T> GetAllByTipo(TipoClasificacionEnum tipo);
-        IEnumerable<T> GetAll();
+        T BuscarPorTipoYNumero(TipoClasificacionEnum tipo, int numero);
+        T BuscarPorId(int idClasificacion);
+        IEnumerable<T> TraerPorTipo(TipoClasificacionEnum tipo);
+        IEnumerable<T> TraerTodo();
     }
 }

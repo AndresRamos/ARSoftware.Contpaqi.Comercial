@@ -7,8 +7,9 @@
                       xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
                       xmlns:viewModels="clr-namespace:Contpaqi.Sdk.Ejemplos.ViewModels"
                       mc:Ignorable="d"
-                      Height="600" Width="1200"
+                      Width="1300" Height="800"
                       WindowStartupLocation="CenterScreen"
+                      WindowState="Maximized"
                       d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=False}"
                       dialog:DialogParticipation.Register="{Binding}">
     <Grid>
@@ -35,15 +36,25 @@
                 <MenuItem Header="Productos/Servicios/Paquetes" Command="{Binding MostrarListadoProductosViewCommand}" />
                 <MenuItem Header="Unidades De Medida" Command="{Binding MostrarListadoUnidadesMedidaViewCommand}" />
             </MenuItem>
+            <MenuItem Header="Movimientos">
+                <MenuItem Header="Facturas">
+                    <MenuItem Header="Listado Facturas" Command="{Binding MostrarListadoFacturasViewCommand}" />
+                </MenuItem>
+            </MenuItem>
         </Menu>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Image Grid.Row="0" Source="../Images/AR_LOGO01.jpg" Width="600" />
-            <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="30" TextWrapping="Wrap" HorizontalAlignment="Center"
-                       Text="{Binding Mensaje}" />
+            <Image Grid.Row="0" Source="../Images/AR_LOGO01.jpg" Width="700"  Margin="10"/>
+            <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="30" TextWrapping="Wrap" Margin="10"
+                       HorizontalAlignment="Center">
+                <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="https://www.arsoft.net">https://www.arsoft.net</Hyperlink>
+            </TextBlock>
+            <TextBlock Grid.Row="2" FontWeight="Bold" FontSize="30" TextWrapping="Wrap" HorizontalAlignment="Center"
+                       Text="{Binding Mensaje}" Margin="10"/>
 
         </Grid>
     </Grid>

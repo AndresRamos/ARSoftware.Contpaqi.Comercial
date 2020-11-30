@@ -137,7 +137,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Documentos
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Documentos.Clear();
-                foreach (var documento in _documentoRepository.GetAll())
+                foreach (var documento in _documentoRepository.TraerTodo())
                 {
                     Documentos.Add(documento);
                     progressDialogController.SetMessage($"Numero de documentos: {Documentos.Count}");
@@ -173,7 +173,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Documentos
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Documentos.Clear();
-                foreach (var documento in _documentoRepository.GetByRangoFechaAndCodigoConceptoAndCodigoClienteProveedor(FechaInicio, FechaFin, ConceptoSeleccionado.Codigo, ClienteProveedorSeleccionado.Codigo))
+                foreach (var documento in _documentoRepository.TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(FechaInicio, FechaFin, ConceptoSeleccionado.Codigo, ClienteProveedorSeleccionado.Codigo))
                 {
                     Documentos.Add(documento);
                     progressDialogController.SetMessage($"Numero de documentos: {Documentos.Count}");
@@ -197,7 +197,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Documentos
         private void CargarConceptos()
         {
             Conceptos.Clear();
-            foreach (var concepto in _conceptoDocumentoRepository.GetAll().OrderBy(c => c.Nombre))
+            foreach (var concepto in _conceptoDocumentoRepository.TraerTodo().OrderBy(c => c.Nombre))
             {
                 Conceptos.Add(concepto);
             }
@@ -206,7 +206,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Documentos
         private void CargarClientes()
         {
             ClientesProveedores.Clear();
-            foreach (var clienteProveedor in _clienteProveedorRepository.GetAll().OrderBy(c => c.RazonSocial))
+            foreach (var clienteProveedor in _clienteProveedorRepository.TraerTodo().OrderBy(c => c.RazonSocial))
             {
                 ClientesProveedores.Add(clienteProveedor);
             }

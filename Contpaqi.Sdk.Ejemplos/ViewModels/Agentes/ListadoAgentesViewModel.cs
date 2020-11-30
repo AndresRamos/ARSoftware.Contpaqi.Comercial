@@ -82,7 +82,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Agentes
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Agentes.Clear();
-                foreach (var agente in _agenteRepository.GetAll())
+                foreach (var agente in _agenteRepository.TraerTodo())
                 {
                     Agentes.Add(agente);
                     progressDialogController.SetMessage($"Numero de agentes: {Agentes.Count}");

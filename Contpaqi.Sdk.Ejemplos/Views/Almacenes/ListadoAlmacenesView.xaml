@@ -10,7 +10,7 @@
                       d:DataContext="{d:DesignInstance viewModels:ListadoAlmacenesViewModel, IsDesignTimeCreatable=False}"
                       Title="{Binding Title}"
                       WindowStartupLocation="CenterScreen"
-                      Width="1200" Height="600"
+                      Width="1300" Height="800"
                       dialog:DialogParticipation.Register="{Binding}">
     <Grid>
         <Grid.RowDefinitions>

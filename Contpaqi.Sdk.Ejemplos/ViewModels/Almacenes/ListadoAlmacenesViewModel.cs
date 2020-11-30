@@ -82,7 +82,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Almacenes
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Almacenes.Clear();
-                foreach (var almacen in _almacenRepository.GetAll())
+                foreach (var almacen in _almacenRepository.TraerTodo())
                 {
                     Almacenes.Add(almacen);
                     progressDialogController.SetMessage($"Numero de almacenes: {Almacenes.Count}");

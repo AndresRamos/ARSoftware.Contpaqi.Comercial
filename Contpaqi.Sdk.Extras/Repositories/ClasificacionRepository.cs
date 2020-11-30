@@ -19,25 +19,25 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _valorClasificacionRepository = new ValorClasificacionRepository(sdk);
         }
 
-        public Clasificacion FindByTipoAndNumero(TipoClasificacionEnum tipo, int numero)
+        public Clasificacion BuscarPorTipoYNumero(TipoClasificacionEnum tipo, int numero)
         {
             return _sdk.fBuscaClasificacion((int) tipo, numero) == SdkResultConstants.Success ? LeerDatosClasificacionActual() : null;
         }
 
-        public Clasificacion FindById(int idClasificacion)
+        public Clasificacion BuscarPorId(int idClasificacion)
         {
             return _sdk.fBuscaIdClasificacion(idClasificacion) == SdkResultConstants.Success ? LeerDatosClasificacionActual() : null;
         }
 
-        public IEnumerable<Clasificacion> GetAllByTipo(TipoClasificacionEnum tipo)
+        public IEnumerable<Clasificacion> TraerPorTipo(TipoClasificacionEnum tipo)
         {
             for (var i = 1; i < 7; i++)
             {
-                yield return FindByTipoAndNumero(tipo, i);
+                yield return BuscarPorTipoYNumero(tipo, i);
             }
         }
 
-        public IEnumerable<Clasificacion> GetAll()
+        public IEnumerable<Clasificacion> TraerTodo()
         {
             _sdk.fPosPrimerClasificacion().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosClasificacionActual();
@@ -63,7 +63,7 @@ namespace Contpaqi.Sdk.Extras.Repositories
             var clasificacion = new Clasificacion();
             clasificacion.Id = int.Parse(id.ToString());
             clasificacion.Nombre = nombre.ToString();
-            clasificacion.Valores = _valorClasificacionRepository.GetAllByClasificacionId(clasificacion.Id).ToList();
+            clasificacion.Valores = _valorClasificacionRepository.TraerPorClasificacionId(clasificacion.Id).ToList();
 
             return clasificacion;
         }

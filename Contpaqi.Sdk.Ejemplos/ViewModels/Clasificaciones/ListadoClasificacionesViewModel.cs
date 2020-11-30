@@ -86,7 +86,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Clasificaciones.Clear();
-                foreach (var unidadMedida in _clasificacionRepository.GetAll())
+                foreach (var unidadMedida in _clasificacionRepository.TraerTodo())
                 {
                     Clasificaciones.Add(unidadMedida);
                     progressDialogController.SetMessage($"Numero de clasificaciones: {Clasificaciones.Count}");
@@ -117,7 +117,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Clasificaciones.Clear();
-                foreach (var unidadMedida in _clasificacionRepository.GetAllByTipo(TipoClasificacionEnum.Agente))
+                foreach (var unidadMedida in _clasificacionRepository.TraerPorTipo(TipoClasificacionEnum.Agente))
                 {
                     Clasificaciones.Add(unidadMedida);
                     progressDialogController.SetMessage($"Numero de clasificaciones: {Clasificaciones.Count}");
@@ -148,7 +148,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Clasificaciones.Clear();
-                foreach (var unidadMedida in _clasificacionRepository.GetAllByTipo(TipoClasificacionEnum.Cliente))
+                foreach (var unidadMedida in _clasificacionRepository.TraerPorTipo(TipoClasificacionEnum.Cliente))
                 {
                     Clasificaciones.Add(unidadMedida);
                     progressDialogController.SetMessage($"Numero de clasificaciones: {Clasificaciones.Count}");
@@ -179,7 +179,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Clasificaciones.Clear();
-                foreach (var unidadMedida in _clasificacionRepository.GetAllByTipo(TipoClasificacionEnum.Proveedor))
+                foreach (var unidadMedida in _clasificacionRepository.TraerPorTipo(TipoClasificacionEnum.Proveedor))
                 {
                     Clasificaciones.Add(unidadMedida);
                     progressDialogController.SetMessage($"Numero de clasificaciones: {Clasificaciones.Count}");
@@ -210,7 +210,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Clasificaciones.Clear();
-                foreach (var unidadMedida in _clasificacionRepository.GetAllByTipo(TipoClasificacionEnum.Almacen))
+                foreach (var unidadMedida in _clasificacionRepository.TraerPorTipo(TipoClasificacionEnum.Almacen))
                 {
                     Clasificaciones.Add(unidadMedida);
                     progressDialogController.SetMessage($"Numero de clasificaciones: {Clasificaciones.Count}");
@@ -241,7 +241,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 Clasificaciones.Clear();
-                foreach (var unidadMedida in _clasificacionRepository.GetAllByTipo(TipoClasificacionEnum.Producto))
+                foreach (var unidadMedida in _clasificacionRepository.TraerPorTipo(TipoClasificacionEnum.Producto))
                 {
                     Clasificaciones.Add(unidadMedida);
                     progressDialogController.SetMessage($"Numero de clasificaciones: {Clasificaciones.Count}");
