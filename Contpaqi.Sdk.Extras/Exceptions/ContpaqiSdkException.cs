@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace Contpaqi.Sdk.Extras.Exceptions
 {
@@ -16,11 +15,6 @@ namespace Contpaqi.Sdk.Extras.Exceptions
         }
 
         public ContpaqiSdkException(int? numeroErrorSdk, string message, Exception innerException) : base(message, innerException)
-        {
-            NumeroErrorSdk = numeroErrorSdk;
-        }
-
-        protected ContpaqiSdkException(int? numeroErrorSdk, SerializationInfo info, StreamingContext context) : base(info, context)
         {
             NumeroErrorSdk = numeroErrorSdk;
         }

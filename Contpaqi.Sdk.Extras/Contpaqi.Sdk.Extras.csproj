@@ -1,167 +1,37 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2695223D-E90E-4B10-97A7-AEC07A64E8B2}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Contpaqi.Sdk.Extras</RootNamespace>
-    <AssemblyName>Contpaqi.Sdk.Extras</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Helpers\DocumentoHelper.cs" />
-    <Compile Include="Helpers\ArchivoDigitalHelper.cs" />
-    <Compile Include="Helpers\FacturaElectronicaSdkConstants.cs" />
-    <Compile Include="Helpers\MovimientoHelper.cs" />
-    <Compile Include="Helpers\ResultadoSdkHelper.cs" />
-    <Compile Include="Helpers\SdkDateTimeHelper.cs" />
-    <Compile Include="Interfaces\IDocumentoModeloRepository.cs" />
-    <Compile Include="Interfaces\IDocumentoModelo.cs" />
-    <Compile Include="Models\DatosCfdi.cs" />
-    <Compile Include="Models\DocumentoModelo.cs" />
-    <Compile Include="Models\Enumeration.cs" />
-    <Compile Include="Models\Enums\TipoArchivoDigitalEnum.cs" />
-    <Compile Include="Models\Enums\TipoCatalogoDireccion.cs" />
-    <Compile Include="Helpers\TipoProductoHelper.cs" />
-    <Compile Include="Helpers\TipoClienteHelper.cs" />
-    <Compile Include="Helpers\ValorClasificacionHelper.cs" />
-    <Compile Include="Exceptions\ContpaqiSdkException.cs" />
-    <Compile Include="Helpers\AdminpaqSdkConstants.cs" />
-    <Compile Include="Helpers\ComercialSdkConstants.cs" />
-    <Compile Include="Interfaces\IContpaqiSdk.cs" />
-    <Compile Include="Models\Agente.cs" />
-    <Compile Include="Models\Almacen.cs" />
-    <Compile Include="Models\Clasificacion.cs" />
-    <Compile Include="Models\ClienteProveedorLookup.cs" />
-    <Compile Include="Models\ClienteProveedor.cs" />
-    <Compile Include="Models\ConceptoDocumento.cs" />
-    <Compile Include="Models\Direccion.cs" />
-    <Compile Include="Models\Documento.cs" />
-    <Compile Include="Models\Empresa.cs" />
-    <Compile Include="Models\Enums\ContpaqiSdkEnum.cs" />
-    <Compile Include="Models\Enums\TipoClasificacionEnum.cs" />
-    <Compile Include="Models\Enums\TipoClienteEnum.cs" />
-    <Compile Include="Models\Enums\TipoProductoEnum.cs" />
-    <Compile Include="Interfaces\IClienteProveedor.cs" />
-    <Compile Include="Interfaces\IAgente.cs" />
-    <Compile Include="Interfaces\IAlmacen.cs" />
-    <Compile Include="Interfaces\IClasificacion.cs" />
-    <Compile Include="Interfaces\IConceptoDocumento.cs" />
-    <Compile Include="Interfaces\IDireccion.cs" />
-    <Compile Include="Interfaces\IDocumento.cs" />
-    <Compile Include="Interfaces\IEmpresa.cs" />
-    <Compile Include="Interfaces\IMovimiento.cs" />
-    <Compile Include="Interfaces\IProducto.cs" />
-    <Compile Include="Interfaces\IUnidadMedida.cs" />
-    <Compile Include="Interfaces\IValorClasificacion.cs" />
-    <Compile Include="Interfaces\ISdkError.cs" />
-    <Compile Include="Models\Movimiento.cs" />
-    <Compile Include="Models\Producto.cs" />
-    <Compile Include="Models\ProductoLookup.cs" />
-    <Compile Include="Models\SdkResult.cs" />
-    <Compile Include="Models\SdkError.cs" />
-    <Compile Include="Models\SdkResultConstants.cs" />
-    <Compile Include="Models\UnidadMedida.cs" />
-    <Compile Include="Models\ValorClasificacion.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AdminpaqSdkExtended.cs" />
-    <Compile Include="ComercialSdkExtended.cs" />
-    <Compile Include="FacturaElectronicaSdkExtended.cs" />
-    <Compile Include="Helpers\ContpaqiSdkFactory.cs" />
-    <Compile Include="Repositories\AgenteRepository.cs" />
-    <Compile Include="Repositories\AlmacenRepository.cs" />
-    <Compile Include="Repositories\ClasificacionRepository.cs" />
-    <Compile Include="Repositories\ClienteProveedorLookupRepository.cs" />
-    <Compile Include="Repositories\ClienteProveedorRepository.cs" />
-    <Compile Include="Repositories\ConceptoDocumentoRepository.cs" />
-    <Compile Include="Repositories\DatosCfdiRepository.cs" />
-    <Compile Include="Repositories\DireccionRepository.cs" />
-    <Compile Include="Repositories\DocumentoModeloRepository.cs" />
-    <Compile Include="Repositories\DocumentoRepository.cs" />
-    <Compile Include="Repositories\EmpresaRepository.cs" />
-    <Compile Include="Interfaces\IDatosCfdiRepository.cs" />
-    <Compile Include="Repositories\ProductoLookupRepository.cs" />
-    <Compile Include="Repositories\SdkErrorRepository.cs" />
-    <Compile Include="Interfaces\IEmpresaRepository.cs" />
-    <Compile Include="Interfaces\IClienteProveedorRepository.cs" />
-    <Compile Include="Interfaces\IAgenteRepository.cs" />
-    <Compile Include="Interfaces\IAlmacenRepository.cs" />
-    <Compile Include="Interfaces\IProductoRepository.cs" />
-    <Compile Include="Interfaces\IConceptoDocumentoRepository.cs" />
-    <Compile Include="Interfaces\IUnidadMedidaRepository.cs" />
-    <Compile Include="Interfaces\IClasificacionRepository.cs" />
-    <Compile Include="Interfaces\IValorClasificacionRepository.cs" />
-    <Compile Include="Interfaces\IDireccionRepository.cs" />
-    <Compile Include="Interfaces\IDocumentoRepository.cs" />
-    <Compile Include="Interfaces\IMovimientoRepository.cs" />
-    <Compile Include="Interfaces\ISdkErrorRepository.cs" />
-    <Compile Include="Repositories\MovimientoRepository.cs" />
-    <Compile Include="Repositories\ProductoRepository.cs" />
-    <Compile Include="Repositories\ContpaqiSdkUnidadTrabajo.cs" />
-    <Compile Include="Repositories\UnidadMedidaRepository.cs" />
-    <Compile Include="Repositories\ValorClasificacionRepository.cs" />
-    <Compile Include="Services\ComercialSdkSesionService.cs" />
-    <Compile Include="Interfaces\IComercialSdkSesionService.cs" />
-    <Compile Include="Services\DocumentoService.cs" />
-    <Compile Include="Interfaces\IDocumentoService.cs" />
-    <Compile Include="Interfaces\IMovimientoService.cs" />
-    <Compile Include="Services\MovimientoService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Contpaqi.Sdk\Contpaqi.Sdk.csproj">
-      <Project>{8fe9363d-f62d-4097-aaf4-c7723a9817c9}</Project>
-      <Name>Contpaqi.Sdk</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard1.3</TargetFramework>
+		<Version>2.0.0</Version>
+		<Authors>AR Software</Authors>
+		<Description>Este proyecto extiende el proyecto Contpaqi.Sdk y dipone de varios repositorios y servicios que implementan diferentes funcionalidades del SDK.</Description>
+		<Copyright>Copyright © AR Software 2021</Copyright>
+		<PackageProjectUrl>https://github.com/AndresRamos/Contpaqi</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/AndresRamos/Contpaqi</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>Contpaqi SDK Extras Adminpaq Comercial Factura Electronica</PackageTags>
+		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
+		<PackageReleaseNotes>Esta version tiene "Breaking Changes".
+En esta version se actualizo el proyecto a .Net Standard 1.3 para poder utilizarse en proyectos .Net Framework, .Net Core, y .Net 5.
+Tambien se agregaron nuevos servicios y repositorios para expandir la funcionalidad del proyecto.
+Pero mas importante se cambiaron los nombres de muchas clases, funciones y namespaces.</PackageReleaseNotes>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageLicenseExpression>(MIT)</PackageLicenseExpression>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Contpaqi.Sdk\Contpaqi.Sdk.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\..\..\..\OneDrive - AR Software\Logo\AR_LOGO03.jpg">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
+	</ItemGroup>
+
 </Project>
