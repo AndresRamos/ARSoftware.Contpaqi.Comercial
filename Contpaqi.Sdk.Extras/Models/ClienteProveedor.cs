@@ -1,4 +1,6 @@
-﻿using Contpaqi.Sdk.Extras.Interfaces;
+﻿using System;
+using Contpaqi.Sdk.Extras.Interfaces;
+using Contpaqi.Sdk.Extras.Models.Enums;
 
 namespace Contpaqi.Sdk.Extras.Models
 {
@@ -6,6 +8,10 @@ namespace Contpaqi.Sdk.Extras.Models
     {
         public ClienteProveedor()
         {
+            FechaAlta = DateTime.Today;
+            Estatus = EstatusActivoEnum.Activo;
+            IdMoneda = 1;
+            Moneda = Moneda.PesoMexicano;
             ValorClasificacionCliente1 = new ValorClasificacion();
             ValorClasificacionCliente2 = new ValorClasificacion();
             ValorClasificacionCliente3 = new ValorClasificacion();
@@ -18,6 +24,9 @@ namespace Contpaqi.Sdk.Extras.Models
             ValorClasificacionProveedor4 = new ValorClasificacion();
             ValorClasificacionProveedor5 = new ValorClasificacion();
             ValorClasificacionProveedor6 = new ValorClasificacion();
+
+            FechaBaja = new DateTime(1899, 12, 30);
+            FechaUltimaRevision = new DateTime(1899, 12, 30);
         }
 
         // Propiedades tCteProv
@@ -25,7 +34,7 @@ namespace Contpaqi.Sdk.Extras.Models
 
         public string RazonSocial { get; set; }
 
-        public string FechaAlta { get; set; }
+        public DateTime FechaAlta { get; set; }
 
         public string Rfc { get; set; }
 
@@ -35,33 +44,19 @@ namespace Contpaqi.Sdk.Extras.Models
 
         public string RepresentanteLegal { get; set; }
 
-        public string NombreMoneda { get; set; }
-
         public int ListaPreciosCliente { get; set; }
 
         public double DescuentoMovimiento { get; set; }
 
         public int BanderaVentaCredito { get; set; }
 
-        public string CodigoValorClasificacionCliente1 { get; set; }
+        public TipoClienteEnum Tipo { get; set; }
 
-        public string CodigoValorClasificacionCliente2 { get; set; }
+        public EstatusActivoEnum Estatus { get; set; }
 
-        public string CodigoValorClasificacionCliente3 { get; set; }
+        public DateTime FechaBaja { get; set; }
 
-        public string CodigoValorClasificacionCliente4 { get; set; }
-
-        public string CodigoValorClasificacionCliente5 { get; set; }
-
-        public string CodigoValorClasificacionCliente6 { get; set; }
-
-        public int Tipo { get; set; }
-
-        public int Estatus { get; set; }
-
-        public string FechaBaja { get; set; }
-
-        public string FechaUltimaRevision { get; set; }
+        public DateTime FechaUltimaRevision { get; set; }
 
         public double LimiteCreditoCliente { get; set; }
 
@@ -85,11 +80,11 @@ namespace Contpaqi.Sdk.Extras.Models
 
         public int DiasEmbarqueCliente { get; set; }
 
-        public string CodigoAlmacen { get; set; }
+        public int IdAlmacen { get; set; }
 
-        public string CodigoAgenteVenta { get; set; }
+        public int IdAgenteVenta { get; set; }
 
-        public string CodigoAgenteCobro { get; set; }
+        public int IdAgenteCobro { get; set; }
 
         public int RestriccionAgente { get; set; }
 
@@ -102,18 +97,6 @@ namespace Contpaqi.Sdk.Extras.Models
         public double RetencionCliente1 { get; set; }
 
         public double RetencionCliente2 { get; set; }
-
-        public string CodigoValorClasificacionProveedor1 { get; set; }
-
-        public string CodigoValorClasificacionProveedor2 { get; set; }
-
-        public string CodigoValorClasificacionProveedor3 { get; set; }
-
-        public string CodigoValorClasificacionProveedor4 { get; set; }
-
-        public string CodigoValorClasificacionProveedor5 { get; set; }
-
-        public string CodigoValorClasificacionProveedor6 { get; set; }
 
         public double LimiteCreditoProveedor { get; set; }
 
@@ -154,13 +137,27 @@ namespace Contpaqi.Sdk.Extras.Models
 
         public string NombreLargo { get; set; }
 
+        public int IdMoneda { get; set; }
+
+        public Moneda Moneda { get; set; }
+
         public string Email1 { get; set; }
 
         public string Email2 { get; set; }
 
         public string Email3 { get; set; }
 
+        public string FormaPago { get; set; }
+
+        public string NumeroCuentaPago { get; set; }
+
         public string UsoCfdi { get; set; }
+
+        public Almacen Almacen { get; set; }
+
+        public Agente AgenteVenta { get; set; }
+
+        public Agente AgenteCobro { get; set; }
 
         public int IdValorClasificacionCliente1 { get; set; }
 

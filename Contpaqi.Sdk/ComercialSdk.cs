@@ -17,7 +17,7 @@ namespace Contpaqi.Sdk
         public static extern int fActualizaClasificacion(int aClasificacionDe, int aNumClasificacion, string aNombreClasificacion);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fActualizaCteProv")]
-        public static extern int fActualizaCteProv(StringBuilder aCodigoCteProv, tCteProv astCteProv);
+        public static extern int fActualizaCteProv(string aCodigoCteProv, ref tCteProv astCteProv);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fActualizaDireccion")]
         public static extern int fActualizaDireccion(ref tDireccion astDireccion);

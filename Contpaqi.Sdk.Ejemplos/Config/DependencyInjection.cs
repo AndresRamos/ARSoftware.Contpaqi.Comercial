@@ -6,13 +6,16 @@ using Contpaqi.Sdk.Ejemplos.ViewModels.Almacenes;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Clientes;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Conceptos;
+using Contpaqi.Sdk.Ejemplos.ViewModels.Direcciones;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Documentos;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Empresas;
+using Contpaqi.Sdk.Ejemplos.ViewModels.Errores;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Facturas;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Movimientos;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Productos;
 using Contpaqi.Sdk.Ejemplos.ViewModels.Sesion;
 using Contpaqi.Sdk.Ejemplos.ViewModels.UnidadesMedida;
+using Contpaqi.Sdk.Ejemplos.ViewModels.ValoresClasificacion;
 using Contpaqi.Sdk.Extras;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Models;
@@ -52,6 +55,7 @@ namespace Contpaqi.Sdk.Ejemplos.Config
 
             // Clientes
             services.AddTransient<ListadoClientesViewModel>();
+            services.AddTransient<EditarClienteProveedorViewModel>();
 
             // Conceptos
             services.AddTransient<ListadoConceptosViewModel>();
@@ -59,8 +63,14 @@ namespace Contpaqi.Sdk.Ejemplos.Config
             // Documentos
             services.AddTransient<ListadoDocumentosViewModel>();
 
+            // Direcciones
+            services.AddTransient<EditarDireccionViewModel>();
+
             // Empresas
             services.AddTransient<SeleccionarEmpresaViewModel>();
+
+            // Errores
+            services.AddTransient<ListadoErroresViewModel>();
 
             // Facturas
             services.AddTransient<CrearFacturaViewModel>();
@@ -79,6 +89,11 @@ namespace Contpaqi.Sdk.Ejemplos.Config
 
             // Unidades
             services.AddTransient<ListadoUnidadesMedidaViewModel>();
+
+            // Valores Clasificacion
+            services.AddTransient<CrearValorClasificacionViewModel>();
+            services.AddTransient<EditarValorClasificacionViewModel>();
+            services.AddTransient<SeleccionarValorClasificacionViewModel>();
         }
 
         private static void RegisterSdkServices(this IServiceCollection services)
@@ -97,6 +112,7 @@ namespace Contpaqi.Sdk.Ejemplos.Config
             //Clientes
             services.AddSingleton<IClienteProveedorRepository<ClienteProveedor>, ClienteProveedorRepository>();
             services.AddSingleton<IClienteProveedorRepository<ClienteProveedorLookup>, ClienteProveedorLookupRepository>();
+            services.AddSingleton<IClienteProveedorService, ClienteProveedorService>();
 
             // Conceptos
             services.AddSingleton<IConceptoDocumentoRepository<ConceptoDocumento>, ConceptoDocumentoRepository>();
@@ -106,15 +122,17 @@ namespace Contpaqi.Sdk.Ejemplos.Config
 
             // Direcciones
             services.AddSingleton<IDireccionRepository<Direccion>, DireccionRepository>();
+            services.AddSingleton<IDireccionService, DireccionService>();
 
             // Documentos
             services.AddSingleton<IDocumentoRepository<Documento>, DocumentoRepository>();
+            services.AddSingleton<IDocumentoService, DocumentoService>();
 
             // Empresas
             services.AddSingleton<IEmpresaRepository<Empresa>, EmpresaRepository>();
 
-            // Documentos
-            services.AddSingleton<IDocumentoService, DocumentoService>();
+            // Errores
+            services.AddSingleton<ISdkErrorRepository<SdkError>, SdkErrorRepository>();
 
             // Movimientos
             services.AddSingleton<IMovimientoRepository<Movimiento>, MovimientoRepository>();
@@ -129,6 +147,10 @@ namespace Contpaqi.Sdk.Ejemplos.Config
 
             // Unidades
             services.AddSingleton<IUnidadMedidaRepository<UnidadMedida>, UnidadMedidaRepository>();
+
+            // Valores Clasificacion
+            services.AddSingleton<IValorClasificacionRepository<ValorClasificacion>, ValorClasificacionRepository>();
+            services.AddSingleton<IValorClasificacionService, ValorClasificacionService>();
         }
 
         private static void RegisterInfrastructureServices(this IServiceCollection services)

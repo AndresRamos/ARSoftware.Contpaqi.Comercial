@@ -9,6 +9,7 @@ using Contpaqi.Sdk.Ejemplos.Views.Clientes;
 using Contpaqi.Sdk.Ejemplos.Views.Conceptos;
 using Contpaqi.Sdk.Ejemplos.Views.Documentos;
 using Contpaqi.Sdk.Ejemplos.Views.Empresas;
+using Contpaqi.Sdk.Ejemplos.Views.Errores;
 using Contpaqi.Sdk.Ejemplos.Views.Facturas;
 using Contpaqi.Sdk.Ejemplos.Views.Productos;
 using Contpaqi.Sdk.Ejemplos.Views.Sesion;
@@ -45,6 +46,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
             MostrarListadoClasificacionesViewCommand = new RelayCommand(MostrarListadoClasificacionesView, IsSdkListo);
             MostrarListadoDocumentosViewCommand = new RelayCommand(MostrarListadoDocumentosViewAsync, IsSdkListo);
             MostrarListadoFacturasViewCommand = new RelayCommand(MostrarListadoFacturasViewAsync, IsSdkListo);
+            MostrarListadoErroresViewCommand = new RelayCommand(MostrarListadoErroresViewAsync, IsSdkListo);
         }
 
         public IAsyncRelayCommand MostrarIniciarSesionViewCommand { get; }
@@ -60,6 +62,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
         public IRelayCommand MostrarListadoClasificacionesViewCommand { get; }
         public IRelayCommand MostrarListadoDocumentosViewCommand { get; }
         public IRelayCommand MostrarListadoFacturasViewCommand { get; }
+        public IRelayCommand MostrarListadoErroresViewCommand { get; }
 
         public string Mensaje => GetMensage();
 
@@ -214,6 +217,12 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
             window.Show();
         }
 
+        public void MostrarListadoErroresViewAsync()
+        {
+            var window = new ListadoErroresView();
+            window.Show();
+        }
+
         public string GetMensage()
         {
             var stringBuilder = new StringBuilder();
@@ -236,6 +245,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels
             MostrarListadoClasificacionesViewCommand.NotifyCanExecuteChanged();
             MostrarListadoDocumentosViewCommand.NotifyCanExecuteChanged();
             MostrarListadoFacturasViewCommand.NotifyCanExecuteChanged();
+            MostrarListadoErroresViewCommand.NotifyCanExecuteChanged();
         }
     }
 }

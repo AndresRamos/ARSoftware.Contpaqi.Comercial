@@ -11,11 +11,16 @@ namespace Contpaqi.Sdk.Extras.Repositories
     {
         private readonly IContpaqiSdk _sdk;
         private readonly IValorClasificacionRepository<ValorClasificacion> _valorClasificacionRepository;
-
+        private readonly IMonedaRepository<Moneda> _monedaRepository;
+        private readonly IAgenteRepository<Agente> _agenteRepository;
+        private readonly IAlmacenRepository<Almacen> _almacenRepository;
         public ClienteProveedorRepository(IContpaqiSdk sdk)
         {
             _sdk = sdk;
             _valorClasificacionRepository = new ValorClasificacionRepository(sdk);
+            _monedaRepository = new MonedaRepository();
+            _agenteRepository = new AgenteRepository(sdk);
+            _almacenRepository = new AlmacenRepository(sdk);
         }
 
         public ClienteProveedor BuscarPorId(int idCliente)
@@ -128,7 +133,7 @@ namespace Contpaqi.Sdk.Extras.Repositories
             var curp = new StringBuilder(21);
             var denominacionComercial = new StringBuilder(51);
             var representanteLegal = new StringBuilder(51);
-            var nombreMoneda = new StringBuilder(12);
+            var idMoneda = new StringBuilder(12);
             var listaPreciosCliente = new StringBuilder(7);
             var descuentoMovimiento = new StringBuilder(9);
             var banderaVentaCredito = new StringBuilder(7);
@@ -153,9 +158,9 @@ namespace Contpaqi.Sdk.Extras.Repositories
             var mensajeria = new StringBuilder(21);
             var cuentaMensajeria = new StringBuilder(61);
             var diasEmbarqueCliente = new StringBuilder(7);
-            var codigoAlmacen = new StringBuilder(12);
-            var codigoAgenteVenta = new StringBuilder(12);
-            var codigoAgenteCobro = new StringBuilder(12);
+            var idAlmacen = new StringBuilder(12);
+            var idAgenteVenta = new StringBuilder(12);
+            var idAgenteCobro = new StringBuilder(12);
             var restriccionAgente = new StringBuilder(7);
             var impuesto1 = new StringBuilder(9);
             var impuesto2 = new StringBuilder(9);
@@ -190,6 +195,8 @@ namespace Contpaqi.Sdk.Extras.Repositories
             var email1 = new StringBuilder(60);
             var email2 = new StringBuilder(60);
             var email3 = new StringBuilder(60);
+            var formaPago = new StringBuilder(101);
+            var numeroCuentaPago = new StringBuilder(101);
             var usoCfdi = new StringBuilder(31);
 
             _sdk.fLeeDatoCteProv("CCODIGOCLIENTE", codigo, Constantes.kLongCodigo).ToResultadoSdk(_sdk).ThrowIfError();
@@ -199,7 +206,7 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk.fLeeDatoCteProv("CCURP", curp, 21).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CDENCOMERCIAL", denominacionComercial, 51).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CREPLEGAL", representanteLegal, 51).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoCteProv("CIDMONEDA", nombreMoneda, 12).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoCteProv("CIDMONEDA", idMoneda, 12).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CLISTAPRECIOCLIENTE", listaPreciosCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CDESCUENTOMOVTO", descuentoMovimiento, 9).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CBANVENTACREDITO", banderaVentaCredito, 7).ToResultadoSdk(_sdk).ThrowIfError();
@@ -224,9 +231,9 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk.fLeeDatoCteProv("CMENSAJERIA", mensajeria, 21).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CCUENTAMENSAJERIA", cuentaMensajeria, 61).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CDIASEMBARQUECLIENTE", diasEmbarqueCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoCteProv("CIDALMACEN", codigoAlmacen, 12).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoCteProv("CIDAGENTEVENTA", codigoAgenteVenta, 12).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoCteProv("CIDAGENTECOBRO", codigoAgenteCobro, 12).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoCteProv("CIDALMACEN", idAlmacen, 12).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoCteProv("CIDAGENTEVENTA", idAgenteVenta, 12).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoCteProv("CIDAGENTECOBRO", idAgenteCobro, 12).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CRESTRICCIONAGENTE", restriccionAgente, 7).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CIMPUESTO1", impuesto1, 9).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CIMPUESTO2", impuesto2, 9).ToResultadoSdk(_sdk).ThrowIfError();
@@ -257,27 +264,29 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk.fLeeDatoCteProv("CIMPORTEEXTRA3", importeExtra3, 9).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CIMPORTEEXTRA4", importeExtra4, 9).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CIDCLIENTEPROVEEDOR", id, 12).ToResultadoSdk(_sdk).ThrowIfError();
-            if (TipoClienteHelper.IsCliente(tipoCliente.ToString()))
+
+            var sdkResult = _sdk.fLeeDatoCteProv("CNOMBRELARGO", nombreLargo, 254).ToResultadoSdk(_sdk); // Al parecer solo los clientes pueden tener un nombre largo, pero hay clientes que tienen su nombre largo vacio por lo que tambien causa error envez de retornar un string vacio
+            if (!sdkResult.IsSuccess && sdkResult.Result != 3) // Si el resultado es 3 quiere decir que no enonctro un mensaje de error por que esta vacio o nulo. Si el resultado es diferente arrojar un error.
             {
-                // Al parecer solo los clientes pueden tener un nombre largo
-                // Falla al buscar el nombre largo si es proveedor
-                _sdk.fLeeDatoCteProv("CNOMBRELARGO", nombreLargo, 254).ToResultadoSdk(_sdk).ThrowIfError();
+                sdkResult.ThrowIfError();
             }
 
             _sdk.fLeeDatoCteProv("CEMAIL1", email1, 60).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CEMAIL2", email2, 60).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CEMAIL3", email3, 60).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoCteProv("CMETODOPAG", formaPago, 101).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoCteProv("CNUMCTAPAG", numeroCuentaPago, 101).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CUSOCFDI", usoCfdi, 31).ToResultadoSdk(_sdk).ThrowIfError();
 
             var clienteProveedor = new ClienteProveedor();
             clienteProveedor.Codigo = codigo.ToString();
             clienteProveedor.RazonSocial = razonSocial.ToString();
-            clienteProveedor.FechaAlta = fechaAlta.ToString();
+            clienteProveedor.FechaAlta = SdkDateTimeHelper.FromSdkCatalogoString(fechaAlta.ToString());
             clienteProveedor.Rfc = rfc.ToString();
             clienteProveedor.Curp = curp.ToString();
             clienteProveedor.DenominacionComercial = denominacionComercial.ToString();
             clienteProveedor.RepresentanteLegal = representanteLegal.ToString();
-            clienteProveedor.NombreMoneda = nombreMoneda.ToString();
+            clienteProveedor.IdMoneda = int.Parse(idMoneda.ToString());
             clienteProveedor.ListaPreciosCliente = int.Parse(listaPreciosCliente.ToString());
             clienteProveedor.DescuentoMovimiento = double.Parse(descuentoMovimiento.ToString());
             clienteProveedor.BanderaVentaCredito = int.TryParse(banderaVentaCredito.ToString(), out var banderaVentaCreditoResult) ? banderaVentaCreditoResult : 0;
@@ -287,10 +296,10 @@ namespace Contpaqi.Sdk.Extras.Repositories
             clienteProveedor.IdValorClasificacionCliente4 = int.TryParse(idValorClasificacionCliente4.ToString(), out var idValorClasificacionCliente4Result) ? idValorClasificacionCliente4Result : 0;
             clienteProveedor.IdValorClasificacionCliente5 = int.TryParse(idValorClasificacionCliente5.ToString(), out var idValorClasificacionCliente5Result) ? idValorClasificacionCliente5Result : 0;
             clienteProveedor.IdValorClasificacionCliente6 = int.TryParse(idValorClasificacionCliente6.ToString(), out var idValorClasificacionCliente6Result) ? idValorClasificacionCliente6Result : 0;
-            clienteProveedor.Tipo = int.Parse(tipoCliente.ToString());
-            clienteProveedor.Estatus = int.Parse(estatus.ToString());
-            clienteProveedor.FechaBaja = fechaBaja.ToString();
-            clienteProveedor.FechaUltimaRevision = fechaUltimaRevision.ToString();
+            clienteProveedor.Tipo = TipoClienteHelper.ConvertToTipoClienteEnum(tipoCliente.ToString());
+            clienteProveedor.Estatus = EstatusActivoEnumHelper.ConvertToEstatusActivoEnum(estatus.ToString());
+            clienteProveedor.FechaBaja = SdkDateTimeHelper.FromSdkCatalogoString(fechaBaja.ToString());
+            clienteProveedor.FechaUltimaRevision = SdkDateTimeHelper.FromSdkCatalogoString(fechaUltimaRevision.ToString());
             clienteProveedor.LimiteCreditoCliente = double.Parse(limiteCreditoCliente.ToString());
             clienteProveedor.DiasCreditoCliente = int.TryParse(diasCreditoCliente.ToString(), out var diasCreditoClienteResult) ? diasCreditoClienteResult : 0;
             clienteProveedor.BanderaExcederCredito = int.TryParse(banderaExcederCredito.ToString(), out var banderaExcederCreditoResult) ? banderaExcederCreditoResult : 0;
@@ -302,9 +311,9 @@ namespace Contpaqi.Sdk.Extras.Repositories
             clienteProveedor.Mensajeria = mensajeria.ToString();
             clienteProveedor.CuentaMensajeria = cuentaMensajeria.ToString();
             clienteProveedor.DiasEmbarqueCliente = int.Parse(diasEmbarqueCliente.ToString());
-            clienteProveedor.CodigoAlmacen = codigoAlmacen.ToString();
-            clienteProveedor.CodigoAgenteVenta = codigoAgenteVenta.ToString();
-            clienteProveedor.CodigoAgenteCobro = codigoAgenteCobro.ToString();
+            clienteProveedor.IdAlmacen = int.Parse(idAlmacen.ToString());
+            clienteProveedor.IdAgenteVenta = int.Parse(idAgenteVenta.ToString());
+            clienteProveedor.IdAgenteCobro = int.Parse(idAgenteCobro.ToString());
             clienteProveedor.RestriccionAgente = int.TryParse(restriccionAgente.ToString(), out var restriccionAgenteResult) ? restriccionAgenteResult : 0;
             clienteProveedor.Impuesto1 = double.Parse(impuesto1.ToString());
             clienteProveedor.Impuesto2 = double.Parse(impuesto2.ToString());
@@ -335,11 +344,17 @@ namespace Contpaqi.Sdk.Extras.Repositories
             clienteProveedor.ImporteExtra3 = double.Parse(importeExtra3.ToString());
             clienteProveedor.ImporteExtra4 = double.Parse(importeExtra4.ToString());
             clienteProveedor.Id = int.Parse(id.ToString());
+            clienteProveedor.Moneda = _monedaRepository.BuscarPorId(int.Parse(idMoneda.ToString()));
             clienteProveedor.NombreLargo = nombreLargo.ToString();
             clienteProveedor.Email1 = email1.ToString();
             clienteProveedor.Email2 = email2.ToString();
             clienteProveedor.Email3 = email3.ToString();
+            clienteProveedor.FormaPago = formaPago.ToString();
+            clienteProveedor.NumeroCuentaPago = numeroCuentaPago.ToString();
             clienteProveedor.UsoCfdi = usoCfdi.ToString();
+            clienteProveedor.Almacen = _almacenRepository.BuscarPorId(clienteProveedor.IdAlmacen);
+            clienteProveedor.AgenteVenta = _agenteRepository.BuscarPorId(clienteProveedor.IdAgenteVenta);
+            clienteProveedor.AgenteCobro = _agenteRepository.BuscarPorId(clienteProveedor.IdAgenteCobro);
             clienteProveedor.ValorClasificacionCliente1 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionCliente1);
             clienteProveedor.ValorClasificacionCliente2 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionCliente2);
             clienteProveedor.ValorClasificacionCliente3 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionCliente3);
@@ -352,18 +367,6 @@ namespace Contpaqi.Sdk.Extras.Repositories
             clienteProveedor.ValorClasificacionProveedor4 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionProveedor4);
             clienteProveedor.ValorClasificacionProveedor5 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionProveedor5);
             clienteProveedor.ValorClasificacionProveedor6 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.IdValorClasificacionProveedor6);
-            clienteProveedor.CodigoValorClasificacionCliente1 = clienteProveedor.ValorClasificacionCliente1.Codigo;
-            clienteProveedor.CodigoValorClasificacionCliente2 = clienteProveedor.ValorClasificacionCliente2.Codigo;
-            clienteProveedor.CodigoValorClasificacionCliente3 = clienteProveedor.ValorClasificacionCliente3.Codigo;
-            clienteProveedor.CodigoValorClasificacionCliente4 = clienteProveedor.ValorClasificacionCliente4.Codigo;
-            clienteProveedor.CodigoValorClasificacionCliente5 = clienteProveedor.ValorClasificacionCliente5.Codigo;
-            clienteProveedor.CodigoValorClasificacionCliente6 = clienteProveedor.ValorClasificacionCliente6.Codigo;
-            clienteProveedor.CodigoValorClasificacionProveedor1 = clienteProveedor.ValorClasificacionProveedor1.Codigo;
-            clienteProveedor.CodigoValorClasificacionProveedor2 = clienteProveedor.ValorClasificacionProveedor2.Codigo;
-            clienteProveedor.CodigoValorClasificacionProveedor3 = clienteProveedor.ValorClasificacionProveedor3.Codigo;
-            clienteProveedor.CodigoValorClasificacionProveedor4 = clienteProveedor.ValorClasificacionProveedor4.Codigo;
-            clienteProveedor.CodigoValorClasificacionProveedor5 = clienteProveedor.ValorClasificacionProveedor5.Codigo;
-            clienteProveedor.CodigoValorClasificacionProveedor6 = clienteProveedor.ValorClasificacionProveedor6.Codigo;
 
             return clienteProveedor;
         }

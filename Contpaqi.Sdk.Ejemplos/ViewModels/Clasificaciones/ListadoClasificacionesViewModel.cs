@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using Contpaqi.Sdk.Ejemplos.Views.ValoresClasificacion;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Models;
 using Contpaqi.Sdk.Extras.Models.Enums;
@@ -18,14 +19,19 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
     {
         private readonly IClasificacionRepository<Clasificacion> _clasificacionRepository;
         private readonly IDialogCoordinator _dialogCoordinator;
+
+        private readonly IValorClasificacionService _valorClasificacionService;
         private Clasificacion _clasificacionSeleccionada;
         private string _duracionBusqueda;
         private string _filtro;
+        private TipoClasificacionEnum? _ultimoCatalogoCargado;
+        private ValorClasificacion _valorClasificacionSeleccionado;
 
-        public ListadoClasificacionesViewModel(IClasificacionRepository<Clasificacion> clasificacionRepository, IDialogCoordinator dialogCoordinator)
+        public ListadoClasificacionesViewModel(IClasificacionRepository<Clasificacion> clasificacionRepository, IDialogCoordinator dialogCoordinator, IValorClasificacionService valorClasificacionService)
         {
             _clasificacionRepository = clasificacionRepository;
             _dialogCoordinator = dialogCoordinator;
+            _valorClasificacionService = valorClasificacionService;
             Clasificaciones = new ObservableCollection<Clasificacion>();
             ClasificacionesView = CollectionViewSource.GetDefaultView(Clasificaciones);
             ClasificacionesView.Filter = UnidadesMedidaView_Filter;
@@ -36,6 +42,10 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
             BuscarClasificacionesDeProveedorCommand = new AsyncRelayCommand(BuscarClasificacionesDeProveedorAsync);
             BuscarClasificacionesDeAlmacenCommand = new AsyncRelayCommand(BuscarClasificacionesDeAlmacenAsync);
             BuscarClasificacionesDeProductoCommand = new AsyncRelayCommand(BuscarClasificacionesDeProductoAsync);
+
+            CrearValorClasificacionCommand = new AsyncRelayCommand(CrearValorClasificacionAsync, CanCrearValorClasificacionAsync);
+            EditarValorClasificacionCommand = new AsyncRelayCommand(EditarValorClasificacionAsync, CanEditarValorClasificacionAsync);
+            EliminarValorClasificacionCommand = new AsyncRelayCommand(EliminarValorClasificacionAsync, CanEliminarValorClasificacionAsync);
         }
 
         public string Title => "Clasificaciones";
@@ -58,7 +68,21 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
         public Clasificacion ClasificacionSeleccionada
         {
             get => _clasificacionSeleccionada;
-            set => SetProperty(ref _clasificacionSeleccionada, value);
+            set
+            {
+                SetProperty(ref _clasificacionSeleccionada, value);
+                RaiseGuards();
+            }
+        }
+
+        public ValorClasificacion ValorClasificacionSeleccionado
+        {
+            get => _valorClasificacionSeleccionado;
+            set
+            {
+                SetProperty(ref _valorClasificacionSeleccionado, value);
+                RaiseGuards();
+            }
         }
 
         public int NumeroClasificaciones => ClasificacionesView.Cast<object>().Count();
@@ -75,11 +99,16 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
         public IAsyncRelayCommand BuscarClasificacionesDeProveedorCommand { get; }
         public IAsyncRelayCommand BuscarClasificacionesDeAlmacenCommand { get; }
         public IAsyncRelayCommand BuscarClasificacionesDeProductoCommand { get; }
+        public IAsyncRelayCommand CrearValorClasificacionCommand { get; }
+        public IAsyncRelayCommand EditarValorClasificacionCommand { get; }
+        public IAsyncRelayCommand EliminarValorClasificacionCommand { get; }
 
         public async Task BuscarClasificacionesAsync()
         {
             var progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
             await Task.Delay(1000);
+
+            _ultimoCatalogoCargado = null;
 
             try
             {
@@ -112,6 +141,8 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
             var progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
             await Task.Delay(1000);
 
+            _ultimoCatalogoCargado = TipoClasificacionEnum.Agente;
+
             try
             {
                 var stopwatch = new Stopwatch();
@@ -142,6 +173,8 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
         {
             var progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
             await Task.Delay(1000);
+
+            _ultimoCatalogoCargado = TipoClasificacionEnum.Cliente;
 
             try
             {
@@ -174,6 +207,8 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
             var progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
             await Task.Delay(1000);
 
+            _ultimoCatalogoCargado = TipoClasificacionEnum.Proveedor;
+
             try
             {
                 var stopwatch = new Stopwatch();
@@ -204,6 +239,8 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
         {
             var progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
             await Task.Delay(1000);
+
+            _ultimoCatalogoCargado = TipoClasificacionEnum.Almacen;
 
             try
             {
@@ -236,6 +273,8 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
             var progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
             await Task.Delay(1000);
 
+            _ultimoCatalogoCargado = TipoClasificacionEnum.Producto;
+
             try
             {
                 var stopwatch = new Stopwatch();
@@ -262,6 +301,82 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
             }
         }
 
+        public async Task CrearValorClasificacionAsync()
+        {
+            try
+            {
+                var window = new CrearValorClasificacionView();
+                window.ViewModel.Inicializar(ClasificacionSeleccionada.Id);
+                window.ShowDialog();
+                await CargarUltimaBusqueda();
+            }
+            catch (Exception e)
+            {
+                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+            }
+        }
+
+        public bool CanCrearValorClasificacionAsync()
+        {
+            return ClasificacionSeleccionada != null;
+        }
+
+        public async Task EditarValorClasificacionAsync()
+        {
+            try
+            {
+                var window = new EditarValorClasificacionView();
+                window.ViewModel.Inicializar(ValorClasificacionSeleccionado.Id);
+                window.ShowDialog();
+                await CargarUltimaBusqueda();
+            }
+            catch (Exception e)
+            {
+                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+            }
+        }
+
+        public bool CanEditarValorClasificacionAsync()
+        {
+            return ValorClasificacionSeleccionado != null;
+        }
+
+        public async Task EliminarValorClasificacionAsync()
+        {
+            var messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
+                "Eliminar Valor De Clasificacion",
+                "Esta seguro de querer eliminar este valor de clasificacion?",
+                MessageDialogStyle.AffirmativeAndNegative,
+                new MetroDialogSettings {AffirmativeButtonText = "Eliminar", NegativeButtonText = "Cancelar"});
+
+            if (messageDialogResult != MessageDialogResult.Affirmative)
+            {
+                return;
+            }
+
+            try
+            {
+                _valorClasificacionService.Eliminar(ValorClasificacionSeleccionado.Id);
+                await CargarUltimaBusqueda();
+            }
+            catch (Exception e)
+            {
+                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+            }
+        }
+
+        public bool CanEliminarValorClasificacionAsync()
+        {
+            return ValorClasificacionSeleccionado != null;
+        }
+
+        private void RaiseGuards()
+        {
+            CrearValorClasificacionCommand.NotifyCanExecuteChanged();
+            EditarValorClasificacionCommand.NotifyCanExecuteChanged();
+            EliminarValorClasificacionCommand.NotifyCanExecuteChanged();
+        }
+
         private bool UnidadesMedidaView_Filter(object obj)
         {
             if (!(obj is Clasificacion clasificaciones))
@@ -272,6 +387,33 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones
             return string.IsNullOrWhiteSpace(Filtro) ||
                    clasificaciones.Id.ToString().IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
                    clasificaciones.Nombre.IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        private async Task CargarUltimaBusqueda()
+        {
+            switch (_ultimoCatalogoCargado)
+            {
+                case TipoClasificacionEnum.Agente:
+                    await BuscarClasificacionesDeAgenteAsync();
+                    break;
+                case TipoClasificacionEnum.Cliente:
+                    await BuscarClasificacionesDeClienteAsync();
+                    break;
+                case TipoClasificacionEnum.Proveedor:
+                    await BuscarClasificacionesDeProveedorAsync();
+                    break;
+                case TipoClasificacionEnum.Almacen:
+                    await BuscarClasificacionesDeAlmacenAsync();
+                    break;
+                case TipoClasificacionEnum.Producto:
+                    await BuscarClasificacionesDeProductoAsync();
+                    break;
+                case null:
+                    await BuscarClasificacionesAsync();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

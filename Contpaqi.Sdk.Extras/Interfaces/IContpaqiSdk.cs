@@ -16,7 +16,7 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fActualizaClasificacion(int aClasificacionDe, int aNumClasificacion, string aNombreClasificacion);
 
-        int fActualizaCteProv(StringBuilder aCodigoCteProv, tCteProv astCteProv);
+        int fActualizaCteProv(string aCodigoCteProv, ref tCteProv astCteProv);
 
         int fActualizaDireccion(ref tDireccion astDireccion);
 

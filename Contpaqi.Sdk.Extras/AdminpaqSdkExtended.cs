@@ -31,9 +31,9 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fActualizaClasificacion(aClasificacionDe, aNumClasificacion, aNombreClasificacion);
         }
 
-        public int fActualizaCteProv(StringBuilder aCodigoCteProv, tCteProv astCteProv)
+        public int fActualizaCteProv(string aCodigoCteProv, ref tCteProv astCteProv)
         {
-            return AdminpaqSdk.fActualizaCteProv(aCodigoCteProv, astCteProv);
+            return AdminpaqSdk.fActualizaCteProv(aCodigoCteProv, ref astCteProv);
         }
 
         public int fActualizaDireccion(ref tDireccion astDireccion)
@@ -1438,6 +1438,7 @@ namespace Contpaqi.Sdk.Extras
             {
                 throw new ContpaqiSdkException(null, $"No se encontro la llave del registro {NombreLlaveRegistro}");
             }
+
             var lEntrada = keySistema.GetValue("DirectorioBase");
             Directory.SetCurrentDirectory(lEntrada.ToString());
             return AdminpaqSdk.fSetNombrePAQ(NombrePaq);

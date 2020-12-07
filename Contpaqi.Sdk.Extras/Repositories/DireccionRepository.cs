@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 using Contpaqi.Sdk.Extras.Helpers;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Models;
@@ -15,6 +16,34 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk = sdk;
         }
 
+        public Direccion BuscarPorId(int idDireccion)
+        {
+            var idDireccionDato = new StringBuilder(12);
+
+            _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoDireccion("CIDDIRECCION", idDireccionDato, 12).ToResultadoSdk(_sdk).ThrowIfError();
+            if (idDireccion == int.Parse(idDireccionDato.ToString()))
+            {
+                return LeerDatosDireccionActual();
+            }
+
+            while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
+            {
+                _sdk.fLeeDatoDireccion("CIDDIRECCION", idDireccionDato, 12).ToResultadoSdk(_sdk).ThrowIfError();
+                if (idDireccion == int.Parse(idDireccionDato.ToString()))
+                {
+                    return LeerDatosDireccionActual();
+                }
+
+                if (_sdk.fPosEOFDireccion() == 1)
+                {
+                    break;
+                }
+            }
+
+            return null;
+        }
+
         public Direccion BuscarPorCliente(string codigoClienteProveedor, byte tipoDireccion)
         {
             return _sdk.fBuscaDireccionCteProv(codigoClienteProveedor, tipoDireccion) == SdkResultConstants.Success ? LeerDatosDireccionActual() : null;
@@ -23,6 +52,79 @@ namespace Contpaqi.Sdk.Extras.Repositories
         public Direccion BuscarPorDocumento(int idDocumento, byte tipoDireccion)
         {
             return _sdk.fBuscaDireccionDocumento(idDocumento, tipoDireccion) == SdkResultConstants.Success ? LeerDatosDireccionActual() : null;
+        }
+
+        public IEnumerable<Direccion> TraerTodo()
+        {
+            _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
+            yield return LeerDatosDireccionActual();
+
+            while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
+            {
+                yield return LeerDatosDireccionActual();
+
+                if (_sdk.fPosEOFDireccion() == 1)
+                {
+                    break;
+                }
+            }
+        }
+
+        public IEnumerable<Direccion> TraerPorTipo(TipoCatalogoDireccion tipoCatalogoDireccion)
+        {
+            var tipoCatalogo = new StringBuilder(7);
+
+            _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoDireccion("CTIPOCATALOGO", tipoCatalogo, 7).ToResultadoSdk(_sdk).ThrowIfError();
+            if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertToTipoCatalogoDireccion(tipoCatalogo.ToString()))
+            {
+                yield return LeerDatosDireccionActual();
+            }
+
+            while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
+            {
+                _sdk.fLeeDatoDireccion("CTIPOCATALOGO", tipoCatalogo, 7).ToResultadoSdk(_sdk).ThrowIfError();
+                if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertToTipoCatalogoDireccion(tipoCatalogo.ToString()))
+                {
+                    yield return LeerDatosDireccionActual();
+                }
+
+                if (_sdk.fPosEOFDireccion() == 1)
+                {
+                    break;
+                }
+            }
+        }
+
+        public IEnumerable<Direccion> TraerPorTipoYIdCatalogo(TipoCatalogoDireccion tipoCatalogoDireccion, int idCatalogo)
+        {
+            var tipoCatalogo = new StringBuilder(7);
+            var idCatalogoDato = new StringBuilder(12);
+
+            _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoDireccion("CTIPOCATALOGO", tipoCatalogo, 7).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoDireccion("CIDCATALOGO", idCatalogoDato, 12).ToResultadoSdk(_sdk).ThrowIfError();
+            if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertToTipoCatalogoDireccion(tipoCatalogo.ToString()) &&
+                idCatalogo == int.Parse(idCatalogoDato.ToString()))
+            {
+                yield return LeerDatosDireccionActual();
+            }
+
+            while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
+            {
+                _sdk.fLeeDatoDireccion("CTIPOCATALOGO", tipoCatalogo, 7).ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoDireccion("CIDCATALOGO", idCatalogoDato, 12).ToResultadoSdk(_sdk).ThrowIfError();
+                if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertToTipoCatalogoDireccion(tipoCatalogo.ToString()) &&
+                    idCatalogo == int.Parse(idCatalogoDato.ToString()))
+                {
+                    yield return LeerDatosDireccionActual();
+                }
+
+                if (_sdk.fPosEOFDireccion() == 1)
+                {
+                    break;
+                }
+            }
         }
 
         private Direccion LeerDatosDireccionActual()
@@ -68,8 +170,8 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk.fLeeDatoDireccion("CIDCATALOGO", idCatalogo, 12).ToResultadoSdk(_sdk).ThrowIfError();
 
             var direccion = new Direccion();
-            direccion.TipoCatalogo = int.Parse(tipoCatalogo.ToString());
-            direccion.TipoDireccion = int.Parse(tipoDireccion.ToString());
+            direccion.TipoCatalogo = TipoCatalogoDireccionHelper.ConvertToTipoCatalogoDireccion(tipoCatalogo.ToString());
+            direccion.TipoDireccion = TipoDireccionHelper.ToTipoDireccion(tipoDireccion.ToString());
             direccion.NombreCalle = nombreCalle.ToString();
             direccion.NumeroExterior = numeroExterior.ToString();
             direccion.NumeroInterior = numeroInterior.ToString();
@@ -87,11 +189,11 @@ namespace Contpaqi.Sdk.Extras.Repositories
             direccion.TextoExtra = textoExtra.ToString();
             direccion.Id = int.Parse(idDireccion.ToString());
             direccion.IdCatalogo = int.Parse(idCatalogo.ToString());
-            if ((direccion.TipoCatalogo == (int) TipoCatalogoDireccion.Clientes || direccion.TipoCatalogo == (int) TipoCatalogoDireccion.Proveedores) && _sdk.fBuscaIdCteProv(direccion.IdCatalogo) == SdkResultConstants.Success)
+            if ((direccion.TipoCatalogo == TipoCatalogoDireccion.Clientes || direccion.TipoCatalogo == TipoCatalogoDireccion.Proveedores) && _sdk.fBuscaIdCteProv(direccion.IdCatalogo) == SdkResultConstants.Success)
             {
                 var codigoCliente = new StringBuilder(Constantes.kLongCodigo);
                 _sdk.fLeeDatoCteProv("CCODIGOCLIENTE", codigoCliente, Constantes.kLongCodigo).ToResultadoSdk(_sdk).ThrowIfError();
-                direccion.CodCteProv = codigoCliente.ToString();
+                direccion.CodigoClienteProveedor = codigoCliente.ToString();
             }
 
             return direccion;

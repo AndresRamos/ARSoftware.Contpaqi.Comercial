@@ -31,9 +31,9 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fActualizaClasificacion(aClasificacionDe, aNumClasificacion, aNombreClasificacion);
         }
 
-        public int fActualizaCteProv(StringBuilder aCodigoCteProv, tCteProv astCteProv)
+        public int fActualizaCteProv(string aCodigoCteProv,ref tCteProv astCteProv)
         {
-            return ComercialSdk.fActualizaCteProv(aCodigoCteProv, astCteProv);
+            return ComercialSdk.fActualizaCteProv(aCodigoCteProv, ref astCteProv);
         }
 
         public int fActualizaDireccion(ref tDireccion astDireccion)

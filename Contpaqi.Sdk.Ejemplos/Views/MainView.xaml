@@ -7,7 +7,8 @@
                       xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
                       xmlns:viewModels="clr-namespace:Contpaqi.Sdk.Ejemplos.ViewModels"
                       mc:Ignorable="d"
-                      Width="1300" Height="800"
+                      Width="1300"
+                      Height="800"
                       WindowStartupLocation="CenterScreen"
                       WindowState="Maximized"
                       d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=False}"
@@ -20,25 +21,40 @@
         </Grid.RowDefinitions>
         <Menu IsMainMenu="True">
             <MenuItem Header="Archivo">
-                <MenuItem Header="Iniciar Sesion" Command="{Binding MostrarIniciarSesionViewCommand}" />
-                <MenuItem Header="Terminar Sesion" Command="{Binding TerminarSesionCommand}" />
+                <MenuItem Header="Iniciar Sesion"
+                          Command="{Binding MostrarIniciarSesionViewCommand}" />
+                <MenuItem Header="Terminar Sesion"
+                          Command="{Binding TerminarSesionCommand}" />
                 <Separator />
-                <MenuItem Header="Abrir Empresa" Command="{Binding AbrirEmpresaCommand}" />
-                <MenuItem Header="Cerrar Empresa" Command="{Binding CerrarEmpresaCommand}" />
+                <MenuItem Header="Abrir Empresa"
+                          Command="{Binding AbrirEmpresaCommand}" />
+                <MenuItem Header="Cerrar Empresa"
+                          Command="{Binding CerrarEmpresaCommand}" />
             </MenuItem>
             <MenuItem Header="Catalogos">
-                <MenuItem Header="Agentes" Command="{Binding MostrarListadoAgentesViewCommand}" />
-                <MenuItem Header="Almacenes" Command="{Binding MostrarListadoAlmacenesViewCommand}" />
-                <MenuItem Header="Clasificaciones" Command="{Binding MostrarListadoClasificacionesViewCommand}" />
-                <MenuItem Header="Clientes/Proveedores" Command="{Binding MostrarListadoClientesViewCommand}" />
-                <MenuItem Header="Conceptos" Command="{Binding MostrarListadoConceptosViewCommand}" />
-                <MenuItem Header="Documentos" Command="{Binding MostrarListadoDocumentosViewCommand}" />
-                <MenuItem Header="Productos/Servicios/Paquetes" Command="{Binding MostrarListadoProductosViewCommand}" />
-                <MenuItem Header="Unidades De Medida" Command="{Binding MostrarListadoUnidadesMedidaViewCommand}" />
+                <MenuItem Header="Agentes"
+                          Command="{Binding MostrarListadoAgentesViewCommand}" />
+                <MenuItem Header="Almacenes"
+                          Command="{Binding MostrarListadoAlmacenesViewCommand}" />
+                <MenuItem Header="Clasificaciones"
+                          Command="{Binding MostrarListadoClasificacionesViewCommand}" />
+                <MenuItem Header="Clientes/Proveedores"
+                          Command="{Binding MostrarListadoClientesViewCommand}" />
+                <MenuItem Header="Conceptos"
+                          Command="{Binding MostrarListadoConceptosViewCommand}" />
+                <MenuItem Header="Documentos"
+                          Command="{Binding MostrarListadoDocumentosViewCommand}" />
+                <MenuItem Header="Errores"
+                          Command="{Binding MostrarListadoErroresViewCommand}" />
+                <MenuItem Header="Productos/Servicios/Paquetes"
+                          Command="{Binding MostrarListadoProductosViewCommand}" />
+                <MenuItem Header="Unidades De Medida"
+                          Command="{Binding MostrarListadoUnidadesMedidaViewCommand}" />
             </MenuItem>
             <MenuItem Header="Movimientos">
                 <MenuItem Header="Facturas">
-                    <MenuItem Header="Listado Facturas" Command="{Binding MostrarListadoFacturasViewCommand}" />
+                    <MenuItem Header="Listado Facturas"
+                              Command="{Binding MostrarListadoFacturasViewCommand}" />
                 </MenuItem>
             </MenuItem>
         </Menu>
@@ -48,14 +64,25 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Image Grid.Row="0" Source="../Images/AR_LOGO01.jpg" Width="700"  Margin="10"/>
-            <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="30" TextWrapping="Wrap" Margin="10"
+            <Image Grid.Row="0"
+                   Source="../Images/AR_LOGO01.jpg"
+                   Width="700"
+                   Margin="10" />
+            <TextBlock Grid.Row="1"
+                       FontWeight="Bold"
+                       FontSize="30"
+                       TextWrapping="Wrap"
+                       Margin="10"
                        HorizontalAlignment="Center">
-                <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="https://www.arsoft.net">https://www.arsoft.net</Hyperlink>
-            </TextBlock>
-            <TextBlock Grid.Row="2" FontWeight="Bold" FontSize="30" TextWrapping="Wrap" HorizontalAlignment="Center"
-                       Text="{Binding Mensaje}" Margin="10"/>
-
+                <Hyperlink RequestNavigate="Hyperlink_RequestNavigate"
+                           NavigateUri="https://www.arsoft.net">https://www.arsoft.net</Hyperlink></TextBlock>
+            <TextBlock Grid.Row="2"
+                       FontWeight="Bold"
+                       FontSize="30"
+                       TextWrapping="Wrap"
+                       HorizontalAlignment="Center"
+                       Text="{Binding Mensaje}"
+                       Margin="10" />
         </Grid>
     </Grid>
 </controls:MetroWindow>

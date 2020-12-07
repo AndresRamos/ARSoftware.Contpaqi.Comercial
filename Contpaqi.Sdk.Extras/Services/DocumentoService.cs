@@ -23,12 +23,12 @@ namespace Contpaqi.Sdk.Extras.Services
             return documentoId;
         }
 
-        public void Actualizar(int documentoId, Dictionary<string, string> datosDocuemnto)
+        public void Actualizar(int documentoId, Dictionary<string, string> datosDocumento)
         {
             _sdk.fBuscarIdDocumento(documentoId).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fEditarDocumento().ToResultadoSdk(_sdk).ThrowIfError();
 
-            foreach (var dato in datosDocuemnto)
+            foreach (var dato in datosDocumento)
             {
                 _sdk.fSetDatoDocumento(dato.Key, dato.Value).ToResultadoSdk(_sdk).ThrowIfError();
             }

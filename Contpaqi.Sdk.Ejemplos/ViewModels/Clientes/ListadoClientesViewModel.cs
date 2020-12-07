@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using Contpaqi.Sdk.Ejemplos.Views.Clientes;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Models;
 using MahApps.Metro.Controls.Dialogs;
@@ -32,6 +33,8 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
             BuscarTodoCommand = new AsyncRelayCommand(BuscarTodoAsync);
             BuscarClientesCommand = new AsyncRelayCommand(BuscarClientesAsync);
             BuscarProveedoresCommand = new AsyncRelayCommand(BuscarProveedoresAsync);
+            CrearClienteProveedorCommand = new AsyncRelayCommand(CrearClienteProveedorAsync);
+            EditarClienteProveedorCommand = new AsyncRelayCommand(EditarClienteProveedorAsync, CanEditarClienteProveedorAsync);
         }
 
         public string Title => "Clientes/Proveedores";
@@ -54,7 +57,11 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
         public ClienteProveedor ClienteProveedorSeleccionado
         {
             get => _clienteProveedorSeleccionado;
-            set => SetProperty(ref _clienteProveedorSeleccionado, value);
+            set
+            {
+                SetProperty(ref _clienteProveedorSeleccionado, value);
+                RaiseGuards();
+            }
         }
 
         public int NumeroClientesProveedores => ClientesProveedoresView.Cast<object>().Count();
@@ -68,6 +75,8 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
         public IAsyncRelayCommand BuscarTodoCommand { get; }
         public IAsyncRelayCommand BuscarClientesCommand { get; }
         public IAsyncRelayCommand BuscarProveedoresCommand { get; }
+        public IAsyncRelayCommand CrearClienteProveedorCommand { get; }
+        public IAsyncRelayCommand EditarClienteProveedorCommand { get; }
 
         public async Task BuscarTodoAsync()
         {
@@ -161,6 +170,43 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
             }
         }
 
+        public async Task CrearClienteProveedorAsync()
+        {
+            try
+            {
+                var window = new EditarClienteProveedorView();
+                window.ViewModel.Inicializar();
+                window.Show();
+            }
+            catch (Exception e)
+            {
+                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+            }
+        }
+
+        public async Task EditarClienteProveedorAsync()
+        {
+            try
+            {
+                var window = new EditarClienteProveedorView();
+                window.ViewModel.Inicializar(ClienteProveedorSeleccionado.Id);
+                window.Show();
+            }
+            catch (Exception e)
+            {
+                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+            }
+        }
+
+        public bool CanEditarClienteProveedorAsync()
+        {
+            return ClienteProveedorSeleccionado != null;
+        }
+
+        private void RaiseGuards()
+        {
+            EditarClienteProveedorCommand.NotifyCanExecuteChanged();
+        }
         private bool ClientesProveedoresView_Filter(object obj)
         {
             var cliente = obj as ClienteProveedor;

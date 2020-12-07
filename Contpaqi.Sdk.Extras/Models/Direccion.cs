@@ -1,14 +1,15 @@
 ﻿using Contpaqi.Sdk.Extras.Interfaces;
+using Contpaqi.Sdk.Extras.Models.Enums;
 
 namespace Contpaqi.Sdk.Extras.Models
 {
     public class Direccion : IDireccion
     {
-        public string CodCteProv { get; set; }
+        public string CodigoClienteProveedor { get; set; }
 
-        public int TipoCatalogo { get; set; }
+        public TipoCatalogoDireccion TipoCatalogo { get; set; }
 
-        public int TipoDireccion { get; set; }
+        public TipoDireccionEnum TipoDireccion { get; set; }
 
         public string NombreCalle { get; set; }
 
