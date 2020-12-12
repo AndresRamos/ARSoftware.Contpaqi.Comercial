@@ -18,7 +18,6 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Agentes
         private readonly IAgenteRepository<Agente> _agenteRepository;
         private readonly IDialogCoordinator _dialogCoordinator;
         private Agente _agenteSeleccionado;
-        private bool _buscarObjectosRelacionados = true;
         private string _duracionBusqueda;
         private string _filtro;
 
@@ -54,12 +53,6 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Agentes
         {
             get => _agenteSeleccionado;
             set => SetProperty(ref _agenteSeleccionado, value);
-        }
-
-        public bool BuscarObjectosRelacionados
-        {
-            get => _buscarObjectosRelacionados;
-            set => SetProperty(ref _buscarObjectosRelacionados, value);
         }
 
         public int NumeroAgentes => AgentesView.Cast<object>().Count();

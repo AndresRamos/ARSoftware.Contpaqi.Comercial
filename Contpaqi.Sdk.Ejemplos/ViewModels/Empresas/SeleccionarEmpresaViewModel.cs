@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using Contpaqi.Sdk.Ejemplos.Messages;
@@ -17,6 +19,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Empresas
     {
         private readonly IDialogCoordinator _dialogCoordinator;
         private readonly IEmpresaRepository<Empresa> _empresaRepository;
+        private string _duracionBusqueda;
         private Empresa _empresaSeleccionada;
         private string _filtro;
 
@@ -62,6 +65,12 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Empresas
 
         public bool SeleccionoEmpresa { get; private set; }
 
+        public string DuracionBusqueda
+        {
+            get => _duracionBusqueda;
+            set => SetProperty(ref _duracionBusqueda, value);
+        }
+
         public IAsyncRelayCommand BuscarEmpresasCommand { get; }
         public IRelayCommand SeleccionarCommand { get; }
         public IRelayCommand CancelarCommand { get; }
@@ -70,11 +79,16 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Empresas
         {
             try
             {
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
                 Empresas.Clear();
-                foreach (var empresa in _empresaRepository.TraerTodo())
+                foreach (var empresa in _empresaRepository.TraerTodo().OrderBy(e => e.Nombre))
                 {
                     Empresas.Add(empresa);
                 }
+
+                stopwatch.Stop();
+                DuracionBusqueda = stopwatch.Elapsed.ToString("g");
             }
             catch (Exception e)
             {

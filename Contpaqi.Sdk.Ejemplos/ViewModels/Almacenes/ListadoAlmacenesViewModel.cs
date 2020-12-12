@@ -18,7 +18,6 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Almacenes
         private readonly IAlmacenRepository<Almacen> _almacenRepository;
         private readonly IDialogCoordinator _dialogCoordinator;
         private Almacen _almacenSeleccionado;
-        private bool _buscarObjectosRelacionados = true;
         private string _duracionBusqueda;
         private string _filtro;
 
@@ -54,12 +53,6 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Almacenes
         {
             get => _almacenSeleccionado;
             set => SetProperty(ref _almacenSeleccionado, value);
-        }
-
-        public bool BuscarObjectosRelacionados
-        {
-            get => _buscarObjectosRelacionados;
-            set => SetProperty(ref _buscarObjectosRelacionados, value);
         }
 
         public int NumeroAlmacenes => AlmacenesView.Cast<object>().Count();

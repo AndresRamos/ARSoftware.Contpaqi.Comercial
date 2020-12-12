@@ -161,6 +161,8 @@ namespace Contpaqi.Sdk.Extras.Repositories
             var idAlmacen = new StringBuilder(12);
             var idAgenteVenta = new StringBuilder(12);
             var idAgenteCobro = new StringBuilder(12);
+            var comisionVenta = new StringBuilder(9);
+            var comisionCobro = new StringBuilder(9);
             var restriccionAgente = new StringBuilder(7);
             var impuesto1 = new StringBuilder(9);
             var impuesto2 = new StringBuilder(9);
@@ -234,6 +236,8 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk.fLeeDatoCteProv("CIDALMACEN", idAlmacen, 12).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CIDAGENTEVENTA", idAgenteVenta, 12).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CIDAGENTECOBRO", idAgenteCobro, 12).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoCteProv("CCOMVENTA", comisionVenta, 12).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoCteProv("CCOMCOBRO", comisionCobro, 12).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CRESTRICCIONAGENTE", restriccionAgente, 7).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CIMPUESTO1", impuesto1, 9).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CIMPUESTO2", impuesto2, 9).ToResultadoSdk(_sdk).ThrowIfError();
@@ -314,6 +318,8 @@ namespace Contpaqi.Sdk.Extras.Repositories
             clienteProveedor.IdAlmacen = int.Parse(idAlmacen.ToString());
             clienteProveedor.IdAgenteVenta = int.Parse(idAgenteVenta.ToString());
             clienteProveedor.IdAgenteCobro = int.Parse(idAgenteCobro.ToString());
+            clienteProveedor.ComisionVenta = double.Parse(comisionVenta.ToString());
+            clienteProveedor.ComisionCobro = double.Parse(comisionCobro.ToString());
             clienteProveedor.RestriccionAgente = int.TryParse(restriccionAgente.ToString(), out var restriccionAgenteResult) ? restriccionAgenteResult : 0;
             clienteProveedor.Impuesto1 = double.Parse(impuesto1.ToString());
             clienteProveedor.Impuesto2 = double.Parse(impuesto2.ToString());

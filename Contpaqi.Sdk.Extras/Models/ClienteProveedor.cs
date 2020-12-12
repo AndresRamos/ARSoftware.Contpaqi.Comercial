@@ -157,7 +157,11 @@ namespace Contpaqi.Sdk.Extras.Models
 
         public Agente AgenteVenta { get; set; }
 
+        public double ComisionVenta { get; set; }
+
         public Agente AgenteCobro { get; set; }
+
+        public double ComisionCobro { get; set; }
 
         public int IdValorClasificacionCliente1 { get; set; }
 

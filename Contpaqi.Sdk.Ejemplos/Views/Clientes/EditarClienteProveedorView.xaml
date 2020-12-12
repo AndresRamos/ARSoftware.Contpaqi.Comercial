@@ -936,6 +936,149 @@
                     </Grid>
                 </Grid>
             </TabItem>
+            <TabItem Header="Envios/Agentes">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="400" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Text="Envios:"
+                               FontWeight="Bold"
+                               FontSize="15"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Content="Mensageria O Transportista:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.Mensajeria}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                           Content="Numero De Cuenta De La Mensajeria:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="2"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.CuentaMensajeria}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Text="Almacen Control Consignaciones:"
+                               FontWeight="Bold"
+                               FontSize="15"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                    <Label Grid.Row="4"
+                           Grid.Column="0"
+                           Content="Almacen:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBlock Grid.Row="4"
+                               Grid.Column="1"
+                               Text="{Binding ClienteProveedor.Almacen, Mode=OneWay}"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                    <Button Grid.Row="4"
+                            Grid.Column="2"
+                            Content="Buscar"
+                            Command="{Binding BuscarAlmacenCommand}"
+                            VerticalAlignment="Center"
+                            Margin="5"
+                            Width="100" />
+                    <TextBlock Grid.Row="5"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Text="Agentes:"
+                               FontWeight="Bold"
+                               FontSize="15"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                    <Label Grid.Row="6"
+                           Grid.Column="0"
+                           Content="De Venta:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBlock Grid.Row="6"
+                               Grid.Column="1"
+                               Text="{Binding ClienteProveedor.AgenteVenta, Mode=OneWay}"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                    <Button Grid.Row="6"
+                            Grid.Column="2"
+                            Content="Buscar"
+                            Command="{Binding BuscarAgenteVentaCommand}"
+                            VerticalAlignment="Center"
+                            Margin="5"
+                            Width="100" />
+                    <Label Grid.Row="7"
+                           Grid.Column="0"
+                           Content="Comision:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="7"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.ComisionVenta}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                    <Label Grid.Row="8"
+                           Grid.Column="0"
+                           Content="De Cobro:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBlock Grid.Row="8"
+                               Grid.Column="1"
+                               Text="{Binding ClienteProveedor.AgenteCobro, Mode=OneWay}"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                    <Button Grid.Row="8"
+                            Grid.Column="2"
+                            Content="Buscar"
+                            Command="{Binding BuscarAgenteCobroCommand}"
+                            VerticalAlignment="Center"
+                            Margin="5"
+                            Width="100" />
+                    <Label Grid.Row="9"
+                           Grid.Column="0"
+                           Content="Comision:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="9"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.ComisionCobro}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                </Grid>
+            </TabItem>
             <TabItem Header="Usuario">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -1013,6 +1156,22 @@
                            VerticalAlignment="Center"
                            Margin="5" />
                     <TextBox Grid.Row="5"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.ImporteExtra3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                    <Label Grid.Row="6"
+                           Grid.Column="0"
+                           Content="Importe Extra 4:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="6"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.ImporteExtra4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                    <TextBox Grid.Row="6"
                              Grid.Column="1"
                              Text="{Binding ClienteProveedor.ImporteExtra3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center"

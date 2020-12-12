@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Contpaqi.Sdk.Ejemplos.Messages;
+using Contpaqi.Sdk.Ejemplos.Views.Agentes;
+using Contpaqi.Sdk.Ejemplos.Views.Almacenes;
 using Contpaqi.Sdk.Ejemplos.Views.Direcciones;
 using Contpaqi.Sdk.Ejemplos.Views.ValoresClasificacion;
 using Contpaqi.Sdk.Extras.Helpers;
@@ -40,6 +43,10 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
             BuscarValorClasificacionCommand = new AsyncRelayCommand<string>(BuscarValorClasificacionAsync);
             CrearDireccionCommand = new AsyncRelayCommand(CrearDireccionAsync);
             EditarDireccionCommand = new AsyncRelayCommand(EditarDireccionAsync, CanEditarDireccionAsync);
+
+            BuscarAlmacenCommand = new AsyncRelayCommand(BuscarAlmacenAsync);
+            BuscarAgenteVentaCommand = new AsyncRelayCommand(BuscarAgenteVentaAsync);
+            BuscarAgenteCobroCommand = new AsyncRelayCommand(BuscarAgenteCobroAsync);
         }
 
         public string Title { get; } = "Crear Cliente/Proveedor";
@@ -61,6 +68,9 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
         public IRelayCommand<string> BuscarValorClasificacionCommand { get; }
         public IRelayCommand CrearDireccionCommand { get; }
         public IRelayCommand EditarDireccionCommand { get; }
+        public IAsyncRelayCommand BuscarAlmacenCommand { get; }
+        public IAsyncRelayCommand BuscarAgenteVentaCommand { get; }
+        public IAsyncRelayCommand BuscarAgenteCobroCommand { get; }
 
         public Direccion DireccionSeleccionada
         {
@@ -96,6 +106,8 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
                     datos.Add("CEMAIL1", ClienteProveedor.Email1);
                     datos.Add("CEMAIL2", ClienteProveedor.Email2);
                     datos.Add("CEMAIL3", ClienteProveedor.Email3);
+                    datos.Add("CCOMVENTA", ClienteProveedor.ComisionVenta.ToString(CultureInfo.InvariantCulture));
+                    datos.Add("CCOMCOBRO", ClienteProveedor.ComisionCobro.ToString(CultureInfo.InvariantCulture));
                     _clienteProveedorService.Actualizar(ClienteProveedor.Id, datos);
 
                     ClienteProveedor = _clienteProveedorRepository.BuscarPorId(ClienteProveedor.Id);
@@ -305,6 +317,75 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes
             return tipoCliente == TipoClienteEnum.Cliente ? TipoCatalogoDireccion.Clientes
                 : tipoCliente == TipoClienteEnum.Proveedor ? TipoCatalogoDireccion.Proveedores
                 : TipoCatalogoDireccion.Clientes;
+        }
+
+        public async Task BuscarAlmacenAsync()
+        {
+            try
+            {
+                var window = new SeleccionarAlmacenView();
+                window.ViewModel.Inicializar();
+                window.ShowDialog();
+                if (window.ViewModel.SeleccionoAlmacen)
+                {
+                    ClienteProveedor.IdAlmacen = window.ViewModel.AlmacenSeleccionado.Id;
+                    ClienteProveedor.Almacen = window.ViewModel.AlmacenSeleccionado;
+                }
+            }
+            catch (Exception e)
+            {
+                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+            }
+            finally
+            {
+                OnPropertyChanged(string.Empty);
+            }
+        }
+
+        public async Task BuscarAgenteVentaAsync()
+        {
+            try
+            {
+                var window = new SeleccionarAgenteView();
+                window.ViewModel.Inicializar();
+                window.ShowDialog();
+                if (window.ViewModel.SeleccionoAgente)
+                {
+                    ClienteProveedor.IdAgenteVenta = window.ViewModel.AgenteSeleccionado.Id;
+                    ClienteProveedor.AgenteVenta = window.ViewModel.AgenteSeleccionado;
+                }
+            }
+            catch (Exception e)
+            {
+                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+            }
+            finally
+            {
+                OnPropertyChanged(string.Empty);
+            }
+        }
+
+        public async Task BuscarAgenteCobroAsync()
+        {
+            try
+            {
+                var window = new SeleccionarAgenteView();
+                window.ViewModel.Inicializar();
+                window.ShowDialog();
+                if (window.ViewModel.SeleccionoAgente)
+                {
+                    ClienteProveedor.IdAgenteCobro = window.ViewModel.AgenteSeleccionado.Id;
+                    ClienteProveedor.AgenteCobro = window.ViewModel.AgenteSeleccionado;
+                }
+            }
+            catch (Exception e)
+            {
+                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+            }
+            finally
+            {
+                OnPropertyChanged(string.Empty);
+            }
         }
 
         private void RaiseGuards()

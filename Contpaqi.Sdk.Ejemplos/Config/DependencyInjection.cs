@@ -46,9 +46,11 @@ namespace Contpaqi.Sdk.Ejemplos.Config
 
             // Agentes
             services.AddTransient<ListadoAgentesViewModel>();
+            services.AddTransient<SeleccionarAgenteViewModel>();
 
             // Almacenes
             services.AddTransient<ListadoAlmacenesViewModel>();
+            services.AddTransient<SeleccionarAlmacenViewModel>();
 
             // Clasificaciones
             services.AddTransient<ListadoClasificacionesViewModel>();

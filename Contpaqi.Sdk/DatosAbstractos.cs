@@ -1,5 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 
+// ReSharper disable UnusedType.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable FieldCanBeMadeReadOnly.Global
 // ReSharper disable InconsistentNaming
 
 namespace Contpaqi.Sdk
@@ -124,9 +127,9 @@ namespace Contpaqi.Sdk
         public int cTipoDireccion;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = Constantes.kLongDescripcion)]
         public string cNombreCalle;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = Constantes.kLongNumeroExpandido)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = Constantes.kLongNumeroExtInt)]
         public string cNumeroExterior;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = Constantes.kLongNumeroExpandido)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = Constantes.kLongNumeroExtInt)]
         public string cNumeroInterior;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = Constantes.kLongDescripcion)]
         public string cColonia;

@@ -9,7 +9,7 @@
                       mc:Ignorable="d"
                       d:DataContext="{d:DesignInstance viewModels:IniciarSesionViewModel, IsDesignTimeCreatable=False}"
                       Width="800"
-                      Height="350"
+                      Height="300"
                       WindowStartupLocation="CenterScreen"
                       Title="{Binding Title}"
                       dialog:DialogParticipation.Register="{Binding}">

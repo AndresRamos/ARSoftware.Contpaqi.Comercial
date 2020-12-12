@@ -10,24 +10,24 @@ namespace Contpaqi.Sdk.Extras.Helpers
         {
             return new tDireccion
             {
-                cCodCteProv = direccion.CodigoClienteProveedor ?? "",
+                cCodCteProv = direccion.CodigoClienteProveedor,
                 cTipoCatalogo = (int) direccion.TipoCatalogo,
                 cTipoDireccion = direccion.TipoDireccion == TipoDireccionEnum.Fiscal ? 1 : 2,
-                cNombreCalle = direccion.NombreCalle ?? "",
-                cNumeroExterior = direccion.NumeroExterior ?? "",
-                cNumeroInterior = direccion.NumeroInterior ?? "",
-                cColonia = direccion.Colonia ?? "",
-                cCodigoPostal = direccion.CodigoPostal ?? "",
-                cTelefono1 = direccion.Telefono1 ?? "",
-                cTelefono2 = direccion.Telefono2 ?? "",
-                cTelefono3 = direccion.Telefono3 ?? "",
-                cTelefono4 = direccion.Telefono4 ?? "",
-                cEmail = direccion.Email ?? "",
-                cDireccionWeb = direccion.DireccionWeb ?? "",
-                cCiudad = direccion.Ciudad ?? "",
-                cEstado = direccion.Estado ?? "",
-                cPais = direccion.Pais ?? "",
-                cTextoExtra = direccion.TextoExtra ?? ""
+                cNombreCalle = direccion.NombreCalle,
+                cNumeroExterior = direccion.NumeroExterior,
+                cNumeroInterior = direccion.NumeroInterior,
+                cColonia = direccion.Colonia,
+                cCodigoPostal = direccion.CodigoPostal,
+                cTelefono1 = direccion.Telefono1,
+                cTelefono2 = direccion.Telefono2,
+                cTelefono3 = direccion.Telefono3,
+                cTelefono4 = direccion.Telefono4,
+                cEmail = direccion.Email,
+                cDireccionWeb = direccion.DireccionWeb,
+                cCiudad = direccion.Ciudad,
+                cEstado = direccion.Estado,
+                cPais = direccion.Pais,
+                cTextoExtra = direccion.TextoExtra
             };
         }
 
