@@ -13,6 +13,7 @@ namespace Contpaqi.Sdk.Extras
     public class ComercialSdkExtended : IContpaqiSdk
     {
         public string NombreLlaveRegistro => ComercialSdkConstants.NombreLlaveRegistro;
+        public string NombreLlaveRegistro64 => ComercialSdkConstants.NombreLlaveRegistro64;
 
         public string NombrePaq => ComercialSdkConstants.NombrePaq;
 
@@ -1436,7 +1437,11 @@ namespace Contpaqi.Sdk.Extras
             var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistro);
             if (keySistema is null)
             {
-                throw new ContpaqiSdkException(null, $"No se encontro la llave del registro {NombreLlaveRegistro}");
+                keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistro64);
+                if (keySistema is null)
+                {
+                    throw new ContpaqiSdkException(null, $"No se encontro la llave del registro {NombreLlaveRegistro} ni {NombreLlaveRegistro64}");
+                }
             }
             var lEntrada = keySistema.GetValue("DirectorioBase");
             Directory.SetCurrentDirectory(lEntrada.ToString());
@@ -1448,7 +1453,11 @@ namespace Contpaqi.Sdk.Extras
             var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistro);
             if (keySistema is null)
             {
-                throw new ContpaqiSdkException(null, $"No se encontro la llave del registro {NombreLlaveRegistro}");
+                keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistro64);
+                if (keySistema is null)
+                {
+                    throw new ContpaqiSdkException(null, $"No se encontro la llave del registro {NombreLlaveRegistro} ni {NombreLlaveRegistro64}");
+                }
             }
             var lEntrada = keySistema.GetValue("DirectorioBase");
             Directory.SetCurrentDirectory(lEntrada.ToString());
