@@ -45,6 +45,7 @@ namespace Contpaqi.Sdk.Ejemplos.Config
             services.AddTransient<MainViewModel>();
 
             // Agentes
+            services.AddTransient<EditarAgenteViewModel>();
             services.AddTransient<ListadoAgentesViewModel>();
             services.AddTransient<SeleccionarAgenteViewModel>();
 
@@ -104,6 +105,7 @@ namespace Contpaqi.Sdk.Ejemplos.Config
 
             // Agentes
             services.AddSingleton<IAgenteRepository<Agente>, AgenteRepository>();
+            services.AddSingleton<IAgenteService, AgenteService>();
 
             // Almacenes
             services.AddTransient<IAlmacenRepository<Almacen>, AlmacenRepository>();

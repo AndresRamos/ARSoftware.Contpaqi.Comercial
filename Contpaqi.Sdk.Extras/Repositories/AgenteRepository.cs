@@ -56,7 +56,7 @@ namespace Contpaqi.Sdk.Extras.Repositories
             agente.Id = int.Parse(id.ToString());
             agente.Codigo = codigo.ToString();
             agente.Nombre = nombre.ToString();
-            agente.Tipo = int.Parse(tipo.ToString());
+            agente.Tipo = TipoAgenteEnumHelper.ToTipoAgente(tipo.ToString());
             return agente;
         }
     }

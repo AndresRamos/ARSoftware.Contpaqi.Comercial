@@ -179,13 +179,13 @@
                                    Margin="5" />
                             <TextBox
                                 Text="{Binding Factura.DireccionFiscal.Pais, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                MinWidth="200" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                                MinWidth="200" VerticalAlignment="Center" Margin="5" />
                             <Label Content="Codigo Postal:" FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
                             <TextBox
                                 Text="{Binding Factura.DireccionFiscal.CodigoPostal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                MinWidth="200" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                                MinWidth="200" VerticalAlignment="Center" Margin="5" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Estado:" FontWeight="Bold"
@@ -193,13 +193,13 @@
                                    Margin="5" />
                             <TextBox
                                 Text="{Binding Factura.DireccionFiscal.Estado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                MinWidth="200" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                                MinWidth="200" VerticalAlignment="Center" Margin="5" />
                             <Label Content="Ciudad:" FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
                             <TextBox
                                 Text="{Binding Factura.DireccionFiscal.Ciudad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                MinWidth="200" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                                MinWidth="200" VerticalAlignment="Center" Margin="5" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Colonia:" FontWeight="Bold"
@@ -207,7 +207,7 @@
                                    Margin="5" />
                             <TextBox
                                 Text="{Binding Factura.DireccionFiscal.Colonia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                MinWidth="300" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                                MinWidth="300" VerticalAlignment="Center" Margin="5" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Calle:" FontWeight="Bold"
@@ -215,19 +215,19 @@
                                    Margin="5" />
                             <TextBox
                                 Text="{Binding Factura.DireccionFiscal.NombreCalle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                MinWidth="300" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                                MinWidth="300" VerticalAlignment="Center" Margin="5" />
                             <Label Content="Numero Exterior:" FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
                             <TextBox
                                 Text="{Binding Factura.DireccionFiscal.NumeroExterior, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                MinWidth="100" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                                MinWidth="100" VerticalAlignment="Center" Margin="5" />
                             <Label Content="Numero Interior:" FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
                             <TextBox
                                 Text="{Binding Factura.DireccionFiscal.NumeroInterior, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                MinWidth="100" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                                MinWidth="100" VerticalAlignment="Center" Margin="5" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Telefono:" FontWeight="Bold"
@@ -235,7 +235,7 @@
                                    Margin="5" />
                             <TextBox
                                 Text="{Binding Factura.DireccionFiscal.Telefono1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                MinWidth="200" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                                MinWidth="200" VerticalAlignment="Center" Margin="5" />
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -381,13 +381,13 @@
                                Margin="5" />
                         <TextBox
                             Text="{Binding Factura.DireccionEnvio.Pais, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            MinWidth="200" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                            MinWidth="200" VerticalAlignment="Center" Margin="5" />
                         <Label Content="Codigo Postal:" FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
                         <TextBox
                             Text="{Binding Factura.DireccionEnvio.CodigoPostal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            MinWidth="200" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                            MinWidth="200" VerticalAlignment="Center" Margin="5"  />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Estado:" FontWeight="Bold"
@@ -395,13 +395,13 @@
                                Margin="5" />
                         <TextBox
                             Text="{Binding Factura.DireccionEnvio.Estado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            MinWidth="200" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                            MinWidth="200" VerticalAlignment="Center" Margin="5"  />
                         <Label Content="Ciudad:" FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
                         <TextBox
                             Text="{Binding Factura.DireccionEnvio.Ciudad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            MinWidth="200" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                            MinWidth="200" VerticalAlignment="Center" Margin="5"  />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Colonia:" FontWeight="Bold"
@@ -409,7 +409,7 @@
                                Margin="5" />
                         <TextBox
                             Text="{Binding Factura.DireccionEnvio.Colonia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            MinWidth="300" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                            MinWidth="300" VerticalAlignment="Center" Margin="5"  />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Calle:" FontWeight="Bold"
@@ -417,19 +417,19 @@
                                Margin="5" />
                         <TextBox
                             Text="{Binding Factura.DireccionEnvio.NombreCalle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            MinWidth="300" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                            MinWidth="300" VerticalAlignment="Center" Margin="5"  />
                         <Label Content="Numero Exterior:" FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
                         <TextBox
                             Text="{Binding Factura.DireccionEnvio.NumeroExterior, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            MinWidth="100" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                            MinWidth="100" VerticalAlignment="Center" Margin="5"  />
                         <Label Content="Numero Interior:" FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
                         <TextBox
                             Text="{Binding Factura.DireccionEnvio.NumeroInterior, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            MinWidth="100" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                            MinWidth="100" VerticalAlignment="Center" Margin="5"  />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Telefono:" FontWeight="Bold"
@@ -437,7 +437,7 @@
                                Margin="5" />
                         <TextBox
                             Text="{Binding Factura.DireccionEnvio.Telefono1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            MinWidth="200" VerticalAlignment="Center" Margin="5" IsReadOnly="True" />
+                            MinWidth="200" VerticalAlignment="Center" Margin="5" />
                     </StackPanel>
                 </StackPanel>
             </TabItem>
@@ -453,7 +453,7 @@
                                 Style="{StaticResource MahApps.Styles.Button.Square}" />
                     </StackPanel>
                     <ScrollViewer Grid.Row="1">
-                        <Grid >
+                        <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />

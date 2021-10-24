@@ -1,10 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using Contpaqi.Sdk.Extras.Exceptions;
 using Contpaqi.Sdk.Extras.Helpers;
 using Contpaqi.Sdk.Extras.Interfaces;
-using Microsoft.Win32;
 
 // ReSharper disable InconsistentNaming
 
@@ -31,7 +29,7 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fActualizaClasificacion(aClasificacionDe, aNumClasificacion, aNombreClasificacion);
         }
 
-        public int fActualizaCteProv(string aCodigoCteProv,ref tCteProv astCteProv)
+        public int fActualizaCteProv(string aCodigoCteProv, ref tCteProv astCteProv)
         {
             return ComercialSdk.fActualizaCteProv(aCodigoCteProv, ref astCteProv);
         }
@@ -1433,25 +1431,13 @@ namespace Contpaqi.Sdk.Extras
 
         public int InicializarSDK()
         {
-            var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistro);
-            if (keySistema is null)
-            {
-                throw new ContpaqiSdkException(null, $"No se encontro la llave del registro {NombreLlaveRegistro}");
-            }
-            var lEntrada = keySistema.GetValue("DirectorioBase");
-            Directory.SetCurrentDirectory(lEntrada.ToString());
+            SetCurrentDirectory();
             return ComercialSdk.fSetNombrePAQ(NombrePaq);
         }
 
         public int InicializarSDK(string usuario, string password)
         {
-            var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistro);
-            if (keySistema is null)
-            {
-                throw new ContpaqiSdkException(null, $"No se encontro la llave del registro {NombreLlaveRegistro}");
-            }
-            var lEntrada = keySistema.GetValue("DirectorioBase");
-            Directory.SetCurrentDirectory(lEntrada.ToString());
+            SetCurrentDirectory();
             ComercialSdk.fInicioSesionSDK(usuario, password);
             return ComercialSdk.fSetNombrePAQ(NombrePaq);
         }
@@ -1489,6 +1475,12 @@ namespace Contpaqi.Sdk.Extras
         public int fCancelaDoctoInfo(string aPass)
         {
             return ComercialSdk.fCancelaDoctoInfo(aPass);
+        }
+
+        private void SetCurrentDirectory()
+        {
+            var lEntrada = RegistryHelper.GetDirectorioBaseFromRegistry(NombreLlaveRegistro);
+            Directory.SetCurrentDirectory(lEntrada);
         }
     }
 }

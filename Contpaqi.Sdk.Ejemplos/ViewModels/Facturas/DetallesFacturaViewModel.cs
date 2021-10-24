@@ -24,6 +24,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Facturas
         private readonly ConfiguracionAplicacion _configuracionAplicacion;
         private readonly IDatosCfdiRepository _datosCfdiRepository;
         private readonly IDialogCoordinator _dialogCoordinator;
+        private readonly IDireccionService _direccionService;
         private readonly IDocumentoRepository<Documento> _documentoRepository;
         private readonly IDocumentoService _documentoService;
         private readonly IMovimientoService _movimientoService;
@@ -31,7 +32,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Facturas
         private Documento _factura;
         private Movimiento _movimientoSeleccionado;
 
-        public DetallesFacturaViewModel(IDocumentoRepository<Documento> documentoRepository, IDialogCoordinator dialogCoordinator, IMovimientoService movimientoService, IDocumentoService documentoService, IDatosCfdiRepository datosCfdiRepository, ConfiguracionAplicacion configuracionAplicacion)
+        public DetallesFacturaViewModel(IDocumentoRepository<Documento> documentoRepository, IDialogCoordinator dialogCoordinator, IMovimientoService movimientoService, IDocumentoService documentoService, IDatosCfdiRepository datosCfdiRepository, ConfiguracionAplicacion configuracionAplicacion, IDireccionService direccionService)
         {
             _documentoRepository = documentoRepository;
             _dialogCoordinator = dialogCoordinator;
@@ -39,6 +40,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Facturas
             _documentoService = documentoService;
             _datosCfdiRepository = datosCfdiRepository;
             _configuracionAplicacion = configuracionAplicacion;
+            _direccionService = direccionService;
 
             CrearMovimientoCommand = new AsyncRelayCommand(CrearMovimientoAsync);
             EditarMovimientoCommand = new AsyncRelayCommand(EditarMovimientoAsync, CanEditarMovimientoAsync);
@@ -148,7 +150,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Facturas
                 "Eliminar Movimiento",
                 "Esta seguro de querer eliminar este movimiento?",
                 MessageDialogStyle.AffirmativeAndNegative,
-                new MetroDialogSettings {AffirmativeButtonText = "Eliminar", NegativeButtonText = "Cancelar"});
+                new MetroDialogSettings { AffirmativeButtonText = "Eliminar", NegativeButtonText = "Cancelar" });
 
             if (messageDialogResult != MessageDialogResult.Affirmative)
             {
@@ -190,6 +192,26 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Facturas
 
                 _documentoService.Actualizar(Factura.Id, datos);
 
+                if (Factura.DireccionFiscal != null && Factura.DireccionFiscal.Id != 0)
+                {
+                    var datosDireccion = Factura.DireccionFiscal.ToDatosDictionary();
+                    datosDireccion.Remove("CIDDIRECCION");
+                    datosDireccion.Remove("CIDCATALOGO");
+                    datosDireccion.Remove("CTIPOCATALOGO");
+                    datosDireccion.Remove("CTIPODIRECCION");
+                    _direccionService.Actualizar(Factura.DireccionFiscal.Id, datosDireccion);
+                }
+
+                if (Factura.DireccionEnvio != null && Factura.DireccionEnvio.Id != 0)
+                {
+                    var datosDireccion = Factura.DireccionEnvio.ToDatosDictionary();
+                    datosDireccion.Remove("CIDDIRECCION");
+                    datosDireccion.Remove("CIDCATALOGO");
+                    datosDireccion.Remove("CTIPOCATALOGO");
+                    datosDireccion.Remove("CTIPODIRECCION");
+                    _direccionService.Actualizar(Factura.DireccionEnvio.Id, datosDireccion);
+                }
+
                 CargarFactura(Factura.Id);
 
                 await _dialogCoordinator.ShowMessageAsync(this, "Documento Guardado", "Documento guardado.");
@@ -204,7 +226,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Facturas
         {
             try
             {
-                var messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Eliminar Documento", "Esta seguro de querer cancelar este documento?", MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings {AffirmativeButtonText = "Eliminar", NegativeButtonText = "Cancelar"});
+                var messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Eliminar Documento", "Esta seguro de querer cancelar este documento?", MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings { AffirmativeButtonText = "Eliminar", NegativeButtonText = "Cancelar" });
 
                 if (messageDialogResult != MessageDialogResult.Affirmative)
                 {
@@ -234,7 +256,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Facturas
         {
             try
             {
-                var messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Eliminar Documento", "Esta seguro de querer eliminar este documento?", MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings {AffirmativeButtonText = "Eliminar", NegativeButtonText = "Cancelar"});
+                var messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Eliminar Documento", "Esta seguro de querer eliminar este documento?", MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings { AffirmativeButtonText = "Eliminar", NegativeButtonText = "Cancelar" });
 
                 if (messageDialogResult != MessageDialogResult.Affirmative)
                 {
@@ -293,11 +315,11 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Facturas
 
                     var rutaArchivo = ArchivoDigitalHelper.GenerarRutaArchivoDigital(TipoArchivoDigitalEnum.Pdf, _configuracionAplicacion.Empresa.Ruta, Factura.Serie, Factura.Folio.ToString(CultureInfo.InvariantCulture));
 
-                    var messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Archivo PDF Generado", "Archivo PDF generado.", MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, new MetroDialogSettings {AffirmativeButtonText = "Abrir Archivo", NegativeButtonText = "Cancelar", FirstAuxiliaryButtonText = "Copiar Ruta"});
+                    var messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Archivo PDF Generado", "Archivo PDF generado.", MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, new MetroDialogSettings { AffirmativeButtonText = "Abrir Archivo", NegativeButtonText = "Cancelar", FirstAuxiliaryButtonText = "Copiar Ruta" });
 
                     if (messageDialogResult == MessageDialogResult.Affirmative)
                     {
-                        new Process {StartInfo = new ProcessStartInfo(rutaArchivo) {UseShellExecute = true}}.Start();
+                        new Process { StartInfo = new ProcessStartInfo(rutaArchivo) { UseShellExecute = true } }.Start();
                     }
                     else if (messageDialogResult == MessageDialogResult.FirstAuxiliary)
                     {
@@ -319,11 +341,11 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Facturas
 
                 var rutaArchivo = ArchivoDigitalHelper.GenerarRutaArchivoDigital(TipoArchivoDigitalEnum.Xml, _configuracionAplicacion.Empresa.Ruta, Factura.Serie, Factura.Folio.ToString(CultureInfo.InvariantCulture));
 
-                var messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Archivo XML Generado", "Archivo XML generado.", MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, new MetroDialogSettings {AffirmativeButtonText = "Abrir Archivo", NegativeButtonText = "Cancelar", FirstAuxiliaryButtonText = "Copiar Ruta"});
+                var messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Archivo XML Generado", "Archivo XML generado.", MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, new MetroDialogSettings { AffirmativeButtonText = "Abrir Archivo", NegativeButtonText = "Cancelar", FirstAuxiliaryButtonText = "Copiar Ruta" });
 
                 if (messageDialogResult == MessageDialogResult.Affirmative)
                 {
-                    new Process {StartInfo = new ProcessStartInfo(rutaArchivo) {UseShellExecute = true}}.Start();
+                    new Process { StartInfo = new ProcessStartInfo(rutaArchivo) { UseShellExecute = true } }.Start();
                 }
                 else if (messageDialogResult == MessageDialogResult.FirstAuxiliary)
                 {

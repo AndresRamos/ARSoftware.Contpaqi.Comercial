@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard1.3</TargetFramework>
-		<Version>2.1.0</Version>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Version>2.2.0</Version>
 		<Authors>AR Software</Authors>
 		<Description>Este proyecto extiende el proyecto Contpaqi.Sdk y dipone de varios repositorios y servicios que implementan diferentes funcionalidades del SDK.</Description>
 		<Copyright>Copyright © AR Software 2021</Copyright>
@@ -11,15 +11,11 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Contpaqi SDK Extras Adminpaq Comercial Factura Electronica</PackageTags>
 		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
-		<PackageReleaseNotes>Se agregaron servicios para crear y actualizar clientes/proveedores, direcciones, y clasificaciones.</PackageReleaseNotes>
+		<PackageReleaseNotes>Se actualizo a la version de .Net Standard 2.0 y se agregaron los servicios para crear agentes y almacenes.</PackageReleaseNotes>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>(MIT)</PackageLicenseExpression>
-		<AssemblyVersion>2.1.0.0</AssemblyVersion>
+		<AssemblyVersion>2.2.0.0</AssemblyVersion>
 	</PropertyGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
-	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Contpaqi.Sdk\Contpaqi.Sdk.csproj" />
@@ -30,6 +26,10 @@
 	    <Pack>True</Pack>
 	    <PackagePath></PackagePath>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
 	</ItemGroup>
 
 </Project>

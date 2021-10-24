@@ -96,7 +96,7 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Direcciones
                 datosDireccion.Remove("CIDCATALOGO");
                 _direccionService.Actualizar(Direccion.Id, datosDireccion);
                 CargarDireccion(Direccion.Id);
-                await _dialogCoordinator.ShowMessageAsync(this, "Direccion Guardad", "Direccion guardada exitosamente.");
+                await _dialogCoordinator.ShowMessageAsync(this, "Direccion Guardada", "Direccion guardada exitosamente.");
             }
         }
 

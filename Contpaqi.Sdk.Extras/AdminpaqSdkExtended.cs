@@ -1,10 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using Contpaqi.Sdk.Extras.Exceptions;
 using Contpaqi.Sdk.Extras.Helpers;
 using Contpaqi.Sdk.Extras.Interfaces;
-using Microsoft.Win32;
 
 // ReSharper disable InconsistentNaming
 
@@ -1433,14 +1431,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int InicializarSDK()
         {
-            var keySistema = Registry.LocalMachine.OpenSubKey(NombreLlaveRegistro);
-            if (keySistema is null)
-            {
-                throw new ContpaqiSdkException(null, $"No se encontro la llave del registro {NombreLlaveRegistro}");
-            }
-
-            var lEntrada = keySistema.GetValue("DirectorioBase");
-            Directory.SetCurrentDirectory(lEntrada.ToString());
+            SetCurrentDirectory();
             return AdminpaqSdk.fSetNombrePAQ(NombrePaq);
         }
 
@@ -1482,6 +1473,12 @@ namespace Contpaqi.Sdk.Extras
         public int fCancelaDoctoInfo(string aPass)
         {
             return AdminpaqSdk.fCancelaDoctoInfo(aPass);
+        }
+
+        private void SetCurrentDirectory()
+        {
+            var lEntrada = RegistryHelper.GetDirectorioBaseFromRegistry(NombreLlaveRegistro);
+            Directory.SetCurrentDirectory(lEntrada);
         }
     }
 }

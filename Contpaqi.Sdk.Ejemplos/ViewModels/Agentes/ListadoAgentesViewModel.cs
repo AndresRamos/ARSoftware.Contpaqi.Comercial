@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using Contpaqi.Sdk.Ejemplos.Views.Agentes;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Models;
 using MahApps.Metro.Controls.Dialogs;
@@ -30,6 +31,8 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Agentes
             AgentesView.Filter = AgentesView_Filter;
 
             BuscarAgentesCommand = new AsyncRelayCommand(BuscarAgentesAsync);
+            CrearAgenteCommand = new AsyncRelayCommand(CrearAgenteAsync);
+            EditarAgenteCommand = new AsyncRelayCommand(EditarAgenteAsync, CanEditarAgenteAsync);
         }
 
         public string Title => "Agentes";
@@ -52,7 +55,11 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Agentes
         public Agente AgenteSeleccionado
         {
             get => _agenteSeleccionado;
-            set => SetProperty(ref _agenteSeleccionado, value);
+            set
+            {
+                SetProperty(ref _agenteSeleccionado, value);
+                RaiseGuards();
+            }
         }
 
         public int NumeroAgentes => AgentesView.Cast<object>().Count();
@@ -64,6 +71,8 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Agentes
         }
 
         public IAsyncRelayCommand BuscarAgentesCommand { get; }
+        public IAsyncRelayCommand CrearAgenteCommand { get; }
+        public IAsyncRelayCommand EditarAgenteCommand { get; }
 
         public async Task BuscarAgentesAsync()
         {
@@ -94,6 +103,46 @@ namespace Contpaqi.Sdk.Ejemplos.ViewModels.Agentes
                 await progressDialogController.CloseAsync();
                 OnPropertyChanged(nameof(NumeroAgentes));
             }
+        }
+
+        public async Task CrearAgenteAsync()
+        {
+            try
+            {
+                var window = new EditarAgenteView();
+                window.ViewModel.Inicializar();
+                window.Show();
+            }
+            catch (Exception e)
+            {
+                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+            }
+        }
+
+        public async Task EditarAgenteAsync()
+        {
+            try
+            {
+                var window = new EditarAgenteView();
+                window.ViewModel.Inicializar(AgenteSeleccionado.Id);
+                window.Show();
+            }
+            catch (Exception e)
+            {
+                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+            }
+        }
+
+        public bool CanEditarAgenteAsync()
+        {
+            return AgenteSeleccionado != null;
+        }
+
+        private void RaiseGuards()
+        {
+            BuscarAgentesCommand.NotifyCanExecuteChanged();
+            CrearAgenteCommand.NotifyCanExecuteChanged();
+            EditarAgenteCommand.NotifyCanExecuteChanged();
         }
 
         private bool AgentesView_Filter(object obj)

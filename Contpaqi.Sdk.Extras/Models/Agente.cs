@@ -1,4 +1,5 @@
 ﻿using Contpaqi.Sdk.Extras.Interfaces;
+using Contpaqi.Sdk.Extras.Models.Enums;
 
 namespace Contpaqi.Sdk.Extras.Models
 {
@@ -10,7 +11,7 @@ namespace Contpaqi.Sdk.Extras.Models
 
         public string Nombre { get; set; }
 
-        public int Tipo { get; set; }
+        public TipoAgenteEnum Tipo { get; set; }
 
         public override string ToString()
         {
