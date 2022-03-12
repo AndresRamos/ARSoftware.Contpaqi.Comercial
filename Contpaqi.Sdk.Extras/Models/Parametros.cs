@@ -1,7 +1,7 @@
 ﻿// ReSharper disable UnusedMember.Global
 // ReSharper disable InconsistentNaming
 
-namespace Contpaqi.Sdk.Extras.Models
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
 {
     //public class Parametros : admParametros // No todos los datos de admParametros se pueden leer
     public class Parametros

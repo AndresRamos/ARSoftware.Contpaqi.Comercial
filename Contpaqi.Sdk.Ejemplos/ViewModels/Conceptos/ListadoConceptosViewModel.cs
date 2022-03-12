@@ -5,13 +5,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels.Conceptos;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Conceptos;
 
 public class ListadoConceptosViewModel : ObservableRecipient
 {

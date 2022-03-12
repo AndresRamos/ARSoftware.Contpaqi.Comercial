@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
+using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using Contpaqi.Comercial.Sql.Models.Empresa;
-using Contpaqi.Sdk.DatosAbstractos;
-using Contpaqi.Sdk.Ejemplos.Messages;
-using Contpaqi.Sdk.Extras.Extensions;
-using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Models;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels.UnidadesMedida;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.UnidadesMedida;
 
 public class EditarUnidadMedidaViewModel : ObservableRecipient
 {

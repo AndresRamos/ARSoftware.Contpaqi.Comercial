@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Contpaqi.Sdk.Extras.Exceptions
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Exceptions
 {
     public class ContpaqiSdkException : Exception
     {

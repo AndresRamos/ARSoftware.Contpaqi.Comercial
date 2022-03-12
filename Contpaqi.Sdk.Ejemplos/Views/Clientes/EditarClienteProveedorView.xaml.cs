@@ -1,9 +1,9 @@
-﻿using Contpaqi.Sdk.Ejemplos.Messages;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Clientes;
+﻿using ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Clientes;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.Views.Clientes;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Clientes;
 
 /// <summary>
 ///     Interaction logic for CrearClienteProveedorView.xaml

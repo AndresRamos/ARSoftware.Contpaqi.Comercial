@@ -5,15 +5,15 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using Contpaqi.Sdk.Ejemplos.Views.Productos;
-using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Models;
-using Contpaqi.Sdk.Extras.Models.Enums;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Productos;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels.Productos;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Productos;
 
 public class ListadoProductosViewModel : ObservableRecipient
 {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Contpaqi.Sdk.DatosAbstractos;
+using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 
-namespace Contpaqi.Sdk.Extras.Interfaces
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 {
     public interface IProductoService
     {

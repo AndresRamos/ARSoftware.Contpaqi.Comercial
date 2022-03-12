@@ -1,4 +1,4 @@
-﻿namespace Contpaqi.Sdk.Ejemplos.Messages;
+﻿namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
 
 public class MostrarDetallesFacturaMessage
 {

@@ -1,9 +1,9 @@
-﻿using Contpaqi.Sdk.Ejemplos.Messages;
-using Contpaqi.Sdk.Ejemplos.ViewModels.UnidadesMedida;
+﻿using ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.UnidadesMedida;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.Views.UnidadesMedida;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Views.UnidadesMedida;
 
 public partial class ListadoUnidadesMedidaView
 {

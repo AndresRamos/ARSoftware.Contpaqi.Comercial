@@ -1,10 +1,10 @@
 ﻿using System.Runtime.InteropServices;
 using System.Text;
-using Contpaqi.Sdk.DatosAbstractos;
+using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 
 // ReSharper disable InconsistentNaming
 
-namespace Contpaqi.Sdk
+namespace ARSoftware.Contpaqi.Comercial.Sdk
 {
     public static class AdminpaqSdk
     {

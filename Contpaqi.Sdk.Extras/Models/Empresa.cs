@@ -1,7 +1,7 @@
 ﻿using System;
 using Contpaqi.Comercial.Sql.Models.Generales;
 
-namespace Contpaqi.Sdk.Extras.Models
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
 {
     public class Empresa : Empresas
     {

@@ -6,18 +6,18 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using Contpaqi.Sdk.Ejemplos.Messages;
-using Contpaqi.Sdk.Ejemplos.Models;
-using Contpaqi.Sdk.Ejemplos.Views.Facturas;
-using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Models;
-using Contpaqi.Sdk.Extras.Models.Enums;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Models;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Facturas;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels.Facturas;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Facturas;
 
 public class ListadoFacturasViewModel : ObservableRecipient, IRecipient<MostrarDetallesFacturaMessage>
 {

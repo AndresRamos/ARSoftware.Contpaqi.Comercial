@@ -1,11 +1,11 @@
 ﻿using System;
+using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using Contpaqi.Comercial.Sql.Models.Empresa;
-using Contpaqi.Sdk.DatosAbstractos;
-using Contpaqi.Sdk.Extras.Extensions;
-using Contpaqi.Sdk.Extras.Helpers;
-using Contpaqi.Sdk.Extras.Models.Enums;
 
-namespace Contpaqi.Sdk.Extras.Models
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
 {
     public class Producto : admProductos
     {

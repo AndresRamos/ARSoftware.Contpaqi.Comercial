@@ -1,9 +1,9 @@
-﻿using Contpaqi.Sdk.Ejemplos.Messages;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Productos;
+﻿using ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Productos;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.Views.Productos;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Productos;
 
 public partial class EditarProductoView
 {

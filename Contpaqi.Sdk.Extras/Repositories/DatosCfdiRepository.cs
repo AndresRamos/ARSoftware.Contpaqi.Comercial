@@ -1,9 +1,9 @@
 ﻿using System.Text;
-using Contpaqi.Sdk.Extras.Extensions;
-using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 
-namespace Contpaqi.Sdk.Extras.Repositories
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
 {
     public class DatosCfdiRepository : IDatosCfdiRepository
     {

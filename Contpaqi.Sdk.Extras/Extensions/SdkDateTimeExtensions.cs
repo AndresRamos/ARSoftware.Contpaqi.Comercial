@@ -1,7 +1,7 @@
 ﻿using System;
-using Contpaqi.Sdk.Extras.Helpers;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 
-namespace Contpaqi.Sdk.Extras.Extensions
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions
 {
     public static class SdkDateTimeExtensions
     {

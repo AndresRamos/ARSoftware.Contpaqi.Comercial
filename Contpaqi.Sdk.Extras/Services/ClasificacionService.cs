@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Contpaqi.Sdk.Extras.Extensions;
-using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Models.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 
-namespace Contpaqi.Sdk.Extras.Services
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
 {
     public class ClasificacionService : IClasificacionService
     {

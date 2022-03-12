@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Contpaqi.Sdk.Extras.Models
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
 {
     public class Moneda
     {

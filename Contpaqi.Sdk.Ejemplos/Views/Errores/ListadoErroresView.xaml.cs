@@ -1,9 +1,9 @@
-﻿using Contpaqi.Sdk.Ejemplos.Messages;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Errores;
+﻿using ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Errores;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.Views.Errores;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Errores;
 
 /// <summary>
 ///     Interaction logic for ListadoErroresView.xaml

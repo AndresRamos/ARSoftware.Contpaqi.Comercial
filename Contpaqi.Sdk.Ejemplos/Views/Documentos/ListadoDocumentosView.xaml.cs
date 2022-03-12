@@ -1,9 +1,9 @@
-﻿using Contpaqi.Sdk.Ejemplos.Messages;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Documentos;
+﻿using ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Documentos;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.Views.Documentos;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Documentos;
 
 /// <summary>
 ///     Interaction logic for ListadoDocumetnosView.xaml

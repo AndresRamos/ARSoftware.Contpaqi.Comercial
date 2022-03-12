@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
-using Contpaqi.Sdk.Ejemplos.Models;
-using Contpaqi.Sdk.Ejemplos.Views.Agentes;
-using Contpaqi.Sdk.Ejemplos.Views.Almacenes;
-using Contpaqi.Sdk.Ejemplos.Views.Clasificaciones;
-using Contpaqi.Sdk.Ejemplos.Views.Clientes;
-using Contpaqi.Sdk.Ejemplos.Views.Conceptos;
-using Contpaqi.Sdk.Ejemplos.Views.Documentos;
-using Contpaqi.Sdk.Ejemplos.Views.Empresas;
-using Contpaqi.Sdk.Ejemplos.Views.Errores;
-using Contpaqi.Sdk.Ejemplos.Views.Facturas;
-using Contpaqi.Sdk.Ejemplos.Views.Parametros;
-using Contpaqi.Sdk.Ejemplos.Views.Productos;
-using Contpaqi.Sdk.Ejemplos.Views.Sesion;
-using Contpaqi.Sdk.Ejemplos.Views.UnidadesMedida;
-using Contpaqi.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Models;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Agentes;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Almacenes;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Clasificaciones;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Clientes;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Conceptos;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Documentos;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Empresas;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Errores;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Facturas;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Parametros;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Productos;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Sesion;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.UnidadesMedida;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels;
 
 public class MainViewModel : ObservableRecipient
 {

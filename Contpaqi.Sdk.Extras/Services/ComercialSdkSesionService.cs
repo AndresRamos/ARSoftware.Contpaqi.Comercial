@@ -1,9 +1,9 @@
-﻿using Contpaqi.Sdk.Extras.Exceptions;
-using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Models;
-using Contpaqi.Sdk.Extras.Repositories;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Exceptions;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 
-namespace Contpaqi.Sdk.Extras.Services
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
 {
     public class ComercialSdkSesionService : IComercialSdkSesionService
     {

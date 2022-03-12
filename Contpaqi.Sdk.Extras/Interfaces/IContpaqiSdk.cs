@@ -1,9 +1,9 @@
 ﻿using System.Text;
-using Contpaqi.Sdk.DatosAbstractos;
+using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 
 // ReSharper disable InconsistentNaming
 
-namespace Contpaqi.Sdk.Extras.Interfaces
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 {
     public interface IContpaqiSdk
     {

@@ -5,7 +5,7 @@
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable InconsistentNaming
 
-namespace Contpaqi.Sdk.DatosAbstractos
+namespace ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos
 {
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
     public struct tTipoProducto

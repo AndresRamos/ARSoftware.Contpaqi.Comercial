@@ -1,16 +1,16 @@
-﻿<controls:MetroWindow x:Class="Contpaqi.Sdk.Ejemplos.Views.Parametros.ParametrosView"
+﻿<controls:MetroWindow x:Class="ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Parametros.ParametrosView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-                      xmlns:viewModels="clr-namespace:Contpaqi.Sdk.Ejemplos.ViewModels.Parametros"
+                      xmlns:parametros="clr-namespace:ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Parametros"
                       mc:Ignorable="d"
                       Width="700"
                       Height="300"
                       WindowStartupLocation="CenterScreen"
-                      d:DataContext="{d:DesignInstance viewModels:ParametrosViewModel, IsDesignTimeCreatable=False}"
+                      d:DataContext="{d:DesignInstance parametros:ParametrosViewModel, IsDesignTimeCreatable=False}"
                       dialog:DialogParticipation.Register="{Binding}">
     <Grid>
         <Grid.RowDefinitions>

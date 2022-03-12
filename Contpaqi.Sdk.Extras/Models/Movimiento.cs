@@ -1,7 +1,7 @@
-﻿using Contpaqi.Comercial.Sql.Models.Empresa;
-using Contpaqi.Sdk.DatosAbstractos;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
+using Contpaqi.Comercial.Sql.Models.Empresa;
 
-namespace Contpaqi.Sdk.Extras.Models
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
 {
     public class Movimiento : admMovimientos
     {

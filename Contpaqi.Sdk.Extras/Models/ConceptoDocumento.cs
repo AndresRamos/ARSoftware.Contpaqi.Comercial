@@ -1,7 +1,7 @@
 ﻿using System;
 using Contpaqi.Comercial.Sql.Models.Empresa;
 
-namespace Contpaqi.Sdk.Extras.Models
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
 {
     public class ConceptoDocumento : admConceptos
     {

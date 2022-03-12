@@ -1,10 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Threading;
-using Contpaqi.Sdk.Ejemplos.Common;
-using Contpaqi.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Common;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 
-namespace Contpaqi.Sdk.Ejemplos;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos;
 
 /// <summary>
 ///     Interaction logic for App.xaml

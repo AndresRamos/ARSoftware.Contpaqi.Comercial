@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Contpaqi.Sdk.Extras.Helpers;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 
-namespace Contpaqi.Sdk.Extras.Extensions
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions
 {
     public static class SdkExtensions
     {

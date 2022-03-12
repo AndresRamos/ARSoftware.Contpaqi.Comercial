@@ -1,7 +1,7 @@
 ﻿// ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
 
-namespace Contpaqi.Sdk.Constantes
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Constantes
 {
     public static class ConstantesSdk
     {

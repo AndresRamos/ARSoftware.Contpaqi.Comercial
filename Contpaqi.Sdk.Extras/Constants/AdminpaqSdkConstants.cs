@@ -1,4 +1,4 @@
-﻿namespace Contpaqi.Sdk.Extras.Constants
+﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants
 {
     public static class AdminpaqSdkConstants
     {

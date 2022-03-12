@@ -4,13 +4,13 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
-using Contpaqi.Sdk.Ejemplos.Messages;
-using Contpaqi.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels.ValoresClasificacion;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.ValoresClasificacion;
 
 public class SeleccionarValorClasificacionViewModel : ObservableRecipient
 {

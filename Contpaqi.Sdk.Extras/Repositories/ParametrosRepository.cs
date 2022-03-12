@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using Contpaqi.Comercial.Sql.Models.Empresa;
-using Contpaqi.Sdk.Extras.Extensions;
-using Contpaqi.Sdk.Extras.Interfaces;
 
-namespace Contpaqi.Sdk.Extras.Repositories
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
 {
     public class ParametrosRepository<T> : IParametrosRepository<T> where T : class, new()
     {

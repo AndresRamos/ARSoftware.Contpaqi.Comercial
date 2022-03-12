@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Contpaqi.Sdk.Ejemplos.Messages;
-using Contpaqi.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels.Sesion;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Sesion;
 
 public sealed class IniciarSesionViewModel : ObservableRecipient
 {

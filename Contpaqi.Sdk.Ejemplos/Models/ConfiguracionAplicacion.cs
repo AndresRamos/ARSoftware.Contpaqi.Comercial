@@ -1,7 +1,7 @@
-﻿using Contpaqi.Sdk.Extras.Models;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
-namespace Contpaqi.Sdk.Ejemplos.Models;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Models;
 
 public class ConfiguracionAplicacion : ObservableObject
 {

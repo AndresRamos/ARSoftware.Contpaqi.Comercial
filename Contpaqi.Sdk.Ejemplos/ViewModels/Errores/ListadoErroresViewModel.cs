@@ -4,13 +4,13 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels.Errores;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Errores;
 
 public class ListadoErroresViewModel : ObservableRecipient
 {

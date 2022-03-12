@@ -5,22 +5,22 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Models;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Movimientos;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using Contpaqi.Comercial.Sql.Models.Empresa;
-using Contpaqi.Sdk.Ejemplos.Messages;
-using Contpaqi.Sdk.Ejemplos.Models;
-using Contpaqi.Sdk.Ejemplos.Views.Movimientos;
-using Contpaqi.Sdk.Extras.Extensions;
-using Contpaqi.Sdk.Extras.Helpers;
-using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Models;
-using Contpaqi.Sdk.Extras.Models.Enums;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.Win32;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels.Facturas;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Facturas;
 
 public class DetallesFacturaViewModel : ObservableRecipient
 {

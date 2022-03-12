@@ -1,7 +1,7 @@
-﻿using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Models.Enums;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 
-namespace Contpaqi.Sdk.Extras.Helpers
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers
 {
     public class ContpaqiSdkFactory
     {

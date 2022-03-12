@@ -2,20 +2,21 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Contpaqi.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels.Parametros;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Parametros;
 
 public class ParametrosViewModel : ObservableRecipient
 {
     private readonly IDialogCoordinator _dialogCoordinator;
-    private readonly IParametrosRepository<Extras.Models.Parametros> _parametrosRepository;
+    private readonly IParametrosRepository<Sdk.Extras.Models.Parametros> _parametrosRepository;
     private string _duracionBusqueda;
 
-    public ParametrosViewModel(IParametrosRepository<Extras.Models.Parametros> parametrosRepository, IDialogCoordinator dialogCoordinator)
+    public ParametrosViewModel(IParametrosRepository<Sdk.Extras.Models.Parametros> parametrosRepository,
+                               IDialogCoordinator dialogCoordinator)
     {
         _parametrosRepository = parametrosRepository;
         _dialogCoordinator = dialogCoordinator;
@@ -25,7 +26,7 @@ public class ParametrosViewModel : ObservableRecipient
 
     public string Title => "Parametros";
 
-    public ObservableCollection<Extras.Models.Parametros> Parametros { get; } = new();
+    public ObservableCollection<Sdk.Extras.Models.Parametros> Parametros { get; } = new();
 
     public IAsyncRelayCommand BuscarParametrosCommand { get; }
 

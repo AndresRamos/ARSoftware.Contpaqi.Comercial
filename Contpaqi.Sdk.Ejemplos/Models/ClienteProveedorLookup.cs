@@ -1,10 +1,10 @@
 ﻿using System;
-using Contpaqi.Sdk.Extras.Helpers;
-using Contpaqi.Sdk.Extras.Models.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 
 // ReSharper disable InconsistentNaming
 
-namespace Contpaqi.Sdk.Ejemplos.Models;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Models;
 
 public class ClienteProveedorLookup
 {

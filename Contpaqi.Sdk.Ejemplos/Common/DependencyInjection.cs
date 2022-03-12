@@ -1,31 +1,31 @@
 ﻿using System;
-using Contpaqi.Sdk.Ejemplos.Models;
-using Contpaqi.Sdk.Ejemplos.ViewModels;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Agentes;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Almacenes;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Clientes;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Conceptos;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Direcciones;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Documentos;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Empresas;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Errores;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Facturas;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Movimientos;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Parametros;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Productos;
-using Contpaqi.Sdk.Ejemplos.ViewModels.Sesion;
-using Contpaqi.Sdk.Ejemplos.ViewModels.UnidadesMedida;
-using Contpaqi.Sdk.Ejemplos.ViewModels.ValoresClasificacion;
-using Contpaqi.Sdk.Extras;
-using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Models;
-using Contpaqi.Sdk.Extras.Repositories;
-using Contpaqi.Sdk.Extras.Services;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Models;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Agentes;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Almacenes;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Clasificaciones;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Clientes;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Conceptos;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Direcciones;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Documentos;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Empresas;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Errores;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Facturas;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Movimientos;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Parametros;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Productos;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Sesion;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.UnidadesMedida;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.ValoresClasificacion;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Contpaqi.Sdk.Ejemplos.Common;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Common;
 
 public static class DependencyInjection
 {

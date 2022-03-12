@@ -5,14 +5,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using Contpaqi.Sdk.Ejemplos.Views.Almacenes;
-using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Almacenes;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels.Almacenes;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Almacenes;
 
 public class ListadoAlmacenesViewModel : ObservableRecipient
 {

@@ -1,4 +1,4 @@
-﻿namespace Contpaqi.Sdk.Extras.Interfaces
+﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 {
     public interface ISdkErrorRepository<T>
     {

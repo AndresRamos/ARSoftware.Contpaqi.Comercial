@@ -1,9 +1,9 @@
-﻿using Contpaqi.Sdk.Ejemplos.Messages;
-using Contpaqi.Sdk.Ejemplos.ViewModels.ValoresClasificacion;
+﻿using ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.ValoresClasificacion;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.Views.ValoresClasificacion;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Views.ValoresClasificacion;
 
 /// <summary>
 ///     Interaction logic for CrearValorClasificacionView.xaml

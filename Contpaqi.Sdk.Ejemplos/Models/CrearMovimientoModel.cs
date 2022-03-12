@@ -1,10 +1,10 @@
-﻿using Contpaqi.Sdk.Extras.Models;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable InconsistentNaming
 
-namespace Contpaqi.Sdk.Ejemplos.Models;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Models;
 
 public class CrearMovimientoModel : ObservableObject
 {

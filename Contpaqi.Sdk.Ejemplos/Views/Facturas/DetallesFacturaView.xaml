@@ -1,17 +1,17 @@
-﻿<controls:MetroWindow x:Class="Contpaqi.Sdk.Ejemplos.Views.Facturas.DetallesFacturaView"
+﻿<controls:MetroWindow x:Class="ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Facturas.DetallesFacturaView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-                      xmlns:viewModels="clr-namespace:Contpaqi.Sdk.Ejemplos.ViewModels.Facturas"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:facturas="clr-namespace:ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Facturas"
                       mc:Ignorable="d"
                       Title="{Binding Title}"
                       WindowStartupLocation="CenterScreen"
                       Width="1300"
                       Height="800"
-                      d:DataContext="{d:DesignInstance d:Type=viewModels:DetallesFacturaViewModel, IsDesignTimeCreatable=True}"
+                      d:DataContext="{d:DesignInstance d:Type=facturas:DetallesFacturaViewModel, IsDesignTimeCreatable=True}"
                       dialog:DialogParticipation.Register="{Binding}">
     <Grid>
         <Grid.RowDefinitions>

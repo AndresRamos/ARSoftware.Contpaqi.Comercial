@@ -1,7 +1,7 @@
-﻿using Contpaqi.Sdk.Extras.Exceptions;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Exceptions;
 using Microsoft.Win32;
 
-namespace Contpaqi.Sdk.Extras.Helpers
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers
 {
     public static class RegistryHelper
     {

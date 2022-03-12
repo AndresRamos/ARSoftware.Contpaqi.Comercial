@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 
-namespace Contpaqi.Sdk.Extras.Repositories
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
 {
     public class MonedaRepository : IMonedaRepository<Moneda>
     {

@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Agentes;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Almacenes;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Direcciones;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.ValoresClasificacion;
+using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using Contpaqi.Comercial.Sql.Models.Empresa;
-using Contpaqi.Sdk.DatosAbstractos;
-using Contpaqi.Sdk.Ejemplos.Messages;
-using Contpaqi.Sdk.Ejemplos.Views.Agentes;
-using Contpaqi.Sdk.Ejemplos.Views.Almacenes;
-using Contpaqi.Sdk.Ejemplos.Views.Direcciones;
-using Contpaqi.Sdk.Ejemplos.Views.ValoresClasificacion;
-using Contpaqi.Sdk.Extras.Extensions;
-using Contpaqi.Sdk.Extras.Interfaces;
-using Contpaqi.Sdk.Extras.Models;
-using Contpaqi.Sdk.Extras.Models.Enums;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels.Clientes;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Clientes;
 
 public class EditarClienteProveedorViewModel : ObservableRecipient
 {

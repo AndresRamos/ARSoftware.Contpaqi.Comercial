@@ -1,8 +1,8 @@
 ﻿using System;
+using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using Contpaqi.Comercial.Sql.Models.Empresa;
-using Contpaqi.Sdk.DatosAbstractos;
 
-namespace Contpaqi.Sdk.Extras.Models
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
 {
     public class ValorClasificacion : admClasificacionesValores
     {

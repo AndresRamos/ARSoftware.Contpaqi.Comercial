@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Contpaqi.Sdk.Extras.Helpers
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers
 {
     public static class SdkDateTimeHelper
     {

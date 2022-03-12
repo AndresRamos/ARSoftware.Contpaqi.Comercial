@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Globalization;
-using Contpaqi.Sdk.Extras.Extensions;
-using Contpaqi.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
 
-namespace Contpaqi.Sdk.Ejemplos.Models;
+namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Models;
 
 public class DocumentoLookup
 {

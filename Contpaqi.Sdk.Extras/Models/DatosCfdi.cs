@@ -1,4 +1,4 @@
-﻿namespace Contpaqi.Sdk.Extras.Models
+﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
 {
     public class DatosCfdi
     {

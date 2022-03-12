@@ -8,15 +8,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contpaqi.Sdk", "Contpaqi.Sdk\Contpaqi.Sdk.csproj", "{8FE9363D-F62D-4097-AAF4-C7723A9817C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Sdk", "Contpaqi.Sdk\ARSoftware.Contpaqi.Comercial.Sdk.csproj", "{8FE9363D-F62D-4097-AAF4-C7723A9817C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contpaqi.Sdk.Extras", "Contpaqi.Sdk.Extras\Contpaqi.Sdk.Extras.csproj", "{2695223D-E90E-4B10-97A7-AEC07A64E8B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Sdk.Extras", "Contpaqi.Sdk.Extras\ARSoftware.Contpaqi.Comercial.Sdk.Extras.csproj", "{2695223D-E90E-4B10-97A7-AEC07A64E8B2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contpaqi.Sdk.Ejemplos", "Contpaqi.Sdk.Ejemplos\Contpaqi.Sdk.Ejemplos.csproj", "{A1460D85-4BA0-4770-AAF5-B40AD117E234}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Ejemplos", "Contpaqi.Sdk.Ejemplos\ARSoftware.Contpaqi.Comercial.Ejemplos.csproj", "{A1460D85-4BA0-4770-AAF5-B40AD117E234}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARSoftware.Contpaqi.Comercial.Sql", "ARSoftware.Contpaqi.Comercial.Sql\ARSoftware.Contpaqi.Comercial.Sql.csproj", "{06F70134-ACFF-4839-A421-F61B000EA653}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Sql", "ARSoftware.Contpaqi.Comercial.Sql\ARSoftware.Contpaqi.Comercial.Sql.csproj", "{06F70134-ACFF-4839-A421-F61B000EA653}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARSoftware.Contpaqi.Comercial.Sql.Models", "ARSoftware.Contpaqi.Comercial.Sql.Models\ARSoftware.Contpaqi.Comercial.Sql.Models.csproj", "{C15B3488-1EDA-4058-AC1C-900471AC0189}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Sql.Models", "ARSoftware.Contpaqi.Comercial.Sql.Models\ARSoftware.Contpaqi.Comercial.Sql.Models.csproj", "{C15B3488-1EDA-4058-AC1C-900471AC0189}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
