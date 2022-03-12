@@ -11,7 +11,8 @@
                       d:DataContext="{d:DesignInstance viewModels:ListadoFacturasViewModel, IsDesignTimeCreatable=False}"
                       Title="{Binding Title}"
                       WindowStartupLocation="CenterScreen"
-                      Width="1300" Height="800"
+                      Width="1300"
+                      Height="800"
                       dialog:DialogParticipation.Register="{Binding}">
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">
@@ -27,49 +28,111 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="{Binding Title, Mode=OneWay}" FontWeight="Bold" FontSize="20"
-                   VerticalAlignment="Center" Margin="5" />
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Label Content="Fecha Inicio:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+        <TextBlock Grid.Row="0"
+                   Text="{Binding Title, Mode=OneWay}"
+                   FontWeight="Bold"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal">
+            <Label Content="Fecha Inicio:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="5" />
             <DatePicker SelectedDate="{Binding FechaInicio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        VerticalAlignment="Center" Margin="5" Width="100" />
-            <Label Content="Fecha Fin:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+                        VerticalAlignment="Center"
+                        Margin="5"
+                        Width="100" />
+            <Label Content="Fecha Fin:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="5" />
             <DatePicker SelectedDate="{Binding FechaFin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        VerticalAlignment="Center" Margin="5" Width="100" />
-            <Label Content="Concepto:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
-            <ComboBox ItemsSource="{Binding Conceptos}" SelectedItem="{Binding ConceptoSeleccionado}"
-                      DisplayMemberPath="Nombre"
-                      VerticalAlignment="Center" Margin="5" Width="200" />
-            <Label Content="Cliente:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
-            <ComboBox ItemsSource="{Binding Clientes}" SelectedItem="{Binding ClienteSeleccionado}"
-                      DisplayMemberPath="RazonSocial"
-                      VerticalAlignment="Center" Margin="5" Width="250" />
-            <Button Content="Buscar Con Filtro" Command="{Binding BuscarConFiltroCommand}" Width="150"
+                        VerticalAlignment="Center"
+                        Margin="5"
+                        Width="100" />
+            <Label Content="Concepto:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+            <ComboBox ItemsSource="{Binding Conceptos}"
+                      SelectedItem="{Binding ConceptoSeleccionado}"
+                      DisplayMemberPath="CNOMBRECONCEPTO"
+                      VerticalAlignment="Center"
+                      Margin="5"
+                      Width="200" />
+            <Label Content="Cliente:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+            <ComboBox ItemsSource="{Binding Clientes}"
+                      SelectedItem="{Binding ClienteSeleccionado}"
+                      DisplayMemberPath="CRAZONSOCIAL"
+                      VerticalAlignment="Center"
+                      Margin="5"
+                      Width="250" />
+            <Button Content="Buscar Con Filtro"
+                    Command="{Binding BuscarConFiltroCommand}"
+                    Width="150"
                     VerticalAlignment="Center"
-                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
         </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <TextBlock Text="# Documentos:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
-            <TextBlock Text="{Binding Documentos.Count}" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
-            <TextBlock Text="Duracion Busqueda:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
-            <TextBlock Text="{Binding DuracionBusqueda}" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal">
+            <TextBlock Text="# Documentos:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+            <TextBlock Text="{Binding Documentos.Count}"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+            <TextBlock Text="Duracion Busqueda:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+            <TextBlock Text="{Binding DuracionBusqueda}"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
         </StackPanel>
-        <StackPanel Grid.Row="3" Orientation="Horizontal">
-            <Button Content="Crear nueva" Command="{Binding CrearFacturaViewCommand}" Width="150"
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal">
+            <Button Content="Crear nueva"
+                    Command="{Binding CrearFacturaViewCommand}"
+                    Width="150"
                     VerticalAlignment="Center"
-                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
-            <Button Content="Ver Detalles" Command="{Binding MostrarDetallesFacturaViewCommand}" Width="150"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+            <Button Content="Ver Detalles"
+                    Command="{Binding MostrarDetallesFacturaViewCommand}"
+                    Width="150"
                     VerticalAlignment="Center"
-                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square}" />
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square}" />
         </StackPanel>
-        <StackPanel Grid.Row="4" Orientation="Horizontal">
+        <StackPanel Grid.Row="4"
+                    Orientation="Horizontal">
             <TextBox Text="{Binding Filtro, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     VerticalAlignment="Center" Width="200" Margin="5" controls:TextBoxHelper.Watermark="Filtro"
+                     VerticalAlignment="Center"
+                     Width="200"
+                     Margin="5"
+                     controls:TextBoxHelper.Watermark="Filtro"
                      controls:TextBoxHelper.ClearTextButton="True" />
-            <TextBlock Text="# Documentos:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
-            <TextBlock Text="{Binding NumeroDocumentos}" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="# Documentos:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+            <TextBlock Text="{Binding NumeroDocumentos}"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
         </StackPanel>
-        <DataGrid Grid.Row="5" ItemsSource="{Binding Documentos}"
+        <!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
+        <DataGrid Grid.Row="5"
+                  ItemsSource="{Binding Documentos}"
                   SelectedItem="{Binding DocumentoSeleccionado}"
                   IsReadOnly="True"
                   Margin="5"
@@ -77,18 +140,28 @@
                   VirtualizingStackPanel.VirtualizationMode="Standard"
                   Style="{StaticResource MahApps.Styles.DataGrid.Azure}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Concepto Codigo" Binding="{Binding ConceptoDocumento.Codigo}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Concepto Nombre" Binding="{Binding ConceptoDocumento.Nombre}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Serie" Binding="{Binding Serie}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Folio" Binding="{Binding Folio}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Cliente Codigo" Binding="{Binding ClienteProveedor.Codigo}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Cliente Razon Social" Binding="{Binding ClienteProveedor.RazonSocial}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Cliente RFC" Binding="{Binding ClienteProveedor.Rfc}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Moneda" Binding="{Binding NumeroMoneda}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Total" Binding="{Binding Total}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Fecha"
+                                    Binding="{Binding CFECHA}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Concepto Codigo"
+                                    Binding="{Binding ConceptoDocumento.CCODIGOCONCEPTO}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Concepto Nombre"
+                                    Binding="{Binding ConceptoDocumento.CNOMBRECONCEPTO}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Serie"
+                                    Binding="{Binding CSERIEDOCUMENTO}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Folio"
+                                    Binding="{Binding CFOLIO}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Cliente Codigo"
+                                    Binding="{Binding ClienteProveedor.CCODIGOCLIENTE}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Cliente Razon Social"
+                                    Binding="{Binding ClienteProveedor.CRAZONSOCIAL}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Cliente RFC"
+                                    Binding="{Binding ClienteProveedor.CRFC}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Moneda"
+                                    Binding="{Binding CIDMONEDA}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Total"
+                                    Binding="{Binding CTOTAL}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-
+        <!-- ReSharper restore Xaml.BindingWithContextNotResolved -->
     </Grid>
 </controls:MetroWindow>

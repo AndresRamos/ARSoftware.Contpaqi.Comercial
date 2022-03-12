@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using Contpaqi.Sdk.DatosAbstractos;
+using Contpaqi.Sdk.Extras.Constants;
+using Contpaqi.Sdk.Extras.Extensions;
 using Contpaqi.Sdk.Extras.Helpers;
 using Contpaqi.Sdk.Extras.Interfaces;
 
@@ -10,10 +13,6 @@ namespace Contpaqi.Sdk.Extras
 {
     public class ComercialSdkExtended : IContpaqiSdk
     {
-        public string NombreLlaveRegistro => ComercialSdkConstants.NombreLlaveRegistro;
-
-        public string NombrePaq => ComercialSdkConstants.NombrePaq;
-
         public int fAbreEmpresa(string aDirectorioEmpresa)
         {
             return ComercialSdk.fAbreEmpresa(aDirectorioEmpresa);
@@ -39,9 +38,9 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fActualizaDireccion(ref astDireccion);
         }
 
-        public int fActualizaProducto(ref int aCodigoProducto, tProducto astProducto)
+        public int fActualizaProducto(string aCodigoProducto, ref tProducto astProducto)
         {
-            return ComercialSdk.fActualizaProducto(ref aCodigoProducto, astProducto);
+            return ComercialSdk.fActualizaProducto(aCodigoProducto, ref astProducto);
         }
 
         public int fActualizaUnidad(string aNombreUnidad, ref tUnidad astUnidad)
@@ -56,17 +55,39 @@ namespace Contpaqi.Sdk.Extras
 
         public int fAfectaDocto(ref tLlaveDoc aLlaveDocto, bool aAfecta)
         {
-            return ComercialSdk.fAfectaDocto(ref aLlaveDocto, aAfecta);
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
         public int fAfectaDocto_Param(string aCodConcepto, string aSerie, double aFolio, bool aAfecta)
         {
-            return ComercialSdk.fAfectaDocto_Param(aCodConcepto, aSerie, aFolio, aAfecta);
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
         public int fAfectaSerie(int aIdMovto, string aNumeroSerie)
         {
             return ComercialSdk.fAfectaSerie(aIdMovto, aNumeroSerie);
+        }
+
+        public int fAgregarRelacionCFDI(string aCodConcepto,
+                                        string aSerie,
+                                        string aFolio,
+                                        string aTipoRelacion,
+                                        string aConceptoRelacionar,
+                                        string aSerieRelacionar,
+                                        string aFolioRelacionar)
+        {
+            return ComercialSdk.fAgregarRelacionCFDI(aCodConcepto,
+                aSerie,
+                aFolio,
+                aTipoRelacion,
+                aConceptoRelacionar,
+                aSerieRelacionar,
+                aFolioRelacionar);
+        }
+
+        public int fAgregarRelacionCFDI2(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aUUID)
+        {
+            return ComercialSdk.fAgregarRelacionCFDI2(aCodConcepto, aSerie, aFolio, aTipoRelacion, aUUID);
         }
 
         public int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv)
@@ -79,14 +100,60 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fAltaDireccion(ref aIdDireccion, ref astDireccion);
         }
 
-        public int fAltaDoctoAjusteIESPSCteProv(string aCodigoClienteProveedor, int aEsCliente, string aFechaDocto, int aIdMoneda, double aTipoCambio, double aImporteIVA, double aTasaIVA, double aImporteIESPS, double aTasaIESPS, int aIdFacturaBase, string aMetodo, string aLugar, ref int aIdDoctoGenerado)
+        public int fAltaDoctoAjusteIESPSCteProv(string aCodigoClienteProveedor,
+                                                int aEsCliente,
+                                                string aFechaDocto,
+                                                int aIdMoneda,
+                                                double aTipoCambio,
+                                                double aImporteIVA,
+                                                double aTasaIVA,
+                                                double aImporteIESPS,
+                                                double aTasaIESPS,
+                                                int aIdFacturaBase,
+                                                string aMetodo,
+                                                string aLugar,
+                                                ref int aIdDoctoGenerado)
         {
-            return ComercialSdk.fAltaDoctoAjusteIESPSCteProv(aCodigoClienteProveedor, aEsCliente, aFechaDocto, aIdMoneda, aTipoCambio, aImporteIVA, aTasaIVA, aImporteIESPS, aTasaIESPS, aIdFacturaBase, aMetodo, aLugar, ref aIdDoctoGenerado);
+            return ComercialSdk.fAltaDoctoAjusteIESPSCteProv(aCodigoClienteProveedor,
+                aEsCliente,
+                aFechaDocto,
+                aIdMoneda,
+                aTipoCambio,
+                aImporteIVA,
+                aTasaIVA,
+                aImporteIESPS,
+                aTasaIESPS,
+                aIdFacturaBase,
+                aMetodo,
+                aLugar,
+                ref aIdDoctoGenerado);
         }
 
-        public int fAltaDoctoAjusteIVAClienteProveedor(string aCodigoClienteProveedor, int aEsCliente, int aAbsorberAjusteIVA, string aFechaDocto, int aIdMoneda, double aTipoCambio, double aImporteIVA, double aTasaIVA, int aIdFacturaBase, string aMetodo, string aLugar, ref int aIdDoctoGenerado)
+        public int fAltaDoctoAjusteIVAClienteProveedor(string aCodigoClienteProveedor,
+                                                       int aEsCliente,
+                                                       int aAbsorberAjusteIVA,
+                                                       string aFechaDocto,
+                                                       int aIdMoneda,
+                                                       double aTipoCambio,
+                                                       double aImporteIVA,
+                                                       double aTasaIVA,
+                                                       int aIdFacturaBase,
+                                                       string aMetodo,
+                                                       string aLugar,
+                                                       ref int aIdDoctoGenerado)
         {
-            return ComercialSdk.fAltaDoctoAjusteIVAClienteProveedor(aCodigoClienteProveedor, aEsCliente, aAbsorberAjusteIVA, aFechaDocto, aIdMoneda, aTipoCambio, aImporteIVA, aTasaIVA, aIdFacturaBase, aMetodo, aLugar, ref aIdDoctoGenerado);
+            return ComercialSdk.fAltaDoctoAjusteIVAClienteProveedor(aCodigoClienteProveedor,
+                aEsCliente,
+                aAbsorberAjusteIVA,
+                aFechaDocto,
+                aIdMoneda,
+                aTipoCambio,
+                aImporteIVA,
+                aTasaIVA,
+                aIdFacturaBase,
+                aMetodo,
+                aLugar,
+                ref aIdDoctoGenerado);
         }
 
         public int fAltaDocumento(ref int aIdDocumento, ref tDocumento aDocumento)
@@ -99,9 +166,25 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fAltaDocumentoCargoAbono(ref aDocumento);
         }
 
-        public int fAltaDocumentoCargoAbonoExtras(ref tDocumento aDocumento, string aTextoExtra1, string aTextoExtra2, string aTextoExtra3, string aFechaExtra, double aImporteExtra1, double aImporteExtra2, double aImporteExtra3, double aImporteExtra4)
+        public int fAltaDocumentoCargoAbonoExtras(ref tDocumento aDocumento,
+                                                  string aTextoExtra1,
+                                                  string aTextoExtra2,
+                                                  string aTextoExtra3,
+                                                  string aFechaExtra,
+                                                  double aImporteExtra1,
+                                                  double aImporteExtra2,
+                                                  double aImporteExtra3,
+                                                  double aImporteExtra4)
         {
-            return ComercialSdk.fAltaDocumentoCargoAbonoExtras(ref aDocumento, aTextoExtra1, aTextoExtra2, aTextoExtra3, aFechaExtra, aImporteExtra1, aImporteExtra2, aImporteExtra3, aImporteExtra4);
+            return ComercialSdk.fAltaDocumentoCargoAbonoExtras(ref aDocumento,
+                aTextoExtra1,
+                aTextoExtra2,
+                aTextoExtra3,
+                aFechaExtra,
+                aImporteExtra1,
+                aImporteExtra2,
+                aImporteExtra3,
+                aImporteExtra4);
         }
 
         public int fAltaMovimiento(int aIdDocumento, ref int aIdMovimiento, ref tMovimiento astMovimiento)
@@ -109,14 +192,24 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fAltaMovimiento(aIdDocumento, ref aIdMovimiento, ref astMovimiento);
         }
 
-        public int fAltaMovimientoCaracteristicas(int aIdMovimiento, int aIdMovtoCaracteristicas, tCaracteristicas aCaracteristicas)
+        public int fAltaMovimientoCaracteristicas(int aIdMovimiento, ref int aIdMovtoCaracteristicas, ref tCaracteristicas aCaracteristicas)
         {
-            return ComercialSdk.fAltaMovimientoCaracteristicas(aIdMovimiento, aIdMovtoCaracteristicas, aCaracteristicas);
+            return ComercialSdk.fAltaMovimientoCaracteristicas(aIdMovimiento, ref aIdMovtoCaracteristicas, ref aCaracteristicas);
         }
 
-        public int fAltaMovimientoCaracteristicas_Param(string aIdMovimiento, string aIdMovtoCaracteristicas, string aUnidades, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3)
+        public int fAltaMovimientoCaracteristicas_Param(string aIdMovimiento,
+                                                        string aIdMovtoCaracteristicas,
+                                                        string aUnidades,
+                                                        string aValorCaracteristica1,
+                                                        string aValorCaracteristica2,
+                                                        string aValorCaracteristica3)
         {
-            return ComercialSdk.fAltaMovimientoCaracteristicas_Param(aIdMovimiento, aIdMovtoCaracteristicas, aUnidades, aValorCaracteristica1, aValorCaracteristica2, aValorCaracteristica3);
+            return ComercialSdk.fAltaMovimientoCaracteristicas_Param(aIdMovimiento,
+                aIdMovtoCaracteristicas,
+                aUnidades,
+                aValorCaracteristica1,
+                aValorCaracteristica2,
+                aValorCaracteristica3);
         }
 
         public int fAltaMovimientoCDesct(int aIdDocumento, ref int aIdMovimiento, ref tMovimientoDesc astMovimiento)
@@ -124,9 +217,9 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fAltaMovimientoCDesct(aIdDocumento, ref aIdMovimiento, ref astMovimiento);
         }
 
-        public int fAltaMovimientoEx(ref int aIdMovimiento, tTipoProducto aTipoProducto)
+        public int fAltaMovimientoEx(ref int aIdMovimiento, ref tTipoProducto aTipoProducto)
         {
-            return ComercialSdk.fAltaMovimientoEx(ref aIdMovimiento, aTipoProducto);
+            return ComercialSdk.fAltaMovimientoEx(ref aIdMovimiento, ref aTipoProducto);
         }
 
         public int fAltaMovimientoSeriesCapas(int aIdMovimiento, ref tSeriesCapas aSeriesCapas)
@@ -134,19 +227,53 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fAltaMovimientoSeriesCapas(aIdMovimiento, ref aSeriesCapas);
         }
 
-        public int fAltaMovimientoSeriesCapas_Param(string aIdMovimiento, string aUnidades, string aTipoCambio, string aSeries, string aPedimento, string aAgencia, string aFechaPedimento, string aNumeroLote, string aFechaFabricacion, string aFechaCaducidad)
+        public int fAltaMovimientoSeriesCapas_Param(string aIdMovimiento,
+                                                    string aUnidades,
+                                                    string aTipoCambio,
+                                                    string aSeries,
+                                                    string aPedimento,
+                                                    string aAgencia,
+                                                    string aFechaPedimento,
+                                                    string aNumeroLote,
+                                                    string aFechaFabricacion,
+                                                    string aFechaCaducidad)
         {
-            return ComercialSdk.fAltaMovimientoSeriesCapas_Param(aIdMovimiento, aUnidades, aTipoCambio, aSeries, aPedimento, aAgencia, aFechaPedimento, aNumeroLote, aFechaFabricacion, aFechaCaducidad);
+            return ComercialSdk.fAltaMovimientoSeriesCapas_Param(aIdMovimiento,
+                aUnidades,
+                aTipoCambio,
+                aSeries,
+                aPedimento,
+                aAgencia,
+                aFechaPedimento,
+                aNumeroLote,
+                aFechaFabricacion,
+                aFechaCaducidad);
         }
 
-        public int fAltaMovtoCaracteristicasUnidades(int aIdMovimiento, int aIdMovtoCaracteristicas, tCaracteristicas aCaracteristicasUnidades)
+        public int fAltaMovtoCaracteristicasUnidades(int aIdMovimiento,
+                                                     ref int aIdMovtoCaracteristicas,
+                                                     ref tCaracteristicas aCaracteristicasUnidades)
         {
-            return ComercialSdk.fAltaMovtoCaracteristicasUnidades(aIdMovimiento, aIdMovtoCaracteristicas, aCaracteristicasUnidades);
+            return ComercialSdk.fAltaMovtoCaracteristicasUnidades(aIdMovimiento, ref aIdMovtoCaracteristicas, ref aCaracteristicasUnidades);
         }
 
-        public int fAltaMovtoCaracteristicasUnidades_Param(string aIdMovimiento, string aIdMovtoCaracteristicas, string aUnidad, string aUnidades, string aUnidadesNC, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3)
+        public int fAltaMovtoCaracteristicasUnidades_Param(string aIdMovimiento,
+                                                           string aIdMovtoCaracteristicas,
+                                                           string aUnidad,
+                                                           string aUnidades,
+                                                           string aUnidadesNC,
+                                                           string aValorCaracteristica1,
+                                                           string aValorCaracteristica2,
+                                                           string aValorCaracteristica3)
         {
-            return ComercialSdk.fAltaMovtoCaracteristicasUnidades_Param(aIdMovimiento, aIdMovtoCaracteristicas, aUnidad, aUnidades, aUnidadesNC, aValorCaracteristica1, aValorCaracteristica2, aValorCaracteristica3);
+            return ComercialSdk.fAltaMovtoCaracteristicasUnidades_Param(aIdMovimiento,
+                aIdMovtoCaracteristicas,
+                aUnidad,
+                aUnidades,
+                aUnidadesNC,
+                aValorCaracteristica1,
+                aValorCaracteristica2,
+                aValorCaracteristica3);
         }
 
         public int fAltaProducto(ref int aIdProducto, ref tProducto astProducto)
@@ -194,9 +321,19 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fBorrarAsociacion(aDoctoaPagar, aDoctoPago);
         }
 
-        public int fBorrarAsociacion_Param(string aCodConcepto_Pagar, string aSerie_Pagar, double aFolio_Pagar, string aCodConcepto_Pago, string aSerie_Pago, double aFolio_Pago)
+        public int fBorrarAsociacion_Param(string aCodConcepto_Pagar,
+                                           string aSerie_Pagar,
+                                           double aFolio_Pagar,
+                                           string aCodConcepto_Pago,
+                                           string aSerie_Pago,
+                                           double aFolio_Pago)
         {
-            return ComercialSdk.fBorrarAsociacion_Param(aCodConcepto_Pagar, aSerie_Pagar, aFolio_Pagar, aCodConcepto_Pago, aSerie_Pago, aFolio_Pago);
+            return ComercialSdk.fBorrarAsociacion_Param(aCodConcepto_Pagar,
+                aSerie_Pagar,
+                aFolio_Pagar,
+                aCodConcepto_Pago,
+                aSerie_Pago,
+                aFolio_Pago);
         }
 
         public int fBorraUnidad()
@@ -326,7 +463,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fCalculaMovtoSerieCapa(int aIdMovimiento)
         {
-            return ComercialSdk.fCalculaMovtoSerieCapa(aIdMovimiento);
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
         public int fCancelaCambiosMovimiento()
@@ -336,7 +473,12 @@ namespace Contpaqi.Sdk.Extras
 
         public int fCancelaComplementoPagoUUID(string aUUID, string aIdDConcepto, string aPass)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
+        }
+
+        public int fCancelaDoctoInfo(string aPass)
+        {
+            return ComercialSdk.fCancelaDoctoInfo(aPass);
         }
 
         public int fCancelaDocumento()
@@ -347,6 +489,11 @@ namespace Contpaqi.Sdk.Extras
         public int fCancelaDocumento_CW()
         {
             return ComercialSdk.fCancelaDocumento_CW();
+        }
+
+        public int fCancelaDocumentoConMotivo(string aMotivoCancelacion, string aUUIDRemplaza)
+        {
+            return ComercialSdk.fCancelaDocumentoConMotivo(aMotivoCancelacion, aUUIDRemplaza);
         }
 
         public int fCancelaFiltroDocumento()
@@ -412,6 +559,18 @@ namespace Contpaqi.Sdk.Extras
         public int fCancelaUUID(string aUUID, string aIdDConcepto, string aPass)
         {
             return ComercialSdk.fCancelaUUID(aUUID, aIdDConcepto, aPass);
+        }
+
+        public int fCancelaUUID40(string aUUID,
+                                  string aMotivoCancelacion,
+                                  string aUUIDReemplaza,
+                                  string RFCReceptor,
+                                  double aTotal,
+                                  string aIdDConcepto,
+                                  string aPass,
+                                  ref int aEstatusCancelacion)
+        {
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
         public void fCierraEmpresa()
@@ -481,7 +640,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fEditaParametros()
         {
-            return ComercialSdk.fEditaParametros();
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
         public int fEditaProducto()
@@ -524,6 +683,11 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fEliminarProducto(aCodigoProducto);
         }
 
+        public int fEliminarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio)
+        {
+            return ComercialSdk.fEliminarRelacionesCFDIs(aCodConcepto, aSerie, aFolio);
+        }
+
         public int fEliminarUnidad(string aNombreUnidad)
         {
             return ComercialSdk.fEliminarUnidad(aNombreUnidad);
@@ -554,9 +718,35 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fGetCantidadParcialidades(atPtrPassword, aCantidadParcialidades);
         }
 
-        public int fGetDatosCFDI(StringBuilder aSerieCertEmisor, StringBuilder aFolioFiscalUUID, StringBuilder aSerieCertSAT, StringBuilder aFechaHora, StringBuilder aSelloDigCFDI, StringBuilder aSelloSAAT, StringBuilder aCadOrigComplSAT, StringBuilder aRegimen, StringBuilder aLugarExpedicion, StringBuilder aMoneda, StringBuilder aFolioFiscalOrig, StringBuilder aSerieFolioFiscalOrig, StringBuilder aFechaFolioFiscalOrig, StringBuilder aMontoFolioFiscalOrig)
+        public int fGetDatosCFDI(StringBuilder aSerieCertEmisor,
+                                 StringBuilder aFolioFiscalUUID,
+                                 StringBuilder aSerieCertSAT,
+                                 StringBuilder aFechaHora,
+                                 StringBuilder aSelloDigCFDI,
+                                 StringBuilder aSelloSAAT,
+                                 StringBuilder aCadOrigComplSAT,
+                                 StringBuilder aRegimen,
+                                 StringBuilder aLugarExpedicion,
+                                 StringBuilder aMoneda,
+                                 StringBuilder aFolioFiscalOrig,
+                                 StringBuilder aSerieFolioFiscalOrig,
+                                 StringBuilder aFechaFolioFiscalOrig,
+                                 StringBuilder aMontoFolioFiscalOrig)
         {
-            return ComercialSdk.fGetDatosCFDI(aSerieCertEmisor, aFolioFiscalUUID, aSerieCertSAT, aFechaHora, aSelloDigCFDI, aSelloSAAT, aCadOrigComplSAT, aRegimen, aLugarExpedicion, aMoneda, aFolioFiscalOrig, aSerieFolioFiscalOrig, aFechaFolioFiscalOrig, aMontoFolioFiscalOrig);
+            return ComercialSdk.fGetDatosCFDI(aSerieCertEmisor,
+                aFolioFiscalUUID,
+                aSerieCertSAT,
+                aFechaHora,
+                aSelloDigCFDI,
+                aSelloSAAT,
+                aCadOrigComplSAT,
+                aRegimen,
+                aLugarExpedicion,
+                aMoneda,
+                aFolioFiscalOrig,
+                aSerieFolioFiscalOrig,
+                aFechaFolioFiscalOrig,
+                aMontoFolioFiscalOrig);
         }
 
         public int fGetNumParcialidades(StringBuilder atPtrPassword, StringBuilder aNumParcialidades)
@@ -571,7 +761,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fGetSerieCertificado(StringBuilder atPtrPassword, StringBuilder aSerieCertificado)
         {
-            return ComercialSdk.fGetSerieCertificado(atPtrPassword, aSerieCertificado);
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
         public int fGetTamSelloDigitalYCadena(StringBuilder atPtrPassword, ref int aEspSelloDig, ref int aEspCadOrig)
@@ -626,7 +816,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fGuardaParametros()
         {
-            return ComercialSdk.fGuardaParametros();
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
         public int fGuardaProducto()
@@ -644,14 +834,30 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fGuardaValorClasif();
         }
 
-        public int fInformacionCliente(StringBuilder aCodigo, ref int aPermiteCredito, ref double aLimiteCredito, ref int aLimiteDoctosVencidos, ref int aPermiteExcederCredito, StringBuilder aFecha, ref double aSaldo, ref double aSaldoPendiente, ref int aDoctosVencidos)
+        public int fInformacionCliente(StringBuilder aCodigo,
+                                       ref int aPermiteCredito,
+                                       ref double aLimiteCredito,
+                                       ref int aLimiteDoctosVencidos,
+                                       ref int aPermiteExcederCredito,
+                                       StringBuilder aFecha,
+                                       ref double aSaldo,
+                                       ref double aSaldoPendiente,
+                                       ref int aDoctosVencidos)
         {
-            return ComercialSdk.fInformacionCliente(aCodigo, ref aPermiteCredito, ref aLimiteCredito, ref aLimiteDoctosVencidos, ref aPermiteExcederCredito, aFecha, ref aSaldo, ref aSaldoPendiente, ref aDoctosVencidos);
+            return ComercialSdk.fInformacionCliente(aCodigo,
+                ref aPermiteCredito,
+                ref aLimiteCredito,
+                ref aLimiteDoctosVencidos,
+                ref aPermiteExcederCredito,
+                aFecha,
+                ref aSaldo,
+                ref aSaldoPendiente,
+                ref aDoctosVencidos);
         }
 
         public int fInicializaLicenseInfo(byte aSistema)
         {
-            return ComercialSdk.fInicializaLicenseInfo(aSistema);
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
         public int fInicializaSDK()
@@ -711,7 +917,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fInsertarDocumento()
         {
-            return ComercialSdk.fInsertarDocumento();
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
         public int fInsertarMovimiento()
@@ -741,7 +947,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fLeeDatoCFDI(StringBuilder aValor, int aDato)
         {
-            return ComercialSdk.fLeeDatoCFDI(aValor, aDato);
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
         public int fLeeDatoClasificacion(string aCampo, StringBuilder aValor, int aLen)
@@ -799,9 +1005,9 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fLeeDatoValorClasif(aCampo, aValor, aLen);
         }
 
-        public int fLlenaRegistroCteProv(tCteProv astCteProv, int aEsAlta)
+        public int fLlenaRegistroCteProv(ref tCteProv astCteProv, int aEsAlta)
         {
-            return ComercialSdk.fLlenaRegistroCteProv(astCteProv, aEsAlta);
+            return ComercialSdk.fLlenaRegistroCteProv(ref astCteProv, aEsAlta);
         }
 
         public int fLlenaRegistroDireccion(ref tDireccion astDireccion, int aEsAlta)
@@ -809,9 +1015,9 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fLlenaRegistroDireccion(ref astDireccion, aEsAlta);
         }
 
-        public int fLlenaRegistroProducto(tProducto astProducto, int aEsAlta)
+        public int fLlenaRegistroProducto(ref tProducto astProducto, int aEsAlta)
         {
-            return ComercialSdk.fLlenaRegistroProducto(astProducto, aEsAlta);
+            return ComercialSdk.fLlenaRegistroProducto(ref astProducto, aEsAlta);
         }
 
         public int fLlenaRegistroUnidad(ref tUnidad astUnidad)
@@ -836,7 +1042,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fObtieneDatosCFDI(string atPtrPassword)
         {
-            return ComercialSdk.fObtieneDatosCFDI(atPtrPassword);
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
         public int fObtieneLicencia(StringBuilder aCodAcvtiva, StringBuilder aCodSitio, StringBuilder aSerie, StringBuilder aTagVersion)
@@ -854,9 +1060,21 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fObtieneUnidadesPendientes(aConceptoDocto, aCodigoProducto, aCodigoAlmacen, aUnidades);
         }
 
-        public int fObtieneUnidadesPendientesCarac(string aConceptoDocto, string aCodigoProducto, string aCodigoAlmacen, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3, StringBuilder aUnidades)
+        public int fObtieneUnidadesPendientesCarac(string aConceptoDocto,
+                                                   string aCodigoProducto,
+                                                   string aCodigoAlmacen,
+                                                   string aValorCaracteristica1,
+                                                   string aValorCaracteristica2,
+                                                   string aValorCaracteristica3,
+                                                   StringBuilder aUnidades)
         {
-            return ComercialSdk.fObtieneUnidadesPendientesCarac(aConceptoDocto, aCodigoProducto, aCodigoAlmacen, aValorCaracteristica1, aValorCaracteristica2, aValorCaracteristica3, aUnidades);
+            return ComercialSdk.fObtieneUnidadesPendientesCarac(aConceptoDocto,
+                aCodigoProducto,
+                aCodigoAlmacen,
+                aValorCaracteristica1,
+                aValorCaracteristica2,
+                aValorCaracteristica3,
+                aUnidades);
         }
 
         public int fPosAnteriorAgente()
@@ -1214,12 +1432,53 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fPosUltimoValorClasif();
         }
 
-        public int fRecosteoProducto(string aCodigoProducto, int aEjercicio, int aPeriodo, string aCodigoClasificacion1, string aCodigoClasificacion2, string aCodigoClasificacion3, string aCodigoClasificacion4, string aCodigoClasificacion5, string aCodigoClasificacion6, string aNombreBitacora, int aSobreEscribirBitacora, int aEsCalculoArimetico)
+        public int fProyectoEmpresaDoctos(string aCodigoProyecto)
         {
-            return ComercialSdk.fRecosteoProducto(aCodigoProducto, aEjercicio, aPeriodo, aCodigoClasificacion1, aCodigoClasificacion2, aCodigoClasificacion3, aCodigoClasificacion4, aCodigoClasificacion5, aCodigoClasificacion6, aNombreBitacora, aSobreEscribirBitacora, aEsCalculoArimetico);
+            return ComercialSdk.fProyectoEmpresaDoctos(aCodigoProyecto);
         }
 
-        public int fRecuperaTipoProducto(ref bool aUnidades, ref bool aSerie, ref bool aLote, ref bool aPedimento, ref bool aCaracteristicas)
+        public int fRecosteoProducto(string aCodigoProducto,
+                                     int aEjercicio,
+                                     int aPeriodo,
+                                     string aCodigoClasificacion1,
+                                     string aCodigoClasificacion2,
+                                     string aCodigoClasificacion3,
+                                     string aCodigoClasificacion4,
+                                     string aCodigoClasificacion5,
+                                     string aCodigoClasificacion6,
+                                     string aNombreBitacora,
+                                     int aSobreEscribirBitacora,
+                                     int aEsCalculoArimetico)
+        {
+            return ComercialSdk.fRecosteoProducto(aCodigoProducto,
+                aEjercicio,
+                aPeriodo,
+                aCodigoClasificacion1,
+                aCodigoClasificacion2,
+                aCodigoClasificacion3,
+                aCodigoClasificacion4,
+                aCodigoClasificacion5,
+                aCodigoClasificacion6,
+                aNombreBitacora,
+                aSobreEscribirBitacora,
+                aEsCalculoArimetico);
+        }
+
+        public int fRecuperarRelacionesCFDIs(string aCodConcepto,
+                                             string aSerie,
+                                             string aFolio,
+                                             string aTipoRelacion,
+                                             StringBuilder aUUIDs,
+                                             string aRutaNombreArchivoInfo)
+        {
+            return ComercialSdk.fRecuperarRelacionesCFDIs(aCodConcepto, aSerie, aFolio, aTipoRelacion, aUUIDs, aRutaNombreArchivoInfo);
+        }
+
+        public int fRecuperaTipoProducto(ref bool aUnidades,
+                                         ref bool aSerie,
+                                         ref bool aLote,
+                                         ref bool aPedimento,
+                                         ref bool aCaracteristicas)
         {
             return ComercialSdk.fRecuperaTipoProducto(ref aUnidades, ref aSerie, ref aLote, ref aPedimento, ref aCaracteristicas);
         }
@@ -1234,49 +1493,220 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fRegresaCostoEstandar(aCodigoProducto, aCostoEstandar);
         }
 
-        public int fRegresaCostoPromedio(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, StringBuilder aCostoPromedio)
+        public int fRegresaCostoPromedio(string aCodigoProducto,
+                                         string aCodigoAlmacen,
+                                         string aAnio,
+                                         string aMes,
+                                         string aDia,
+                                         StringBuilder aCostoPromedio)
         {
             return ComercialSdk.fRegresaCostoPromedio(aCodigoProducto, aCodigoAlmacen, aAnio, aMes, aDia, aCostoPromedio);
         }
 
-        public int fRegresaExistencia(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, ref double aExistencia)
+        public int fRegresaExistencia(string aCodigoProducto,
+                                      string aCodigoAlmacen,
+                                      string aAnio,
+                                      string aMes,
+                                      string aDia,
+                                      ref double aExistencia)
         {
             return ComercialSdk.fRegresaExistencia(aCodigoProducto, aCodigoAlmacen, aAnio, aMes, aDia, ref aExistencia);
         }
 
-        public int fRegresaExistenciaCaracteristicas(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3, ref double aExistencia)
+        public int fRegresaExistenciaCaracteristicas(string aCodigoProducto,
+                                                     string aCodigoAlmacen,
+                                                     string aAnio,
+                                                     string aMes,
+                                                     string aDia,
+                                                     string aValorCaracteristica1,
+                                                     string aValorCaracteristica2,
+                                                     string aValorCaracteristica3,
+                                                     ref double aExistencia)
         {
-            return ComercialSdk.fRegresaExistenciaCaracteristicas(aCodigoProducto, aCodigoAlmacen, aAnio, aMes, aDia, aValorCaracteristica1, aValorCaracteristica2, aValorCaracteristica3, ref aExistencia);
+            return ComercialSdk.fRegresaExistenciaCaracteristicas(aCodigoProducto,
+                aCodigoAlmacen,
+                aAnio,
+                aMes,
+                aDia,
+                aValorCaracteristica1,
+                aValorCaracteristica2,
+                aValorCaracteristica3,
+                ref aExistencia);
         }
 
-        public int fRegresaIVACargo(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVAOtrasTasas)
+        public int fRegresaExistenciaLotePedimento(string aCodigoProducto,
+                                                   string aCodigoAlmacen,
+                                                   string aPedimento,
+                                                   string aLote,
+                                                   ref double aExistencia)
         {
-            return ComercialSdk.fRegresaIVACargo(aLlaveDocto, aNetoTasa15, aNetoTasa10, aNetoTasaCero, aNetoTasaExcenta, aNetoOtrasTasas, aIVATasa15, aIVATasa10, aIVAOtrasTasas);
+            return ComercialSdk.fRegresaExistenciaLotePedimento(aCodigoProducto, aCodigoAlmacen, aPedimento, aLote, ref aExistencia);
         }
 
-        public int fRegresaIVACargo_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas)
+        public int fRegresaIVACargo(tLlaveDoc aLlaveDocto,
+                                    double aNetoTasa15,
+                                    double aNetoTasa10,
+                                    double aNetoTasaCero,
+                                    double aNetoTasaExcenta,
+                                    double aNetoOtrasTasas,
+                                    double aIVATasa15,
+                                    double aIVATasa10,
+                                    double aIVAOtrasTasas)
         {
-            return ComercialSdk.fRegresaIVACargo_2010(aLlaveDocto, aNetoTasa15, aNetoTasa10, aNetoTasa16, aNetoTasa11, aNetoTasaCero, aNetoTasaExcenta, aNetoOtrasTasas, aIVATasa15, aIVATasa10, aIVATasa16, aIVATasa11, aIVAOtrasTasas);
+            return ComercialSdk.fRegresaIVACargo(aLlaveDocto,
+                aNetoTasa15,
+                aNetoTasa10,
+                aNetoTasaCero,
+                aNetoTasaExcenta,
+                aNetoOtrasTasas,
+                aIVATasa15,
+                aIVATasa10,
+                aIVAOtrasTasas);
         }
 
-        public int fRegresaIVACargoRet_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas, double aRetIVA, double aRetI)
+        public int fRegresaIVACargo_2010(tLlaveDoc aLlaveDocto,
+                                         double aNetoTasa15,
+                                         double aNetoTasa10,
+                                         double aNetoTasa16,
+                                         double aNetoTasa11,
+                                         double aNetoTasaCero,
+                                         double aNetoTasaExcenta,
+                                         double aNetoOtrasTasas,
+                                         double aIVATasa15,
+                                         double aIVATasa10,
+                                         double aIVATasa16,
+                                         double aIVATasa11,
+                                         double aIVAOtrasTasas)
         {
-            return ComercialSdk.fRegresaIVACargoRet_2010(aLlaveDocto, aNetoTasa15, aNetoTasa10, aNetoTasa16, aNetoTasa11, aNetoTasaCero, aNetoTasaExcenta, aNetoOtrasTasas, aIVATasa15, aIVATasa10, aIVATasa16, aIVATasa11, aIVAOtrasTasas, aRetIVA, aRetI);
+            return ComercialSdk.fRegresaIVACargo_2010(aLlaveDocto,
+                aNetoTasa15,
+                aNetoTasa10,
+                aNetoTasa16,
+                aNetoTasa11,
+                aNetoTasaCero,
+                aNetoTasaExcenta,
+                aNetoOtrasTasas,
+                aIVATasa15,
+                aIVATasa10,
+                aIVATasa16,
+                aIVATasa11,
+                aIVAOtrasTasas);
         }
 
-        public int fRegresaIVAPago(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVAOtrasTasas)
+        public int fRegresaIVACargoRet_2010(tLlaveDoc aLlaveDocto,
+                                            double aNetoTasa15,
+                                            double aNetoTasa10,
+                                            double aNetoTasa16,
+                                            double aNetoTasa11,
+                                            double aNetoTasaCero,
+                                            double aNetoTasaExcenta,
+                                            double aNetoOtrasTasas,
+                                            double aIVATasa15,
+                                            double aIVATasa10,
+                                            double aIVATasa16,
+                                            double aIVATasa11,
+                                            double aIVAOtrasTasas,
+                                            double aRetIVA,
+                                            double aRetI)
         {
-            return ComercialSdk.fRegresaIVAPago(aLlaveDocto, aNetoTasa15, aNetoTasa10, aNetoTasaCero, aNetoTasaExcenta, aNetoOtrasTasas, aIVATasa15, aIVATasa10, aIVAOtrasTasas);
+            return ComercialSdk.fRegresaIVACargoRet_2010(aLlaveDocto,
+                aNetoTasa15,
+                aNetoTasa10,
+                aNetoTasa16,
+                aNetoTasa11,
+                aNetoTasaCero,
+                aNetoTasaExcenta,
+                aNetoOtrasTasas,
+                aIVATasa15,
+                aIVATasa10,
+                aIVATasa16,
+                aIVATasa11,
+                aIVAOtrasTasas,
+                aRetIVA,
+                aRetI);
         }
 
-        public int fRegresaIVAPago_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas)
+        public int fRegresaIVAPago(tLlaveDoc aLlaveDocto,
+                                   double aNetoTasa15,
+                                   double aNetoTasa10,
+                                   double aNetoTasaCero,
+                                   double aNetoTasaExcenta,
+                                   double aNetoOtrasTasas,
+                                   double aIVATasa15,
+                                   double aIVATasa10,
+                                   double aIVAOtrasTasas)
         {
-            return ComercialSdk.fRegresaIVAPago_2010(aLlaveDocto, aNetoTasa15, aNetoTasa10, aNetoTasa16, aNetoTasa11, aNetoTasaCero, aNetoTasaExcenta, aNetoOtrasTasas, aIVATasa15, aIVATasa10, aIVATasa16, aIVATasa11, aIVAOtrasTasas);
+            return ComercialSdk.fRegresaIVAPago(aLlaveDocto,
+                aNetoTasa15,
+                aNetoTasa10,
+                aNetoTasaCero,
+                aNetoTasaExcenta,
+                aNetoOtrasTasas,
+                aIVATasa15,
+                aIVATasa10,
+                aIVAOtrasTasas);
         }
 
-        public int fRegresaIVAPagoRet_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas, double aRetIVA, double aRetI)
+        public int fRegresaIVAPago_2010(tLlaveDoc aLlaveDocto,
+                                        double aNetoTasa15,
+                                        double aNetoTasa10,
+                                        double aNetoTasa16,
+                                        double aNetoTasa11,
+                                        double aNetoTasaCero,
+                                        double aNetoTasaExcenta,
+                                        double aNetoOtrasTasas,
+                                        double aIVATasa15,
+                                        double aIVATasa10,
+                                        double aIVATasa16,
+                                        double aIVATasa11,
+                                        double aIVAOtrasTasas)
         {
-            return ComercialSdk.fRegresaIVAPagoRet_2010(aLlaveDocto, aNetoTasa15, aNetoTasa10, aNetoTasa16, aNetoTasa11, aNetoTasaCero, aNetoTasaExcenta, aNetoOtrasTasas, aIVATasa15, aIVATasa10, aIVATasa16, aIVATasa11, aIVAOtrasTasas, aRetIVA, aRetI);
+            return ComercialSdk.fRegresaIVAPago_2010(aLlaveDocto,
+                aNetoTasa15,
+                aNetoTasa10,
+                aNetoTasa16,
+                aNetoTasa11,
+                aNetoTasaCero,
+                aNetoTasaExcenta,
+                aNetoOtrasTasas,
+                aIVATasa15,
+                aIVATasa10,
+                aIVATasa16,
+                aIVATasa11,
+                aIVAOtrasTasas);
+        }
+
+        public int fRegresaIVAPagoRet_2010(tLlaveDoc aLlaveDocto,
+                                           double aNetoTasa15,
+                                           double aNetoTasa10,
+                                           double aNetoTasa16,
+                                           double aNetoTasa11,
+                                           double aNetoTasaCero,
+                                           double aNetoTasaExcenta,
+                                           double aNetoOtrasTasas,
+                                           double aIVATasa15,
+                                           double aIVATasa10,
+                                           double aIVATasa16,
+                                           double aIVATasa11,
+                                           double aIVAOtrasTasas,
+                                           double aRetIVA,
+                                           double aRetI)
+        {
+            return ComercialSdk.fRegresaIVAPagoRet_2010(aLlaveDocto,
+                aNetoTasa15,
+                aNetoTasa10,
+                aNetoTasa16,
+                aNetoTasa11,
+                aNetoTasaCero,
+                aNetoTasaExcenta,
+                aNetoOtrasTasas,
+                aIVATasa15,
+                aIVATasa10,
+                aIVATasa16,
+                aIVATasa11,
+                aIVAOtrasTasas,
+                aRetIVA,
+                aRetI);
         }
 
         public int fRegresaPrecioVenta(string aCodigoConcepto, string aCodigoCliente, string aCodigoProducto, StringBuilder aPrecioVenta)
@@ -1284,12 +1714,20 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fRegresaPrecioVenta(aCodigoConcepto, aCodigoCliente, aCodigoProducto, aPrecioVenta);
         }
 
-        public int fRegresaUltimoCosto(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, StringBuilder aUltimoCosto)
+        public int fRegresaUltimoCosto(string aCodigoProducto,
+                                       string aCodigoAlmacen,
+                                       string aAnio,
+                                       string aMes,
+                                       string aDia,
+                                       StringBuilder aUltimoCosto)
         {
             return ComercialSdk.fRegresaUltimoCosto(aCodigoProducto, aCodigoAlmacen, aAnio, aMes, aDia, aUltimoCosto);
         }
 
-        public int fRegresPorcentajeImpuesto(int aIdConceptoDocumento, int aIdClienteProveedor, int aIdProducto, ref double aPorcentajeImpuesto)
+        public int fRegresPorcentajeImpuesto(int aIdConceptoDocumento,
+                                             int aIdClienteProveedor,
+                                             int aIdProducto,
+                                             ref double aPorcentajeImpuesto)
         {
             return ComercialSdk.fRegresPorcentajeImpuesto(aIdConceptoDocumento, aIdClienteProveedor, aIdProducto, ref aPorcentajeImpuesto);
         }
@@ -1299,12 +1737,33 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fSaldarDocumento(aDoctoaPagar, aDoctoPago, aImporte, aIdMoneda, aFecha);
         }
 
-        public int fSaldarDocumento_Param(string aCodConcepto_Pagar, string aSerie_Pagar, double aFolio_Pagar, string aCodConcepto_Pago, string aSerie_Pago, double aFolio_Pago, double aImporte, int aIdMoneda, string aFecha)
+        public int fSaldarDocumento_Param(string aCodConcepto_Pagar,
+                                          string aSerie_Pagar,
+                                          double aFolio_Pagar,
+                                          string aCodConcepto_Pago,
+                                          string aSerie_Pago,
+                                          double aFolio_Pago,
+                                          double aImporte,
+                                          int aIdMoneda,
+                                          string aFecha)
         {
-            return ComercialSdk.fSaldarDocumento_Param(aCodConcepto_Pagar, aSerie_Pagar, aFolio_Pagar, aCodConcepto_Pago, aSerie_Pago, aFolio_Pago, aImporte, aIdMoneda, aFecha);
+            return ComercialSdk.fSaldarDocumento_Param(aCodConcepto_Pagar,
+                aSerie_Pagar,
+                aFolio_Pagar,
+                aCodConcepto_Pago,
+                aSerie_Pago,
+                aFolio_Pago,
+                aImporte,
+                aIdMoneda,
+                aFecha);
         }
 
-        public int fSaldarDocumentoCheqPAQ(tLlaveDoc aDoctoaPagar, tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha, double aTipoCambioCheqPAQ)
+        public int fSaldarDocumentoCheqPAQ(tLlaveDoc aDoctoaPagar,
+                                           tLlaveDoc aDoctoPago,
+                                           double aImporte,
+                                           int aIdMoneda,
+                                           string aFecha,
+                                           double aTipoCambioCheqPAQ)
         {
             return ComercialSdk.fSaldarDocumentoCheqPAQ(aDoctoaPagar, aDoctoPago, aImporte, aIdMoneda, aFecha, aTipoCambioCheqPAQ);
         }
@@ -1324,7 +1783,7 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fSetDatoClasificacion(aCampo, aValor);
         }
 
-        public int fSetDatoConceptoDocto(StringBuilder aCampo, StringBuilder aValor)
+        public int fSetDatoConceptoDocto(string aCampo, string aValor)
         {
             return ComercialSdk.fSetDatoConceptoDocto(aCampo, aValor);
         }
@@ -1356,7 +1815,7 @@ namespace Contpaqi.Sdk.Extras
 
         public int fSetDatoParametros(string aCampo, StringBuilder aValor)
         {
-            return ComercialSdk.fSetDatoParametros(aCampo, aValor);
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
         public int fSetDatoProducto(string aCampo, string aValor)
@@ -1409,24 +1868,49 @@ namespace Contpaqi.Sdk.Extras
             ComercialSdk.fTerminaSDK();
         }
 
-        public int fTimbraComplementoPagoXML(string aRutaXML, string aCodConcepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato)
+        public int fTimbraComplementoPagoXML(string aRutaXML,
+                                             string aCodConcepto,
+                                             StringBuilder aUUID,
+                                             string aRutaDDA,
+                                             string aRutaResultado,
+                                             string aPass,
+                                             string aRutaFormato)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
-        public int fTimbraComplementoXML(string aRutaXML, string aCodCOncepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato, int aComplemento)
+        public int fTimbraComplementoXML(string aRutaXML,
+                                         string aCodCOncepto,
+                                         StringBuilder aUUID,
+                                         string aRutaDDA,
+                                         string aRutaResultado,
+                                         string aPass,
+                                         string aRutaFormato,
+                                         int aComplemento)
         {
-            return ComercialSdk.fTimbraComplementoXML(aRutaXML, aCodCOncepto, aUUID, aRutaDDA, aRutaResultado, aPass, aRutaFormato, aComplemento);
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
-        public int fTimbraNominaXML(string aRutaXML, string aCodCOncepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato)
+        public int fTimbraNominaXML(string aRutaXML,
+                                    string aCodCOncepto,
+                                    StringBuilder aUUID,
+                                    string aRutaDDA,
+                                    string aRutaResultado,
+                                    string aPass,
+                                    string aRutaFormato)
         {
-            return ComercialSdk.fTimbraNominaXML(aRutaXML, aCodCOncepto, aUUID, aRutaDDA, aRutaResultado, aPass, aRutaFormato);
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
-        public int fTimbraXML(string aRutaXML, string aCodCOncepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato)
+        public int fTimbraXML(string aRutaXML,
+                              string aCodCOncepto,
+                              StringBuilder aUUID,
+                              string aRutaDDA,
+                              string aRutaResultado,
+                              string aPass,
+                              string aRutaFormato)
         {
-            return ComercialSdk.fTimbraXML(aRutaXML, aCodCOncepto, aUUID, aRutaDDA, aRutaResultado, aPass, aRutaFormato);
+            throw new NotImplementedException("Esta funcion no funciona en CONTPAQi Comercial.");
         }
 
         public int InicializarSDK()
@@ -1442,44 +1926,111 @@ namespace Contpaqi.Sdk.Extras
             return ComercialSdk.fSetNombrePAQ(NombrePaq);
         }
 
-        public int fRecuperarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, StringBuilder aUUIDs, string aRutaNombreArchivoInfo)
+        public string LeeDatoAgente(string dato, int longitud)
         {
-            return ComercialSdk.fRecuperarRelacionesCFDIs(aCodConcepto, aSerie, aFolio, aTipoRelacion, aUUIDs, aRutaNombreArchivoInfo);
+            var valor = new StringBuilder(longitud);
+            ComercialSdk.fLeeDatoAgente(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
         }
 
-        public int fAgregarRelacionCFDI(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aConceptoRelacionar, string aSerieRelacionar, string aFolioRelacionar)
+        public string LeeDatoAlmacen(string dato, int longitud)
         {
-            return ComercialSdk.fAgregarRelacionCFDI(aCodConcepto, aSerie, aFolio, aTipoRelacion, aConceptoRelacionar, aSerieRelacionar, aFolioRelacionar);
+            var valor = new StringBuilder(longitud);
+            ComercialSdk.fLeeDatoAlmacen(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
         }
 
-        public int fAgregarRelacionCFDI2(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aUUID)
+        public string LeeDatoCfdi(int dato, int longitud)
         {
-            return ComercialSdk.fAgregarRelacionCFDI2(aCodConcepto, aSerie, aFolio, aTipoRelacion, aUUID);
+            var valor = new StringBuilder(longitud);
+            fLeeDatoCFDI(valor, dato).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
         }
 
-        public int fEliminarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio)
+        public string LeeDatoClasificacion(string dato, int longitud)
         {
-            return ComercialSdk.fEliminarRelacionesCFDIs(aCodConcepto, aSerie, aFolio);
+            var valor = new StringBuilder(longitud);
+            ComercialSdk.fLeeDatoClasificacion(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
         }
 
-        public int fRegresaExistenciaLotePedimento(string aCodigoProducto, string aCodigoAlmacen, string aPedimento, string aLote, ref double aExistencia)
+        public string LeeDatoClienteProveedor(string dato, int longitud)
         {
-            return ComercialSdk.fRegresaExistenciaLotePedimento(aCodigoProducto, aCodigoAlmacen, aPedimento, aLote, ref aExistencia);
+            var valor = new StringBuilder(longitud);
+            ComercialSdk.fLeeDatoCteProv(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
         }
 
-        public int fProyectoEmpresaDoctos(string aCodigoProyecto)
+        public string LeeDatoConcepto(string dato, int longitud)
         {
-            return ComercialSdk.fProyectoEmpresaDoctos(aCodigoProyecto);
+            var valor = new StringBuilder(longitud);
+            ComercialSdk.fLeeDatoConceptoDocto(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
         }
 
-        public int fCancelaDoctoInfo(string aPass)
+        public string LeeDatoDireccion(string dato, int longitud)
         {
-            return ComercialSdk.fCancelaDoctoInfo(aPass);
+            var valor = new StringBuilder(longitud);
+            ComercialSdk.fLeeDatoDireccion(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
         }
+
+        public string LeeDatoDocumento(string dato, int longitud)
+        {
+            var valor = new StringBuilder(longitud);
+            ComercialSdk.fLeeDatoDocumento(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
+        }
+
+        public string LeeDatoMovimiento(string dato, int longitud)
+        {
+            var valor = new StringBuilder(longitud);
+            ComercialSdk.fLeeDatoMovimiento(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
+        }
+
+        public string LeeDatoParametros(string dato, int longitud)
+        {
+            var valor = new StringBuilder(longitud);
+            ComercialSdk.fLeeDatoParametros(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
+        }
+
+        public string LeeDatoProducto(string dato, int longitud)
+        {
+            var valor = new StringBuilder(longitud);
+            ComercialSdk.fLeeDatoProducto(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
+        }
+
+        public string LeeDatoUnidad(string dato, int longitud)
+        {
+            var valor = new StringBuilder(longitud);
+            ComercialSdk.fLeeDatoUnidad(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
+        }
+
+        public string LeeDatoValorClasificacion(string dato, int longitud)
+        {
+            var valor = new StringBuilder(longitud);
+            ComercialSdk.fLeeDatoValorClasif(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
+        }
+
+        public string LeeMensajeError(int numeroError)
+        {
+            var mensajeError = new StringBuilder(512);
+            fError(numeroError, mensajeError, 512);
+            return mensajeError.ToString();
+        }
+
+        public string NombreLlaveRegistro => ComercialSdkConstants.NombreLlaveRegistro;
+
+        public string NombrePaq => ComercialSdkConstants.NombrePaq;
 
         private void SetCurrentDirectory()
         {
-            var lEntrada = RegistryHelper.GetDirectorioBaseFromRegistry(NombreLlaveRegistro);
+            string lEntrada = RegistryHelper.GetDirectorioBaseFromRegistry(NombreLlaveRegistro);
             Directory.SetCurrentDirectory(lEntrada);
         }
     }

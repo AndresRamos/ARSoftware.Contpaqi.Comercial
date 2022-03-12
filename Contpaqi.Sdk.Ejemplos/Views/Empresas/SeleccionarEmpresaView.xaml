@@ -18,6 +18,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"
@@ -28,18 +29,6 @@
                    Margin="5" />
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal">
-            <Button Content="Seleccionar"
-                    Command="{Binding SeleccionarCommand}"
-                    Width="150"
-                    VerticalAlignment="Center"
-                    Margin="5"
-                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
-            <Button Content="Cancelar"
-                    Command="{Binding CancelarCommand}"
-                    Width="150"
-                    VerticalAlignment="Center"
-                    Margin="5"
-                    Style="{StaticResource MahApps.Styles.Button.Square}" />
             <Button Content="Buscar Empresas"
                     Command="{Binding BuscarEmpresasCommand}"
                     Width="150"
@@ -65,6 +54,21 @@
         </StackPanel>
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal">
+            <Button Content="Seleccionar"
+                    Command="{Binding SeleccionarCommand}"
+                    Width="150"
+                    VerticalAlignment="Center"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+            <Button Content="Cancelar"
+                    Command="{Binding CancelarCommand}"
+                    Width="150"
+                    VerticalAlignment="Center"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square}" />
+        </StackPanel>
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal">
             <TextBox Text="{Binding Filtro, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      VerticalAlignment="Center"
                      Width="200"
@@ -72,7 +76,7 @@
                      controls:TextBoxHelper.Watermark="Filtro"
                      controls:TextBoxHelper.ClearTextButton="True" />
         </StackPanel>
-        <DataGrid Grid.Row="3"
+        <DataGrid Grid.Row="4"
                   ItemsSource="{Binding Empresas}"
                   SelectedItem="{Binding EmpresaSeleccionada}"
                   IsReadOnly="True"

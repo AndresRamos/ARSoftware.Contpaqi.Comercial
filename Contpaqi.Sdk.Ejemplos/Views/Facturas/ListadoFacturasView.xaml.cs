@@ -3,26 +3,27 @@ using Contpaqi.Sdk.Ejemplos.ViewModels.Facturas;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.Views.Facturas
+namespace Contpaqi.Sdk.Ejemplos.Views.Facturas;
+
+/// <summary>
+///     Interaction logic for ListadoFacturasView.xaml
+/// </summary>
+public partial class ListadoFacturasView
 {
-    /// <summary>
-    ///     Interaction logic for ListadoFacturasView.xaml
-    /// </summary>
-    public partial class ListadoFacturasView
+    public ListadoFacturasView()
     {
-        public ListadoFacturasView()
-        {
-            InitializeComponent();
-            DataContext = Ioc.Default.GetService<ListadoFacturasViewModel>();
-            WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        InitializeComponent();
+        DataContext = Ioc.Default.GetService<ListadoFacturasViewModel>();
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
+            (recipient, message) =>
             {
                 if (message.Sender == ViewModel && message.IsOpen == false)
                 {
-                    Close();
+                    var view = (ListadoFacturasView)recipient;
+                    view.Close();
                 }
             });
-        }
-
-        public ListadoFacturasViewModel ViewModel => (ListadoFacturasViewModel) DataContext;
     }
+
+    public ListadoFacturasViewModel ViewModel => (ListadoFacturasViewModel)DataContext;
 }

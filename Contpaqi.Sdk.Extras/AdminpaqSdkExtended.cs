@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using Contpaqi.Sdk.DatosAbstractos;
+using Contpaqi.Sdk.Extras.Constants;
+using Contpaqi.Sdk.Extras.Extensions;
 using Contpaqi.Sdk.Extras.Helpers;
 using Contpaqi.Sdk.Extras.Interfaces;
 
@@ -10,10 +13,6 @@ namespace Contpaqi.Sdk.Extras
 {
     public class AdminpaqSdkExtended : IContpaqiSdk
     {
-        public string NombreLlaveRegistro => AdminpaqSdkConstants.NombreLlaveRegistro;
-
-        public string NombrePaq => AdminpaqSdkConstants.NombrePaq;
-
         public int fAbreEmpresa(string aDirectorioEmpresa)
         {
             return AdminpaqSdk.fAbreEmpresa(aDirectorioEmpresa);
@@ -39,9 +38,9 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fActualizaDireccion(ref astDireccion);
         }
 
-        public int fActualizaProducto(ref int aCodigoProducto, tProducto astProducto)
+        public int fActualizaProducto(string aCodigoProducto, ref tProducto astProducto)
         {
-            return AdminpaqSdk.fActualizaProducto(ref aCodigoProducto, astProducto);
+            return AdminpaqSdk.fActualizaProducto(aCodigoProducto, ref astProducto);
         }
 
         public int fActualizaUnidad(string aNombreUnidad, ref tUnidad astUnidad)
@@ -69,6 +68,28 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fAfectaSerie(aIdMovto, aNumeroSerie);
         }
 
+        public int fAgregarRelacionCFDI(string aCodConcepto,
+                                        string aSerie,
+                                        string aFolio,
+                                        string aTipoRelacion,
+                                        string aConceptoRelacionar,
+                                        string aSerieRelacionar,
+                                        string aFolioRelacionar)
+        {
+            return AdminpaqSdk.fAgregarRelacionCFDI(aCodConcepto,
+                aSerie,
+                aFolio,
+                aTipoRelacion,
+                aConceptoRelacionar,
+                aSerieRelacionar,
+                aFolioRelacionar);
+        }
+
+        public int fAgregarRelacionCFDI2(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aUUID)
+        {
+            return AdminpaqSdk.fAgregarRelacionCFDI2(aCodConcepto, aSerie, aFolio, aTipoRelacion, aUUID);
+        }
+
         public int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv)
         {
             return AdminpaqSdk.fAltaCteProv(ref aIdCteProv, ref astCteProv);
@@ -79,14 +100,60 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fAltaDireccion(ref aIdDireccion, ref astDireccion);
         }
 
-        public int fAltaDoctoAjusteIESPSCteProv(string aCodigoClienteProveedor, int aEsCliente, string aFechaDocto, int aIdMoneda, double aTipoCambio, double aImporteIVA, double aTasaIVA, double aImporteIESPS, double aTasaIESPS, int aIdFacturaBase, string aMetodo, string aLugar, ref int aIdDoctoGenerado)
+        public int fAltaDoctoAjusteIESPSCteProv(string aCodigoClienteProveedor,
+                                                int aEsCliente,
+                                                string aFechaDocto,
+                                                int aIdMoneda,
+                                                double aTipoCambio,
+                                                double aImporteIVA,
+                                                double aTasaIVA,
+                                                double aImporteIESPS,
+                                                double aTasaIESPS,
+                                                int aIdFacturaBase,
+                                                string aMetodo,
+                                                string aLugar,
+                                                ref int aIdDoctoGenerado)
         {
-            return AdminpaqSdk.fAltaDoctoAjusteIESPSCteProv(aCodigoClienteProveedor, aEsCliente, aFechaDocto, aIdMoneda, aTipoCambio, aImporteIVA, aTasaIVA, aImporteIESPS, aTasaIESPS, aIdFacturaBase, aMetodo, aLugar, ref aIdDoctoGenerado);
+            return AdminpaqSdk.fAltaDoctoAjusteIESPSCteProv(aCodigoClienteProveedor,
+                aEsCliente,
+                aFechaDocto,
+                aIdMoneda,
+                aTipoCambio,
+                aImporteIVA,
+                aTasaIVA,
+                aImporteIESPS,
+                aTasaIESPS,
+                aIdFacturaBase,
+                aMetodo,
+                aLugar,
+                ref aIdDoctoGenerado);
         }
 
-        public int fAltaDoctoAjusteIVAClienteProveedor(string aCodigoClienteProveedor, int aEsCliente, int aAbsorberAjusteIVA, string aFechaDocto, int aIdMoneda, double aTipoCambio, double aImporteIVA, double aTasaIVA, int aIdFacturaBase, string aMetodo, string aLugar, ref int aIdDoctoGenerado)
+        public int fAltaDoctoAjusteIVAClienteProveedor(string aCodigoClienteProveedor,
+                                                       int aEsCliente,
+                                                       int aAbsorberAjusteIVA,
+                                                       string aFechaDocto,
+                                                       int aIdMoneda,
+                                                       double aTipoCambio,
+                                                       double aImporteIVA,
+                                                       double aTasaIVA,
+                                                       int aIdFacturaBase,
+                                                       string aMetodo,
+                                                       string aLugar,
+                                                       ref int aIdDoctoGenerado)
         {
-            return AdminpaqSdk.fAltaDoctoAjusteIVAClienteProveedor(aCodigoClienteProveedor, aEsCliente, aAbsorberAjusteIVA, aFechaDocto, aIdMoneda, aTipoCambio, aImporteIVA, aTasaIVA, aIdFacturaBase, aMetodo, aLugar, ref aIdDoctoGenerado);
+            return AdminpaqSdk.fAltaDoctoAjusteIVAClienteProveedor(aCodigoClienteProveedor,
+                aEsCliente,
+                aAbsorberAjusteIVA,
+                aFechaDocto,
+                aIdMoneda,
+                aTipoCambio,
+                aImporteIVA,
+                aTasaIVA,
+                aIdFacturaBase,
+                aMetodo,
+                aLugar,
+                ref aIdDoctoGenerado);
         }
 
         public int fAltaDocumento(ref int aIdDocumento, ref tDocumento aDocumento)
@@ -99,9 +166,25 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fAltaDocumentoCargoAbono(ref aDocumento);
         }
 
-        public int fAltaDocumentoCargoAbonoExtras(ref tDocumento aDocumento, string aTextoExtra1, string aTextoExtra2, string aTextoExtra3, string aFechaExtra, double aImporteExtra1, double aImporteExtra2, double aImporteExtra3, double aImporteExtra4)
+        public int fAltaDocumentoCargoAbonoExtras(ref tDocumento aDocumento,
+                                                  string aTextoExtra1,
+                                                  string aTextoExtra2,
+                                                  string aTextoExtra3,
+                                                  string aFechaExtra,
+                                                  double aImporteExtra1,
+                                                  double aImporteExtra2,
+                                                  double aImporteExtra3,
+                                                  double aImporteExtra4)
         {
-            return AdminpaqSdk.fAltaDocumentoCargoAbonoExtras(ref aDocumento, aTextoExtra1, aTextoExtra2, aTextoExtra3, aFechaExtra, aImporteExtra1, aImporteExtra2, aImporteExtra3, aImporteExtra4);
+            return AdminpaqSdk.fAltaDocumentoCargoAbonoExtras(ref aDocumento,
+                aTextoExtra1,
+                aTextoExtra2,
+                aTextoExtra3,
+                aFechaExtra,
+                aImporteExtra1,
+                aImporteExtra2,
+                aImporteExtra3,
+                aImporteExtra4);
         }
 
         public int fAltaMovimiento(int aIdDocumento, ref int aIdMovimiento, ref tMovimiento astMovimiento)
@@ -109,14 +192,24 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fAltaMovimiento(aIdDocumento, ref aIdMovimiento, ref astMovimiento);
         }
 
-        public int fAltaMovimientoCaracteristicas(int aIdMovimiento, int aIdMovtoCaracteristicas, tCaracteristicas aCaracteristicas)
+        public int fAltaMovimientoCaracteristicas(int aIdMovimiento, ref int aIdMovtoCaracteristicas, ref tCaracteristicas aCaracteristicas)
         {
-            return AdminpaqSdk.fAltaMovimientoCaracteristicas(aIdMovimiento, aIdMovtoCaracteristicas, aCaracteristicas);
+            return AdminpaqSdk.fAltaMovimientoCaracteristicas(aIdMovimiento, ref aIdMovtoCaracteristicas, ref aCaracteristicas);
         }
 
-        public int fAltaMovimientoCaracteristicas_Param(string aIdMovimiento, string aIdMovtoCaracteristicas, string aUnidades, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3)
+        public int fAltaMovimientoCaracteristicas_Param(string aIdMovimiento,
+                                                        string aIdMovtoCaracteristicas,
+                                                        string aUnidades,
+                                                        string aValorCaracteristica1,
+                                                        string aValorCaracteristica2,
+                                                        string aValorCaracteristica3)
         {
-            return AdminpaqSdk.fAltaMovimientoCaracteristicas_Param(aIdMovimiento, aIdMovtoCaracteristicas, aUnidades, aValorCaracteristica1, aValorCaracteristica2, aValorCaracteristica3);
+            return AdminpaqSdk.fAltaMovimientoCaracteristicas_Param(aIdMovimiento,
+                aIdMovtoCaracteristicas,
+                aUnidades,
+                aValorCaracteristica1,
+                aValorCaracteristica2,
+                aValorCaracteristica3);
         }
 
         public int fAltaMovimientoCDesct(int aIdDocumento, ref int aIdMovimiento, ref tMovimientoDesc astMovimiento)
@@ -124,9 +217,9 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fAltaMovimientoCDesct(aIdDocumento, ref aIdMovimiento, ref astMovimiento);
         }
 
-        public int fAltaMovimientoEx(ref int aIdMovimiento, tTipoProducto aTipoProducto)
+        public int fAltaMovimientoEx(ref int aIdMovimiento, ref tTipoProducto aTipoProducto)
         {
-            return AdminpaqSdk.fAltaMovimientoEx(ref aIdMovimiento, aTipoProducto);
+            return AdminpaqSdk.fAltaMovimientoEx(ref aIdMovimiento, ref aTipoProducto);
         }
 
         public int fAltaMovimientoSeriesCapas(int aIdMovimiento, ref tSeriesCapas aSeriesCapas)
@@ -134,19 +227,53 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fAltaMovimientoSeriesCapas(aIdMovimiento, ref aSeriesCapas);
         }
 
-        public int fAltaMovimientoSeriesCapas_Param(string aIdMovimiento, string aUnidades, string aTipoCambio, string aSeries, string aPedimento, string aAgencia, string aFechaPedimento, string aNumeroLote, string aFechaFabricacion, string aFechaCaducidad)
+        public int fAltaMovimientoSeriesCapas_Param(string aIdMovimiento,
+                                                    string aUnidades,
+                                                    string aTipoCambio,
+                                                    string aSeries,
+                                                    string aPedimento,
+                                                    string aAgencia,
+                                                    string aFechaPedimento,
+                                                    string aNumeroLote,
+                                                    string aFechaFabricacion,
+                                                    string aFechaCaducidad)
         {
-            return AdminpaqSdk.fAltaMovimientoSeriesCapas_Param(aIdMovimiento, aUnidades, aTipoCambio, aSeries, aPedimento, aAgencia, aFechaPedimento, aNumeroLote, aFechaFabricacion, aFechaCaducidad);
+            return AdminpaqSdk.fAltaMovimientoSeriesCapas_Param(aIdMovimiento,
+                aUnidades,
+                aTipoCambio,
+                aSeries,
+                aPedimento,
+                aAgencia,
+                aFechaPedimento,
+                aNumeroLote,
+                aFechaFabricacion,
+                aFechaCaducidad);
         }
 
-        public int fAltaMovtoCaracteristicasUnidades(int aIdMovimiento, int aIdMovtoCaracteristicas, tCaracteristicas aCaracteristicasUnidades)
+        public int fAltaMovtoCaracteristicasUnidades(int aIdMovimiento,
+                                                     ref int aIdMovtoCaracteristicas,
+                                                     ref tCaracteristicas aCaracteristicasUnidades)
         {
-            return AdminpaqSdk.fAltaMovtoCaracteristicasUnidades(aIdMovimiento, aIdMovtoCaracteristicas, aCaracteristicasUnidades);
+            return AdminpaqSdk.fAltaMovtoCaracteristicasUnidades(aIdMovimiento, ref aIdMovtoCaracteristicas, ref aCaracteristicasUnidades);
         }
 
-        public int fAltaMovtoCaracteristicasUnidades_Param(string aIdMovimiento, string aIdMovtoCaracteristicas, string aUnidad, string aUnidades, string aUnidadesNC, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3)
+        public int fAltaMovtoCaracteristicasUnidades_Param(string aIdMovimiento,
+                                                           string aIdMovtoCaracteristicas,
+                                                           string aUnidad,
+                                                           string aUnidades,
+                                                           string aUnidadesNC,
+                                                           string aValorCaracteristica1,
+                                                           string aValorCaracteristica2,
+                                                           string aValorCaracteristica3)
         {
-            return AdminpaqSdk.fAltaMovtoCaracteristicasUnidades_Param(aIdMovimiento, aIdMovtoCaracteristicas, aUnidad, aUnidades, aUnidadesNC, aValorCaracteristica1, aValorCaracteristica2, aValorCaracteristica3);
+            return AdminpaqSdk.fAltaMovtoCaracteristicasUnidades_Param(aIdMovimiento,
+                aIdMovtoCaracteristicas,
+                aUnidad,
+                aUnidades,
+                aUnidadesNC,
+                aValorCaracteristica1,
+                aValorCaracteristica2,
+                aValorCaracteristica3);
         }
 
         public int fAltaProducto(ref int aIdProducto, ref tProducto astProducto)
@@ -194,9 +321,19 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fBorrarAsociacion(aDoctoaPagar, aDoctoPago);
         }
 
-        public int fBorrarAsociacion_Param(string aCodConcepto_Pagar, string aSerie_Pagar, double aFolio_Pagar, string aCodConcepto_Pago, string aSerie_Pago, double aFolio_Pago)
+        public int fBorrarAsociacion_Param(string aCodConcepto_Pagar,
+                                           string aSerie_Pagar,
+                                           double aFolio_Pagar,
+                                           string aCodConcepto_Pago,
+                                           string aSerie_Pago,
+                                           double aFolio_Pago)
         {
-            return AdminpaqSdk.fBorrarAsociacion_Param(aCodConcepto_Pagar, aSerie_Pagar, aFolio_Pagar, aCodConcepto_Pago, aSerie_Pago, aFolio_Pago);
+            return AdminpaqSdk.fBorrarAsociacion_Param(aCodConcepto_Pagar,
+                aSerie_Pagar,
+                aFolio_Pagar,
+                aCodConcepto_Pago,
+                aSerie_Pago,
+                aFolio_Pago);
         }
 
         public int fBorraUnidad()
@@ -339,6 +476,11 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fCancelaComplementoPagoUUID(aUUID, aIdDConcepto, aPass);
         }
 
+        public int fCancelaDoctoInfo(string aPass)
+        {
+            return AdminpaqSdk.fCancelaDoctoInfo(aPass);
+        }
+
         public int fCancelaDocumento()
         {
             return AdminpaqSdk.fCancelaDocumento();
@@ -347,6 +489,11 @@ namespace Contpaqi.Sdk.Extras
         public int fCancelaDocumento_CW()
         {
             return AdminpaqSdk.fCancelaDocumento_CW();
+        }
+
+        public int fCancelaDocumentoConMotivo(string aMotivoCancelacion, string aUUIDRemplaza)
+        {
+            return AdminpaqSdk.fCancelaDocumentoConMotivo(aMotivoCancelacion, aUUIDRemplaza);
         }
 
         public int fCancelaFiltroDocumento()
@@ -412,6 +559,25 @@ namespace Contpaqi.Sdk.Extras
         public int fCancelaUUID(string aUUID, string aIdDConcepto, string aPass)
         {
             return AdminpaqSdk.fCancelaUUID(aUUID, aIdDConcepto, aPass);
+        }
+
+        public int fCancelaUUID40(string aUUID,
+                                  string aMotivoCancelacion,
+                                  string aUUIDReemplaza,
+                                  string RFCReceptor,
+                                  double aTotal,
+                                  string aIdDConcepto,
+                                  string aPass,
+                                  ref int aEstatusCancelacion)
+        {
+            return AdminpaqSdk.fCancelaUUID40(aUUID,
+                aMotivoCancelacion,
+                aUUIDReemplaza,
+                RFCReceptor,
+                aTotal,
+                aIdDConcepto,
+                aPass,
+                ref aEstatusCancelacion);
         }
 
         public void fCierraEmpresa()
@@ -524,6 +690,11 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fEliminarProducto(aCodigoProducto);
         }
 
+        public int fEliminarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio)
+        {
+            return AdminpaqSdk.fEliminarRelacionesCFDIs(aCodConcepto, aSerie, aFolio);
+        }
+
         public int fEliminarUnidad(string aNombreUnidad)
         {
             return AdminpaqSdk.fEliminarUnidad(aNombreUnidad);
@@ -554,7 +725,20 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fGetCantidadParcialidades(atPtrPassword, aCantidadParcialidades);
         }
 
-        public int fGetDatosCFDI(StringBuilder aSerieCertEmisor, StringBuilder aFolioFiscalUUID, StringBuilder aSerieCertSAT, StringBuilder aFechaHora, StringBuilder aSelloDigCFDI, StringBuilder aSelloSAAT, StringBuilder aCadOrigComplSAT, StringBuilder aRegimen, StringBuilder aLugarExpedicion, StringBuilder aMoneda, StringBuilder aFolioFiscalOrig, StringBuilder aSerieFolioFiscalOrig, StringBuilder aFechaFolioFiscalOrig, StringBuilder aMontoFolioFiscalOrig)
+        public int fGetDatosCFDI(StringBuilder aSerieCertEmisor,
+                                 StringBuilder aFolioFiscalUUID,
+                                 StringBuilder aSerieCertSAT,
+                                 StringBuilder aFechaHora,
+                                 StringBuilder aSelloDigCFDI,
+                                 StringBuilder aSelloSAAT,
+                                 StringBuilder aCadOrigComplSAT,
+                                 StringBuilder aRegimen,
+                                 StringBuilder aLugarExpedicion,
+                                 StringBuilder aMoneda,
+                                 StringBuilder aFolioFiscalOrig,
+                                 StringBuilder aSerieFolioFiscalOrig,
+                                 StringBuilder aFechaFolioFiscalOrig,
+                                 StringBuilder aMontoFolioFiscalOrig)
         {
             throw new NotImplementedException();
         }
@@ -644,9 +828,25 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fGuardaValorClasif();
         }
 
-        public int fInformacionCliente(StringBuilder aCodigo, ref int aPermiteCredito, ref double aLimiteCredito, ref int aLimiteDoctosVencidos, ref int aPermiteExcederCredito, StringBuilder aFecha, ref double aSaldo, ref double aSaldoPendiente, ref int aDoctosVencidos)
+        public int fInformacionCliente(StringBuilder aCodigo,
+                                       ref int aPermiteCredito,
+                                       ref double aLimiteCredito,
+                                       ref int aLimiteDoctosVencidos,
+                                       ref int aPermiteExcederCredito,
+                                       StringBuilder aFecha,
+                                       ref double aSaldo,
+                                       ref double aSaldoPendiente,
+                                       ref int aDoctosVencidos)
         {
-            return AdminpaqSdk.fInformacionCliente(aCodigo, ref aPermiteCredito, ref aLimiteCredito, ref aLimiteDoctosVencidos, ref aPermiteExcederCredito, aFecha, ref aSaldo, ref aSaldoPendiente, ref aDoctosVencidos);
+            return AdminpaqSdk.fInformacionCliente(aCodigo,
+                ref aPermiteCredito,
+                ref aLimiteCredito,
+                ref aLimiteDoctosVencidos,
+                ref aPermiteExcederCredito,
+                aFecha,
+                ref aSaldo,
+                ref aSaldoPendiente,
+                ref aDoctosVencidos);
         }
 
         public int fInicializaLicenseInfo(byte aSistema)
@@ -799,9 +999,9 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fLeeDatoValorClasif(aCampo, aValor, aLen);
         }
 
-        public int fLlenaRegistroCteProv(tCteProv astCteProv, int aEsAlta)
+        public int fLlenaRegistroCteProv(ref tCteProv astCteProv, int aEsAlta)
         {
-            return AdminpaqSdk.fLlenaRegistroCteProv(astCteProv, aEsAlta);
+            return AdminpaqSdk.fLlenaRegistroCteProv(ref astCteProv, aEsAlta);
         }
 
         public int fLlenaRegistroDireccion(ref tDireccion astDireccion, int aEsAlta)
@@ -809,9 +1009,9 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fLlenaRegistroDireccion(ref astDireccion, aEsAlta);
         }
 
-        public int fLlenaRegistroProducto(tProducto astProducto, int aEsAlta)
+        public int fLlenaRegistroProducto(ref tProducto astProducto, int aEsAlta)
         {
-            return AdminpaqSdk.fLlenaRegistroProducto(astProducto, aEsAlta);
+            return AdminpaqSdk.fLlenaRegistroProducto(ref astProducto, aEsAlta);
         }
 
         public int fLlenaRegistroUnidad(ref tUnidad astUnidad)
@@ -854,9 +1054,21 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fObtieneUnidadesPendientes(aConceptoDocto, aCodigoProducto, aCodigoAlmacen, aUnidades);
         }
 
-        public int fObtieneUnidadesPendientesCarac(string aConceptoDocto, string aCodigoProducto, string aCodigoAlmacen, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3, StringBuilder aUnidades)
+        public int fObtieneUnidadesPendientesCarac(string aConceptoDocto,
+                                                   string aCodigoProducto,
+                                                   string aCodigoAlmacen,
+                                                   string aValorCaracteristica1,
+                                                   string aValorCaracteristica2,
+                                                   string aValorCaracteristica3,
+                                                   StringBuilder aUnidades)
         {
-            return AdminpaqSdk.fObtieneUnidadesPendientesCarac(aConceptoDocto, aCodigoProducto, aCodigoAlmacen, aValorCaracteristica1, aValorCaracteristica2, aValorCaracteristica3, aUnidades);
+            return AdminpaqSdk.fObtieneUnidadesPendientesCarac(aConceptoDocto,
+                aCodigoProducto,
+                aCodigoAlmacen,
+                aValorCaracteristica1,
+                aValorCaracteristica2,
+                aValorCaracteristica3,
+                aUnidades);
         }
 
         public int fPosAnteriorAgente()
@@ -1214,12 +1426,53 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fPosUltimoValorClasif();
         }
 
-        public int fRecosteoProducto(string aCodigoProducto, int aEjercicio, int aPeriodo, string aCodigoClasificacion1, string aCodigoClasificacion2, string aCodigoClasificacion3, string aCodigoClasificacion4, string aCodigoClasificacion5, string aCodigoClasificacion6, string aNombreBitacora, int aSobreEscribirBitacora, int aEsCalculoArimetico)
+        public int fProyectoEmpresaDoctos(string aCodigoProyecto)
         {
-            return AdminpaqSdk.fRecosteoProducto(aCodigoProducto, aEjercicio, aPeriodo, aCodigoClasificacion1, aCodigoClasificacion2, aCodigoClasificacion3, aCodigoClasificacion4, aCodigoClasificacion5, aCodigoClasificacion6, aNombreBitacora, aSobreEscribirBitacora, aEsCalculoArimetico);
+            return AdminpaqSdk.fProyectoEmpresaDoctos(aCodigoProyecto);
         }
 
-        public int fRecuperaTipoProducto(ref bool aUnidades, ref bool aSerie, ref bool aLote, ref bool aPedimento, ref bool aCaracteristicas)
+        public int fRecosteoProducto(string aCodigoProducto,
+                                     int aEjercicio,
+                                     int aPeriodo,
+                                     string aCodigoClasificacion1,
+                                     string aCodigoClasificacion2,
+                                     string aCodigoClasificacion3,
+                                     string aCodigoClasificacion4,
+                                     string aCodigoClasificacion5,
+                                     string aCodigoClasificacion6,
+                                     string aNombreBitacora,
+                                     int aSobreEscribirBitacora,
+                                     int aEsCalculoArimetico)
+        {
+            return AdminpaqSdk.fRecosteoProducto(aCodigoProducto,
+                aEjercicio,
+                aPeriodo,
+                aCodigoClasificacion1,
+                aCodigoClasificacion2,
+                aCodigoClasificacion3,
+                aCodigoClasificacion4,
+                aCodigoClasificacion5,
+                aCodigoClasificacion6,
+                aNombreBitacora,
+                aSobreEscribirBitacora,
+                aEsCalculoArimetico);
+        }
+
+        public int fRecuperarRelacionesCFDIs(string aCodConcepto,
+                                             string aSerie,
+                                             string aFolio,
+                                             string aTipoRelacion,
+                                             StringBuilder aUUIDs,
+                                             string aRutaNombreArchivoInfo)
+        {
+            return AdminpaqSdk.fRecuperarRelacionesCFDIs(aCodConcepto, aSerie, aFolio, aTipoRelacion, aUUIDs, aRutaNombreArchivoInfo);
+        }
+
+        public int fRecuperaTipoProducto(ref bool aUnidades,
+                                         ref bool aSerie,
+                                         ref bool aLote,
+                                         ref bool aPedimento,
+                                         ref bool aCaracteristicas)
         {
             return AdminpaqSdk.fRecuperaTipoProducto(ref aUnidades, ref aSerie, ref aLote, ref aPedimento, ref aCaracteristicas);
         }
@@ -1234,49 +1487,220 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fRegresaCostoEstandar(aCodigoProducto, aCostoEstandar);
         }
 
-        public int fRegresaCostoPromedio(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, StringBuilder aCostoPromedio)
+        public int fRegresaCostoPromedio(string aCodigoProducto,
+                                         string aCodigoAlmacen,
+                                         string aAnio,
+                                         string aMes,
+                                         string aDia,
+                                         StringBuilder aCostoPromedio)
         {
             return AdminpaqSdk.fRegresaCostoPromedio(aCodigoProducto, aCodigoAlmacen, aAnio, aMes, aDia, aCostoPromedio);
         }
 
-        public int fRegresaExistencia(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, ref double aExistencia)
+        public int fRegresaExistencia(string aCodigoProducto,
+                                      string aCodigoAlmacen,
+                                      string aAnio,
+                                      string aMes,
+                                      string aDia,
+                                      ref double aExistencia)
         {
             return AdminpaqSdk.fRegresaExistencia(aCodigoProducto, aCodigoAlmacen, aAnio, aMes, aDia, ref aExistencia);
         }
 
-        public int fRegresaExistenciaCaracteristicas(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3, ref double aExistencia)
+        public int fRegresaExistenciaCaracteristicas(string aCodigoProducto,
+                                                     string aCodigoAlmacen,
+                                                     string aAnio,
+                                                     string aMes,
+                                                     string aDia,
+                                                     string aValorCaracteristica1,
+                                                     string aValorCaracteristica2,
+                                                     string aValorCaracteristica3,
+                                                     ref double aExistencia)
         {
-            return AdminpaqSdk.fRegresaExistenciaCaracteristicas(aCodigoProducto, aCodigoAlmacen, aAnio, aMes, aDia, aValorCaracteristica1, aValorCaracteristica2, aValorCaracteristica3, ref aExistencia);
+            return AdminpaqSdk.fRegresaExistenciaCaracteristicas(aCodigoProducto,
+                aCodigoAlmacen,
+                aAnio,
+                aMes,
+                aDia,
+                aValorCaracteristica1,
+                aValorCaracteristica2,
+                aValorCaracteristica3,
+                ref aExistencia);
         }
 
-        public int fRegresaIVACargo(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVAOtrasTasas)
+        public int fRegresaExistenciaLotePedimento(string aCodigoProducto,
+                                                   string aCodigoAlmacen,
+                                                   string aPedimento,
+                                                   string aLote,
+                                                   ref double aExistencia)
         {
-            return AdminpaqSdk.fRegresaIVACargo(aLlaveDocto, aNetoTasa15, aNetoTasa10, aNetoTasaCero, aNetoTasaExcenta, aNetoOtrasTasas, aIVATasa15, aIVATasa10, aIVAOtrasTasas);
+            return AdminpaqSdk.fRegresaExistenciaLotePedimento(aCodigoProducto, aCodigoAlmacen, aPedimento, aLote, ref aExistencia);
         }
 
-        public int fRegresaIVACargo_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas)
+        public int fRegresaIVACargo(tLlaveDoc aLlaveDocto,
+                                    double aNetoTasa15,
+                                    double aNetoTasa10,
+                                    double aNetoTasaCero,
+                                    double aNetoTasaExcenta,
+                                    double aNetoOtrasTasas,
+                                    double aIVATasa15,
+                                    double aIVATasa10,
+                                    double aIVAOtrasTasas)
         {
-            return AdminpaqSdk.fRegresaIVACargo_2010(aLlaveDocto, aNetoTasa15, aNetoTasa10, aNetoTasa16, aNetoTasa11, aNetoTasaCero, aNetoTasaExcenta, aNetoOtrasTasas, aIVATasa15, aIVATasa10, aIVATasa16, aIVATasa11, aIVAOtrasTasas);
+            return AdminpaqSdk.fRegresaIVACargo(aLlaveDocto,
+                aNetoTasa15,
+                aNetoTasa10,
+                aNetoTasaCero,
+                aNetoTasaExcenta,
+                aNetoOtrasTasas,
+                aIVATasa15,
+                aIVATasa10,
+                aIVAOtrasTasas);
         }
 
-        public int fRegresaIVACargoRet_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas, double aRetIVA, double aRetI)
+        public int fRegresaIVACargo_2010(tLlaveDoc aLlaveDocto,
+                                         double aNetoTasa15,
+                                         double aNetoTasa10,
+                                         double aNetoTasa16,
+                                         double aNetoTasa11,
+                                         double aNetoTasaCero,
+                                         double aNetoTasaExcenta,
+                                         double aNetoOtrasTasas,
+                                         double aIVATasa15,
+                                         double aIVATasa10,
+                                         double aIVATasa16,
+                                         double aIVATasa11,
+                                         double aIVAOtrasTasas)
         {
-            return AdminpaqSdk.fRegresaIVACargoRet_2010(aLlaveDocto, aNetoTasa15, aNetoTasa10, aNetoTasa16, aNetoTasa11, aNetoTasaCero, aNetoTasaExcenta, aNetoOtrasTasas, aIVATasa15, aIVATasa10, aIVATasa16, aIVATasa11, aIVAOtrasTasas, aRetIVA, aRetI);
+            return AdminpaqSdk.fRegresaIVACargo_2010(aLlaveDocto,
+                aNetoTasa15,
+                aNetoTasa10,
+                aNetoTasa16,
+                aNetoTasa11,
+                aNetoTasaCero,
+                aNetoTasaExcenta,
+                aNetoOtrasTasas,
+                aIVATasa15,
+                aIVATasa10,
+                aIVATasa16,
+                aIVATasa11,
+                aIVAOtrasTasas);
         }
 
-        public int fRegresaIVAPago(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVAOtrasTasas)
+        public int fRegresaIVACargoRet_2010(tLlaveDoc aLlaveDocto,
+                                            double aNetoTasa15,
+                                            double aNetoTasa10,
+                                            double aNetoTasa16,
+                                            double aNetoTasa11,
+                                            double aNetoTasaCero,
+                                            double aNetoTasaExcenta,
+                                            double aNetoOtrasTasas,
+                                            double aIVATasa15,
+                                            double aIVATasa10,
+                                            double aIVATasa16,
+                                            double aIVATasa11,
+                                            double aIVAOtrasTasas,
+                                            double aRetIVA,
+                                            double aRetI)
         {
-            return AdminpaqSdk.fRegresaIVAPago(aLlaveDocto, aNetoTasa15, aNetoTasa10, aNetoTasaCero, aNetoTasaExcenta, aNetoOtrasTasas, aIVATasa15, aIVATasa10, aIVAOtrasTasas);
+            return AdminpaqSdk.fRegresaIVACargoRet_2010(aLlaveDocto,
+                aNetoTasa15,
+                aNetoTasa10,
+                aNetoTasa16,
+                aNetoTasa11,
+                aNetoTasaCero,
+                aNetoTasaExcenta,
+                aNetoOtrasTasas,
+                aIVATasa15,
+                aIVATasa10,
+                aIVATasa16,
+                aIVATasa11,
+                aIVAOtrasTasas,
+                aRetIVA,
+                aRetI);
         }
 
-        public int fRegresaIVAPago_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas)
+        public int fRegresaIVAPago(tLlaveDoc aLlaveDocto,
+                                   double aNetoTasa15,
+                                   double aNetoTasa10,
+                                   double aNetoTasaCero,
+                                   double aNetoTasaExcenta,
+                                   double aNetoOtrasTasas,
+                                   double aIVATasa15,
+                                   double aIVATasa10,
+                                   double aIVAOtrasTasas)
         {
-            return AdminpaqSdk.fRegresaIVAPago_2010(aLlaveDocto, aNetoTasa15, aNetoTasa10, aNetoTasa16, aNetoTasa11, aNetoTasaCero, aNetoTasaExcenta, aNetoOtrasTasas, aIVATasa15, aIVATasa10, aIVATasa16, aIVATasa11, aIVAOtrasTasas);
+            return AdminpaqSdk.fRegresaIVAPago(aLlaveDocto,
+                aNetoTasa15,
+                aNetoTasa10,
+                aNetoTasaCero,
+                aNetoTasaExcenta,
+                aNetoOtrasTasas,
+                aIVATasa15,
+                aIVATasa10,
+                aIVAOtrasTasas);
         }
 
-        public int fRegresaIVAPagoRet_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas, double aRetIVA, double aRetI)
+        public int fRegresaIVAPago_2010(tLlaveDoc aLlaveDocto,
+                                        double aNetoTasa15,
+                                        double aNetoTasa10,
+                                        double aNetoTasa16,
+                                        double aNetoTasa11,
+                                        double aNetoTasaCero,
+                                        double aNetoTasaExcenta,
+                                        double aNetoOtrasTasas,
+                                        double aIVATasa15,
+                                        double aIVATasa10,
+                                        double aIVATasa16,
+                                        double aIVATasa11,
+                                        double aIVAOtrasTasas)
         {
-            return AdminpaqSdk.fRegresaIVAPagoRet_2010(aLlaveDocto, aNetoTasa15, aNetoTasa10, aNetoTasa16, aNetoTasa11, aNetoTasaCero, aNetoTasaExcenta, aNetoOtrasTasas, aIVATasa15, aIVATasa10, aIVATasa16, aIVATasa11, aIVAOtrasTasas, aRetIVA, aRetI);
+            return AdminpaqSdk.fRegresaIVAPago_2010(aLlaveDocto,
+                aNetoTasa15,
+                aNetoTasa10,
+                aNetoTasa16,
+                aNetoTasa11,
+                aNetoTasaCero,
+                aNetoTasaExcenta,
+                aNetoOtrasTasas,
+                aIVATasa15,
+                aIVATasa10,
+                aIVATasa16,
+                aIVATasa11,
+                aIVAOtrasTasas);
+        }
+
+        public int fRegresaIVAPagoRet_2010(tLlaveDoc aLlaveDocto,
+                                           double aNetoTasa15,
+                                           double aNetoTasa10,
+                                           double aNetoTasa16,
+                                           double aNetoTasa11,
+                                           double aNetoTasaCero,
+                                           double aNetoTasaExcenta,
+                                           double aNetoOtrasTasas,
+                                           double aIVATasa15,
+                                           double aIVATasa10,
+                                           double aIVATasa16,
+                                           double aIVATasa11,
+                                           double aIVAOtrasTasas,
+                                           double aRetIVA,
+                                           double aRetI)
+        {
+            return AdminpaqSdk.fRegresaIVAPagoRet_2010(aLlaveDocto,
+                aNetoTasa15,
+                aNetoTasa10,
+                aNetoTasa16,
+                aNetoTasa11,
+                aNetoTasaCero,
+                aNetoTasaExcenta,
+                aNetoOtrasTasas,
+                aIVATasa15,
+                aIVATasa10,
+                aIVATasa16,
+                aIVATasa11,
+                aIVAOtrasTasas,
+                aRetIVA,
+                aRetI);
         }
 
         public int fRegresaPrecioVenta(string aCodigoConcepto, string aCodigoCliente, string aCodigoProducto, StringBuilder aPrecioVenta)
@@ -1284,12 +1708,20 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fRegresaPrecioVenta(aCodigoConcepto, aCodigoCliente, aCodigoProducto, aPrecioVenta);
         }
 
-        public int fRegresaUltimoCosto(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, StringBuilder aUltimoCosto)
+        public int fRegresaUltimoCosto(string aCodigoProducto,
+                                       string aCodigoAlmacen,
+                                       string aAnio,
+                                       string aMes,
+                                       string aDia,
+                                       StringBuilder aUltimoCosto)
         {
             return AdminpaqSdk.fRegresaUltimoCosto(aCodigoProducto, aCodigoAlmacen, aAnio, aMes, aDia, aUltimoCosto);
         }
 
-        public int fRegresPorcentajeImpuesto(int aIdConceptoDocumento, int aIdClienteProveedor, int aIdProducto, ref double aPorcentajeImpuesto)
+        public int fRegresPorcentajeImpuesto(int aIdConceptoDocumento,
+                                             int aIdClienteProveedor,
+                                             int aIdProducto,
+                                             ref double aPorcentajeImpuesto)
         {
             return AdminpaqSdk.fRegresPorcentajeImpuesto(aIdConceptoDocumento, aIdClienteProveedor, aIdProducto, ref aPorcentajeImpuesto);
         }
@@ -1299,12 +1731,33 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fSaldarDocumento(aDoctoaPagar, aDoctoPago, aImporte, aIdMoneda, aFecha);
         }
 
-        public int fSaldarDocumento_Param(string aCodConcepto_Pagar, string aSerie_Pagar, double aFolio_Pagar, string aCodConcepto_Pago, string aSerie_Pago, double aFolio_Pago, double aImporte, int aIdMoneda, string aFecha)
+        public int fSaldarDocumento_Param(string aCodConcepto_Pagar,
+                                          string aSerie_Pagar,
+                                          double aFolio_Pagar,
+                                          string aCodConcepto_Pago,
+                                          string aSerie_Pago,
+                                          double aFolio_Pago,
+                                          double aImporte,
+                                          int aIdMoneda,
+                                          string aFecha)
         {
-            return AdminpaqSdk.fSaldarDocumento_Param(aCodConcepto_Pagar, aSerie_Pagar, aFolio_Pagar, aCodConcepto_Pago, aSerie_Pago, aFolio_Pago, aImporte, aIdMoneda, aFecha);
+            return AdminpaqSdk.fSaldarDocumento_Param(aCodConcepto_Pagar,
+                aSerie_Pagar,
+                aFolio_Pagar,
+                aCodConcepto_Pago,
+                aSerie_Pago,
+                aFolio_Pago,
+                aImporte,
+                aIdMoneda,
+                aFecha);
         }
 
-        public int fSaldarDocumentoCheqPAQ(tLlaveDoc aDoctoaPagar, tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha, double aTipoCambioCheqPAQ)
+        public int fSaldarDocumentoCheqPAQ(tLlaveDoc aDoctoaPagar,
+                                           tLlaveDoc aDoctoPago,
+                                           double aImporte,
+                                           int aIdMoneda,
+                                           string aFecha,
+                                           double aTipoCambioCheqPAQ)
         {
             return AdminpaqSdk.fSaldarDocumentoCheqPAQ(aDoctoaPagar, aDoctoPago, aImporte, aIdMoneda, aFecha, aTipoCambioCheqPAQ);
         }
@@ -1324,7 +1777,7 @@ namespace Contpaqi.Sdk.Extras
             return AdminpaqSdk.fSetDatoClasificacion(aCampo, aValor);
         }
 
-        public int fSetDatoConceptoDocto(StringBuilder aCampo, StringBuilder aValor)
+        public int fSetDatoConceptoDocto(string aCampo, string aValor)
         {
             return AdminpaqSdk.fSetDatoConceptoDocto(aCampo, aValor);
         }
@@ -1409,22 +1862,54 @@ namespace Contpaqi.Sdk.Extras
             AdminpaqSdk.fTerminaSDK();
         }
 
-        public int fTimbraComplementoPagoXML(string aRutaXML, string aCodConcepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato)
+        public int fTimbraComplementoPagoXML(string aRutaXML,
+                                             string aCodConcepto,
+                                             StringBuilder aUUID,
+                                             string aRutaDDA,
+                                             string aRutaResultado,
+                                             string aPass,
+                                             string aRutaFormato)
         {
             return AdminpaqSdk.fTimbraComplementoPagoXML(aRutaXML, aCodConcepto, aUUID, aRutaDDA, aRutaResultado, aPass, aRutaFormato);
         }
 
-        public int fTimbraComplementoXML(string aRutaXML, string aCodCOncepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato, int aComplemento)
+        public int fTimbraComplementoXML(string aRutaXML,
+                                         string aCodCOncepto,
+                                         StringBuilder aUUID,
+                                         string aRutaDDA,
+                                         string aRutaResultado,
+                                         string aPass,
+                                         string aRutaFormato,
+                                         int aComplemento)
         {
-            return AdminpaqSdk.fTimbraComplementoXML(aRutaXML, aCodCOncepto, aUUID, aRutaDDA, aRutaResultado, aPass, aRutaFormato, aComplemento);
+            return AdminpaqSdk.fTimbraComplementoXML(aRutaXML,
+                aCodCOncepto,
+                aUUID,
+                aRutaDDA,
+                aRutaResultado,
+                aPass,
+                aRutaFormato,
+                aComplemento);
         }
 
-        public int fTimbraNominaXML(string aRutaXML, string aCodCOncepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato)
+        public int fTimbraNominaXML(string aRutaXML,
+                                    string aCodCOncepto,
+                                    StringBuilder aUUID,
+                                    string aRutaDDA,
+                                    string aRutaResultado,
+                                    string aPass,
+                                    string aRutaFormato)
         {
             return AdminpaqSdk.fTimbraNominaXML(aRutaXML, aCodCOncepto, aUUID, aRutaDDA, aRutaResultado, aPass, aRutaFormato);
         }
 
-        public int fTimbraXML(string aRutaXML, string aCodCOncepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato)
+        public int fTimbraXML(string aRutaXML,
+                              string aCodCOncepto,
+                              StringBuilder aUUID,
+                              string aRutaDDA,
+                              string aRutaResultado,
+                              string aPass,
+                              string aRutaFormato)
         {
             return AdminpaqSdk.fTimbraXML(aRutaXML, aCodCOncepto, aUUID, aRutaDDA, aRutaResultado, aPass, aRutaFormato);
         }
@@ -1440,44 +1925,111 @@ namespace Contpaqi.Sdk.Extras
             throw new NotImplementedException();
         }
 
-        public int fRecuperarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, StringBuilder aUUIDs, string aRutaNombreArchivoInfo)
+        public string LeeDatoAgente(string dato, int longitud)
         {
-            return AdminpaqSdk.fRecuperarRelacionesCFDIs(aCodConcepto, aSerie, aFolio, aTipoRelacion, aUUIDs, aRutaNombreArchivoInfo);
+            var valor = new StringBuilder(longitud);
+            AdminpaqSdk.fLeeDatoAgente(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
         }
 
-        public int fAgregarRelacionCFDI(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aConceptoRelacionar, string aSerieRelacionar, string aFolioRelacionar)
+        public string LeeDatoAlmacen(string dato, int longitud)
         {
-            return AdminpaqSdk.fAgregarRelacionCFDI(aCodConcepto, aSerie, aFolio, aTipoRelacion, aConceptoRelacionar, aSerieRelacionar, aFolioRelacionar);
+            var valor = new StringBuilder(longitud);
+            AdminpaqSdk.fLeeDatoAlmacen(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
         }
 
-        public int fAgregarRelacionCFDI2(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aUUID)
+        public string LeeDatoCfdi(int dato, int longitud)
         {
-            return AdminpaqSdk.fAgregarRelacionCFDI2(aCodConcepto, aSerie, aFolio, aTipoRelacion, aUUID);
+            var valor = new StringBuilder(longitud);
+            fLeeDatoCFDI(valor, dato).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
         }
 
-        public int fEliminarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio)
+        public string LeeDatoClasificacion(string dato, int longitud)
         {
-            return AdminpaqSdk.fEliminarRelacionesCFDIs(aCodConcepto, aSerie, aFolio);
+            var valor = new StringBuilder(longitud);
+            AdminpaqSdk.fLeeDatoClasificacion(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
         }
 
-        public int fRegresaExistenciaLotePedimento(string aCodigoProducto, string aCodigoAlmacen, string aPedimento, string aLote, ref double aExistencia)
+        public string LeeDatoClienteProveedor(string dato, int longitud)
         {
-            return AdminpaqSdk.fRegresaExistenciaLotePedimento(aCodigoProducto, aCodigoAlmacen, aPedimento, aLote, ref aExistencia);
+            var valor = new StringBuilder(longitud);
+            AdminpaqSdk.fLeeDatoCteProv(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
         }
 
-        public int fProyectoEmpresaDoctos(string aCodigoProyecto)
+        public string LeeDatoConcepto(string dato, int longitud)
         {
-            return AdminpaqSdk.fProyectoEmpresaDoctos(aCodigoProyecto);
+            var valor = new StringBuilder(longitud);
+            AdminpaqSdk.fLeeDatoConceptoDocto(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
         }
 
-        public int fCancelaDoctoInfo(string aPass)
+        public string LeeDatoDireccion(string dato, int longitud)
         {
-            return AdminpaqSdk.fCancelaDoctoInfo(aPass);
+            var valor = new StringBuilder(longitud);
+            AdminpaqSdk.fLeeDatoDireccion(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
         }
+
+        public string LeeDatoDocumento(string dato, int longitud)
+        {
+            var valor = new StringBuilder(longitud);
+            AdminpaqSdk.fLeeDatoDocumento(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
+        }
+
+        public string LeeDatoMovimiento(string dato, int longitud)
+        {
+            var valor = new StringBuilder(longitud);
+            AdminpaqSdk.fLeeDatoMovimiento(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
+        }
+
+        public string LeeDatoParametros(string dato, int longitud)
+        {
+            var valor = new StringBuilder(longitud);
+            AdminpaqSdk.fLeeDatoParametros(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
+        }
+
+        public string LeeDatoProducto(string dato, int longitud)
+        {
+            var valor = new StringBuilder(longitud);
+            AdminpaqSdk.fLeeDatoProducto(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
+        }
+
+        public string LeeDatoUnidad(string dato, int longitud)
+        {
+            var valor = new StringBuilder(longitud);
+            AdminpaqSdk.fLeeDatoUnidad(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
+        }
+
+        public string LeeDatoValorClasificacion(string dato, int longitud)
+        {
+            var valor = new StringBuilder(longitud);
+            AdminpaqSdk.fLeeDatoValorClasif(dato, valor, longitud).ToResultadoSdk(this).ThrowIfError();
+            return valor.ToString();
+        }
+
+        public string LeeMensajeError(int numeroError)
+        {
+            var mensajeError = new StringBuilder(512);
+            fError(numeroError, mensajeError, 512);
+            return mensajeError.ToString();
+        }
+
+        public string NombreLlaveRegistro => AdminpaqSdkConstants.NombreLlaveRegistro;
+
+        public string NombrePaq => AdminpaqSdkConstants.NombrePaq;
 
         private void SetCurrentDirectory()
         {
-            var lEntrada = RegistryHelper.GetDirectorioBaseFromRegistry(NombreLlaveRegistro);
+            string lEntrada = RegistryHelper.GetDirectorioBaseFromRegistry(NombreLlaveRegistro);
             Directory.SetCurrentDirectory(lEntrada);
         }
     }

@@ -2,10 +2,10 @@
 
 namespace Contpaqi.Sdk.Extras.Interfaces
 {
-    public interface IAgenteRepository<T> where T : IAgente
+    public interface IAgenteRepository<T> where T : class, new()
     {
-        T BuscarPorId(int idAgente);
         T BuscarPorCodigo(string codigoAgente);
+        T BuscarPorId(int idAgente);
         IEnumerable<T> TraerTodo();
     }
 }

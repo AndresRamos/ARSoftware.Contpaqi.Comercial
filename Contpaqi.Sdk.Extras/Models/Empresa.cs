@@ -1,18 +1,22 @@
-﻿using Contpaqi.Sdk.Extras.Interfaces;
+﻿using System;
+using Contpaqi.Comercial.Sql.Models.Generales;
 
 namespace Contpaqi.Sdk.Extras.Models
 {
-    public class Empresa : IEmpresa
+    public class Empresa : Empresas
     {
-        public int Id { get; set; }
-
-        public string Nombre { get; set; }
-
-        public string Ruta { get; set; }
+        public bool Contains(string filtro)
+        {
+            return string.IsNullOrWhiteSpace(filtro) ||
+                   CIDEMPRESA.ToString().IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   CNOMBREEMPRESA.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   CRUTADATOS.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   CRUTARESPALDOS.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
 
         public override string ToString()
         {
-            return $"{Nombre}";
+            return $"{CNOMBREEMPRESA}";
         }
     }
 }

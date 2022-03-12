@@ -7,134 +7,134 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels.Sesion
+namespace Contpaqi.Sdk.Ejemplos.ViewModels.Sesion;
+
+public sealed class IniciarSesionViewModel : ObservableRecipient
 {
-    public sealed class IniciarSesionViewModel : ObservableRecipient
+    private readonly IComercialSdkSesionService _comercialSdkSesionService;
+    private readonly IDialogCoordinator _dialogCoordinator;
+    private string _contrasena = string.Empty;
+    private string _contrasenaContabilidad = string.Empty;
+    private string _nombreUsuario = "SUPERVISOR";
+    private string _nombreUsuarioContabilidad = "SUPERVISOR";
+
+    public IniciarSesionViewModel(IComercialSdkSesionService comercialSdkSesionService, IDialogCoordinator dialogCoordinator)
     {
-        private readonly IComercialSdkSesionService _comercialSdkSesionService;
-        private readonly IDialogCoordinator _dialogCoordinator;
-        private string _contrasena = string.Empty;
-        private string _contrasenaContabilidad = string.Empty;
-        private string _nombreUsuario = "SUPERVISOR";
-        private string _nombreUsuarioContabilidad = "SUPERVISOR";
+        _comercialSdkSesionService = comercialSdkSesionService;
+        _dialogCoordinator = dialogCoordinator;
+        IniciarSesionSdkCommand = new AsyncRelayCommand(IniciarSesionSdkAsync);
+        IniciarSesionSdkParametrosCommand = new AsyncRelayCommand(IniciarSesionSdkParametrosAsync, CanIniciarSesionSdkParametrosAsync);
+        IniciarSesionSdkParametrosContabilidadCommand = new AsyncRelayCommand(IniciarSesionSdkParametrosContabilidadAsync,
+            CanIniciarSesionSdkParametrosContabilidadAsync);
+        CerrarVistaCommand = new RelayCommand(CerrarVista);
+    }
 
-        public IniciarSesionViewModel(IComercialSdkSesionService comercialSdkSesionService, IDialogCoordinator dialogCoordinator)
+    public string Title { get; } = "Iniciar Sesion";
+
+    public string NombreUsuario
+    {
+        get => _nombreUsuario;
+        set
         {
-            _comercialSdkSesionService = comercialSdkSesionService;
-            _dialogCoordinator = dialogCoordinator;
-            IniciarSesionSdkCommand = new AsyncRelayCommand(IniciarSesionSdkAsync);
-            IniciarSesionSdkParametrosCommand = new AsyncRelayCommand(IniciarSesionSdkParametrosAsync, CanIniciarSesionSdkParametrosAsync);
-            IniciarSesionSdkParametrosContabilidadCommand = new AsyncRelayCommand(IniciarSesionSdkParametrosContabilidadAsync, CanIniciarSesionSdkParametrosContabilidadAsync);
-            CerrarVistaCommand = new RelayCommand(CerrarVista);
+            SetProperty(ref _nombreUsuario, value);
+            RaiseGuards();
         }
+    }
 
-        public string Title { get; } = "Iniciar Sesion";
-
-        public string NombreUsuario
+    public string Contrasena
+    {
+        get => _contrasena;
+        set
         {
-            get => _nombreUsuario;
-            set
-            {
-                SetProperty(ref _nombreUsuario, value);
-                RaiseGuards();
-            }
+            SetProperty(ref _contrasena, value);
+            RaiseGuards();
         }
+    }
 
-        public string Contrasena
+    public string NombreUsuarioContabilidad
+    {
+        get => _nombreUsuarioContabilidad;
+        set
         {
-            get => _contrasena;
-            set
-            {
-                SetProperty(ref _contrasena, value);
-                RaiseGuards();
-            }
+            SetProperty(ref _nombreUsuarioContabilidad, value);
+            RaiseGuards();
         }
+    }
 
-        public string NombreUsuarioContabilidad
+    public string ContrasenaContabilidad
+    {
+        get => _contrasenaContabilidad;
+        set
         {
-            get => _nombreUsuarioContabilidad;
-            set
-            {
-                SetProperty(ref _nombreUsuarioContabilidad, value);
-                RaiseGuards();
-            }
+            SetProperty(ref _contrasenaContabilidad, value);
+            RaiseGuards();
         }
+    }
 
-        public string ContrasenaContabilidad
+    public IAsyncRelayCommand IniciarSesionSdkCommand { get; }
+    public IAsyncRelayCommand IniciarSesionSdkParametrosCommand { get; }
+    public IAsyncRelayCommand IniciarSesionSdkParametrosContabilidadCommand { get; }
+    public IRelayCommand CerrarVistaCommand { get; }
+
+    public async Task IniciarSesionSdkAsync()
+    {
+        try
         {
-            get => _contrasenaContabilidad;
-            set
-            {
-                SetProperty(ref _contrasenaContabilidad, value);
-                RaiseGuards();
-            }
+            _comercialSdkSesionService.IniciarSesionSdk();
+            CerrarVista();
         }
-
-        public IAsyncRelayCommand IniciarSesionSdkCommand { get; }
-        public IAsyncRelayCommand IniciarSesionSdkParametrosCommand { get; }
-        public IAsyncRelayCommand IniciarSesionSdkParametrosContabilidadCommand { get; }
-        public IRelayCommand CerrarVistaCommand { get; }
-
-        public async Task IniciarSesionSdkAsync()
+        catch (Exception e)
         {
-            try
-            {
-                _comercialSdkSesionService.IniciarSesionSdk();
-                CerrarVista();
-            }
-            catch (Exception e)
-            {
-                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
-            }
+            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
         }
+    }
 
-        public async Task IniciarSesionSdkParametrosAsync()
+    public async Task IniciarSesionSdkParametrosAsync()
+    {
+        try
         {
-            try
-            {
-                _comercialSdkSesionService.IniciarSesionSdk(NombreUsuario, Contrasena);
-                CerrarVista();
-            }
-            catch (Exception e)
-            {
-                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
-            }
+            _comercialSdkSesionService.IniciarSesionSdk(NombreUsuario, Contrasena);
+            CerrarVista();
         }
+        catch (Exception e)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+        }
+    }
 
-        public bool CanIniciarSesionSdkParametrosAsync()
-        {
-            return !string.IsNullOrWhiteSpace(NombreUsuario);
-        }
+    public bool CanIniciarSesionSdkParametrosAsync()
+    {
+        return !string.IsNullOrWhiteSpace(NombreUsuario);
+    }
 
-        public bool CanIniciarSesionSdkParametrosContabilidadAsync()
-        {
-            return !string.IsNullOrWhiteSpace(NombreUsuario) && !string.IsNullOrWhiteSpace(NombreUsuarioContabilidad);
-        }
+    public bool CanIniciarSesionSdkParametrosContabilidadAsync()
+    {
+        return !string.IsNullOrWhiteSpace(NombreUsuario) && !string.IsNullOrWhiteSpace(NombreUsuarioContabilidad);
+    }
 
-        public async Task IniciarSesionSdkParametrosContabilidadAsync()
+    public async Task IniciarSesionSdkParametrosContabilidadAsync()
+    {
+        try
         {
-            try
-            {
-                _comercialSdkSesionService.IniciarSesionSdk(NombreUsuario, Contrasena, NombreUsuarioContabilidad, ContrasenaContabilidad);
-                CerrarVista();
-            }
-            catch (Exception e)
-            {
-                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
-            }
+            _comercialSdkSesionService.IniciarSesionSdk(NombreUsuario, Contrasena, NombreUsuarioContabilidad, ContrasenaContabilidad);
+            CerrarVista();
         }
+        catch (Exception e)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+        }
+    }
 
-        public void CerrarVista()
-        {
-            Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
-        }
+    public void CerrarVista()
+    {
+        Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
+    }
 
-        private void RaiseGuards()
-        {
-            IniciarSesionSdkCommand.NotifyCanExecuteChanged();
-            IniciarSesionSdkParametrosCommand.NotifyCanExecuteChanged();
-            IniciarSesionSdkParametrosContabilidadCommand.NotifyCanExecuteChanged();
-            CerrarVistaCommand.NotifyCanExecuteChanged();
-        }
+    private void RaiseGuards()
+    {
+        IniciarSesionSdkCommand.NotifyCanExecuteChanged();
+        IniciarSesionSdkParametrosCommand.NotifyCanExecuteChanged();
+        IniciarSesionSdkParametrosContabilidadCommand.NotifyCanExecuteChanged();
+        CerrarVistaCommand.NotifyCanExecuteChanged();
     }
 }

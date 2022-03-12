@@ -4,6 +4,6 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 {
     public interface IDatosCfdiRepository
     {
-        DatosCfdi BuscarPorDocumentoId(int documentoId);
+        DatosCfdi BuscarPorDocumentoId(int idDocumento);
     }
 }

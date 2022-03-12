@@ -1,19 +1,23 @@
-﻿using System.Collections.Generic;
-using Contpaqi.Sdk.Extras.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace Contpaqi.Sdk.Extras.Models
 {
-    public class Clasificacion : IClasificacion
+    public class Clasificacion : admClasificaciones
     {
-        public int Id { get; set; }
-
-        public string Nombre { get; set; }
-
         public List<ValorClasificacion> Valores { get; set; }
+
+        public bool Contains(string filtro)
+        {
+            return string.IsNullOrWhiteSpace(filtro) ||
+                   CIDCLASIFICACION.ToString().IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   CNOMBRECLASIFICACION.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
 
         public override string ToString()
         {
-            return $"{Nombre}";
+            return $"{CNOMBRECLASIFICACION}";
         }
     }
 }

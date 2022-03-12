@@ -3,20 +3,20 @@ using Microsoft.Win32;
 
 namespace Contpaqi.Sdk.Extras.Helpers
 {
-    public class RegistryHelper
+    public static class RegistryHelper
     {
         public static string GetDirectorioBaseFromRegistry(string nombreLlaveRegistro)
         {
-            var registryKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
+            RegistryKey registryKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
 
-            var keySistema = registryKey.OpenSubKey(nombreLlaveRegistro, false);
+            RegistryKey keySistema = registryKey.OpenSubKey(nombreLlaveRegistro, false);
 
             if (keySistema is null)
             {
                 throw new ContpaqiSdkException(null, $"No se encontro la llave del registro {nombreLlaveRegistro}");
             }
 
-            var directorioBaseKey = keySistema.GetValue("DirectorioBase");
+            object directorioBaseKey = keySistema.GetValue("DirectorioBase");
 
             if (directorioBaseKey is null)
             {

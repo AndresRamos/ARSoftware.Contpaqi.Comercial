@@ -2,10 +2,10 @@
 
 namespace Contpaqi.Sdk.Extras.Interfaces
 {
-    public interface IAlmacenRepository<T> where T : IAlmacen
+    public interface IAlmacenRepository<T> where T : class, new()
     {
-        T BuscarPorId(int idAlmacen);
         T BuscarPorCodigo(string codigoAlmacen);
+        T BuscarPorId(int idAlmacen);
         IEnumerable<T> TraerTodo();
     }
 }

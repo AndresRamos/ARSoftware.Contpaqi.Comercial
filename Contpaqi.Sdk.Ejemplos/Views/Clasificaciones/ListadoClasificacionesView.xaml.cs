@@ -3,26 +3,24 @@ using Contpaqi.Sdk.Ejemplos.ViewModels.Clasificaciones;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.Views.Clasificaciones
+namespace Contpaqi.Sdk.Ejemplos.Views.Clasificaciones;
+
+public partial class ListadoClasificacionesView
 {
-    /// <summary>
-    ///     Interaction logic for ListadoClasificacionesView.xaml
-    /// </summary>
-    public partial class ListadoClasificacionesView
+    public ListadoClasificacionesView()
     {
-        public ListadoClasificacionesView()
-        {
-            InitializeComponent();
-            DataContext = Ioc.Default.GetService<ListadoClasificacionesViewModel>();
-            WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        InitializeComponent();
+        DataContext = Ioc.Default.GetService<ListadoClasificacionesViewModel>();
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
+            (recipient, message) =>
             {
                 if (message.Sender == ViewModel && message.IsOpen == false)
                 {
-                    Close();
+                    var view = (ListadoClasificacionesView)recipient;
+                    view.Close();
                 }
             });
-        }
-
-        public ListadoClasificacionesViewModel ViewModel => (ListadoClasificacionesViewModel) DataContext;
     }
+
+    public ListadoClasificacionesViewModel ViewModel => (ListadoClasificacionesViewModel)DataContext;
 }

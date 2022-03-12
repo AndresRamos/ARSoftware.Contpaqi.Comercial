@@ -4,8 +4,8 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 {
     public interface IAlmacenService
     {
+        void Actualizar(int idAlmacen, Dictionary<string, string> datosAlmacen);
+        void Actualizar(string codigoAlmacen, Dictionary<string, string> datosAlmacen);
         int Crear(Dictionary<string, string> datosAlmacen);
-        void Actualizar(int almacenId, Dictionary<string, string> datosAlmacen);
-        void Actualizar(string almacenCodigo, Dictionary<string, string> datosAlmacen);
     }
 }

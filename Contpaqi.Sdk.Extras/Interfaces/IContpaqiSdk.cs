@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Contpaqi.Sdk.DatosAbstractos;
 
 // ReSharper disable InconsistentNaming
 
@@ -20,7 +21,7 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fActualizaDireccion(ref tDireccion astDireccion);
 
-        int fActualizaProducto(ref int aCodigoProducto, tProducto astProducto);
+        int fActualizaProducto(string aCodigoProducto, ref tProducto astProducto);
 
         int fActualizaUnidad(string aNombreUnidad, ref tUnidad astUnidad);
 
@@ -32,37 +33,101 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fAfectaSerie(int aIdMovto, string aNumeroSerie);
 
+        int fAgregarRelacionCFDI(string aCodConcepto,
+                                 string aSerie,
+                                 string aFolio,
+                                 string aTipoRelacion,
+                                 string aConceptoRelacionar,
+                                 string aSerieRelacionar,
+                                 string aFolioRelacionar);
+
+        int fAgregarRelacionCFDI2(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aUUID);
+
         int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv);
 
         int fAltaDireccion(ref int aIdDireccion, ref tDireccion astDireccion);
 
-        int fAltaDoctoAjusteIESPSCteProv(string aCodigoClienteProveedor, int aEsCliente, string aFechaDocto, int aIdMoneda, double aTipoCambio, double aImporteIVA, double aTasaIVA, double aImporteIESPS, double aTasaIESPS, int aIdFacturaBase, string aMetodo, string aLugar, ref int aIdDoctoGenerado);
+        int fAltaDoctoAjusteIESPSCteProv(string aCodigoClienteProveedor,
+                                         int aEsCliente,
+                                         string aFechaDocto,
+                                         int aIdMoneda,
+                                         double aTipoCambio,
+                                         double aImporteIVA,
+                                         double aTasaIVA,
+                                         double aImporteIESPS,
+                                         double aTasaIESPS,
+                                         int aIdFacturaBase,
+                                         string aMetodo,
+                                         string aLugar,
+                                         ref int aIdDoctoGenerado);
 
-        int fAltaDoctoAjusteIVAClienteProveedor(string aCodigoClienteProveedor, int aEsCliente, int aAbsorberAjusteIVA, string aFechaDocto, int aIdMoneda, double aTipoCambio, double aImporteIVA, double aTasaIVA, int aIdFacturaBase, string aMetodo, string aLugar, ref int aIdDoctoGenerado);
+        int fAltaDoctoAjusteIVAClienteProveedor(string aCodigoClienteProveedor,
+                                                int aEsCliente,
+                                                int aAbsorberAjusteIVA,
+                                                string aFechaDocto,
+                                                int aIdMoneda,
+                                                double aTipoCambio,
+                                                double aImporteIVA,
+                                                double aTasaIVA,
+                                                int aIdFacturaBase,
+                                                string aMetodo,
+                                                string aLugar,
+                                                ref int aIdDoctoGenerado);
 
         int fAltaDocumento(ref int aIdDocumento, ref tDocumento aDocumento);
 
         int fAltaDocumentoCargoAbono(ref tDocumento aDocumento);
 
-        int fAltaDocumentoCargoAbonoExtras(ref tDocumento aDocumento, string aTextoExtra1, string aTextoExtra2, string aTextoExtra3, string aFechaExtra, double aImporteExtra1, double aImporteExtra2, double aImporteExtra3, double aImporteExtra4);
+        int fAltaDocumentoCargoAbonoExtras(ref tDocumento aDocumento,
+                                           string aTextoExtra1,
+                                           string aTextoExtra2,
+                                           string aTextoExtra3,
+                                           string aFechaExtra,
+                                           double aImporteExtra1,
+                                           double aImporteExtra2,
+                                           double aImporteExtra3,
+                                           double aImporteExtra4);
 
         int fAltaMovimiento(int aIdDocumento, ref int aIdMovimiento, ref tMovimiento astMovimiento);
 
-        int fAltaMovimientoCaracteristicas(int aIdMovimiento, int aIdMovtoCaracteristicas, tCaracteristicas aCaracteristicas);
+        int fAltaMovimientoCaracteristicas(int aIdMovimiento, ref int aIdMovtoCaracteristicas, ref tCaracteristicas aCaracteristicas);
 
-        int fAltaMovimientoCaracteristicas_Param(string aIdMovimiento, string aIdMovtoCaracteristicas, string aUnidades, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3);
+        int fAltaMovimientoCaracteristicas_Param(string aIdMovimiento,
+                                                 string aIdMovtoCaracteristicas,
+                                                 string aUnidades,
+                                                 string aValorCaracteristica1,
+                                                 string aValorCaracteristica2,
+                                                 string aValorCaracteristica3);
 
         int fAltaMovimientoCDesct(int aIdDocumento, ref int aIdMovimiento, ref tMovimientoDesc astMovimiento);
 
-        int fAltaMovimientoEx(ref int aIdMovimiento, tTipoProducto aTipoProducto);
+        int fAltaMovimientoEx(ref int aIdMovimiento, ref tTipoProducto aTipoProducto);
 
         int fAltaMovimientoSeriesCapas(int aIdMovimiento, ref tSeriesCapas aSeriesCapas);
 
-        int fAltaMovimientoSeriesCapas_Param(string aIdMovimiento, string aUnidades, string aTipoCambio, string aSeries, string aPedimento, string aAgencia, string aFechaPedimento, string aNumeroLote, string aFechaFabricacion, string aFechaCaducidad);
+        int fAltaMovimientoSeriesCapas_Param(string aIdMovimiento,
+                                             string aUnidades,
+                                             string aTipoCambio,
+                                             string aSeries,
+                                             string aPedimento,
+                                             string aAgencia,
+                                             string aFechaPedimento,
+                                             string aNumeroLote,
+                                             string aFechaFabricacion,
+                                             string aFechaCaducidad);
 
-        int fAltaMovtoCaracteristicasUnidades(int aIdMovimiento, int aIdMovtoCaracteristicas, tCaracteristicas aCaracteristicasUnidades);
+        int fAltaMovtoCaracteristicasUnidades(int aIdMovimiento,
+                                              ref int aIdMovtoCaracteristicas,
+                                              ref tCaracteristicas aCaracteristicasUnidades);
 
-        int fAltaMovtoCaracteristicasUnidades_Param(string aIdMovimiento, string aIdMovtoCaracteristicas, string aUnidad, string aUnidades, string aUnidadesNC, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3);
+        int fAltaMovtoCaracteristicasUnidades_Param(string aIdMovimiento,
+                                                    string aIdMovtoCaracteristicas,
+                                                    string aUnidad,
+                                                    string aUnidades,
+                                                    string aUnidadesNC,
+                                                    string aValorCaracteristica1,
+                                                    string aValorCaracteristica2,
+                                                    string aValorCaracteristica3);
 
         int fAltaProducto(ref int aIdProducto, ref tProducto astProducto);
 
@@ -82,7 +147,12 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fBorrarAsociacion(tLlaveDoc aDoctoaPagar, tLlaveDoc aDoctoPago);
 
-        int fBorrarAsociacion_Param(string aCodConcepto_Pagar, string aSerie_Pagar, double aFolio_Pagar, string aCodConcepto_Pago, string aSerie_Pago, double aFolio_Pago);
+        int fBorrarAsociacion_Param(string aCodConcepto_Pagar,
+                                    string aSerie_Pagar,
+                                    double aFolio_Pagar,
+                                    string aCodConcepto_Pago,
+                                    string aSerie_Pago,
+                                    double aFolio_Pago);
 
         int fBorraUnidad();
 
@@ -140,9 +210,13 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fCancelaComplementoPagoUUID(string aUUID, string aIdDConcepto, string aPass);
 
+        int fCancelaDoctoInfo(string aPass);
+
         int fCancelaDocumento();
 
         int fCancelaDocumento_CW();
+
+        int fCancelaDocumentoConMotivo(string aMotivoCancelacion, string aUUIDRemplaza);
 
         int fCancelaFiltroDocumento();
 
@@ -169,6 +243,15 @@ namespace Contpaqi.Sdk.Extras.Interfaces
         int fCancelarModificacionValorClasif();
 
         int fCancelaUUID(string aUUID, string aIdDConcepto, string aPass);
+
+        int fCancelaUUID40(string aUUID,
+                           string aMotivoCancelacion,
+                           string aUUIDReemplaza,
+                           string RFCReceptor,
+                           double aTotal,
+                           string aIdDConcepto,
+                           string aPass,
+                           ref int aEstatusCancelacion);
 
         void fCierraEmpresa();
 
@@ -214,6 +297,8 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fEliminarProducto(string aCodigoProducto);
 
+        int fEliminarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio);
+
         int fEliminarUnidad(string aNombreUnidad);
 
         int fEliminarValorClasif(int aClasificacionDe, int aNumClasificacion, string aCodigoValorClasif);
@@ -226,7 +311,20 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fGetCantidadParcialidades(StringBuilder atPtrPassword, StringBuilder aCantidadParcialidades);
 
-        int fGetDatosCFDI(StringBuilder aSerieCertEmisor, StringBuilder aFolioFiscalUUID, StringBuilder aSerieCertSAT, StringBuilder aFechaHora, StringBuilder aSelloDigCFDI, StringBuilder aSelloSAAT, StringBuilder aCadOrigComplSAT, StringBuilder aRegimen, StringBuilder aLugarExpedicion, StringBuilder aMoneda, StringBuilder aFolioFiscalOrig, StringBuilder aSerieFolioFiscalOrig, StringBuilder aFechaFolioFiscalOrig, StringBuilder aMontoFolioFiscalOrig);
+        int fGetDatosCFDI(StringBuilder aSerieCertEmisor,
+                          StringBuilder aFolioFiscalUUID,
+                          StringBuilder aSerieCertSAT,
+                          StringBuilder aFechaHora,
+                          StringBuilder aSelloDigCFDI,
+                          StringBuilder aSelloSAAT,
+                          StringBuilder aCadOrigComplSAT,
+                          StringBuilder aRegimen,
+                          StringBuilder aLugarExpedicion,
+                          StringBuilder aMoneda,
+                          StringBuilder aFolioFiscalOrig,
+                          StringBuilder aSerieFolioFiscalOrig,
+                          StringBuilder aFechaFolioFiscalOrig,
+                          StringBuilder aMontoFolioFiscalOrig);
 
         int fGetNumParcialidades(StringBuilder atPtrPassword, StringBuilder aNumParcialidades);
 
@@ -262,7 +360,15 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fGuardaValorClasif();
 
-        int fInformacionCliente(StringBuilder aCodigo, ref int aPermiteCredito, ref double aLimiteCredito, ref int aLimiteDoctosVencidos, ref int aPermiteExcederCredito, StringBuilder aFecha, ref double aSaldo, ref double aSaldoPendiente, ref int aDoctosVencidos);
+        int fInformacionCliente(StringBuilder aCodigo,
+                                ref int aPermiteCredito,
+                                ref double aLimiteCredito,
+                                ref int aLimiteDoctosVencidos,
+                                ref int aPermiteExcederCredito,
+                                StringBuilder aFecha,
+                                ref double aSaldo,
+                                ref double aSaldoPendiente,
+                                ref int aDoctosVencidos);
 
         int fInicializaLicenseInfo(byte aSistema);
 
@@ -324,11 +430,11 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fLeeDatoValorClasif(string aCampo, StringBuilder aValor, int aLen);
 
-        int fLlenaRegistroCteProv(tCteProv astCteProv, int aEsAlta);
+        int fLlenaRegistroCteProv(ref tCteProv astCteProv, int aEsAlta);
 
         int fLlenaRegistroDireccion(ref tDireccion astDireccion, int aEsAlta);
 
-        int fLlenaRegistroProducto(tProducto astProducto, int aEsAlta);
+        int fLlenaRegistroProducto(ref tProducto astProducto, int aEsAlta);
 
         int fLlenaRegistroUnidad(ref tUnidad astUnidad);
 
@@ -346,7 +452,13 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fObtieneUnidadesPendientes(string aConceptoDocto, string aCodigoProducto, string aCodigoAlmacen, StringBuilder aUnidades);
 
-        int fObtieneUnidadesPendientesCarac(string aConceptoDocto, string aCodigoProducto, string aCodigoAlmacen, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3, StringBuilder aUnidades);
+        int fObtieneUnidadesPendientesCarac(string aConceptoDocto,
+                                            string aCodigoProducto,
+                                            string aCodigoAlmacen,
+                                            string aValorCaracteristica1,
+                                            string aValorCaracteristica2,
+                                            string aValorCaracteristica3,
+                                            StringBuilder aUnidades);
 
         int fPosAnteriorAgente();
 
@@ -490,7 +602,27 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fPosUltimoValorClasif();
 
-        int fRecosteoProducto(string aCodigoProducto, int aEjercicio, int aPeriodo, string aCodigoClasificacion1, string aCodigoClasificacion2, string aCodigoClasificacion3, string aCodigoClasificacion4, string aCodigoClasificacion5, string aCodigoClasificacion6, string aNombreBitacora, int aSobreEscribirBitacora, int aEsCalculoArimetico);
+        int fProyectoEmpresaDoctos(string aCodigoProyecto);
+
+        int fRecosteoProducto(string aCodigoProducto,
+                              int aEjercicio,
+                              int aPeriodo,
+                              string aCodigoClasificacion1,
+                              string aCodigoClasificacion2,
+                              string aCodigoClasificacion3,
+                              string aCodigoClasificacion4,
+                              string aCodigoClasificacion5,
+                              string aCodigoClasificacion6,
+                              string aNombreBitacora,
+                              int aSobreEscribirBitacora,
+                              int aEsCalculoArimetico);
+
+        int fRecuperarRelacionesCFDIs(string aCodConcepto,
+                                      string aSerie,
+                                      string aFolio,
+                                      string aTipoRelacion,
+                                      StringBuilder aUUIDs,
+                                      string aRutaNombreArchivoInfo);
 
         int fRecuperaTipoProducto(ref bool aUnidades, ref bool aSerie, ref bool aLote, ref bool aPedimento, ref bool aCaracteristicas);
 
@@ -498,35 +630,145 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fRegresaCostoEstandar(string aCodigoProducto, StringBuilder aCostoEstandar);
 
-        int fRegresaCostoPromedio(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, StringBuilder aCostoPromedio);
+        int fRegresaCostoPromedio(string aCodigoProducto,
+                                  string aCodigoAlmacen,
+                                  string aAnio,
+                                  string aMes,
+                                  string aDia,
+                                  StringBuilder aCostoPromedio);
 
-        int fRegresaExistencia(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, ref double aExistencia);
+        int fRegresaExistencia(string aCodigoProducto,
+                               string aCodigoAlmacen,
+                               string aAnio,
+                               string aMes,
+                               string aDia,
+                               ref double aExistencia);
 
-        int fRegresaExistenciaCaracteristicas(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3, ref double aExistencia);
+        int fRegresaExistenciaCaracteristicas(string aCodigoProducto,
+                                              string aCodigoAlmacen,
+                                              string aAnio,
+                                              string aMes,
+                                              string aDia,
+                                              string aValorCaracteristica1,
+                                              string aValorCaracteristica2,
+                                              string aValorCaracteristica3,
+                                              ref double aExistencia);
 
-        int fRegresaIVACargo(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVAOtrasTasas);
+        int fRegresaExistenciaLotePedimento(string aCodigoProducto,
+                                            string aCodigoAlmacen,
+                                            string aPedimento,
+                                            string aLote,
+                                            ref double aExistencia);
 
-        int fRegresaIVACargo_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas);
+        int fRegresaIVACargo(tLlaveDoc aLlaveDocto,
+                             double aNetoTasa15,
+                             double aNetoTasa10,
+                             double aNetoTasaCero,
+                             double aNetoTasaExcenta,
+                             double aNetoOtrasTasas,
+                             double aIVATasa15,
+                             double aIVATasa10,
+                             double aIVAOtrasTasas);
 
-        int fRegresaIVACargoRet_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas, double aRetIVA, double aRetI);
+        int fRegresaIVACargo_2010(tLlaveDoc aLlaveDocto,
+                                  double aNetoTasa15,
+                                  double aNetoTasa10,
+                                  double aNetoTasa16,
+                                  double aNetoTasa11,
+                                  double aNetoTasaCero,
+                                  double aNetoTasaExcenta,
+                                  double aNetoOtrasTasas,
+                                  double aIVATasa15,
+                                  double aIVATasa10,
+                                  double aIVATasa16,
+                                  double aIVATasa11,
+                                  double aIVAOtrasTasas);
 
-        int fRegresaIVAPago(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVAOtrasTasas);
+        int fRegresaIVACargoRet_2010(tLlaveDoc aLlaveDocto,
+                                     double aNetoTasa15,
+                                     double aNetoTasa10,
+                                     double aNetoTasa16,
+                                     double aNetoTasa11,
+                                     double aNetoTasaCero,
+                                     double aNetoTasaExcenta,
+                                     double aNetoOtrasTasas,
+                                     double aIVATasa15,
+                                     double aIVATasa10,
+                                     double aIVATasa16,
+                                     double aIVATasa11,
+                                     double aIVAOtrasTasas,
+                                     double aRetIVA,
+                                     double aRetI);
 
-        int fRegresaIVAPago_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas);
+        int fRegresaIVAPago(tLlaveDoc aLlaveDocto,
+                            double aNetoTasa15,
+                            double aNetoTasa10,
+                            double aNetoTasaCero,
+                            double aNetoTasaExcenta,
+                            double aNetoOtrasTasas,
+                            double aIVATasa15,
+                            double aIVATasa10,
+                            double aIVAOtrasTasas);
 
-        int fRegresaIVAPagoRet_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas, double aRetIVA, double aRetI);
+        int fRegresaIVAPago_2010(tLlaveDoc aLlaveDocto,
+                                 double aNetoTasa15,
+                                 double aNetoTasa10,
+                                 double aNetoTasa16,
+                                 double aNetoTasa11,
+                                 double aNetoTasaCero,
+                                 double aNetoTasaExcenta,
+                                 double aNetoOtrasTasas,
+                                 double aIVATasa15,
+                                 double aIVATasa10,
+                                 double aIVATasa16,
+                                 double aIVATasa11,
+                                 double aIVAOtrasTasas);
+
+        int fRegresaIVAPagoRet_2010(tLlaveDoc aLlaveDocto,
+                                    double aNetoTasa15,
+                                    double aNetoTasa10,
+                                    double aNetoTasa16,
+                                    double aNetoTasa11,
+                                    double aNetoTasaCero,
+                                    double aNetoTasaExcenta,
+                                    double aNetoOtrasTasas,
+                                    double aIVATasa15,
+                                    double aIVATasa10,
+                                    double aIVATasa16,
+                                    double aIVATasa11,
+                                    double aIVAOtrasTasas,
+                                    double aRetIVA,
+                                    double aRetI);
 
         int fRegresaPrecioVenta(string aCodigoConcepto, string aCodigoCliente, string aCodigoProducto, StringBuilder aPrecioVenta);
 
-        int fRegresaUltimoCosto(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, StringBuilder aUltimoCosto);
+        int fRegresaUltimoCosto(string aCodigoProducto,
+                                string aCodigoAlmacen,
+                                string aAnio,
+                                string aMes,
+                                string aDia,
+                                StringBuilder aUltimoCosto);
 
         int fRegresPorcentajeImpuesto(int aIdConceptoDocumento, int aIdClienteProveedor, int aIdProducto, ref double aPorcentajeImpuesto);
 
         int fSaldarDocumento(tLlaveDoc aDoctoaPagar, tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha);
 
-        int fSaldarDocumento_Param(string aCodConcepto_Pagar, string aSerie_Pagar, double aFolio_Pagar, string aCodConcepto_Pago, string aSerie_Pago, double aFolio_Pago, double aImporte, int aIdMoneda, string aFecha);
+        int fSaldarDocumento_Param(string aCodConcepto_Pagar,
+                                   string aSerie_Pagar,
+                                   double aFolio_Pagar,
+                                   string aCodConcepto_Pago,
+                                   string aSerie_Pago,
+                                   double aFolio_Pago,
+                                   double aImporte,
+                                   int aIdMoneda,
+                                   string aFecha);
 
-        int fSaldarDocumentoCheqPAQ(tLlaveDoc aDoctoaPagar, tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha, double aTipoCambioCheqPAQ);
+        int fSaldarDocumentoCheqPAQ(tLlaveDoc aDoctoaPagar,
+                                    tLlaveDoc aDoctoPago,
+                                    double aImporte,
+                                    int aIdMoneda,
+                                    string aFecha,
+                                    double aTipoCambioCheqPAQ);
 
         int fSetDatoAgente(string aCampo, string aValor);
 
@@ -534,7 +776,7 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         int fSetDatoClasificacion(string aCampo, string aValor);
 
-        int fSetDatoConceptoDocto(StringBuilder aCampo, StringBuilder aValor);
+        int fSetDatoConceptoDocto(string aCampo, string aValor);
 
         int fSetDatoCteProv(string aCampo, string aValor);
 
@@ -568,30 +810,69 @@ namespace Contpaqi.Sdk.Extras.Interfaces
 
         void fTerminaSDK();
 
-        int fTimbraComplementoPagoXML(string aRutaXML, string aCodConcepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato);
+        int fTimbraComplementoPagoXML(string aRutaXML,
+                                      string aCodConcepto,
+                                      StringBuilder aUUID,
+                                      string aRutaDDA,
+                                      string aRutaResultado,
+                                      string aPass,
+                                      string aRutaFormato);
 
-        int fTimbraComplementoXML(string aRutaXML, string aCodCOncepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato, int aComplemento);
+        int fTimbraComplementoXML(string aRutaXML,
+                                  string aCodCOncepto,
+                                  StringBuilder aUUID,
+                                  string aRutaDDA,
+                                  string aRutaResultado,
+                                  string aPass,
+                                  string aRutaFormato,
+                                  int aComplemento);
 
-        int fTimbraNominaXML(string aRutaXML, string aCodCOncepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato);
+        int fTimbraNominaXML(string aRutaXML,
+                             string aCodCOncepto,
+                             StringBuilder aUUID,
+                             string aRutaDDA,
+                             string aRutaResultado,
+                             string aPass,
+                             string aRutaFormato);
 
-        int fTimbraXML(string aRutaXML, string aCodCOncepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato);
+        int fTimbraXML(string aRutaXML,
+                       string aCodCOncepto,
+                       StringBuilder aUUID,
+                       string aRutaDDA,
+                       string aRutaResultado,
+                       string aPass,
+                       string aRutaFormato);
 
         int InicializarSDK();
 
         int InicializarSDK(string usuario, string password);
 
-        int fRecuperarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, StringBuilder aUUIDs, string aRutaNombreArchivoInfo);
+        string LeeDatoAgente(string dato, int longitud = 512);
 
-        int fAgregarRelacionCFDI(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aConceptoRelacionar, string aSerieRelacionar, string aFolioRelacionar);
+        string LeeDatoAlmacen(string dato, int longitud = 512);
 
-        int fAgregarRelacionCFDI2(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aUUID);
+        string LeeDatoCfdi(int dato, int longitud = 3000);
 
-        int fEliminarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio);
+        string LeeDatoClasificacion(string dato, int longitud = 512);
 
-        int fRegresaExistenciaLotePedimento(string aCodigoProducto, string aCodigoAlmacen, string aPedimento, string aLote, ref double aExistencia);
+        string LeeDatoClienteProveedor(string dato, int longitud = 512);
 
-        int fProyectoEmpresaDoctos(string aCodigoProyecto);
+        string LeeDatoConcepto(string dato, int longitud = 512);
 
-        int fCancelaDoctoInfo(string aPass);
+        string LeeDatoDireccion(string dato, int longitud = 512);
+
+        string LeeDatoDocumento(string dato, int longitud = 512);
+
+        string LeeDatoMovimiento(string dato, int longitud = 512);
+
+        string LeeDatoParametros(string dato, int longitud = 512);
+
+        string LeeDatoProducto(string dato, int longitud = 512);
+
+        string LeeDatoUnidad(string dato, int longitud = 512);
+
+        string LeeDatoValorClasificacion(string dato, int longitud = 512);
+
+        string LeeMensajeError(int numeroError);
     }
 }

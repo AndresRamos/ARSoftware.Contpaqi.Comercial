@@ -2,11 +2,11 @@
 
 namespace Contpaqi.Sdk.Extras.Interfaces
 {
-    public interface IConceptoDocumentoRepository<T> where T : IConceptoDocumento
+    public interface IConceptoDocumentoRepository<T> where T : class, new()
     {
-        T BuscarPorId(int idConcepto);
         T BuscarPorCodigo(string codigoConcepto);
-        IEnumerable<T> TraerTodo();
+        T BuscarPorId(int idConcepto);
         IEnumerable<T> TraerPorDocumentoModeloId(int documentoModeloId);
+        IEnumerable<T> TraerTodo();
     }
 }

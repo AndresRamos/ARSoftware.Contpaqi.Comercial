@@ -3,11 +3,11 @@ using Contpaqi.Sdk.Extras.Models.Enums;
 
 namespace Contpaqi.Sdk.Extras.Interfaces
 {
-    public interface IClasificacionRepository<T> where T : IClasificacion
+    public interface IClasificacionRepository<T> where T : class, new()
     {
-        T BuscarPorTipoYNumero(TipoClasificacionEnum tipo, int numero);
         T BuscarPorId(int idClasificacion);
-        IEnumerable<T> TraerPorTipo(TipoClasificacionEnum tipo);
+        T BuscarPorTipoYNumero(TipoClasificacion tipo, NumeroClasificacion numero);
+        IEnumerable<T> TraerPorTipo(TipoClasificacion tipo);
         IEnumerable<T> TraerTodo();
     }
 }

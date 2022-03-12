@@ -1,5 +1,4 @@
-﻿using System.Text;
-using Contpaqi.Sdk.Extras.Interfaces;
+﻿using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Models;
 
 namespace Contpaqi.Sdk.Extras.Repositories
@@ -15,14 +14,12 @@ namespace Contpaqi.Sdk.Extras.Repositories
 
         public string BuscarMensajePorNumero(int numeroError)
         {
-            var mensajeError = new StringBuilder(512);
-            _sdk.fError(numeroError, mensajeError, 512);
-            return mensajeError.ToString();
+            return _sdk.LeeMensajeError(numeroError);
         }
 
         public SdkError BuscarPorNumero(int numeroError)
         {
-            return new SdkError {Numero = numeroError, Mensaje = BuscarMensajePorNumero(numeroError)};
+            return new SdkError { Numero = numeroError, Mensaje = BuscarMensajePorNumero(numeroError) };
         }
     }
 }

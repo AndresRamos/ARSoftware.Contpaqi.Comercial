@@ -3,26 +3,27 @@ using Contpaqi.Sdk.Ejemplos.ViewModels.Movimientos;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.Views.Movimientos
+namespace Contpaqi.Sdk.Ejemplos.Views.Movimientos;
+
+/// <summary>
+///     Interaction logic for CrearMovimientoView.xaml
+/// </summary>
+public partial class CrearMovimientoView
 {
-    /// <summary>
-    ///     Interaction logic for CrearMovimientoView.xaml
-    /// </summary>
-    public partial class CrearMovimientoView
+    public CrearMovimientoView()
     {
-        public CrearMovimientoView()
-        {
-            InitializeComponent();
-            DataContext = Ioc.Default.GetService<CrearMovimientoViewModel>();
-            WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        InitializeComponent();
+        DataContext = Ioc.Default.GetService<CrearMovimientoViewModel>();
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
+            (recipient, message) =>
             {
                 if (message.Sender == ViewModel && message.IsOpen == false)
                 {
-                    Close();
+                    var view = (CrearMovimientoView)recipient;
+                    view.Close();
                 }
             });
-        }
-
-        public CrearMovimientoViewModel ViewModel => (CrearMovimientoViewModel) DataContext;
     }
+
+    public CrearMovimientoViewModel ViewModel => (CrearMovimientoViewModel)DataContext;
 }

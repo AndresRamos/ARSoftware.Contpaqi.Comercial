@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Text;
-using Contpaqi.Sdk.Extras.Helpers;
+using Contpaqi.Comercial.Sql.Models.Empresa;
+using Contpaqi.Sdk.Extras.Extensions;
 using Contpaqi.Sdk.Extras.Interfaces;
 
 namespace Contpaqi.Sdk.Extras.Services
@@ -14,38 +14,36 @@ namespace Contpaqi.Sdk.Extras.Services
             _sdk = sdk;
         }
 
+        public void Actualizar(int idAlmacen, Dictionary<string, string> datosAlmacen)
+        {
+            _sdk.fBuscaIdAlmacen(idAlmacen).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fEditaAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
+            SetDatos(datosAlmacen);
+            _sdk.fGuardaAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
+        }
+
+        public void Actualizar(string codigoAlmacen, Dictionary<string, string> datosAlmacen)
+        {
+            _sdk.fBuscaAlmacen(codigoAlmacen).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fEditaAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
+            SetDatos(datosAlmacen);
+            _sdk.fGuardaAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
+        }
+
         public int Crear(Dictionary<string, string> datosAlmacen)
         {
             _sdk.fInsertaAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
-            SetDatosAlmacen(datosAlmacen);
+            SetDatos(datosAlmacen);
             _sdk.fGuardaAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
-
-            var idAlmacenDato = new StringBuilder(12);
-            _sdk.fLeeDatoAlmacen("CIDALMACEN", idAlmacenDato, 12).ToResultadoSdk(_sdk).ThrowIfError();
-            return int.Parse(idAlmacenDato.ToString());
+            string idAlmacenDato = _sdk.LeeDatoAlmacen(nameof(admAlmacenes.CIDALMACEN), 12);
+            return int.Parse(idAlmacenDato);
         }
 
-        public void Actualizar(int almacenId, Dictionary<string, string> datosAlmacen)
+        public void SetDatos(Dictionary<string, string> datos)
         {
-            _sdk.fBuscaIdAlmacen(almacenId).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fEditaAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
-            SetDatosAlmacen(datosAlmacen);
-            _sdk.fGuardaAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
-        }
-
-        public void Actualizar(string almacenCodigo, Dictionary<string, string> datosAlmacen)
-        {
-            _sdk.fBuscaAlmacen(almacenCodigo).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fEditaAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
-            SetDatosAlmacen(datosAlmacen);
-            _sdk.fGuardaAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
-        }
-
-        private void SetDatosAlmacen(Dictionary<string, string> datosAlmacen)
-        {
-            foreach (var dato in datosAlmacen)
+            foreach (KeyValuePair<string, string> dato in datos)
             {
-                _sdk.fSetDatoAlmacen(dato.Key, dato.Value);
+                _sdk.fSetDatoAlmacen(dato.Key, dato.Value).ToResultadoSdk(_sdk).ThrowIfError();
             }
         }
     }

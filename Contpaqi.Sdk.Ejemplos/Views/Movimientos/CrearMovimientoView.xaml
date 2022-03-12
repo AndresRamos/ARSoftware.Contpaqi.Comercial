@@ -10,7 +10,8 @@
                       d:DataContext="{d:DesignInstance viewModels:CrearMovimientoViewModel, IsDesignTimeCreatable=False}"
                       Title="{Binding Title}"
                       WindowStartupLocation="CenterScreen"
-                      Width="700" Height="500"
+                      Width="700"
+                      Height="500"
                       dialog:DialogParticipation.Register="{Binding}">
     <Grid>
         <Grid.RowDefinitions>
@@ -18,15 +19,26 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="{Binding Title, Mode=OneWay}" FontWeight="Bold" FontSize="20"
-                   VerticalAlignment="Center" Margin="5" />
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button Content="Crear Movimiento" Command="{Binding CrearMovimientoCommand}" MinWidth="150"
+        <TextBlock Grid.Row="0"
+                   Text="{Binding Title, Mode=OneWay}"
+                   FontWeight="Bold"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal">
+            <Button Content="Crear Movimiento"
+                    Command="{Binding CrearMovimientoCommand}"
+                    MinWidth="150"
                     VerticalAlignment="Center"
-                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
-            <Button Content="Cancelar" Command="{Binding CancelarCommand}" MinWidth="150"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+            <Button Content="Cancelar"
+                    Command="{Binding CancelarCommand}"
+                    MinWidth="150"
                     VerticalAlignment="Center"
-                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square}" />
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square}" />
         </StackPanel>
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
@@ -45,41 +57,63 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Content="Producto:" FontWeight="Bold" VerticalAlignment="Center"
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Content="Producto:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
                    Margin="5" />
-            <ComboBox Grid.Row="0" Grid.Column="1"
+            <ComboBox Grid.Row="0"
+                      Grid.Column="1"
                       ItemsSource="{Binding Productos}"
-                      SelectedItem="{Binding ProductoSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      DisplayMemberPath="Nombre"
-                      VerticalAlignment="Center" Margin="5" />
-            <Label Grid.Row="1" Grid.Column="0" Content="Almacen:" FontWeight="Bold" VerticalAlignment="Center"
+                      SelectedItem="{Binding Movimiento.Producto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      VerticalAlignment="Center"
+                      Margin="5" />
+            <Label Grid.Row="1"
+                   Grid.Column="0"
+                   Content="Almacen:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
                    Margin="5" />
-            <ComboBox Grid.Row="1" Grid.Column="1"
+            <ComboBox Grid.Row="1"
+                      Grid.Column="1"
                       ItemsSource="{Binding Almacenes}"
-                      SelectedItem="{Binding AlmacenSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      DisplayMemberPath="Nombre"
-                      VerticalAlignment="Center" Margin="5" />
-            <Label Grid.Row="2" Grid.Column="0" Content="Unidades:" FontWeight="Bold" VerticalAlignment="Center"
+                      SelectedItem="{Binding Movimiento.Almacen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      VerticalAlignment="Center"
+                      Margin="5" />
+            <Label Grid.Row="2"
+                   Grid.Column="0"
+                   Content="Unidades:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
                    Margin="5" />
-            <TextBox Grid.Row="2" Grid.Column="1"
-                     Text="{Binding Unidades, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     VerticalAlignment="Center" Margin="5" />
-            <Label Grid.Row="3" Grid.Column="0" Content="Precio:" FontWeight="Bold" VerticalAlignment="Center"
+            <TextBox Grid.Row="2"
+                     Grid.Column="1"
+                     Text="{Binding Movimiento.CUNIDADESCAPTURADAS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center"
+                     Margin="5" />
+            <Label Grid.Row="3"
+                   Grid.Column="0"
+                   Content="Precio:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
                    Margin="5" />
-            <TextBox Grid.Row="3" Grid.Column="1"
-                     Text="{Binding Precio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     VerticalAlignment="Center" Margin="5" />
-            <Label Grid.Row="4" Grid.Column="0" Content="Costo:" FontWeight="Bold" VerticalAlignment="Center"
+            <TextBox Grid.Row="3"
+                     Grid.Column="1"
+                     Text="{Binding Movimiento.CPRECIO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center"
+                     Margin="5" />
+            <Label Grid.Row="5"
+                   Grid.Column="0"
+                   Content="Referencia:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
                    Margin="5" />
-            <TextBox Grid.Row="4" Grid.Column="1"
-                     Text="{Binding Costo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     VerticalAlignment="Center" Margin="5" />
-            <Label Grid.Row="5" Grid.Column="0" Content="Referencia:" FontWeight="Bold" VerticalAlignment="Center"
-                   Margin="5" />
-            <TextBox Grid.Row="5" Grid.Column="1"
-                     Text="{Binding Referencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     VerticalAlignment="Center" Margin="5" />
-
+            <TextBox Grid.Row="5"
+                     Grid.Column="1"
+                     Text="{Binding Movimiento.CREFERENCIA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center"
+                     Margin="5" />
         </Grid>
     </Grid>
 </controls:MetroWindow>

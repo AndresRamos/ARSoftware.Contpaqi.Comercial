@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
-using Contpaqi.Sdk.Extras.Helpers;
+using Contpaqi.Comercial.Sql.Models.Empresa;
+using Contpaqi.Sdk.Extras.Extensions;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Models;
 using Contpaqi.Sdk.Extras.Models.Enums;
 
 namespace Contpaqi.Sdk.Extras.Repositories
 {
-    public class ValorClasificacionRepository : IValorClasificacionRepository<ValorClasificacion>
+    public class ValorClasificacionRepository<T> : IValorClasificacionRepository<T> where T : class, new()
     {
         private readonly IContpaqiSdk _sdk;
 
@@ -16,31 +19,24 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk = sdk;
         }
 
-        public ValorClasificacion BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacionEnum tipoClasificacion, int numeroClasificacion, string codigoValorClasificacion)
+        public T BuscarPorId(int idValorClasificacion)
         {
-            return _sdk.fBuscaValorClasif((int) tipoClasificacion, numeroClasificacion, codigoValorClasificacion) == SdkResultConstants.Success ? LeerDatosValorClasificacionActual() : null;
+            return _sdk.fBuscaIdValorClasif(idValorClasificacion) == SdkResultConstants.Success
+                ? LeerDatosValorClasificacionActual()
+                : null;
         }
 
-        public ValorClasificacion BuscarPorId(int idValorClasificacion)
+        public T BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacion tipoClasificacion,
+                                                         int numeroClasificacion,
+                                                         string codigoValorClasificacion)
         {
-            return _sdk.fBuscaIdValorClasif(idValorClasificacion) == SdkResultConstants.Success ? LeerDatosValorClasificacionActual() : null;
+            return _sdk.fBuscaValorClasif((int)tipoClasificacion, numeroClasificacion, codigoValorClasificacion) ==
+                   SdkResultConstants.Success
+                ? LeerDatosValorClasificacionActual()
+                : null;
         }
 
-        public IEnumerable<ValorClasificacion> TraerTodo()
-        {
-            _sdk.fPosPrimerValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
-            yield return LeerDatosValorClasificacionActual();
-            while (_sdk.fPosSiguienteValorClasif() == SdkResultConstants.Success)
-            {
-                yield return LeerDatosValorClasificacionActual();
-                if (_sdk.fPosEOFValorClasif() == 1)
-                {
-                    break;
-                }
-            }
-        }
-
-        public IEnumerable<ValorClasificacion> TraerPorClasificacionId(int idClasificacion)
+        public IEnumerable<T> TraerPorClasificacionId(int idClasificacion)
         {
             _sdk.fPosPrimerValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
             var id = new StringBuilder(12);
@@ -65,24 +61,59 @@ namespace Contpaqi.Sdk.Extras.Repositories
             }
         }
 
-        private ValorClasificacion LeerDatosValorClasificacionActual()
+        public IEnumerable<T> TraerPorClasificacionTipoYNumero(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion)
         {
-            var id = new StringBuilder(12);
-            var idClasificacion = new StringBuilder(12);
-            var codigo = new StringBuilder(4);
-            var valor = new StringBuilder(61);
+            _sdk.fBuscaClasificacion((int)tipoClasificacion, (int)numeroClasificacion).ToResultadoSdk(_sdk).ThrowIfError();
+            string idClasificacion = _sdk.LeeDatoClasificacion(nameof(admClasificaciones.CIDCLASIFICACION));
+            return TraerPorClasificacionId(int.Parse(idClasificacion));
+        }
 
-            _sdk.fLeeDatoValorClasif("CIDVALORCLASIFICACION", id, 12).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoValorClasif("CIDCLASIFICACION", idClasificacion, 12).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoValorClasif("CCODIGOVALORCLASIFICACION", codigo, 4).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoValorClasif("CVALORCLASIFICACION", valor, 61).ToResultadoSdk(_sdk).ThrowIfError();
+        public IEnumerable<T> TraerTodo()
+        {
+            _sdk.fPosPrimerValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
+            yield return LeerDatosValorClasificacionActual();
+            while (_sdk.fPosSiguienteValorClasif() == SdkResultConstants.Success)
+            {
+                yield return LeerDatosValorClasificacionActual();
+                if (_sdk.fPosEOFValorClasif() == 1)
+                {
+                    break;
+                }
+            }
+        }
 
-            var valorClasi = new ValorClasificacion();
-            valorClasi.Id = int.Parse(id.ToString());
-            valorClasi.IdClasificacion = int.Parse(idClasificacion.ToString());
-            valorClasi.Codigo = codigo.ToString();
-            valorClasi.Valor = valor.ToString();
-            return valorClasi;
+        private T LeerDatosValorClasificacionActual()
+        {
+            var valorClasificacion = new T();
+
+            LeerYAsignarDatos(valorClasificacion);
+
+            return valorClasificacion;
+        }
+
+        private void LeerYAsignarDatos(T valor)
+        {
+            Type sqlModelType = typeof(admClasificacionesValores);
+
+            foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
+            {
+                try
+                {
+                    if (!sqlModelType.HasProperty(propertyDescriptor.Name))
+                    {
+                        continue;
+                    }
+
+                    propertyDescriptor.SetValue(valor,
+                        _sdk.LeeDatoValorClasificacion(propertyDescriptor.Name)
+                            .Trim()
+                            .ConvertFromSdkValueString(propertyDescriptor.PropertyType));
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}", e);
+                }
+            }
         }
     }
 }

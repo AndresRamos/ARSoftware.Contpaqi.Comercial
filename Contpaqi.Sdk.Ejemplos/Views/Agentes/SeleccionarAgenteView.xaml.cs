@@ -3,26 +3,27 @@ using Contpaqi.Sdk.Ejemplos.ViewModels.Agentes;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.Views.Agentes
+namespace Contpaqi.Sdk.Ejemplos.Views.Agentes;
+
+/// <summary>
+///     Interaction logic for SeleccionarAgenteView.xaml
+/// </summary>
+public partial class SeleccionarAgenteView
 {
-    /// <summary>
-    ///     Interaction logic for SeleccionarAgenteView.xaml
-    /// </summary>
-    public partial class SeleccionarAgenteView
+    public SeleccionarAgenteView()
     {
-        public SeleccionarAgenteView()
-        {
-            InitializeComponent();
-            DataContext = Ioc.Default.GetService<SeleccionarAgenteViewModel>();
-            WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        InitializeComponent();
+        DataContext = Ioc.Default.GetService<SeleccionarAgenteViewModel>();
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
+            (recipient, message) =>
             {
                 if (message.Sender == ViewModel && message.IsOpen == false)
                 {
-                    Close();
+                    var view = (SeleccionarAgenteView)recipient;
+                    view.Close();
                 }
             });
-        }
-
-        public SeleccionarAgenteViewModel ViewModel => (SeleccionarAgenteViewModel) DataContext;
     }
+
+    public SeleccionarAgenteViewModel ViewModel => (SeleccionarAgenteViewModel)DataContext;
 }

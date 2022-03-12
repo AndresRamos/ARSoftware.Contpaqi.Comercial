@@ -1,12 +1,11 @@
-﻿namespace Contpaqi.Sdk.Ejemplos.Messages
-{
-    public class MostrarDetallesFacturaMessage
-    {
-        public MostrarDetallesFacturaMessage(int facturaId)
-        {
-            FacturaId = facturaId;
-        }
+﻿namespace Contpaqi.Sdk.Ejemplos.Messages;
 
-        public int FacturaId { get; }
+public class MostrarDetallesFacturaMessage
+{
+    public MostrarDetallesFacturaMessage(int facturaId)
+    {
+        FacturaId = facturaId;
     }
+
+    public int FacturaId { get; }
 }

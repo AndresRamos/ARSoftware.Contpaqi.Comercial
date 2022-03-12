@@ -12,152 +12,154 @@ using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels.Agentes
+namespace Contpaqi.Sdk.Ejemplos.ViewModels.Agentes;
+
+public class ListadoAgentesViewModel : ObservableRecipient
 {
-    public class ListadoAgentesViewModel : ObservableRecipient
+    private readonly IAgenteRepository<Agente> _agenteRepository;
+    private readonly IDialogCoordinator _dialogCoordinator;
+    private Agente _agenteSeleccionado;
+    private string _duracionBusqueda;
+    private string _filtro;
+
+    public ListadoAgentesViewModel(IAgenteRepository<Agente> agenteRepository, IDialogCoordinator dialogCoordinator)
     {
-        private readonly IAgenteRepository<Agente> _agenteRepository;
-        private readonly IDialogCoordinator _dialogCoordinator;
-        private Agente _agenteSeleccionado;
-        private string _duracionBusqueda;
-        private string _filtro;
+        _agenteRepository = agenteRepository;
+        _dialogCoordinator = dialogCoordinator;
+        Agentes = new ObservableCollection<Agente>();
+        AgentesView = CollectionViewSource.GetDefaultView(Agentes);
+        AgentesView.Filter = AgentesView_Filter;
 
-        public ListadoAgentesViewModel(IAgenteRepository<Agente> agenteRepository, IDialogCoordinator dialogCoordinator)
+        BuscarAgentesCommand = new AsyncRelayCommand(BuscarAgentesAsync);
+        CrearAgenteCommand = new AsyncRelayCommand(CrearAgenteAsync);
+        EditarAgenteCommand = new AsyncRelayCommand(EditarAgenteAsync, CanEditarAgenteAsync);
+    }
+
+    public string Title => "Agentes";
+
+    public string Filtro
+    {
+        get => _filtro;
+        set
         {
-            _agenteRepository = agenteRepository;
-            _dialogCoordinator = dialogCoordinator;
-            Agentes = new ObservableCollection<Agente>();
-            AgentesView = CollectionViewSource.GetDefaultView(Agentes);
-            AgentesView.Filter = AgentesView_Filter;
-
-            BuscarAgentesCommand = new AsyncRelayCommand(BuscarAgentesAsync);
-            CrearAgenteCommand = new AsyncRelayCommand(CrearAgenteAsync);
-            EditarAgenteCommand = new AsyncRelayCommand(EditarAgenteAsync, CanEditarAgenteAsync);
+            SetProperty(ref _filtro, value);
+            AgentesView.Refresh();
+            OnPropertyChanged(nameof(NumeroAgentes));
         }
+    }
 
-        public string Title => "Agentes";
+    public ObservableCollection<Agente> Agentes { get; }
 
-        public string Filtro
+    public ICollectionView AgentesView { get; }
+
+    public Agente AgenteSeleccionado
+    {
+        get => _agenteSeleccionado;
+        set
         {
-            get => _filtro;
-            set
-            {
-                SetProperty(ref _filtro, value);
-                AgentesView.Refresh();
-                OnPropertyChanged(nameof(NumeroAgentes));
-            }
+            SetProperty(ref _agenteSeleccionado, value);
+            RaiseGuards();
         }
+    }
 
-        public ObservableCollection<Agente> Agentes { get; }
+    public int NumeroAgentes => AgentesView.Cast<object>().Count();
 
-        public ICollectionView AgentesView { get; }
+    public string DuracionBusqueda
+    {
+        get => _duracionBusqueda;
+        private set => SetProperty(ref _duracionBusqueda, value);
+    }
 
-        public Agente AgenteSeleccionado
+    public IAsyncRelayCommand BuscarAgentesCommand { get; }
+    public IAsyncRelayCommand CrearAgenteCommand { get; }
+    public IAsyncRelayCommand EditarAgenteCommand { get; }
+
+    private async Task BuscarAgentesAsync()
+    {
+        ProgressDialogController progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
+        await Task.Delay(1000);
+
+        try
         {
-            get => _agenteSeleccionado;
-            set
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            Agentes.Clear();
+            foreach (Agente agente in _agenteRepository.TraerTodo())
             {
-                SetProperty(ref _agenteSeleccionado, value);
-                RaiseGuards();
-            }
-        }
-
-        public int NumeroAgentes => AgentesView.Cast<object>().Count();
-
-        public string DuracionBusqueda
-        {
-            get => _duracionBusqueda;
-            private set => SetProperty(ref _duracionBusqueda, value);
-        }
-
-        public IAsyncRelayCommand BuscarAgentesCommand { get; }
-        public IAsyncRelayCommand CrearAgenteCommand { get; }
-        public IAsyncRelayCommand EditarAgenteCommand { get; }
-
-        public async Task BuscarAgentesAsync()
-        {
-            var progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
-            await Task.Delay(1000);
-
-            try
-            {
-                var stopwatch = new Stopwatch();
-                stopwatch.Start();
-                Agentes.Clear();
-                foreach (var agente in _agenteRepository.TraerTodo())
-                {
-                    Agentes.Add(agente);
-                    progressDialogController.SetMessage($"Numero de agentes: {Agentes.Count}");
-                    await Task.Delay(50);
-                }
-
-                stopwatch.Stop();
-                DuracionBusqueda = stopwatch.Elapsed.ToString("g");
-            }
-            catch (Exception e)
-            {
-                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
-            }
-            finally
-            {
-                await progressDialogController.CloseAsync();
-                OnPropertyChanged(nameof(NumeroAgentes));
-            }
-        }
-
-        public async Task CrearAgenteAsync()
-        {
-            try
-            {
-                var window = new EditarAgenteView();
-                window.ViewModel.Inicializar();
-                window.Show();
-            }
-            catch (Exception e)
-            {
-                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
-            }
-        }
-
-        public async Task EditarAgenteAsync()
-        {
-            try
-            {
-                var window = new EditarAgenteView();
-                window.ViewModel.Inicializar(AgenteSeleccionado.Id);
-                window.Show();
-            }
-            catch (Exception e)
-            {
-                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
-            }
-        }
-
-        public bool CanEditarAgenteAsync()
-        {
-            return AgenteSeleccionado != null;
-        }
-
-        private void RaiseGuards()
-        {
-            BuscarAgentesCommand.NotifyCanExecuteChanged();
-            CrearAgenteCommand.NotifyCanExecuteChanged();
-            EditarAgenteCommand.NotifyCanExecuteChanged();
-        }
-
-        private bool AgentesView_Filter(object obj)
-        {
-            var agente = obj as Agente;
-            if (agente is null)
-            {
-                throw new ArgumentNullException(nameof(obj));
+                Agentes.Add(agente);
+                progressDialogController.SetMessage($"Numero de agentes: {Agentes.Count}");
+                await Task.Delay(20);
             }
 
-            return string.IsNullOrWhiteSpace(Filtro) ||
-                   agente.Id.ToString().IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   agente.Codigo.IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   agente.Nombre.IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   agente.Tipo.ToString().IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0;
+            stopwatch.Stop();
+            DuracionBusqueda = stopwatch.Elapsed.ToString("g");
         }
+        catch (Exception e)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+        }
+        finally
+        {
+            await progressDialogController.CloseAsync();
+            OnPropertyChanged(nameof(NumeroAgentes));
+        }
+    }
+
+    private async Task CrearAgenteAsync()
+    {
+        try
+        {
+            var window = new EditarAgenteView();
+            window.ViewModel.Inicializar();
+            window.ShowDialog();
+
+            await _dialogCoordinator.ShowMessageAsync(this,
+                "Volver A Buscar Catalogo",
+                "Para ver los cambios reflejados volver a buscar el catalogo.");
+        }
+        catch (Exception e)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+        }
+    }
+
+    private async Task EditarAgenteAsync()
+    {
+        try
+        {
+            var window = new EditarAgenteView();
+            window.ViewModel.Inicializar(AgenteSeleccionado.CIDAGENTE);
+            window.ShowDialog();
+
+            await _dialogCoordinator.ShowMessageAsync(this,
+                "Volver A Buscar Catalogo",
+                "Para ver los cambios reflejados volver a buscar el catalogo.");
+        }
+        catch (Exception e)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+        }
+    }
+
+    private bool CanEditarAgenteAsync()
+    {
+        return AgenteSeleccionado != null;
+    }
+
+    private void RaiseGuards()
+    {
+        BuscarAgentesCommand.NotifyCanExecuteChanged();
+        CrearAgenteCommand.NotifyCanExecuteChanged();
+        EditarAgenteCommand.NotifyCanExecuteChanged();
+    }
+
+    private bool AgentesView_Filter(object obj)
+    {
+        if (obj is not Agente agente)
+        {
+            throw new ArgumentNullException(nameof(obj));
+        }
+
+        return agente.Contains(Filtro);
     }
 }

@@ -3,26 +3,27 @@ using Contpaqi.Sdk.Ejemplos.ViewModels.Clientes;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.Views.Clientes
+namespace Contpaqi.Sdk.Ejemplos.Views.Clientes;
+
+/// <summary>
+///     Interaction logic for CrearClienteProveedorView.xaml
+/// </summary>
+public partial class EditarClienteProveedorView
 {
-    /// <summary>
-    ///     Interaction logic for CrearClienteProveedorView.xaml
-    /// </summary>
-    public partial class EditarClienteProveedorView
+    public EditarClienteProveedorView()
     {
-        public EditarClienteProveedorView()
-        {
-            InitializeComponent();
-            DataContext = Ioc.Default.GetService<EditarClienteProveedorViewModel>();
-            WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        InitializeComponent();
+        DataContext = Ioc.Default.GetService<EditarClienteProveedorViewModel>();
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
+            (recipient, message) =>
             {
                 if (message.Sender == ViewModel && message.IsOpen == false)
                 {
-                    Close();
+                    var view = (EditarClienteProveedorView)recipient;
+                    view.Close();
                 }
             });
-        }
-
-        public EditarClienteProveedorViewModel ViewModel => (EditarClienteProveedorViewModel) DataContext;
     }
+
+    public EditarClienteProveedorViewModel ViewModel => (EditarClienteProveedorViewModel)DataContext;
 }

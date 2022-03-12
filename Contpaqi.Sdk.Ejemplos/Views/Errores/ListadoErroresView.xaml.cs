@@ -3,26 +3,27 @@ using Contpaqi.Sdk.Ejemplos.ViewModels.Errores;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.Views.Errores
+namespace Contpaqi.Sdk.Ejemplos.Views.Errores;
+
+/// <summary>
+///     Interaction logic for ListadoErroresView.xaml
+/// </summary>
+public partial class ListadoErroresView
 {
-    /// <summary>
-    ///     Interaction logic for ListadoErroresView.xaml
-    /// </summary>
-    public partial class ListadoErroresView
+    public ListadoErroresView()
     {
-        public ListadoErroresView()
-        {
-            InitializeComponent();
-            DataContext = Ioc.Default.GetService<ListadoErroresViewModel>();
-            WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        InitializeComponent();
+        DataContext = Ioc.Default.GetService<ListadoErroresViewModel>();
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
+            (recipient, message) =>
             {
                 if (message.Sender == ViewModel && message.IsOpen == false)
                 {
-                    Close();
+                    var view = (ListadoErroresView)recipient;
+                    view.Close();
                 }
             });
-        }
-
-        public ListadoErroresViewModel ViewModel => (ListadoErroresViewModel) DataContext;
     }
+
+    public ListadoErroresViewModel ViewModel => (ListadoErroresViewModel)DataContext;
 }

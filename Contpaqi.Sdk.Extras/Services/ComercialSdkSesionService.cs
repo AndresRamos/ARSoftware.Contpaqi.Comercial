@@ -16,73 +16,6 @@ namespace Contpaqi.Sdk.Extras.Services
             _sdkErrorRepository = new SdkErrorRepository(sdk);
         }
 
-        public bool IsSdkInicializado { get; private set; }
-
-        public bool IsEmpresaAbierta { get; private set; }
-
-        public bool CanIniciarSesion => !IsSdkInicializado;
-
-        public bool CanTerminarSesion => IsSdkInicializado;
-
-        public bool CanAbrirEmpresa => IsSdkInicializado && !IsEmpresaAbierta;
-
-        public bool CanCerrarEmpresa => IsSdkInicializado && IsEmpresaAbierta;
-
-        public void IniciarSesionSdk()
-        {
-            if (!CanIniciarSesion)
-            {
-                throw new ContpaqiSdkException(null, "No se puede inicializar el SDK por que ya esta inicializado.");
-            }
-
-            var sdkResult = _sdk.InicializarSDK();
-            if (sdkResult == SdkResultConstants.Success)
-            {
-                IsSdkInicializado = true;
-            }
-            else
-            {
-                var error = _sdkErrorRepository.BuscarMensajePorNumero(sdkResult);
-                throw new ContpaqiSdkException(sdkResult, error);
-            }
-        }
-
-        public void IniciarSesionSdk(string nombreUsuario, string contrasena)
-        {
-            if (!CanIniciarSesion)
-            {
-                throw new ContpaqiSdkException(null, "No se puede inicializar el SDK por que ya esta inicializado.");
-            }
-
-            var sdkResult = _sdk.InicializarSDK(nombreUsuario, contrasena);
-            if (sdkResult == SdkResultConstants.Success)
-            {
-                IsSdkInicializado = true;
-            }
-            else
-            {
-                var error = _sdkErrorRepository.BuscarMensajePorNumero(sdkResult);
-                throw new ContpaqiSdkException(sdkResult, error);
-            }
-        }
-        
-        public void IniciarSesionSdk(string nombreUsuario, string contrasena, string nombreUsuarioContabilidad, string contrasenaContabilidad)
-        {
-            IniciarSesionSdk(nombreUsuario, contrasena);
-            _sdk.fInicioSesionSDKCONTPAQi(nombreUsuarioContabilidad, contrasenaContabilidad);
-        }
-
-        public void TerminarSesionSdk()
-        {
-            if (!CanTerminarSesion)
-            {
-                throw new ContpaqiSdkException(null, "No se puede terminar la sesion del SDK por que no ah sido inicializado.");
-            }
-
-            _sdk.fTerminaSDK();
-            IsSdkInicializado = false;
-        }
-
         public void AbrirEmpresa(string rutaEmpresa)
         {
             if (!CanAbrirEmpresa)
@@ -90,17 +23,25 @@ namespace Contpaqi.Sdk.Extras.Services
                 throw new ContpaqiSdkException(null, "No se puede abrir la empresa por que ya hay una empresa abierta.");
             }
 
-            var sdkResult = _sdk.fAbreEmpresa(rutaEmpresa);
+            int sdkResult = _sdk.fAbreEmpresa(rutaEmpresa);
             if (sdkResult == SdkResultConstants.Success)
             {
                 IsEmpresaAbierta = true;
             }
             else
             {
-                var error = _sdkErrorRepository.BuscarMensajePorNumero(sdkResult);
+                string error = _sdkErrorRepository.BuscarMensajePorNumero(sdkResult);
                 throw new ContpaqiSdkException(sdkResult, error);
             }
         }
+
+        public bool CanAbrirEmpresa => IsSdkInicializado && !IsEmpresaAbierta;
+
+        public bool CanCerrarEmpresa => IsSdkInicializado && IsEmpresaAbierta;
+
+        public bool CanIniciarSesion => !IsSdkInicializado;
+
+        public bool CanTerminarSesion => IsSdkInicializado;
 
         public void CerrarEmpresa()
         {
@@ -113,5 +54,66 @@ namespace Contpaqi.Sdk.Extras.Services
             IsEmpresaAbierta = false;
         }
 
+        public void IniciarSesionSdk()
+        {
+            if (!CanIniciarSesion)
+            {
+                throw new ContpaqiSdkException(null, "No se puede inicializar el SDK por que ya esta inicializado.");
+            }
+
+            int sdkResult = _sdk.InicializarSDK();
+            if (sdkResult == SdkResultConstants.Success)
+            {
+                IsSdkInicializado = true;
+            }
+            else
+            {
+                string error = _sdkErrorRepository.BuscarMensajePorNumero(sdkResult);
+                throw new ContpaqiSdkException(sdkResult, error);
+            }
+        }
+
+        public void IniciarSesionSdk(string nombreUsuario, string contrasena)
+        {
+            if (!CanIniciarSesion)
+            {
+                throw new ContpaqiSdkException(null, "No se puede inicializar el SDK por que ya esta inicializado.");
+            }
+
+            int sdkResult = _sdk.InicializarSDK(nombreUsuario, contrasena);
+            if (sdkResult == SdkResultConstants.Success)
+            {
+                IsSdkInicializado = true;
+            }
+            else
+            {
+                string error = _sdkErrorRepository.BuscarMensajePorNumero(sdkResult);
+                throw new ContpaqiSdkException(sdkResult, error);
+            }
+        }
+
+        public void IniciarSesionSdk(string nombreUsuario,
+                                     string contrasena,
+                                     string nombreUsuarioContabilidad,
+                                     string contrasenaContabilidad)
+        {
+            IniciarSesionSdk(nombreUsuario, contrasena);
+            _sdk.fInicioSesionSDKCONTPAQi(nombreUsuarioContabilidad, contrasenaContabilidad);
+        }
+
+        public bool IsEmpresaAbierta { get; private set; }
+
+        public bool IsSdkInicializado { get; private set; }
+
+        public void TerminarSesionSdk()
+        {
+            if (!CanTerminarSesion)
+            {
+                throw new ContpaqiSdkException(null, "No se puede terminar la sesion del SDK por que no ah sido inicializado.");
+            }
+
+            _sdk.fTerminaSDK();
+            IsSdkInicializado = false;
+        }
     }
 }

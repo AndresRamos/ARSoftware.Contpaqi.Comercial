@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Text;
-using Contpaqi.Sdk.Extras.Helpers;
+using Contpaqi.Comercial.Sql.Models.Empresa;
+using Contpaqi.Sdk.DatosAbstractos;
+using Contpaqi.Sdk.Extras.Extensions;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Models;
 
@@ -15,24 +16,6 @@ namespace Contpaqi.Sdk.Extras.Services
             _sdk = sdk;
         }
 
-        public int Crear(tDireccion direccion)
-        {
-            var idDireccion = 0;
-            _sdk.fAltaDireccion(ref idDireccion, ref direccion).ToResultadoSdk(_sdk).ThrowIfError();
-            return idDireccion;
-        }
-
-        public int Crear(Dictionary<string, string> datosDireccion)
-        {
-            _sdk.fInsertaDireccion().ToResultadoSdk(_sdk).ThrowIfError();
-            SetDatosDireccion(datosDireccion);
-            _sdk.fGuardaDireccion().ToResultadoSdk(_sdk).ThrowIfError();
-
-            var idDireccionDato = new StringBuilder(12);
-            _sdk.fLeeDatoDireccion("CIDDIRECCION", idDireccionDato, 12).ToResultadoSdk(_sdk).ThrowIfError();
-            return int.Parse(idDireccionDato.ToString());
-        }
-
         public void Actualizar(tDireccion direccion)
         {
             _sdk.fActualizaDireccion(ref direccion).ToResultadoSdk(_sdk).ThrowIfError();
@@ -40,14 +23,12 @@ namespace Contpaqi.Sdk.Extras.Services
 
         public void Actualizar(int idDireccion, Dictionary<string, string> datosDireccion)
         {
-            var idDireccionDato = new StringBuilder(12);
-
             _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoDireccion("CIDDIRECCION", idDireccionDato, 12).ToResultadoSdk(_sdk).ThrowIfError();
-            if (idDireccion == int.Parse(idDireccionDato.ToString()))
+            string idDireccionDato = _sdk.LeeDatoDireccion(nameof(admDomicilios.CIDDIRECCION), 12);
+            if (idDireccion == int.Parse(idDireccionDato))
             {
                 _sdk.fEditaDireccion().ToResultadoSdk(_sdk).ThrowIfError();
-                SetDatosDireccion(datosDireccion);
+                SetDatos(datosDireccion);
                 _sdk.fGuardaDireccion().ToResultadoSdk(_sdk).ThrowIfError();
 
                 return;
@@ -55,11 +36,11 @@ namespace Contpaqi.Sdk.Extras.Services
 
             while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
             {
-                _sdk.fLeeDatoDireccion("CIDDIRECCION", idDireccionDato, 12).ToResultadoSdk(_sdk).ThrowIfError();
-                if (idDireccion == int.Parse(idDireccionDato.ToString()))
+                idDireccionDato = _sdk.LeeDatoDireccion(nameof(admDomicilios.CIDDIRECCION), 12);
+                if (idDireccion == int.Parse(idDireccionDato))
                 {
                     _sdk.fEditaDireccion().ToResultadoSdk(_sdk).ThrowIfError();
-                    SetDatosDireccion(datosDireccion);
+                    SetDatos(datosDireccion);
                     _sdk.fGuardaDireccion().ToResultadoSdk(_sdk).ThrowIfError();
                 }
 
@@ -70,11 +51,27 @@ namespace Contpaqi.Sdk.Extras.Services
             }
         }
 
-        private void SetDatosDireccion(Dictionary<string, string> datosDireccion)
+        public int Crear(tDireccion direccion)
         {
-            foreach (var dato in datosDireccion)
+            var idDireccion = 0;
+            _sdk.fAltaDireccion(ref idDireccion, ref direccion).ToResultadoSdk(_sdk).ThrowIfError();
+            return idDireccion;
+        }
+
+        public int Crear(Dictionary<string, string> datosDireccion)
+        {
+            _sdk.fInsertaDireccion().ToResultadoSdk(_sdk).ThrowIfError();
+            SetDatos(datosDireccion);
+            _sdk.fGuardaDireccion().ToResultadoSdk(_sdk).ThrowIfError();
+            string idDireccionDato = _sdk.LeeDatoDireccion(nameof(admDomicilios.CIDDIRECCION), 12);
+            return int.Parse(idDireccionDato);
+        }
+
+        public void SetDatos(Dictionary<string, string> datos)
+        {
+            foreach (KeyValuePair<string, string> dato in datos)
             {
-                _sdk.fSetDatoDireccion(dato.Key, dato.Value);
+                _sdk.fSetDatoDireccion(dato.Key, dato.Value).ToResultadoSdk(_sdk).ThrowIfError();
             }
         }
     }

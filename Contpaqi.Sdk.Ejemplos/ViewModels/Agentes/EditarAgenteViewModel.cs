@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Contpaqi.Comercial.Sql.Models.Empresa;
 using Contpaqi.Sdk.Ejemplos.Messages;
-using Contpaqi.Sdk.Extras.Helpers;
+using Contpaqi.Sdk.Extras.Extensions;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Models;
 using Contpaqi.Sdk.Extras.Models.Enums;
@@ -12,80 +13,85 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels.Agentes
+namespace Contpaqi.Sdk.Ejemplos.ViewModels.Agentes;
+
+public class EditarAgenteViewModel : ObservableRecipient
 {
-    public class EditarAgenteViewModel : ObservableRecipient
+    private readonly IAgenteRepository<Agente> _agenteRepository;
+    private readonly IAgenteService _agenteService;
+    private readonly IDialogCoordinator _dialogCoordinator;
+    private Agente _agente;
+
+    public EditarAgenteViewModel(IAgenteService agenteService,
+                                 IAgenteRepository<Agente> agenteRepository,
+                                 IDialogCoordinator dialogCoordinator)
     {
-        private readonly IAgenteRepository<Agente> _agenteRepository;
-        private readonly IAgenteService _agenteService;
-        private readonly IDialogCoordinator _dialogCoordinator;
-        private Agente _agente;
+        _agenteService = agenteService;
+        _agenteRepository = agenteRepository;
+        _dialogCoordinator = dialogCoordinator;
 
-        public EditarAgenteViewModel(IAgenteService agenteService, IAgenteRepository<Agente> agenteRepository, IDialogCoordinator dialogCoordinator)
+        GuardarCommand = new AsyncRelayCommand(GudardarAsync);
+        CancelarCommand = new RelayCommand(CerrarVista);
+    }
+
+    public string Title => "Editar Agente";
+
+    public IEnumerable<TipoAgente> TiposAgente { get; } = Enum.GetValues(typeof(TipoAgente)).Cast<TipoAgente>().ToList();
+
+    public Agente Agente
+    {
+        get => _agente;
+        private set => SetProperty(ref _agente, value);
+    }
+
+    public IAsyncRelayCommand GuardarCommand { get; }
+    public IRelayCommand CancelarCommand { get; }
+
+    private void CargarAgente(int idAgente)
+    {
+        Agente = _agenteRepository.BuscarPorId(idAgente);
+    }
+
+    private void CerrarVista()
+    {
+        Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
+    }
+
+    private async Task GudardarAsync()
+    {
+        try
         {
-            _agenteService = agenteService;
-            _agenteRepository = agenteRepository;
-            _dialogCoordinator = dialogCoordinator;
+            int agenteId = Agente.CIDAGENTE;
+            Dictionary<string, string> agenteDatos = Agente.ToDatosDictionary<admAgentes>();
 
-            GuardarCommand = new AsyncRelayCommand(GudardarAsync);
-            CancelarCommand = new RelayCommand(CerrarVista);
-        }
-
-        public string Title { get; } = "Editar Agente";
-
-        public IEnumerable<TipoAgenteEnum> TiposAgente { get; } = Enum.GetValues(typeof(TipoAgenteEnum)).Cast<TipoAgenteEnum>().ToList();
-
-        public Agente Agente
-        {
-            get => _agente;
-            private set => SetProperty(ref _agente, value);
-        }
-
-        public IAsyncRelayCommand GuardarCommand { get; }
-        public IRelayCommand CancelarCommand { get; }
-
-        public void Inicializar()
-        {
-            Agente = new Agente
+            if (agenteId == 0)
             {
-                Tipo = TipoAgenteEnum.VentasCobro
-            };
-        }
-
-        public void Inicializar(int idAgente)
-        {
-            CargarAgente(idAgente);
-        }
-
-        public async Task GudardarAsync()
-        {
-            var datosAgente = Agente.ToDatosDictionary();
-
-            if (Agente.Id == 0)
-            {
-                datosAgente.Remove("CIDDIRECCION");
-                var agenteId = _agenteService.Crear(datosAgente);
-
-                CargarAgente(agenteId);
-                await _dialogCoordinator.ShowMessageAsync(this, "Agente Creado", "Agente creado exitosamente.");
+                agenteId = _agenteService.Crear(agenteDatos);
             }
             else
             {
-                datosAgente.Remove("CIDAGENTE");
-                _agenteService.Actualizar(Agente.Id, datosAgente);
-                CargarAgente(Agente.Id);
-                await _dialogCoordinator.ShowMessageAsync(this, "Agente Guardado", "Agente guardado exitosamente.");
+                _agenteService.Actualizar(agenteId, agenteDatos);
             }
-        }
 
-        public void CerrarVista()
-        {
-            Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
-        }
+            await _dialogCoordinator.ShowMessageAsync(this, "Agente Guardado", "Agente guardado exitosamente.");
 
-        private void CargarAgente(int idAgente)
+            CargarAgente(agenteId);
+        }
+        catch (Exception e)
         {
-            Agente = _agenteRepository.BuscarPorId(idAgente);
+            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+        }
+    }
+
+    public void Inicializar(int? idAgente = null)
+    {
+        if (idAgente is null)
+        {
+            Agente = new Agente { Tipo = TipoAgente.VentasCobro };
+        }
+        else
+        {
+            CargarAgente(idAgente.Value);
         }
     }
 }

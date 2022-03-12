@@ -1,84 +1,54 @@
-﻿using Contpaqi.Sdk.Extras.Interfaces;
+﻿using Contpaqi.Comercial.Sql.Models.Empresa;
+using Contpaqi.Sdk.DatosAbstractos;
 
 namespace Contpaqi.Sdk.Extras.Models
 {
-    public class Movimiento : IMovimiento
+    public class Movimiento : admMovimientos
     {
-        public Movimiento()
+        public Almacen Almacen { get; set; }
+        public Producto Producto { get; set; }
+        public ValorClasificacion ValorClasificacion { get; set; }
+
+        public tMovimiento ToTMovimiento()
         {
-            Producto = new Producto();
-            Almacen = new Almacen();
-            ValorClasificacion = new ValorClasificacion();
-            CodigoAlmacen = "1";
+            var nuevoTMovimiento = new tMovimiento
+            {
+                aConsecutivo = (int)CNUMEROMOVIMIENTO,
+                aUnidades = CUNIDADES,
+                aPrecio = CPRECIO,
+                aCosto = CCOSTOCAPTURADO,
+                aCodProdSer = Producto.CCODIGOPRODUCTO,
+                aCodAlmacen = Almacen.CCODIGOALMACEN,
+                aReferencia = CREFERENCIA,
+                aCodClasificacion = ValorClasificacion.CCODIGOVALORCLASIFICACION
+            };
+            return nuevoTMovimiento;
         }
 
-        // Propiedades tMovimiento
-        public int Consecutivo { get; set; }
-
-        public double Unidades { get; set; }
-
-        public double Precio { get; set; }
-
-        public double Costo { get; set; }
-
-        public string CodigoProducto { get; set; }
-
-        public string CodigoAlmacen { get; set; }
-
-        public string Referencia { get; set; }
-
-        public string CodigoValorClasificacion { get; set; }
-
-        // Propiedades tMovimientoDesc
-        public double ImporteDescuento1 { get; set; }
-
-        public double PorcentajeDescuento1 { get; set; }
-
-        public double ImporteDescuento2 { get; set; }
-
-        public double PorcentajeDescuento2 { get; set; }
-
-        public double ImporteDescuento3 { get; set; }
-
-        public double PorcentajeDescuento3 { get; set; }
-
-        public double ImporteDescuento4 { get; set; }
-
-        public double PorcentajeDescuento4 { get; set; }
-
-        public double ImporteDescuento5 { get; set; }
-
-        public double PorcentajeDescuento5 { get; set; }
-
-        // Propiedades Extras
-        public int Id { get; set; }
-
-        public double Neto { get; set; }
-
-        public double PorcentajeImpuesto1 { get; set; }
-
-        public double Impuesto1 { get; set; }
-
-        public double Total { get; set; }
-
-        public string TextoExtra1 { get; set; }
-
-        public string TextoExtra2 { get; set; }
-
-        public string TextoExtra3 { get; set; }
-
-        public string Observaciones { get; set; }
-
-        public int IdAlmacen { get; set; }
-
-        public int IdProducto { get; set; }
-
-        public int IdValorClasificacion { get; set; }
-
-        public Producto Producto { get; set; }
-
-        public Almacen Almacen { get; set; }
-
-        public ValorClasificacion ValorClasificacion { get; set; }
+        public tMovimientoDesc ToTMovimientoDesc()
+        {
+            var nuevoTMovimientoDesc = new tMovimientoDesc
+            {
+                aConsecutivo = (int)CNUMEROMOVIMIENTO,
+                aUnidades = CUNIDADES,
+                aPrecio = CPRECIO,
+                aCosto = CCOSTOCAPTURADO,
+                aCodProdSer = Producto.CCODIGOPRODUCTO,
+                aCodAlmacen = Almacen.CCODIGOALMACEN,
+                aReferencia = CREFERENCIA,
+                aCodClasificacion = ValorClasificacion.CCODIGOVALORCLASIFICACION,
+                aImporteDescto1 = CDESCUENTO1,
+                aImporteDescto2 = CDESCUENTO2,
+                aImporteDescto3 = CDESCUENTO3,
+                aImporteDescto4 = CDESCUENTO4,
+                aImporteDescto5 = CDESCUENTO5,
+                aPorcDescto1 = CPORCENTAJEDESCUENTO1,
+                aPorcDescto2 = CPORCENTAJEDESCUENTO2,
+                aPorcDescto3 = CPORCENTAJEDESCUENTO3,
+                aPorcDescto4 = CPORCENTAJEDESCUENTO4,
+                aPorcDescto5 = CPORCENTAJEDESCUENTO5
+            };
+            return nuevoTMovimientoDesc;
+        }
     }
 }

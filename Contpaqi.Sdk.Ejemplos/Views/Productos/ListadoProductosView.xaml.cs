@@ -3,26 +3,28 @@ using Contpaqi.Sdk.Ejemplos.ViewModels.Productos;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.Views.Productos
+namespace Contpaqi.Sdk.Ejemplos.Views.Productos;
+
+/// <summary>
+///     Interaction logic for ListadoProductosView.xaml
+/// </summary>
+public partial class ListadoProductosView
 {
-    /// <summary>
-    ///     Interaction logic for ListadoProductosView.xaml
-    /// </summary>
-    public partial class ListadoProductosView
+    public ListadoProductosView()
     {
-        public ListadoProductosView()
-        {
-            InitializeComponent();
-            DataContext = Ioc.Default.GetService<ListadoProductosViewModel>();
-            WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        InitializeComponent();
+        DataContext = Ioc.Default.GetService<ListadoProductosViewModel>();
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
+            (recipient, message) =>
             {
                 if (message.Sender == ViewModel && message.IsOpen == false)
                 {
+                    var view = (ListadoProductosView)recipient;
+                    view.Close();
                     Close();
                 }
             });
-        }
-
-        public ListadoProductosViewModel ViewModel => (ListadoProductosViewModel) DataContext;
     }
+
+    public ListadoProductosViewModel ViewModel => (ListadoProductosViewModel)DataContext;
 }

@@ -4,19 +4,23 @@ namespace Contpaqi.Sdk.Extras.Helpers
 {
     public static class SdkDateTimeHelper
     {
-        public static string ToSdkString(this DateTime date)
+        public static DateTime ConvertFromSdkFecha(string fecha)
         {
-            return date.ToString("MM/dd/yyyy");
+            return DateTime.ParseExact(fecha, "MM/dd/yyyy HH:mm:ss:fff", null);
         }
 
-        public static DateTime FromSdkCatalogoString(string fecha)
+        public static string ConvertToSdkFecha(DateTime fecha)
         {
-            return DateTime.ParseExact(fecha, "MM/dd/yy", null);
+            return fecha.ToString("MM/dd/yyyy");
         }
 
-        public static DateTime FromSdkDocumentoString(string fecha)
+        /// <summary>
+        ///     Crea la fecha predeterminada del SDK cuando no se le asigna un valor.
+        /// </summary>
+        /// <returns>Fecha Predeterminada = new DateTime(1899, 12, 30)</returns>
+        public static DateTime CreateDefaultSdkFecha()
         {
-            return DateTime.ParseExact(fecha, "M/d/yyyy HH:mm:ss:fff", null);
+            return new DateTime(1899, 12, 30);
         }
     }
 }

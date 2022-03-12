@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Contpaqi.Comercial.Sql.Models.Empresa;
 using Contpaqi.Sdk.Ejemplos.Messages;
+using Contpaqi.Sdk.Extras.Extensions;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Models;
 using MahApps.Metro.Controls.Dialogs;
@@ -9,78 +11,80 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.ViewModels.Movimientos
+namespace Contpaqi.Sdk.Ejemplos.ViewModels.Movimientos;
+
+public class EditarMovimientoViewModel : ObservableRecipient
 {
-    public class EditarMovimientoViewModel : ObservableRecipient
+    private readonly IAlmacenRepository<Almacen> _almacenRepository;
+    private readonly IDialogCoordinator _dialogCoordinator;
+    private readonly IMovimientoRepository<Movimiento> _movimientoRepository;
+    private readonly IMovimientoService _movimientoService;
+    private readonly IProductoRepository<Producto> _productoRepository;
+    private readonly IValorClasificacionRepository<ValorClasificacion> _valorClasificacionRepository;
+    private Movimiento _movimiento;
+
+    public EditarMovimientoViewModel(IMovimientoRepository<Movimiento> movimientoRepository,
+                                     IMovimientoService movimientoService,
+                                     IDialogCoordinator dialogCoordinator,
+                                     IAlmacenRepository<Almacen> almacenRepository,
+                                     IProductoRepository<Producto> productoRepository,
+                                     IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
     {
-        private readonly IDialogCoordinator _dialogCoordinator;
-        private readonly IMovimientoRepository<Movimiento> _movimientoRepository;
-        private readonly IMovimientoService _movimientoService;
-        private Movimiento _movimiento;
+        _movimientoRepository = movimientoRepository;
+        _movimientoService = movimientoService;
+        _dialogCoordinator = dialogCoordinator;
+        _almacenRepository = almacenRepository;
+        _productoRepository = productoRepository;
+        _valorClasificacionRepository = valorClasificacionRepository;
 
-        public EditarMovimientoViewModel(IMovimientoRepository<Movimiento> movimientoRepository, IMovimientoService movimientoService, IDialogCoordinator dialogCoordinator)
+        GuardarMovimientoCommand = new AsyncRelayCommand(ActualizarMovimientoAsync);
+        CancelarCommand = new RelayCommand(CerrarVista);
+    }
+
+    public string Title { get; } = "Editar Movimiento";
+
+    public int DocumentoId { get; private set; }
+
+    public Movimiento Movimiento
+    {
+        get => _movimiento;
+        private set => SetProperty(ref _movimiento, value);
+    }
+
+    public IAsyncRelayCommand GuardarMovimientoCommand { get; }
+    public IRelayCommand CancelarCommand { get; }
+
+    private async Task ActualizarMovimientoAsync()
+    {
+        try
         {
-            _movimientoRepository = movimientoRepository;
-            _movimientoService = movimientoService;
-            _dialogCoordinator = dialogCoordinator;
-
-            GuardarMovimientoCommand = new AsyncRelayCommand(ActualizarMovimientoAsync);
-            CancelarCommand = new RelayCommand(CerrarVista);
+            int idMovimiento = Movimiento.CIDMOVIMIENTO;
+            Dictionary<string, string> datosMovimiento = Movimiento.ToDatosDictionary<admMovimientos>();
+            _movimientoService.Actualizar(idMovimiento, datosMovimiento);
+            CerrarVista();
         }
-
-        public string Title { get; } = "Editar Movimiento";
-
-        public int DocumentoId { get; private set; }
-
-        public Movimiento Movimiento
+        catch (Exception e)
         {
-            get => _movimiento;
-            private set => SetProperty(ref _movimiento, value);
+            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
         }
+    }
 
-        public IAsyncRelayCommand GuardarMovimientoCommand { get; }
-        public IRelayCommand CancelarCommand { get; }
+    private void CargarRelaciones(Movimiento movimiento)
+    {
+        _movimiento.Almacen = _almacenRepository.BuscarPorId(movimiento.CIDALMACEN);
+        _movimiento.Producto = _productoRepository.BuscarPorId(movimiento.CIDPRODUCTO);
+        _movimiento.ValorClasificacion = _valorClasificacionRepository.BuscarPorId(movimiento.CIDVALORCLASIFICACION);
+    }
 
-        public void Inicializar(int documentoId, int movimientoId)
-        {
-            DocumentoId = documentoId;
-            Movimiento = _movimientoRepository.BuscarPorId(movimientoId);
-        }
+    private void CerrarVista()
+    {
+        Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
+    }
 
-        public async Task ActualizarMovimientoAsync()
-        {
-            try
-            {
-                var datos = new Dictionary<string, string>();
-
-                // Referencia 
-                datos.Add("CREFERENCIA", Movimiento.Referencia);
-
-                // Texto Extra 1
-                datos.Add("CTEXTOEXTRA1", Movimiento.TextoExtra1);
-
-                // Texto Extra 2
-                datos.Add("CTEXTOEXTRA2", Movimiento.TextoExtra2);
-
-                // Texto Extra 3
-                datos.Add("CTEXTOEXTRA3", Movimiento.TextoExtra3);
-
-                // Observaciones
-                datos.Add("COBSERVAMOV", Movimiento.Observaciones);
-
-                _movimientoService.Actualizar(Movimiento.Id, datos);
-
-                CerrarVista();
-            }
-            catch (Exception e)
-            {
-                await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
-            }
-        }
-
-        public void CerrarVista()
-        {
-            Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
-        }
+    public void Inicializar(int documentoId, int movimientoId)
+    {
+        DocumentoId = documentoId;
+        Movimiento = _movimientoRepository.BuscarPorId(movimientoId);
+        CargarRelaciones(Movimiento);
     }
 }

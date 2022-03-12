@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using Contpaqi.Sdk.Extras.Helpers;
+using Contpaqi.Sdk.Extras.Extensions;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Models;
 
@@ -14,9 +14,9 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk = sdk;
         }
 
-        public DatosCfdi BuscarPorDocumentoId(int documentoId)
+        public DatosCfdi BuscarPorDocumentoId(int idDocumento)
         {
-            _sdk.fBuscarIdDocumento(documentoId).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fBuscarIdDocumento(idDocumento).ToResultadoSdk(_sdk).ThrowIfError();
 
             var serieCertificadoEmisor = new StringBuilder(3000);
             var folioFiscalUUid = new StringBuilder(3000);

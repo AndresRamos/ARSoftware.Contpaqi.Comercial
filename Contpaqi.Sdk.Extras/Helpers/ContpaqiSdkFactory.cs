@@ -5,17 +5,17 @@ namespace Contpaqi.Sdk.Extras.Helpers
 {
     public class ContpaqiSdkFactory
     {
-        public IContpaqiSdk Crear(ContpaqiSdkEnum sdk)
+        public IContpaqiSdk Crear(TipoContpaqiSdk tipoContpaqiSdk)
         {
-            switch (sdk)
+            switch (tipoContpaqiSdk)
             {
-                case ContpaqiSdkEnum.Comercial:
+                case TipoContpaqiSdk.Comercial:
                     return new ComercialSdkExtended();
 
-                case ContpaqiSdkEnum.Adminpaq:
+                case TipoContpaqiSdk.Adminpaq:
                     return new AdminpaqSdkExtended();
 
-                case ContpaqiSdkEnum.FacturaElectronica:
+                case TipoContpaqiSdk.FacturaElectronica:
                     return new FacturaElectronicaSdkExtended();
 
                 default:

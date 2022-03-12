@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using Contpaqi.Sdk.Extras.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using Contpaqi.Comercial.Sql.Models.Empresa;
+using Contpaqi.Sdk.Extras.Extensions;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Models;
 
 namespace Contpaqi.Sdk.Extras.Repositories
 {
-    public class UnidadMedidaRepository : IUnidadMedidaRepository<UnidadMedida>
+    public class UnidadMedidaRepository<T> : IUnidadMedidaRepository<T> where T : class, new()
     {
         private readonly IContpaqiSdk _sdk;
 
@@ -15,17 +17,17 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk = sdk;
         }
 
-        public UnidadMedida BuscarPorNombre(string nombreUnidad)
-        {
-            return _sdk.fBuscaUnidad(nombreUnidad) == SdkResultConstants.Success ? LeerDatosUnindadActual() : null;
-        }
-
-        public UnidadMedida BuscarPorId(int idUnidad)
+        public T BuscarPorId(int idUnidad)
         {
             return _sdk.fBuscaIdUnidad(idUnidad) == SdkResultConstants.Success ? LeerDatosUnindadActual() : null;
         }
 
-        public IEnumerable<UnidadMedida> TraerTodo()
+        public T BuscarPorNombre(string nombreUnidad)
+        {
+            return _sdk.fBuscaUnidad(nombreUnidad) == SdkResultConstants.Success ? LeerDatosUnindadActual() : null;
+        }
+
+        public IEnumerable<T> TraerTodo()
         {
             _sdk.fPosPrimerUnidad().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosUnindadActual();
@@ -39,30 +41,36 @@ namespace Contpaqi.Sdk.Extras.Repositories
             }
         }
 
-        private UnidadMedida LeerDatosUnindadActual()
+        private T LeerDatosUnindadActual()
         {
-            var id = new StringBuilder(12);
-            var nombre = new StringBuilder(Constantes.kLongNombre);
-            var abreviatura = new StringBuilder(Constantes.kLongAbreviatura);
-            var despliegue = new StringBuilder(Constantes.kLongAbreviatura);
-            var claveSat = new StringBuilder(4);
-            var claveSatComercioExterior = new StringBuilder(4);
+            var unidad = new T();
 
-            _sdk.fLeeDatoUnidad("CIDUNIDAD", id, 12).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoUnidad("CNOMBREUNIDAD", nombre, Constantes.kLongNombre).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoUnidad("CABREVIATURA", abreviatura, Constantes.kLongAbreviatura).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoUnidad("CDESPLIEGUE", despliegue, Constantes.kLongAbreviatura).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoUnidad("CCLAVEINT", claveSat, Constantes.kLongAbreviatura).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoUnidad("CCLAVESAT", claveSatComercioExterior, Constantes.kLongAbreviatura).ToResultadoSdk(_sdk).ThrowIfError();
+            LeerYAsignarDatos(unidad);
 
-            var unidad = new UnidadMedida();
-            unidad.Id = int.Parse(id.ToString());
-            unidad.Nombre = nombre.ToString();
-            unidad.Abreviatura = abreviatura.ToString();
-            unidad.Despliegue = despliegue.ToString();
-            unidad.ClaveSat = claveSat.ToString();
-            unidad.ClaveSatComercioExterior = claveSatComercioExterior.ToString();
             return unidad;
+        }
+
+        private void LeerYAsignarDatos(T unidad)
+        {
+            Type sqlModelType = typeof(admUnidadesMedidaPeso);
+
+            foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
+            {
+                try
+                {
+                    if (!sqlModelType.HasProperty(propertyDescriptor.Name))
+                    {
+                        continue;
+                    }
+
+                    propertyDescriptor.SetValue(unidad,
+                        _sdk.LeeDatoUnidad(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}", e);
+                }
+            }
         }
     }
 }

@@ -1,20 +1,32 @@
-﻿using Contpaqi.Sdk.Extras.Interfaces;
+﻿using System;
+using Contpaqi.Comercial.Sql.Models.Empresa;
+using Contpaqi.Sdk.DatosAbstractos;
 
 namespace Contpaqi.Sdk.Extras.Models
 {
-    public class ValorClasificacion : IValorClasificacion
+    public class ValorClasificacion : admClasificacionesValores
     {
-        public int Id { get; set; }
-
-        public int IdClasificacion { get; set; }
-
-        public string Codigo { get; set; }
-
-        public string Valor { get; set; }
+        public bool Contains(string filtro)
+        {
+            return string.IsNullOrWhiteSpace(filtro) ||
+                   CCODIGOVALORCLASIFICACION.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   CVALORCLASIFICACION.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
 
         public override string ToString()
         {
-            return $"{Codigo} - {Valor}";
+            return $"{CCODIGOVALORCLASIFICACION} - {CVALORCLASIFICACION}";
+        }
+
+        public tValorClasificacion ToTValorClasificacion()
+        {
+            return new tValorClasificacion
+            {
+                cNumClasificacion = CIDVALORCLASIFICACION,
+                cClasificacionDe = CIDCLASIFICACION,
+                cCodigoValorClasificacion = CCODIGOVALORCLASIFICACION,
+                cValorClasificacion = CVALORCLASIFICACION
+            };
         }
     }
 }

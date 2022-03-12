@@ -3,13 +3,13 @@ using Contpaqi.Sdk.Extras.Models.Enums;
 
 namespace Contpaqi.Sdk.Extras.Interfaces
 {
-    public interface IDireccionRepository<T> where T : IDireccion
+    public interface IDireccionRepository<T> where T : class, new()
     {
-        T BuscarPorId(int idDireccion);
         T BuscarPorCliente(string codigoClienteProveedor, byte tipoDireccion);
         T BuscarPorDocumento(int idDocumento, byte tipoDireccion);
-        IEnumerable<T> TraerTodo();
+        T BuscarPorId(int idDireccion);
         IEnumerable<T> TraerPorTipo(TipoCatalogoDireccion tipoCatalogoDireccion);
         IEnumerable<T> TraerPorTipoYIdCatalogo(TipoCatalogoDireccion tipoCatalogoDireccion, int idCatalogo);
+        IEnumerable<T> TraerTodo();
     }
 }

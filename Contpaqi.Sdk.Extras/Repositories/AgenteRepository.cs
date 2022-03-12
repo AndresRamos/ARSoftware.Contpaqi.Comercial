@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using Contpaqi.Sdk.Extras.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using Contpaqi.Comercial.Sql.Models.Empresa;
+using Contpaqi.Sdk.Extras.Extensions;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Models;
 
 namespace Contpaqi.Sdk.Extras.Repositories
 {
-    public class AgenteRepository : IAgenteRepository<Agente>
+    public class AgenteRepository<T> : IAgenteRepository<T> where T : class, new()
     {
         private readonly IContpaqiSdk _sdk;
 
@@ -15,17 +17,17 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk = sdk;
         }
 
-        public Agente BuscarPorId(int idAgente)
-        {
-            return _sdk.fBuscaIdAgente(idAgente) == SdkResultConstants.Success ? LeerDatosAgenteActual() : null;
-        }
-
-        public Agente BuscarPorCodigo(string codigoAgente)
+        public T BuscarPorCodigo(string codigoAgente)
         {
             return _sdk.fBuscaAgente(codigoAgente) == SdkResultConstants.Success ? LeerDatosAgenteActual() : null;
         }
 
-        public IEnumerable<Agente> TraerTodo()
+        public T BuscarPorId(int idAgente)
+        {
+            return _sdk.fBuscaIdAgente(idAgente) == SdkResultConstants.Success ? LeerDatosAgenteActual() : null;
+        }
+
+        public IEnumerable<T> TraerTodo()
         {
             _sdk.fPosPrimerAgente().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosAgenteActual();
@@ -40,24 +42,36 @@ namespace Contpaqi.Sdk.Extras.Repositories
             }
         }
 
-        private Agente LeerDatosAgenteActual()
+        private T LeerDatosAgenteActual()
         {
-            var id = new StringBuilder(12);
-            var codigo = new StringBuilder(31);
-            var nombre = new StringBuilder(61);
-            var tipo = new StringBuilder(7);
+            var agente = new T();
 
-            _sdk.fLeeDatoAgente("CIDAGENTE", id, 12).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoAgente("CCODIGOAGENTE", codigo, 31).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoAgente("CNOMBREAGENTE", nombre, 61).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoAgente("CTIPOAGENTE", tipo, 7).ToResultadoSdk(_sdk).ThrowIfError();
+            LeerYAsignarDatos(agente);
 
-            var agente = new Agente();
-            agente.Id = int.Parse(id.ToString());
-            agente.Codigo = codigo.ToString();
-            agente.Nombre = nombre.ToString();
-            agente.Tipo = TipoAgenteEnumHelper.ToTipoAgente(tipo.ToString());
             return agente;
+        }
+
+        private void LeerYAsignarDatos(T agente)
+        {
+            Type sqlModelType = typeof(admAgentes);
+
+            foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
+            {
+                try
+                {
+                    if (!sqlModelType.HasProperty(propertyDescriptor.Name))
+                    {
+                        continue;
+                    }
+
+                    propertyDescriptor.SetValue(agente,
+                        _sdk.LeeDatoAgente(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}", e);
+                }
+            }
         }
     }
 }

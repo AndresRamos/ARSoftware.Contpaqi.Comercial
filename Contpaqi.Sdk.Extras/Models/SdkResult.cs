@@ -19,6 +19,8 @@ namespace Contpaqi.Sdk.Extras.Models
             _sdkErrorRepository = sdkErrorRepository;
         }
 
+        public bool IsSuccess => Result == SdkResultConstants.Success;
+
         public int Result
         {
             get => _result;
@@ -29,15 +31,13 @@ namespace Contpaqi.Sdk.Extras.Models
             }
         }
 
-        public bool IsSuccess => Result == SdkResultConstants.Success;
-
         public SdkError SdkError { get; set; } = new SdkError();
 
         public void ThrowIfError()
         {
             if (!IsSuccess)
             {
-                throw new ContpaqiSdkException(SdkError.Numero, SdkError.Mensaje);
+                throw new ContpaqiSdkException(SdkError.Numero, SdkError.MensajeConNumero);
             }
         }
     }

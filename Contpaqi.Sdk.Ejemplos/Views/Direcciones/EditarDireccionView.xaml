@@ -26,14 +26,8 @@
                    Margin="5" />
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal">
-            <Button Content="Guardar Usando Funciones Alto Nivel"
-                    Command="{Binding GuardarUsandoFuncionesAltoNivelCommand}"
-                    VerticalAlignment="Center"
-                    MinWidth="150"
-                    Margin="5"
-                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
-            <Button Content="Guardar Usando Funciones Bajo Nivel"
-                    Command="{Binding GuardarUsandoFuncionesBajoNivelCommand}"
+            <Button Content="Guardar"
+                    Command="{Binding GuardarCommand}"
                     VerticalAlignment="Center"
                     MinWidth="150"
                     Margin="5"
@@ -62,7 +56,7 @@
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="5" />
-                <TextBox Text="{Binding Direccion.Pais, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Direccion.CPAIS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="200"
                          VerticalAlignment="Center"
                          Margin="5" />
@@ -70,7 +64,7 @@
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="5" />
-                <TextBox Text="{Binding Direccion.CodigoPostal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Direccion.CCODIGOPOSTAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="200"
                          VerticalAlignment="Center"
                          Margin="5" />
@@ -80,7 +74,7 @@
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="5" />
-                <TextBox Text="{Binding Direccion.Estado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Direccion.CESTADO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="200"
                          VerticalAlignment="Center"
                          Margin="5" />
@@ -88,7 +82,7 @@
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="5" />
-                <TextBox Text="{Binding Direccion.Ciudad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Direccion.CCIUDAD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="200"
                          VerticalAlignment="Center"
                          Margin="5" />
@@ -98,7 +92,7 @@
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="5" />
-                <TextBox Text="{Binding Direccion.Colonia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Direccion.CCOLONIA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="300"
                          VerticalAlignment="Center"
                          Margin="5" />
@@ -108,7 +102,7 @@
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="5" />
-                <TextBox Text="{Binding Direccion.NombreCalle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Direccion.CNOMBRECALLE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="300"
                          VerticalAlignment="Center"
                          Margin="5" />
@@ -116,7 +110,7 @@
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="5" />
-                <TextBox Text="{Binding Direccion.NumeroExterior, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Direccion.CNUMEROEXTERIOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="100"
                          VerticalAlignment="Center"
                          Margin="5" />
@@ -124,7 +118,7 @@
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="5" />
-                <TextBox Text="{Binding Direccion.NumeroInterior, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Direccion.CNUMEROINTERIOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="100"
                          VerticalAlignment="Center"
                          Margin="5" />
@@ -134,7 +128,7 @@
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="5" />
-                <TextBox Text="{Binding Direccion.Telefono1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Direccion.CTELEFONO1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="200"
                          VerticalAlignment="Center"
                          Margin="5" />
@@ -142,7 +136,7 @@
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="5" />
-                <TextBox Text="{Binding Direccion.Telefono2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Direccion.CTELEFONO2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="200"
                          VerticalAlignment="Center"
                          Margin="5" />
@@ -150,7 +144,7 @@
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="5" />
-                <TextBox Text="{Binding Direccion.Telefono3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Direccion.CTELEFONO3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="200"
                          VerticalAlignment="Center"
                          Margin="5" />
@@ -160,7 +154,7 @@
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="5" />
-                <TextBox Text="{Binding Direccion.Telefono4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Direccion.CTELEFONO4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="200"
                          VerticalAlignment="Center"
                          Margin="5" />
@@ -170,7 +164,7 @@
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="5" />
-                <TextBox Text="{Binding Direccion.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Direccion.CEMAIL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="200"
                          VerticalAlignment="Center"
                          Margin="5" />
@@ -180,7 +174,7 @@
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="5" />
-                <TextBox Text="{Binding Direccion.DireccionWeb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding Direccion.CDIRECCIONWEB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          MinWidth="200"
                          VerticalAlignment="Center"
                          Margin="5" />

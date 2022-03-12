@@ -1,43 +1,44 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Contpaqi.Sdk.Extras.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using Contpaqi.Comercial.Sql.Models.Empresa;
+using Contpaqi.Sdk.Extras.Extensions;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Models;
 using Contpaqi.Sdk.Extras.Models.Enums;
 
 namespace Contpaqi.Sdk.Extras.Repositories
 {
-    public class ClasificacionRepository : IClasificacionRepository<Clasificacion>
+    public class ClasificacionRepository<T> : IClasificacionRepository<T> where T : class, new()
     {
         private readonly IContpaqiSdk _sdk;
-        private readonly IValorClasificacionRepository<ValorClasificacion> _valorClasificacionRepository;
 
         public ClasificacionRepository(IContpaqiSdk sdk)
         {
             _sdk = sdk;
-            _valorClasificacionRepository = new ValorClasificacionRepository(sdk);
         }
 
-        public Clasificacion BuscarPorTipoYNumero(TipoClasificacionEnum tipo, int numero)
-        {
-            return _sdk.fBuscaClasificacion((int) tipo, numero) == SdkResultConstants.Success ? LeerDatosClasificacionActual() : null;
-        }
-
-        public Clasificacion BuscarPorId(int idClasificacion)
+        public T BuscarPorId(int idClasificacion)
         {
             return _sdk.fBuscaIdClasificacion(idClasificacion) == SdkResultConstants.Success ? LeerDatosClasificacionActual() : null;
         }
 
-        public IEnumerable<Clasificacion> TraerPorTipo(TipoClasificacionEnum tipo)
+        public T BuscarPorTipoYNumero(TipoClasificacion tipo, NumeroClasificacion numero)
         {
-            for (var i = 1; i < 7; i++)
-            {
-                yield return BuscarPorTipoYNumero(tipo, i);
-            }
+            return _sdk.fBuscaClasificacion((int)tipo, (int)numero) == SdkResultConstants.Success ? LeerDatosClasificacionActual() : null;
         }
 
-        public IEnumerable<Clasificacion> TraerTodo()
+        public IEnumerable<T> TraerPorTipo(TipoClasificacion tipo)
+        {
+            yield return BuscarPorTipoYNumero(tipo, NumeroClasificacion.Uno);
+            yield return BuscarPorTipoYNumero(tipo, NumeroClasificacion.Dos);
+            yield return BuscarPorTipoYNumero(tipo, NumeroClasificacion.Tres);
+            yield return BuscarPorTipoYNumero(tipo, NumeroClasificacion.Cuatro);
+            yield return BuscarPorTipoYNumero(tipo, NumeroClasificacion.Cinco);
+            yield return BuscarPorTipoYNumero(tipo, NumeroClasificacion.Seis);
+        }
+
+        public IEnumerable<T> TraerTodo()
         {
             _sdk.fPosPrimerClasificacion().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosClasificacionActual();
@@ -52,20 +53,38 @@ namespace Contpaqi.Sdk.Extras.Repositories
             }
         }
 
-        private Clasificacion LeerDatosClasificacionActual()
+        private T LeerDatosClasificacionActual()
         {
-            var id = new StringBuilder(12);
-            var nombre = new StringBuilder(61);
+            var clasificacion = new T();
 
-            _sdk.fLeeDatoClasificacion("CIDCLASIFICACION", id, 12).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoClasificacion("CNOMBRECLASIFICACION", nombre, 61).ToResultadoSdk(_sdk).ThrowIfError();
-
-            var clasificacion = new Clasificacion();
-            clasificacion.Id = int.Parse(id.ToString());
-            clasificacion.Nombre = nombre.ToString();
-            clasificacion.Valores = _valorClasificacionRepository.TraerPorClasificacionId(clasificacion.Id).ToList();
+            LeerYAsignarDatos(clasificacion);
 
             return clasificacion;
+        }
+
+        private void LeerYAsignarDatos(T clasificacion)
+        {
+            Type sqlModelType = typeof(admClasificaciones);
+
+            foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
+            {
+                try
+                {
+                    if (!sqlModelType.HasProperty(propertyDescriptor.Name))
+                    {
+                        continue;
+                    }
+
+                    propertyDescriptor.SetValue(clasificacion,
+                        _sdk.LeeDatoClasificacion(propertyDescriptor.Name)
+                            .Trim()
+                            .ConvertFromSdkValueString(propertyDescriptor.PropertyType));
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}", e);
+                }
+            }
         }
     }
 }

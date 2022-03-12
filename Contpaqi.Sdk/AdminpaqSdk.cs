@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using System.Text;
+using Contpaqi.Sdk.DatosAbstractos;
 
 // ReSharper disable InconsistentNaming
 
@@ -23,7 +24,7 @@ namespace Contpaqi.Sdk
         public static extern int fActualizaDireccion(ref tDireccion astDireccion);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fActualizaProducto")]
-        public static extern int fActualizaProducto(ref int aCodigoProducto, tProducto astProducto);
+        public static extern int fActualizaProducto(string aCodigoProducto, ref tProducto astProducto);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fActualizaUnidad")]
         public static extern int fActualizaUnidad(string aNombreUnidad, ref tUnidad astUnidad);
@@ -40,6 +41,22 @@ namespace Contpaqi.Sdk
         [DllImport("MGW_SDK.dll", EntryPoint = "fAfectaSerie")]
         public static extern int fAfectaSerie(int aIdMovto, string aNumeroSerie);
 
+        [DllImport("MGW_SDK.dll", EntryPoint = "fAgregarRelacionCFDI")]
+        public static extern int fAgregarRelacionCFDI(string aCodConcepto,
+                                                      string aSerie,
+                                                      string aFolio,
+                                                      string aTipoRelacion,
+                                                      string aConceptoRelacionar,
+                                                      string aSerieRelacionar,
+                                                      string aFolioRelacionar);
+
+        [DllImport("MGW_SDK.dll", EntryPoint = "fAgregarRelacionCFDI2")]
+        public static extern int fAgregarRelacionCFDI2(string aCodConcepto,
+                                                       string aSerie,
+                                                       string aFolio,
+                                                       string aTipoRelacion,
+                                                       string aUUID);
+
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaCteProv")]
         public static extern int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv);
 
@@ -47,10 +64,33 @@ namespace Contpaqi.Sdk
         public static extern int fAltaDireccion(ref int aIdDireccion, ref tDireccion astDireccion);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaDoctoAjusteIESPSCteProv")]
-        public static extern int fAltaDoctoAjusteIESPSCteProv(string aCodigoClienteProveedor, int aEsCliente, string aFechaDocto, int aIdMoneda, double aTipoCambio, double aImporteIVA, double aTasaIVA, double aImporteIESPS, double aTasaIESPS, int aIdFacturaBase, string aMetodo, string aLugar, ref int aIdDoctoGenerado);
+        public static extern int fAltaDoctoAjusteIESPSCteProv(string aCodigoClienteProveedor,
+                                                              int aEsCliente,
+                                                              string aFechaDocto,
+                                                              int aIdMoneda,
+                                                              double aTipoCambio,
+                                                              double aImporteIVA,
+                                                              double aTasaIVA,
+                                                              double aImporteIESPS,
+                                                              double aTasaIESPS,
+                                                              int aIdFacturaBase,
+                                                              string aMetodo,
+                                                              string aLugar,
+                                                              ref int aIdDoctoGenerado);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaDoctoAjusteIVAClienteProveedor")]
-        public static extern int fAltaDoctoAjusteIVAClienteProveedor(string aCodigoClienteProveedor, int aEsCliente, int aAbsorberAjusteIVA, string aFechaDocto, int aIdMoneda, double aTipoCambio, double aImporteIVA, double aTasaIVA, int aIdFacturaBase, string aMetodo, string aLugar, ref int aIdDoctoGenerado);
+        public static extern int fAltaDoctoAjusteIVAClienteProveedor(string aCodigoClienteProveedor,
+                                                                     int aEsCliente,
+                                                                     int aAbsorberAjusteIVA,
+                                                                     string aFechaDocto,
+                                                                     int aIdMoneda,
+                                                                     double aTipoCambio,
+                                                                     double aImporteIVA,
+                                                                     double aTasaIVA,
+                                                                     int aIdFacturaBase,
+                                                                     string aMetodo,
+                                                                     string aLugar,
+                                                                     ref int aIdDoctoGenerado);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaDocumento")]
         public static extern int fAltaDocumento(ref int aIdDocumento, ref tDocumento aDocumento);
@@ -59,34 +99,67 @@ namespace Contpaqi.Sdk
         public static extern int fAltaDocumentoCargoAbono(ref tDocumento aDocumento);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaDocumentoCargoAbonoExtras")]
-        public static extern int fAltaDocumentoCargoAbonoExtras(ref tDocumento aDocumento, string aTextoExtra1, string aTextoExtra2, string aTextoExtra3, string aFechaExtra, double aImporteExtra1, double aImporteExtra2, double aImporteExtra3, double aImporteExtra4);
+        public static extern int fAltaDocumentoCargoAbonoExtras(ref tDocumento aDocumento,
+                                                                string aTextoExtra1,
+                                                                string aTextoExtra2,
+                                                                string aTextoExtra3,
+                                                                string aFechaExtra,
+                                                                double aImporteExtra1,
+                                                                double aImporteExtra2,
+                                                                double aImporteExtra3,
+                                                                double aImporteExtra4);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaMovimiento")]
         public static extern int fAltaMovimiento(int aIdDocumento, ref int aIdMovimiento, ref tMovimiento astMovimiento);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaMovimientoCaracteristicas")]
-        public static extern int fAltaMovimientoCaracteristicas(int aIdMovimiento, int aIdMovtoCaracteristicas, tCaracteristicas aCaracteristicas);
+        public static extern int fAltaMovimientoCaracteristicas(int aIdMovimiento,
+                                                                ref int aIdMovtoCaracteristicas,
+                                                                ref tCaracteristicas aCaracteristicas);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaMovimientoCaracteristicas_Param")]
-        public static extern int fAltaMovimientoCaracteristicas_Param(string aIdMovimiento, string aIdMovtoCaracteristicas, string aUnidades, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3);
+        public static extern int fAltaMovimientoCaracteristicas_Param(string aIdMovimiento,
+                                                                      string aIdMovtoCaracteristicas,
+                                                                      string aUnidades,
+                                                                      string aValorCaracteristica1,
+                                                                      string aValorCaracteristica2,
+                                                                      string aValorCaracteristica3);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaMovimientoCDesct")]
         public static extern int fAltaMovimientoCDesct(int aIdDocumento, ref int aIdMovimiento, ref tMovimientoDesc astMovimiento);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaMovimientoEx")]
-        public static extern int fAltaMovimientoEx(ref int aIdMovimiento, tTipoProducto aTipoProducto);
+        public static extern int fAltaMovimientoEx(ref int aIdMovimiento, ref tTipoProducto aTipoProducto);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaMovimientoSeriesCapas")]
         public static extern int fAltaMovimientoSeriesCapas(int aIdMovimiento, ref tSeriesCapas aSeriesCapas);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaMovimientoSeriesCapas_Param")]
-        public static extern int fAltaMovimientoSeriesCapas_Param(string aIdMovimiento, string aUnidades, string aTipoCambio, string aSeries, string aPedimento, string aAgencia, string aFechaPedimento, string aNumeroLote, string aFechaFabricacion, string aFechaCaducidad);
+        public static extern int fAltaMovimientoSeriesCapas_Param(string aIdMovimiento,
+                                                                  string aUnidades,
+                                                                  string aTipoCambio,
+                                                                  string aSeries,
+                                                                  string aPedimento,
+                                                                  string aAgencia,
+                                                                  string aFechaPedimento,
+                                                                  string aNumeroLote,
+                                                                  string aFechaFabricacion,
+                                                                  string aFechaCaducidad);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaMovtoCaracteristicasUnidades")]
-        public static extern int fAltaMovtoCaracteristicasUnidades(int aIdMovimiento, int aIdMovtoCaracteristicas, tCaracteristicas aCaracteristicasUnidades);
+        public static extern int fAltaMovtoCaracteristicasUnidades(int aIdMovimiento,
+                                                                   ref int aIdMovtoCaracteristicas,
+                                                                   ref tCaracteristicas aCaracteristicasUnidades);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaMovtoCaracteristicasUnidades_Param")]
-        public static extern int fAltaMovtoCaracteristicasUnidades_Param(string aIdMovimiento, string aIdMovtoCaracteristicas, string aUnidad, string aUnidades, string aUnidadesNC, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3);
+        public static extern int fAltaMovtoCaracteristicasUnidades_Param(string aIdMovimiento,
+                                                                         string aIdMovtoCaracteristicas,
+                                                                         string aUnidad,
+                                                                         string aUnidades,
+                                                                         string aUnidadesNC,
+                                                                         string aValorCaracteristica1,
+                                                                         string aValorCaracteristica2,
+                                                                         string aValorCaracteristica3);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fAltaProducto")]
         public static extern int fAltaProducto(ref int aIdProducto, ref tProducto astProducto);
@@ -116,7 +189,12 @@ namespace Contpaqi.Sdk
         public static extern int fBorrarAsociacion(tLlaveDoc aDoctoaPagar, tLlaveDoc aDoctoPago);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fBorrarAsociacion_Param")]
-        public static extern int fBorrarAsociacion_Param(string aCodConcepto_Pagar, string aSerie_Pagar, double aFolio_Pagar, string aCodConcepto_Pago, string aSerie_Pago, double aFolio_Pago);
+        public static extern int fBorrarAsociacion_Param(string aCodConcepto_Pagar,
+                                                         string aSerie_Pagar,
+                                                         double aFolio_Pagar,
+                                                         string aCodConcepto_Pago,
+                                                         string aSerie_Pago,
+                                                         double aFolio_Pago);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fBorraUnidad")]
         public static extern int fBorraUnidad();
@@ -202,11 +280,17 @@ namespace Contpaqi.Sdk
         [DllImport("MGW_SDK.dll", EntryPoint = "fCancelaComplementoPagoUUID")]
         public static extern int fCancelaComplementoPagoUUID(string aUUID, string aIdDConcepto, string aPass);
 
+        [DllImport("MGW_SDK.dll", EntryPoint = "fCancelaDoctoInfo")]
+        public static extern int fCancelaDoctoInfo(string aPass);
+
         [DllImport("MGW_SDK.dll", EntryPoint = "fCancelaDocumento")]
         public static extern int fCancelaDocumento();
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fCancelaDocumento_CW")]
         public static extern int fCancelaDocumento_CW();
+
+        [DllImport("MGW_SDK.dll", EntryPoint = "fCancelaDocumentoConMotivo")]
+        public static extern int fCancelaDocumentoConMotivo(string aMotivoCancelacion, string aUUIDRemplaza);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fCancelaFiltroDocumento")]
         public static extern int fCancelaFiltroDocumento();
@@ -247,6 +331,16 @@ namespace Contpaqi.Sdk
         [DllImport("MGW_SDK.dll", EntryPoint = "fCancelaUUID")]
         public static extern int fCancelaUUID(string aUUID, string aIdDConcepto, string aPass);
 
+        [DllImport("MGW_SDK.dll", EntryPoint = "fCancelaUUID40")]
+        public static extern int fCancelaUUID40(string aUUID,
+                                                string aMotivoCancelacion,
+                                                string aUUIDReemplaza,
+                                                string RFCReceptor,
+                                                double aTotal,
+                                                string aIdDConcepto,
+                                                string aPass,
+                                                ref int aEstatusCancelacion);
+
         [DllImport("MGW_SDK.dll", EntryPoint = "fCierraEmpresa")]
         public static extern void fCierraEmpresa();
 
@@ -263,7 +357,10 @@ namespace Contpaqi.Sdk
         public static extern int fDocumentoImpreso(ref bool aImpreso);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fDocumentoUUID")]
-        public static extern int fDocumentoUUID(StringBuilder aCodConcepto, StringBuilder aSerie, double aFolio, StringBuilder atPtrCFDIUUID);
+        public static extern int fDocumentoUUID(StringBuilder aCodConcepto,
+                                                StringBuilder aSerie,
+                                                double aFolio,
+                                                StringBuilder atPtrCFDIUUID);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fEditaAgente")]
         public static extern int fEditaAgente();
@@ -313,6 +410,9 @@ namespace Contpaqi.Sdk
         [DllImport("MGW_SDK.dll", EntryPoint = "fEliminarProducto")]
         public static extern int fEliminarProducto(string aCodigoProducto);
 
+        [DllImport("MGW_SDK.dll", EntryPoint = "fEliminarRelacionesCFDIs")]
+        public static extern int fEliminarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio);
+
         [DllImport("MGW_SDK.dll", EntryPoint = "fEliminarUnidad")]
         public static extern int fEliminarUnidad(string aNombreUnidad);
 
@@ -320,7 +420,11 @@ namespace Contpaqi.Sdk
         public static extern int fEliminarValorClasif(int aClasificacionDe, int aNumClasificacion, string aCodigoValorClasif);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fEmitirDocumento")]
-        public static extern int fEmitirDocumento([MarshalAs(UnmanagedType.LPStr)] string aCodConcepto, [MarshalAs(UnmanagedType.LPStr)] string aSerie, double aFolio, [MarshalAs(UnmanagedType.LPStr)] string aPassword, [MarshalAs(UnmanagedType.LPStr)] string aArchivoAdicional);
+        public static extern int fEmitirDocumento([MarshalAs(UnmanagedType.LPStr)] string aCodConcepto,
+                                                  [MarshalAs(UnmanagedType.LPStr)] string aSerie,
+                                                  double aFolio,
+                                                  [MarshalAs(UnmanagedType.LPStr)] string aPassword,
+                                                  [MarshalAs(UnmanagedType.LPStr)] string aArchivoAdicional);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fEntregEnDiscoXML")]
         public static extern int fEntregEnDiscoXML(string aCodConcepto, string aSerie, double aFolio, int aFormato, string aFormatoAmig);
@@ -335,7 +439,9 @@ namespace Contpaqi.Sdk
         public static extern int fGetNumParcialidades(StringBuilder atPtrPassword, StringBuilder aNumParcialidades);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fGetSelloDigitalYCadena")]
-        public static extern int fGetSelloDigitalYCadena(StringBuilder atPtrPassword, StringBuilder atPtrSelloDigital, StringBuilder atPtrCadenaOriginal);
+        public static extern int fGetSelloDigitalYCadena(StringBuilder atPtrPassword,
+                                                         StringBuilder atPtrSelloDigital,
+                                                         StringBuilder atPtrCadenaOriginal);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fGetSerieCertificado")]
         public static extern int fGetSerieCertificado(StringBuilder atPtrPassword, StringBuilder aSerieCertificado);
@@ -383,7 +489,15 @@ namespace Contpaqi.Sdk
         public static extern int fGuardaValorClasif();
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fInformacionCliente")]
-        public static extern int fInformacionCliente(StringBuilder aCodigo, ref int aPermiteCredito, ref double aLimiteCredito, ref int aLimiteDoctosVencidos, ref int aPermiteExcederCredito, StringBuilder aFecha, ref double aSaldo, ref double aSaldoPendiente, ref int aDoctosVencidos);
+        public static extern int fInformacionCliente(StringBuilder aCodigo,
+                                                     ref int aPermiteCredito,
+                                                     ref double aLimiteCredito,
+                                                     ref int aLimiteDoctosVencidos,
+                                                     ref int aPermiteExcederCredito,
+                                                     StringBuilder aFecha,
+                                                     ref double aSaldo,
+                                                     ref double aSaldoPendiente,
+                                                     ref int aDoctosVencidos);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fInicializaLicenseInfo")]
         public static extern int fInicializaLicenseInfo(byte aSistema);
@@ -473,13 +587,13 @@ namespace Contpaqi.Sdk
         public static extern int fLeeDatoValorClasif(string aCampo, StringBuilder aValor, int aLen);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fLlenaRegistroCteProv")]
-        public static extern int fLlenaRegistroCteProv(tCteProv astCteProv, int aEsAlta);
+        public static extern int fLlenaRegistroCteProv(ref tCteProv astCteProv, int aEsAlta);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fLlenaRegistroDireccion")]
         public static extern int fLlenaRegistroDireccion(ref tDireccion astDireccion, int aEsAlta);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fLlenaRegistroProducto")]
-        public static extern int fLlenaRegistroProducto(tProducto astProducto, int aEsAlta);
+        public static extern int fLlenaRegistroProducto(ref tProducto astProducto, int aEsAlta);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fLlenaRegistroUnidad")]
         public static extern int fLlenaRegistroUnidad(ref tUnidad astUnidad);
@@ -497,16 +611,28 @@ namespace Contpaqi.Sdk
         public static extern int fObtieneDatosCFDI(string atPtrPassword);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fObtieneLicencia")]
-        public static extern int fObtieneLicencia(StringBuilder aCodAcvtiva, StringBuilder aCodSitio, StringBuilder aSerie, StringBuilder aTagVersion);
+        public static extern int fObtieneLicencia(StringBuilder aCodAcvtiva,
+                                                  StringBuilder aCodSitio,
+                                                  StringBuilder aSerie,
+                                                  StringBuilder aTagVersion);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fObtienePassProxy")]
         public static extern int fObtienePassProxy(StringBuilder aPassProxy);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fObtieneUnidadesPendientes")]
-        public static extern int fObtieneUnidadesPendientes(string aConceptoDocto, string aCodigoProducto, string aCodigoAlmacen, StringBuilder aUnidades);
+        public static extern int fObtieneUnidadesPendientes(string aConceptoDocto,
+                                                            string aCodigoProducto,
+                                                            string aCodigoAlmacen,
+                                                            StringBuilder aUnidades);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fObtieneUnidadesPendientesCarac")]
-        public static extern int fObtieneUnidadesPendientesCarac(string aConceptoDocto, string aCodigoProducto, string aCodigoAlmacen, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3, StringBuilder aUnidades);
+        public static extern int fObtieneUnidadesPendientesCarac(string aConceptoDocto,
+                                                                 string aCodigoProducto,
+                                                                 string aCodigoAlmacen,
+                                                                 string aValorCaracteristica1,
+                                                                 string aValorCaracteristica2,
+                                                                 string aValorCaracteristica3,
+                                                                 StringBuilder aUnidades);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fPosAnteriorAgente")]
         public static extern int fPosAnteriorAgente();
@@ -721,62 +847,212 @@ namespace Contpaqi.Sdk
         [DllImport("MGW_SDK.dll", EntryPoint = "fPosUltimoValorClasif")]
         public static extern int fPosUltimoValorClasif();
 
+        [DllImport("MGW_SDK.dll", EntryPoint = "fProyectoEmpresaDoctos")]
+        public static extern int fProyectoEmpresaDoctos(string aCodigoProyecto);
+
         [DllImport("MGW_SDK.dll", EntryPoint = "fRecosteoProducto")]
-        public static extern int fRecosteoProducto(string aCodigoProducto, int aEjercicio, int aPeriodo, string aCodigoClasificacion1, string aCodigoClasificacion2, string aCodigoClasificacion3, string aCodigoClasificacion4, string aCodigoClasificacion5, string aCodigoClasificacion6, string aNombreBitacora, int aSobreEscribirBitacora, int aEsCalculoArimetico);
+        public static extern int fRecosteoProducto(string aCodigoProducto,
+                                                   int aEjercicio,
+                                                   int aPeriodo,
+                                                   string aCodigoClasificacion1,
+                                                   string aCodigoClasificacion2,
+                                                   string aCodigoClasificacion3,
+                                                   string aCodigoClasificacion4,
+                                                   string aCodigoClasificacion5,
+                                                   string aCodigoClasificacion6,
+                                                   string aNombreBitacora,
+                                                   int aSobreEscribirBitacora,
+                                                   int aEsCalculoArimetico);
+
+        [DllImport("MGW_SDK.dll", EntryPoint = "fRecuperarRelacionesCFDIs")]
+        public static extern int fRecuperarRelacionesCFDIs(string aCodConcepto,
+                                                           string aSerie,
+                                                           string aFolio,
+                                                           string aTipoRelacion,
+                                                           StringBuilder aUUIDs,
+                                                           string aRutaNombreArchivoInfo);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRecuperaTipoProducto")]
-        public static extern int fRecuperaTipoProducto(ref bool aUnidades, ref bool aSerie, ref bool aLote, ref bool aPedimento, ref bool aCaracteristicas);
+        public static extern int fRecuperaTipoProducto(ref bool aUnidades,
+                                                       ref bool aSerie,
+                                                       ref bool aLote,
+                                                       ref bool aPedimento,
+                                                       ref bool aCaracteristicas);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaCostoCapa")]
-        public static extern int fRegresaCostoCapa(string aCodigoProducto, string aCodigoAlmacen, double aUnidades, StringBuilder aImporteCosto);
+        public static extern int fRegresaCostoCapa(string aCodigoProducto,
+                                                   string aCodigoAlmacen,
+                                                   double aUnidades,
+                                                   StringBuilder aImporteCosto);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaCostoEstandar")]
         public static extern int fRegresaCostoEstandar(string aCodigoProducto, StringBuilder aCostoEstandar);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaCostoPromedio")]
-        public static extern int fRegresaCostoPromedio(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, StringBuilder aCostoPromedio);
+        public static extern int fRegresaCostoPromedio(string aCodigoProducto,
+                                                       string aCodigoAlmacen,
+                                                       string aAnio,
+                                                       string aMes,
+                                                       string aDia,
+                                                       StringBuilder aCostoPromedio);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaExistencia")]
-        public static extern int fRegresaExistencia(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, ref double aExistencia);
+        public static extern int fRegresaExistencia(string aCodigoProducto,
+                                                    string aCodigoAlmacen,
+                                                    string aAnio,
+                                                    string aMes,
+                                                    string aDia,
+                                                    ref double aExistencia);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaExistenciaCaracteristicas")]
-        public static extern int fRegresaExistenciaCaracteristicas(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3, ref double aExistencia);
+        public static extern int fRegresaExistenciaCaracteristicas(string aCodigoProducto,
+                                                                   string aCodigoAlmacen,
+                                                                   string aAnio,
+                                                                   string aMes,
+                                                                   string aDia,
+                                                                   string aValorCaracteristica1,
+                                                                   string aValorCaracteristica2,
+                                                                   string aValorCaracteristica3,
+                                                                   ref double aExistencia);
+
+        [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaExistenciaLotePedimento")]
+        public static extern int fRegresaExistenciaLotePedimento(string aCodigoProducto,
+                                                                 string aCodigoAlmacen,
+                                                                 string aPedimento,
+                                                                 string aLote,
+                                                                 ref double aExistencia);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaIVACargo")]
-        public static extern int fRegresaIVACargo(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVAOtrasTasas);
+        public static extern int fRegresaIVACargo(tLlaveDoc aLlaveDocto,
+                                                  double aNetoTasa15,
+                                                  double aNetoTasa10,
+                                                  double aNetoTasaCero,
+                                                  double aNetoTasaExcenta,
+                                                  double aNetoOtrasTasas,
+                                                  double aIVATasa15,
+                                                  double aIVATasa10,
+                                                  double aIVAOtrasTasas);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaIVACargo_2010")]
-        public static extern int fRegresaIVACargo_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas);
+        public static extern int fRegresaIVACargo_2010(tLlaveDoc aLlaveDocto,
+                                                       double aNetoTasa15,
+                                                       double aNetoTasa10,
+                                                       double aNetoTasa16,
+                                                       double aNetoTasa11,
+                                                       double aNetoTasaCero,
+                                                       double aNetoTasaExcenta,
+                                                       double aNetoOtrasTasas,
+                                                       double aIVATasa15,
+                                                       double aIVATasa10,
+                                                       double aIVATasa16,
+                                                       double aIVATasa11,
+                                                       double aIVAOtrasTasas);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaIVACargoRet_2010")]
-        public static extern int fRegresaIVACargoRet_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas, double aRetIVA, double aRetI);
+        public static extern int fRegresaIVACargoRet_2010(tLlaveDoc aLlaveDocto,
+                                                          double aNetoTasa15,
+                                                          double aNetoTasa10,
+                                                          double aNetoTasa16,
+                                                          double aNetoTasa11,
+                                                          double aNetoTasaCero,
+                                                          double aNetoTasaExcenta,
+                                                          double aNetoOtrasTasas,
+                                                          double aIVATasa15,
+                                                          double aIVATasa10,
+                                                          double aIVATasa16,
+                                                          double aIVATasa11,
+                                                          double aIVAOtrasTasas,
+                                                          double aRetIVA,
+                                                          double aRetI);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaIVAPago")]
-        public static extern int fRegresaIVAPago(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVAOtrasTasas);
+        public static extern int fRegresaIVAPago(tLlaveDoc aLlaveDocto,
+                                                 double aNetoTasa15,
+                                                 double aNetoTasa10,
+                                                 double aNetoTasaCero,
+                                                 double aNetoTasaExcenta,
+                                                 double aNetoOtrasTasas,
+                                                 double aIVATasa15,
+                                                 double aIVATasa10,
+                                                 double aIVAOtrasTasas);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaIVAPago_2010")]
-        public static extern int fRegresaIVAPago_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas);
+        public static extern int fRegresaIVAPago_2010(tLlaveDoc aLlaveDocto,
+                                                      double aNetoTasa15,
+                                                      double aNetoTasa10,
+                                                      double aNetoTasa16,
+                                                      double aNetoTasa11,
+                                                      double aNetoTasaCero,
+                                                      double aNetoTasaExcenta,
+                                                      double aNetoOtrasTasas,
+                                                      double aIVATasa15,
+                                                      double aIVATasa10,
+                                                      double aIVATasa16,
+                                                      double aIVATasa11,
+                                                      double aIVAOtrasTasas);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaIVAPagoRet_2010")]
-        public static extern int fRegresaIVAPagoRet_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11, double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16, double aIVATasa11, double aIVAOtrasTasas, double aRetIVA, double aRetI);
+        public static extern int fRegresaIVAPagoRet_2010(tLlaveDoc aLlaveDocto,
+                                                         double aNetoTasa15,
+                                                         double aNetoTasa10,
+                                                         double aNetoTasa16,
+                                                         double aNetoTasa11,
+                                                         double aNetoTasaCero,
+                                                         double aNetoTasaExcenta,
+                                                         double aNetoOtrasTasas,
+                                                         double aIVATasa15,
+                                                         double aIVATasa10,
+                                                         double aIVATasa16,
+                                                         double aIVATasa11,
+                                                         double aIVAOtrasTasas,
+                                                         double aRetIVA,
+                                                         double aRetI);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaPrecioVenta")]
-        public static extern int fRegresaPrecioVenta(string aCodigoConcepto, string aCodigoCliente, string aCodigoProducto, StringBuilder aPrecioVenta);
+        public static extern int fRegresaPrecioVenta(string aCodigoConcepto,
+                                                     string aCodigoCliente,
+                                                     string aCodigoProducto,
+                                                     StringBuilder aPrecioVenta);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaUltimoCosto")]
-        public static extern int fRegresaUltimoCosto(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, StringBuilder aUltimoCosto);
+        public static extern int fRegresaUltimoCosto(string aCodigoProducto,
+                                                     string aCodigoAlmacen,
+                                                     string aAnio,
+                                                     string aMes,
+                                                     string aDia,
+                                                     StringBuilder aUltimoCosto);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresPorcentajeImpuesto")]
-        public static extern int fRegresPorcentajeImpuesto(int aIdConceptoDocumento, int aIdClienteProveedor, int aIdProducto, ref double aPorcentajeImpuesto);
+        public static extern int fRegresPorcentajeImpuesto(int aIdConceptoDocumento,
+                                                           int aIdClienteProveedor,
+                                                           int aIdProducto,
+                                                           ref double aPorcentajeImpuesto);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fSaldarDocumento")]
-        public static extern int fSaldarDocumento(tLlaveDoc aDoctoaPagar, tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha);
+        public static extern int fSaldarDocumento(tLlaveDoc aDoctoaPagar,
+                                                  tLlaveDoc aDoctoPago,
+                                                  double aImporte,
+                                                  int aIdMoneda,
+                                                  string aFecha);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fSaldarDocumento_Param")]
-        public static extern int fSaldarDocumento_Param(string aCodConcepto_Pagar, string aSerie_Pagar, double aFolio_Pagar, string aCodConcepto_Pago, string aSerie_Pago, double aFolio_Pago, double aImporte, int aIdMoneda, string aFecha);
+        public static extern int fSaldarDocumento_Param(string aCodConcepto_Pagar,
+                                                        string aSerie_Pagar,
+                                                        double aFolio_Pagar,
+                                                        string aCodConcepto_Pago,
+                                                        string aSerie_Pago,
+                                                        double aFolio_Pago,
+                                                        double aImporte,
+                                                        int aIdMoneda,
+                                                        string aFecha);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fSaldarDocumentoCheqPAQ")]
-        public static extern int fSaldarDocumentoCheqPAQ(tLlaveDoc aDoctoaPagar, tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha, double aTipoCambioCheqPAQ);
+        public static extern int fSaldarDocumentoCheqPAQ(tLlaveDoc aDoctoaPagar,
+                                                         tLlaveDoc aDoctoPago,
+                                                         double aImporte,
+                                                         int aIdMoneda,
+                                                         string aFecha,
+                                                         double aTipoCambioCheqPAQ);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fSetDatoAgente")]
         public static extern int fSetDatoAgente(string aCampo, string aValor);
@@ -788,7 +1064,7 @@ namespace Contpaqi.Sdk
         public static extern int fSetDatoClasificacion(string aCampo, string aValor);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fSetDatoConceptoDocto")]
-        public static extern int fSetDatoConceptoDocto(StringBuilder aCampo, StringBuilder aValor);
+        public static extern int fSetDatoConceptoDocto(string aCampo, string aValor);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fSetDatoCteProv")]
         public static extern int fSetDatoCteProv(string aCampo, string aValor);
@@ -839,36 +1115,40 @@ namespace Contpaqi.Sdk
         public static extern void fTerminaSDK();
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fTimbraComplementoPagoXML")]
-        public static extern int fTimbraComplementoPagoXML(string aRutaXML, string aCodConcepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato);
+        public static extern int fTimbraComplementoPagoXML(string aRutaXML,
+                                                           string aCodConcepto,
+                                                           StringBuilder aUUID,
+                                                           string aRutaDDA,
+                                                           string aRutaResultado,
+                                                           string aPass,
+                                                           string aRutaFormato);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fTimbraComplementoXML")]
-        public static extern int fTimbraComplementoXML(string aRutaXML, string aCodCOncepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato, int aComplemento);
+        public static extern int fTimbraComplementoXML(string aRutaXML,
+                                                       string aCodCOncepto,
+                                                       StringBuilder aUUID,
+                                                       string aRutaDDA,
+                                                       string aRutaResultado,
+                                                       string aPass,
+                                                       string aRutaFormato,
+                                                       int aComplemento);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fTimbraNominaXML")]
-        public static extern int fTimbraNominaXML(string aRutaXML, string aCodCOncepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato);
+        public static extern int fTimbraNominaXML(string aRutaXML,
+                                                  string aCodCOncepto,
+                                                  StringBuilder aUUID,
+                                                  string aRutaDDA,
+                                                  string aRutaResultado,
+                                                  string aPass,
+                                                  string aRutaFormato);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fTimbraXML")]
-        public static extern int fTimbraXML(string aRutaXML, string aCodCOncepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass, string aRutaFormato);
-
-        [DllImport("MGW_SDK.dll", EntryPoint = "fRecuperarRelacionesCFDIs")]
-        public static extern int fRecuperarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, StringBuilder aUUIDs, string aRutaNombreArchivoInfo);
-
-        [DllImport("MGW_SDK.dll", EntryPoint = "fAgregarRelacionCFDI")]
-        public static extern int fAgregarRelacionCFDI(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aConceptoRelacionar, string aSerieRelacionar, string aFolioRelacionar);
-
-        [DllImport("MGW_SDK.dll", EntryPoint = "fAgregarRelacionCFDI2")]
-        public static extern int fAgregarRelacionCFDI2(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aUUID);
-
-        [DllImport("MGW_SDK.dll", EntryPoint = "fEliminarRelacionesCFDIs")]
-        public static extern int fEliminarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio);
-
-        [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaExistenciaLotePedimento")]
-        public static extern int fRegresaExistenciaLotePedimento(string aCodigoProducto, string aCodigoAlmacen, string aPedimento, string aLote, ref double aExistencia);
-
-        [DllImport("MGW_SDK.dll", EntryPoint = "fProyectoEmpresaDoctos")]
-        public static extern int fProyectoEmpresaDoctos(string aCodigoProyecto);
-
-        [DllImport("MGW_SDK.dll", EntryPoint = "fCancelaDoctoInfo")]
-        public static extern int fCancelaDoctoInfo(string aPass);
+        public static extern int fTimbraXML(string aRutaXML,
+                                            string aCodCOncepto,
+                                            StringBuilder aUUID,
+                                            string aRutaDDA,
+                                            string aRutaResultado,
+                                            string aPass,
+                                            string aRutaFormato);
     }
 }

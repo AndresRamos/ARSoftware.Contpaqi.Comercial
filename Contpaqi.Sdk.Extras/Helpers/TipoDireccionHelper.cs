@@ -5,16 +5,26 @@ namespace Contpaqi.Sdk.Extras.Helpers
 {
     public static class TipoDireccionHelper
     {
-        public static TipoDireccionEnum ToTipoDireccion(string tipo)
+        public static TipoDireccion ConvertFromSdkValue(string sdkTipo)
         {
-            var result = Enum.TryParse(tipo, true, out TipoDireccionEnum tipoDireccionEnum);
+            bool result = Enum.TryParse(sdkTipo, true, out TipoDireccion tipoDireccion);
 
             if (result)
             {
-                return tipoDireccionEnum;
+                return tipoDireccion;
             }
 
-            throw new InvalidOperationException($"El tipo {tipo} no es un tipo de direccion valido.");
+            throw new InvalidOperationException($"El tipo {sdkTipo} no es un tipo de direccion valido.");
+        }
+
+        public static TipoDireccion ConvertFromSdkValue(int sdkTipo)
+        {
+            return ConvertFromSdkValue(sdkTipo.ToString());
+        }
+
+        public static int ConvertToSdkValue(TipoDireccion tipo)
+        {
+            return (int)tipo;
         }
     }
 }

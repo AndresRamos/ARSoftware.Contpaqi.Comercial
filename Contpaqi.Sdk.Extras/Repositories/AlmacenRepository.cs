@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using Contpaqi.Sdk.Extras.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using Contpaqi.Comercial.Sql.Models.Empresa;
+using Contpaqi.Sdk.Extras.Extensions;
 using Contpaqi.Sdk.Extras.Interfaces;
 using Contpaqi.Sdk.Extras.Models;
 
 namespace Contpaqi.Sdk.Extras.Repositories
 {
-    public class AlmacenRepository : IAlmacenRepository<Almacen>
+    public class AlmacenRepository<T> : IAlmacenRepository<T> where T : class, new()
     {
         private readonly IContpaqiSdk _sdk;
 
@@ -15,17 +17,17 @@ namespace Contpaqi.Sdk.Extras.Repositories
             _sdk = sdk;
         }
 
-        public Almacen BuscarPorId(int idAlmacen)
-        {
-            return _sdk.fBuscaIdAlmacen(idAlmacen) == SdkResultConstants.Success ? LeerDatosAlmacenActual() : null;
-        }
-
-        public Almacen BuscarPorCodigo(string codigoAlmacen)
+        public T BuscarPorCodigo(string codigoAlmacen)
         {
             return _sdk.fBuscaAlmacen(codigoAlmacen) == SdkResultConstants.Success ? LeerDatosAlmacenActual() : null;
         }
 
-        public IEnumerable<Almacen> TraerTodo()
+        public T BuscarPorId(int idAlmacen)
+        {
+            return _sdk.fBuscaIdAlmacen(idAlmacen) == SdkResultConstants.Success ? LeerDatosAlmacenActual() : null;
+        }
+
+        public IEnumerable<T> TraerTodo()
         {
             _sdk.fPosPrimerAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosAlmacenActual();
@@ -40,21 +42,36 @@ namespace Contpaqi.Sdk.Extras.Repositories
             }
         }
 
-        private Almacen LeerDatosAlmacenActual()
+        private T LeerDatosAlmacenActual()
         {
-            var id = new StringBuilder(12);
-            var codigo = new StringBuilder(31);
-            var nombre = new StringBuilder(61);
+            var almacen = new T();
 
-            _sdk.fLeeDatoAlmacen("CIDALMACEN", id, 12).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoAlmacen("CCODIGOALMACEN", codigo, 31).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoAlmacen("CNOMBREALMACEN", nombre, 61).ToResultadoSdk(_sdk).ThrowIfError();
+            LeerYAsignarDatos(almacen);
 
-            var almacen = new Almacen();
-            almacen.Id = int.Parse(id.ToString());
-            almacen.Codigo = codigo.ToString();
-            almacen.Nombre = nombre.ToString();
             return almacen;
+        }
+
+        private void LeerYAsignarDatos(T almacen)
+        {
+            Type sqlModelType = typeof(admAlmacenes);
+
+            foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
+            {
+                try
+                {
+                    if (!sqlModelType.HasProperty(propertyDescriptor.Name))
+                    {
+                        continue;
+                    }
+
+                    propertyDescriptor.SetValue(almacen,
+                        _sdk.LeeDatoAlmacen(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}", e);
+                }
+            }
         }
     }
 }

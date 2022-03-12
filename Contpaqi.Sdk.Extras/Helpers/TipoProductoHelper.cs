@@ -5,31 +5,41 @@ namespace Contpaqi.Sdk.Extras.Helpers
 {
     public static class TipoProductoHelper
     {
-        public static TipoProductoEnum ConvertoToTipoProductoEnum(string tipo)
+        public static TipoProducto ConvertFromSdkValue(string sdkTipo)
         {
-            var result = Enum.TryParse(tipo, true, out TipoProductoEnum tipoProducto);
+            bool result = Enum.TryParse(sdkTipo, true, out TipoProducto tipoProducto);
 
             if (result)
             {
                 return tipoProducto;
             }
 
-            throw new InvalidOperationException($"El tipo {tipo} no es un tipo de producto valido.");
+            throw new InvalidOperationException($"El tipo {sdkTipo} no es un tipo de producto valido.");
         }
 
-        public static bool IsProducto(string tipoDeProducto)
+        public static TipoProducto ConvertFromSdkValue(int sdkTipo)
         {
-            return ConvertoToTipoProductoEnum(tipoDeProducto) == TipoProductoEnum.Producto;
+            return ConvertFromSdkValue(sdkTipo.ToString());
         }
 
-        public static bool IsPaquete(string tipoDeProducto)
+        public static int ConvertToSdkValue(TipoProducto tipoProducto)
         {
-            return ConvertoToTipoProductoEnum(tipoDeProducto) == TipoProductoEnum.Paquete;
+            return (int)tipoProducto;
         }
 
-        public static bool IsServicio(string tipoDeProducto)
+        public static bool IsPaquete(string sdkTipo)
         {
-            return ConvertoToTipoProductoEnum(tipoDeProducto) == TipoProductoEnum.Servicio;
+            return ConvertFromSdkValue(sdkTipo) == TipoProducto.Paquete;
+        }
+
+        public static bool IsProducto(string sdkTipo)
+        {
+            return ConvertFromSdkValue(sdkTipo) == TipoProducto.Producto;
+        }
+
+        public static bool IsServicio(string sdkTipo)
+        {
+            return ConvertFromSdkValue(sdkTipo) == TipoProducto.Servicio;
         }
     }
 }

@@ -1,18 +1,28 @@
-﻿using Contpaqi.Sdk.Extras.Interfaces;
+﻿using System;
+using Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace Contpaqi.Sdk.Extras.Models
 {
-    public class Almacen : IAlmacen
+    public class Almacen : admAlmacenes
     {
-        public int Id { get; set; }
+        public Almacen()
+        {
+            CFECHAALTAALMACEN = DateTime.Today;
+            CFECHAEXTRA = DateTime.Today;
+            CSISTORIG = 205;
+        }
 
-        public string Codigo { get; set; }
-
-        public string Nombre { get; set; }
+        public bool Contains(string filtro)
+        {
+            return string.IsNullOrWhiteSpace(filtro) ||
+                   CIDALMACEN.ToString().IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   CCODIGOALMACEN.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   CNOMBREALMACEN.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
 
         public override string ToString()
         {
-            return $"{Codigo} - {Nombre}";
+            return $"{CCODIGOALMACEN} - {CNOMBREALMACEN}";
         }
     }
 }

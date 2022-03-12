@@ -10,10 +10,12 @@
                       d:DataContext="{d:DesignInstance viewModels:EditarAgenteViewModel, IsDesignTimeCreatable=False}"
                       Title="{Binding Title}"
                       WindowStartupLocation="CenterScreen"
-                      Width="500" Height="300"
+                      Width="500"
+                      Height="300"
                       dialog:DialogParticipation.Register="{Binding}">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -38,22 +40,55 @@
                     Margin="5"
                     Style="{StaticResource MahApps.Styles.Button.Square}" />
         </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Vertical">
+        <StackPanel Grid.Row="2"
+                    Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-                <Label Content="Codigo:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" Width="70" />
-                <TextBox Text="{Binding Agente.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="200" />
+                <Label Content="Id:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5"
+                       Width="70" />
+                <TextBlock Text="{Binding Agente.CIDAGENTE, Mode=OneWay}"
+                           VerticalAlignment="Center"
+                           Margin="5"
+                           Width="200" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Nombre:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" Width="70" />
-                <TextBox Text="{Binding Agente.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="200" />
+                <Label Content="Codigo:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5"
+                       Width="70" />
+                <TextBox Text="{Binding Agente.CCODIGOAGENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         Margin="5"
+                         Width="200" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Nombre:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" Width="70" />
+                <Label Content="Nombre:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5"
+                       Width="70" />
+                <TextBox Text="{Binding Agente.CNOMBREAGENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         Margin="5"
+                         Width="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Tipo:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5"
+                       Width="70" />
                 <ComboBox ItemsSource="{Binding TiposAgente}"
                           SelectedItem="{Binding Agente.Tipo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="5" Width="200" />
+                          VerticalAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          Margin="5"
+                          Width="200" />
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -1,24 +1,21 @@
-﻿using Contpaqi.Sdk.Extras.Interfaces;
+﻿using System;
+using Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace Contpaqi.Sdk.Extras.Models
 {
-    public class ConceptoDocumento : IConceptoDocumento
+    public class ConceptoDocumento : admConceptos
     {
-        public int Id { get; set; }
-
-        public string Codigo { get; set; }
-
-        public string Nombre { get; set; }
-
-        public int IdDocumentoModelo { get; set; }
-
-        public bool EsCfd { get; set; }
-
-        public string VersionEsquemaSat { get; set; }
+        public bool Contains(string filtro)
+        {
+            return string.IsNullOrWhiteSpace(filtro) ||
+                   CIDCONCEPTODOCUMENTO.ToString().IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   CCODIGOCONCEPTO.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   CNOMBRECONCEPTO.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
 
         public override string ToString()
         {
-            return $"{Codigo} - {Nombre}";
+            return $"{CCODIGOCONCEPTO} - {CNOMBRECONCEPTO}";
         }
     }
 }

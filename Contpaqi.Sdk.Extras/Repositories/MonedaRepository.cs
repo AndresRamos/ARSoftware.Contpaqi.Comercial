@@ -8,14 +8,14 @@ namespace Contpaqi.Sdk.Extras.Repositories
 {
     public class MonedaRepository : IMonedaRepository<Moneda>
     {
-        public Moneda BuscarPorNombre(string nombreMoneda)
-        {
-            return Moneda.ToList().SingleOrDefault(m => m.Nombre.IndexOf(nombreMoneda, StringComparison.OrdinalIgnoreCase) >= 0);
-        }
-
         public Moneda BuscarPorId(int idMoneda)
         {
             return Moneda.ToList().SingleOrDefault(m => m.Id == idMoneda);
+        }
+
+        public Moneda BuscarPorNombre(string nombreMoneda)
+        {
+            return Moneda.ToList().SingleOrDefault(m => m.Nombre.IndexOf(nombreMoneda, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         public IEnumerable<Moneda> TraerTodo()

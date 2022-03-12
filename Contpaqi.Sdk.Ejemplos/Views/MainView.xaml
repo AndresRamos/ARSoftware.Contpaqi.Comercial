@@ -46,6 +46,8 @@
                           Command="{Binding MostrarListadoDocumentosViewCommand}" />
                 <MenuItem Header="Errores"
                           Command="{Binding MostrarListadoErroresViewCommand}" />
+                <MenuItem Header="Parametros"
+                          Command="{Binding MostrarParametrosViewCommand}" />
                 <MenuItem Header="Productos/Servicios/Paquetes"
                           Command="{Binding MostrarListadoProductosViewCommand}" />
                 <MenuItem Header="Unidades De Medida"

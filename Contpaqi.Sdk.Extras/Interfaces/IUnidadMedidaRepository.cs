@@ -2,10 +2,10 @@
 
 namespace Contpaqi.Sdk.Extras.Interfaces
 {
-    public interface IUnidadMedidaRepository<T> where T : IUnidadMedida
+    public interface IUnidadMedidaRepository<T> where T : class, new()
     {
-        T BuscarPorNombre(string nombreUnidad);
         T BuscarPorId(int idUnidad);
+        T BuscarPorNombre(string nombreUnidad);
         IEnumerable<T> TraerTodo();
     }
 }

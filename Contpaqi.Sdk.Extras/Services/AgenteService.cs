@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Text;
-using Contpaqi.Sdk.Extras.Helpers;
+using Contpaqi.Comercial.Sql.Models.Empresa;
+using Contpaqi.Sdk.Extras.Extensions;
 using Contpaqi.Sdk.Extras.Interfaces;
 
 namespace Contpaqi.Sdk.Extras.Services
@@ -14,38 +14,36 @@ namespace Contpaqi.Sdk.Extras.Services
             _sdk = sdk;
         }
 
+        public void Actualizar(int idAgente, Dictionary<string, string> datosAgente)
+        {
+            _sdk.fBuscaIdAgente(idAgente).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fEditaAgente().ToResultadoSdk(_sdk).ThrowIfError();
+            SetDatos(datosAgente);
+            _sdk.fGuardaAgente().ToResultadoSdk(_sdk).ThrowIfError();
+        }
+
+        public void Actualizar(string codigoAgente, Dictionary<string, string> datosAgente)
+        {
+            _sdk.fBuscaAgente(codigoAgente).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fEditaAgente().ToResultadoSdk(_sdk).ThrowIfError();
+            SetDatos(datosAgente);
+            _sdk.fGuardaAgente().ToResultadoSdk(_sdk).ThrowIfError();
+        }
+
         public int Crear(Dictionary<string, string> datosAgente)
         {
             _sdk.fInsertaAgente().ToResultadoSdk(_sdk).ThrowIfError();
-            SetDatosAgente(datosAgente);
+            SetDatos(datosAgente);
             _sdk.fGuardaAgente().ToResultadoSdk(_sdk).ThrowIfError();
-
-            var idAgenteDato = new StringBuilder(12);
-            _sdk.fLeeDatoAgente("CIDAGENTE", idAgenteDato, 12).ToResultadoSdk(_sdk).ThrowIfError();
-            return int.Parse(idAgenteDato.ToString());
+            string idAgenteDato = _sdk.LeeDatoAgente(nameof(admAgentes.CIDAGENTE), 12);
+            return int.Parse(idAgenteDato);
         }
 
-        public void Actualizar(int agenteId, Dictionary<string, string> datosAgente)
+        public void SetDatos(Dictionary<string, string> datos)
         {
-            _sdk.fBuscaIdAgente(agenteId).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fEditaAgente().ToResultadoSdk(_sdk).ThrowIfError();
-            SetDatosAgente(datosAgente);
-            _sdk.fGuardaAgente().ToResultadoSdk(_sdk).ThrowIfError();
-        }
-
-        public void Actualizar(string agenteCodigo, Dictionary<string, string> datosAgente)
-        {
-            _sdk.fBuscaAgente(agenteCodigo).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fEditaAgente().ToResultadoSdk(_sdk).ThrowIfError();
-            SetDatosAgente(datosAgente);
-            _sdk.fGuardaAgente().ToResultadoSdk(_sdk).ThrowIfError();
-        }
-
-        private void SetDatosAgente(Dictionary<string, string> datosAgente)
-        {
-            foreach (var dato in datosAgente)
+            foreach (KeyValuePair<string, string> dato in datos)
             {
-                _sdk.fSetDatoAgente(dato.Key, dato.Value);
+                _sdk.fSetDatoAgente(dato.Key, dato.Value).ToResultadoSdk(_sdk).ThrowIfError();
             }
         }
     }

@@ -80,7 +80,7 @@
                        Margin="5" />
                 <TextBox Grid.Row="1"
                          Grid.Column="1"
-                         Text="{Binding ClienteProveedor.Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding ClienteProveedor.CCODIGOCLIENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          VerticalAlignment="Center"
                          Margin="5" />
                 <Label Grid.Row="1"
@@ -97,12 +97,12 @@
                        Margin="5" />
                 <TextBox Grid.Row="2"
                          Grid.Column="1"
-                         Text="{Binding ClienteProveedor.RazonSocial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding ClienteProveedor.CRAZONSOCIAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          VerticalAlignment="Center"
                          Margin="5" />
                 <DatePicker Grid.Row="2"
                             Grid.Column="2"
-                            SelectedDate="{Binding ClienteProveedor.FechaAlta}"
+                            SelectedDate="{Binding ClienteProveedor.CFECHAALTA}"
                             VerticalAlignment="Center"
                             Margin="5" />
             </Grid>
@@ -156,7 +156,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="1"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.Rfc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CRFC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="2"
@@ -167,7 +167,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="2"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.DenominacionComercial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CDENCOMERCIAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="3"
@@ -191,7 +191,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="4"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.Curp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CCURP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="5"
@@ -202,7 +202,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="5"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.RepresentanteLegal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CREPLEGAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="1"
@@ -355,7 +355,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="1"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.ListaPreciosCliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CLISTAPRECIOCLIENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="2"
@@ -366,7 +366,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="2"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.BanderaVentaCredito, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CBANCREDITOYCOBRANZA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="3"
@@ -377,7 +377,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="3"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.DescuentoMovimiento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CDESCUENTOMOVTO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="1"
@@ -388,7 +388,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="1"
                                  Grid.Column="3"
-                                 Text="{Binding ClienteProveedor.LimiteCreditoCliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CLIMITECREDITOCLIENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="2"
@@ -399,7 +399,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="2"
                                  Grid.Column="3"
-                                 Text="{Binding ClienteProveedor.DiasCreditoCliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CDIASCREDITOCLIENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                     </Grid>
@@ -432,7 +432,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="1"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.Impuesto1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CIMPUESTO1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="2"
@@ -443,7 +443,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="2"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.Impuesto2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CIMPUESTO2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="3"
@@ -454,7 +454,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="3"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.Impuesto3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CIMPUESTO3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="1"
@@ -465,7 +465,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="1"
                                  Grid.Column="3"
-                                 Text="{Binding ClienteProveedor.RetencionCliente1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CRETENCIONCLIENTE1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="2"
@@ -476,7 +476,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="2"
                                  Grid.Column="3"
-                                 Text="{Binding ClienteProveedor.RetencionCliente2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CRETENCIONCLIENTE2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                     </Grid>
@@ -530,7 +530,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="1"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.Rfc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CRFC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="2"
@@ -541,7 +541,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="2"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.DenominacionComercial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CDENCOMERCIAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="3"
@@ -565,7 +565,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="4"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.Curp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CCURP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="5"
@@ -576,7 +576,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="5"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.RepresentanteLegal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CREPLEGAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="1"
@@ -729,7 +729,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="1"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.LimiteCreditoProveedor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CLIMITECREDITOPROVEEDOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="2"
@@ -740,7 +740,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="2"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.DiasCreditoProveedor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CDIASCREDITOPROVEEDOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                     </Grid>
@@ -773,7 +773,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="1"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.ImpuestoProveedor1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CIMPUESTOPROVEEDOR1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="2"
@@ -784,7 +784,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="2"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.ImpuestoProveedor2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CIMPUESTOPROVEEDOR2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="3"
@@ -795,7 +795,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="3"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.ImpuestoProveedor3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CIMPUESTOPROVEEDOR3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="1"
@@ -806,7 +806,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="1"
                                  Grid.Column="3"
-                                 Text="{Binding ClienteProveedor.RetencionProveedor1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CRETENCIONPROVEEDOR1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="2"
@@ -817,7 +817,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="2"
                                  Grid.Column="3"
-                                 Text="{Binding ClienteProveedor.RetencionProveedor2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CRETENCIONPROVEEDOR2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                     </Grid>
@@ -855,7 +855,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="1"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.Email1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CEMAIL1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="2"
@@ -866,7 +866,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="2"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.Email2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CEMAIL2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="3"
@@ -877,7 +877,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="3"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.Email3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CEMAIL3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                     </Grid>
@@ -908,7 +908,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="1"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.FormaPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CMETODOPAG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="1"
@@ -919,7 +919,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="1"
                                  Grid.Column="3"
-                                 Text="{Binding ClienteProveedor.NumeroCuentaPago, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CNUMCTAPAG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                         <Label Grid.Row="2"
@@ -930,7 +930,7 @@
                                Margin="5" />
                         <TextBox Grid.Row="2"
                                  Grid.Column="1"
-                                 Text="{Binding ClienteProveedor.UsoCfdi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding ClienteProveedor.CUSOCFDI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Center"
                                  Margin="5" />
                     </Grid>
@@ -971,7 +971,7 @@
                            Margin="5" />
                     <TextBox Grid.Row="1"
                              Grid.Column="1"
-                             Text="{Binding ClienteProveedor.Mensajeria}"
+                             Text="{Binding ClienteProveedor.CMENSAJERIA}"
                              VerticalAlignment="Center"
                              Margin="5" />
                     <Label Grid.Row="2"
@@ -982,7 +982,7 @@
                            Margin="5" />
                     <TextBox Grid.Row="2"
                              Grid.Column="1"
-                             Text="{Binding ClienteProveedor.CuentaMensajeria}"
+                             Text="{Binding ClienteProveedor.CCUENTAMENSAJERIA}"
                              VerticalAlignment="Center"
                              Margin="5" />
                     <TextBlock Grid.Row="3"
@@ -1045,7 +1045,7 @@
                            Margin="5" />
                     <TextBox Grid.Row="7"
                              Grid.Column="1"
-                             Text="{Binding ClienteProveedor.ComisionVenta}"
+                             Text="{Binding ClienteProveedor.CCOMVENTA}"
                              VerticalAlignment="Center"
                              Margin="5" />
                     <Label Grid.Row="8"
@@ -1074,7 +1074,7 @@
                            Margin="5" />
                     <TextBox Grid.Row="9"
                              Grid.Column="1"
-                             Text="{Binding ClienteProveedor.ComisionCobro}"
+                             Text="{Binding ClienteProveedor.CCOMCOBRO}"
                              VerticalAlignment="Center"
                              Margin="5" />
                 </Grid>
@@ -1102,7 +1102,7 @@
                            Margin="5" />
                     <TextBox Grid.Row="0"
                              Grid.Column="1"
-                             Text="{Binding ClienteProveedor.TextoExtra1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding ClienteProveedor.CTEXTOEXTRA1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center"
                              Margin="5" />
                     <Label Grid.Row="1"
@@ -1113,7 +1113,7 @@
                            Margin="5" />
                     <TextBox Grid.Row="1"
                              Grid.Column="1"
-                             Text="{Binding ClienteProveedor.TextoExtra2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding ClienteProveedor.CTEXTOEXTRA2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center"
                              Margin="5" />
                     <Label Grid.Row="2"
@@ -1124,7 +1124,7 @@
                            Margin="5" />
                     <TextBox Grid.Row="2"
                              Grid.Column="1"
-                             Text="{Binding ClienteProveedor.TextoExtra3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding ClienteProveedor.CTEXTOEXTRA3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center"
                              Margin="5" />
                     <Label Grid.Row="3"
@@ -1135,7 +1135,7 @@
                            Margin="5" />
                     <TextBox Grid.Row="3"
                              Grid.Column="1"
-                             Text="{Binding ClienteProveedor.ImporteExtra1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding ClienteProveedor.CIMPORTEEXTRA1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center"
                              Margin="5" />
                     <Label Grid.Row="4"
@@ -1146,7 +1146,7 @@
                            Margin="5" />
                     <TextBox Grid.Row="4"
                              Grid.Column="1"
-                             Text="{Binding ClienteProveedor.ImporteExtra2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding ClienteProveedor.CIMPORTEEXTRA2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center"
                              Margin="5" />
                     <Label Grid.Row="5"
@@ -1157,7 +1157,7 @@
                            Margin="5" />
                     <TextBox Grid.Row="5"
                              Grid.Column="1"
-                             Text="{Binding ClienteProveedor.ImporteExtra3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding ClienteProveedor.CIMPORTEEXTRA3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center"
                              Margin="5" />
                     <Label Grid.Row="6"
@@ -1168,23 +1168,7 @@
                            Margin="5" />
                     <TextBox Grid.Row="6"
                              Grid.Column="1"
-                             Text="{Binding ClienteProveedor.ImporteExtra4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             VerticalAlignment="Center"
-                             Margin="5" />
-                    <TextBox Grid.Row="6"
-                             Grid.Column="1"
-                             Text="{Binding ClienteProveedor.ImporteExtra3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             VerticalAlignment="Center"
-                             Margin="5" />
-                    <Label Grid.Row="6"
-                           Grid.Column="0"
-                           Content="Importe Extra 4:"
-                           FontWeight="Bold"
-                           VerticalAlignment="Center"
-                           Margin="5" />
-                    <TextBox Grid.Row="6"
-                             Grid.Column="1"
-                             Text="{Binding ClienteProveedor.ImporteExtra4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding ClienteProveedor.CIMPORTEEXTRA4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center"
                              Margin="5" />
                 </Grid>

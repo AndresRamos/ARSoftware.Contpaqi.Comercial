@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
-using Contpaqi.Sdk.Extras.Helpers;
+using Contpaqi.Comercial.Sql.Models.Empresa;
+using Contpaqi.Sdk.DatosAbstractos;
+using Contpaqi.Sdk.Extras.Extensions;
 using Contpaqi.Sdk.Extras.Interfaces;
+using Contpaqi.Sdk.Extras.Models.Enums;
 
 namespace Contpaqi.Sdk.Extras.Services
 {
@@ -13,6 +16,19 @@ namespace Contpaqi.Sdk.Extras.Services
             _sdk = sdk;
         }
 
+        public void Actualizar(int idValorClasificacion, Dictionary<string, string> datosValorClasificacion)
+        {
+            _sdk.fBuscaIdValorClasif(idValorClasificacion).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fEditaValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
+            SetDatos(datosValorClasificacion);
+            _sdk.fGuardaValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
+        }
+
+        public void Actualizar(string codigoValorClasificacion, ref tValorClasificacion valorClasificacion)
+        {
+            _sdk.fActualizaValorClasif(codigoValorClasificacion, ref valorClasificacion).ToResultadoSdk(_sdk).ThrowIfError();
+        }
+
         public int Crear(tValorClasificacion valorClasificacion)
         {
             var idValorClasificacion = 0;
@@ -20,23 +36,34 @@ namespace Contpaqi.Sdk.Extras.Services
             return idValorClasificacion;
         }
 
-        public void Actualizar(int idValorClasificacion, Dictionary<string, string> datosValorClasificacion)
+        public int Crear(Dictionary<string, string> datosValorClasificacion)
         {
-            _sdk.fBuscaIdValorClasif(idValorClasificacion).ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fEditaValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
-
-            foreach (var dato in datosValorClasificacion)
-            {
-                _sdk.fSetDatoValorClasif(dato.Key, dato.Value).ToResultadoSdk(_sdk).ThrowIfError();
-            }
-
+            _sdk.fInsertaValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
+            SetDatos(datosValorClasificacion);
             _sdk.fGuardaValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
+            string idValorDato = _sdk.LeeDatoValorClasificacion(nameof(admClasificacionesValores.CIDVALORCLASIFICACION), 12);
+            return int.Parse(idValorDato);
         }
 
         public void Eliminar(int idValorClasificacion)
         {
             _sdk.fBuscaIdValorClasif(idValorClasificacion).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fBorraValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
+        }
+
+        public void Eliminar(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion, string codigoValorClasificacion)
+        {
+            _sdk.fEliminarValorClasif((int)tipoClasificacion, (int)numeroClasificacion, codigoValorClasificacion)
+                .ToResultadoSdk(_sdk)
+                .ThrowIfError();
+        }
+
+        public void SetDatos(Dictionary<string, string> datos)
+        {
+            foreach (KeyValuePair<string, string> dato in datos)
+            {
+                _sdk.fSetDatoValorClasif(dato.Key, dato.Value).ToResultadoSdk(_sdk).ThrowIfError();
+            }
         }
     }
 }

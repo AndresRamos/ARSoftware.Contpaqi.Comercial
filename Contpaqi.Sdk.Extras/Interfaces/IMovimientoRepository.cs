@@ -2,10 +2,10 @@
 
 namespace Contpaqi.Sdk.Extras.Interfaces
 {
-    public interface IMovimientoRepository<T> where T : IMovimiento
+    public interface IMovimientoRepository<T> where T : class, new()
     {
         T BuscarPorId(int idMovimiento);
-        IEnumerable<T> TraerTodo();
         IEnumerable<T> TraerPorDocumentoId(int idDocumento);
+        IEnumerable<T> TraerTodo();
     }
 }

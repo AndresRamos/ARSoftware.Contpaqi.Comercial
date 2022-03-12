@@ -3,26 +3,28 @@ using Contpaqi.Sdk.Ejemplos.ViewModels.Sesion;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
-namespace Contpaqi.Sdk.Ejemplos.Views.Sesion
+namespace Contpaqi.Sdk.Ejemplos.Views.Sesion;
+
+/// <summary>
+///     Interaction logic for IniciarSesionView.xaml
+/// </summary>
+public partial class IniciarSesionView
 {
-    /// <summary>
-    ///     Interaction logic for IniciarSesionView.xaml
-    /// </summary>
-    public partial class IniciarSesionView
+    public IniciarSesionView()
     {
-        public IniciarSesionView()
-        {
-            InitializeComponent();
-            DataContext = Ioc.Default.GetService<IniciarSesionViewModel>();
-            WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        InitializeComponent();
+        DataContext = Ioc.Default.GetService<IniciarSesionViewModel>();
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
+            (recipient, message) =>
             {
                 if (message.Sender == ViewModel && message.IsOpen == false)
                 {
+                    var view = (IniciarSesionView)recipient;
+                    view.Close();
                     Close();
                 }
             });
-        }
-
-        public IniciarSesionViewModel ViewModel => (IniciarSesionViewModel) DataContext;
     }
+
+    public IniciarSesionViewModel ViewModel => (IniciarSesionViewModel)DataContext;
 }

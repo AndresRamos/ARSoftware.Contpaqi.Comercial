@@ -10,7 +10,8 @@
                       d:DataContext="{d:DesignInstance viewModels:ListadoClientesViewModel, IsDesignTimeCreatable=False}"
                       Title="{Binding Title}"
                       WindowStartupLocation="CenterScreen"
-                      Width="1300" Height="800"
+                      Width="1300"
+                      Height="800"
                       dialog:DialogParticipation.Register="{Binding}">
     <Grid>
         <Grid.RowDefinitions>
@@ -20,41 +21,83 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="{Binding Title, Mode=OneWay}" FontWeight="Bold" FontSize="20"
-                   VerticalAlignment="Center" Margin="5" />
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button Content="Buscar Todo" Command="{Binding BuscarTodoCommand}" Width="150"
+        <TextBlock Grid.Row="0"
+                   Text="{Binding Title, Mode=OneWay}"
+                   FontWeight="Bold"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal">
+            <Button Content="Buscar Todo"
+                    Command="{Binding BuscarTodoCommand}"
+                    Width="150"
                     VerticalAlignment="Center"
-                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
-            <Button Content="Buscar Clientes" Command="{Binding BuscarClientesCommand}" Width="150"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+            <Button Content="Buscar Clientes"
+                    Command="{Binding BuscarClientesCommand}"
+                    Width="150"
                     VerticalAlignment="Center"
-                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square}" />
-            <Button Content="Buscar Proveedores" Command="{Binding BuscarProveedoresCommand}" Width="150"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square}" />
+            <Button Content="Buscar Proveedores"
+                    Command="{Binding BuscarProveedoresCommand}"
+                    Width="150"
                     VerticalAlignment="Center"
-                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square}" />
-            <TextBlock Text="# Clientes/Proveedores:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
-            <TextBlock Text="{Binding ClientesProveedores.Count}" FontWeight="Bold" VerticalAlignment="Center"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square}" />
+            <TextBlock Text="# Clientes/Proveedores:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
                        Margin="5" />
-            <TextBlock Text="Duracion Busqueda:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
-            <TextBlock Text="{Binding DuracionBusqueda}" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="{Binding ClientesProveedores.Count}"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+            <TextBlock Text="Duracion Busqueda:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+            <TextBlock Text="{Binding DuracionBusqueda}"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
         </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Content="Crear" Command="{Binding CrearClienteProveedorCommand}" Width="150"
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal">
+            <Button Content="Crear Cliente/Proveedor"
+                    Command="{Binding CrearClienteProveedorCommand}"
+                    Width="150"
                     VerticalAlignment="Center"
-                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
-            <Button Content="Editar" Command="{Binding EditarClienteProveedorCommand}" Width="150"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+            <Button Content="Editar Cliente/Proveedor"
+                    Command="{Binding EditarClienteProveedorCommand}"
+                    Width="150"
                     VerticalAlignment="Center"
-                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square}" />
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square}" />
         </StackPanel>
-        <StackPanel Grid.Row="3" Orientation="Horizontal">
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal">
             <TextBox Text="{Binding Filtro, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     VerticalAlignment="Center" Width="200" Margin="5" controls:TextBoxHelper.Watermark="Filtro"
+                     VerticalAlignment="Center"
+                     Width="200"
+                     Margin="5"
+                     controls:TextBoxHelper.Watermark="Filtro"
                      controls:TextBoxHelper.ClearTextButton="True" />
-            <TextBlock Text="# Clientes/Proveedores:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
-            <TextBlock Text="{Binding NumeroClientesProveedores}" FontWeight="Bold" VerticalAlignment="Center"
+            <TextBlock Text="# Clientes/Proveedores:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+            <TextBlock Text="{Binding NumeroClientesProveedores}"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
                        Margin="5" />
         </StackPanel>
-        <DataGrid Grid.Row="4" ItemsSource="{Binding ClientesProveedores}"
+        <DataGrid Grid.Row="4"
+                  ItemsSource="{Binding ClientesProveedores}"
                   SelectedItem="{Binding ClienteProveedorSeleccionado}"
                   IsReadOnly="True"
                   Margin="5"
