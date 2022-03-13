@@ -2,20 +2,19 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<Version>2.2.0</Version>
+		<Version>2.3.0</Version>
 		<Authors>AR Software</Authors>
 		<Description>Este proyecto tiene todas las funciones y clases utilizadas por el SDK de CONTPAQi Comercial, CONTPAQi Adminpaq, y CONTPAQi Factura Electronica</Description>
-		<Copyright>Copyright © AR Software 2021</Copyright>
+		<Copyright>Copyright © AR Software 2022</Copyright>
 		<RepositoryUrl>https://github.com/AndresRamos/Contpaqi</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/AndresRamos/Contpaqi</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Contpaqi SDK Adminpaq Comercial Factura Electronica</PackageTags>
-		<PackageReleaseNotes>Se actualizo a la version de .Net Standard 2.0</PackageReleaseNotes>
+		<PackageReleaseNotes>Se actualizaron los namespaces y se agregaron y corrigieron algunas declaraciones.</PackageReleaseNotes>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
 		<PackageLicenseExpression>(MIT)</PackageLicenseExpression>
-		<AssemblyVersion>2.2.0.0</AssemblyVersion>
-		<FileVersion>2.2.0.0</FileVersion>
+		<AssemblyVersion>2.3.0.0</AssemblyVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>AR Software</Authors>
+    <Version>2.3.0</Version>
+    <Description>Modelo de las bases de datos de CONTPAQi Comercial version 7.4.1</Description>
+    <PackageTags>Contpaqi Sql Comercial</PackageTags>
+    <PackageReleaseNotes>Se genero el modelo de la base de datos de CONTPAQi Comercial version 7.4.1</PackageReleaseNotes>
+    <Copyright>Copyright © AR Software 2022</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

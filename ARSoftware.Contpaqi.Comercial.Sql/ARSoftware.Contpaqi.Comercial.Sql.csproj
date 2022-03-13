@@ -3,6 +3,13 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>disable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Authors>AR Software</Authors>
+		<Copyright>Copyright © AR Software 2022</Copyright>
+		<Version>2.3.0</Version>
+		<Description>Entity Framework DbContexts para hacer query las bases de datos de CONTPAQi Comercial</Description>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>Contpaqi Sql Comercial</PackageTags>
 	</PropertyGroup>
 
 	<ItemGroup>
