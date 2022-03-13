@@ -43,8 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Contpaqi.Sdk.Extras\ARSoftware.Contpaqi.Comercial.Sdk.Extras.csproj" />
-    <ProjectReference Include="..\Contpaqi.Sdk\ARSoftware.Contpaqi.Comercial.Sdk.csproj" />
+    <ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sdk.Extras\ARSoftware.Contpaqi.Comercial.Sdk.Extras.csproj" />
   </ItemGroup>
 
   <ItemGroup>

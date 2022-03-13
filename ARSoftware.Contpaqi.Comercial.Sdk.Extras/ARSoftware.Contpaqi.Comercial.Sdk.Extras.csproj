@@ -18,8 +18,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sdk\ARSoftware.Contpaqi.Comercial.Sdk.csproj" />
 	  <ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sql.Models\ARSoftware.Contpaqi.Comercial.Sql.Models.csproj" />
-	  <ProjectReference Include="..\Contpaqi.Sdk\ARSoftware.Contpaqi.Comercial.Sdk.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
