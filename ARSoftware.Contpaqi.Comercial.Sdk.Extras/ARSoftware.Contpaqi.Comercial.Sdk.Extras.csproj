@@ -14,7 +14,6 @@
 		<PackageReleaseNotes>Se modificaron los namespaces y se modificaron y agregaron algunos servicios y repositorios.</PackageReleaseNotes>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>(MIT)</PackageLicenseExpression>
-		<AssemblyVersion>2.3.0.0</AssemblyVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
