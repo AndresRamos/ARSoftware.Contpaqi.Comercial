@@ -1,15 +1,33 @@
-# Contpaqi
+# ARSoftware.Contpaqi.Comercial
 
-Este proyecto incluye clases para conectarse al SDK de Adminpaq y Comercial.
+Este repositorio consiste de dos tipos de proyectos para interactuar con el sistema de CONTPAQi Comercial Premium: Proyectos que utilizan SDK y proyectos que utilizan las bases de datos de SQL.
 
-En el proyecto Contpaqi.Sdk podran encontrar las classes ComercialSdk.cs y  AdminpaqSdk.cs que ya tienen todas las funciones definidas.
+Proyectos SDK:
+- [ARSoftware.Contpaqi.Comercial.Sdk](https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial/tree/master/ARSoftware.Contpaqi.Comercial.Sdk)
+- [ARSoftware.Contpaqi.Comercial.Sdk.Extras](https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial/tree/master/ARSoftware.Contpaqi.Comercial.Sdk.Extras)
+Estos proyectos tambien permiten trabajar con Factura Electronica y Adminpaq, pero solamente estan probadas para el sistema de Comercial.
 
-Es importante saber que es posible que no todas las funciones en las clases del SDK tengan los parametros correctos dado a que no es facil saber si un char* es de tipo string o StringBuilder, o cuales parametros deben ser por referencia.
+Poryectos SQL
+- [ARSoftware.Contpaqi.Comercial.Sql.Models](https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial/tree/master/ARSoftware.Contpaqi.Comercial.Sql.Models)
+- [ARSoftware.Contpaqi.Comercial.Sql](https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial/tree/master/ARSoftware.Contpaqi.Comercial.Sql)
 
-Si encuentran parametros incorrectos o funciones faltantes porfavor dejenmelo saber.
+## ARSoftware.Contpaqi.Comercial.Sdk
+Nuget: ```Install-Package ARSoftware.Contpaqi.Comercial.Sdk.Extras -Version 3.0.0```
 
-Esta libreria la uso para todos mis proyectos y es la base para otras librerias que uso y pense pudiera ser de ayuda o otros desarrolladores.
+Este proyecto incluye todas las declaraciones de los metodos, datos abstractos, y constantes del SDK de CONTPAQi Comercial que nos provee CONTPAQi.
 
-Eh incluido varias classes y servicios en en proyecto Contpaqi.Sdk.Extras que hacen uso del SDK y es un buen lugar para ver como usar el SDK. 
+## ARSoftware.Contpaqi.Comercial.Sdk.Extras
+Nuget: ```Install-Package ARSoftware.Contpaqi.Comercial.Sdk -Version 3.0.0```
 
-Tratare de incluir ejemplos de como usar la libreria despues.
+Este proyecto contiene clases, servicios, y repositorios que extiended y dan funcionalidad al proyecto ARSoftware.Contpaqi.Comercial.Sdk que solo contienen los metodos definidos.
+Este proyecto contiene diferentes servicios que encapsulan las diferentes funcionalidad de SDK como la de iniciar sesion y abrir empresas, consultar catalogos y crear y editar catalogos.
+
+## ARSoftware.Contpaqi.Comercial.Sql
+Nuget: ```Install-Package ARSoftware.Contpaqi.Comercial.Sql -Version 3.0.0```
+
+Este proyecto tienen declarados los DbContexts de Entity Framework para poder consultar las bases de datos de SQL. 
+
+## ARSoftware.Contpaqi.Comercial.Sql.Models
+Nuget: ```Install-Package Install-Package ARSoftware.Contpaqi.Comercial.Sql.Models -Version 3.0.0```
+
+Este proyecto tiene declaradas las clases de los esquemas de las bases de datos de SQL de CONTPAQi Comercial
