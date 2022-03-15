@@ -2,14 +2,14 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<Version>2.3.0</Version>
+		<Version>3.0.0</Version>
 		<Authors>AR Software</Authors>
-		<Description>Este proyecto tiene todas las funciones y clases utilizadas por el SDK de CONTPAQi Comercial, CONTPAQi Adminpaq, y CONTPAQi Factura Electronica</Description>
+		<Description>Este proyecto tiene declaradas todas las funciones y clases utilizadas por el SDK de CONTPAQi Comercial, CONTPAQi Adminpaq, y CONTPAQi Factura Electronica.</Description>
 		<Copyright>Copyright © AR Software 2022</Copyright>
-		<RepositoryUrl>https://github.com/AndresRamos/Contpaqi</RepositoryUrl>
-		<PackageProjectUrl>https://github.com/AndresRamos/Contpaqi</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>Contpaqi SDK Adminpaq Comercial Factura Electronica</PackageTags>
+		<PackageTags>Contpaqi SDK Comercial Adminpaq Factura Electronica</PackageTags>
 		<PackageReleaseNotes>Se actualizaron los namespaces y se agregaron y corrigieron algunas declaraciones.</PackageReleaseNotes>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageIcon>AR_LOGO03.jpg</PackageIcon>

@@ -3,7 +3,7 @@
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Constantes
 {
-    public static class ConstantesSdk
+    public static class SdkConstantes
     {
         public const int kLongAbreviatura = 4;
         public const int kLongCadOrigComplSAT = 501;
@@ -18,6 +18,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Constantes
         public const int kLongEmailWeb = 51;
         public const int kLongFecha = 24;
         public const int kLongFechaHora = 36;
+        public const int kLongId = 12;
         public const int kLongitudFolio = 17;
         public const int kLongitudLugarExpedicion = 401;
         public const int kLongitudMoneda = 61;

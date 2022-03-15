@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
@@ -35,7 +36,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk.fInsertarMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
             SetDatos(datosMovimiento);
             _sdk.fGuardaMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
-            string idMovimientoDato = _sdk.LeeDatoMovimiento(nameof(admMovimientos.CIDMOVIMIENTO), 12);
+            string idMovimientoDato = _sdk.LeeDatoMovimiento(nameof(admMovimientos.CIDMOVIMIENTO), SdkConstantes.kLongId);
             return int.Parse(idMovimientoDato);
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
@@ -41,7 +42,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk.fInsertaValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
             SetDatos(datosValorClasificacion);
             _sdk.fGuardaValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
-            string idValorDato = _sdk.LeeDatoValorClasificacion(nameof(admClasificacionesValores.CIDVALORCLASIFICACION), 12);
+            string idValorDato =
+                _sdk.LeeDatoValorClasificacion(nameof(admClasificacionesValores.CIDVALORCLASIFICACION), SdkConstantes.kLongId);
             return int.Parse(idValorDato);
         }
 

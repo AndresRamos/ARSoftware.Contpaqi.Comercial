@@ -16,9 +16,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
             CIDMONEDA = 1;
             CIDMONEDA2 = 1;
             CFECHAALTA = DateTime.Today;
-            CFECHABAJA = new DateTime(1899, 12, 30);
-            CFECHAULTIMAREVISION = new DateTime(1899, 12, 30);
-            CFECHAEXTRA = new DateTime(1899, 12, 30);
+            CFECHABAJA = SdkDateTimeHelper.CreateDefaultSdkFecha();
+            CFECHAULTIMAREVISION = SdkDateTimeHelper.CreateDefaultSdkFecha();
+            CFECHAEXTRA = SdkDateTimeHelper.CreateDefaultSdkFecha();
             CLISTAPRECIOCLIENTE = 1;
             CIDCOMPLEM = -1;
             CIDADDENDA = -1;

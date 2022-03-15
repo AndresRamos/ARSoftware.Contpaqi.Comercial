@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
@@ -48,7 +49,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk.fInsertaCteProv().ToResultadoSdk(_sdk).ThrowIfError();
             SetDatos(datosClienteProveedor);
             _sdk.fGuardaCteProv().ToResultadoSdk(_sdk).ThrowIfError();
-            string idClienteProveedorDato = _sdk.LeeDatoClienteProveedor(nameof(admClientes.CIDCLIENTEPROVEEDOR), 12);
+            string idClienteProveedorDato = _sdk.LeeDatoClienteProveedor(nameof(admClientes.CIDCLIENTEPROVEEDOR), SdkConstantes.kLongId);
             return int.Parse(idClienteProveedorDato);
         }
 

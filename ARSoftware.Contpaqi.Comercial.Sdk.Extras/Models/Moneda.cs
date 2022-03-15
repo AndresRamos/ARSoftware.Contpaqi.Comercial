@@ -1,9 +1,17 @@
 ﻿using System.Collections.Generic;
 
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
+// ReSharper disable UnusedMember.Global
+
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
 {
     public class Moneda
     {
+        public static readonly Moneda Ninguna = new Moneda(0, "(Ninguna)");
+        public static readonly Moneda PesoMexicano = new Moneda(1, "Peso Mexicano");
+        public static readonly Moneda DolarAmericano = new Moneda(2, "Dólar Americano");
+
         public Moneda()
         {
         }
@@ -14,13 +22,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
             Nombre = nombre;
         }
 
-        public static Moneda DolarAmericano { get; } = new Moneda(2, "Dólar Americano");
-
         public int Id { get; set; }
-
-        public static Moneda Ninguna { get; } = new Moneda(0, "(Ninguna)");
         public string Nombre { get; set; }
-        public static Moneda PesoMexicano { get; } = new Moneda(1, "Peso Mexicano");
 
         public static IEnumerable<Moneda> ToList()
         {

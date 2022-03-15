@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
@@ -24,7 +25,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
         public void Actualizar(int idDireccion, Dictionary<string, string> datosDireccion)
         {
             _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
-            string idDireccionDato = _sdk.LeeDatoDireccion(nameof(admDomicilios.CIDDIRECCION), 12);
+            string idDireccionDato = _sdk.LeeDatoDireccion(nameof(admDomicilios.CIDDIRECCION), SdkConstantes.kLongId);
             if (idDireccion == int.Parse(idDireccionDato))
             {
                 _sdk.fEditaDireccion().ToResultadoSdk(_sdk).ThrowIfError();
@@ -36,7 +37,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
 
             while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
             {
-                idDireccionDato = _sdk.LeeDatoDireccion(nameof(admDomicilios.CIDDIRECCION), 12);
+                idDireccionDato = _sdk.LeeDatoDireccion(nameof(admDomicilios.CIDDIRECCION), SdkConstantes.kLongId);
                 if (idDireccion == int.Parse(idDireccionDato))
                 {
                     _sdk.fEditaDireccion().ToResultadoSdk(_sdk).ThrowIfError();
@@ -63,7 +64,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk.fInsertaDireccion().ToResultadoSdk(_sdk).ThrowIfError();
             SetDatos(datosDireccion);
             _sdk.fGuardaDireccion().ToResultadoSdk(_sdk).ThrowIfError();
-            string idDireccionDato = _sdk.LeeDatoDireccion(nameof(admDomicilios.CIDDIRECCION), 12);
+            string idDireccionDato = _sdk.LeeDatoDireccion(nameof(admDomicilios.CIDDIRECCION), SdkConstantes.kLongId);
             return int.Parse(idDireccionDato);
         }
 

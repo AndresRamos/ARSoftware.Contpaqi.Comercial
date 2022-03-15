@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
@@ -40,7 +41,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk.fInsertaUnidad().ToResultadoSdk(_sdk).ThrowIfError();
             SetDatos(datosUnidad);
             _sdk.fGuardaUnidad().ToResultadoSdk(_sdk).ThrowIfError();
-            string idUnidadDato = _sdk.LeeDatoUnidad(nameof(admUnidadesMedidaPeso.CIDUNIDAD), 12);
+            string idUnidadDato = _sdk.LeeDatoUnidad(nameof(admUnidadesMedidaPeso.CIDUNIDAD), SdkConstantes.kLongId);
             return int.Parse(idUnidadDato);
         }
 

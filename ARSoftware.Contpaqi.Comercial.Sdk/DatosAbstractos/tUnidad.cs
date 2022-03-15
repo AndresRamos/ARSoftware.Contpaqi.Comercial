@@ -11,13 +11,13 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
     public struct tUnidad
     {
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongNombre)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongNombre)]
         public string cNombreUnidad;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongAbreviatura)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongAbreviatura)]
         public string cAbreviatura;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongAbreviatura)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongAbreviatura)]
         public string cDespliegue;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
+using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
@@ -44,7 +45,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk.fInsertarDocumento().ToResultadoSdk(_sdk).ThrowIfError();
             SetDatos(datosDocumento);
             _sdk.fGuardaDocumento().ToResultadoSdk(_sdk).ThrowIfError();
-            string idDocumentoDato = _sdk.LeeDatoDocumento(nameof(admDocumentos.CIDDOCUMENTO), 12);
+            string idDocumentoDato = _sdk.LeeDatoDocumento(nameof(admDocumentos.CIDDOCUMENTO), SdkConstantes.kLongId);
             return int.Parse(idDocumentoDato);
         }
 

@@ -16,16 +16,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos
         public double aPrecio;
         public double aCosto;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongCodigo)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongCodigo)]
         public string aCodProdSer;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongCodigo)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongCodigo)]
         public string aCodAlmacen;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongReferencia)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongReferencia)]
         public string aReferencia;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongCodigo)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongCodigo)]
         public string aCodClasificacion;
     }
 }

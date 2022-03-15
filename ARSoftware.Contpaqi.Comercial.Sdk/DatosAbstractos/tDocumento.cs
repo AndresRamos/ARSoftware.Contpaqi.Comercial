@@ -19,22 +19,22 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos
         public double aDescuentoDoc2;
         public int aSistemaOrigen;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongCodigo)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongCodigo)]
         public string aCodConcepto;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongSerie)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongSerie)]
         public string aSerie;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongFecha)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongFecha)]
         public string aFecha;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongCodigo)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongCodigo)]
         public string aCodigoCteProv;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongCodigo)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongCodigo)]
         public string aCodigoAgente;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongReferencia)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongReferencia)]
         public string aReferencia;
 
         public int aAfecta;

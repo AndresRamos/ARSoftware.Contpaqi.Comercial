@@ -1,4 +1,4 @@
-﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
+﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants
 {
     public class SdkResultConstants
     {

@@ -14,10 +14,10 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos
         public int cClasificacionDe;
         public int cNumClasificacion;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongCodValorClasif)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongCodValorClasif)]
         public string cCodigoValorClasificacion;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongDescripcion)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongDescripcion)]
         public string cValorClasificacion;
     }
 }

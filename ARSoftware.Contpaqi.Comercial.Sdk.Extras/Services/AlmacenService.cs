@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using Contpaqi.Comercial.Sql.Models.Empresa;
@@ -35,7 +36,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk.fInsertaAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
             SetDatos(datosAlmacen);
             _sdk.fGuardaAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
-            string idAlmacenDato = _sdk.LeeDatoAlmacen(nameof(admAlmacenes.CIDALMACEN), 12);
+            string idAlmacenDato = _sdk.LeeDatoAlmacen(nameof(admAlmacenes.CIDALMACEN), SdkConstantes.kLongId);
             return int.Parse(idAlmacenDato);
         }
 

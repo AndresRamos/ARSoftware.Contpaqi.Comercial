@@ -11,10 +11,10 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
     public struct tLlaveDoc
     {
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongCodigo)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongCodigo)]
         public string aCodConcepto;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = ConstantesSdk.kLongSerie)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = SdkConstantes.kLongSerie)]
         public string aSerie;
 
         public double aFolio;

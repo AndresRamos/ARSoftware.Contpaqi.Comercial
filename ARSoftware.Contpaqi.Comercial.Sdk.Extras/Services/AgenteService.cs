@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using Contpaqi.Comercial.Sql.Models.Empresa;
@@ -35,7 +36,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk.fInsertaAgente().ToResultadoSdk(_sdk).ThrowIfError();
             SetDatos(datosAgente);
             _sdk.fGuardaAgente().ToResultadoSdk(_sdk).ThrowIfError();
-            string idAgenteDato = _sdk.LeeDatoAgente(nameof(admAgentes.CIDAGENTE), 12);
+            string idAgenteDato = _sdk.LeeDatoAgente(nameof(admAgentes.CIDAGENTE), SdkConstantes.kLongId);
             return int.Parse(idAgenteDato);
         }
 

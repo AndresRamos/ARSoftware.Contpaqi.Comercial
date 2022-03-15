@@ -4,14 +4,26 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>disable</Nullable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Version>3.0.0</Version>
 		<Authors>AR Software</Authors>
-		<Copyright>Copyright © AR Software 2022</Copyright>
-		<Version>2.3.0</Version>
 		<Description>Entity Framework DbContexts para hacer query las bases de datos de CONTPAQi Comercial</Description>
+		<Copyright>Copyright © AR Software 2022</Copyright>
+		<RepositoryUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Contpaqi Sql Comercial</PackageTags>
+		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
+		<PackageReleaseNotes>Se actualizaron los namespaces y se agregaron y corrigieron algunas declaraciones.</PackageReleaseNotes>
+		<PackageLicenseExpression>(MIT)</PackageLicenseExpression>
 	</PropertyGroup>
-
+	
+	<ItemGroup>
+		<None Include="..\..\..\..\..\OneDrive - AR Software\Logo\AR_LOGO03.jpg">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+	
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.3">
 			<PrivateAssets>all</PrivateAssets>

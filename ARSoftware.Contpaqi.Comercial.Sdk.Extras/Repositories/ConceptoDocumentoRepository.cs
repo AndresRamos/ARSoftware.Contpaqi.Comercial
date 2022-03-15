@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
@@ -33,7 +34,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             var idDocumentoModelo = new StringBuilder(12);
 
             _sdk.fPosPrimerConceptoDocto().ToResultadoSdk(_sdk).ThrowIfError();
-            _sdk.fLeeDatoConceptoDocto("CIDDOCUMENTODE", idDocumentoModelo, 12).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fLeeDatoConceptoDocto("CIDDOCUMENTODE", idDocumentoModelo, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
             if (documentoModeloId == int.Parse(idDocumentoModelo.ToString()))
             {
                 yield return LeerDatosConceptoDocumentoActual();
@@ -41,7 +42,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
 
             while (_sdk.fPosSiguienteConceptoDocto() == SdkResultConstants.Success)
             {
-                _sdk.fLeeDatoConceptoDocto("CIDDOCUMENTODE", idDocumentoModelo, 12).ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoConceptoDocto("CIDDOCUMENTODE", idDocumentoModelo, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
                 if (documentoModeloId == int.Parse(idDocumentoModelo.ToString()))
                 {
                     yield return LeerDatosConceptoDocumentoActual();

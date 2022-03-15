@@ -10,7 +10,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
         public Agente()
         {
             CFECHAALTAAGENTE = DateTime.Today;
-            CFECHAEXTRA = DateTime.Today;
+            CFECHAEXTRA = SdkDateTimeHelper.CreateDefaultSdkFecha();
             Tipo = TipoAgente.VentasCobro;
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
@@ -48,7 +49,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk.fInsertaProducto().ToResultadoSdk(_sdk).ThrowIfError();
             SetDatos(datosProducto);
             _sdk.fGuardaProducto().ToResultadoSdk(_sdk).ThrowIfError();
-            string idProductoDato = _sdk.LeeDatoProducto(nameof(admProductos.CIDPRODUCTO), 12);
+            string idProductoDato = _sdk.LeeDatoProducto(nameof(admProductos.CIDPRODUCTO), SdkConstantes.kLongId);
             return int.Parse(idProductoDato);
         }
 

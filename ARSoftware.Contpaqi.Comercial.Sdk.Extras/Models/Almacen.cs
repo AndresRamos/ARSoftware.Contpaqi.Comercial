@@ -1,4 +1,5 @@
 ﻿using System;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
@@ -8,7 +9,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
         public Almacen()
         {
             CFECHAALTAALMACEN = DateTime.Today;
-            CFECHAEXTRA = DateTime.Today;
+            CFECHAEXTRA = SdkDateTimeHelper.CreateDefaultSdkFecha();
             CSISTORIG = 205;
         }
 

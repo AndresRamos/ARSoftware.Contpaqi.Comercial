@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
@@ -50,8 +51,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
         {
             _sdk.fCancelaFiltroDocumento().ToResultadoSdk(_sdk).ThrowIfError();
 
-            SdkResult resultadoSdk = _sdk.fSetFiltroDocumento(fechaInicio.ToString("MM/dd/yyyy"),
-                    fechaFin.ToString("MM/dd/yyyy"),
+            SdkResult resultadoSdk = _sdk.fSetFiltroDocumento(fechaInicio.ToSdkFecha(),
+                    fechaFin.ToSdkFecha(),
                     codigoConcepto,
                     codigoClienteProveedor)
                 .ToResultadoSdk(_sdk);
