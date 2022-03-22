@@ -1,3 +1,8 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:Boolean x:Key="/Default/Housekeeping/ExcludedProjects/ProjectMasksToIgnore/=ARSoftware_002EContpaqi_002EComercial_002ESql_002Ecsproj/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/Housekeeping/ExcludedProjects/ProjectMasksToIgnore/=ARSoftware_002EContpaqi_002EComercial_002ESql_002EModels_002Ecsproj/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=064993D8_002DA9FC_002D4C64_002D8B21_002D0F66FFF85104_002Fd_003AEmpresa/@EntryIndexedValue">ExplicitlyExcluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=064993D8_002DA9FC_002D4C64_002D8B21_002D0F66FFF85104_002Fd_003AGenerales/@EntryIndexedValue">ExplicitlyExcluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=06F70134_002DACFF_002D4839_002DA421_002DF61B000EA653_002Fd_003AContexts/@EntryIndexedValue">ExplicitlyExcluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=C15B3488_002D1EDA_002D4058_002DAC1C_002D900471AC0189_002Fd_003AEmpresa/@EntryIndexedValue">ExplicitlyExcluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=C15B3488_002D1EDA_002D4058_002DAC1C_002D900471AC0189_002Fd_003AGenerales/@EntryIndexedValue">ExplicitlyExcluded</s:String>
+	
+	</wpf:ResourceDictionary>

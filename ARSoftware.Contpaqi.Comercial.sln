@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comerci
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Ejemplos", "ARSoftware.Contpaqi.Comercial.Ejemplos\ARSoftware.Contpaqi.Comercial.Ejemplos.csproj", "{CCAE5458-6354-47BD-8BC7-1EACDB9F2CBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARSoftware.Contpaqi.Comercial.Sql.EF6", "ARSoftware.Contpaqi.Comercial.Sql.EF6\ARSoftware.Contpaqi.Comercial.Sql.EF6.csproj", "{064993D8-A9FC-4C64-8B21-0F66FFF85104}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{CCAE5458-6354-47BD-8BC7-1EACDB9F2CBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCAE5458-6354-47BD-8BC7-1EACDB9F2CBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCAE5458-6354-47BD-8BC7-1EACDB9F2CBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{064993D8-A9FC-4C64-8B21-0F66FFF85104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{064993D8-A9FC-4C64-8B21-0F66FFF85104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{064993D8-A9FC-4C64-8B21-0F66FFF85104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{064993D8-A9FC-4C64-8B21-0F66FFF85104}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
