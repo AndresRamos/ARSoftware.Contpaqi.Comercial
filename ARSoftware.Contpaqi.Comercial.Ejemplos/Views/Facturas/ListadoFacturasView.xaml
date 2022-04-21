@@ -68,7 +68,6 @@
                    Margin="5" />
             <ComboBox ItemsSource="{Binding Clientes}"
                       SelectedItem="{Binding ClienteSeleccionado}"
-                      DisplayMemberPath="CRAZONSOCIAL"
                       VerticalAlignment="Center"
                       Margin="5"
                       Width="250" />

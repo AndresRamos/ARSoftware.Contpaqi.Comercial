@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Contpaqi.Comercial.Sql.Models.Empresa
+namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
 {
     public partial class admVistasRelaciones
     {

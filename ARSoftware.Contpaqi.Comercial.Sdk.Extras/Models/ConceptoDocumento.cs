@@ -1,5 +1,5 @@
 ﻿using System;
-using Contpaqi.Comercial.Sql.Models.Empresa;
+using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
 {

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
-using Contpaqi.Comercial.Sql.Models.Empresa;
+using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
 {
@@ -18,9 +19,33 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk = sdk;
         }
 
+        public tLlaveDoc BuscarSiguienteSerieYFolio(string codigoConcepto)
+        {
+            double folio = 0;
+            var serie = new StringBuilder();
+            _sdk.fSiguienteFolio(codigoConcepto, serie, ref folio).ToResultadoSdk(_sdk).ThrowIfError();
+            return new tLlaveDoc { aCodConcepto = codigoConcepto, aSerie = serie.ToString(), aFolio = folio };
+        }
+
         public void Actualizar(int documentoId, Dictionary<string, string> datosDocumento)
         {
             _sdk.fBuscarIdDocumento(documentoId).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fEditarDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+            SetDatos(datosDocumento);
+            _sdk.fGuardaDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+        }
+
+        public void Actualizar(string codigoConcepto, string serie, string folio, Dictionary<string, string> datosDocumento)
+        {
+            _sdk.fBuscarDocumento(codigoConcepto, serie, folio).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fEditarDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+            SetDatos(datosDocumento);
+            _sdk.fGuardaDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+        }
+
+        public void Actualizar(tLlaveDoc tLlaveDocumento, Dictionary<string, string> datosDocumento)
+        {
+            _sdk.fBuscaDocumento(ref tLlaveDocumento).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fEditarDocumento().ToResultadoSdk(_sdk).ThrowIfError();
             SetDatos(datosDocumento);
             _sdk.fGuardaDocumento().ToResultadoSdk(_sdk).ThrowIfError();
@@ -49,6 +74,13 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             return int.Parse(idDocumentoDato);
         }
 
+        public int CrearCargoAbono(tDocumento documento)
+        {
+            _sdk.fAltaDocumentoCargoAbono(ref documento).ToResultadoSdk(_sdk).ThrowIfError();
+            string idDocumentoDato = _sdk.LeeDatoDocumento(nameof(admDocumentos.CIDDOCUMENTO), SdkConstantes.kLongId);
+            return int.Parse(idDocumentoDato);
+        }
+
         public void DesbloquearDocumento(int idDocumento)
         {
             _sdk.fBuscarIdDocumento(idDocumento).ToResultadoSdk(_sdk).ThrowIfError();
@@ -58,6 +90,18 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
         public void Eliminar(int idDocumento)
         {
             _sdk.fBuscarIdDocumento(idDocumento).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fBorraDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+        }
+
+        public void Eliminar(string codigoConcepto, string serie, string folio)
+        {
+            _sdk.fBuscarDocumento(codigoConcepto, serie, folio).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fBorraDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+        }
+
+        public void Eliminar(tLlaveDoc tLlaveDocumento)
+        {
+            _sdk.fBuscaDocumento(ref tLlaveDocumento).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fBorraDocumento().ToResultadoSdk(_sdk).ThrowIfError();
         }
 
@@ -85,6 +129,17 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
                 .ThrowIfError();
         }
 
+        public void RelacionarDocumentos(tLlaveDoc documento, string tipoRelacion, string uuid)
+        {
+            _sdk.fAgregarRelacionCFDI2(documento.aCodConcepto,
+                    documento.aSerie,
+                    documento.aFolio.ToString(CultureInfo.InvariantCulture),
+                    tipoRelacion,
+                    uuid)
+                .ToResultadoSdk(_sdk)
+                .ThrowIfError();
+        }
+
         public void Timbrar(string codigoConceptoDocumento,
                             string serieDocumento,
                             double folioDocumento,
@@ -92,6 +147,13 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
                             string rutaArchivoAdicional)
         {
             _sdk.fEmitirDocumento(codigoConceptoDocumento, serieDocumento, folioDocumento, contrasenaCertificado, rutaArchivoAdicional)
+                .ToResultadoSdk(_sdk)
+                .ThrowIfError();
+        }
+
+        public void Timbrar(tLlaveDoc documento, string contrasenaCertificado, string rutaArchivoAdicional = "")
+        {
+            _sdk.fEmitirDocumento(documento.aCodConcepto, documento.aSerie, documento.aFolio, contrasenaCertificado, rutaArchivoAdicional)
                 .ToResultadoSdk(_sdk)
                 .ThrowIfError();
         }

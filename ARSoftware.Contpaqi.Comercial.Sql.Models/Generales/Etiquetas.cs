@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Contpaqi.Comercial.Sql.Models.Generales
+namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Generales
 {
     public partial class Etiquetas
     {

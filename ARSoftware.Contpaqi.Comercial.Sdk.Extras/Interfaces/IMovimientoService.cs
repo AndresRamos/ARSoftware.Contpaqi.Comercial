@@ -7,6 +7,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
     {
         void Actualizar(int idMovimiento, Dictionary<string, string> datosMovimiento);
         int Crear(int idDocumento, tMovimiento movimiento);
+        int Crear(int idDocumento, tMovimientoDesc movimiento);
         int Crear(Dictionary<string, string> datosMovimiento);
         void Eliminar(int idDocumento, int idMovimiento);
     }

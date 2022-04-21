@@ -3,7 +3,7 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using Contpaqi.Comercial.Sql.Models.Empresa;
+using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
 {
@@ -22,6 +22,13 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk.fEditarMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
             SetDatos(datosMovimiento);
             _sdk.fGuardaMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
+        }
+
+        public int Crear(int idDocumento, tMovimientoDesc movimiento)
+        {
+            var movimientoId = 0;
+            _sdk.fAltaMovimientoCDesct(idDocumento, ref movimientoId, ref movimiento).ToResultadoSdk(_sdk).ThrowIfError();
+            return movimientoId;
         }
 
         public int Crear(int idDocumento, tMovimiento movimiento)

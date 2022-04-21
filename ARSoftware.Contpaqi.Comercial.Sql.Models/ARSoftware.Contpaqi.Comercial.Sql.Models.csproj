@@ -3,16 +3,16 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>3.0.0</Version>
+		<Version>3.1.0</Version>
 		<Authors>AR Software</Authors>
 		<Description>Modelo de las bases de datos de CONTPAQi Comercial version 7.4.1</Description>
 		<Copyright>Copyright © AR Software 2022</Copyright>
 		<RepositoryUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>Contpaqi Sql Comercial</PackageTags>
+		<PackageTags>Contpaqi Comercial Sql</PackageTags>
 		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
-		<PackageReleaseNotes>Se genero el modelo de la base de datos de CONTPAQi Comercial version 7.4.1</PackageReleaseNotes>
+		<PackageReleaseNotes>Se cambio el namespace a ARSoftware.Contpaqi.Comercial.Sql.Models</PackageReleaseNotes>
 		<PackageLicenseExpression>(MIT)</PackageLicenseExpression>
 	</PropertyGroup>
 	

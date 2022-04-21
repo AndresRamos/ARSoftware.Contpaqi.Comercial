@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Contpaqi.Comercial.Sql.Models.Empresa;
+using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
-namespace Contpaqi.Comercial.Sql.Contexts
+namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
 {
     public partial class ContpaqiComercialEmpresaDbContext : DbContext
     {
