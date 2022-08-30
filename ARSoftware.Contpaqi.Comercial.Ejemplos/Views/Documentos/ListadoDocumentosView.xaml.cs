@@ -1,7 +1,7 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
 using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Documentos;
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.Messaging;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Documentos;
 

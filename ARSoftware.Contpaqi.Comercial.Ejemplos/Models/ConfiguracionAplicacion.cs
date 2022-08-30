@@ -1,5 +1,5 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Models;
 

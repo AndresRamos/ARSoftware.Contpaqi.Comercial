@@ -5,9 +5,9 @@ using System.Windows.Data;
 using ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.Toolkit.Mvvm.Messaging;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Agentes;
 

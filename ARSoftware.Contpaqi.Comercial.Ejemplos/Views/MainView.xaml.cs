@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Windows.Navigation;
 using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels;
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.DependencyInjection;
 
 namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Views;
 

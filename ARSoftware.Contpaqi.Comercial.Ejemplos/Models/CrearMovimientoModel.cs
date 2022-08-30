@@ -1,5 +1,5 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable InconsistentNaming

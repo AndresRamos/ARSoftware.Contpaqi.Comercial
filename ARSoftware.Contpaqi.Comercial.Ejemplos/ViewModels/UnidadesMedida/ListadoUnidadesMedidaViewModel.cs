@@ -8,9 +8,9 @@ using System.Windows.Data;
 using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.UnidadesMedida;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.UnidadesMedida;
 

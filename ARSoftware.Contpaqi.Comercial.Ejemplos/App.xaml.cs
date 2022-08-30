@@ -2,7 +2,7 @@
 using System.Windows.Threading;
 using ARSoftware.Contpaqi.Comercial.Ejemplos.Common;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.DependencyInjection;
 
 namespace ARSoftware.Contpaqi.Comercial.Ejemplos;
 
