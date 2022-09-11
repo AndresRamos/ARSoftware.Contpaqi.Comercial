@@ -12,14 +12,14 @@
 		<PackageTags>Contpaqi SDK Comercial Adminpaq Factura Electronica</PackageTags>
 		<PackageReleaseNotes>Se actualizaron los namespaces y se agregaron y corrigieron algunas declaraciones.</PackageReleaseNotes>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
 		<PackageLicenseExpression>(MIT)</PackageLicenseExpression>
+		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="..\..\..\..\..\OneDrive - AR Software\Logo\AR_LOGO03.jpg">
+	  <None Include="..\..\images\AR_LOGO03.jpg">
 	    <Pack>True</Pack>
-	    <PackagePath></PackagePath>
+	    <PackagePath>\</PackagePath>
 	  </None>
 	</ItemGroup>
 

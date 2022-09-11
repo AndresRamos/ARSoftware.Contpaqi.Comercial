@@ -42,19 +42,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference
-			Include="..\ARSoftware.Contpaqi.Comercial.Sdk.Extras\ARSoftware.Contpaqi.Comercial.Sdk.Extras.csproj" />
+		<Folder Include="Models\Mappings\" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Models\Mappings\" />
+	  <ProjectReference Include="..\..\src\ARSoftware.Contpaqi.Comercial.Sdk.Extras\ARSoftware.Contpaqi.Comercial.Sdk.Extras.csproj" />
 	</ItemGroup>
 
 	<!--Issue with CommunityToolkit.Mvvm v8.0.0. Test again in later version-->
 	<Target Name="RemoveDuplicateAnalyzers" BeforeTargets="CoreCompile">
 		<!-- Work around https://github.com/dotnet/wpf/issues/6792 -->
 		<ItemGroup>
-			<FilteredAnalyzer Include="@(Analyzer->Distinct())" />
+			<FilteredAnalyzer Include="@(Analyzer-&gt;Distinct())" />
 			<Analyzer Remove="@(Analyzer)" />
 			<Analyzer Include="@(FilteredAnalyzer)" />
 		</ItemGroup>

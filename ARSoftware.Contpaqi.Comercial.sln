@@ -3,22 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8750EC4C-1857-4F85-9D66-C918B75685D2}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sdk", "Sdk", "{4865AC4F-6C98-474C-AC51-CE3A9FCC5F09}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Sql", "ARSoftware.Contpaqi.Comercial.Sql\ARSoftware.Contpaqi.Comercial.Sql.csproj", "{06F70134-ACFF-4839-A421-F61B000EA653}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Sdk", "src\ARSoftware.Contpaqi.Comercial.Sdk\ARSoftware.Contpaqi.Comercial.Sdk.csproj", "{AE97BF24-578D-4356-8B62-CB06BE5211C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Sql.Models", "ARSoftware.Contpaqi.Comercial.Sql.Models\ARSoftware.Contpaqi.Comercial.Sql.Models.csproj", "{C15B3488-1EDA-4058-AC1C-900471AC0189}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Sdk.Extras", "src\ARSoftware.Contpaqi.Comercial.Sdk.Extras\ARSoftware.Contpaqi.Comercial.Sdk.Extras.csproj", "{7F70954E-93F9-454C-9831-77516EEBE79C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Sdk", "ARSoftware.Contpaqi.Comercial.Sdk\ARSoftware.Contpaqi.Comercial.Sdk.csproj", "{441E56A1-6C60-4D33-B8D5-032AA956FA26}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sql", "Sql", "{CFD90884-02FA-46CD-91B7-859A76C43404}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Sdk.Extras", "ARSoftware.Contpaqi.Comercial.Sdk.Extras\ARSoftware.Contpaqi.Comercial.Sdk.Extras.csproj", "{A3889D5A-E9AB-402C-AC43-944FBDA33AA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Sql.Models", "src\ARSoftware.Contpaqi.Comercial.Sql.Models\ARSoftware.Contpaqi.Comercial.Sql.Models.csproj", "{46033D52-9A61-405F-AFD2-F65FF66FEC1F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Ejemplos", "ARSoftware.Contpaqi.Comercial.Ejemplos\ARSoftware.Contpaqi.Comercial.Ejemplos.csproj", "{CCAE5458-6354-47BD-8BC7-1EACDB9F2CBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Sql", "src\ARSoftware.Contpaqi.Comercial.Sql\ARSoftware.Contpaqi.Comercial.Sql.csproj", "{576418D4-7E0B-43F0-ACE8-C8EDEFC9B9FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARSoftware.Contpaqi.Comercial.Sql.EF6", "ARSoftware.Contpaqi.Comercial.Sql.EF6\ARSoftware.Contpaqi.Comercial.Sql.EF6.csproj", "{064993D8-A9FC-4C64-8B21-0F66FFF85104}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARSoftware.Contpaqi.Comercial.Sql.EF6", "src\ARSoftware.Contpaqi.Comercial.Sql.EF6\ARSoftware.Contpaqi.Comercial.Sql.EF6.csproj", "{064993D8-A9FC-4C64-8B21-0F66FFF85104}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos", "Ejemplos", "{789B7A52-4364-40CD-9DFF-60491464C56B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Ejemplos", "samples\ARSoftware.Contpaqi.Comercial.Ejemplos\ARSoftware.Contpaqi.Comercial.Ejemplos.csproj", "{EB1D3377-E32D-427B-86B2-A100D610CB1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,33 +27,41 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{06F70134-ACFF-4839-A421-F61B000EA653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06F70134-ACFF-4839-A421-F61B000EA653}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06F70134-ACFF-4839-A421-F61B000EA653}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06F70134-ACFF-4839-A421-F61B000EA653}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C15B3488-1EDA-4058-AC1C-900471AC0189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C15B3488-1EDA-4058-AC1C-900471AC0189}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C15B3488-1EDA-4058-AC1C-900471AC0189}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C15B3488-1EDA-4058-AC1C-900471AC0189}.Release|Any CPU.Build.0 = Release|Any CPU
-		{441E56A1-6C60-4D33-B8D5-032AA956FA26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{441E56A1-6C60-4D33-B8D5-032AA956FA26}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{441E56A1-6C60-4D33-B8D5-032AA956FA26}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{441E56A1-6C60-4D33-B8D5-032AA956FA26}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A3889D5A-E9AB-402C-AC43-944FBDA33AA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3889D5A-E9AB-402C-AC43-944FBDA33AA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3889D5A-E9AB-402C-AC43-944FBDA33AA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3889D5A-E9AB-402C-AC43-944FBDA33AA9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CCAE5458-6354-47BD-8BC7-1EACDB9F2CBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CCAE5458-6354-47BD-8BC7-1EACDB9F2CBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CCAE5458-6354-47BD-8BC7-1EACDB9F2CBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CCAE5458-6354-47BD-8BC7-1EACDB9F2CBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE97BF24-578D-4356-8B62-CB06BE5211C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE97BF24-578D-4356-8B62-CB06BE5211C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE97BF24-578D-4356-8B62-CB06BE5211C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE97BF24-578D-4356-8B62-CB06BE5211C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F70954E-93F9-454C-9831-77516EEBE79C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F70954E-93F9-454C-9831-77516EEBE79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F70954E-93F9-454C-9831-77516EEBE79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F70954E-93F9-454C-9831-77516EEBE79C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46033D52-9A61-405F-AFD2-F65FF66FEC1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46033D52-9A61-405F-AFD2-F65FF66FEC1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46033D52-9A61-405F-AFD2-F65FF66FEC1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46033D52-9A61-405F-AFD2-F65FF66FEC1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{576418D4-7E0B-43F0-ACE8-C8EDEFC9B9FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{576418D4-7E0B-43F0-ACE8-C8EDEFC9B9FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{576418D4-7E0B-43F0-ACE8-C8EDEFC9B9FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{576418D4-7E0B-43F0-ACE8-C8EDEFC9B9FC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{064993D8-A9FC-4C64-8B21-0F66FFF85104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{064993D8-A9FC-4C64-8B21-0F66FFF85104}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{064993D8-A9FC-4C64-8B21-0F66FFF85104}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{064993D8-A9FC-4C64-8B21-0F66FFF85104}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB1D3377-E32D-427B-86B2-A100D610CB1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB1D3377-E32D-427B-86B2-A100D610CB1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB1D3377-E32D-427B-86B2-A100D610CB1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB1D3377-E32D-427B-86B2-A100D610CB1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AE97BF24-578D-4356-8B62-CB06BE5211C0} = {4865AC4F-6C98-474C-AC51-CE3A9FCC5F09}
+		{7F70954E-93F9-454C-9831-77516EEBE79C} = {4865AC4F-6C98-474C-AC51-CE3A9FCC5F09}
+		{46033D52-9A61-405F-AFD2-F65FF66FEC1F} = {CFD90884-02FA-46CD-91B7-859A76C43404}
+		{576418D4-7E0B-43F0-ACE8-C8EDEFC9B9FC} = {CFD90884-02FA-46CD-91B7-859A76C43404}
+		{064993D8-A9FC-4C64-8B21-0F66FFF85104} = {CFD90884-02FA-46CD-91B7-859A76C43404}
+		{EB1D3377-E32D-427B-86B2-A100D610CB1A} = {789B7A52-4364-40CD-9DFF-60491464C56B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3588233E-0044-4A6F-ACB1-262819D2D760}

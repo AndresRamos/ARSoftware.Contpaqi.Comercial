@@ -10,26 +10,26 @@
 		<PackageProjectUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Contpaqi Comercial SDK Adminpaq Factura Electronica</PackageTags>
-		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
 		<PackageReleaseNotes>Se agrego la cancelacion con Motivo en el servicio DocumentoService</PackageReleaseNotes>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sdk\ARSoftware.Contpaqi.Comercial.Sdk.csproj" />
-	  <ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sql.Models\ARSoftware.Contpaqi.Comercial.Sql.Models.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Include="..\..\..\..\..\OneDrive - AR Software\Logo\AR_LOGO03.jpg">
+	  <None Include="..\..\images\AR_LOGO03.jpg">
 	    <Pack>True</Pack>
-	    <PackagePath></PackagePath>
+	    <PackagePath>\</PackagePath>
 	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sdk\ARSoftware.Contpaqi.Comercial.Sdk.csproj" />
+	  <ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sql.Models\ARSoftware.Contpaqi.Comercial.Sql.Models.csproj" />
 	</ItemGroup>
 
 </Project>
