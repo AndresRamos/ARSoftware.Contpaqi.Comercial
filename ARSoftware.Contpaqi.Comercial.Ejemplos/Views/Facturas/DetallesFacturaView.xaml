@@ -53,12 +53,17 @@
                     VerticalAlignment="Center"
                     Margin="5"
                     Style="{StaticResource MahApps.Styles.Button.Square}" />
-            <Button Content="Cancelar"
-                    Command="{Binding CancelarDocumentoCommand}"
-                    Width="150"
-                    VerticalAlignment="Center"
-                    Margin="5"
-                    Style="{StaticResource MahApps.Styles.Button.Square}" />
+            <controls:DropDownButton Content="Cancelar"
+                                     Width="150"
+                                     VerticalAlignment="Center"
+                                     Margin="5">
+                <controls:DropDownButton.Items>
+                    <MenuItem Header="Cancelar"
+                              Command="{Binding CancelarDocumentoCommand}"></MenuItem>
+                    <MenuItem Header="Cancelar Administrativamente"
+                              Command="{Binding CancelarDocumentoAdministrativamenteCommand}"></MenuItem>
+                </controls:DropDownButton.Items>
+            </controls:DropDownButton>
             <Button Content="Eliminar"
                     Command="{Binding EliminarDocumentoCommand}"
                     Width="150"
@@ -681,7 +686,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Row="0"
                                    Grid.Column="0"
-                                   Content="SerieC ertificado Emisor:"
+                                   Content="Serie Certificado Emisor:"
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />

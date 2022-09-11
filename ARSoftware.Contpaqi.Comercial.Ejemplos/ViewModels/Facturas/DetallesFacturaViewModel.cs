@@ -43,26 +43,6 @@ public class DetallesFacturaViewModel : ObservableRecipient
     private Documento _factura = new();
     private Movimiento _movimientoSeleccionado;
 
-    public DetallesFacturaViewModel(IAgenteRepository<Agente> agenteRepository,
-                                    IAlmacenRepository<Almacen> almacenRepository,
-                                    IClienteProveedorRepository<ClienteProveedor> clienteProveedorRepository,
-                                    IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository,
-                                    IDireccionRepository<Direccion> direccionRepository,
-                                    IMovimientoRepository<Movimiento> movimientoRepository,
-                                    IProductoRepository<Producto> productoRepository,
-                                    IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
-    {
-        _agenteRepository = agenteRepository;
-        _almacenRepository = almacenRepository;
-        _clienteProveedorRepository = clienteProveedorRepository;
-        _conceptoDocumentoRepository = conceptoDocumentoRepository;
-        _direccionRepository = direccionRepository;
-        _movimientoRepository = movimientoRepository;
-        _productoRepository = productoRepository;
-        _valorClasificacionRepository = valorClasificacionRepository;
-        _factura.Movimientos.Add(new Movimiento());
-    }
-
     public DetallesFacturaViewModel(IDocumentoRepository<Documento> documentoRepository,
                                     IDialogCoordinator dialogCoordinator,
                                     IMovimientoService movimientoService,
@@ -101,6 +81,7 @@ public class DetallesFacturaViewModel : ObservableRecipient
 
         GuardarDocumentoCommand = new AsyncRelayCommand(GuardarDocumentoAsync);
         CancelarDocumentoCommand = new AsyncRelayCommand(CancelarDocumentoAsync);
+        CancelarDocumentoAdministrativamenteCommand = new AsyncRelayCommand(CancelarDocumentoAdministrativamenteAsync);
         EliminarDocumentoCommand = new AsyncRelayCommand(EliminarDocumentoAsync);
         TimbrarDocumentoCommand = new AsyncRelayCommand(TimbrarDocumentoAsync);
         GenerarPdfDocumentoCommand = new AsyncRelayCommand(GenerarPdfDocumentoAsync);
@@ -132,6 +113,7 @@ public class DetallesFacturaViewModel : ObservableRecipient
     public IAsyncRelayCommand EliminarMovimientoCommand { get; }
     public IAsyncRelayCommand GuardarDocumentoCommand { get; }
     public IAsyncRelayCommand CancelarDocumentoCommand { get; }
+    public IAsyncRelayCommand CancelarDocumentoAdministrativamenteCommand { get; }
     public IAsyncRelayCommand EliminarDocumentoCommand { get; }
     public IAsyncRelayCommand TimbrarDocumentoCommand { get; }
     public IAsyncRelayCommand GenerarPdfDocumentoCommand { get; }
@@ -164,25 +146,52 @@ public class DetallesFacturaViewModel : ObservableRecipient
         try
         {
             MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
-                "Eliminar Documento",
+                "Cancelar Documento",
                 "Esta seguro de querer cancelar este documento?",
                 MessageDialogStyle.AffirmativeAndNegative,
-                new MetroDialogSettings { AffirmativeButtonText = "Eliminar", NegativeButtonText = "Cancelar" });
+                new MetroDialogSettings { AffirmativeButtonText = "Cancelar Documento", NegativeButtonText = "Cancelar" });
 
             if (messageDialogResult != MessageDialogResult.Affirmative)
             {
                 return;
             }
 
-            string dialogResult =
+            string contrasenaCertificado =
                 await _dialogCoordinator.ShowInputAsync(this, "Contrasena Del Certificado", "Proporcione la contrasena del certificado.");
 
-            if (string.IsNullOrWhiteSpace(dialogResult))
+            if (string.IsNullOrWhiteSpace(contrasenaCertificado))
             {
                 return;
             }
 
-            _documentoService.Cancelar(Factura.CIDDOCUMENTO, dialogResult);
+            _documentoService.Cancelar(Factura.CIDDOCUMENTO, contrasenaCertificado);
+
+            CargarFactura(Factura.CIDDOCUMENTO);
+
+            await _dialogCoordinator.ShowMessageAsync(this, "Documento Cancelado", "Documento cancelado.");
+        }
+        catch (Exception e)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+        }
+    }
+
+    public async Task CancelarDocumentoAdministrativamenteAsync()
+    {
+        try
+        {
+            MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
+                "Cancelar Documento Administrativamente",
+                "Esta seguro de querer cancelar este documento?",
+                MessageDialogStyle.AffirmativeAndNegative,
+                new MetroDialogSettings { AffirmativeButtonText = "Cancelar Documento", NegativeButtonText = "Cancelar" });
+
+            if (messageDialogResult != MessageDialogResult.Affirmative)
+            {
+                return;
+            }
+
+            _documentoService.CancelarAdministrativamente(Factura.CIDDOCUMENTO);
 
             CargarFactura(Factura.CIDDOCUMENTO);
 
