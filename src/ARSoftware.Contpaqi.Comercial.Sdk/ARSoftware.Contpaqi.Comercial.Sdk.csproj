@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<Version>3.0.0</Version>
+		<Version>3.1.0</Version>
 		<Authors>AR Software</Authors>
 		<Description>Este proyecto tiene declaradas todas las funciones y clases utilizadas por el SDK de CONTPAQi Comercial, CONTPAQi Adminpaq, y CONTPAQi Factura Electronica.</Description>
 		<Copyright>Copyright © AR Software 2022</Copyright>
@@ -10,10 +10,11 @@
 		<PackageProjectUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Contpaqi SDK Comercial Adminpaq Factura Electronica</PackageTags>
-		<PackageReleaseNotes>Se actualizaron los namespaces y se agregaron y corrigieron algunas declaraciones.</PackageReleaseNotes>
+		<PackageReleaseNotes>Se agrego la funcion fCancelaDocumentoAdministrativamente al SDK de Comercial</PackageReleaseNotes>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>(MIT)</PackageLicenseExpression>
 		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
+		<Title>CONTPAQi Comercial SDK</Title>
 	</PropertyGroup>
 
 	<ItemGroup>
