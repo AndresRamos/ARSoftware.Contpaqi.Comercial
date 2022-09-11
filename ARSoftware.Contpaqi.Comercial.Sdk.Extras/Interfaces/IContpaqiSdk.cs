@@ -214,6 +214,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 
         int fCancelaDocumento();
 
+        int fCancelaDocumentoAdministrativamente();
+
         int fCancelaDocumento_CW();
 
         int fCancelaDocumentoConMotivo(string aMotivoCancelacion, string aUUIDRemplaza);

@@ -486,6 +486,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return ComercialSdk.fCancelaDocumento();
         }
 
+        public int fCancelaDocumentoAdministrativamente()
+        {
+            return ComercialSdk.fCancelaDocumentoAdministrativamente();
+        }
+
         public int fCancelaDocumento_CW()
         {
             return ComercialSdk.fCancelaDocumento_CW();

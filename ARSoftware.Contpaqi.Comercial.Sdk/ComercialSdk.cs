@@ -283,6 +283,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fCancelaDocumento")]
         public static extern int fCancelaDocumento();
 
+        [DllImport("MGWServicios.dll", EntryPoint = "fCancelaDocumentoAdministrativamente")]
+        public static extern int fCancelaDocumentoAdministrativamente();
+
         [DllImport("MGWServicios.dll", EntryPoint = "fCancelaDocumento_CW")]
         public static extern int fCancelaDocumento_CW();
 
