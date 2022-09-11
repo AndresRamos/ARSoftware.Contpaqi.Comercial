@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos", "Ejemplos", "{78
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comercial.Ejemplos", "samples\ARSoftware.Contpaqi.Comercial.Ejemplos\ARSoftware.Contpaqi.Comercial.Ejemplos.csproj", "{EB1D3377-E32D-427B-86B2-A100D610CB1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARSoftware.Contpaqi.Comercial.ConsoleApp", "samples\ARSoftware.Contpaqi.Comercial.ConsoleApp\ARSoftware.Contpaqi.Comercial.ConsoleApp.csproj", "{B22D9745-DA8F-4E9F-9D17-5C01D9F1057A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{EB1D3377-E32D-427B-86B2-A100D610CB1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB1D3377-E32D-427B-86B2-A100D610CB1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB1D3377-E32D-427B-86B2-A100D610CB1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B22D9745-DA8F-4E9F-9D17-5C01D9F1057A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B22D9745-DA8F-4E9F-9D17-5C01D9F1057A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B22D9745-DA8F-4E9F-9D17-5C01D9F1057A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B22D9745-DA8F-4E9F-9D17-5C01D9F1057A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{576418D4-7E0B-43F0-ACE8-C8EDEFC9B9FC} = {CFD90884-02FA-46CD-91B7-859A76C43404}
 		{064993D8-A9FC-4C64-8B21-0F66FFF85104} = {CFD90884-02FA-46CD-91B7-859A76C43404}
 		{EB1D3377-E32D-427B-86B2-A100D610CB1A} = {789B7A52-4364-40CD-9DFF-60491464C56B}
+		{B22D9745-DA8F-4E9F-9D17-5C01D9F1057A} = {789B7A52-4364-40CD-9DFF-60491464C56B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3588233E-0044-4A6F-ACB1-262819D2D760}
