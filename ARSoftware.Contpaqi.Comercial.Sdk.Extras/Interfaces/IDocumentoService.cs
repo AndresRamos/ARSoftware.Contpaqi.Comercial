@@ -12,6 +12,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
         void Actualizar(tLlaveDoc tLlaveDocumento, Dictionary<string, string> datosDocumento);
         void Cancelar(int idDocumento, string contrasenaCertificado);
         void Cancelar(int idDocumento, string contrasenaCertificado, string motivoCancelacion, string uuidRemplazo);
+        void CancelarAdministrativamente(int idDocumento);
+        void CancelarAdministrativamente(string codigoConcepto, string serie, string folio);
+        void CancelarAdministrativamente(tLlaveDoc tLlaveDocumento);
         int Crear(tDocumento documento);
         int Crear(Dictionary<string, string> datosDocumento);
         int CrearCargoAbono(tDocumento documento);
