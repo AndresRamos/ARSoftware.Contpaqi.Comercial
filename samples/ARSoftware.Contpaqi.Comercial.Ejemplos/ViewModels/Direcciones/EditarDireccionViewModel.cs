@@ -90,7 +90,12 @@ public class EditarDireccionViewModel : ObservableRecipient
     {
         int idDireccion = Direccion.CIDDIRECCION;
         tDireccion tDireccion = Direccion.ToTDireccion();
-        tDireccion.cCodCteProv = CodigoClienteProveedor;
+        
+        // Asignar codigo de cliente ya que no es una propiedad de Direccion.
+        if (!string.IsNullOrWhiteSpace(CodigoClienteProveedor))
+        {
+          tDireccion.cCodCteProv = CodigoClienteProveedor;
+        }
 
         if (idDireccion == 0)
         {
@@ -130,6 +135,12 @@ public class EditarDireccionViewModel : ObservableRecipient
 
     public void Inicializar(int idDireccion)
     {
+        CargarDireccion(idDireccion);
+    }
+
+    public void Inicializar(int idDireccion, string codigoClienteProveedor)
+    {
+        CodigoClienteProveedor = codigoClienteProveedor;
         CargarDireccion(idDireccion);
     }
 

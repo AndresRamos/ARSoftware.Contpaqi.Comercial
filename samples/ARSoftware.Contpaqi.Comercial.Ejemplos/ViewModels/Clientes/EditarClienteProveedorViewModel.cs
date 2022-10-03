@@ -399,7 +399,7 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
         try
         {
             var window = new EditarDireccionView();
-            window.ViewModel.Inicializar(DireccionSeleccionada.CIDDIRECCION);
+            window.ViewModel.Inicializar(DireccionSeleccionada.CIDDIRECCION, ClienteProveedor.CCODIGOCLIENTE);
             window.ShowDialog();
             CargarDirecciones(ClienteProveedor.Tipo, ClienteProveedor.CIDCLIENTEPROVEEDOR);
         }
