@@ -8,7 +8,7 @@ Proyectos SDK:
 Estos proyectos tambien permiten trabajar con Factura Electronica y Adminpaq, pero solamente estan probadas para el sistema de Comercial.
 
 Poryectos SQL
-- [ARSoftware.Contpaqi.Comercial.Sql.Models](https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial/tree/src//master/ARSoftware.Contpaqi.Comercial.Sql.Models)
+- [ARSoftware.Contpaqi.Comercial.Sql.Models](https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial/tree/master/src/ARSoftware.Contpaqi.Comercial.Sql.Models)
 - [ARSoftware.Contpaqi.Comercial.Sql](https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial/tree/master/src//ARSoftware.Contpaqi.Comercial.Sql)
 
 ## ARSoftware.Contpaqi.Comercial.Sdk
