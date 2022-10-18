@@ -441,12 +441,19 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
         tCteProv tCliente = ClienteProveedor.ToTCteProv();
 
         if (idCliente == 0)
-        {
             idCliente = _clienteProveedorService.Crear(tCliente);
-        }
         else
         {
             _clienteProveedorService.Actualizar(tCliente);
+
+            var datosCliente = new Dictionary<string, string>
+            {
+                { "CMETODOPAG", ClienteProveedor.CMETODOPAG },
+                { "CREGIMFISC", ClienteProveedor.CREGIMFISC },
+                { "CUSOCFDI", ClienteProveedor.CUSOCFDI }
+            };
+
+            _clienteProveedorService.Actualizar(idCliente, datosCliente);
         }
 
         return idCliente;
