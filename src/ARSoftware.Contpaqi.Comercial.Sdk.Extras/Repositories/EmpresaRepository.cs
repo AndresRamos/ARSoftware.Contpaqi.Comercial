@@ -28,6 +28,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             empresa.CIDEMPRESA = id;
             empresa.CNOMBREEMPRESA = nombre.ToString();
             empresa.CRUTADATOS = ruta.ToString();
+            empresa.CRUTARESPALDOS = ruta.ToString();
             yield return empresa;
 
             while (_sdk.fPosSiguienteEmpresa(ref id, nombre, ruta) == SdkResultConstants.Success)
@@ -36,6 +37,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                 empresa.CIDEMPRESA = id;
                 empresa.CNOMBREEMPRESA = nombre.ToString();
                 empresa.CRUTADATOS = ruta.ToString();
+                empresa.CRUTARESPALDOS = ruta.ToString();
                 yield return empresa;
             }
         }

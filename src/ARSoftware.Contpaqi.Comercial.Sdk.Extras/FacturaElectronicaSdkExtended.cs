@@ -1731,9 +1731,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return AdminpaqSdk.fRegresPorcentajeImpuesto(aIdConceptoDocumento, aIdClienteProveedor, aIdProducto, ref aPorcentajeImpuesto);
         }
 
-        public int fSaldarDocumento(tLlaveDoc aDoctoaPagar, tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha)
+        public int fSaldarDocumento(ref tLlaveDoc aDoctoaPagar,ref  tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha)
         {
-            return AdminpaqSdk.fSaldarDocumento(aDoctoaPagar, aDoctoPago, aImporte, aIdMoneda, aFecha);
+            return AdminpaqSdk.fSaldarDocumento(ref aDoctoaPagar, ref aDoctoPago, aImporte, aIdMoneda, aFecha);
         }
 
         public int fSaldarDocumento_Param(string aCodConcepto_Pagar,
@@ -1926,6 +1926,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
         }
 
         public int InicializarSDK(string usuario, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int InicializarSDK(string usuario, string password, string usuarioContabilidad, string passwordContabilidad)
         {
             throw new NotImplementedException();
         }

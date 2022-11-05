@@ -753,7 +753,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 
         int fRegresPorcentajeImpuesto(int aIdConceptoDocumento, int aIdClienteProveedor, int aIdProducto, ref double aPorcentajeImpuesto);
 
-        int fSaldarDocumento(tLlaveDoc aDoctoaPagar, tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha);
+        int fSaldarDocumento(ref tLlaveDoc aDoctoaPagar, ref tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha);
 
         int fSaldarDocumento_Param(string aCodConcepto_Pagar,
                                    string aSerie_Pagar,
@@ -848,6 +848,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
         int InicializarSDK();
 
         int InicializarSDK(string usuario, string password);
+
+        int InicializarSDK(string usuario, string password, string usuarioContabilidad, string passwordContabilidad);
 
         string LeeDatoAgente(string dato, int longitud = 512);
 

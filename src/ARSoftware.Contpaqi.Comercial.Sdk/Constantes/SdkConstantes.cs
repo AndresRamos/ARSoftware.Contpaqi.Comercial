@@ -43,5 +43,10 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Constantes
         public const int kLonSerieCertSAT = 21;
         public const int kSDKLongitudUUID = 206;
         public const int kSDKLonSerieCertSAT = 190;
+
+        /// <summary>
+        ///     Valor del codigo del resultado de una operacion del SDK realizada con exito.
+        /// </summary>
+        public const int CodigoExito = 0;
     }
 }
