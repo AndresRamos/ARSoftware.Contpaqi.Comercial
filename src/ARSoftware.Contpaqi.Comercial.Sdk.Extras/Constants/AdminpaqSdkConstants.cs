@@ -1,8 +1,10 @@
-﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
+
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants
 {
     public static class AdminpaqSdkConstants
     {
-        public const string NombreLlaveRegistro = @"SOFTWARE\\Computación en Acción, SA CV\\AdminPAQ";
-        public const string NombrePaq = "AdminPAQ";
+        public const string NombreLlaveRegistro = LlavesRegistroWindowsSdk.Adminpaq;
+        public const string NombrePaq = NombresPaqSdk.Adminpaq;
     }
 }

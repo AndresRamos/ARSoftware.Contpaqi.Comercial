@@ -1,7 +1,9 @@
-﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
+
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants
 {
-    public class SdkResultConstants
+    public static class SdkResultConstants
     {
-        public const int Success = 0;
+        public const int Success = SdkConstantes.CodigoExito;
     }
 }
