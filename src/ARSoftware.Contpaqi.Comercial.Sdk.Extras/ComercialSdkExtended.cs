@@ -1737,9 +1737,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return ComercialSdk.fRegresPorcentajeImpuesto(aIdConceptoDocumento, aIdClienteProveedor, aIdProducto, ref aPorcentajeImpuesto);
         }
 
-        public int fSaldarDocumento(tLlaveDoc aDoctoaPagar, tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha)
+        public int fSaldarDocumento(ref tLlaveDoc aDoctoaPagar, ref tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha)
         {
-            return ComercialSdk.fSaldarDocumento(aDoctoaPagar, aDoctoPago, aImporte, aIdMoneda, aFecha);
+            return ComercialSdk.fSaldarDocumento(ref aDoctoaPagar, ref aDoctoPago, aImporte, aIdMoneda, aFecha);
         }
 
         public int fSaldarDocumento_Param(string aCodConcepto_Pagar,
@@ -1921,14 +1921,22 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
         public int InicializarSDK()
         {
             SetCurrentDirectory();
-            return ComercialSdk.fSetNombrePAQ(NombrePaq);
+            return fSetNombrePAQ(NombrePaq);
         }
 
         public int InicializarSDK(string usuario, string password)
         {
             SetCurrentDirectory();
-            ComercialSdk.fInicioSesionSDK(usuario, password);
-            return ComercialSdk.fSetNombrePAQ(NombrePaq);
+            fInicioSesionSDK(usuario, password);
+            return fSetNombrePAQ(NombrePaq);
+        }
+
+        public int InicializarSDK(string usuario, string password, string usuarioContabilidad, string passwordContabilidad)
+        {
+            int sdkResult = InicializarSDK(usuario, password);
+            if (sdkResult == SdkResultConstants.Success)
+                fInicioSesionSDKCONTPAQi(usuarioContabilidad, passwordContabilidad);
+            return sdkResult;
         }
 
         public string LeeDatoAgente(string dato, int longitud)
