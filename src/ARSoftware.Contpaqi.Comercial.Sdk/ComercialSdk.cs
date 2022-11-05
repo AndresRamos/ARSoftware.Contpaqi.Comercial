@@ -1048,8 +1048,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
                                                            ref double aPorcentajeImpuesto);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fSaldarDocumento")]
-        public static extern int fSaldarDocumento(tLlaveDoc aDoctoaPagar,
-                                                  tLlaveDoc aDoctoPago,
+        public static extern int fSaldarDocumento(ref tLlaveDoc aDoctoaPagar,
+                                                  ref tLlaveDoc aDoctoPago,
                                                   double aImporte,
                                                   int aIdMoneda,
                                                   string aFecha);
