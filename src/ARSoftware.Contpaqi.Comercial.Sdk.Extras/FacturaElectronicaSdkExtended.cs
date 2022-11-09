@@ -1922,7 +1922,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
         public int InicializarSDK()
         {
             SetCurrentDirectory();
-            return AdminpaqSdk.fSetNombrePAQ(NombrePaq);
+            return fSetNombrePAQ(NombrePaq);
         }
 
         public int InicializarSDK(string usuario, string password)
