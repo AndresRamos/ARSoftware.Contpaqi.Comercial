@@ -2,6 +2,9 @@
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Excepciones
 {
+    /// <summary>
+    ///     Excepcion del SDK.
+    /// </summary>
     public class ContpaqiSdkException : Exception
     {
         public ContpaqiSdkException(int codigoErrorSdk)
@@ -21,7 +24,14 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Excepciones
             MensajeErrorSdk = message;
         }
 
+        /// <summary>
+        ///     Codigo de error del SDK.
+        /// </summary>
         public int CodigoErrorSdk { get; }
+
+        /// <summary>
+        ///     Mensaje de error del codigo de error del SDK.
+        /// </summary>
         public string MensajeErrorSdk { get; } = string.Empty;
     }
 }
