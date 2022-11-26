@@ -11,7 +11,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers
 
         public static string ConvertToSdkFecha(DateTime fecha)
         {
-            return fecha.ToString("MM/dd/yyyy");
+            return fecha.ToString(FormatosFechaSdk.Fecha);
         }
 
         /// <summary>
