@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
@@ -1731,7 +1732,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return AdminpaqSdk.fRegresPorcentajeImpuesto(aIdConceptoDocumento, aIdClienteProveedor, aIdProducto, ref aPorcentajeImpuesto);
         }
 
-        public int fSaldarDocumento(ref tLlaveDoc aDoctoaPagar,ref  tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha)
+        public int fSaldarDocumento(ref tLlaveDoc aDoctoaPagar, ref tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha)
         {
             return AdminpaqSdk.fSaldarDocumento(ref aDoctoaPagar, ref aDoctoPago, aImporte, aIdMoneda, aFecha);
         }
@@ -1922,7 +1923,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
         public int InicializarSDK()
         {
             SetCurrentDirectory();
-            return fSetNombrePAQ(NombrePaq);
+            int result = fSetNombrePAQ(NombrePaq);
+            if (result == SdkConstantes.CodigoExito)
+                result = fInicializaLicenseInfo(LicenseInfoSdk.FacturaElectronica);
+
+            return result;
         }
 
         public int InicializarSDK(string usuario, string password)
