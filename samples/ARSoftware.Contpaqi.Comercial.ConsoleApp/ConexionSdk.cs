@@ -50,7 +50,9 @@ public sealed class ConexionSdk
     /// <param name="contrasenacomercial">Contrasena del sistema de Comercial</param>
     /// <param name="nombreusuariocontabilidad">Nombre de usuario del sistema de Contabilidad</param>
     /// <param name="contrasenacontabilidad">Contrasena del sistema de Contabilidad</param>
-    public static void IniciarSdk(string nombreusuariocomercial, string contrasenacomercial, string nombreusuariocontabilidad,
+    public static void IniciarSdk(string nombreusuariocomercial,
+                                  string contrasenacomercial,
+                                  string nombreusuariocontabilidad,
                                   string contrasenacontabilidad)
     {
         // Iniciar conexion con el sistema
@@ -113,14 +115,14 @@ public sealed class ConexionSdk
         if (keySitema is null)
         {
             // No se encontro la llave
-            throw new ContpaqiSdkExcepcion(null, $"No se encontro la llave del registro {nombreLlaveRegistro}");
+            throw new ContpaqiSdkInvalidOperationException($"No se encontro la llave del registro {nombreLlaveRegistro}");
         }
 
         // Leer el valor del campo DIRECTORIOBASE donde se encuentra la ruta del SDK
         object directorioBaseKey = keySitema.GetValue(LlavesRegistroWindowsSdk.NombreCampoRutaSdk);
 
         if (directorioBaseKey is null)
-            throw new ContpaqiSdkExcepcion(null,
+            throw new ContpaqiSdkInvalidOperationException(
                 $"No se encontro el valor del campo {LlavesRegistroWindowsSdk.NombreCampoRutaSdk} del registro {nombreLlaveRegistro}");
 
         return directorioBaseKey.ToString();

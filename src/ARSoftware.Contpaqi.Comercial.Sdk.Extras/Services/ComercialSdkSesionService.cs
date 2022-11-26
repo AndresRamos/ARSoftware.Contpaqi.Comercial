@@ -1,5 +1,5 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Exceptions;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Excepciones;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 
@@ -19,15 +19,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
         public void AbrirEmpresa(string rutaEmpresa)
         {
             if (!CanAbrirEmpresa)
-            {
-                throw new ContpaqiSdkException(null, "No se puede abrir la empresa por que ya hay una empresa abierta.");
-            }
+                throw new ContpaqiSdkInvalidOperationException("No se puede abrir la empresa por que ya hay una empresa abierta.");
 
             int sdkResult = _sdk.fAbreEmpresa(rutaEmpresa);
             if (sdkResult == SdkResultConstants.Success)
-            {
                 IsEmpresaAbierta = true;
-            }
             else
             {
                 string error = _sdkErrorRepository.BuscarMensajePorNumero(sdkResult);
@@ -46,9 +42,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
         public void CerrarEmpresa()
         {
             if (!CanCerrarEmpresa)
-            {
-                throw new ContpaqiSdkException(null, "No se puede cerrar la empresa por que no hay una empresa abierta.");
-            }
+                throw new ContpaqiSdkInvalidOperationException("No se puede cerrar la empresa por que no hay una empresa abierta.");
 
             _sdk.fCierraEmpresa();
             IsEmpresaAbierta = false;
@@ -57,15 +51,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
         public void IniciarSesionSdk()
         {
             if (!CanIniciarSesion)
-            {
-                throw new ContpaqiSdkException(null, "No se puede inicializar el SDK por que ya esta inicializado.");
-            }
+                throw new ContpaqiSdkInvalidOperationException("No se puede inicializar el SDK por que ya esta inicializado.");
 
             int sdkResult = _sdk.InicializarSDK();
             if (sdkResult == SdkResultConstants.Success)
-            {
                 IsSdkInicializado = true;
-            }
             else
             {
                 string error = _sdkErrorRepository.BuscarMensajePorNumero(sdkResult);
@@ -76,15 +66,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
         public void IniciarSesionSdk(string nombreUsuario, string contrasena)
         {
             if (!CanIniciarSesion)
-            {
-                throw new ContpaqiSdkException(null, "No se puede inicializar el SDK por que ya esta inicializado.");
-            }
+                throw new ContpaqiSdkInvalidOperationException("No se puede inicializar el SDK por que ya esta inicializado.");
 
             int sdkResult = _sdk.InicializarSDK(nombreUsuario, contrasena);
             if (sdkResult == SdkResultConstants.Success)
-            {
                 IsSdkInicializado = true;
-            }
             else
             {
                 string error = _sdkErrorRepository.BuscarMensajePorNumero(sdkResult);
@@ -108,9 +94,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
         public void TerminarSesionSdk()
         {
             if (!CanTerminarSesion)
-            {
-                throw new ContpaqiSdkException(null, "No se puede terminar la sesion del SDK por que no ah sido inicializado.");
-            }
+                throw new ContpaqiSdkInvalidOperationException("No se puede terminar la sesion del SDK por que no ah sido inicializado.");
 
             _sdk.fTerminaSDK();
             IsSdkInicializado = false;

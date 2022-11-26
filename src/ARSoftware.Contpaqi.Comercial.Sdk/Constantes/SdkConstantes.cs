@@ -48,5 +48,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Constantes
         ///     Valor del codigo del resultado de una operacion del SDK realizada con exito.
         /// </summary>
         public const int CodigoExito = 0;
+
+        /// <summary>
+        ///     Nombre del directorio donde se generan los XML y PDF.
+        ///     Este directorio se crear automaticamente dentro del directorio de la empresa.
+        /// </summary>
+        public const string NombreDirectorioArchivosDigitales = "XML_SDK";
     }
 }

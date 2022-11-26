@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
+using ARSoftware.Contpaqi.Comercial.Sdk.Excepciones;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
@@ -42,22 +43,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoDireccion("CIDDIRECCION", idDireccionDato, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
             if (idDireccion == int.Parse(idDireccionDato.ToString()))
-            {
                 return LeerDatosDireccionActual();
-            }
 
             while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
             {
                 _sdk.fLeeDatoDireccion("CIDDIRECCION", idDireccionDato, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
                 if (idDireccion == int.Parse(idDireccionDato.ToString()))
-                {
                     return LeerDatosDireccionActual();
-                }
 
                 if (_sdk.fPosEOFDireccion() == 1)
-                {
                     break;
-                }
             }
 
             return null;
@@ -70,22 +65,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoDireccion("CTIPOCATALOGO", tipoCatalogo, 7).ToResultadoSdk(_sdk).ThrowIfError();
             if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertFromSdkValue(tipoCatalogo.ToString()))
-            {
                 yield return LeerDatosDireccionActual();
-            }
 
             while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
             {
                 _sdk.fLeeDatoDireccion("CTIPOCATALOGO", tipoCatalogo, 7).ToResultadoSdk(_sdk).ThrowIfError();
                 if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertFromSdkValue(tipoCatalogo.ToString()))
-                {
                     yield return LeerDatosDireccionActual();
-                }
 
                 if (_sdk.fPosEOFDireccion() == 1)
-                {
                     break;
-                }
             }
         }
 
@@ -99,9 +88,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             _sdk.fLeeDatoDireccion("CIDCATALOGO", idCatalogoDato, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
             if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertFromSdkValue(tipoCatalogo.ToString()) &&
                 idCatalogo == int.Parse(idCatalogoDato.ToString()))
-            {
                 yield return LeerDatosDireccionActual();
-            }
 
             while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
             {
@@ -109,14 +96,10 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                 _sdk.fLeeDatoDireccion("CIDCATALOGO", idCatalogoDato, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
                 if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertFromSdkValue(tipoCatalogo.ToString()) &&
                     idCatalogo == int.Parse(idCatalogoDato.ToString()))
-                {
                     yield return LeerDatosDireccionActual();
-                }
 
                 if (_sdk.fPosEOFDireccion() == 1)
-                {
                     break;
-                }
             }
         }
 
@@ -130,9 +113,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                 yield return LeerDatosDireccionActual();
 
                 if (_sdk.fPosEOFDireccion() == 1)
-                {
                     break;
-                }
             }
         }
 
@@ -154,16 +135,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                 try
                 {
                     if (!sqlModelType.HasProperty(propertyDescriptor.Name))
-                    {
                         continue;
-                    }
 
                     propertyDescriptor.SetValue(direccion,
                         _sdk.LeeDatoDireccion(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
                 }
-                catch (Exception e)
+                catch (ContpaqiSdkException e)
                 {
-                    throw new Exception($"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}", e);
+                    throw new ContpaqiSdkInvalidOperationException(
+                        $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
+                        e);
                 }
             }
         }

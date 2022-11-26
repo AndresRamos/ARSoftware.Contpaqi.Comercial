@@ -10,11 +10,22 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions
         public static object ConvertFromSdkValueString(this string valor, Type type)
         {
             if (type == typeof(DateTime))
-            {
                 return SdkDateTimeHelper.ConvertFromSdkFecha(valor);
-            }
 
-            return TypeDescriptor.GetConverter(type).ConvertFromString(valor);
+            try
+            {
+                return TypeDescriptor.GetConverter(type).ConvertFromString(valor);
+            }
+            catch (ArgumentException)
+            {
+                // En Factura Electronica el SDK puede retornar strings vacios en colunas que son de tipo int
+                // En vez de tirar una Exception regresar 0
+                // Por el momento solo regresar el valor default cuando el tipo es int.
+                if (type == typeof(int))
+                    return 0;
+
+                throw;
+            }
         }
 
         /// <summary>
@@ -34,9 +45,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions
             foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(model))
             {
                 if (!sqlModelType.HasProperty(propertyDescriptor.Name) || propertyDescriptor.Name == "CTIMESTAMP")
-                {
                     continue;
-                }
 
                 string propetyValue;
 
@@ -46,14 +55,10 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions
                     propetyValue = value?.ToSdkFecha();
                 }
                 else
-                {
                     propetyValue = propertyDescriptor.GetValue(model)?.ToString();
-                }
 
                 if (propetyValue is null)
-                {
                     continue;
-                }
 
                 datosDictionary.Add(propertyDescriptor.Name, propetyValue);
             }

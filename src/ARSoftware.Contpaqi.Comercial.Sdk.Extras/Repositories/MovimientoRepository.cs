@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using ARSoftware.Contpaqi.Comercial.Sdk.Excepciones;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
@@ -35,9 +36,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
 
                 if (resultadoSdk.Result ==
                     2) // Si el resultado es "2" significa que no hay movimientos en el filtro pero no creo que se considere un error para tirar una excepcion
-                {
                     yield break;
-                }
 
                 resultadoSdk.ThrowIfError();
             }
@@ -49,9 +48,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             {
                 yield return LeerDatosMovimientoActual();
                 if (_sdk.fPosMovimientoEOF() == 1)
-                {
                     break;
-                }
             }
 
             _sdk.fCancelaFiltroMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
@@ -65,9 +62,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             {
                 yield return LeerDatosMovimientoActual();
                 if (_sdk.fPosMovimientoEOF() == 1)
-                {
                     break;
-                }
             }
         }
 
@@ -91,16 +86,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                 try
                 {
                     if (!sqlModelType.HasProperty(propertyDescriptor.Name))
-                    {
                         continue;
-                    }
 
                     propertyDescriptor.SetValue(movimiento,
                         _sdk.LeeDatoMovimiento(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
                 }
-                catch (Exception e)
+                catch (ContpaqiSdkException e)
                 {
-                    throw new Exception($"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}", e);
+                    throw new ContpaqiSdkInvalidOperationException(
+                        $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
+                        e);
                 }
             }
         }

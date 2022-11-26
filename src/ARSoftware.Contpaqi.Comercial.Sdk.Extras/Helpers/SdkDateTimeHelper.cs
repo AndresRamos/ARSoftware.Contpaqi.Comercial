@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers
 {
@@ -6,12 +8,15 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers
     {
         public static DateTime ConvertFromSdkFecha(string fecha)
         {
-            return DateTime.ParseExact(fecha, "MM/dd/yyyy HH:mm:ss:fff", null);
+            return DateTime.ParseExact(fecha,
+                new[] { FormatosFechaSdk.Comercial, FormatosFechaSdk.FacturaElectronica },
+                null,
+                DateTimeStyles.None);
         }
 
         public static string ConvertToSdkFecha(DateTime fecha)
         {
-            return fecha.ToString("MM/dd/yyyy");
+            return fecha.ToString(FormatosFechaSdk.Fecha);
         }
 
         /// <summary>

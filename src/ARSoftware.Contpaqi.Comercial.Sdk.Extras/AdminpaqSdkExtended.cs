@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
@@ -1922,7 +1923,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
         public int InicializarSDK()
         {
             SetCurrentDirectory();
-            return AdminpaqSdk.fSetNombrePAQ(NombrePaq);
+            int result = fSetNombrePAQ(NombrePaq);
+            if (result == SdkConstantes.CodigoExito)
+                result = fInicializaLicenseInfo(LicenseInfoSdk.Adminpaq);
+
+            return result;
         }
 
         public int InicializarSDK(string usuario, string password)

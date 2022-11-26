@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
+using ARSoftware.Contpaqi.Comercial.Sdk.Excepciones;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
@@ -36,22 +37,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             _sdk.fPosPrimerConceptoDocto().ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoConceptoDocto("CIDDOCUMENTODE", idDocumentoModelo, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
             if (documentoModeloId == int.Parse(idDocumentoModelo.ToString()))
-            {
                 yield return LeerDatosConceptoDocumentoActual();
-            }
 
             while (_sdk.fPosSiguienteConceptoDocto() == SdkResultConstants.Success)
             {
                 _sdk.fLeeDatoConceptoDocto("CIDDOCUMENTODE", idDocumentoModelo, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
                 if (documentoModeloId == int.Parse(idDocumentoModelo.ToString()))
-                {
                     yield return LeerDatosConceptoDocumentoActual();
-                }
 
                 if (_sdk.fPosEOFConceptoDocto() == 1)
-                {
                     break;
-                }
             }
         }
 
@@ -64,9 +59,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             {
                 yield return LeerDatosConceptoDocumentoActual();
                 if (_sdk.fPosEOFConceptoDocto() == 1)
-                {
                     break;
-                }
             }
         }
 
@@ -86,18 +79,22 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
             {
                 if (!sqlModelType.HasProperty(propertyDescriptor.Name))
-                {
                     continue;
-                }
 
                 try
                 {
                     propertyDescriptor.SetValue(concepto,
                         _sdk.LeeDatoConcepto(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
                 }
-                catch (Exception e)
+                catch (ContpaqiSdkException e)
                 {
-                    throw new Exception($"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}", e);
+                    // Hay propiedades en Comercial que no estan en el esquema de la base de datos de Factura Electronica
+                    if (e.CodigoErrorSdk == SdkErrorConstants.NombreCampoInvalido)
+                        continue;
+
+                    throw new ContpaqiSdkInvalidOperationException(
+                        $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
+                        e);
                 }
             }
         }

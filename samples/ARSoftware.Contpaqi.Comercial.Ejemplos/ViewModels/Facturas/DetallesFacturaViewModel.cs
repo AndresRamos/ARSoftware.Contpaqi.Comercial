@@ -8,6 +8,8 @@ using System.Windows;
 using ARSoftware.Contpaqi.Comercial.Ejemplos.Messages;
 using ARSoftware.Contpaqi.Comercial.Ejemplos.Models;
 using ARSoftware.Contpaqi.Comercial.Ejemplos.Views.Movimientos;
+using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
@@ -29,6 +31,7 @@ public class DetallesFacturaViewModel : ObservableRecipient
     private readonly IClienteProveedorRepository<ClienteProveedor> _clienteProveedorRepository;
     private readonly IConceptoDocumentoRepository<ConceptoDocumento> _conceptoDocumentoRepository;
     private readonly ConfiguracionAplicacion _configuracionAplicacion;
+    private readonly IContpaqiSdk _contpaqiSdk;
     private readonly IDatosCfdiRepository _datosCfdiRepository;
     private readonly IDialogCoordinator _dialogCoordinator;
     private readonly IDireccionRepository<Direccion> _direccionRepository;
@@ -57,7 +60,8 @@ public class DetallesFacturaViewModel : ObservableRecipient
                                     IDireccionRepository<Direccion> direccionRepository,
                                     IMovimientoRepository<Movimiento> movimientoRepository,
                                     IProductoRepository<Producto> productoRepository,
-                                    IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
+                                    IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository,
+                                    IContpaqiSdk contpaqiSdk)
     {
         _documentoRepository = documentoRepository;
         _dialogCoordinator = dialogCoordinator;
@@ -74,6 +78,7 @@ public class DetallesFacturaViewModel : ObservableRecipient
         _movimientoRepository = movimientoRepository;
         _productoRepository = productoRepository;
         _valorClasificacionRepository = valorClasificacionRepository;
+        _contpaqiSdk = contpaqiSdk;
 
         CrearMovimientoCommand = new AsyncRelayCommand(CrearMovimientoAsync);
         EditarMovimientoCommand = new AsyncRelayCommand(EditarMovimientoAsync, CanEditarMovimientoAsync);
@@ -152,17 +157,13 @@ public class DetallesFacturaViewModel : ObservableRecipient
                 new MetroDialogSettings { AffirmativeButtonText = "Cancelar Documento", NegativeButtonText = "Cancelar" });
 
             if (messageDialogResult != MessageDialogResult.Affirmative)
-            {
                 return;
-            }
 
             string contrasenaCertificado =
                 await _dialogCoordinator.ShowInputAsync(this, "Contrasena Del Certificado", "Proporcione la contrasena del certificado.");
 
             if (string.IsNullOrWhiteSpace(contrasenaCertificado))
-            {
                 return;
-            }
 
             _documentoService.Cancelar(Factura.CIDDOCUMENTO, contrasenaCertificado);
 
@@ -187,9 +188,7 @@ public class DetallesFacturaViewModel : ObservableRecipient
                 new MetroDialogSettings { AffirmativeButtonText = "Cancelar Documento", NegativeButtonText = "Cancelar" });
 
             if (messageDialogResult != MessageDialogResult.Affirmative)
-            {
                 return;
-            }
 
             _documentoService.CancelarAdministrativamente(Factura.CIDDOCUMENTO);
 
@@ -217,7 +216,8 @@ public class DetallesFacturaViewModel : ObservableRecipient
     {
         Factura = _documentoRepository.BuscarPorId(facturaId);
         CargarRelaciones(Factura);
-        _documentoService.DesbloquearDocumento(facturaId);
+        if (_contpaqiSdk is ComercialSdkExtended)
+            _documentoService.DesbloquearDocumento(facturaId);
         OnPropertyChanged(nameof(TotalImpuestos));
         OnPropertyChanged(nameof(Factura));
     }
@@ -292,9 +292,7 @@ public class DetallesFacturaViewModel : ObservableRecipient
                 new MetroDialogSettings { AffirmativeButtonText = "Eliminar", NegativeButtonText = "Cancelar" });
 
             if (messageDialogResult != MessageDialogResult.Affirmative)
-            {
                 return;
-            }
 
             _documentoService.Eliminar(Factura.CIDDOCUMENTO);
 
@@ -317,9 +315,7 @@ public class DetallesFacturaViewModel : ObservableRecipient
             new MetroDialogSettings { AffirmativeButtonText = "Eliminar", NegativeButtonText = "Cancelar" });
 
         if (messageDialogResult != MessageDialogResult.Affirmative)
-        {
             return;
-        }
 
         try
         {
@@ -336,7 +332,12 @@ public class DetallesFacturaViewModel : ObservableRecipient
     {
         try
         {
-            var openFileDialog = new OpenFileDialog();
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = _contpaqiSdk is ComercialSdkExtended
+                    ? $"Comercial (*{ExtensionesPlantillaPdfSdk.Comercial})|*{ExtensionesPlantillaPdfSdk.Comercial}"
+                    : $"Factura Electronica (*{ExtensionesPlantillaPdfSdk.FacturaElectronica})|*{ExtensionesPlantillaPdfSdk.FacturaElectronica}"
+            };
             bool? showDialog = openFileDialog.ShowDialog();
             if (showDialog == true)
             {
@@ -363,13 +364,9 @@ public class DetallesFacturaViewModel : ObservableRecipient
                     });
 
                 if (messageDialogResult == MessageDialogResult.Affirmative)
-                {
                     new Process { StartInfo = new ProcessStartInfo(rutaArchivo) { UseShellExecute = true } }.Start();
-                }
                 else if (messageDialogResult == MessageDialogResult.FirstAuxiliary)
-                {
                     Clipboard.SetText(rutaArchivo);
-                }
             }
         }
         catch (Exception e)
@@ -402,13 +399,9 @@ public class DetallesFacturaViewModel : ObservableRecipient
                 });
 
             if (messageDialogResult == MessageDialogResult.Affirmative)
-            {
                 new Process { StartInfo = new ProcessStartInfo(rutaArchivo) { UseShellExecute = true } }.Start();
-            }
             else if (messageDialogResult == MessageDialogResult.FirstAuxiliary)
-            {
                 Clipboard.SetText(rutaArchivo);
-            }
         }
         catch (Exception e)
         {
@@ -491,9 +484,7 @@ public class DetallesFacturaViewModel : ObservableRecipient
                 await _dialogCoordinator.ShowInputAsync(this, "Contrasena Del Certificado", "Proporcione la contrasena del certificado.");
 
             if (string.IsNullOrWhiteSpace(dialogResult))
-            {
                 return;
-            }
 
             _documentoService.Timbrar(Factura.ConceptoDocumento.CCODIGOCONCEPTO, Factura.CSERIEDOCUMENTO, Factura.CFOLIO, dialogResult);
 

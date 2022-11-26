@@ -33,22 +33,43 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             var fechaFolioFiscal = new StringBuilder(3000);
             var montoFolioFiscal = new StringBuilder(3000);
 
-            _sdk.fGetDatosCFDI(serieCertificadoEmisor,
-                    folioFiscalUUid,
-                    serieCertificadoSat,
-                    fecha,
-                    selloDigital,
-                    selloSat,
-                    cadenaOriginalComplementoSat,
-                    regimen,
-                    lugarExpedicion,
-                    moneda,
-                    folioFiscalOriginal,
-                    serieFolioFiscal,
-                    fechaFolioFiscal,
-                    montoFolioFiscal)
-                .ToResultadoSdk(_sdk)
-                .ThrowIfError();
+            if (_sdk is ComercialSdkExtended)
+            {
+                _sdk.fGetDatosCFDI(serieCertificadoEmisor,
+                        folioFiscalUUid,
+                        serieCertificadoSat,
+                        fecha,
+                        selloDigital,
+                        selloSat,
+                        cadenaOriginalComplementoSat,
+                        regimen,
+                        lugarExpedicion,
+                        moneda,
+                        folioFiscalOriginal,
+                        serieFolioFiscal,
+                        fechaFolioFiscal,
+                        montoFolioFiscal)
+                    .ToResultadoSdk(_sdk)
+                    .ThrowIfError();
+            }
+            else
+            {
+                _sdk.fObtieneDatosCFDI("").ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoCFDI(serieCertificadoEmisor, 1).ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoCFDI(folioFiscalUUid, 2).ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoCFDI(serieCertificadoSat, 3).ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoCFDI(fecha, 4).ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoCFDI(selloDigital, 5).ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoCFDI(selloSat, 6).ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoCFDI(cadenaOriginalComplementoSat, 7).ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoCFDI(moneda, 8).ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoCFDI(lugarExpedicion, 9).ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoCFDI(regimen, 10).ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoCFDI(folioFiscalOriginal, 11).ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoCFDI(serieFolioFiscal, 12).ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoCFDI(fechaFolioFiscal, 13).ToResultadoSdk(_sdk).ThrowIfError();
+                _sdk.fLeeDatoCFDI(montoFolioFiscal, 14).ToResultadoSdk(_sdk).ThrowIfError();
+            }
 
             return new DatosCfdi
             {
