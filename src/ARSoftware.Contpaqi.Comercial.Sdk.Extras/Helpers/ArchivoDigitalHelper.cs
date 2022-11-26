@@ -21,7 +21,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers
 
         public static string GenerarRutaDirectorioArchivosDigitalesEmpresa(string rutaEmpresa)
         {
-            return Path.Combine(rutaEmpresa, NombreDirectorioArchivosDigitales);
+            return Path.Combine(rutaEmpresa, SdkConstantes.NombreDirectorioArchivosDigitales);
         }
 
         public static string GenerarRutaDirectorioEmpresaLocal(string rutaEmpresa)
