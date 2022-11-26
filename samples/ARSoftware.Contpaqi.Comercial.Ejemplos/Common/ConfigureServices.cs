@@ -1,5 +1,4 @@
-﻿using System;
-using ARSoftware.Contpaqi.Comercial.Ejemplos.Models;
+﻿using ARSoftware.Contpaqi.Comercial.Ejemplos.Models;
 using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels;
 using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Agentes;
 using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Almacenes;
@@ -17,32 +16,34 @@ using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Productos;
 using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.Sesion;
 using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.UnidadesMedida;
 using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.ValoresClasificacion;
+using ARSoftware.Contpaqi.Comercial.Ejemplos.Views;
+using ARSoftware.Contpaqi.Comercial.Sdk;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services;
 using MahApps.Metro.Controls.Dialogs;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ARSoftware.Contpaqi.Comercial.Ejemplos.Common;
 
-public static class DependencyInjection
+public static class ConfigureServices
 {
-    public static IServiceProvider Configure()
+    public static IServiceCollection AddWpfAppServices(this IServiceCollection services, IConfiguration configuration)
     {
-        var services = new ServiceCollection();
-
         services.RegisterViewModels();
         services.RegisterInfrastructureServices();
-        services.RegisterSdkServices();
+        services.RegisterSdkServices(configuration);
 
-        return services.BuildServiceProvider();
+        return services;
     }
 
     private static void RegisterViewModels(this IServiceCollection services)
     {
         services.AddSingleton<ConfiguracionAplicacion>();
+        services.AddSingleton<MainView>();
         services.AddTransient<MainViewModel>();
 
         // Agentes
@@ -107,9 +108,22 @@ public static class DependencyInjection
         services.AddTransient<SeleccionarValorClasificacionViewModel>();
     }
 
-    private static void RegisterSdkServices(this IServiceCollection services)
+    private static void RegisterSdkServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton<IContpaqiSdk, ComercialSdkExtended>();
+        var sdkOption = configuration.GetValue<TipoContpaqiSdk>("ContpaqiConfig:Sdk");
+
+        switch (sdkOption)
+        {
+            case TipoContpaqiSdk.Comercial:
+                services.AddSingleton<IContpaqiSdk, ComercialSdkExtended>();
+                break;
+            case TipoContpaqiSdk.Adminpaq:
+                services.AddSingleton<IContpaqiSdk, AdminpaqSdkExtended>();
+                break;
+            case TipoContpaqiSdk.FacturaElectronica:
+                services.AddSingleton<IContpaqiSdk, FacturaElectronicaSdkExtended>();
+                break;
+        }
 
         // Agentes
         services.AddSingleton(typeof(IAgenteRepository<>), typeof(AgenteRepository<>));
