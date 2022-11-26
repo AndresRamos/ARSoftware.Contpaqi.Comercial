@@ -26,7 +26,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extensiones
             else
                 AdminpaqSdk.fError(codigoErrorSdk, mensajeError, 512);
 
-            throw new ContpaqiSdkExcepcion(codigoErrorSdk, mensajeError.ToString());
+            throw new ContpaqiSdkException(codigoErrorSdk, mensajeError.ToString());
         }
     }
 }
