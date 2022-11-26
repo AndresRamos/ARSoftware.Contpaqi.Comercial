@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using ARSoftware.Contpaqi.Comercial.Sdk.Excepciones;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
@@ -47,9 +48,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             {
                 yield return LeerDatosClasificacionActual();
                 if (_sdk.fPosEOFClasificacion() == 1)
-                {
                     break;
-                }
             }
         }
 
@@ -71,18 +70,18 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                 try
                 {
                     if (!sqlModelType.HasProperty(propertyDescriptor.Name))
-                    {
                         continue;
-                    }
 
                     propertyDescriptor.SetValue(clasificacion,
                         _sdk.LeeDatoClasificacion(propertyDescriptor.Name)
                             .Trim()
                             .ConvertFromSdkValueString(propertyDescriptor.PropertyType));
                 }
-                catch (Exception e)
+                catch (ContpaqiSdkException e)
                 {
-                    throw new Exception($"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}", e);
+                    throw new ContpaqiSdkInvalidOperationException(
+                        $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
+                        e);
                 }
             }
         }

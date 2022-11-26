@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using ARSoftware.Contpaqi.Comercial.Sdk.Excepciones;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
@@ -37,22 +38,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             _sdk.fPosPrimerCteProv().ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
             if (TipoClienteHelper.IsCliente(tipoDeCliente.ToString()))
-            {
                 yield return LeerDatosClienteProveedorActual();
-            }
 
             while (_sdk.fPosSiguienteCteProv() == SdkResultConstants.Success)
             {
                 _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
                 if (TipoClienteHelper.IsCliente(tipoDeCliente.ToString()))
-                {
                     yield return LeerDatosClienteProveedorActual();
-                }
 
                 if (_sdk.fPosEOFCteProv() == 1)
-                {
                     break;
-                }
             }
         }
 
@@ -62,22 +57,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             var tipoDeCliente = new StringBuilder(7);
             _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
             if (tipoCliente == TipoClienteHelper.ConvertFromSdkValue(tipoDeCliente.ToString()))
-            {
                 yield return LeerDatosClienteProveedorActual();
-            }
 
             while (_sdk.fPosSiguienteCteProv() == SdkResultConstants.Success)
             {
                 _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
                 if (tipoCliente == TipoClienteHelper.ConvertFromSdkValue(tipoDeCliente.ToString()))
-                {
                     yield return LeerDatosClienteProveedorActual();
-                }
 
                 if (_sdk.fPosEOFCteProv() == 1)
-                {
                     break;
-                }
             }
         }
 
@@ -88,22 +77,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             _sdk.fPosPrimerCteProv().ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
             if (TipoClienteHelper.IsProveedor(tipoDeCliente.ToString()))
-            {
                 yield return LeerDatosClienteProveedorActual();
-            }
 
             while (_sdk.fPosSiguienteCteProv() == SdkResultConstants.Success)
             {
                 _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
                 if (TipoClienteHelper.IsProveedor(tipoDeCliente.ToString()))
-                {
                     yield return LeerDatosClienteProveedorActual();
-                }
 
                 if (_sdk.fPosEOFCteProv() == 1)
-                {
                     break;
-                }
             }
         }
 
@@ -115,9 +98,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             {
                 yield return LeerDatosClienteProveedorActual();
                 if (_sdk.fPosEOFCteProv() == 1)
-                {
                     break;
-                }
             }
         }
 
@@ -139,18 +120,18 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                 try
                 {
                     if (!sqlModelType.HasProperty(propertyDescriptor.Name))
-                    {
                         continue;
-                    }
 
                     propertyDescriptor.SetValue(cliente,
                         _sdk.LeeDatoClienteProveedor(propertyDescriptor.Name)
                             .Trim()
                             .ConvertFromSdkValueString(propertyDescriptor.PropertyType));
                 }
-                catch (Exception e)
+                catch (ContpaqiSdkException e)
                 {
-                    throw new Exception($"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}", e);
+                    throw new ContpaqiSdkInvalidOperationException(
+                        $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
+                        e);
                 }
             }
         }

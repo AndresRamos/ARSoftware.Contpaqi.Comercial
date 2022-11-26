@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
+using ARSoftware.Contpaqi.Comercial.Sdk.Excepciones;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
@@ -63,9 +64,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
 
                 // Si el resultado es "2" significa que no hay documentos en el filtro pero no creo que se considere un error para tirar una excepcion
                 if (resultadoSdk.Result == 2)
-                {
                     yield break;
-                }
 
                 resultadoSdk.ThrowIfError();
             }
@@ -76,9 +75,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             {
                 yield return LeerDatosDocumentoActual();
                 if (_sdk.fPosEOF() == 1)
-                {
                     break;
-                }
             }
 
             _sdk.fCancelaFiltroDocumento().ToResultadoSdk(_sdk).ThrowIfError();
@@ -96,9 +93,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                              fechaFin,
                              codigoConcepto,
                              codigoClienteProveedor))
-                {
                     yield return documento;
-                }
             }
         }
 
@@ -110,9 +105,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             {
                 yield return LeerDatosDocumentoActual();
                 if (_sdk.fPosEOF() == 1)
-                {
                     break;
-                }
             }
         }
 
@@ -134,16 +127,20 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                 try
                 {
                     if (!sqlModelType.HasProperty(propertyDescriptor.Name))
-                    {
                         continue;
-                    }
 
                     propertyDescriptor.SetValue(documento,
                         _sdk.LeeDatoDocumento(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
                 }
-                catch (Exception e)
+                catch (ContpaqiSdkException e)
                 {
-                    throw new Exception($"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}", e);
+                    // Hay propiedades en Comercial que no estan en el esquema de la base de datos de Factura Electronica
+                    if (e.CodigoErrorSdk == SdkErrorConstants.NombreCampoInvalido)
+                        continue;
+
+                    throw new ContpaqiSdkInvalidOperationException(
+                        $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
+                        e);
                 }
             }
         }
