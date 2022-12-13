@@ -44,6 +44,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 
         int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv);
 
+        int fAltaCuentaBancariaCliente(ref int aIdCtaBancaria,
+                                       string aCuentaBancaria,
+                                       string aNombreCuenta,
+                                       string aNombreMoneda,
+                                       string aClaveBanco,
+                                       string aClabe,
+                                       string aRfcBanco,
+                                       string aNombreBancoExtranjero,
+                                       string aCodigoCliente);
+
         int fAltaCuentaBancariaEmpresa(ref int aIdCtaBancaria,
                                        string aCuentaBancaria,
                                        string aNombreCuenta,

@@ -60,6 +60,17 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fAltaCteProv")]
         public static extern int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv);
 
+        [DllImport("MGWServicios.dll", EntryPoint = "fAltaCuentaBancariaCliente")]
+        public static extern int fAltaCuentaBancariaCliente(ref int aIdCtaBancaria,
+                                                            string aCuentaBancaria,
+                                                            string aNombreCuenta,
+                                                            string aNombreMoneda,
+                                                            string aClaveBanco,
+                                                            string aClabe,
+                                                            string aRfcBanco,
+                                                            string aNombreBancoExtranjero,
+                                                            string aCodigoCliente);
+
         [DllImport("MGWServicios.dll", EntryPoint = "fAltaCuentaBancariaEmpresa")]
         public static extern int fAltaCuentaBancariaEmpresa(ref int aIdCtaBancaria,
                                                             string aCuentaBancaria,

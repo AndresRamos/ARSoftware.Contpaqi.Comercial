@@ -95,6 +95,27 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return ComercialSdk.fAltaCteProv(ref aIdCteProv, ref astCteProv);
         }
 
+        public int fAltaCuentaBancariaCliente(ref int aIdCtaBancaria,
+                                              string aCuentaBancaria,
+                                              string aNombreCuenta,
+                                              string aNombreMoneda,
+                                              string aClaveBanco,
+                                              string aClabe,
+                                              string aRfcBanco,
+                                              string aNombreBancoExtranjero,
+                                              string aCodigoCliente)
+        {
+            return ComercialSdk.fAltaCuentaBancariaCliente(ref aIdCtaBancaria,
+                aCuentaBancaria,
+                aNombreCuenta,
+                aNombreMoneda,
+                aClaveBanco,
+                aClabe,
+                aRfcBanco,
+                aNombreBancoExtranjero,
+                aCodigoCliente);
+        }
+
         public int fAltaCuentaBancariaEmpresa(ref int aIdCtaBancaria,
                                               string aCuentaBancaria,
                                               string aNombreCuenta,
