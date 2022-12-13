@@ -7,6 +7,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 {
     public interface IContpaqiSdk
     {
+        int fAltaCuentaBancariaCliente(ref int aIdCtaBancaria,
+                                       string aCuentaBancaria,
+                                       string aNombreCuenta,
+                                       string aNombreMoneda,
+                                       string aClaveBanco,
+                                       string aClabe,
+                                       string aRfcBanco,
+                                       string aNombreBancoExtranjero,
+                                       string aCodigoCliente);
+
         string NombreLlaveRegistro { get; }
 
         string NombrePaq { get; }
