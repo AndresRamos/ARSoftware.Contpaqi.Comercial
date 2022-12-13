@@ -1603,7 +1603,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
                                                    string aLote,
                                                    ref double aExistencia)
         {
-            return AdminpaqSdk.fRegresaExistenciaLotePedimento(aCodigoProducto, aCodigoAlmacen, aPedimento, aLote, ref aExistencia);
+            throw new NotImplementedException();
         }
 
         public int fRegresaIVACargo(tLlaveDoc aLlaveDocto,

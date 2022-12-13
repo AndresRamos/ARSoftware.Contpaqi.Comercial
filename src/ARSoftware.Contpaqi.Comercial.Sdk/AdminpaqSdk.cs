@@ -903,13 +903,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
                                                                    string aValorCaracteristica3,
                                                                    ref double aExistencia);
 
-        [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaExistenciaLotePedimento")]
-        public static extern int fRegresaExistenciaLotePedimento(string aCodigoProducto,
-                                                                 string aCodigoAlmacen,
-                                                                 string aPedimento,
-                                                                 string aLote,
-                                                                 ref double aExistencia);
-
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaIVACargo")]
         public static extern int fRegresaIVACargo(tLlaveDoc aLlaveDocto,
                                                   double aNetoTasa15,
