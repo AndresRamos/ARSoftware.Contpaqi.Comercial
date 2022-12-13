@@ -626,6 +626,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             AdminpaqSdk.fCierraEmpresa();
         }
 
+        public int fCuentaBancariaEmpresaDoctos(string aCuentaBancaria)
+        {
+            throw new NotImplementedException();
+        }
+
         public int fDesbloqueaDocumento()
         {
             return AdminpaqSdk.fDesbloqueaDocumento();

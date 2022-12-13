@@ -371,6 +371,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fCierraEmpresa")]
         public static extern void fCierraEmpresa();
 
+        [DllImport("MGWServicios.dll", EntryPoint = "fCuentaBancariaEmpresaDoctos")]
+        public static extern int fCuentaBancariaEmpresaDoctos(string aCuentaBancaria);
+
         [DllImport("MGWServicios.dll", EntryPoint = "fDesbloqueaDocumento")]
         public static extern int fDesbloqueaDocumento();
 

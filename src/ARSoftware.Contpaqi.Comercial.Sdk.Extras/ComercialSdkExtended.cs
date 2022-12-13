@@ -633,6 +633,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             ComercialSdk.fCierraEmpresa();
         }
 
+        public int fCuentaBancariaEmpresaDoctos(string aCuentaBancaria)
+        {
+            return ComercialSdk.fCuentaBancariaEmpresaDoctos(aCuentaBancaria);
+        }
+
         public int fDesbloqueaDocumento()
         {
             return ComercialSdk.fDesbloqueaDocumento();

@@ -279,6 +279,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 
         void fCierraEmpresa();
 
+        int fCuentaBancariaEmpresaDoctos(string aCuentaBancaria);
+
         int fDesbloqueaDocumento();
 
         int fDocumentoBloqueado(ref int aImpreso);
