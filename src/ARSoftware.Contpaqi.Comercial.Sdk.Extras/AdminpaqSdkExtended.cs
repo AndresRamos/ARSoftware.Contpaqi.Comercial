@@ -633,7 +633,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
 
         public int fDesbloqueaDocumento()
         {
-            return AdminpaqSdk.fDesbloqueaDocumento();
+            throw new NotImplementedException();
         }
 
         public int fDocumentoBloqueado(ref int aImpreso)

@@ -341,9 +341,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
         [DllImport("MGW_SDK.dll", EntryPoint = "fCierraEmpresa")]
         public static extern void fCierraEmpresa();
 
-        [DllImport("MGW_SDK.dll", EntryPoint = "fDesbloqueaDocumento")]
-        public static extern int fDesbloqueaDocumento();
-
         [DllImport("MGW_SDK.dll", EntryPoint = "fDocumentoBloqueado")]
         public static extern int fDocumentoBloqueado(ref int aImpreso);
 
