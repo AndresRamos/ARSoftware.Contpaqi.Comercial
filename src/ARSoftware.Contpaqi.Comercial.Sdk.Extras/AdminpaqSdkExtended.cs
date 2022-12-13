@@ -344,7 +344,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
 
         public int fBorraMovimiento(int aIdDocumento, int aIdMovimiento)
         {
-            return AdminpaqSdk.fBorraMovimiento(aIdDocumento, aIdMovimiento);
+            throw new NotImplementedException();
         }
 
         public int fBorraProducto()

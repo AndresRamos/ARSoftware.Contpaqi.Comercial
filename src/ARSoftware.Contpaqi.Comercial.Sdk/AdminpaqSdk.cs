@@ -179,9 +179,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
         [DllImport("MGW_SDK.dll", EntryPoint = "fBorraDocumento_CW")]
         public static extern int fBorraDocumento_CW();
 
-        [DllImport("MGW_SDK.dll", EntryPoint = "fBorraMovimiento")]
-        public static extern int fBorraMovimiento(int aIdDocumento, int aIdMovimiento);
-
         [DllImport("MGW_SDK.dll", EntryPoint = "fBorraProducto")]
         public static extern int fBorraProducto();
 
