@@ -499,9 +499,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
         [DllImport("MGW_SDK.dll", EntryPoint = "fInicializaSDK")]
         public static extern int fInicializaSDK();
 
-        [DllImport("MGW_SDK.dll", EntryPoint = "fInicioSesionSDK")]
-        public static extern void fInicioSesionSDK(string aUsuario, string aContrasenia);
-
         [DllImport("MGW_SDK.dll", EntryPoint = "fInsertaAgente")]
         public static extern int fInsertaAgente();
 

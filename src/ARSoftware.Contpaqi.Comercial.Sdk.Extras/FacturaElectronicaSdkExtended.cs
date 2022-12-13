@@ -907,7 +907,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
 
         public void fInicioSesionSDK(string aUsuario, string aContrasenia)
         {
-            AdminpaqSdk.fInicioSesionSDK(aUsuario, aContrasenia);
+            throw new NotImplementedException();
         }
 
         public void fInicioSesionSDKCONTPAQi(string aUsuario, string aContrasenia)
