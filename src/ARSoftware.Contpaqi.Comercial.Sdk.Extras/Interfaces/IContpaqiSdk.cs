@@ -155,6 +155,10 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 
         int fBorraCteProv();
 
+        int fBorraCuentaBancariaCliente(string aCuentaBancaria, string aCodigoCliente);
+
+        int fBorraCuentaBancariaEmpresa(string aCuentaBancaria);
+
         int fBorraDocumento();
 
         int fBorraDocumento_CW();
@@ -274,6 +278,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
                            ref int aEstatusCancelacion);
 
         void fCierraEmpresa();
+
+        int fCuentaBancariaEmpresaDoctos(string aCuentaBancaria);
 
         int fDesbloqueaDocumento();
 
@@ -461,6 +467,23 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
         int fLlenaRegistroValorClasif(ref tValorClasificacion astValorClasif);
 
         int fModificaCostoEntrada(string aIdMovimiento, string aCostoEntrada);
+
+        int fModificaCuentaBancariaCliente(string aCuentaBancaria,
+                                           string aNombreCuenta,
+                                           string aNombreMoneda,
+                                           string aClaveBanco,
+                                           string aRfcBanco,
+                                           string aClabe,
+                                           string aNombreExtranjero,
+                                           string aCodigoCliente);
+
+        int fModificaCuentaBancariaEmpresa(string aCuentaBancaria,
+                                           string aNombreCuenta,
+                                           string aNombreMoneda,
+                                           string aClaveBanco,
+                                           string aRfcBanco,
+                                           string aClabe,
+                                           string aNombreExtranjero);
 
         int fObtenCeryKey(int aIdFirmarl, string aRutaKey, string aRutaCer);
 

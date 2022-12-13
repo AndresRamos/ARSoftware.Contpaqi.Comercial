@@ -322,6 +322,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return AdminpaqSdk.fBorraCteProv();
         }
 
+        public int fBorraCuentaBancariaCliente(string aCuentaBancaria, string aCodigoCliente)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int fBorraCuentaBancariaEmpresa(string aCuentaBancaria)
+        {
+            throw new NotImplementedException();
+        }
+
         public int fBorraDocumento()
         {
             return AdminpaqSdk.fBorraDocumento();
@@ -614,6 +624,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
         public void fCierraEmpresa()
         {
             AdminpaqSdk.fCierraEmpresa();
+        }
+
+        public int fCuentaBancariaEmpresaDoctos(string aCuentaBancaria)
+        {
+            throw new NotImplementedException();
         }
 
         public int fDesbloqueaDocumento()
@@ -1058,6 +1073,29 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
         public int fModificaCostoEntrada(string aIdMovimiento, string aCostoEntrada)
         {
             return AdminpaqSdk.fModificaCostoEntrada(aIdMovimiento, aCostoEntrada);
+        }
+
+        public int fModificaCuentaBancariaCliente(string aCuentaBancaria,
+                                                  string aNombreCuenta,
+                                                  string aNombreMoneda,
+                                                  string aClaveBanco,
+                                                  string aRfcBanco,
+                                                  string aClabe,
+                                                  string aNombreExtranjero,
+                                                  string aCodigoCliente)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int fModificaCuentaBancariaEmpresa(string aCuentaBancaria,
+                                                  string aNombreCuenta,
+                                                  string aNombreMoneda,
+                                                  string aClaveBanco,
+                                                  string aRfcBanco,
+                                                  string aClabe,
+                                                  string aNombreExtranjero)
+        {
+            throw new NotImplementedException();
         }
 
         public int fObtenCeryKey(int aIdFirmarl, string aRutaKey, string aRutaCer)

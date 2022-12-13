@@ -336,6 +336,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return ComercialSdk.fBorraCteProv();
         }
 
+        public int fBorraCuentaBancariaCliente(string aCuentaBancaria, string aCodigoCliente)
+        {
+            return ComercialSdk.fBorraCuentaBancariaCliente(aCuentaBancaria, aCodigoCliente);
+        }
+
+        public int fBorraCuentaBancariaEmpresa(string aCuentaBancaria)
+        {
+            return ComercialSdk.fBorraCuentaBancariaEmpresa(aCuentaBancaria);
+        }
+
         public int fBorraDocumento()
         {
             return ComercialSdk.fBorraDocumento();
@@ -621,6 +631,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
         public void fCierraEmpresa()
         {
             ComercialSdk.fCierraEmpresa();
+        }
+
+        public int fCuentaBancariaEmpresaDoctos(string aCuentaBancaria)
+        {
+            return ComercialSdk.fCuentaBancariaEmpresaDoctos(aCuentaBancaria);
         }
 
         public int fDesbloqueaDocumento()
@@ -1078,6 +1093,42 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
         public int fModificaCostoEntrada(string aIdMovimiento, string aCostoEntrada)
         {
             return ComercialSdk.fModificaCostoEntrada(aIdMovimiento, aCostoEntrada);
+        }
+
+        public int fModificaCuentaBancariaCliente(string aCuentaBancaria,
+                                                  string aNombreCuenta,
+                                                  string aNombreMoneda,
+                                                  string aClaveBanco,
+                                                  string aRfcBanco,
+                                                  string aClabe,
+                                                  string aNombreExtranjero,
+                                                  string aCodigoCliente)
+        {
+            return ComercialSdk.fModificaCuentaBancariaCliente(aCuentaBancaria,
+                aNombreCuenta,
+                aNombreMoneda,
+                aClaveBanco,
+                aRfcBanco,
+                aClabe,
+                aNombreExtranjero,
+                aCodigoCliente);
+        }
+
+        public int fModificaCuentaBancariaEmpresa(string aCuentaBancaria,
+                                                  string aNombreCuenta,
+                                                  string aNombreMoneda,
+                                                  string aClaveBanco,
+                                                  string aRfcBanco,
+                                                  string aClabe,
+                                                  string aNombreExtranjero)
+        {
+            return ComercialSdk.fModificaCuentaBancariaEmpresa(aCuentaBancaria,
+                aNombreCuenta,
+                aNombreMoneda,
+                aClaveBanco,
+                aRfcBanco,
+                aClabe,
+                aNombreExtranjero);
         }
 
         public int fObtenCeryKey(int aIdFirmarl, string aRutaKey, string aRutaCer)
