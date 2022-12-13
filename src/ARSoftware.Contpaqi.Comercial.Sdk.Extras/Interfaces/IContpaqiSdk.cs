@@ -20,7 +20,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
         int fActualizaCteProv(string aCodigoCteProv, ref tCteProv astCteProv);
 
         int fActualizaDireccion(ref tDireccion astDireccion);
-
         int fActualizaProducto(string aCodigoProducto, ref tProducto astProducto);
 
         int fActualizaUnidad(string aNombreUnidad, ref tUnidad astUnidad);
@@ -223,9 +222,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 
         int fCancelaDocumento();
 
-        int fCancelaDocumentoAdministrativamente();
-
         int fCancelaDocumento_CW();
+
+        int fCancelaDocumentoAdministrativamente();
 
         int fCancelaDocumentoConMotivo(string aMotivoCancelacion, string aUUIDRemplaza);
 

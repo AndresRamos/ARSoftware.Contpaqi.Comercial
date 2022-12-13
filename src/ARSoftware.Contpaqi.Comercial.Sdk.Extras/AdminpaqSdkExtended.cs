@@ -499,14 +499,14 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return AdminpaqSdk.fCancelaDocumento();
         }
 
-        public int fCancelaDocumentoAdministrativamente()
-        {
-            throw new NotImplementedException();
-        }
-
         public int fCancelaDocumento_CW()
         {
             return AdminpaqSdk.fCancelaDocumento_CW();
+        }
+
+        public int fCancelaDocumentoAdministrativamente()
+        {
+            throw new NotImplementedException();
         }
 
         public int fCancelaDocumentoConMotivo(string aMotivoCancelacion, string aUUIDRemplaza)
