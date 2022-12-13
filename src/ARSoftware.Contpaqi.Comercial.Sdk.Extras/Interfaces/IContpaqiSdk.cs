@@ -154,6 +154,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
         int fAltaValorClasif(ref int aIdValorClasif, ref tValorClasificacion astValorClasif);
 
         int fBorraCteProv();
+        int fBorraCuentaBancariaEmpresa(string aCuentaBancaria);
 
         int fBorraDocumento();
 

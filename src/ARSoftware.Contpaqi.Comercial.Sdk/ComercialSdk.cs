@@ -194,6 +194,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fBorraCteProv")]
         public static extern int fBorraCteProv();
 
+        [DllImport("MGWServicios.dll", EntryPoint = "fBorraCuentaBancariaEmpresa")]
+        public static extern int fBorraCuentaBancariaEmpresa(string aCuentaBancaria);
+
         [DllImport("MGWServicios.dll", EntryPoint = "fBorraDocumento")]
         public static extern int fBorraDocumento();
 
