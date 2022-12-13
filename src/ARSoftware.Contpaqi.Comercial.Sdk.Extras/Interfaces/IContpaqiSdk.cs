@@ -462,6 +462,14 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 
         int fModificaCostoEntrada(string aIdMovimiento, string aCostoEntrada);
 
+        int fModificaCuentaBancariaEmpresa(string aCuentaBancaria,
+                                           string aNombreCuenta,
+                                           string aNombreMoneda,
+                                           string aClaveBanco,
+                                           string aRfcBanco,
+                                           string aClabe,
+                                           string aNombreExtranjero);
+
         int fObtenCeryKey(int aIdFirmarl, string aRutaKey, string aRutaCer);
 
         int fObtieneDatosCFDI(string atPtrPassword);
