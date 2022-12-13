@@ -633,7 +633,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
 
         public int fDesbloqueaDocumento()
         {
-            return AdminpaqSdk.fDesbloqueaDocumento();
+            throw new NotImplementedException();
         }
 
         public int fDocumentoBloqueado(ref int aImpreso)
@@ -907,7 +907,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
 
         public void fInicioSesionSDK(string aUsuario, string aContrasenia)
         {
-            AdminpaqSdk.fInicioSesionSDK(aUsuario, aContrasenia);
+            throw new NotImplementedException();
         }
 
         public void fInicioSesionSDKCONTPAQi(string aUsuario, string aContrasenia)
@@ -1497,7 +1497,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
 
         public int fProyectoEmpresaDoctos(string aCodigoProyecto)
         {
-            return AdminpaqSdk.fProyectoEmpresaDoctos(aCodigoProyecto);
+            throw new NotImplementedException();
         }
 
         public int fRecosteoProducto(string aCodigoProducto,
@@ -1603,7 +1603,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
                                                    string aLote,
                                                    ref double aExistencia)
         {
-            return AdminpaqSdk.fRegresaExistenciaLotePedimento(aCodigoProducto, aCodigoAlmacen, aPedimento, aLote, ref aExistencia);
+            throw new NotImplementedException();
         }
 
         public int fRegresaIVACargo(tLlaveDoc aLlaveDocto,

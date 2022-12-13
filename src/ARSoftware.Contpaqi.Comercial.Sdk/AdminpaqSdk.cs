@@ -341,9 +341,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
         [DllImport("MGW_SDK.dll", EntryPoint = "fCierraEmpresa")]
         public static extern void fCierraEmpresa();
 
-        [DllImport("MGW_SDK.dll", EntryPoint = "fDesbloqueaDocumento")]
-        public static extern int fDesbloqueaDocumento();
-
         [DllImport("MGW_SDK.dll", EntryPoint = "fDocumentoBloqueado")]
         public static extern int fDocumentoBloqueado(ref int aImpreso);
 
@@ -501,9 +498,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fInicializaSDK")]
         public static extern int fInicializaSDK();
-
-        [DllImport("MGW_SDK.dll", EntryPoint = "fInicioSesionSDK")]
-        public static extern void fInicioSesionSDK(string aUsuario, string aContrasenia);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fInsertaAgente")]
         public static extern int fInsertaAgente();
@@ -844,9 +838,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
         [DllImport("MGW_SDK.dll", EntryPoint = "fPosUltimoValorClasif")]
         public static extern int fPosUltimoValorClasif();
 
-        [DllImport("MGW_SDK.dll", EntryPoint = "fProyectoEmpresaDoctos")]
-        public static extern int fProyectoEmpresaDoctos(string aCodigoProyecto);
-
         [DllImport("MGW_SDK.dll", EntryPoint = "fRecosteoProducto")]
         public static extern int fRecosteoProducto(string aCodigoProducto,
                                                    int aEjercicio,
@@ -911,13 +902,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
                                                                    string aValorCaracteristica2,
                                                                    string aValorCaracteristica3,
                                                                    ref double aExistencia);
-
-        [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaExistenciaLotePedimento")]
-        public static extern int fRegresaExistenciaLotePedimento(string aCodigoProducto,
-                                                                 string aCodigoAlmacen,
-                                                                 string aPedimento,
-                                                                 string aLote,
-                                                                 ref double aExistencia);
 
         [DllImport("MGW_SDK.dll", EntryPoint = "fRegresaIVACargo")]
         public static extern int fRegresaIVACargo(tLlaveDoc aLlaveDocto,
