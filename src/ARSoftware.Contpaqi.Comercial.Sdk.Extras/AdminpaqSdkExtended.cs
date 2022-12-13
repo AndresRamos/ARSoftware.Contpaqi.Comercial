@@ -1497,7 +1497,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
 
         public int fProyectoEmpresaDoctos(string aCodigoProyecto)
         {
-            return AdminpaqSdk.fProyectoEmpresaDoctos(aCodigoProyecto);
+            throw new NotImplementedException();
         }
 
         public int fRecosteoProducto(string aCodigoProducto,

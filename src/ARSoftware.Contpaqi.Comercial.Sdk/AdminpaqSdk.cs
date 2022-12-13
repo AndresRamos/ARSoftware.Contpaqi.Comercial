@@ -838,9 +838,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
         [DllImport("MGW_SDK.dll", EntryPoint = "fPosUltimoValorClasif")]
         public static extern int fPosUltimoValorClasif();
 
-        [DllImport("MGW_SDK.dll", EntryPoint = "fProyectoEmpresaDoctos")]
-        public static extern int fProyectoEmpresaDoctos(string aCodigoProyecto);
-
         [DllImport("MGW_SDK.dll", EntryPoint = "fRecosteoProducto")]
         public static extern int fRecosteoProducto(string aCodigoProducto,
                                                    int aEjercicio,
