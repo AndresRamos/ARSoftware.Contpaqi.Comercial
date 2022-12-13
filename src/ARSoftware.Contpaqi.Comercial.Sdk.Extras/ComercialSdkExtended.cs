@@ -95,6 +95,25 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return ComercialSdk.fAltaCteProv(ref aIdCteProv, ref astCteProv);
         }
 
+        public int fAltaCuentaBancariaEmpresa(ref int aIdCtaBancaria,
+                                              string aCuentaBancaria,
+                                              string aNombreCuenta,
+                                              string aNombreMoneda,
+                                              string aClaveBanco,
+                                              string aClabe,
+                                              string aRfcBanco,
+                                              string aNombreBancoExtranjero)
+        {
+            return ComercialSdk.fAltaCuentaBancariaEmpresa(ref aIdCtaBancaria,
+                aCuentaBancaria,
+                aNombreCuenta,
+                aNombreMoneda,
+                aClaveBanco,
+                aClabe,
+                aRfcBanco,
+                aNombreBancoExtranjero);
+        }
+
         public int fAltaDireccion(ref int aIdDireccion, ref tDireccion astDireccion)
         {
             return ComercialSdk.fAltaDireccion(ref aIdDireccion, ref astDireccion);
@@ -486,14 +505,14 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return ComercialSdk.fCancelaDocumento();
         }
 
-        public int fCancelaDocumentoAdministrativamente()
-        {
-            return ComercialSdk.fCancelaDocumentoAdministrativamente();
-        }
-
         public int fCancelaDocumento_CW()
         {
             return ComercialSdk.fCancelaDocumento_CW();
+        }
+
+        public int fCancelaDocumentoAdministrativamente()
+        {
+            return ComercialSdk.fCancelaDocumentoAdministrativamente();
         }
 
         public int fCancelaDocumentoConMotivo(string aMotivoCancelacion, string aUUIDRemplaza)

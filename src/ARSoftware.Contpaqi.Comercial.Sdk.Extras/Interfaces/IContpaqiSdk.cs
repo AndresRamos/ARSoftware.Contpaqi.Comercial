@@ -20,7 +20,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
         int fActualizaCteProv(string aCodigoCteProv, ref tCteProv astCteProv);
 
         int fActualizaDireccion(ref tDireccion astDireccion);
-
         int fActualizaProducto(string aCodigoProducto, ref tProducto astProducto);
 
         int fActualizaUnidad(string aNombreUnidad, ref tUnidad astUnidad);
@@ -44,6 +43,15 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
         int fAgregarRelacionCFDI2(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aUUID);
 
         int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv);
+
+        int fAltaCuentaBancariaEmpresa(ref int aIdCtaBancaria,
+                                       string aCuentaBancaria,
+                                       string aNombreCuenta,
+                                       string aNombreMoneda,
+                                       string aClaveBanco,
+                                       string aClabe,
+                                       string aRfcBanco,
+                                       string aNombreBancoExtranjero);
 
         int fAltaDireccion(ref int aIdDireccion, ref tDireccion astDireccion);
 
@@ -214,9 +222,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 
         int fCancelaDocumento();
 
-        int fCancelaDocumentoAdministrativamente();
-
         int fCancelaDocumento_CW();
+
+        int fCancelaDocumentoAdministrativamente();
 
         int fCancelaDocumentoConMotivo(string aMotivoCancelacion, string aUUIDRemplaza);
 

@@ -60,6 +60,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fAltaCteProv")]
         public static extern int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv);
 
+        [DllImport("MGWServicios.dll", EntryPoint = "fAltaCuentaBancariaEmpresa")]
+        public static extern int fAltaCuentaBancariaEmpresa(ref int aIdCtaBancaria,
+                                                            string aCuentaBancaria,
+                                                            string aNombreCuenta,
+                                                            string aNombreMoneda,
+                                                            string aClaveBanco,
+                                                            string aClabe,
+                                                            string aRfcBanco,
+                                                            string aNombreBancoExtranjero);
+
         [DllImport("MGWServicios.dll", EntryPoint = "fAltaDireccion")]
         public static extern int fAltaDireccion(ref int aIdDireccion, ref tDireccion astDireccion);
 
@@ -283,11 +293,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fCancelaDocumento")]
         public static extern int fCancelaDocumento();
 
-        [DllImport("MGWServicios.dll", EntryPoint = "fCancelaDocumentoAdministrativamente")]
-        public static extern int fCancelaDocumentoAdministrativamente();
-
         [DllImport("MGWServicios.dll", EntryPoint = "fCancelaDocumento_CW")]
         public static extern int fCancelaDocumento_CW();
+
+        [DllImport("MGWServicios.dll", EntryPoint = "fCancelaDocumentoAdministrativamente")]
+        public static extern int fCancelaDocumentoAdministrativamente();
 
         [DllImport("MGWServicios.dll", EntryPoint = "fCancelaDocumentoConMotivo")]
         public static extern int fCancelaDocumentoConMotivo(string aMotivoCancelacion, string aUUIDRemplaza);
