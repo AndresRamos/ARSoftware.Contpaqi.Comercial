@@ -1060,6 +1060,17 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return AdminpaqSdk.fModificaCostoEntrada(aIdMovimiento, aCostoEntrada);
         }
 
+        public int fModificaCuentaBancariaEmpresa(string aCuentaBancaria,
+                                                  string aNombreCuenta,
+                                                  string aNombreMoneda,
+                                                  string aClaveBanco,
+                                                  string aRfcBanco,
+                                                  string aClabe,
+                                                  string aNombreExtranjero)
+        {
+            throw new NotImplementedException();
+        }
+
         public int fObtenCeryKey(int aIdFirmarl, string aRutaKey, string aRutaCer)
         {
             return AdminpaqSdk.fObtenCeryKey(aIdFirmarl, aRutaKey, aRutaCer);
