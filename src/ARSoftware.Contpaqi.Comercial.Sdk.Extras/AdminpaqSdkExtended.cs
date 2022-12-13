@@ -322,6 +322,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return AdminpaqSdk.fBorraCteProv();
         }
 
+        public int fBorraCuentaBancariaCliente(string aCuentaBancaria, string aCodigoCliente)
+        {
+            throw new NotImplementedException();
+        }
+
         public int fBorraCuentaBancariaEmpresa(string aCuentaBancaria)
         {
             throw new NotImplementedException();

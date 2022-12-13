@@ -336,6 +336,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return ComercialSdk.fBorraCteProv();
         }
 
+        public int fBorraCuentaBancariaCliente(string aCuentaBancaria, string aCodigoCliente)
+        {
+            return ComercialSdk.fBorraCuentaBancariaCliente(aCuentaBancaria, aCodigoCliente);
+        }
+
         public int fBorraCuentaBancariaEmpresa(string aCuentaBancaria)
         {
             return ComercialSdk.fBorraCuentaBancariaEmpresa(aCuentaBancaria);
