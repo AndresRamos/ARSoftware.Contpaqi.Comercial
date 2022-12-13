@@ -95,6 +95,46 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return ComercialSdk.fAltaCteProv(ref aIdCteProv, ref astCteProv);
         }
 
+        public int fAltaCuentaBancariaCliente(ref int aIdCtaBancaria,
+                                              string aCuentaBancaria,
+                                              string aNombreCuenta,
+                                              string aNombreMoneda,
+                                              string aClaveBanco,
+                                              string aClabe,
+                                              string aRfcBanco,
+                                              string aNombreBancoExtranjero,
+                                              string aCodigoCliente)
+        {
+            return ComercialSdk.fAltaCuentaBancariaCliente(ref aIdCtaBancaria,
+                aCuentaBancaria,
+                aNombreCuenta,
+                aNombreMoneda,
+                aClaveBanco,
+                aClabe,
+                aRfcBanco,
+                aNombreBancoExtranjero,
+                aCodigoCliente);
+        }
+
+        public int fAltaCuentaBancariaEmpresa(ref int aIdCtaBancaria,
+                                              string aCuentaBancaria,
+                                              string aNombreCuenta,
+                                              string aNombreMoneda,
+                                              string aClaveBanco,
+                                              string aClabe,
+                                              string aRfcBanco,
+                                              string aNombreBancoExtranjero)
+        {
+            return ComercialSdk.fAltaCuentaBancariaEmpresa(ref aIdCtaBancaria,
+                aCuentaBancaria,
+                aNombreCuenta,
+                aNombreMoneda,
+                aClaveBanco,
+                aClabe,
+                aRfcBanco,
+                aNombreBancoExtranjero);
+        }
+
         public int fAltaDireccion(ref int aIdDireccion, ref tDireccion astDireccion)
         {
             return ComercialSdk.fAltaDireccion(ref aIdDireccion, ref astDireccion);
@@ -296,6 +336,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return ComercialSdk.fBorraCteProv();
         }
 
+        public int fBorraCuentaBancariaCliente(string aCuentaBancaria, string aCodigoCliente)
+        {
+            return ComercialSdk.fBorraCuentaBancariaCliente(aCuentaBancaria, aCodigoCliente);
+        }
+
+        public int fBorraCuentaBancariaEmpresa(string aCuentaBancaria)
+        {
+            return ComercialSdk.fBorraCuentaBancariaEmpresa(aCuentaBancaria);
+        }
+
         public int fBorraDocumento()
         {
             return ComercialSdk.fBorraDocumento();
@@ -486,14 +536,14 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
             return ComercialSdk.fCancelaDocumento();
         }
 
-        public int fCancelaDocumentoAdministrativamente()
-        {
-            return ComercialSdk.fCancelaDocumentoAdministrativamente();
-        }
-
         public int fCancelaDocumento_CW()
         {
             return ComercialSdk.fCancelaDocumento_CW();
+        }
+
+        public int fCancelaDocumentoAdministrativamente()
+        {
+            return ComercialSdk.fCancelaDocumentoAdministrativamente();
         }
 
         public int fCancelaDocumentoConMotivo(string aMotivoCancelacion, string aUUIDRemplaza)
@@ -581,6 +631,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
         public void fCierraEmpresa()
         {
             ComercialSdk.fCierraEmpresa();
+        }
+
+        public int fCuentaBancariaEmpresaDoctos(string aCuentaBancaria)
+        {
+            return ComercialSdk.fCuentaBancariaEmpresaDoctos(aCuentaBancaria);
         }
 
         public int fDesbloqueaDocumento()
@@ -1038,6 +1093,42 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
         public int fModificaCostoEntrada(string aIdMovimiento, string aCostoEntrada)
         {
             return ComercialSdk.fModificaCostoEntrada(aIdMovimiento, aCostoEntrada);
+        }
+
+        public int fModificaCuentaBancariaCliente(string aCuentaBancaria,
+                                                  string aNombreCuenta,
+                                                  string aNombreMoneda,
+                                                  string aClaveBanco,
+                                                  string aRfcBanco,
+                                                  string aClabe,
+                                                  string aNombreExtranjero,
+                                                  string aCodigoCliente)
+        {
+            return ComercialSdk.fModificaCuentaBancariaCliente(aCuentaBancaria,
+                aNombreCuenta,
+                aNombreMoneda,
+                aClaveBanco,
+                aRfcBanco,
+                aClabe,
+                aNombreExtranjero,
+                aCodigoCliente);
+        }
+
+        public int fModificaCuentaBancariaEmpresa(string aCuentaBancaria,
+                                                  string aNombreCuenta,
+                                                  string aNombreMoneda,
+                                                  string aClaveBanco,
+                                                  string aRfcBanco,
+                                                  string aClabe,
+                                                  string aNombreExtranjero)
+        {
+            return ComercialSdk.fModificaCuentaBancariaEmpresa(aCuentaBancaria,
+                aNombreCuenta,
+                aNombreMoneda,
+                aClaveBanco,
+                aRfcBanco,
+                aClabe,
+                aNombreExtranjero);
         }
 
         public int fObtenCeryKey(int aIdFirmarl, string aRutaKey, string aRutaCer)

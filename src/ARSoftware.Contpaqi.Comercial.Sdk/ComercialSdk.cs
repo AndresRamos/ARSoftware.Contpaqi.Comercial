@@ -60,6 +60,27 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fAltaCteProv")]
         public static extern int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv);
 
+        [DllImport("MGWServicios.dll", EntryPoint = "fAltaCuentaBancariaCliente")]
+        public static extern int fAltaCuentaBancariaCliente(ref int aIdCtaBancaria,
+                                                            string aCuentaBancaria,
+                                                            string aNombreCuenta,
+                                                            string aNombreMoneda,
+                                                            string aClaveBanco,
+                                                            string aClabe,
+                                                            string aRfcBanco,
+                                                            string aNombreBancoExtranjero,
+                                                            string aCodigoCliente);
+
+        [DllImport("MGWServicios.dll", EntryPoint = "fAltaCuentaBancariaEmpresa")]
+        public static extern int fAltaCuentaBancariaEmpresa(ref int aIdCtaBancaria,
+                                                            string aCuentaBancaria,
+                                                            string aNombreCuenta,
+                                                            string aNombreMoneda,
+                                                            string aClaveBanco,
+                                                            string aClabe,
+                                                            string aRfcBanco,
+                                                            string aNombreBancoExtranjero);
+
         [DllImport("MGWServicios.dll", EntryPoint = "fAltaDireccion")]
         public static extern int fAltaDireccion(ref int aIdDireccion, ref tDireccion astDireccion);
 
@@ -173,6 +194,12 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fBorraCteProv")]
         public static extern int fBorraCteProv();
 
+        [DllImport("MGWServicios.dll", EntryPoint = "fBorraCuentaBancariaCliente")]
+        public static extern int fBorraCuentaBancariaCliente(string aCuentaBancaria, string aCodigoCliente);
+
+        [DllImport("MGWServicios.dll", EntryPoint = "fBorraCuentaBancariaEmpresa")]
+        public static extern int fBorraCuentaBancariaEmpresa(string aCuentaBancaria);
+
         [DllImport("MGWServicios.dll", EntryPoint = "fBorraDocumento")]
         public static extern int fBorraDocumento();
 
@@ -283,11 +310,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
         [DllImport("MGWServicios.dll", EntryPoint = "fCancelaDocumento")]
         public static extern int fCancelaDocumento();
 
-        [DllImport("MGWServicios.dll", EntryPoint = "fCancelaDocumentoAdministrativamente")]
-        public static extern int fCancelaDocumentoAdministrativamente();
-
         [DllImport("MGWServicios.dll", EntryPoint = "fCancelaDocumento_CW")]
         public static extern int fCancelaDocumento_CW();
+
+        [DllImport("MGWServicios.dll", EntryPoint = "fCancelaDocumentoAdministrativamente")]
+        public static extern int fCancelaDocumentoAdministrativamente();
 
         [DllImport("MGWServicios.dll", EntryPoint = "fCancelaDocumentoConMotivo")]
         public static extern int fCancelaDocumentoConMotivo(string aMotivoCancelacion, string aUUIDRemplaza);
@@ -343,6 +370,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
 
         [DllImport("MGWServicios.dll", EntryPoint = "fCierraEmpresa")]
         public static extern void fCierraEmpresa();
+
+        [DllImport("MGWServicios.dll", EntryPoint = "fCuentaBancariaEmpresaDoctos")]
+        public static extern int fCuentaBancariaEmpresaDoctos(string aCuentaBancaria);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fDesbloqueaDocumento")]
         public static extern int fDesbloqueaDocumento();
@@ -622,6 +652,25 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk
 
         [DllImport("MGWServicios.dll", EntryPoint = "fModificaCostoEntrada")]
         public static extern int fModificaCostoEntrada(string aIdMovimiento, string aCostoEntrada);
+
+        [DllImport("MGWServicios.dll", EntryPoint = "fModificaCuentaBancariaCliente")]
+        public static extern int fModificaCuentaBancariaCliente(string aCuentaBancaria,
+                                                                string aNombreCuenta,
+                                                                string aNombreMoneda,
+                                                                string aClaveBanco,
+                                                                string aRfcBanco,
+                                                                string aClabe,
+                                                                string aNombreExtranjero,
+                                                                string aCodigoCliente);
+
+        [DllImport("MGWServicios.dll", EntryPoint = "fModificaCuentaBancariaEmpresa")]
+        public static extern int fModificaCuentaBancariaEmpresa(string aCuentaBancaria,
+                                                                string aNombreCuenta,
+                                                                string aNombreMoneda,
+                                                                string aClaveBanco,
+                                                                string aRfcBanco,
+                                                                string aClabe,
+                                                                string aNombreExtranjero);
 
         [DllImport("MGWServicios.dll", EntryPoint = "fObtenCeryKey")]
         public static extern int fObtenCeryKey(int aIdFirmarl, string aRutaKey, string aRutaCer);

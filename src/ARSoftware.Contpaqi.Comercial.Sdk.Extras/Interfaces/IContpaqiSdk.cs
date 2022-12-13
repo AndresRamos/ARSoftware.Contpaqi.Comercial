@@ -20,7 +20,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
         int fActualizaCteProv(string aCodigoCteProv, ref tCteProv astCteProv);
 
         int fActualizaDireccion(ref tDireccion astDireccion);
-
         int fActualizaProducto(string aCodigoProducto, ref tProducto astProducto);
 
         int fActualizaUnidad(string aNombreUnidad, ref tUnidad astUnidad);
@@ -44,6 +43,25 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
         int fAgregarRelacionCFDI2(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aUUID);
 
         int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv);
+
+        int fAltaCuentaBancariaCliente(ref int aIdCtaBancaria,
+                                       string aCuentaBancaria,
+                                       string aNombreCuenta,
+                                       string aNombreMoneda,
+                                       string aClaveBanco,
+                                       string aClabe,
+                                       string aRfcBanco,
+                                       string aNombreBancoExtranjero,
+                                       string aCodigoCliente);
+
+        int fAltaCuentaBancariaEmpresa(ref int aIdCtaBancaria,
+                                       string aCuentaBancaria,
+                                       string aNombreCuenta,
+                                       string aNombreMoneda,
+                                       string aClaveBanco,
+                                       string aClabe,
+                                       string aRfcBanco,
+                                       string aNombreBancoExtranjero);
 
         int fAltaDireccion(ref int aIdDireccion, ref tDireccion astDireccion);
 
@@ -137,6 +155,10 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 
         int fBorraCteProv();
 
+        int fBorraCuentaBancariaCliente(string aCuentaBancaria, string aCodigoCliente);
+
+        int fBorraCuentaBancariaEmpresa(string aCuentaBancaria);
+
         int fBorraDocumento();
 
         int fBorraDocumento_CW();
@@ -214,9 +236,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 
         int fCancelaDocumento();
 
-        int fCancelaDocumentoAdministrativamente();
-
         int fCancelaDocumento_CW();
+
+        int fCancelaDocumentoAdministrativamente();
 
         int fCancelaDocumentoConMotivo(string aMotivoCancelacion, string aUUIDRemplaza);
 
@@ -256,6 +278,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
                            ref int aEstatusCancelacion);
 
         void fCierraEmpresa();
+
+        int fCuentaBancariaEmpresaDoctos(string aCuentaBancaria);
 
         int fDesbloqueaDocumento();
 
@@ -443,6 +467,23 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
         int fLlenaRegistroValorClasif(ref tValorClasificacion astValorClasif);
 
         int fModificaCostoEntrada(string aIdMovimiento, string aCostoEntrada);
+
+        int fModificaCuentaBancariaCliente(string aCuentaBancaria,
+                                           string aNombreCuenta,
+                                           string aNombreMoneda,
+                                           string aClaveBanco,
+                                           string aRfcBanco,
+                                           string aClabe,
+                                           string aNombreExtranjero,
+                                           string aCodigoCliente);
+
+        int fModificaCuentaBancariaEmpresa(string aCuentaBancaria,
+                                           string aNombreCuenta,
+                                           string aNombreMoneda,
+                                           string aClaveBanco,
+                                           string aRfcBanco,
+                                           string aClabe,
+                                           string aNombreExtranjero);
 
         int fObtenCeryKey(int aIdFirmarl, string aRutaKey, string aRutaCer);
 
