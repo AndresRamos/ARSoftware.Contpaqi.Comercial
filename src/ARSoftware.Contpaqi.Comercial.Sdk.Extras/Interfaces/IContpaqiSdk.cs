@@ -7,16 +7,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 {
     public interface IContpaqiSdk
     {
-        int fAltaCuentaBancariaCliente(ref int aIdCtaBancaria,
-                                       string aCuentaBancaria,
-                                       string aNombreCuenta,
-                                       string aNombreMoneda,
-                                       string aClaveBanco,
-                                       string aClabe,
-                                       string aRfcBanco,
-                                       string aNombreBancoExtranjero,
-                                       string aCodigoCliente);
-
         string NombreLlaveRegistro { get; }
 
         string NombrePaq { get; }
@@ -53,6 +43,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
         int fAgregarRelacionCFDI2(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aUUID);
 
         int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv);
+
+        int fAltaCuentaBancariaCliente(ref int aIdCtaBancaria,
+                                       string aCuentaBancaria,
+                                       string aNombreCuenta,
+                                       string aNombreMoneda,
+                                       string aClaveBanco,
+                                       string aClabe,
+                                       string aRfcBanco,
+                                       string aNombreBancoExtranjero,
+                                       string aCodigoCliente);
 
         int fAltaCuentaBancariaEmpresa(ref int aIdCtaBancaria,
                                        string aCuentaBancaria,
