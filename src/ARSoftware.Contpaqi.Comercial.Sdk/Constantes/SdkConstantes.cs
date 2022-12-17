@@ -5,6 +5,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Constantes
 {
     public static class SdkConstantes
     {
+        /// <summary>
+        ///     Valor del codigo del resultado de una operacion del SDK realizada con exito.
+        /// </summary>
+        public const int CodigoExito = 0;
+
         public const int kLongAbreviatura = 4;
         public const int kLongCadOrigComplSAT = 501;
         public const int kLongCodigo = 31;
@@ -43,11 +48,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Constantes
         public const int kLonSerieCertSAT = 21;
         public const int kSDKLongitudUUID = 206;
         public const int kSDKLonSerieCertSAT = 190;
-
-        /// <summary>
-        ///     Valor del codigo del resultado de una operacion del SDK realizada con exito.
-        /// </summary>
-        public const int CodigoExito = 0;
 
         /// <summary>
         ///     Nombre del directorio donde se generan los XML y PDF.

@@ -55,7 +55,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions
                     propetyValue = value?.ToSdkFecha();
                 }
                 else
+                {
                     propetyValue = propertyDescriptor.GetValue(model)?.ToString();
+                }
 
                 if (propetyValue is null)
                     continue;

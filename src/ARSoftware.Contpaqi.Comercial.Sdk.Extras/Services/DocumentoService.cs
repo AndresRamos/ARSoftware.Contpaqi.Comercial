@@ -19,14 +19,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk = sdk;
         }
 
-        public tLlaveDoc BuscarSiguienteSerieYFolio(string codigoConcepto)
-        {
-            double folio = 0;
-            var serie = new StringBuilder();
-            _sdk.fSiguienteFolio(codigoConcepto, serie, ref folio).ToResultadoSdk(_sdk).ThrowIfError();
-            return new tLlaveDoc { aCodConcepto = codigoConcepto, aSerie = serie.ToString(), aFolio = folio };
-        }
-
         public void Actualizar(int documentoId, Dictionary<string, string> datosDocumento)
         {
             _sdk.fBuscarIdDocumento(documentoId).ToResultadoSdk(_sdk).ThrowIfError();
@@ -49,6 +41,14 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk.fEditarDocumento().ToResultadoSdk(_sdk).ThrowIfError();
             SetDatos(datosDocumento);
             _sdk.fGuardaDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+        }
+
+        public tLlaveDoc BuscarSiguienteSerieYFolio(string codigoConcepto)
+        {
+            double folio = 0;
+            var serie = new StringBuilder();
+            _sdk.fSiguienteFolio(codigoConcepto, serie, ref folio).ToResultadoSdk(_sdk).ThrowIfError();
+            return new tLlaveDoc { aCodConcepto = codigoConcepto, aSerie = serie.ToString(), aFolio = folio };
         }
 
         public void Cancelar(int idDocumento, string contrasenaCertificado)
@@ -186,9 +186,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
         public void SetDatos(Dictionary<string, string> datos)
         {
             foreach (KeyValuePair<string, string> dato in datos)
-            {
                 _sdk.fSetDatoDocumento(dato.Key, dato.Value).ToResultadoSdk(_sdk).ThrowIfError();
-            }
         }
     }
 }

@@ -63,9 +63,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
         public void SetDatos(Dictionary<string, string> datos)
         {
             foreach (KeyValuePair<string, string> dato in datos)
-            {
                 _sdk.fSetDatoValorClasif(dato.Key, dato.Value).ToResultadoSdk(_sdk).ThrowIfError();
-            }
         }
     }
 }

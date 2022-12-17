@@ -46,9 +46,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
                 }
 
                 if (_sdk.fPosEOFDireccion() == 1)
-                {
                     return;
-                }
             }
         }
 
@@ -71,9 +69,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
         public void SetDatos(Dictionary<string, string> datos)
         {
             foreach (KeyValuePair<string, string> dato in datos)
-            {
                 _sdk.fSetDatoDireccion(dato.Key, dato.Value).ToResultadoSdk(_sdk).ThrowIfError();
-            }
         }
     }
 }

@@ -23,7 +23,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
 
             int sdkResult = _sdk.fAbreEmpresa(rutaEmpresa);
             if (sdkResult == SdkResultConstants.Success)
+            {
                 IsEmpresaAbierta = true;
+            }
             else
             {
                 string error = _sdkErrorRepository.BuscarMensajePorNumero(sdkResult);
@@ -55,7 +57,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
 
             int sdkResult = _sdk.InicializarSDK();
             if (sdkResult == SdkResultConstants.Success)
+            {
                 IsSdkInicializado = true;
+            }
             else
             {
                 string error = _sdkErrorRepository.BuscarMensajePorNumero(sdkResult);
@@ -70,7 +74,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
 
             int sdkResult = _sdk.InicializarSDK(nombreUsuario, contrasena);
             if (sdkResult == SdkResultConstants.Success)
+            {
                 IsSdkInicializado = true;
+            }
             else
             {
                 string error = _sdkErrorRepository.BuscarMensajePorNumero(sdkResult);

@@ -10,9 +10,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers
             bool result = Enum.TryParse(sdkTipo, true, out TipoCatalogoDireccion tipoCatalogoDireccion);
 
             if (result)
-            {
                 return tipoCatalogoDireccion;
-            }
 
             throw new InvalidOperationException($"El tipo {sdkTipo} no es un tipo de direccion valido.");
         }

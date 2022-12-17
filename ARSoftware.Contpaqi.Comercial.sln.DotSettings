@@ -140,7 +140,7 @@
         &lt;/Or&gt;&#xD;
       &lt;/Entry.Match&gt;&#xD;
       &lt;Entry.SortBy&gt;&#xD;
-        &lt;Kind Order="Constant Field" /&gt;&#xD;
+        &lt;Kind Is="Member" /&gt;&#xD;
       &lt;/Entry.SortBy&gt;&#xD;
     &lt;/Entry&gt;&#xD;
     &lt;Entry DisplayName="Fields"&gt;&#xD;
@@ -172,6 +172,9 @@
           &lt;Kind Is="Indexer" /&gt;&#xD;
         &lt;/Or&gt;&#xD;
       &lt;/Entry.Match&gt;&#xD;
+      &lt;Entry.SortBy&gt;&#xD;
+        &lt;Access /&gt;&#xD;
+      &lt;/Entry.SortBy&gt;&#xD;
     &lt;/Entry&gt;&#xD;
     &lt;Entry DisplayName="Interface Implementations" Priority="100"&gt;&#xD;
       &lt;Entry.Match&gt;&#xD;
@@ -181,7 +184,8 @@
         &lt;/And&gt;&#xD;
       &lt;/Entry.Match&gt;&#xD;
       &lt;Entry.SortBy&gt;&#xD;
-        &lt;ImplementsInterface Immediate="True" /&gt;&#xD;
+        &lt;ImplementsInterface /&gt;&#xD;
+        &lt;Name /&gt;&#xD;
       &lt;/Entry.SortBy&gt;&#xD;
     &lt;/Entry&gt;&#xD;
     &lt;Entry DisplayName="All other members"&gt;&#xD;

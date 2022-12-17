@@ -10,9 +10,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers
             bool result = Enum.TryParse(sdkTipo, true, out TipoAgente tipoAgente);
 
             if (result)
-            {
                 return tipoAgente;
-            }
 
             throw new InvalidOperationException($"El tipo {sdkTipo} no es un tipo de agente valido.");
         }

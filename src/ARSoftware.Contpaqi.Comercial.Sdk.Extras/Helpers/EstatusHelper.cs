@@ -10,9 +10,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers
             bool result = Enum.TryParse(sdkEstatus, true, out Estatus estatus);
 
             if (result)
-            {
                 return estatus;
-            }
 
             throw new InvalidOperationException($"El estatus {estatus} no es un estatus valido.");
         }

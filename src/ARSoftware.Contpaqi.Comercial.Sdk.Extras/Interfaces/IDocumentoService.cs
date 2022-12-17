@@ -6,10 +6,10 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
 {
     public interface IDocumentoService
     {
-        tLlaveDoc BuscarSiguienteSerieYFolio(string codigoConcepto);
         void Actualizar(int documentoId, Dictionary<string, string> datosDocumento);
         void Actualizar(string codigoConcepto, string serie, string folio, Dictionary<string, string> datosDocumento);
         void Actualizar(tLlaveDoc tLlaveDocumento, Dictionary<string, string> datosDocumento);
+        tLlaveDoc BuscarSiguienteSerieYFolio(string codigoConcepto);
         void Cancelar(int idDocumento, string contrasenaCertificado);
         void Cancelar(int idDocumento, string contrasenaCertificado, string motivoCancelacion, string uuidRemplazo);
         void CancelarAdministrativamente(int idDocumento);
