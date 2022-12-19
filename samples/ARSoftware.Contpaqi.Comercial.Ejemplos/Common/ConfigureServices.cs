@@ -19,10 +19,6 @@ using ARSoftware.Contpaqi.Comercial.Ejemplos.ViewModels.ValoresClasificacion;
 using ARSoftware.Contpaqi.Comercial.Ejemplos.Views;
 using ARSoftware.Contpaqi.Comercial.Sdk;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,7 +31,9 @@ public static class ConfigureServices
     {
         services.RegisterViewModels();
         services.RegisterInfrastructureServices();
-        services.RegisterSdkServices(configuration);
+
+        var sdkOption = configuration.GetValue<TipoContpaqiSdk>("ContpaqiConfig:Sdk");
+        services.AddContpaqiComercialSdkServices(sdkOption);
 
         return services;
     }
@@ -106,86 +104,6 @@ public static class ConfigureServices
         services.AddTransient<CrearValorClasificacionViewModel>();
         services.AddTransient<EditarValorClasificacionViewModel>();
         services.AddTransient<SeleccionarValorClasificacionViewModel>();
-    }
-
-    private static void RegisterSdkServices(this IServiceCollection services, IConfiguration configuration)
-    {
-        var sdkOption = configuration.GetValue<TipoContpaqiSdk>("ContpaqiConfig:Sdk");
-
-        switch (sdkOption)
-        {
-            case TipoContpaqiSdk.Comercial:
-                services.AddSingleton<IContpaqiSdk, ComercialSdkExtended>();
-                break;
-            case TipoContpaqiSdk.Adminpaq:
-                services.AddSingleton<IContpaqiSdk, AdminpaqSdkExtended>();
-                break;
-            case TipoContpaqiSdk.FacturaElectronica:
-                services.AddSingleton<IContpaqiSdk, FacturaElectronicaSdkExtended>();
-                break;
-        }
-
-        // Agentes
-        services.AddSingleton(typeof(IAgenteRepository<>), typeof(AgenteRepository<>));
-        services.AddSingleton<IAgenteService, AgenteService>();
-
-        // Almacenes
-        services.AddSingleton(typeof(IAlmacenRepository<>), typeof(AlmacenRepository<>));
-        services.AddSingleton<IAlmacenService, AlmacenService>();
-
-        // Clasificaciones
-        services.AddSingleton(typeof(IClasificacionRepository<>), typeof(ClasificacionRepository<>));
-        services.AddSingleton<IClasificacionService, ClasificacionService>();
-
-        //Clientes
-        services.AddSingleton(typeof(IClienteProveedorRepository<>), typeof(ClienteProveedorRepository<>));
-        services.AddSingleton<IClienteProveedorService, ClienteProveedorService>();
-
-        // Conceptos
-        services.AddSingleton(typeof(IConceptoDocumentoRepository<>), typeof(ConceptoDocumentoRepository<>));
-        services.AddSingleton<IConceptoDocumentoService, ConceptoDocumentoService>();
-
-        // Datos CFDI
-        services.AddSingleton<IDatosCfdiRepository, DatosCfdiRepository>();
-
-        // Direcciones
-        services.AddSingleton(typeof(IDireccionRepository<>), typeof(DireccionRepository<>));
-        services.AddSingleton<IDireccionService, DireccionService>();
-
-        // Documentos
-        services.AddSingleton(typeof(IDocumentoRepository<>), typeof(DocumentoRepository<>));
-        services.AddSingleton<IDocumentoService, DocumentoService>();
-
-        // Empresas
-        services.AddSingleton<IEmpresaRepository<Empresa>, EmpresaRepository>();
-
-        // Monedas
-        services.AddSingleton<IMonedaRepository<Moneda>, MonedaRepository>();
-
-        // Errores
-        services.AddSingleton<ISdkErrorRepository<SdkError>, SdkErrorRepository>();
-
-        // Movimientos
-        services.AddSingleton(typeof(IMovimientoRepository<>), typeof(MovimientoRepository<>));
-        services.AddSingleton<IMovimientoService, MovimientoService>();
-
-        // Parametros
-        services.AddSingleton(typeof(IParametrosRepository<>), typeof(ParametrosRepository<>));
-
-        // Productos
-        services.AddSingleton(typeof(IProductoRepository<>), typeof(ProductoRepository<>));
-        services.AddSingleton<IProductoService, ProductoService>();
-
-        // Sesion
-        services.AddSingleton<IComercialSdkSesionService, ComercialSdkSesionService>();
-
-        // Unidades
-        services.AddSingleton(typeof(IUnidadMedidaRepository<>), typeof(UnidadMedidaRepository<>));
-        services.AddSingleton<IUnidadMedidaService, UnidadMedidaService>();
-
-        // Valores Clasificacion
-        services.AddSingleton(typeof(IValorClasificacionRepository<>), typeof(ValorClasificacionRepository<>));
-        services.AddSingleton<IValorClasificacionService, ValorClasificacionService>();
     }
 
     private static void RegisterInfrastructureServices(this IServiceCollection services)
