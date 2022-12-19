@@ -5,7 +5,7 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 namespace ARSoftware.Contpaqi.Comercial.ConsoleApp.Catalogos;
 
 /// <summary>
-///     Empresas.- Tabla de Empresas
+///     Tabla Empresas - Tabla de Empresas
 /// </summary>
 public sealed class EmpresaSdk
 {
@@ -25,9 +25,9 @@ public sealed class EmpresaSdk
     public string Ruta { get; set; }
 
     /// <summary>
-    ///     Busca la lista de empresas del sistema
+    ///     Busca la lista de empresas del sistema.
     /// </summary>
-    /// <returns>Lista de empresas del sistema</returns>
+    /// <returns>Lista de empresas del sistema.</returns>
     public static List<EmpresaSdk> BuscarEmpresas()
     {
         var empresasList = new List<EmpresaSdk>();
@@ -43,25 +43,14 @@ public sealed class EmpresaSdk
             return empresasList;
 
         // Instanciar una empresa y asignar los datos de la base de datos
-        empresasList.Add(new EmpresaSdk
-        {
-            Id = idBd,
-            Nombre = nombreBd.ToString(),
-            Ruta = rutaBd.ToString()
-        });
+        empresasList.Add(new EmpresaSdk { Id = idBd, Nombre = nombreBd.ToString(), Ruta = rutaBd.ToString() });
 
         // Crear un loop y posicionar el SDK en el siguiente registro
         while (ComercialSdk.fPosSiguienteEmpresa(ref idBd, nombreBd, rutaBd) == SdkConstantes.CodigoExito)
-        {
             // Instanciar una empresa y asignar los datos de la base de datos       
-            empresasList.Add(new EmpresaSdk
-            {
-                Id = idBd,
-                Nombre = nombreBd.ToString(),
-                Ruta = rutaBd.ToString()
-            });
-        }
+            empresasList.Add(new EmpresaSdk { Id = idBd, Nombre = nombreBd.ToString(), Ruta = rutaBd.ToString() });
 
         return empresasList;
     }
 }
+

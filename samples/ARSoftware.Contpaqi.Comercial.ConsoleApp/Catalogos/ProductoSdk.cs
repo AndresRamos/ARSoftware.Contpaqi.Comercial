@@ -9,7 +9,7 @@ namespace ARSoftware.Contpaqi.Comercial.ConsoleApp.Catalogos;
 /// <summary>
 ///     Tabla admProductos – Tabla de Productos
 /// </summary>
-public class ProductoSdk
+public sealed class ProductoSdk
 {
     /// <summary>
     ///     Campo CIDPRODUCTO - Identificador del producto.
@@ -65,6 +65,36 @@ public class ProductoSdk
     }
 
     /// <summary>
+    ///     Busca un producto por id.
+    /// </summary>
+    /// <param name="productoId">El id del producto a buscar.</param>
+    /// <returns>El producto a buscar.</returns>
+    public static ProductoSdk BuscarProductoPorId(int productoId)
+    {
+        // Buscar el producto por id
+        // Si el producto existe el SDK se posiciona en el registro
+        ComercialSdk.fBuscaIdProducto(productoId).TirarSiEsError();
+
+        // Leer los datos del registro donde el SDK esta posicionado
+        return LeerDatosProducto();
+    }
+
+    /// <summary>
+    ///     Busca un producto por código.
+    /// </summary>
+    /// <param name="productoCodigo">El código del producto a buscar.</param>
+    /// <returns>El producto a buscar.</returns>
+    public static ProductoSdk BuscarProductoPorCodigo(string productoCodigo)
+    {
+        // Buscar el producto por código
+        // Si el producto existe el SDK se posiciona en el registro
+        ComercialSdk.fBuscaProducto(productoCodigo).TirarSiEsError();
+
+        // Leer los datos del registro donde el SDK esta posicionado
+        return LeerDatosProducto();
+    }
+
+    /// <summary>
     ///     Busca todos los productos.
     /// </summary>
     /// <returns>La lista de productos.</returns>
@@ -75,10 +105,8 @@ public class ProductoSdk
         // Posicionar el SDK en el primer registro
         int resultado = ComercialSdk.fPosPrimerProducto();
         if (resultado == SdkConstantes.CodigoExito)
-        {
             // Leer los datos del registro donde el SDK esta posicionado
             productosList.Add(LeerDatosProducto());
-        }
         else
             return productosList;
 
@@ -98,36 +126,6 @@ public class ProductoSdk
     }
 
     /// <summary>
-    ///     Busca un producto por id.
-    /// </summary>
-    /// <param name="productoId">El id del producto a buscar.</param>
-    /// <returns>El producto a buscar.</returns>
-    public static ProductoSdk BuscarProductoPorId(int productoId)
-    {
-        // Buscar el producto por id
-        // Si el producto existe el SDK se posiciona en el registro
-        ComercialSdk.fBuscaIdProducto(productoId).TirarSiEsError();
-
-        // Leer los datos del registro donde el SDK esta posicionado
-        return LeerDatosProducto();
-    }
-
-    /// <summary>
-    ///     Busca un producto por codigo.
-    /// </summary>
-    /// <param name="productoCodigo">El codigo del producto a buscar.</param>
-    /// <returns>El producto a buscar.</returns>
-    public static ProductoSdk BuscarProductoPorCodigo(string productoCodigo)
-    {
-        // Buscar el producto por codigo
-        // Si el producto existe el SDK se posiciona en el registro
-        ComercialSdk.fBuscaProducto(productoCodigo).TirarSiEsError();
-
-        // Leer los datos del registro donde el SDK esta posicionado
-        return LeerDatosProducto();
-    }
-
-    /// <summary>
     ///     Crea un producto nuevo.
     /// </summary>
     /// <param name="producto">Producto del cual se asignaran los datos.</param>
@@ -140,7 +138,7 @@ public class ProductoSdk
             cCodigoProducto = producto.Codigo,
             cNombreProducto = producto.Nombre,
             cTipoProducto = producto.Tipo,
-            cFechaAltaProducto = DateTime.Today.ToString("MM/dd/yyyy"),
+            cFechaAltaProducto = DateTime.Today.ToString(FormatosFechaSdk.Fecha),
             cStatusProducto = 1
         };
 
@@ -153,29 +151,17 @@ public class ProductoSdk
         return productoNuevoId;
     }
 
-    public static int CrearProductoPrueba()
-    {
-        var producto = new ProductoSdk
-        {
-            Codigo = "PRODPRUEBA01",
-            Nombre = "PRODUCTO PRUEBA 01",
-            Tipo = 1
-        };
-
-        return CrearProducto(producto);
-    }
-
     /// <summary>
     ///     Actualiza un producto.
     /// </summary>
     /// <param name="producto">Producto del que se asignaran los datos a modificar.</param>
     public static void ActualizarProducto(ProductoSdk producto)
     {
-        // Buscar el producto por codigo
+        // Buscar el producto por código
         // Si el producto existe el SDK se posiciona en el registro
         ComercialSdk.fBuscaProducto(producto.Codigo).TirarSiEsError();
 
-        // Activar el modo de edicion
+        // Activar el modo de edición
         ComercialSdk.fEditaProducto().TirarSiEsError();
 
         // Actualizar los campos del registro donde el SDK esta posicionado
@@ -185,19 +171,10 @@ public class ProductoSdk
         ComercialSdk.fGuardaProducto().TirarSiEsError();
     }
 
-    public static void ActualizarProductoPrueba()
-    {
-        ProductoSdk producto = BuscarProductoPorCodigo("PRODPRUEBA01");
-
-        producto.Nombre = "PRODUCTO PRUEBA MODIFICADO";
-
-        ActualizarProducto(producto);
-    }
-
     /// <summary>
-    ///     Elimina un producto
+    ///     Elimina un producto.
     /// </summary>
-    /// <param name="producto">El producto a eliminar</param>
+    /// <param name="producto">El producto a eliminar.</param>
     public static void EliminarProducto(ProductoSdk producto)
     {
         // Buscar el producto por codigo
@@ -206,12 +183,5 @@ public class ProductoSdk
 
         // Borrar el registro de la base de datos 
         ComercialSdk.fBorraProducto().TirarSiEsError();
-    }
-
-    public static void EliminarProductoPrueba()
-    {
-        ProductoSdk producto = BuscarProductoPorCodigo("PRODPRUEBA01");
-
-        EliminarProducto(producto);
     }
 }

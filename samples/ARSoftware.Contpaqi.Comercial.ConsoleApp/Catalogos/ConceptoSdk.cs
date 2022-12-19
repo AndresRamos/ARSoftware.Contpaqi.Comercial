@@ -4,7 +4,7 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Extensiones;
 
 namespace ARSoftware.Contpaqi.Comercial.ConsoleApp.Catalogos;
 
-public class ConceptoSdk
+public sealed class ConceptoSdk
 {
     /// <summary>
     ///     Campo CIDCONCEPTODOCUMENTO - Identificador del concepto de documento.
@@ -45,11 +45,7 @@ public class ConceptoSdk
         ComercialSdk.fLeeDatoConceptoDocto("CCODIGOCONCEPTO", codigoBd, 3000);
         ComercialSdk.fLeeDatoConceptoDocto("CNOMBRECONCEPTO", nombreBd, 3000);
 
-        return new ConceptoSdk
-        {
-            Id = int.Parse(idBd.ToString()),
-            Codigo = codigoBd.ToString(),
-            Nombre = nombreBd.ToString()
-        };
+        return new ConceptoSdk { Id = int.Parse(idBd.ToString()), Codigo = codigoBd.ToString(), Nombre = nombreBd.ToString() };
     }
 }
+

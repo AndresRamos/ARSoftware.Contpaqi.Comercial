@@ -5,11 +5,6 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extensiones;
 
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable PropertyCanBeMadeInitOnly.Global
-// ReSharper disable UnusedMember.Global
-// ReSharper disable UnusedMethodReturnValue.Global
-
 namespace ARSoftware.Contpaqi.Comercial.ConsoleApp.Documentos;
 
 /// <summary>
@@ -183,7 +178,7 @@ public sealed class MovimientoSdk
 
         movimiento.Id = nuevoMovimientoId;
 
-        // Editar los datos extrar que no son parte de la estructura tMovimiento
+        // Editar los datos extras que no son parte de la estructura tMovimiento
         ActualizarMovimiento(movimiento);
 
         return nuevoMovimientoId;
@@ -199,8 +194,8 @@ public sealed class MovimientoSdk
         // Si el movimiento existe el SDK se posiciona en el registro
         ComercialSdk.fBuscarIdMovimiento(movimiento.Id).TirarSiEsError();
 
-        // Activar el modo de edicion
-        ComercialSdk.fEditarMovimiento();
+        // Activar el modo de edición
+        ComercialSdk.fEditarMovimiento().TirarSiEsError();;
 
         // Actualizar los campos del registro donde el SDK esta posicionado
         ComercialSdk.fSetDatoMovimiento("COBSERVAMOV", movimiento.Observaciones).TirarSiEsError();
@@ -221,22 +216,5 @@ public sealed class MovimientoSdk
 
         // Eliminar movimiento
         ComercialSdk.fBorraMovimiento(movimiento.DocumentoId, movimiento.Id).TirarSiEsError();
-    }
-
-    public static int CrearMovimientoPrueba(int documentoId)
-    {
-        ProductoSdk producto = ProductoSdk.BuscarProductoPorCodigo("SERV001");
-
-        var movimiento = new MovimientoSdk
-        {
-            DocumentoId = documentoId,
-            ProductoId = producto.Id,
-            Unidades = 1,
-            Precio = 100,
-            Referencia = "Referencia movimiento",
-            Observaciones = "Observaciones movimiento"
-        };
-
-        return CrearMovimiento(movimiento);
     }
 }

@@ -7,7 +7,7 @@ using Microsoft.Win32;
 namespace ARSoftware.Contpaqi.Comercial.ConsoleApp;
 
 /// <summary>
-///     Inicia y termina conexiones con el sistema
+///     Inicia y termina conexiones con el sistema de Comercial.
 /// </summary>
 public sealed class ConexionSdk
 {
@@ -20,50 +20,50 @@ public sealed class ConexionSdk
         // Establecer el directorio de trabajo en el directorio donde se encuentra el SDK
         EstablecerElDirectorioDeTrabajo();
 
-        // Iniciar conexion
+        // Iniciar conexión
         ComercialSdk.fSetNombrePAQ(NombresPaqSdk.Comercial).TirarSiEsError();
     }
 
     /// <summary>
-    ///     Inicia la conexion con el sistema e ingresa el usuario y contrasena programaticamente para que no se muestre la
-    ///     ventana de autenticacion de Comercial
+    ///     Inicia la conexión con el sistema e ingresa el usuario y contraseña programáticamente para que no se muestre la
+    ///     ventana de autenticación de Comercial.
     /// </summary>
-    /// <param name="nombreUsuario">Nombre de usuario del sistema de Comercial</param>
-    /// <param name="contrasena">Contrasena del sistema de Comercial</param>
+    /// <param name="nombreUsuario">Nombre de usuario del sistema de Comercial.</param>
+    /// <param name="contrasena">Contraseña del sistema de Comercial.</param>
     public static void IniciarSdk(string nombreUsuario, string contrasena)
     {
         // Establecer el directorio de trabajo en el directorio donde se encuentra el SDK
         EstablecerElDirectorioDeTrabajo();
 
-        // Ingresar programaticamente el usuario y contrasena del sistema de Comercial
+        // Ingresar programáticamente el usuario y contraseña del sistema de Comercial
         ComercialSdk.fInicioSesionSDK(nombreUsuario, contrasena);
 
-        // Iniciar conexion
+        // Iniciar conexión
         ComercialSdk.fSetNombrePAQ(NombresPaqSdk.Comercial).TirarSiEsError();
     }
 
     /// <summary>
-    ///     Inicia la conexion con el sistema e ingresa el usuario y contrasena programaticamente para que no se muestre la
-    ///     ventana de autenticacion de Comercial o Contabilidad
+    ///     Inicia la conexión con el sistema e ingresa el usuario y contraseña programáticamente para que no se muestre la
+    ///     ventana de autenticación de Comercial y Contabilidad.
     /// </summary>
-    /// <param name="nombreusuariocomercial">Nombre de usuario del sistema de Comercial</param>
-    /// <param name="contrasenacomercial">Contrasena del sistema de Comercial</param>
-    /// <param name="nombreusuariocontabilidad">Nombre de usuario del sistema de Contabilidad</param>
-    /// <param name="contrasenacontabilidad">Contrasena del sistema de Contabilidad</param>
-    public static void IniciarSdk(string nombreusuariocomercial,
-                                  string contrasenacomercial,
-                                  string nombreusuariocontabilidad,
-                                  string contrasenacontabilidad)
+    /// <param name="nombreUsuarioComercial">Nombre de usuario del sistema de Comercial.</param>
+    /// <param name="contrasenaComercial">Contraseña del sistema de Comercial.</param>
+    /// <param name="nombreUsuarioContabilidad">Nombre de usuario del sistema de Contabilidad.</param>
+    /// <param name="contrasenaContabilidad">Contraseña del sistema de Contabilidad.</param>
+    public static void IniciarSdk(string nombreUsuarioComercial,
+                                  string contrasenaComercial,
+                                  string nombreUsuarioContabilidad,
+                                  string contrasenaContabilidad)
     {
-        // Iniciar conexion con el sistema
-        IniciarSdk(nombreusuariocomercial, contrasenacomercial);
+        // Iniciar conexión con el sistema
+        IniciarSdk(nombreUsuarioComercial, contrasenaComercial);
 
-        // Ingresar programaticamente el usuario y contrasena del sistema de Contabilidad
-        ComercialSdk.fInicioSesionSDKCONTPAQi(nombreusuariocontabilidad, contrasenacontabilidad);
+        // Ingresar programáticamente el usuario y contraseña del sistema de Contabilidad
+        ComercialSdk.fInicioSesionSDKCONTPAQi(nombreUsuarioContabilidad, contrasenaContabilidad);
     }
 
     /// <summary>
-    ///     Termina la conexion con el sistema y libera recursos
+    ///     Termina la conexión con el sistema y libera recursos.
     /// </summary>
     public static void TerminarSdk()
     {
@@ -71,7 +71,7 @@ public sealed class ConexionSdk
     }
 
     /// <summary>
-    ///     Abre la empresa de trabajo
+    ///     Abre la empresa de trabajo.
     /// </summary>
     /// <param name="rutaEmpresa">Ruta del directorio de la empresa.</param>
     public static void AbrirEmpresa(string rutaEmpresa)
@@ -88,11 +88,11 @@ public sealed class ConexionSdk
     }
 
     /// <summary>
-    ///     Establece el directorio de trabajo en el directorio donde se encuentra el SDK
+    ///     Establece el directorio de trabajo en el directorio donde se encuentra el SDK.
     /// </summary>
     private static void EstablecerElDirectorioDeTrabajo()
     {
-        // Buscar directorio donde se encuentra el SDK
+        // Buscar el directorio donde se encuentra el SDK
         string rutaSdk = BuscarDirectorioDelSdk(LlavesRegistroWindowsSdk.Comercial);
 
         // Establecer el directorio de trabajo en el directorio donde se encuentra el SDK
@@ -113,18 +113,17 @@ public sealed class ConexionSdk
         RegistryKey keySitema = registryKey.OpenSubKey(nombreLlaveRegistro, false);
 
         if (keySitema is null)
-        {
-            // No se encontro la llave
-            throw new ContpaqiSdkInvalidOperationException($"No se encontro la llave del registro {nombreLlaveRegistro}");
-        }
+            // No se encontró la llave
+            throw new ContpaqiSdkInvalidOperationException($"No se encontró la llave del registro {nombreLlaveRegistro}");
 
         // Leer el valor del campo DIRECTORIOBASE donde se encuentra la ruta del SDK
         object directorioBaseKey = keySitema.GetValue(LlavesRegistroWindowsSdk.NombreCampoRutaSdk);
 
         if (directorioBaseKey is null)
             throw new ContpaqiSdkInvalidOperationException(
-                $"No se encontro el valor del campo {LlavesRegistroWindowsSdk.NombreCampoRutaSdk} del registro {nombreLlaveRegistro}");
+                $"No se encontró el valor del campo {LlavesRegistroWindowsSdk.NombreCampoRutaSdk} del registro {nombreLlaveRegistro}");
 
         return directorioBaseKey.ToString();
     }
 }
+

@@ -10,8 +10,9 @@ try
     ConexionSdk.IniciarSdk("SUPERVISOR", "");
 
     // 2. Abrir empresa
+
     // Buscar empresas
-    Console.WriteLine("Bucando empresas.");
+    Console.WriteLine("Buscando empresas.");
     List<EmpresaSdk> empresaList = EmpresaSdk.BuscarEmpresas();
 
     // Mostrar el listado de empresas
