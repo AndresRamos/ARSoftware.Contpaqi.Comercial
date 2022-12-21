@@ -2,15 +2,46 @@
 
 using ARSoftware.Contpaqi.Comercial.Sdk;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Sdk.Extras.ConsoleApp;
+using Sdk.Extras.ConsoleApp.Catalogos;
 
 IHost host = Host.CreateDefaultBuilder()
-    .ConfigureServices(collection => { collection.AddContpaqiComercialSdkServices(TipoContpaqiSdk.Comercial); })
+    .ConfigureServices(collection =>
+    {
+        collection.AddContpaqiComercialSdkServices(TipoContpaqiSdk.FacturaElectronica);
+        collection.AddSingleton<ConexionSdk>();
+        collection.AddSingleton<EmpresaSdk>();
+    })
     .Build();
 
 await host.StartAsync();
+
+var conexionSdk = host.Services.GetRequiredService<ConexionSdk>();
+
+try
+{
+    conexionSdk.IniciarSdk();
+
+    var empresaSdk = host.Services.GetRequiredService<EmpresaSdk>();
+
+    List<Empresa> empresas = empresaSdk.BuscarEmpresas();
+    
+    Empresa empresaSeleccionada = empresas.First(e => e.CIDEMPRESA == 10);
+
+    conexionSdk.AbrirEmpresa(empresaSeleccionada);
+
+    conexionSdk.CerrarEmpresa();
+}
+catch (Exception e)
+{
+    Console.WriteLine(e.ToString());
+}
+finally
+{
+    conexionSdk.TerminarSdk();
+}
 
 await host.StopAsync();
