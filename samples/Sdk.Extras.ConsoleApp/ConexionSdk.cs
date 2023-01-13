@@ -9,44 +9,49 @@ public sealed class ConexionSdk
     private readonly ILogger<ConexionSdk> _logger;
     private readonly IComercialSdkSesionService _sdkSesionService;
 
-    public ConexionSdk(ILogger<ConexionSdk> logger, IComercialSdkSesionService sdkSesionService)
+    public ConexionSdk(IComercialSdkSesionService sdkSesionService, ILogger<ConexionSdk> logger)
     {
-        _logger = logger;
         _sdkSesionService = sdkSesionService;
+        _logger = logger;
     }
 
-    public void IniciarSdk()
+    public void IniciarConexion()
     {
-        _logger.LogInformation("Iniciando SDK");
+        _logger.LogInformation("Is SDK Inicializado: {IsSdkInicializado}", _sdkSesionService.IsSdkInicializado);
+        _logger.LogInformation("IniciarSesionSdk()");
         _sdkSesionService.IniciarSesionSdk();
-        _logger.LogInformation("SDK iniciado.");
+        _logger.LogInformation("Is SDK Inicializado: {IsSdkInicializado}", _sdkSesionService.IsSdkInicializado);
     }
 
-    public void IniciarSdk(string usuario, string contrasena)
+    public void IniciarConexionConParametros(string usuario, string contrasena)
     {
-        _logger.LogInformation("Iniciando SDK");
+        _logger.LogInformation("Is SDK Inicializado: {IsSdkInicializado}", _sdkSesionService.IsSdkInicializado);
+        _logger.LogInformation("IniciarSesionSdk(usuario, contrasena)");
         _sdkSesionService.IniciarSesionSdk(usuario, contrasena);
-        _logger.LogInformation("SDK iniciado.");
+        _logger.LogInformation("Is SDK Inicializado: {IsSdkInicializado}", _sdkSesionService.IsSdkInicializado);
     }
 
-    public void TerminarSdk()
+    public void TerminarConexion()
     {
-        _logger.LogInformation("Terminando SDK.");
+        _logger.LogInformation("Is SDK Inicializado: {IsSdkInicializado}", _sdkSesionService.IsSdkInicializado);
+        _logger.LogInformation("TerminarSesionSdk()");
         _sdkSesionService.TerminarSesionSdk();
-        _logger.LogInformation("SDK terminado.");
+        _logger.LogInformation("Is SDK Inicializado: {IsSdkInicializado}", _sdkSesionService.IsSdkInicializado);
     }
 
     public void AbrirEmpresa(Empresa empresa)
     {
-        _logger.LogInformation("Abriendo empresa {Empresa}.", empresa);
+        _logger.LogInformation("Is Empresa Abierta: {IsEmpresaAbierta}", _sdkSesionService.IsEmpresaAbierta);
+        _logger.LogInformation("AbrirEmpresa(rutaEmpresa)");
         _sdkSesionService.AbrirEmpresa(empresa.CRUTADATOS);
-        _logger.LogInformation("Empresa abierta.");
+        _logger.LogInformation("Is Empresa Abierta: {IsEmpresaAbierta}", _sdkSesionService.IsEmpresaAbierta);
     }
 
     public void CerrarEmpresa()
     {
-        _logger.LogInformation("Cerrando empresa.");
+        _logger.LogInformation("Is Empresa Abierta: {IsEmpresaAbierta}", _sdkSesionService.IsEmpresaAbierta);
+        _logger.LogInformation("CerrarEmpresa()");
         _sdkSesionService.CerrarEmpresa();
-        _logger.LogInformation("Empresa cerrada.");
+        _logger.LogInformation("Is Empresa Abierta: {IsEmpresaAbierta}", _sdkSesionService.IsEmpresaAbierta);
     }
 }

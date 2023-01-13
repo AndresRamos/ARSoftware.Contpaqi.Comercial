@@ -17,12 +17,12 @@ public sealed class EmpresaSdk
 
     public List<Empresa> BuscarEmpresas()
     {
-        List<Empresa> empresas = _empresaRepository.TraerTodo().ToList();
+        return _empresaRepository.TraerTodo().ToList();
+    }
 
+    public void LogEmpresas(IEnumerable<Empresa> empresas)
+    {
         foreach (Empresa empresa in empresas)
-            _logger.LogInformation("Empresa: ID:{EmpresaId} Nombre:{EmpresaNombre}", empresa.CIDEMPRESA, empresa.CNOMBREEMPRESA);
-
-        return empresas;
+            _logger.LogInformation("{@Empresa}", empresa);
     }
 }
-

@@ -2,6 +2,7 @@
 
 using ARSoftware.Contpaqi.Comercial.Sdk;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,7 +16,6 @@ IHost host = Host.CreateDefaultBuilder()
         collection.AddContpaqiComercialSdkServices(TipoContpaqiSdk.Comercial);
         collection.AddSingleton<ConexionSdk>();
         collection.AddSingleton<EmpresaSdk>();
-        collection.AddSingleton<ClienteSdk>();
     })
     .ConfigureLogging(builder => { builder.AddSimpleConsole(options => { options.SingleLine = true; }); })
     .Build();
@@ -26,16 +26,21 @@ var conexionSdk = host.Services.GetRequiredService<ConexionSdk>();
 
 try
 {
-    conexionSdk.IniciarSdk("SUPERVISOR", "");
+    // Iniciar conexion
+    var sdk = host.Services.GetRequiredService<IContpaqiSdk>();
 
+    if (sdk is FacturaElectronicaSdkExtended || sdk is AdminpaqSdkExtended)
+        conexionSdk.IniciarConexion();
+    else if (sdk is ComercialSdkExtended)
+        conexionSdk.IniciarConexionConParametros("SUPERVISOR", "");
+
+    // Abrir empresa
     var empresaSdk = host.Services.GetRequiredService<EmpresaSdk>();
-
     List<Empresa> empresas = empresaSdk.BuscarEmpresas();
-
-    Empresa empresaSeleccionada = empresas.First(e => e.CIDEMPRESA == 10);
-
-    conexionSdk.AbrirEmpresa(empresaSeleccionada);
-
+    empresaSdk.LogEmpresas(empresas);
+    conexionSdk.AbrirEmpresa(empresas.First(e => e.CIDEMPRESA == 10));
+    
+    // Cerrar empresa
     conexionSdk.CerrarEmpresa();
 }
 catch (Exception e)
@@ -44,7 +49,8 @@ catch (Exception e)
 }
 finally
 {
-    conexionSdk.TerminarSdk();
+    // Terminar conexion
+    conexionSdk.TerminarConexion();
 }
 
 await host.StopAsync();
