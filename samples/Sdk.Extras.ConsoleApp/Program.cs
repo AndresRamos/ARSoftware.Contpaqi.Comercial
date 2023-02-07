@@ -12,7 +12,11 @@ IHost host = Host.CreateDefaultBuilder()
     .ConfigureServices(collection =>
     {
         collection.AddContpaqiComercialSdkServices(TipoContpaqiSdk.Comercial);
-        collection.AddSingleton<ConexionSdk>().AddSingleton<EmpresaSdk>().AddSingleton<ClienteSdk>().AddSingleton<ProductoSdk>();
+        collection.AddSingleton<ConexionSdk>()
+            .AddSingleton<EmpresaSdk>()
+            .AddSingleton<ClienteSdk>()
+            .AddSingleton<ProductoSdk>()
+            .AddSingleton<ConceptoSdk>();
     })
     .ConfigureLogging(builder => { builder.AddSimpleConsole(options => { options.SingleLine = true; }); })
     .Build();
