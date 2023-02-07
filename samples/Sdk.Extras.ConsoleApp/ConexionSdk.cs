@@ -35,7 +35,8 @@ public sealed class ConexionSdk
     {
         _logger.LogInformation("Is SDK Inicializado: {IsSdkInicializado}", _sdkSesionService.IsSdkInicializado);
         _logger.LogInformation("TerminarSesionSdk()");
-        _sdkSesionService.TerminarSesionSdk();
+        if (_sdkSesionService.IsSdkInicializado)
+            _sdkSesionService.TerminarSesionSdk();
         _logger.LogInformation("Is SDK Inicializado: {IsSdkInicializado}", _sdkSesionService.IsSdkInicializado);
     }
 
@@ -51,7 +52,8 @@ public sealed class ConexionSdk
     {
         _logger.LogInformation("Is Empresa Abierta: {IsEmpresaAbierta}", _sdkSesionService.IsEmpresaAbierta);
         _logger.LogInformation("CerrarEmpresa()");
-        _sdkSesionService.CerrarEmpresa();
+        if (_sdkSesionService.IsEmpresaAbierta)
+            _logger.LogInformation("Is Empresa Abierta: {IsEmpresaAbierta}", _sdkSesionService.IsEmpresaAbierta);
         _logger.LogInformation("Is Empresa Abierta: {IsEmpresaAbierta}", _sdkSesionService.IsEmpresaAbierta);
     }
 }

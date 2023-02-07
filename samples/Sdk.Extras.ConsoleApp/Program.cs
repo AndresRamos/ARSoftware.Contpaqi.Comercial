@@ -1,6 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using ARSoftware.Contpaqi.Comercial.Sdk;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
@@ -16,6 +14,7 @@ IHost host = Host.CreateDefaultBuilder()
         collection.AddContpaqiComercialSdkServices(TipoContpaqiSdk.Comercial);
         collection.AddSingleton<ConexionSdk>();
         collection.AddSingleton<EmpresaSdk>();
+        collection.AddSingleton<ClienteSdk>();
     })
     .ConfigureLogging(builder => { builder.AddSimpleConsole(options => { options.SingleLine = true; }); })
     .Build();
@@ -26,6 +25,9 @@ var conexionSdk = host.Services.GetRequiredService<ConexionSdk>();
 
 try
 {
+    var logger = host.Services.GetRequiredService<ILogger<Program>>();
+    logger.LogInformation("Iniciando Programa");
+
     // Iniciar conexion
     var sdk = host.Services.GetRequiredService<IContpaqiSdk>();
 
@@ -37,11 +39,8 @@ try
     // Abrir empresa
     var empresaSdk = host.Services.GetRequiredService<EmpresaSdk>();
     List<Empresa> empresas = empresaSdk.BuscarEmpresas();
-    empresaSdk.LogEmpresas(empresas);
+    //empresaSdk.LogEmpresas(empresas);
     conexionSdk.AbrirEmpresa(empresas.First(e => e.CIDEMPRESA == 10));
-    
-    // Cerrar empresa
-    conexionSdk.CerrarEmpresa();
 }
 catch (Exception e)
 {
@@ -49,6 +48,9 @@ catch (Exception e)
 }
 finally
 {
+    // Cerrar empresa
+    conexionSdk.CerrarEmpresa();
+
     // Terminar conexion
     conexionSdk.TerminarConexion();
 }
