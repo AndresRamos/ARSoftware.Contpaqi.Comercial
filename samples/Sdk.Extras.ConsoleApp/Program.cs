@@ -12,9 +12,7 @@ IHost host = Host.CreateDefaultBuilder()
     .ConfigureServices(collection =>
     {
         collection.AddContpaqiComercialSdkServices(TipoContpaqiSdk.Comercial);
-        collection.AddSingleton<ConexionSdk>();
-        collection.AddSingleton<EmpresaSdk>();
-        collection.AddSingleton<ClienteSdk>();
+        collection.AddSingleton<ConexionSdk>().AddSingleton<EmpresaSdk>().AddSingleton<ClienteSdk>().AddSingleton<ProductoSdk>();
     })
     .ConfigureLogging(builder => { builder.AddSimpleConsole(options => { options.SingleLine = true; }); })
     .Build();
@@ -41,6 +39,8 @@ try
     List<Empresa> empresas = empresaSdk.BuscarEmpresas();
     //empresaSdk.LogEmpresas(empresas);
     conexionSdk.AbrirEmpresa(empresas.First(e => e.CIDEMPRESA == 10));
+
+    // Ejemplos
 }
 catch (Exception e)
 {
