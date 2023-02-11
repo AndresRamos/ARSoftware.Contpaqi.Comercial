@@ -3,18 +3,45 @@ using System.Collections.Generic;
 using System.Globalization;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
 {
     public class Documento : admDocumentos
     {
+        public Documento()
+        {
+            CFECHA = DateTime.Today;
+            Moneda = Moneda.PesoMexicano;
+            MetodoPago = MetodoPago.PUE;
+        }
+
         public Agente Agente { get; set; } = new Agente();
         public ClienteProveedor ClienteProveedor { get; set; } = new ClienteProveedor();
         public ConceptoDocumento ConceptoDocumento { get; set; } = new ConceptoDocumento();
         public Direccion DireccionEnvio { get; set; } = new Direccion();
         public Direccion DireccionFiscal { get; set; } = new Direccion();
         public List<Movimiento> Movimientos { get; set; } = new List<Movimiento>();
+
+        public FormaPago FormaPago
+        {
+            get => FormaPago.FromClave(CMETODOPAG);
+            set => CMETODOPAG = value.Clave;
+        }
+
+        public MetodoPago MetodoPago
+        {
+            get => MetodoPagoHelper.ConvertFromSdkValue(CCANTPARCI);
+            set => CCANTPARCI = MetodoPagoHelper.ConvertToSdkValue(value);
+        }
+
+        public Moneda Moneda
+        {
+            get => Moneda.FromId(CIDMONEDA);
+            set => CIDMONEDA = value.Id;
+        }
 
         public bool Contains(string filtro)
         {

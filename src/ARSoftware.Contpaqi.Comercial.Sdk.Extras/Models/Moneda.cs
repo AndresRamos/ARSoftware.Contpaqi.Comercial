@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
@@ -30,6 +32,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
             yield return Ninguna;
             yield return PesoMexicano;
             yield return DolarAmericano;
+        }
+
+        public static Moneda FromId(int id)
+        {
+            return ToList().Single(r => r.Id == id);
+        }
+
+        public static Moneda FromNombre(string nombre)
+        {
+            return ToList().Single(r => string.Equals(r.Nombre, nombre, StringComparison.OrdinalIgnoreCase));
         }
 
         public override string ToString()
