@@ -16,7 +16,8 @@ IHost host = Host.CreateDefaultBuilder()
             .AddSingleton<EmpresaSdk>()
             .AddSingleton<ClienteSdk>()
             .AddSingleton<ProductoSdk>()
-            .AddSingleton<ConceptoSdk>();
+            .AddSingleton<ConceptoSdk>()
+            .AddSingleton<DocumentoSdk>();
     })
     .ConfigureLogging(builder => { builder.AddSimpleConsole(options => { options.SingleLine = true; }); })
     .Build();
@@ -42,9 +43,7 @@ try
     var empresaSdk = host.Services.GetRequiredService<EmpresaSdk>();
     List<Empresa> empresas = empresaSdk.BuscarEmpresas();
     //empresaSdk.LogEmpresas(empresas);
-    conexionSdk.AbrirEmpresa(empresas.First(e => e.CIDEMPRESA == 10));
-
-    // Ejemplos
+    conexionSdk.AbrirEmpresa(empresas.First(e => e.CNOMBREEMPRESA == "UNIVERSIDAD ROBOTICA ESPAÑOLA SA DE CV"));
 }
 catch (Exception e)
 {
