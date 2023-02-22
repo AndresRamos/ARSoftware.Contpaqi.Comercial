@@ -5,9 +5,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
 {
     public class Movimiento : admMovimientos
     {
-        public Almacen Almacen { get; set; }
-        public Producto Producto { get; set; }
-        public ValorClasificacion ValorClasificacion { get; set; }
+        public Almacen Almacen { get; set; } = new Almacen();
+        public Producto Producto { get; set; } = new Producto();
+        public ValorClasificacion ValorClasificacion { get; set; } = new ValorClasificacion();
 
         public tMovimiento ToTMovimiento()
         {

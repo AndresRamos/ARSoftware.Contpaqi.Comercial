@@ -6,7 +6,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
 {
     public class Clasificacion : admClasificaciones
     {
-        public List<ValorClasificacion> Valores { get; set; }
+        public List<ValorClasificacion> Valores { get; set; } = new List<ValorClasificacion>();
 
         public bool Contains(string filtro)
         {
