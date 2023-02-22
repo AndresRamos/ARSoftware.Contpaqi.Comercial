@@ -11,7 +11,7 @@ using Sdk.Extras.ConsoleApp.Catalogos;
 IHost host = Host.CreateDefaultBuilder()
     .ConfigureServices(collection =>
     {
-        collection.AddContpaqiComercialSdkServices(TipoContpaqiSdk.Comercial);
+        collection.AddContpaqiComercialSdkServices(TipoContpaqiSdk.FacturaElectronica);
         collection.AddSingleton<ConexionSdk>()
             .AddSingleton<EmpresaSdk>()
             .AddSingleton<ClienteSdk>()
@@ -43,7 +43,10 @@ try
     var empresaSdk = host.Services.GetRequiredService<EmpresaSdk>();
     List<Empresa> empresas = empresaSdk.BuscarEmpresas();
     //empresaSdk.LogEmpresas(empresas);
-    conexionSdk.AbrirEmpresa(empresas.First(e => e.CNOMBREEMPRESA == "UNIVERSIDAD ROBOTICA ESPAÑOLA SA DE CV"));
+    Empresa empresaSeleccionada = empresas.First(e => e.CNOMBREEMPRESA == "UNIVERSIDAD ROBOTICA ESPAÑOLA SA DE CV");
+    conexionSdk.AbrirEmpresa(empresaSeleccionada);
+
+    // Pruebas con SDK
 }
 catch (Exception e)
 {

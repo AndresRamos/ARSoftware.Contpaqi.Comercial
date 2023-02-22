@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
@@ -161,6 +162,13 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
                     documento.aFolio.ToString(CultureInfo.InvariantCulture),
                     tipoRelacion,
                     uuid)
+                .ToResultadoSdk(_sdk)
+                .ThrowIfError();
+        }
+
+        public void SaldarDocumento(tLlaveDoc documentoAPagar, tLlaveDoc documentoPago, DateTime fecha, double importe, int monedaId)
+        {
+            _sdk.fSaldarDocumento(ref documentoAPagar, ref documentoPago, importe, monedaId, fecha.ToSdkFecha())
                 .ToResultadoSdk(_sdk)
                 .ThrowIfError();
         }

@@ -16,6 +16,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
             CFECHA = DateTime.Today;
             Moneda = Moneda.PesoMexicano;
             MetodoPago = MetodoPago.PUE;
+            CTIPOCAMBIO = 1;
         }
 
         public Agente Agente { get; set; } = new Agente();
@@ -76,6 +77,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
                 aGasto3 = CGASTO3
             };
             return tdocumento;
+        }
+
+        public tLlaveDoc ToTLlaveDoc()
+        {
+            return new tLlaveDoc { aCodConcepto = ConceptoDocumento.CCODIGOCONCEPTO, aSerie = CSERIEDOCUMENTO, aFolio = CFOLIO };
         }
     }
 }

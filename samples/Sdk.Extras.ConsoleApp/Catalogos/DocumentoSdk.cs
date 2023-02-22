@@ -1,4 +1,6 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
@@ -123,6 +125,58 @@ public sealed class DocumentoSdk
     {
         _logger.LogInformation("BorrarDocumento()");
         _documentoService.Eliminar(codigoConcepto, serie, folio);
+    }
+
+    public void SaldarDocumento()
+    {
+        _logger.LogInformation("SaldarDocumento()");
+        tLlaveDoc siguienteFolio = _documentoService.BuscarSiguienteSerieYFolio("13");
+        var tDocumento = new tDocumento
+        {
+            aCodConcepto = "13",
+            aCodigoCteProv = "CTE001",
+            aFecha = DateTime.Today.ToSdkFecha(),
+            aNumMoneda = 1,
+            aTipoCambio = 1,
+            aSerie = siguienteFolio.aSerie,
+            aFolio = siguienteFolio.aFolio,
+            aImporte = 116
+        };
+
+        int documentoPagoId = _documentoService.CrearCargoAbono(tDocumento);
+
+        Documento? documentoPago = _documentoRepository.BuscarPorId(documentoPagoId);
+        BuscarYAsignarRelaciones(documentoPago);
+        Documento? documentoPagar = _documentoRepository.BuscarPorLlave("400", "FAP", "28");
+        BuscarYAsignarRelaciones(documentoPagar);
+
+        _logger.LogInformation("SaldarDocumento()");
+        _documentoService.SaldarDocumento(documentoPagar.ToTLlaveDoc(),
+            documentoPago.ToTLlaveDoc(),
+            DateTime.Today,
+            documentoPago.CTOTAL,
+            Moneda.PesoMexicano.Id);
+    }
+
+    public void TimbrarDocumento()
+    {
+        _logger.LogInformation("TimbrarDocumento()");
+        _documentoService.Timbrar("400", "FAP", 28, "12345678a");
+    }
+
+    public void CrearDocumentoDigital(TipoArchivoDigital tipo, string rutaPlantilla, string rutaEmpresa)
+    {
+        _logger.LogInformation("CrearDocumentoDigital()");
+        _documentoService.GenerarDocumentoDigital("400", "FAP", 28, tipo, rutaPlantilla);
+        string? rutaArchivo = ArchivoDigitalHelper.GenerarRutaArchivoDigital(tipo, rutaEmpresa, "FAP", "28");
+        _logger.LogInformation("Ruta: {Ruta}", rutaArchivo);
+    }
+
+    public void CancelarDocumento()
+    {
+        _logger.LogInformation("CancelarDocumento()");
+        Documento? documento = _documentoRepository.BuscarPorLlave("400", "FAP", "28");
+        _documentoService.Cancelar(documento.CIDDOCUMENTO, "12345678a", "02", "");
     }
 
     public void LogDocumento(Documento documento)
