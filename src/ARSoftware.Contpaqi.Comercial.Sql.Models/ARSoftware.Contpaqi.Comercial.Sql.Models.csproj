@@ -5,13 +5,12 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Version>3.2.0</Version>
 		<Authors>AR Software</Authors>
-		<Description>Modelo de las bases de datos de CONTPAQi Comercial version 7.4.1</Description>
+		<Description>Modelo de las bases de datos de CONTPAQi Comercial version 8.1.1</Description>
 		<Copyright>Copyright © AR Software 2022</Copyright>
 		<RepositoryUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Contpaqi Comercial Sql</PackageTags>
-		<PackageReleaseNotes>Se cambio el namespace a ARSoftware.Contpaqi.Comercial.Sql.Models</PackageReleaseNotes>
 		<PackageLicenseExpression>(MIT)</PackageLicenseExpression>
 		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
 	</PropertyGroup>

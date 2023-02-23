@@ -12,7 +12,6 @@
 		<PackageProjectUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Contpaqi Sql Comercial</PackageTags>
-		<PackageReleaseNotes>Se cambio el namespace a ARSoftware.Contpaqi.Comercial.Sql</PackageReleaseNotes>
 		<PackageLicenseExpression>(MIT)</PackageLicenseExpression>
 		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
 	</PropertyGroup>
