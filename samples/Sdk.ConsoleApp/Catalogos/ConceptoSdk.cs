@@ -2,7 +2,7 @@
 using ARSoftware.Contpaqi.Comercial.Sdk;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extensiones;
 
-namespace ARSoftware.Contpaqi.Comercial.ConsoleApp.Catalogos;
+namespace Sdk.ConsoleApp.Catalogos;
 
 public sealed class ConceptoSdk
 {
@@ -48,4 +48,3 @@ public sealed class ConceptoSdk
         return new ConceptoSdk { Id = int.Parse(idBd.ToString()), Codigo = codigoBd.ToString(), Nombre = nombreBd.ToString() };
     }
 }
-

@@ -4,7 +4,7 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Excepciones;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extensiones;
 using Microsoft.Win32;
 
-namespace ARSoftware.Contpaqi.Comercial.ConsoleApp;
+namespace Sdk.ConsoleApp;
 
 /// <summary>
 ///     Inicia y termina conexiones con el sistema de Comercial.
@@ -126,4 +126,3 @@ public sealed class ConexionSdk
         return directorioBaseKey.ToString();
     }
 }
-

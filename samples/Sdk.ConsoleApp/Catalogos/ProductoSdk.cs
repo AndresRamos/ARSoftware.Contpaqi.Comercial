@@ -4,7 +4,7 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extensiones;
 
-namespace ARSoftware.Contpaqi.Comercial.ConsoleApp.Catalogos;
+namespace Sdk.ConsoleApp.Catalogos;
 
 /// <summary>
 ///     Tabla admProductos – Tabla de Productos

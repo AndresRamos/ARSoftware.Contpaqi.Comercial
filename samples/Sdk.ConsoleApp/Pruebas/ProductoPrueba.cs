@@ -1,6 +1,6 @@
-﻿using ARSoftware.Contpaqi.Comercial.ConsoleApp.Catalogos;
+﻿using Sdk.ConsoleApp.Catalogos;
 
-namespace ARSoftware.Contpaqi.Comercial.ConsoleApp.Pruebas;
+namespace Sdk.ConsoleApp.Pruebas;
 
 public sealed class ProductoPrueba
 {

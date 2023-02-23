@@ -1,11 +1,11 @@
 ﻿using System.Text;
-using ARSoftware.Contpaqi.Comercial.ConsoleApp.Catalogos;
 using ARSoftware.Contpaqi.Comercial.Sdk;
 using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extensiones;
+using Sdk.ConsoleApp.Catalogos;
 
-namespace ARSoftware.Contpaqi.Comercial.ConsoleApp.Documentos;
+namespace Sdk.ConsoleApp.Documentos;
 
 /// <summary>
 ///     Tabla admMovimientos – Tabla de Movimientos
@@ -195,7 +195,8 @@ public sealed class MovimientoSdk
         ComercialSdk.fBuscarIdMovimiento(movimiento.Id).TirarSiEsError();
 
         // Activar el modo de edición
-        ComercialSdk.fEditarMovimiento().TirarSiEsError();;
+        ComercialSdk.fEditarMovimiento().TirarSiEsError();
+        ;
 
         // Actualizar los campos del registro donde el SDK esta posicionado
         ComercialSdk.fSetDatoMovimiento("COBSERVAMOV", movimiento.Observaciones).TirarSiEsError();

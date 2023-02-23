@@ -1,11 +1,11 @@
 ﻿using System.Text;
-using ARSoftware.Contpaqi.Comercial.ConsoleApp.Catalogos;
 using ARSoftware.Contpaqi.Comercial.Sdk;
 using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extensiones;
+using Sdk.ConsoleApp.Catalogos;
 
-namespace ARSoftware.Contpaqi.Comercial.ConsoleApp.Documentos;
+namespace Sdk.ConsoleApp.Documentos;
 
 /// <summary>
 ///     Tabla admDocumentos – Tabla de Documentos

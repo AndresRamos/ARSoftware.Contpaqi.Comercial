@@ -4,7 +4,7 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extensiones;
 
-namespace ARSoftware.Contpaqi.Comercial.ConsoleApp.Catalogos;
+namespace Sdk.ConsoleApp.Catalogos;
 
 /// <summary>
 ///     Tabla admClientes - Tabla de Clientes y Proveedores
@@ -194,5 +194,4 @@ public sealed class ClienteSdk
         // Borrar el registro de la base de datos 
         ComercialSdk.fBorraCteProv().TirarSiEsError();
     }
-
 }

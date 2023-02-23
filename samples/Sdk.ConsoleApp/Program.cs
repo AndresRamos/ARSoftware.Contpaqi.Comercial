@@ -1,5 +1,5 @@
-﻿using ARSoftware.Contpaqi.Comercial.ConsoleApp;
-using ARSoftware.Contpaqi.Comercial.ConsoleApp.Catalogos;
+﻿using Sdk.ConsoleApp;
+using Sdk.ConsoleApp.Catalogos;
 
 Console.WriteLine("CONTPAQi Comercial SDK");
 

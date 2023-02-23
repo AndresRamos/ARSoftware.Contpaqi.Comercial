@@ -2,7 +2,7 @@
 using ARSoftware.Contpaqi.Comercial.Sdk;
 using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 
-namespace ARSoftware.Contpaqi.Comercial.ConsoleApp.Catalogos;
+namespace Sdk.ConsoleApp.Catalogos;
 
 /// <summary>
 ///     Tabla Empresas - Tabla de Empresas
@@ -53,4 +53,3 @@ public sealed class EmpresaSdk
         return empresasList;
     }
 }
-

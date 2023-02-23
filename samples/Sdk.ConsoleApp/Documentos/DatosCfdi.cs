@@ -2,7 +2,7 @@
 
 using System.Text;
 
-namespace ARSoftware.Contpaqi.Comercial.ConsoleApp.Documentos;
+namespace Sdk.ConsoleApp.Documentos;
 
 public sealed class DatosCfdi
 {
@@ -43,4 +43,3 @@ public sealed class DatosCfdi
         return builder.ToString();
     }
 }
-
