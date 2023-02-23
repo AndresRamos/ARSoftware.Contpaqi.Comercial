@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Text;
 using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
@@ -140,6 +142,27 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk.fEntregEnDiscoXML(codigoConceptoDocumento, serieDocumento, folioDocumento, (int)tipoArchivo, rutaPlantilla)
                 .ToResultadoSdk(_sdk)
                 .ThrowIfError();
+        }
+
+        public void GenerarDocumentoDigital(tLlaveDoc documento, TipoArchivoDigital tipoArchivo, string rutaPlantilla)
+        {
+            _sdk.fEntregEnDiscoXML(documento.aCodConcepto, documento.aSerie, documento.aFolio, (int)tipoArchivo, rutaPlantilla)
+                .ToResultadoSdk(_sdk)
+                .ThrowIfError();
+        }
+
+        public void GenerarDocumentoDigital(tLlaveDoc documento,
+                                            TipoArchivoDigital tipoArchivo,
+                                            string rutaPlantilla,
+                                            string rutaDirectorioEmpresa,
+                                            string rutaArchivoDestino)
+        {
+            GenerarDocumentoDigital(documento, tipoArchivo, rutaPlantilla);
+            string rutaArchivoDigital = ArchivoDigitalHelper.GenerarRutaArchivoDigital(tipoArchivo,
+                rutaDirectorioEmpresa,
+                documento.aSerie,
+                documento.aFolio.ToString(CultureInfo.InvariantCulture));
+            File.Copy(rutaArchivoDigital, rutaArchivoDestino, true);
         }
 
         public void RelacionarDocumentos(tLlaveDoc documento, string tipoRelacion, tLlaveDoc documentoRelacionado)

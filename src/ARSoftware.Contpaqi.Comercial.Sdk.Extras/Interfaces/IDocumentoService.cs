@@ -30,7 +30,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
                                      TipoArchivoDigital tipoArchivo,
                                      string rutaPlantilla = "");
 
+        void GenerarDocumentoDigital(tLlaveDoc documento, TipoArchivoDigital tipoArchivo, string rutaPlantilla = "");
+
+        void GenerarDocumentoDigital(tLlaveDoc documento,
+                                     TipoArchivoDigital tipoArchivo,
+                                     string rutaPlantilla,
+                                     string rutaDirectorioEmpresa,
+                                     string rutaArchivoDestino);
+
         void RelacionarDocumentos(tLlaveDoc documento, string tipoRelacion, tLlaveDoc documentoRelacionado);
+
         void RelacionarDocumentos(tLlaveDoc documento, string tipoRelacion, string uuid);
 
         void SaldarDocumento(tLlaveDoc documentoAPagar, tLlaveDoc documentoPago, DateTime fecha, double importe, int monedaId = 1);
