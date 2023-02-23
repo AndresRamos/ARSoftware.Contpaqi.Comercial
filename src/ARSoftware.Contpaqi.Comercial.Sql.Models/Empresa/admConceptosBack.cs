@@ -198,5 +198,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public string CIDFIRMADSL { get; set; }
         public string CORDENCAPTURA { get; set; }
         public string CCLAVESAT { get; set; }
+        public int CUSAOBJIMP { get; set; }
     }
 }

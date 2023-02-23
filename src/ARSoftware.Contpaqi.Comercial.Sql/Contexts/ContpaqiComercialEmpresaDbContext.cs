@@ -423,6 +423,12 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .IsUnicode(false);
 
                 entity.Property(e => e.CIDAUTOINCSQL).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.CMETODOPAG)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("('')");
             });
 
             modelBuilder.Entity<admBanderas>(entity =>
@@ -1375,7 +1381,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
 
                 entity.HasIndex(e => new { e.CIDUNIDAD2, e.CIDAUTOINCSQL }, "CIDUNIDAD2");
 
-                entity.Property(e => e.CFACTORCONVERSION).HasDefaultValueSql("((0.00))");
+                entity.Property(e => e.CFACTORCONVERSION)
+                    .IsRequired()
+                    .HasMaxLength(11)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CIDAUTOINCSQL).ValueGeneratedOnAdd();
             });
@@ -2608,6 +2618,12 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
 
                 entity.Property(e => e.CNUMEROMOVIMIENTO).HasDefaultValueSql("((0.00))");
 
+                entity.Property(e => e.COBJIMPU01)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("('')");
+
                 entity.Property(e => e.COBSERVAMOV).HasColumnType("text");
 
                 entity.Property(e => e.CPORCENTAJECOMISION).HasDefaultValueSql("((0.00))");
@@ -3818,6 +3834,10 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
 
                 entity.Property(e => e.CTOKENCN).HasColumnType("text");
 
+                entity.Property(e => e.CURLWSTORE)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.CUSRPROXY)
                     .IsRequired()
                     .HasMaxLength(60)
@@ -4428,6 +4448,10 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTOKENCN).HasColumnType("text");
+
+                entity.Property(e => e.CURLWSTORE)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CUSRPROXY)
                     .IsRequired()

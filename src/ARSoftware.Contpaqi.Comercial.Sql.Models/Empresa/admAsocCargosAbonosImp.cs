@@ -17,5 +17,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public double CTASACUOTA { get; set; }
         public int CESRETEN01 { get; set; }
         public double CPROPORC01 { get; set; }
+        public string CMETODOPAG { get; set; }
     }
 }

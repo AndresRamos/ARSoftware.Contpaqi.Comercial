@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARSoftware.Contpaqi.Comerci
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sdk.Extras.ConsoleApp", "samples\Sdk.Extras.ConsoleApp\Sdk.Extras.ConsoleApp.csproj", "{158B3C79-4897-4923-88B3-3FA402CD3408}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sql.MigrationsStartupProject", "src\Sql.MigrationsStartupProject\Sql.MigrationsStartupProject.csproj", "{3202C9C7-70D6-474D-8953-970BD250746E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{158B3C79-4897-4923-88B3-3FA402CD3408}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{158B3C79-4897-4923-88B3-3FA402CD3408}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{158B3C79-4897-4923-88B3-3FA402CD3408}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3202C9C7-70D6-474D-8953-970BD250746E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3202C9C7-70D6-474D-8953-970BD250746E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3202C9C7-70D6-474D-8953-970BD250746E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3202C9C7-70D6-474D-8953-970BD250746E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +82,7 @@ Global
 		{EB1D3377-E32D-427B-86B2-A100D610CB1A} = {789B7A52-4364-40CD-9DFF-60491464C56B}
 		{B22D9745-DA8F-4E9F-9D17-5C01D9F1057A} = {789B7A52-4364-40CD-9DFF-60491464C56B}
 		{158B3C79-4897-4923-88B3-3FA402CD3408} = {789B7A52-4364-40CD-9DFF-60491464C56B}
+		{3202C9C7-70D6-474D-8953-970BD250746E} = {CFD90884-02FA-46CD-91B7-859A76C43404}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3588233E-0044-4A6F-ACB1-262819D2D760}

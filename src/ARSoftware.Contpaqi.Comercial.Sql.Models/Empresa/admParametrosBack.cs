@@ -203,5 +203,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public string CGUIDEMPRESA { get; set; }
         public string CTOKENCN { get; set; }
         public string CREFRESHTOKENCN { get; set; }
+        public string CURLWSTORE { get; set; }
     }
 }
