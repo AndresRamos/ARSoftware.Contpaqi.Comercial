@@ -4,7 +4,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>disable</Nullable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>3.2.0</Version>
+		<Version>3.3.0</Version>
 		<Authors>AR Software</Authors>
 		<Description>Entity Framework DbContexts para hacer query las bases de datos de CONTPAQi Comercial</Description>
 		<Copyright>Copyright © AR Software 2022</Copyright>
