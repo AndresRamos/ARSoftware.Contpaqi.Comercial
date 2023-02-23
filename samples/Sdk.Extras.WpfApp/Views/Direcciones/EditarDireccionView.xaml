@@ -1,0 +1,184 @@
+﻿<controls:MetroWindow x:Class="Sdk.Extras.WpfApp.Views.Direcciones.EditarDireccionView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      xmlns:direcciones="clr-namespace:Sdk.Extras.WpfApp.ViewModels.Direcciones"
+                      mc:Ignorable="d"
+                      d:DataContext="{d:DesignInstance direcciones:EditarDireccionViewModel, IsDesignTimeCreatable=False}"
+                      Title="{Binding Title}"
+                      WindowStartupLocation="CenterScreen"
+                      Width="900"
+                      Height="500"
+                      dialog:DialogParticipation.Register="{Binding}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Title}"
+                   FontWeight="Bold"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal">
+            <Button Content="Guardar"
+                    Command="{Binding GuardarCommand}"
+                    VerticalAlignment="Center"
+                    MinWidth="150"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+            <Button Content="Cancelar"
+                    Command="{Binding CancelarCommand}"
+                    VerticalAlignment="Center"
+                    Width="150"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square}" />
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Tipo:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <ComboBox ItemsSource="{Binding TiposDireccion}"
+                          SelectedItem="{Binding Direccion.TipoDireccion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          MinWidth="200"
+                          VerticalAlignment="Center"
+                          Margin="5" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Pais:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Text="{Binding Direccion.CPAIS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="200"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+                <Label Content="Codigo Postal:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Text="{Binding Direccion.CCODIGOPOSTAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="200"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Estado:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Text="{Binding Direccion.CESTADO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="200"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+                <Label Content="Ciudad:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Text="{Binding Direccion.CCIUDAD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="200"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Colonia:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Text="{Binding Direccion.CCOLONIA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="300"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Calle:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Text="{Binding Direccion.CNOMBRECALLE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="300"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+                <Label Content="Numero Exterior:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Text="{Binding Direccion.CNUMEROEXTERIOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="100"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+                <Label Content="Numero Interior:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Text="{Binding Direccion.CNUMEROINTERIOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="100"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Telefono 1:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Text="{Binding Direccion.CTELEFONO1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="200"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+                <Label Content="Telefono 2:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Text="{Binding Direccion.CTELEFONO2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="200"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+                <Label Content="Telefono 3:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Text="{Binding Direccion.CTELEFONO3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="200"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Telefono 4:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Text="{Binding Direccion.CTELEFONO4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="200"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Correo Electronico:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Text="{Binding Direccion.CEMAIL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="200"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Pagina Web:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Text="{Binding Direccion.CDIRECCIONWEB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MinWidth="200"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</controls:MetroWindow>

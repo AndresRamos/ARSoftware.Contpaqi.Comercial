@@ -1,0 +1,1217 @@
+﻿<controls:MetroWindow x:Class="Sdk.Extras.WpfApp.Views.Clientes.EditarClienteProveedorView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      xmlns:clientes="clr-namespace:Sdk.Extras.WpfApp.ViewModels.Clientes"
+                      mc:Ignorable="d"
+                      d:DataContext="{d:DesignInstance clientes:EditarClienteProveedorViewModel, IsDesignTimeCreatable=False}"
+                      Title="{Binding Title}"
+                      WindowStartupLocation="CenterScreen"
+                      Width="1300"
+                      Height="800"
+                      dialog:DialogParticipation.Register="{Binding}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Text="{Binding Title, Mode=OneWay}"
+                   FontWeight="Bold"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal">
+            <Button Content="Guardar"
+                    Command="{Binding GuardarCommand}"
+                    Width="150"
+                    VerticalAlignment="Center"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+            <Button Content="Cancelar"
+                    Command="{Binding CancelarCommand}"
+                    Width="150"
+                    VerticalAlignment="Center"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square}" />
+        </StackPanel>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Content="Tipo:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <ComboBox Grid.Row="0"
+                          Grid.Column="1"
+                          ItemsSource="{Binding TiposCliente}"
+                          SelectedItem="{Binding ClienteProveedor.Tipo}"
+                          VerticalAlignment="Center"
+                          Margin="5" />
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Content="Codigo:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Grid.Row="1"
+                         Grid.Column="1"
+                         Text="{Binding ClienteProveedor.CCODIGOCLIENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+                <Label Grid.Row="1"
+                       Grid.Column="2"
+                       Content="Fecha Registro:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <Label Grid.Row="2"
+                       Grid.Column="0"
+                       Content="Razon Social:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+                <TextBox Grid.Row="2"
+                         Grid.Column="1"
+                         Text="{Binding ClienteProveedor.CRAZONSOCIAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"
+                         Margin="5" />
+                <DatePicker Grid.Row="2"
+                            Grid.Column="2"
+                            SelectedDate="{Binding ClienteProveedor.CFECHAALTA}"
+                            VerticalAlignment="Center"
+                            Margin="5" />
+            </Grid>
+        </Grid>
+        <controls:MetroAnimatedSingleRowTabControl Grid.Row="3">
+            <TabItem Header="Datos Cliente">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Text="Datos Del Cliente:"
+                                   FontWeight="Bold"
+                                   FontSize="15"
+                                   VerticalAlignment="Center"
+                                   Margin="5" />
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="2"
+                                   Grid.ColumnSpan="2"
+                                   Text="Clasificacion:"
+                                   FontWeight="Bold"
+                                   FontSize="15"
+                                   VerticalAlignment="Center"
+                                   Margin="5" />
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               Content="RFC:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CRFC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="2"
+                               Grid.Column="0"
+                               Content="Denominacion Comercial:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="2"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CDENCOMERCIAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="3"
+                               Grid.Column="0"
+                               Content="Moneda:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <ComboBox Grid.Row="3"
+                                  Grid.Column="1"
+                                  ItemsSource="{Binding Monedas}"
+                                  DisplayMemberPath="Nombre"
+                                  SelectedItem="{Binding ClienteProveedor.Moneda}"
+                                  VerticalAlignment="Center"
+                                  Margin="5" />
+                        <Label Grid.Row="4"
+                               Grid.Column="0"
+                               Content="CURP:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="4"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CCURP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="5"
+                               Grid.Column="0"
+                               Content="Representante Legal:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="5"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CREPLEGAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="1"
+                               Grid.Column="2"
+                               Content="Clasificacion 1 Del Cliente:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.ValorClasificacionCliente1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5"
+                                 IsReadOnly="True" />
+                        <Button Grid.Row="1"
+                                Grid.Column="4"
+                                Content="Buscar"
+                                Command="{Binding BuscarValorClasificacionCommand}"
+                                CommandParameter="ValorClasificacionCliente1"
+                                Width="100"
+                                VerticalAlignment="Center"
+                                Margin="5" />
+                        <Label Grid.Row="2"
+                               Grid.Column="2"
+                               Content="Clasificacion 2 Del Cliente:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="2"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.ValorClasificacionCliente2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5"
+                                 IsReadOnly="True" />
+                        <Button Grid.Row="2"
+                                Grid.Column="4"
+                                Content="Buscar"
+                                Command="{Binding BuscarValorClasificacionCommand}"
+                                CommandParameter="ValorClasificacionCliente2"
+                                Width="100"
+                                VerticalAlignment="Center"
+                                Margin="5" />
+                        <Label Grid.Row="3"
+                               Grid.Column="2"
+                               Content="Clasificacion 3 Del Cliente:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="3"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.ValorClasificacionCliente3, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5"
+                                 IsReadOnly="True" />
+                        <Button Grid.Row="3"
+                                Grid.Column="4"
+                                Content="Buscar"
+                                Command="{Binding BuscarValorClasificacionCommand}"
+                                CommandParameter="ValorClasificacionCliente3"
+                                Width="100"
+                                VerticalAlignment="Center"
+                                Margin="5" />
+                        <Label Grid.Row="4"
+                               Grid.Column="2"
+                               Content="Clasificacion 4 Del Cliente:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="4"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.ValorClasificacionCliente4, Mode=OneWay}"
+                                 VerticalAlignment="Center"
+                                 Margin="5"
+                                 IsReadOnly="True" />
+                        <Button Grid.Row="4"
+                                Grid.Column="4"
+                                Content="Buscar"
+                                Command="{Binding BuscarValorClasificacionCommand}"
+                                CommandParameter="ValorClasificacionCliente4"
+                                Width="100"
+                                VerticalAlignment="Center"
+                                Margin="5" />
+                        <Label Grid.Row="5"
+                               Grid.Column="2"
+                               Content="Clasificacion 5 Del Cliente:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="5"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.ValorClasificacionCliente5, Mode=OneWay}"
+                                 VerticalAlignment="Center"
+                                 Margin="5"
+                                 IsReadOnly="True" />
+                        <Button Grid.Row="5"
+                                Grid.Column="4"
+                                Content="Buscar"
+                                Command="{Binding BuscarValorClasificacionCommand}"
+                                CommandParameter="ValorClasificacionCliente5"
+                                Width="100"
+                                VerticalAlignment="Center"
+                                Margin="5" />
+                        <Label Grid.Row="6"
+                               Grid.Column="2"
+                               Content="Clasificacion 6 Del Cliente:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="6"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.ValorClasificacionCliente6, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5"
+                                 IsReadOnly="True" />
+                        <Button Grid.Row="6"
+                                Grid.Column="4"
+                                Content="Buscar"
+                                Command="{Binding BuscarValorClasificacionCommand}"
+                                CommandParameter="ValorClasificacionCliente6"
+                                Width="100"
+                                VerticalAlignment="Center"
+                                Margin="5" />
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="4"
+                                   Text="Datos Comerciales:"
+                                   FontWeight="Bold"
+                                   FontSize="15"
+                                   VerticalAlignment="Center"
+                                   Margin="5" />
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               Content="Lista De Precios:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CLISTAPRECIOCLIENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="2"
+                               Grid.Column="0"
+                               Content="Ventas A Credito:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="2"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CBANCREDITOYCOBRANZA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="3"
+                               Grid.Column="0"
+                               Content="Descuento:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="3"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CDESCUENTOMOVTO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="1"
+                               Grid.Column="2"
+                               Content="Limite De Credito:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.CLIMITECREDITOCLIENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="2"
+                               Grid.Column="2"
+                               Content="Dias De Credito:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="2"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.CDIASCREDITOCLIENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="4"
+                                   Text="Impuestos Y Retenciones:"
+                                   FontWeight="Bold"
+                                   FontSize="15"
+                                   VerticalAlignment="Center"
+                                   Margin="5" />
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               Content="IVA:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CIMPUESTO1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="2"
+                               Grid.Column="0"
+                               Content="IESPS:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="2"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CIMPUESTO2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="3"
+                               Grid.Column="0"
+                               Content="Impuesto 3:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="3"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CIMPUESTO3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="1"
+                               Grid.Column="2"
+                               Content="Retencion ISR:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.CRETENCIONCLIENTE1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="2"
+                               Grid.Column="2"
+                               Content="Retencion IVA:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="2"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.CRETENCIONCLIENTE2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Datos Proveedor">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Text="Datos Del Cliente:"
+                                   FontWeight="Bold"
+                                   FontSize="15"
+                                   VerticalAlignment="Center"
+                                   Margin="5" />
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="2"
+                                   Grid.ColumnSpan="2"
+                                   Text="Clasificacion:"
+                                   FontWeight="Bold"
+                                   FontSize="15"
+                                   VerticalAlignment="Center"
+                                   Margin="5" />
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               Content="RFC:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CRFC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="2"
+                               Grid.Column="0"
+                               Content="Denominacion Comercial:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="2"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CDENCOMERCIAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="3"
+                               Grid.Column="0"
+                               Content="Moneda:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <ComboBox Grid.Row="3"
+                                  Grid.Column="1"
+                                  ItemsSource="{Binding Monedas}"
+                                  DisplayMemberPath="Nombre"
+                                  SelectedItem="{Binding ClienteProveedor.Moneda}"
+                                  VerticalAlignment="Center"
+                                  Margin="5" />
+                        <Label Grid.Row="4"
+                               Grid.Column="0"
+                               Content="CURP:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="4"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CCURP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="5"
+                               Grid.Column="0"
+                               Content="Representante Legal:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="5"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CREPLEGAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="1"
+                               Grid.Column="2"
+                               Content="Clasificacion 1:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.ValorClasificacionProveedor1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5"
+                                 IsReadOnly="True" />
+                        <Button Grid.Row="1"
+                                Grid.Column="4"
+                                Content="Buscar"
+                                Command="{Binding BuscarValorClasificacionCommand}"
+                                CommandParameter="ValorClasificacionProveedor1"
+                                Width="100"
+                                VerticalAlignment="Center"
+                                Margin="5" />
+                        <Label Grid.Row="2"
+                               Grid.Column="2"
+                               Content="Clasificacion 2:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="2"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.ValorClasificacionProveedor2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5"
+                                 IsReadOnly="True" />
+                        <Button Grid.Row="2"
+                                Grid.Column="4"
+                                Content="Buscar"
+                                Command="{Binding BuscarValorClasificacionCommand}"
+                                CommandParameter="ValorClasificacionProveedor2"
+                                Width="100"
+                                VerticalAlignment="Center"
+                                Margin="5" />
+                        <Label Grid.Row="3"
+                               Grid.Column="2"
+                               Content="Clasificacion 3:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="3"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.ValorClasificacionProveedor3, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5"
+                                 IsReadOnly="True" />
+                        <Button Grid.Row="3"
+                                Grid.Column="4"
+                                Content="Buscar"
+                                Command="{Binding BuscarValorClasificacionCommand}"
+                                CommandParameter="ValorClasificacionProveedor3"
+                                Width="100"
+                                VerticalAlignment="Center"
+                                Margin="5" />
+                        <Label Grid.Row="4"
+                               Grid.Column="2"
+                               Content="Clasificacion 4:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="4"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.ValorClasificacionProveedor4, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5"
+                                 IsReadOnly="True" />
+                        <Button Grid.Row="4"
+                                Grid.Column="4"
+                                Content="Buscar"
+                                Command="{Binding BuscarValorClasificacionCommand}"
+                                CommandParameter="ValorClasificacionProveedor4"
+                                Width="100"
+                                VerticalAlignment="Center"
+                                Margin="5" />
+                        <Label Grid.Row="5"
+                               Grid.Column="2"
+                               Content="Clasificacion 5:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="5"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.ValorClasificacionProveedor5, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5"
+                                 IsReadOnly="True" />
+                        <Button Grid.Row="5"
+                                Grid.Column="4"
+                                Content="Buscar"
+                                Command="{Binding BuscarValorClasificacionCommand}"
+                                CommandParameter="ValorClasificacionProveedor5"
+                                Width="100"
+                                VerticalAlignment="Center"
+                                Margin="5" />
+                        <Label Grid.Row="6"
+                               Grid.Column="2"
+                               Content="Clasificacion 6:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="6"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.ValorClasificacionProveedor6, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5"
+                                 IsReadOnly="True" />
+                        <Button Grid.Row="6"
+                                Grid.Column="4"
+                                Content="Buscar"
+                                Command="{Binding BuscarValorClasificacionCommand}"
+                                CommandParameter="ValorClasificacionProveedor6"
+                                Width="100"
+                                VerticalAlignment="Center"
+                                Margin="5" />
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="4"
+                                   Text="Datos Comerciales:"
+                                   FontWeight="Bold"
+                                   FontSize="15"
+                                   VerticalAlignment="Center"
+                                   Margin="5" />
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               Content="Limite De Credito:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CLIMITECREDITOPROVEEDOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="2"
+                               Grid.Column="0"
+                               Content="Dias De Credito:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="2"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CDIASCREDITOPROVEEDOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="4"
+                                   Text="Impuestos Y Retenciones:"
+                                   FontWeight="Bold"
+                                   FontSize="15"
+                                   VerticalAlignment="Center"
+                                   Margin="5" />
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               Content="IVA:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CIMPUESTOPROVEEDOR1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="2"
+                               Grid.Column="0"
+                               Content="IESPS:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="2"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CIMPUESTOPROVEEDOR2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="3"
+                               Grid.Column="0"
+                               Content="Impuesto 3:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="3"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CIMPUESTOPROVEEDOR3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="1"
+                               Grid.Column="2"
+                               Content="Retencion ISR:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.CRETENCIONPROVEEDOR1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="2"
+                               Grid.Column="2"
+                               Content="Retencion IVA:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="2"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.CRETENCIONPROVEEDOR2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Emitir/Enviar">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Text="Informacion De Entrega:"
+                                   FontWeight="Bold"
+                                   FontSize="15"
+                                   VerticalAlignment="Center"
+                                   Margin="5" />
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               Content="Correo Electronico 1:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CEMAIL1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="2"
+                               Grid.Column="0"
+                               Content="Correo Electronico 2:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="2"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CEMAIL2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="3"
+                               Grid.Column="0"
+                               Content="Correo Electronico 3:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="3"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CEMAIL3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Text="Anexo 20:"
+                                   FontWeight="Bold"
+                                   FontSize="15"
+                                   VerticalAlignment="Center"
+                                   Margin="5" />
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               Content="Forma De Pago:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CMETODOPAG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="1"
+                               Grid.Column="2"
+                               Content="Numero De Cuenta:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="3"
+                                 Text="{Binding ClienteProveedor.CNUMCTAPAG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="2"
+                               Grid.Column="0"
+                               Content="Regiment Fiscal:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="2"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CREGIMFISC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                        <Label Grid.Row="3"
+                               Grid.Column="0"
+                               Content="Uso CFDI:"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                        <TextBox Grid.Row="3"
+                                 Grid.Column="1"
+                                 Text="{Binding ClienteProveedor.CUSOCFDI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalAlignment="Center"
+                                 Margin="5" />
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Envios/Agentes">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="400" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Text="Envios:"
+                               FontWeight="Bold"
+                               FontSize="15"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Content="Mensageria O Transportista:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.CMENSAJERIA}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                           Content="Numero De Cuenta De La Mensajeria:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="2"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.CCUENTAMENSAJERIA}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Text="Almacen Control Consignaciones:"
+                               FontWeight="Bold"
+                               FontSize="15"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                    <Label Grid.Row="4"
+                           Grid.Column="0"
+                           Content="Almacen:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBlock Grid.Row="4"
+                               Grid.Column="1"
+                               Text="{Binding ClienteProveedor.Almacen, Mode=OneWay}"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                    <Button Grid.Row="4"
+                            Grid.Column="2"
+                            Content="Buscar"
+                            Command="{Binding BuscarAlmacenCommand}"
+                            VerticalAlignment="Center"
+                            Margin="5"
+                            Width="100" />
+                    <TextBlock Grid.Row="5"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Text="Agentes:"
+                               FontWeight="Bold"
+                               FontSize="15"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                    <Label Grid.Row="6"
+                           Grid.Column="0"
+                           Content="De Venta:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBlock Grid.Row="6"
+                               Grid.Column="1"
+                               Text="{Binding ClienteProveedor.AgenteVenta, Mode=OneWay}"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                    <Button Grid.Row="6"
+                            Grid.Column="2"
+                            Content="Buscar"
+                            Command="{Binding BuscarAgenteVentaCommand}"
+                            VerticalAlignment="Center"
+                            Margin="5"
+                            Width="100" />
+                    <Label Grid.Row="7"
+                           Grid.Column="0"
+                           Content="Comision:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="7"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.CCOMVENTA}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                    <Label Grid.Row="8"
+                           Grid.Column="0"
+                           Content="De Cobro:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBlock Grid.Row="8"
+                               Grid.Column="1"
+                               Text="{Binding ClienteProveedor.AgenteCobro, Mode=OneWay}"
+                               VerticalAlignment="Center"
+                               Margin="5" />
+                    <Button Grid.Row="8"
+                            Grid.Column="2"
+                            Content="Buscar"
+                            Command="{Binding BuscarAgenteCobroCommand}"
+                            VerticalAlignment="Center"
+                            Margin="5"
+                            Width="100" />
+                    <Label Grid.Row="9"
+                           Grid.Column="0"
+                           Content="Comision:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="9"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.CCOMCOBRO}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Usuario">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Content="Texto Extra 1:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="0"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.CTEXTOEXTRA1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Content="Texto Extra 1:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.CTEXTOEXTRA2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                           Content="Texto Extra 3:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="2"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.CTEXTOEXTRA3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                    <Label Grid.Row="3"
+                           Grid.Column="0"
+                           Content="Importe Extra 1:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="3"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.CIMPORTEEXTRA1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                    <Label Grid.Row="4"
+                           Grid.Column="0"
+                           Content="Importe Extra 2:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="4"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.CIMPORTEEXTRA2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                    <Label Grid.Row="5"
+                           Grid.Column="0"
+                           Content="Importe Extra 3:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="5"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.CIMPORTEEXTRA3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                    <Label Grid.Row="6"
+                           Grid.Column="0"
+                           Content="Importe Extra 4:"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                    <TextBox Grid.Row="6"
+                             Grid.Column="1"
+                             Text="{Binding ClienteProveedor.CIMPORTEEXTRA4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Center"
+                             Margin="5" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Direcciones">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0"
+                                Orientation="Horizontal">
+                        <Button Content="Crear"
+                                Command="{Binding CrearDireccionCommand}"
+                                Width="150"
+                                VerticalAlignment="Center"
+                                Margin="5"
+                                Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+                        <Button Content="Editar"
+                                Command="{Binding EditarDireccionCommand}"
+                                Width="150"
+                                VerticalAlignment="Center"
+                                Margin="5"
+                                Style="{StaticResource MahApps.Styles.Button.Square}" />
+                    </StackPanel>
+                    <DataGrid Grid.Row="1"
+                              ItemsSource="{Binding Direcciones}"
+                              SelectedItem="{Binding DireccionSeleccionada}"
+                              Margin="5"
+                              IsReadOnly="True" />
+                </Grid>
+            </TabItem>
+        </controls:MetroAnimatedSingleRowTabControl>
+    </Grid>
+</controls:MetroWindow>

@@ -1,0 +1,95 @@
+﻿<controls:MetroWindow x:Class="Sdk.Extras.WpfApp.Views.Agentes.EditarAgenteView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      xmlns:agentes="clr-namespace:Sdk.Extras.WpfApp.ViewModels.Agentes"
+                      mc:Ignorable="d"
+                      d:DataContext="{d:DesignInstance agentes:EditarAgenteViewModel, IsDesignTimeCreatable=False}"
+                      Title="{Binding Title}"
+                      WindowStartupLocation="CenterScreen"
+                      Width="500"
+                      Height="300"
+                      dialog:DialogParticipation.Register="{Binding}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Title}"
+                   FontWeight="Bold"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal">
+            <Button Content="Guardar"
+                    Command="{Binding GuardarCommand}"
+                    VerticalAlignment="Center"
+                    MinWidth="150"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+            <Button Content="Cancelar"
+                    Command="{Binding CancelarCommand}"
+                    VerticalAlignment="Center"
+                    Width="150"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square}" />
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Id:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5"
+                       Width="70" />
+                <TextBlock Text="{Binding Agente.CIDAGENTE, Mode=OneWay}"
+                           VerticalAlignment="Center"
+                           Margin="5"
+                           Width="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Codigo:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5"
+                       Width="70" />
+                <TextBox Text="{Binding Agente.CCODIGOAGENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         Margin="5"
+                         Width="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Nombre:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5"
+                       Width="70" />
+                <TextBox Text="{Binding Agente.CNOMBREAGENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         Margin="5"
+                         Width="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Tipo:"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5"
+                       Width="70" />
+                <ComboBox ItemsSource="{Binding TiposAgente}"
+                          SelectedItem="{Binding Agente.Tipo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          VerticalAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          Margin="5"
+                          Width="200" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</controls:MetroWindow>

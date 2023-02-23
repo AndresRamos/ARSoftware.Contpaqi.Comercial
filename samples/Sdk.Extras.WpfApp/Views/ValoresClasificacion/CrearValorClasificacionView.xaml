@@ -1,0 +1,63 @@
+﻿<controls:MetroWindow x:Class="Sdk.Extras.WpfApp.Views.ValoresClasificacion.CrearValorClasificacionView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      xmlns:valoresClasificacion="clr-namespace:Sdk.Extras.WpfApp.ViewModels.ValoresClasificacion"
+                      mc:Ignorable="d"
+                      d:DataContext="{d:DesignInstance valoresClasificacion:CrearValorClasificacionViewModel, IsDesignTimeCreatable=False}"
+                      Title="{Binding Title}"
+                      WindowStartupLocation="CenterScreen"
+                      Width="1300" Height="800"
+                      dialog:DialogParticipation.Register="{Binding}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="{Binding Title, Mode=OneWay}" FontWeight="Bold" FontSize="20"
+                   VerticalAlignment="Center" Margin="5" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Content="Crear" Command="{Binding CrearCommand}" Width="150" VerticalAlignment="Center" Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+            <Button Content="Cancelar" Command="{Binding CancelarCommand}" Width="150" VerticalAlignment="Center"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square}" />
+        </StackPanel>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Clasificacion:" FontWeight="Bold" VerticalAlignment="Center"
+                   Margin="5" />
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ClasificacionNombre, Mode=OneWay}"
+                     VerticalAlignment="Center"
+                     Margin="5" IsReadOnly="True" />
+            <Label Grid.Row="1" Grid.Column="0" Content="Numero:" FontWeight="Bold" VerticalAlignment="Center"
+                   Margin="5" />
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ClasificacionNumero, Mode=OneWay}"
+                     VerticalAlignment="Center"
+                     Margin="5" IsReadOnly="True" />
+            <Label Grid.Row="2" Grid.Column="0" Content="Codigo:" FontWeight="Bold" VerticalAlignment="Center"
+                   Margin="5" />
+            <TextBox Grid.Row="2" Grid.Column="1"
+                     Text="{Binding Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center" Margin="5" />
+            <Label Grid.Row="3" Grid.Column="0" Content="Valor:" FontWeight="Bold" VerticalAlignment="Center"
+                   Margin="5" />
+            <TextBox Grid.Row="3" Grid.Column="1"
+                     Text="{Binding Valor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center" Margin="5" />
+        </Grid>
+    </Grid>
+</controls:MetroWindow>

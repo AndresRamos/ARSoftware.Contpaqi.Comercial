@@ -1,0 +1,178 @@
+﻿<controls:MetroWindow x:Class="Sdk.Extras.WpfApp.Views.Facturas.CrearFacturaView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+                      xmlns:facturas="clr-namespace:Sdk.Extras.WpfApp.ViewModels.Facturas"
+                      mc:Ignorable="d"
+                      d:DataContext="{d:DesignInstance facturas:CrearFacturaViewModel, IsDesignTimeCreatable=False}"
+                      Title="{Binding Title}"
+                      WindowStartupLocation="CenterScreen"
+                      Width="700"
+                      Height="500"
+                      dialog:DialogParticipation.Register="{Binding}">
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction Command="{Binding InicializarCommand}" />
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Text="{Binding Title, Mode=OneWay}"
+                   FontWeight="Bold"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal">
+            <Button Content="Crear Factura"
+                    Command="{Binding CrearFacturaCommand}"
+                    MinWidth="150"
+                    VerticalAlignment="Center"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+            <Button Content="Cancelar"
+                    Command="{Binding CancelarCommand}"
+                    MinWidth="150"
+                    VerticalAlignment="Center"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square}" />
+        </StackPanel>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Content="Fecha:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+            <DatePicker Grid.Row="0"
+                        Grid.Column="1"
+                        SelectedDate="{Binding Fecha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        VerticalAlignment="Center"
+                        Margin="5" />
+            <Label Grid.Row="1"
+                   Grid.Column="0"
+                   Content="Concepto:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+            <ComboBox Grid.Row="1"
+                      Grid.Column="1"
+                      ItemsSource="{Binding Conceptos}"
+                      SelectedItem="{Binding ConceptoSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      VerticalAlignment="Center"
+                      Margin="5" />
+            <Label Grid.Row="2"
+                   Grid.Column="0"
+                   Content="Serie:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+            <TextBox Grid.Row="2"
+                     Grid.Column="1"
+                     Text="{Binding Serie, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center"
+                     Margin="5" />
+            <Label Grid.Row="3"
+                   Grid.Column="0"
+                   Content="Folio:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+            <TextBox Grid.Row="3"
+                     Grid.Column="1"
+                     Text="{Binding Folio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center"
+                     Margin="5" />
+            <Button Grid.Row="3"
+                    Grid.Column="2"
+                    Content="Buscar Siguiente"
+                    Command="{Binding BuscarSiguienteFolioCommand}"
+                    ToolTip="Buscar Siguente Folio"
+                    VerticalAlignment="Center"
+                    Margin="5"
+                    Style="{StaticResource MahApps.Styles.Button.Square}" />
+            <Label Grid.Row="4"
+                   Grid.Column="0"
+                   Content="Cliente:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+            <ComboBox Grid.Row="4"
+                      Grid.Column="1"
+                      ItemsSource="{Binding Clientes}"
+                      SelectedItem="{Binding ClienteSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      VerticalAlignment="Center"
+                      Margin="5" />
+            <Label Grid.Row="5"
+                   Grid.Column="0"
+                   Content="Agente:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+            <ComboBox Grid.Row="5"
+                      Grid.Column="1"
+                      ItemsSource="{Binding Agentes}"
+                      SelectedItem="{Binding AgenteSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      VerticalAlignment="Center"
+                      Margin="5" />
+            <Label Grid.Row="6"
+                   Grid.Column="0"
+                   Content="Moneda:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+            <TextBox Grid.Row="6"
+                     Grid.Column="1"
+                     Text="{Binding Moneda, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center"
+                     Margin="5" />
+            <Label Grid.Row="7"
+                   Grid.Column="0"
+                   Content="Tipo De Cambio:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+            <TextBox Grid.Row="7"
+                     Grid.Column="1"
+                     Text="{Binding TipoCambio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center"
+                     Margin="5" />
+            <Label Grid.Row="8"
+                   Grid.Column="0"
+                   Content="Referencia:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+            <TextBox Grid.Row="8"
+                     Grid.Column="1"
+                     Text="{Binding Referencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center"
+                     Margin="5" />
+        </Grid>
+    </Grid>
+</controls:MetroWindow>

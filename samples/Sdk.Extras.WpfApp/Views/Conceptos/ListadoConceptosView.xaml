@@ -1,0 +1,47 @@
+﻿<controls:MetroWindow x:Class="Sdk.Extras.WpfApp.Views.Conceptos.ListadoConceptosView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      xmlns:conceptos="clr-namespace:Sdk.Extras.WpfApp.ViewModels.Conceptos"
+                      mc:Ignorable="d"
+                      d:DataContext="{d:DesignInstance conceptos:ListadoConceptosViewModel, IsDesignTimeCreatable=False}"
+                      Title="{Binding Title}"
+                      WindowStartupLocation="CenterScreen"
+                      Width="1300" Height="800"
+                      dialog:DialogParticipation.Register="{Binding}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="{Binding Title, Mode=OneWay}" FontWeight="Bold" FontSize="20"
+                   VerticalAlignment="Center" Margin="5" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Content="Buscar Conceptos" Command="{Binding BuscarConceptosCommand}" Width="150"
+                    VerticalAlignment="Center"
+                    Margin="5" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+            <TextBlock Text="# Conceptos:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="{Binding Conceptos.Count}" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="Duracion Busqueda:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="{Binding DuracionBusqueda}" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <TextBox Text="{Binding Filtro, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center" Width="200" Margin="5" controls:TextBoxHelper.Watermark="Filtro"
+                     controls:TextBoxHelper.ClearTextButton="True" />
+            <TextBlock Text="# Conceptos:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="{Binding NumeroConceptos}" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+        </StackPanel>
+        <DataGrid Grid.Row="3" ItemsSource="{Binding Conceptos}"
+                  SelectedItem="{Binding ConceptoSeleccionado}"
+                  IsReadOnly="True"
+                  Margin="5"
+                  VirtualizingStackPanel.VirtualizationMode="Standard"
+                  Style="{StaticResource MahApps.Styles.DataGrid.Azure}" />
+    </Grid>
+</controls:MetroWindow>

@@ -1,0 +1,42 @@
+﻿<controls:MetroWindow x:Class="Sdk.Extras.WpfApp.Views.ValoresClasificacion.SeleccionarValorClasificacionView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      xmlns:valoresClasificacion="clr-namespace:Sdk.Extras.WpfApp.ViewModels.ValoresClasificacion"
+                      mc:Ignorable="d"
+                      d:DataContext="{d:DesignInstance valoresClasificacion:SeleccionarValorClasificacionViewModel, IsDesignTimeCreatable=False}"
+                      Title="{Binding Title}"
+                      WindowStartupLocation="CenterScreen"
+                      Width="700" Height="500"
+                      dialog:DialogParticipation.Register="{Binding}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Clasificaciones" FontWeight="Bold" FontSize="15"
+                   VerticalAlignment="Center" Margin="5" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Content="Seleccionar" Command="{Binding SeleccionarCommand}" VerticalAlignment="Center" Margin="5"
+                    Width="150" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+            <Button Content="Cancelar" Command="{Binding CancelarCommand}" VerticalAlignment="Center" Margin="5"
+                    Width="150" Style="{StaticResource MahApps.Styles.Button.Square}" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <TextBox Text="{Binding Filtro, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center" Margin="5" Width="200" controls:TextBoxHelper.ClearTextButton="True"
+                     controls:TextBoxHelper.Watermark="Filtro" />
+        </StackPanel>
+        <DataGrid Grid.Row="3" ItemsSource="{Binding Valores}"
+                  SelectedItem="{Binding ValorSeleccionado}"
+                  IsReadOnly="True"
+                  Margin="5"
+                  VirtualizingStackPanel.VirtualizationMode="Standard"
+                  Style="{StaticResource MahApps.Styles.DataGrid.Azure}" />
+    </Grid>
+</controls:MetroWindow>

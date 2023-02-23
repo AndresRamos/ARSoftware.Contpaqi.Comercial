@@ -1,0 +1,63 @@
+﻿<controls:MetroWindow x:Class="Sdk.Extras.WpfApp.Views.Almacenes.SeleccionarAlmacenView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      xmlns:almacenes="clr-namespace:Sdk.Extras.WpfApp.ViewModels.Almacenes"
+                      mc:Ignorable="d"
+                      d:DataContext="{d:DesignInstance almacenes:SeleccionarAlmacenViewModel, IsDesignTimeCreatable=False}"
+                      Title="{Binding Title}"
+                      WindowStartupLocation="CenterScreen"
+                      Width="700"
+                      Height="500"
+                      dialog:DialogParticipation.Register="{Binding}">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Text="{Binding Title, Mode=OneWay}"
+                       FontWeight="Bold"
+                       FontSize="20"
+                       VerticalAlignment="Center"
+                       Margin="5" />
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal">
+                <Button Content="Seleccionar"
+                        Command="{Binding SeleccionarCommand}"
+                        Width="150"
+                        VerticalAlignment="Center"
+                        Margin="5"
+                        Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+                <Button Content="Cancelar"
+                        Command="{Binding CancelarCommand}"
+                        Width="150"
+                        VerticalAlignment="Center"
+                        Margin="5"
+                        Style="{StaticResource MahApps.Styles.Button.Square}" />
+            </StackPanel>
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal">
+                <TextBox Text="{Binding Filtro, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center"
+                         Width="200"
+                         Margin="5"
+                         controls:TextBoxHelper.Watermark="Filtro"
+                         controls:TextBoxHelper.ClearTextButton="True" />
+            </StackPanel>
+            <DataGrid Grid.Row="3"
+                      ItemsSource="{Binding Almacenes}"
+                      SelectedItem="{Binding AlmacenSeleccionado}"
+                      IsReadOnly="True"
+                      Margin="5"
+                      VirtualizingStackPanel.VirtualizationMode="Standard"
+                      Style="{StaticResource MahApps.Styles.DataGrid.Azure}" />
+        </Grid>
+    </Grid>
+</controls:MetroWindow>
