@@ -9,6 +9,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
         int Crear(int idDocumento, tMovimiento movimiento);
         int Crear(int idDocumento, tMovimientoDesc movimiento);
         int Crear(Dictionary<string, string> datosMovimiento);
+        void CrearSeriesCapas(int movimientoId, tSeriesCapas seriesCapas);
         void Eliminar(int idDocumento, int idMovimiento);
     }
 }

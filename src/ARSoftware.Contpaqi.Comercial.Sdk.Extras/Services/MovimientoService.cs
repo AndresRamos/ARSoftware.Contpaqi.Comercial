@@ -38,6 +38,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             return movimientoId;
         }
 
+        public void CrearSeriesCapas(int movimientoId, tSeriesCapas seriesCapas)
+        {
+            _sdk.fAltaMovimientoSeriesCapas(movimientoId, ref seriesCapas).ToResultadoSdk(_sdk).ThrowIfError();
+        }
+
         public int Crear(Dictionary<string, string> datosMovimiento)
         {
             _sdk.fInsertarMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
