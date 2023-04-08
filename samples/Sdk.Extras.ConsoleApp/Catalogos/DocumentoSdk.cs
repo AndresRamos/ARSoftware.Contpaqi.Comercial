@@ -179,6 +179,13 @@ public sealed class DocumentoSdk
         _documentoService.Cancelar(documento.CIDDOCUMENTO, "12345678a", "02", "");
     }
 
+    public void CancelarDocumentoPorLlave()
+    {
+        _logger.LogInformation("CancelarDocumentoPorLlave()");
+        var llave = new tLlaveDoc { aCodConcepto = "400", aSerie = "FAP", aFolio = 58 };
+        _documentoService.Cancelar(llave, "12345678A", "02", "");
+    }
+
     public void LogDocumento(Documento documento)
     {
         _logger.LogInformation("Concepto:{Concepto}, Serie:{Serie}, Folio{Folio}, Cliente:{Cliente}, Total:{Total}",

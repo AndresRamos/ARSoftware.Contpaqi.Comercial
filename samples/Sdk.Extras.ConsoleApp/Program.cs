@@ -1,5 +1,4 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +10,7 @@ using Sdk.Extras.ConsoleApp.Catalogos;
 IHost host = Host.CreateDefaultBuilder()
     .ConfigureServices(collection =>
     {
-        collection.AddContpaqiComercialSdkServices(TipoContpaqiSdk.FacturaElectronica);
+        collection.AddContpaqiComercialSdkServices();
         collection.AddSingleton<ConexionSdk>()
             .AddSingleton<EmpresaSdk>()
             .AddSingleton<ClienteSdk>()
