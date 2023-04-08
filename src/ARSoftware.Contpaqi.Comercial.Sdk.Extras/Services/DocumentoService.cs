@@ -68,6 +68,13 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk.fCancelaDocumentoConMotivo(motivoCancelacion, uuidRemplazo);
         }
 
+        public void Cancelar(tLlaveDoc tLlaveDocumento, string contrasenaCertificado, string motivoCancelacion, string uuidRemplazo)
+        {
+            _sdk.fBuscaDocumento(ref tLlaveDocumento).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fCancelaDoctoInfo(contrasenaCertificado).ToResultadoSdk(_sdk).ThrowIfError();
+            _sdk.fCancelaDocumentoConMotivo(motivoCancelacion, uuidRemplazo);
+        }
+
         public void CancelarAdministrativamente(int idDocumento)
         {
             _sdk.fBuscarIdDocumento(idDocumento).ToResultadoSdk(_sdk).ThrowIfError();
