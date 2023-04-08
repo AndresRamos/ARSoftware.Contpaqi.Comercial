@@ -13,6 +13,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
         tLlaveDoc BuscarSiguienteSerieYFolio(string codigoConcepto);
         void Cancelar(int idDocumento, string contrasenaCertificado);
         void Cancelar(int idDocumento, string contrasenaCertificado, string motivoCancelacion, string uuidRemplazo);
+        void Cancelar(tLlaveDoc tLlaveDocumento, string contrasenaCertificado, string motivoCancelacion, string uuidRemplazo);
         void CancelarAdministrativamente(int idDocumento);
         void CancelarAdministrativamente(string codigoConcepto, string serie, string folio);
         void CancelarAdministrativamente(tLlaveDoc tLlaveDocumento);
