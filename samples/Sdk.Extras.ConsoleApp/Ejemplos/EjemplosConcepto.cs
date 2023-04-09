@@ -2,7 +2,7 @@
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using Microsoft.Extensions.Logging;
-using Sdk.Extras.ConsoleApp.Dtos;
+using Samples.Common.Models.Dtos;
 
 namespace Sdk.Extras.ConsoleApp.Ejemplos;
 

@@ -5,7 +5,7 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using Microsoft.Extensions.Logging;
-using Sdk.Extras.ConsoleApp.Dtos;
+using Samples.Common.Models.Dtos;
 
 namespace Sdk.Extras.ConsoleApp.Ejemplos;
 

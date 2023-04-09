@@ -1,6 +1,6 @@
 ﻿// ReSharper disable InconsistentNaming
 
-namespace Sdk.Extras.ConsoleApp.Dtos;
+namespace Samples.Common.Models.Dtos;
 
 public sealed class DocumentoDto
 {

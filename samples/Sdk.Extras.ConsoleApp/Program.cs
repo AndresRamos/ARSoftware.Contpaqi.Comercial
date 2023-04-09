@@ -47,7 +47,7 @@ try
 }
 catch (Exception e)
 {
-    Console.WriteLine(e.ToString());
+    logger.LogCritical(e, "Ocurrio un error");
 }
 finally
 {

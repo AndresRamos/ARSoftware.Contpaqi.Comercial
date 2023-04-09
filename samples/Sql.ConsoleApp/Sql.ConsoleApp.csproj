@@ -13,6 +13,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\ARSoftware.Contpaqi.Comercial.Sql\ARSoftware.Contpaqi.Comercial.Sql.csproj" />
+		<ProjectReference Include="..\Samples.Common\Samples.Common.csproj" />
 	</ItemGroup>
 
 </Project>
