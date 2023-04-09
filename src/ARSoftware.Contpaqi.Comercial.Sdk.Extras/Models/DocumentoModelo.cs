@@ -47,6 +47,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
         public static readonly DocumentoModelo NotaDeVenta = new DocumentoModelo(35, "Nota De Venta");
         public static readonly DocumentoModelo DevolucionSobreNotaDeVenta = new DocumentoModelo(36, "Devolucion Sobre Nota De Venta");
         public static readonly DocumentoModelo AjusteAlCosto = new DocumentoModelo(37, "Ajuste Al Costo");
+        public static readonly DocumentoModelo CotizacionDelProveedor = new DocumentoModelo(38, "Cotización del Proveedor");
 
         public DocumentoModelo()
         {
@@ -110,6 +111,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
             yield return NotaDeVenta;
             yield return DevolucionSobreNotaDeVenta;
             yield return AjusteAlCosto;
+            yield return CotizacionDelProveedor;
         }
     }
 }
