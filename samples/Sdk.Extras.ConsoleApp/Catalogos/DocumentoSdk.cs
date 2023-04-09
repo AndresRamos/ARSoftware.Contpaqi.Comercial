@@ -176,14 +176,14 @@ public sealed class DocumentoSdk
     {
         _logger.LogInformation("CancelarDocumento()");
         Documento? documento = _documentoRepository.BuscarPorLlave("400", "FAP", "28");
-        _documentoService.Cancelar(documento.CIDDOCUMENTO, "12345678a", "02", "");
+        _documentoService.Cancelar(documento.CIDDOCUMENTO, "12345678a", MotivoCancelacion._02, "");
     }
 
     public void CancelarDocumentoPorLlave()
     {
         _logger.LogInformation("CancelarDocumentoPorLlave()");
         var llave = new tLlaveDoc { aCodConcepto = "400", aSerie = "FAP", aFolio = 58 };
-        _documentoService.Cancelar(llave, "12345678A", "02", "");
+        _documentoService.Cancelar(llave, "12345678A", MotivoCancelacion._02, "");
     }
 
     public void LogDocumento(Documento documento)
