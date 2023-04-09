@@ -24,9 +24,9 @@ public sealed class EjemplosDocumento
     private const string RutaPlantillaPdfPruebas =
         @"\\AR-SERVER\Compac\Empresas\Reportes\Formatos Digitales\reportes_Servidor\COMERCIAL\Facturav40.rdl"; // La ruta a la plantilla en mi servidor ya que las pruebas las hago en una temrinal.
 
-    private const string MotivoCancelacionPruebas = "02";
     private const string UuidReemplazoPruebas = "";
     private const double ImporteAbonoPruebas = 116;
+    private static readonly MotivoCancelacion MotivoCancelacionPruebas = MotivoCancelacion._02;
     private readonly IAlmacenRepository<Almacen> _almacenRepository;
     private readonly IClienteProveedorRepository<ClienteProveedor> _clienteProveedorRepository;
     private readonly IConceptoDocumentoRepository<ConceptoDocumento> _conceptoDocumentoRepository;
