@@ -1,62 +1,58 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Sdk.Extras.ConsoleApp;
-using Sdk.Extras.ConsoleApp.Catalogos;
+using Sdk.Extras.ConsoleApp.Ejemplos;
 
 IHost host = Host.CreateDefaultBuilder()
     .ConfigureServices(collection =>
     {
         collection.AddContpaqiComercialSdkServices();
-        collection.AddSingleton<ConexionSdk>()
-            .AddSingleton<EmpresaSdk>()
-            .AddSingleton<ClienteSdk>()
-            .AddSingleton<ProductoSdk>()
-            .AddSingleton<ConceptoSdk>()
-            .AddSingleton<DocumentoSdk>();
+        collection.AddSingleton<EjemplosConexion>()
+            .AddSingleton<EjemplosEmpresa>()
+            .AddSingleton<EjemplosCliente>()
+            .AddSingleton<EjemplosProducto>()
+            .AddSingleton<EjemplosConcepto>()
+            .AddSingleton<EjemplosDocumento>();
     })
     .ConfigureLogging(builder => { builder.AddSimpleConsole(options => { options.SingleLine = true; }); })
     .Build();
 
 await host.StartAsync();
 
-var conexionSdk = host.Services.GetRequiredService<ConexionSdk>();
+var logger = host.Services.GetRequiredService<ILogger<Program>>();
+logger.LogInformation("Iniciando Programa");
+
+var conexionSdk = host.Services.GetRequiredService<EjemplosConexion>();
 
 try
 {
-    var logger = host.Services.GetRequiredService<ILogger<Program>>();
-    logger.LogInformation("Iniciando Programa");
+    conexionSdk.IniciarConexion();
 
-    // Iniciar conexion
-    var sdk = host.Services.GetRequiredService<IContpaqiSdk>();
+    conexionSdk.AbrirEmpresa();
 
-    if (sdk is FacturaElectronicaSdkExtended || sdk is AdminpaqSdkExtended)
-        conexionSdk.IniciarConexion();
-    else if (sdk is ComercialSdkExtended)
-        conexionSdk.IniciarConexionConParametros("SUPERVISOR", "");
+    // Ejemplos del uso del SDK
+    // Se pueden ejecutar de forma independiente
+    // Comenta los ejemplos que no quieras ejecutar
 
-    // Abrir empresa
-    var empresaSdk = host.Services.GetRequiredService<EmpresaSdk>();
-    List<Empresa> empresas = empresaSdk.BuscarEmpresas();
-    //empresaSdk.LogEmpresas(empresas);
-    Empresa empresaSeleccionada = empresas.First(e => e.CNOMBREEMPRESA == "UNIVERSIDAD ROBOTICA ESPAÑOLA SA DE CV");
-    conexionSdk.AbrirEmpresa(empresaSeleccionada);
+    host.Services.GetRequiredService<EjemplosEmpresa>().CorrerEjemplos();
 
-    // Pruebas con SDK
+    host.Services.GetRequiredService<EjemplosCliente>().CorrerEjemplos();
+
+    host.Services.GetRequiredService<EjemplosConcepto>().CorrerEjemplos();
+
+    host.Services.GetRequiredService<EjemplosProducto>().CorrerEjemplos();
+
+    host.Services.GetRequiredService<EjemplosDocumento>().CorrerEjemplos();
 }
 catch (Exception e)
 {
-    Console.WriteLine(e.ToString());
+    logger.LogCritical(e, "Ocurrio un error");
 }
 finally
 {
-    // Cerrar empresa
     conexionSdk.CerrarEmpresa();
 
-    // Terminar conexion
     conexionSdk.TerminarConexion();
 }
 
