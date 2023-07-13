@@ -5,7 +5,7 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Version>4.4.0</Version>
 		<Authors>AR Software</Authors>
-		<Description>Modelo de las bases de datos de CONTPAQi Comercial version 8.1.1</Description>
+		<Description>Modelo de las bases de datos de CONTPAQi Comercial v8.2.1</Description>
 		<Copyright>Copyright © AR Software 2022</Copyright>
 		<RepositoryUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</PackageProjectUrl>

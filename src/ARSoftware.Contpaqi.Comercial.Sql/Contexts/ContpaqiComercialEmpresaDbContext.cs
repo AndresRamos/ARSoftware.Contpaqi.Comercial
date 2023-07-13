@@ -1381,11 +1381,13 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
 
                 entity.HasIndex(e => new { e.CIDUNIDAD2, e.CIDAUTOINCSQL }, "CIDUNIDAD2");
 
-                entity.Property(e => e.CFACTORCONVERSION)
+                entity.Property(e => e.CEXPRESIONFACTOR)
                     .IsRequired()
                     .HasMaxLength(11)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
+
+                entity.Property(e => e.CFACTORCONVERSION).HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CIDAUTOINCSQL).ValueGeneratedOnAdd();
             });
