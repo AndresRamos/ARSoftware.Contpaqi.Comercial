@@ -32,8 +32,4 @@
 		<ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sql.Models\ARSoftware.Contpaqi.Comercial.Sql.Models.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Repositories\" />
-	</ItemGroup>
-
 </Project>
