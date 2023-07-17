@@ -18,19 +18,19 @@ public sealed class ConceptoDocumentoSqlRepository : IConceptoDocumentoRepositor
     /// <inheritdoc />
     public admConceptos BuscarPorCodigo(string codigoConcepto)
     {
-        return _context.admConceptos.SingleOrDefault(x => x.CCODIGOCONCEPTO == codigoConcepto);
+        return _context.admConceptos.SingleOrDefault(concepto => concepto.CCODIGOCONCEPTO == codigoConcepto);
     }
 
     /// <inheritdoc />
     public admConceptos BuscarPorId(int idConcepto)
     {
-        return _context.admConceptos.SingleOrDefault(x => x.CIDCONCEPTODOCUMENTO == idConcepto);
+        return _context.admConceptos.SingleOrDefault(concepto => concepto.CIDCONCEPTODOCUMENTO == idConcepto);
     }
 
     /// <inheritdoc />
     public IEnumerable<admConceptos> TraerPorDocumentoModeloId(int documentoModeloId)
     {
-        return _context.admConceptos.Where(x => x.CIDDOCUMENTODE == documentoModeloId).ToList();
+        return _context.admConceptos.Where(concepto => concepto.CIDDOCUMENTODE == documentoModeloId).ToList();
     }
 
     /// <inheritdoc />
