@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Excepciones;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
@@ -47,8 +48,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             while (_sdk.fPosSiguienteClasificacion() == SdkResultConstants.Success)
             {
                 yield return LeerDatosClasificacionActual();
-                if (_sdk.fPosEOFClasificacion() == 1)
-                    break;
+                if (_sdk.fPosEOFClasificacion() == 1) break;
             }
         }
 
@@ -69,8 +69,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             {
                 try
                 {
-                    if (!sqlModelType.HasProperty(propertyDescriptor.Name))
-                        continue;
+                    if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
 
                     propertyDescriptor.SetValue(clasificacion,
                         _sdk.LeeDatoClasificacion(propertyDescriptor.Name)

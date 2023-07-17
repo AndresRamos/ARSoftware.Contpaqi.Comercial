@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using Microsoft.Extensions.Logging;
 using Samples.Common.Models.Dtos;
@@ -20,10 +21,8 @@ public sealed class EjemplosProducto
     private readonly IProductoRepository<Producto> _productoRepository;
     private readonly IProductoService _productoService;
 
-    public EjemplosProducto(IProductoRepository<Producto> productoRepository,
-                            IProductoService productoService,
-                            ILogger<EjemplosProducto> logger,
-                            IProductoRepository<ProductoDto> productoDtoRepository)
+    public EjemplosProducto(IProductoRepository<Producto> productoRepository, IProductoService productoService,
+        ILogger<EjemplosProducto> logger, IProductoRepository<ProductoDto> productoDtoRepository)
     {
         _productoRepository = productoRepository;
         _productoService = productoService;
@@ -88,8 +87,7 @@ public sealed class EjemplosProducto
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
         _logger.LogInformation("Se encontraron {NumeroProductos} productos.", productos.Count);
-        foreach (Producto? producto in productos)
-            LogProducto(producto);
+        foreach (Producto? producto in productos) LogProducto(producto);
     }
 
     private void BuscarTodosLosProductos()
@@ -100,8 +98,7 @@ public sealed class EjemplosProducto
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
         _logger.LogInformation("Se encontraron {NumeroProductos} productos.", productos.Count);
-        foreach (Producto? producto in productos)
-            LogProducto(producto);
+        foreach (Producto? producto in productos) LogProducto(producto);
     }
 
     private void BuscarTodosLosProductosUtilizandoDto()
@@ -112,8 +109,7 @@ public sealed class EjemplosProducto
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
         _logger.LogInformation("Se encontraron {NumeroProductos} productos.", productos.Count);
-        foreach (ProductoDto? producto in productos)
-            LogProducto(producto);
+        foreach (ProductoDto? producto in productos) LogProducto(producto);
     }
 
     private int CrearProductoPrueba()
@@ -155,21 +151,13 @@ public sealed class EjemplosProducto
 
     private void LogProducto(Producto producto)
     {
-        _logger.LogInformation("Id: {Id}, Codigo: {Codigo}, Nombre: {Nombre}, Tipo: {Tipo}, ClaveSAT: {ClaveSat}",
-            producto.CIDPRODUCTO,
-            producto.CCODIGOPRODUCTO,
-            producto.CNOMBREPRODUCTO,
-            producto.Tipo,
-            producto.CCLAVESAT);
+        _logger.LogInformation("Id: {Id}, Codigo: {Codigo}, Nombre: {Nombre}, Tipo: {Tipo}, ClaveSAT: {ClaveSat}", producto.CIDPRODUCTO,
+            producto.CCODIGOPRODUCTO, producto.CNOMBREPRODUCTO, producto.Tipo, producto.CCLAVESAT);
     }
 
     private void LogProducto(ProductoDto producto)
     {
-        _logger.LogInformation("Id: {Id}, Codigo: {Codigo}, Nombre: {Nombre}, Tipo: {Tipo}, ClaveSAT: {ClaveSat}",
-            producto.CIDPRODUCTO,
-            producto.CCODIGOPRODUCTO,
-            producto.CNOMBREPRODUCTO,
-            producto.CTIPOPRODUCTO,
-            producto.CCLAVESAT);
+        _logger.LogInformation("Id: {Id}, Codigo: {Codigo}, Nombre: {Nombre}, Tipo: {Tipo}, ClaveSAT: {ClaveSat}", producto.CIDPRODUCTO,
+            producto.CCODIGOPRODUCTO, producto.CNOMBREPRODUCTO, producto.CTIPOPRODUCTO, producto.CCLAVESAT);
     }
 }

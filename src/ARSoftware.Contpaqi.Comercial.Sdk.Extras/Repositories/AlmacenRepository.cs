@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Excepciones;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
@@ -36,8 +37,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             while (_sdk.fPosSiguienteAlmacen() == SdkResultConstants.Success)
             {
                 yield return LeerDatosAlmacenActual();
-                if (_sdk.fPosEOFAlmacen() == 1)
-                    break;
+                if (_sdk.fPosEOFAlmacen() == 1) break;
             }
         }
 
@@ -58,8 +58,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             {
                 try
                 {
-                    if (!sqlModelType.HasProperty(propertyDescriptor.Name))
-                        continue;
+                    if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
 
                     propertyDescriptor.SetValue(almacen,
                         _sdk.LeeDatoAlmacen(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));

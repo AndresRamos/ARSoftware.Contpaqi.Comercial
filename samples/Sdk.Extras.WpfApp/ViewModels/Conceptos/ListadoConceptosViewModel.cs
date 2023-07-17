@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -22,7 +22,7 @@ public class ListadoConceptosViewModel : ObservableRecipient
     private string _filtro;
 
     public ListadoConceptosViewModel(IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository,
-                                     IDialogCoordinator dialogCoordinator)
+        IDialogCoordinator dialogCoordinator)
     {
         _conceptoDocumentoRepository = conceptoDocumentoRepository;
         _dialogCoordinator = dialogCoordinator;
@@ -99,8 +99,7 @@ public class ListadoConceptosViewModel : ObservableRecipient
 
     private bool ConceptosView_Filter(object obj)
     {
-        if (!(obj is ConceptoDocumento concepto))
-            throw new ArgumentNullException(nameof(obj));
+        if (!(obj is ConceptoDocumento concepto)) throw new ArgumentNullException(nameof(obj));
 
         return concepto.Contains(Filtro);
     }

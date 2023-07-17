@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories
 {
     public interface IProductoRepository<T> where T : class, new()
     {

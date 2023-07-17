@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
@@ -21,8 +22,7 @@ public class EditarUnidadMedidaViewModel : ObservableRecipient
     private readonly IUnidadMedidaService _unidadMedidaService;
 
     public EditarUnidadMedidaViewModel(IUnidadMedidaRepository<UnidadMedida> unidadMedidaRepository,
-                                       IUnidadMedidaService unidadMedidaService,
-                                       IDialogCoordinator dialogCoordinator)
+        IUnidadMedidaService unidadMedidaService, IDialogCoordinator dialogCoordinator)
     {
         _unidadMedidaRepository = unidadMedidaRepository;
         _unidadMedidaService = unidadMedidaService;

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Excepciones;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
@@ -37,17 +38,14 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
 
             _sdk.fPosPrimerCteProv().ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
-            if (TipoClienteHelper.IsCliente(tipoDeCliente.ToString()))
-                yield return LeerDatosClienteProveedorActual();
+            if (TipoClienteHelper.IsCliente(tipoDeCliente.ToString())) yield return LeerDatosClienteProveedorActual();
 
             while (_sdk.fPosSiguienteCteProv() == SdkResultConstants.Success)
             {
                 _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
-                if (TipoClienteHelper.IsCliente(tipoDeCliente.ToString()))
-                    yield return LeerDatosClienteProveedorActual();
+                if (TipoClienteHelper.IsCliente(tipoDeCliente.ToString())) yield return LeerDatosClienteProveedorActual();
 
-                if (_sdk.fPosEOFCteProv() == 1)
-                    break;
+                if (_sdk.fPosEOFCteProv() == 1) break;
             }
         }
 
@@ -65,8 +63,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                 if (tipoCliente == TipoClienteHelper.ConvertFromSdkValue(tipoDeCliente.ToString()))
                     yield return LeerDatosClienteProveedorActual();
 
-                if (_sdk.fPosEOFCteProv() == 1)
-                    break;
+                if (_sdk.fPosEOFCteProv() == 1) break;
             }
         }
 
@@ -76,17 +73,14 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
 
             _sdk.fPosPrimerCteProv().ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
-            if (TipoClienteHelper.IsProveedor(tipoDeCliente.ToString()))
-                yield return LeerDatosClienteProveedorActual();
+            if (TipoClienteHelper.IsProveedor(tipoDeCliente.ToString())) yield return LeerDatosClienteProveedorActual();
 
             while (_sdk.fPosSiguienteCteProv() == SdkResultConstants.Success)
             {
                 _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
-                if (TipoClienteHelper.IsProveedor(tipoDeCliente.ToString()))
-                    yield return LeerDatosClienteProveedorActual();
+                if (TipoClienteHelper.IsProveedor(tipoDeCliente.ToString())) yield return LeerDatosClienteProveedorActual();
 
-                if (_sdk.fPosEOFCteProv() == 1)
-                    break;
+                if (_sdk.fPosEOFCteProv() == 1) break;
             }
         }
 
@@ -97,8 +91,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             while (_sdk.fPosSiguienteCteProv() == SdkResultConstants.Success)
             {
                 yield return LeerDatosClienteProveedorActual();
-                if (_sdk.fPosEOFCteProv() == 1)
-                    break;
+                if (_sdk.fPosEOFCteProv() == 1) break;
             }
         }
 
@@ -119,8 +112,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             {
                 try
                 {
-                    if (!sqlModelType.HasProperty(propertyDescriptor.Name))
-                        continue;
+                    if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
 
                     propertyDescriptor.SetValue(cliente,
                         _sdk.LeeDatoClienteProveedor(propertyDescriptor.Name)

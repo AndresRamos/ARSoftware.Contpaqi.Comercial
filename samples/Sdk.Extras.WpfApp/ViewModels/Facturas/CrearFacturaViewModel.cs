@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
@@ -34,11 +36,9 @@ public class CrearFacturaViewModel : ObservableRecipient
     private double _tipoCambio = 1;
 
     public CrearFacturaViewModel(IDocumentoService documentoService,
-                                 IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository,
-                                 IClienteProveedorRepository<ClienteProveedorLookup> clienteProveedorRepository,
-                                 IDialogCoordinator dialogCoordinator,
-                                 IDocumentoRepository<Documento> documentoRepository,
-                                 IAgenteRepository<Agente> agenteRepository)
+        IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository,
+        IClienteProveedorRepository<ClienteProveedorLookup> clienteProveedorRepository, IDialogCoordinator dialogCoordinator,
+        IDocumentoRepository<Documento> documentoRepository, IAgenteRepository<Agente> agenteRepository)
     {
         _documentoService = documentoService;
         _conceptoDocumentoRepository = conceptoDocumentoRepository;
@@ -128,10 +128,10 @@ public class CrearFacturaViewModel : ObservableRecipient
     {
         try
         {
-            tLlaveDoc siguienteSerieFolio = _documentoRepository.BuscarSiguienteSerieYFolio(ConceptoSeleccionado.CCODIGOCONCEPTO);
+            LlaveDocumento siguienteSerieFolio = _documentoRepository.BuscarSiguienteSerieYFolio(ConceptoSeleccionado.CCODIGOCONCEPTO);
 
-            Serie = siguienteSerieFolio.aSerie;
-            Folio = siguienteSerieFolio.aFolio;
+            Serie = siguienteSerieFolio.Serie;
+            Folio = siguienteSerieFolio.Folio;
         }
         catch (Exception e)
         {
@@ -147,8 +147,7 @@ public class CrearFacturaViewModel : ObservableRecipient
     private void CargarAgentes()
     {
         Agentes.Clear();
-        foreach (Agente agente in _agenteRepository.TraerTodo().OrderBy(a => a.CNOMBREAGENTE))
-            Agentes.Add(agente);
+        foreach (Agente agente in _agenteRepository.TraerTodo().OrderBy(a => a.CNOMBREAGENTE)) Agentes.Add(agente);
 
         AgenteSeleccionado = Agentes.FirstOrDefault();
     }

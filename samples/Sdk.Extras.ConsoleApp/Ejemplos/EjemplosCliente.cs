@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using Microsoft.Extensions.Logging;
 using Samples.Common.Models.Dtos;
@@ -21,10 +22,8 @@ public sealed class EjemplosCliente
     private readonly IClienteProveedorService _clienteProveedorService;
     private readonly ILogger<EjemplosCliente> _logger;
 
-    public EjemplosCliente(IClienteProveedorRepository<ClienteProveedor> clienteProveedorRepository,
-                           ILogger<EjemplosCliente> logger,
-                           IClienteProveedorService clienteProveedorService,
-                           IClienteProveedorRepository<ClienteDto> clienteProveedorDtoRepository)
+    public EjemplosCliente(IClienteProveedorRepository<ClienteProveedor> clienteProveedorRepository, ILogger<EjemplosCliente> logger,
+        IClienteProveedorService clienteProveedorService, IClienteProveedorRepository<ClienteDto> clienteProveedorDtoRepository)
     {
         _clienteProveedorRepository = clienteProveedorRepository;
         _logger = logger;
@@ -93,8 +92,7 @@ public sealed class EjemplosCliente
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
         _logger.LogInformation("Se encontraron {NumeroClientes} clientes.", clientes.Count);
-        foreach (ClienteProveedor cliente in clientes)
-            LogCliente(cliente);
+        foreach (ClienteProveedor cliente in clientes) LogCliente(cliente);
     }
 
     private void BuscarTodosLosClientes()
@@ -105,8 +103,7 @@ public sealed class EjemplosCliente
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
         _logger.LogInformation("Se encontraron {NumeroClientes} clientes.", clientes.Count);
-        foreach (ClienteProveedor cliente in clientes)
-            LogCliente(cliente);
+        foreach (ClienteProveedor cliente in clientes) LogCliente(cliente);
     }
 
     private void BuscarTodosLosClientesUtilizandoDto()
@@ -117,8 +114,7 @@ public sealed class EjemplosCliente
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
         _logger.LogInformation("Se encontraron {NumeroClientes} clientes.", clientes.Count);
-        foreach (ClienteDto cliente in clientes)
-            LogCliente(cliente);
+        foreach (ClienteDto cliente in clientes) LogCliente(cliente);
     }
 
     private void BuscarSoloClientes()
@@ -129,8 +125,7 @@ public sealed class EjemplosCliente
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
         _logger.LogInformation("Se encontraron {NumeroClientes} clientes.", clientes.Count);
-        foreach (ClienteProveedor cliente in clientes)
-            LogCliente(cliente);
+        foreach (ClienteProveedor cliente in clientes) LogCliente(cliente);
     }
 
     private void BuscarSoloProveedores()
@@ -141,8 +136,7 @@ public sealed class EjemplosCliente
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
         _logger.LogInformation("Se encontraron {NumeroClientes} proveedores.", proveedores.Count);
-        foreach (ClienteProveedor cliente in proveedores)
-            LogCliente(cliente);
+        foreach (ClienteProveedor cliente in proveedores) LogCliente(cliente);
     }
 
     private int CrearClientePrueba()
@@ -189,25 +183,15 @@ public sealed class EjemplosCliente
     {
         _logger.LogInformation(
             "Id: {Id}, Codigo: {Codigo}, Razon Social: {RazonSocial}, RFC: {Rfc}, Tipo: {Tipo}, Uso CFDI: {UsoCfdi}, Regimen Fiscal: {RegimenFiscal}",
-            clienteProveedor.CIDCLIENTEPROVEEDOR,
-            clienteProveedor.CCODIGOCLIENTE,
-            clienteProveedor.CRAZONSOCIAL,
-            clienteProveedor.CRFC,
-            clienteProveedor.Tipo,
-            clienteProveedor.CUSOCFDI,
-            clienteProveedor.CREGIMFISC);
+            clienteProveedor.CIDCLIENTEPROVEEDOR, clienteProveedor.CCODIGOCLIENTE, clienteProveedor.CRAZONSOCIAL, clienteProveedor.CRFC,
+            clienteProveedor.Tipo, clienteProveedor.CUSOCFDI, clienteProveedor.CREGIMFISC);
     }
 
     private void LogCliente(ClienteDto clienteProveedor)
     {
         _logger.LogInformation(
             "Id: {Id}, Codigo: {Codigo}, Razon Social: {RazonSocial}, RFC: {Rfc}, Tipo: {Tipo}, Uso CFDI: {UsoCfdi}, Regimen Fiscal: {RegimenFiscal}",
-            clienteProveedor.CIDCLIENTEPROVEEDOR,
-            clienteProveedor.CCODIGOCLIENTE,
-            clienteProveedor.CRAZONSOCIAL,
-            clienteProveedor.CRFC,
-            clienteProveedor.CTIPOCLIENTE,
-            clienteProveedor.CUSOCFDI,
-            clienteProveedor.CREGIMFISC);
+            clienteProveedor.CIDCLIENTEPROVEEDOR, clienteProveedor.CCODIGOCLIENTE, clienteProveedor.CRAZONSOCIAL, clienteProveedor.CRFC,
+            clienteProveedor.CTIPOCLIENTE, clienteProveedor.CUSOCFDI, clienteProveedor.CREGIMFISC);
     }
 }

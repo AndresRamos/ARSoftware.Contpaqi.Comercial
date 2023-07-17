@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
@@ -38,16 +40,11 @@ public sealed class EjemplosDocumento
     private readonly IMovimientoService _movimientoService;
     private readonly IProductoRepository<Producto> _productoRepository;
 
-    public EjemplosDocumento(IDocumentoRepository<Documento> documentoRepository,
-                             IDocumentoService documentoService,
-                             ILogger<EjemplosDocumento> logger,
-                             IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository,
-                             IClienteProveedorRepository<ClienteProveedor> clienteProveedorRepository,
-                             IMovimientoService movimientoService,
-                             IProductoRepository<Producto> productoRepository,
-                             IAlmacenRepository<Almacen> almacenRepository,
-                             IMovimientoRepository<Movimiento> movimientoRepository,
-                             IDocumentoRepository<DocumentoDto> documentoDtoRepository)
+    public EjemplosDocumento(IDocumentoRepository<Documento> documentoRepository, IDocumentoService documentoService,
+        ILogger<EjemplosDocumento> logger, IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository,
+        IClienteProveedorRepository<ClienteProveedor> clienteProveedorRepository, IMovimientoService movimientoService,
+        IProductoRepository<Producto> productoRepository, IAlmacenRepository<Almacen> almacenRepository,
+        IMovimientoRepository<Movimiento> movimientoRepository, IDocumentoRepository<DocumentoDto> documentoDtoRepository)
     {
         _documentoRepository = documentoRepository;
         _documentoService = documentoService;
@@ -233,7 +230,10 @@ public sealed class EjemplosDocumento
     {
         _logger.LogInformation("Buscando documento por llave: {LlaveDocumento}", llaveDocumento);
         long startTime = Stopwatch.GetTimestamp();
-        Documento? documento = _documentoRepository.BuscarPorLlave(llaveDocumento);
+        Documento? documento = _documentoRepository.BuscarPorLlave(new LlaveDocumento
+        {
+            CodigoConcepto = llaveDocumento.aCodConcepto, Serie = llaveDocumento.aSerie, Folio = llaveDocumento.aFolio
+        });
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
 
@@ -243,9 +243,7 @@ public sealed class EjemplosDocumento
             LogDocumento(documento);
         }
         else
-        {
             _logger.LogWarning("No se encontro el documento con llave {LlaveDocumento}", llaveDocumento);
-        }
 
         return documento;
     }
@@ -254,10 +252,7 @@ public sealed class EjemplosDocumento
     {
         _logger.LogInformation(
             "Buscando documentos por filtro: FechaInicio: {FechaInicio}, FechaFin: {FechaFin}, CodigoConcepto: {CodigoConcepto}, CodigoCliente: {CodigoCliente}",
-            fechaInicio,
-            fechaFin,
-            codigoConcepto,
-            codigoCliente);
+            fechaInicio, fechaFin, codigoConcepto, codigoCliente);
 
         long startTime = Stopwatch.GetTimestamp();
         List<Documento> documentos = _documentoRepository
@@ -266,26 +261,19 @@ public sealed class EjemplosDocumento
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
 
-        foreach (Documento documento in documentos)
-            CargarDatosRelacionados(documento);
+        foreach (Documento documento in documentos) CargarDatosRelacionados(documento);
 
-        foreach (Documento documento in documentos)
-            LogDocumento(documento);
+        foreach (Documento documento in documentos) LogDocumento(documento);
 
         return documentos;
     }
 
-    private List<DocumentoDto> BuscarPorFiltroUtilizandoDto(DateTime fechaInicio,
-                                                            DateTime fechaFin,
-                                                            string codigoConcepto,
-                                                            string codigoCliente)
+    private List<DocumentoDto> BuscarPorFiltroUtilizandoDto(DateTime fechaInicio, DateTime fechaFin, string codigoConcepto,
+        string codigoCliente)
     {
         _logger.LogInformation(
             "Buscando documentos por filtro utilizando DTOs: FechaInicio: {FechaInicio}, FechaFin: {FechaFin}, CodigoConcepto: {CodigoConcepto}, CodigoCliente: {CodigoCliente}",
-            fechaInicio,
-            fechaFin,
-            codigoConcepto,
-            codigoCliente);
+            fechaInicio, fechaFin, codigoConcepto, codigoCliente);
 
         long startTime = Stopwatch.GetTimestamp();
         List<DocumentoDto> documentos = _documentoDtoRepository
@@ -294,8 +282,7 @@ public sealed class EjemplosDocumento
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
 
-        foreach (DocumentoDto? documento in documentos)
-            LogDocumento(documento);
+        foreach (DocumentoDto? documento in documentos) LogDocumento(documento);
 
         return documentos;
     }
@@ -356,10 +343,7 @@ public sealed class EjemplosDocumento
     {
         _logger.LogInformation("Creando documento digital.");
         long startTime = Stopwatch.GetTimestamp();
-        _documentoService.GenerarDocumentoDigital(llaveDocumento.aCodConcepto,
-            llaveDocumento.aSerie,
-            llaveDocumento.aFolio,
-            tipo,
+        _documentoService.GenerarDocumentoDigital(llaveDocumento.aCodConcepto, llaveDocumento.aSerie, llaveDocumento.aFolio, tipo,
             rutaPlantilla);
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
@@ -388,31 +372,20 @@ public sealed class EjemplosDocumento
     private void LogDocumento(Documento documento)
     {
         _logger.LogInformation("Fecha: {Fecha:d}, Concepto: {Concepto}, Serie: {Serie}, Folio: {Folio}, Cliente: {Cliente}, Total: {Total}",
-            documento.CFECHA,
-            documento.ConceptoDocumento.CNOMBRECONCEPTO,
-            documento.CSERIEDOCUMENTO,
-            documento.CFOLIO,
-            documento.ClienteProveedor.CRAZONSOCIAL,
-            documento.CTOTAL);
+            documento.CFECHA, documento.ConceptoDocumento.CNOMBRECONCEPTO, documento.CSERIEDOCUMENTO, documento.CFOLIO,
+            documento.ClienteProveedor.CRAZONSOCIAL, documento.CTOTAL);
 
         foreach (Movimiento movimiento in documento.Movimientos)
         {
             _logger.LogInformation("- Producto: {Producto}, Unidades: {Unidades}, Precio: {Precio}, Total:{Total}",
-                movimiento.Producto.CNOMBREPRODUCTO,
-                movimiento.CUNIDADES,
-                movimiento.CPRECIO,
-                movimiento.CTOTAL);
+                movimiento.Producto.CNOMBREPRODUCTO, movimiento.CUNIDADES, movimiento.CPRECIO, movimiento.CTOTAL);
         }
     }
 
     private void LogDocumento(DocumentoDto documento)
     {
         _logger.LogInformation("Fecha: {Fecha:d}, Concepto: {Concepto}, Serie: {Serie}, Folio: {Folio}, Cliente: {Cliente}, Total: {Total}",
-            documento.CFECHA,
-            documento.CIDCONCEPTODOCUMENTO,
-            documento.CSERIEDOCUMENTO,
-            documento.CFOLIO,
-            documento.CRAZONSOCIAL,
+            documento.CFECHA, documento.CIDCONCEPTODOCUMENTO, documento.CSERIEDOCUMENTO, documento.CFOLIO, documento.CRAZONSOCIAL,
             documento.CTOTAL);
     }
 

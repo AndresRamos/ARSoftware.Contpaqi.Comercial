@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -34,14 +35,10 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
     private ClienteProveedor _clienteProveedor;
     private Direccion _direccionSeleccionada;
 
-    public EditarClienteProveedorViewModel(IDialogCoordinator dialogCoordinator,
-                                           IClienteProveedorService clienteProveedorService,
-                                           IClienteProveedorRepository<ClienteProveedor> clienteProveedorRepository,
-                                           IDireccionRepository<Direccion> direccionRepository,
-                                           IAgenteRepository<Agente> agenteRepository,
-                                           IAlmacenRepository<Almacen> almacenRepository,
-                                           IMonedaRepository<Moneda> monedaRepository,
-                                           IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
+    public EditarClienteProveedorViewModel(IDialogCoordinator dialogCoordinator, IClienteProveedorService clienteProveedorService,
+        IClienteProveedorRepository<ClienteProveedor> clienteProveedorRepository, IDireccionRepository<Direccion> direccionRepository,
+        IAgenteRepository<Agente> agenteRepository, IAlmacenRepository<Almacen> almacenRepository,
+        IMonedaRepository<Moneda> monedaRepository, IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
     {
         _dialogCoordinator = dialogCoordinator;
         _clienteProveedorService = clienteProveedorService;
@@ -184,16 +181,14 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
                     window.ViewModel.Inicializar(
                         _valorClasificacionRepository.TraerPorClasificacionTipoYNumero(TipoClasificacion.Cliente, NumeroClasificacion.Uno));
                     window.ShowDialog();
-                    if (window.ViewModel.SeleccionoValor)
-                        ClienteProveedor.ValorClasificacionCliente1 = window.ViewModel.ValorSeleccionado;
+                    if (window.ViewModel.SeleccionoValor) ClienteProveedor.ValorClasificacionCliente1 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(ClienteProveedor.ValorClasificacionCliente2):
                     window.ViewModel.Inicializar(
                         _valorClasificacionRepository.TraerPorClasificacionTipoYNumero(TipoClasificacion.Cliente, NumeroClasificacion.Dos));
                     window.ShowDialog();
-                    if (window.ViewModel.SeleccionoValor)
-                        ClienteProveedor.ValorClasificacionCliente2 = window.ViewModel.ValorSeleccionado;
+                    if (window.ViewModel.SeleccionoValor) ClienteProveedor.ValorClasificacionCliente2 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(ClienteProveedor.ValorClasificacionCliente3):
@@ -201,8 +196,7 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
                         _valorClasificacionRepository.TraerPorClasificacionTipoYNumero(TipoClasificacion.Cliente,
                             NumeroClasificacion.Tres));
                     window.ShowDialog();
-                    if (window.ViewModel.SeleccionoValor)
-                        ClienteProveedor.ValorClasificacionCliente3 = window.ViewModel.ValorSeleccionado;
+                    if (window.ViewModel.SeleccionoValor) ClienteProveedor.ValorClasificacionCliente3 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(ClienteProveedor.ValorClasificacionCliente4):
@@ -210,8 +204,7 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
                         _valorClasificacionRepository.TraerPorClasificacionTipoYNumero(TipoClasificacion.Cliente,
                             NumeroClasificacion.Cuatro));
                     window.ShowDialog();
-                    if (window.ViewModel.SeleccionoValor)
-                        ClienteProveedor.ValorClasificacionCliente4 = window.ViewModel.ValorSeleccionado;
+                    if (window.ViewModel.SeleccionoValor) ClienteProveedor.ValorClasificacionCliente4 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(ClienteProveedor.ValorClasificacionCliente5):
@@ -219,8 +212,7 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
                         _valorClasificacionRepository.TraerPorClasificacionTipoYNumero(TipoClasificacion.Cliente,
                             NumeroClasificacion.Cinco));
                     window.ShowDialog();
-                    if (window.ViewModel.SeleccionoValor)
-                        ClienteProveedor.ValorClasificacionCliente5 = window.ViewModel.ValorSeleccionado;
+                    if (window.ViewModel.SeleccionoValor) ClienteProveedor.ValorClasificacionCliente5 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(ClienteProveedor.ValorClasificacionCliente6):
@@ -228,8 +220,7 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
                         _valorClasificacionRepository.TraerPorClasificacionTipoYNumero(TipoClasificacion.Cliente,
                             NumeroClasificacion.Seis));
                     window.ShowDialog();
-                    if (window.ViewModel.SeleccionoValor)
-                        ClienteProveedor.ValorClasificacionCliente6 = window.ViewModel.ValorSeleccionado;
+                    if (window.ViewModel.SeleccionoValor) ClienteProveedor.ValorClasificacionCliente6 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(ClienteProveedor.ValorClasificacionProveedor1):
@@ -316,8 +307,7 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
             tipoCliente == TipoCliente.Proveedor ? TipoCatalogoDireccion.Proveedores : TipoCatalogoDireccion.Clientes;
 
         Direcciones.Clear();
-        foreach (Direccion direccion in _direccionRepository.TraerPorTipoYIdCatalogo(tipo, id))
-            Direcciones.Add(direccion);
+        foreach (Direccion direccion in _direccionRepository.TraerPorTipoYIdCatalogo(tipo, id)) Direcciones.Add(direccion);
     }
 
     private void CargarRelaciones(ClienteProveedor clienteProveedor)
@@ -356,8 +346,7 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
         try
         {
             var window = new EditarDireccionView();
-            window.ViewModel.Inicializar(BuscarTipoDireccion(ClienteProveedor.Tipo),
-                ClienteProveedor.CCODIGOCLIENTE,
+            window.ViewModel.Inicializar(BuscarTipoDireccion(ClienteProveedor.Tipo), ClienteProveedor.CCODIGOCLIENTE,
                 ClienteProveedor.CIDCLIENTEPROVEEDOR);
             window.ShowDialog();
             CargarDirecciones(ClienteProveedor.Tipo, ClienteProveedor.CIDCLIENTEPROVEEDOR);
@@ -388,8 +377,7 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
         try
         {
             MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
-                "Usar funciones de Alto Nivel o de Bajo Nivel?",
-                "Usar funciones de Alto Nivel o de Bajo Nivel?",
+                "Usar funciones de Alto Nivel o de Bajo Nivel?", "Usar funciones de Alto Nivel o de Bajo Nivel?",
                 MessageDialogStyle.AffirmativeAndNegative,
                 new MetroDialogSettings { AffirmativeButtonText = "Alto Nivel", NegativeButtonText = "Bajo Nivel" });
 
@@ -415,9 +403,7 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
         tCteProv tCliente = ClienteProveedor.ToTCteProv();
 
         if (idCliente == 0)
-        {
             idCliente = _clienteProveedorService.Crear(tCliente);
-        }
         else
         {
             _clienteProveedorService.Actualizar(tCliente);
@@ -456,9 +442,7 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
             Direcciones.Clear();
         }
         else
-        {
             CargarCliente(idCliente.Value);
-        }
 
         OnPropertyChanged();
     }

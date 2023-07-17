@@ -1,4 +1,5 @@
 ﻿using System;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
@@ -10,7 +11,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
     public static class ConfigureServices
     {
         public static IServiceCollection AddContpaqiComercialSdkServices(this IServiceCollection services,
-                                                                         TipoContpaqiSdk tipoContpaqiSdk = TipoContpaqiSdk.Comercial)
+            TipoContpaqiSdk tipoContpaqiSdk = TipoContpaqiSdk.Comercial)
         {
             switch (tipoContpaqiSdk)
             {
@@ -24,8 +25,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras
                     services.AddSingleton<IContpaqiSdk, FacturaElectronicaSdkExtended>();
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(tipoContpaqiSdk),
-                        tipoContpaqiSdk,
+                    throw new ArgumentOutOfRangeException(nameof(tipoContpaqiSdk), tipoContpaqiSdk,
                         "El valor no es un tipo de SDK valido.");
             }
 

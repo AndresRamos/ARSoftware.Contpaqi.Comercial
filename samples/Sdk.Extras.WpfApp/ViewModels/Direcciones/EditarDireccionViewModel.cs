@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -23,9 +24,8 @@ public class EditarDireccionViewModel : ObservableRecipient
     private readonly IDireccionService _direccionService;
     private Direccion _direccion;
 
-    public EditarDireccionViewModel(IDireccionService direccionService,
-                                    IDialogCoordinator dialogCoordinator,
-                                    IDireccionRepository<Direccion> direccionRepository)
+    public EditarDireccionViewModel(IDireccionService direccionService, IDialogCoordinator dialogCoordinator,
+        IDireccionRepository<Direccion> direccionRepository)
     {
         _direccionService = direccionService;
         _dialogCoordinator = dialogCoordinator;
@@ -65,8 +65,7 @@ public class EditarDireccionViewModel : ObservableRecipient
         try
         {
             MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
-                "Usar funciones de Alto Nivel o de Bajo Nivel?",
-                "Usar funciones de Alto Nivel o de Bajo Nivel?",
+                "Usar funciones de Alto Nivel o de Bajo Nivel?", "Usar funciones de Alto Nivel o de Bajo Nivel?",
                 MessageDialogStyle.AffirmativeAndNegative,
                 new MetroDialogSettings { AffirmativeButtonText = "Alto Nivel", NegativeButtonText = "Bajo Nivel" });
 
@@ -92,8 +91,7 @@ public class EditarDireccionViewModel : ObservableRecipient
         tDireccion tDireccion = Direccion.ToTDireccion();
 
         // Asignar codigo de cliente ya que no es una propiedad de Direccion.
-        if (!string.IsNullOrWhiteSpace(CodigoClienteProveedor))
-            tDireccion.cCodCteProv = CodigoClienteProveedor;
+        if (!string.IsNullOrWhiteSpace(CodigoClienteProveedor)) tDireccion.cCodCteProv = CodigoClienteProveedor;
 
         if (idDireccion == 0)
             idDireccion = _direccionService.Crear(tDireccion);

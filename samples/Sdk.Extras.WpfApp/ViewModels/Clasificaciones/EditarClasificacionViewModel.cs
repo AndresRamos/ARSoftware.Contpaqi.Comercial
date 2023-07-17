@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
@@ -21,8 +22,7 @@ public class EditarClasificacionViewModel : ObservableRecipient
     private Clasificacion _clasificacion;
 
     public EditarClasificacionViewModel(IClasificacionRepository<Clasificacion> clasificacionRepository,
-                                        IClasificacionService clasificacionService,
-                                        IDialogCoordinator dialogCoordinator)
+        IClasificacionService clasificacionService, IDialogCoordinator dialogCoordinator)
     {
         _clasificacionRepository = clasificacionRepository;
         _clasificacionService = clasificacionService;

@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -27,11 +27,8 @@ public class ListadoClientesViewModel : ObservableRecipient
     private string _filtro;
 
     public ListadoClientesViewModel(IClienteProveedorRepository<ClienteProveedor> clienteProveedorRepository,
-                                    IDialogCoordinator dialogCoordinator,
-                                    IAlmacenRepository<Almacen> almacenRepository,
-                                    IAgenteRepository<Agente> agenteRepository,
-                                    IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository,
-                                    IMonedaRepository<Moneda> monedaRepository)
+        IDialogCoordinator dialogCoordinator, IAlmacenRepository<Almacen> almacenRepository, IAgenteRepository<Agente> agenteRepository,
+        IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository, IMonedaRepository<Moneda> monedaRepository)
     {
         _clienteProveedorRepository = clienteProveedorRepository;
         _dialogCoordinator = dialogCoordinator;
@@ -195,8 +192,7 @@ public class ListadoClientesViewModel : ObservableRecipient
             window.ViewModel.Inicializar();
             window.ShowDialog();
 
-            await _dialogCoordinator.ShowMessageAsync(this,
-                "Volver A Buscar Catalogo",
+            await _dialogCoordinator.ShowMessageAsync(this, "Volver A Buscar Catalogo",
                 "Para ver los cambios reflejados volver a buscar el catalogo.");
         }
         catch (Exception e)
@@ -213,8 +209,7 @@ public class ListadoClientesViewModel : ObservableRecipient
             window.ViewModel.Inicializar(ClienteProveedorSeleccionado.CIDCLIENTEPROVEEDOR);
             window.ShowDialog();
 
-            await _dialogCoordinator.ShowMessageAsync(this,
-                "Volver A Buscar Catalogo",
+            await _dialogCoordinator.ShowMessageAsync(this, "Volver A Buscar Catalogo",
                 "Para ver los cambios reflejados volver a buscar el catalogo.");
         }
         catch (Exception e)
@@ -239,8 +234,7 @@ public class ListadoClientesViewModel : ObservableRecipient
 
     private bool ClientesProveedoresView_Filter(object obj)
     {
-        if (obj is not ClienteProveedor cliente)
-            throw new ArgumentNullException(nameof(obj));
+        if (obj is not ClienteProveedor cliente) throw new ArgumentNullException(nameof(obj));
 
         return cliente.Contains(Filtro);
     }

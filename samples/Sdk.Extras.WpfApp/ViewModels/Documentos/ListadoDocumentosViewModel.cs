@@ -5,9 +5,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
@@ -36,17 +36,12 @@ public class ListadoDocumentosViewModel : ObservableRecipient
     private DateTime _fechaInicio = DateTime.Today;
     private string _filtro;
 
-    public ListadoDocumentosViewModel(IDialogCoordinator dialogCoordinator,
-                                      IDocumentoRepository<Documento> documentoRepository,
-                                      IClienteProveedorRepository<ClienteProveedorLookup> clienteProveedorLookupRepository,
-                                      IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository,
-                                      IMovimientoRepository<Movimiento> movimientoRepository,
-                                      IAgenteRepository<Agente> agenteRepository,
-                                      IProductoRepository<Producto> productoRepository,
-                                      IAlmacenRepository<Almacen> almacenRepository,
-                                      IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository,
-                                      IDireccionRepository<Direccion> direccionRepository,
-                                      IClienteProveedorRepository<ClienteProveedor> clienteProveedorRepository)
+    public ListadoDocumentosViewModel(IDialogCoordinator dialogCoordinator, IDocumentoRepository<Documento> documentoRepository,
+        IClienteProveedorRepository<ClienteProveedorLookup> clienteProveedorLookupRepository,
+        IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository, IMovimientoRepository<Movimiento> movimientoRepository,
+        IAgenteRepository<Agente> agenteRepository, IProductoRepository<Producto> productoRepository,
+        IAlmacenRepository<Almacen> almacenRepository, IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository,
+        IDireccionRepository<Direccion> direccionRepository, IClienteProveedorRepository<ClienteProveedor> clienteProveedorRepository)
     {
         _dialogCoordinator = dialogCoordinator;
         _documentoRepository = documentoRepository;
@@ -200,9 +195,7 @@ public class ListadoDocumentosViewModel : ObservableRecipient
             stopwatch.Start();
             Documentos.Clear();
             foreach (Documento documento in _documentoRepository.TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(FechaInicio,
-                         FechaFin,
-                         ConceptoSeleccionado.CCODIGOCONCEPTO,
-                         ClienteProveedorSeleccionado.CCODIGOCLIENTE))
+                         FechaFin, ConceptoSeleccionado.CCODIGOCONCEPTO, ClienteProveedorSeleccionado.CCODIGOCLIENTE))
             {
                 CargarRelaciones(documento);
                 Documentos.Add(documento);
@@ -246,8 +239,7 @@ public class ListadoDocumentosViewModel : ObservableRecipient
 
     private bool ProductosView_Filter(object obj)
     {
-        if (!(obj is Documento documento))
-            throw new ArgumentNullException(nameof(obj));
+        if (!(obj is Documento documento)) throw new ArgumentNullException(nameof(obj));
 
         return documento.Contains(Filtro);
     }

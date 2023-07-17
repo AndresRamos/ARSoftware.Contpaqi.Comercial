@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using Microsoft.Extensions.Logging;
 
@@ -36,8 +36,7 @@ public sealed class EjemplosEmpresa
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
         _logger.LogInformation("Se encontraron {NumeroEmpresas} empresas.", empresas.Count);
-        foreach (Empresa empresa in empresas)
-            LogEmpresa(empresa);
+        foreach (Empresa empresa in empresas) LogEmpresa(empresa);
     }
 
     private Empresa BuscarEmpresaPorNombre(string nombreEmpresa)

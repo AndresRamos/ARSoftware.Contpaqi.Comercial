@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
@@ -23,12 +24,9 @@ public class EditarMovimientoViewModel : ObservableRecipient
     private readonly IValorClasificacionRepository<ValorClasificacion> _valorClasificacionRepository;
     private Movimiento _movimiento;
 
-    public EditarMovimientoViewModel(IMovimientoRepository<Movimiento> movimientoRepository,
-                                     IMovimientoService movimientoService,
-                                     IDialogCoordinator dialogCoordinator,
-                                     IAlmacenRepository<Almacen> almacenRepository,
-                                     IProductoRepository<Producto> productoRepository,
-                                     IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
+    public EditarMovimientoViewModel(IMovimientoRepository<Movimiento> movimientoRepository, IMovimientoService movimientoService,
+        IDialogCoordinator dialogCoordinator, IAlmacenRepository<Almacen> almacenRepository,
+        IProductoRepository<Producto> productoRepository, IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
     {
         _movimientoRepository = movimientoRepository;
         _movimientoService = movimientoService;

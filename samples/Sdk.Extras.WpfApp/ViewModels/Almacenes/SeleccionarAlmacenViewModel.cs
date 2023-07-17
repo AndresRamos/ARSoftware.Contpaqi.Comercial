@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -62,8 +62,7 @@ public class SeleccionarAlmacenViewModel : ObservableRecipient
     public void Inicializar()
     {
         Almacenes.Clear();
-        foreach (Almacen almacen in _almacenRepository.TraerTodo())
-            Almacenes.Add(almacen);
+        foreach (Almacen almacen in _almacenRepository.TraerTodo()) Almacenes.Add(almacen);
     }
 
     public bool CanSelccionar()
@@ -90,8 +89,7 @@ public class SeleccionarAlmacenViewModel : ObservableRecipient
 
     private bool AlmacenesView_Filter(object obj)
     {
-        if (!(obj is Almacen almacen))
-            throw new ArgumentNullException(nameof(obj));
+        if (!(obj is Almacen almacen)) throw new ArgumentNullException(nameof(obj));
 
         return almacen.Contains(Filtro);
     }

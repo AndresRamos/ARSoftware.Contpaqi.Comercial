@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
 {
@@ -14,9 +14,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services
             _sdk = sdk;
         }
 
-        public void Actualizar(TipoClasificacion tipoClasificacion,
-                               NumeroClasificacion numeroClasificacion,
-                               Dictionary<string, string> datosClasificacion)
+        public void Actualizar(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion,
+            Dictionary<string, string> datosClasificacion)
         {
             _sdk.fBuscaClasificacion((int)tipoClasificacion, (int)numeroClasificacion).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fEditaClasificacion().ToResultadoSdk(_sdk).ThrowIfError();

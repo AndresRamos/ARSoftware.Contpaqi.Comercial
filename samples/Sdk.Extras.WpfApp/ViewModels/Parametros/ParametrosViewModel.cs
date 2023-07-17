@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
@@ -16,7 +16,7 @@ public class ParametrosViewModel : ObservableRecipient
     private string _duracionBusqueda;
 
     public ParametrosViewModel(IParametrosRepository<ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Parametros> parametrosRepository,
-                               IDialogCoordinator dialogCoordinator)
+        IDialogCoordinator dialogCoordinator)
     {
         _parametrosRepository = parametrosRepository;
         _dialogCoordinator = dialogCoordinator;

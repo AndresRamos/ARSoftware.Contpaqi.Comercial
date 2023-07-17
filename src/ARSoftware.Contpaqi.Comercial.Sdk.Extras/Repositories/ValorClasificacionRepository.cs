@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.Excepciones;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
@@ -28,9 +29,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                 : null;
         }
 
-        public T BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacion tipoClasificacion,
-                                                         int numeroClasificacion,
-                                                         string codigoValorClasificacion)
+        public T BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacion tipoClasificacion, int numeroClasificacion,
+            string codigoValorClasificacion)
         {
             return _sdk.fBuscaValorClasif((int)tipoClasificacion, numeroClasificacion, codigoValorClasificacion) ==
                    SdkResultConstants.Success
@@ -43,17 +43,14 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             _sdk.fPosPrimerValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
             var id = new StringBuilder(12);
             _sdk.fLeeDatoValorClasif("CIDCLASIFICACION", id, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
-            if (idClasificacion == int.Parse(id.ToString()))
-                yield return LeerDatosValorClasificacionActual();
+            if (idClasificacion == int.Parse(id.ToString())) yield return LeerDatosValorClasificacionActual();
 
             while (_sdk.fPosSiguienteValorClasif() == SdkResultConstants.Success)
             {
                 _sdk.fLeeDatoValorClasif("CIDCLASIFICACION", id, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
-                if (idClasificacion == int.Parse(id.ToString()))
-                    yield return LeerDatosValorClasificacionActual();
+                if (idClasificacion == int.Parse(id.ToString())) yield return LeerDatosValorClasificacionActual();
 
-                if (_sdk.fPosEOFValorClasif() == 1)
-                    break;
+                if (_sdk.fPosEOFValorClasif() == 1) break;
             }
         }
 
@@ -71,8 +68,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             while (_sdk.fPosSiguienteValorClasif() == SdkResultConstants.Success)
             {
                 yield return LeerDatosValorClasificacionActual();
-                if (_sdk.fPosEOFValorClasif() == 1)
-                    break;
+                if (_sdk.fPosEOFValorClasif() == 1) break;
             }
         }
 
@@ -93,8 +89,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             {
                 try
                 {
-                    if (!sqlModelType.HasProperty(propertyDescriptor.Name))
-                        continue;
+                    if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
 
                     propertyDescriptor.SetValue(valor,
                         _sdk.LeeDatoValorClasificacion(propertyDescriptor.Name)
@@ -104,8 +99,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                 catch (ContpaqiSdkException e)
                 {
                     // Hay propiedades en Comercial que no estan en el esquema de la base de datos de Factura Electronica
-                    if (e.CodigoErrorSdk == SdkErrorConstants.NombreCampoInvalido)
-                        continue;
+                    if (e.CodigoErrorSdk == SdkErrorConstants.NombreCampoInvalido) continue;
 
                     throw new ContpaqiSdkInvalidOperationException(
                         $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
