@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -62,8 +62,7 @@ public class SeleccionarAgenteViewModel : ObservableRecipient
     public void Inicializar()
     {
         Agentes.Clear();
-        foreach (Agente agente in _agenteRepository.TraerTodo())
-            Agentes.Add(agente);
+        foreach (Agente agente in _agenteRepository.TraerTodo()) Agentes.Add(agente);
     }
 
     public void Seleccionar()
@@ -91,8 +90,7 @@ public class SeleccionarAgenteViewModel : ObservableRecipient
     private bool AgentesView_Filter(object obj)
     {
         var agente = obj as Agente;
-        if (agente is null)
-            throw new ArgumentNullException(nameof(obj));
+        if (agente is null) throw new ArgumentNullException(nameof(obj));
 
         return agente.Contains(Filtro);
     }

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.Excepciones;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
@@ -42,17 +43,14 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
 
             _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoDireccion("CIDDIRECCION", idDireccionDato, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
-            if (idDireccion == int.Parse(idDireccionDato.ToString()))
-                return LeerDatosDireccionActual();
+            if (idDireccion == int.Parse(idDireccionDato.ToString())) return LeerDatosDireccionActual();
 
             while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
             {
                 _sdk.fLeeDatoDireccion("CIDDIRECCION", idDireccionDato, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
-                if (idDireccion == int.Parse(idDireccionDato.ToString()))
-                    return LeerDatosDireccionActual();
+                if (idDireccion == int.Parse(idDireccionDato.ToString())) return LeerDatosDireccionActual();
 
-                if (_sdk.fPosEOFDireccion() == 1)
-                    break;
+                if (_sdk.fPosEOFDireccion() == 1) break;
             }
 
             return null;
@@ -73,8 +71,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                 if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertFromSdkValue(tipoCatalogo.ToString()))
                     yield return LeerDatosDireccionActual();
 
-                if (_sdk.fPosEOFDireccion() == 1)
-                    break;
+                if (_sdk.fPosEOFDireccion() == 1) break;
             }
         }
 
@@ -98,8 +95,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                     idCatalogo == int.Parse(idCatalogoDato.ToString()))
                     yield return LeerDatosDireccionActual();
 
-                if (_sdk.fPosEOFDireccion() == 1)
-                    break;
+                if (_sdk.fPosEOFDireccion() == 1) break;
             }
         }
 
@@ -112,8 +108,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             {
                 yield return LeerDatosDireccionActual();
 
-                if (_sdk.fPosEOFDireccion() == 1)
-                    break;
+                if (_sdk.fPosEOFDireccion() == 1) break;
             }
         }
 
@@ -134,8 +129,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             {
                 try
                 {
-                    if (!sqlModelType.HasProperty(propertyDescriptor.Name))
-                        continue;
+                    if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
 
                     propertyDescriptor.SetValue(direccion,
                         _sdk.LeeDatoDireccion(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));

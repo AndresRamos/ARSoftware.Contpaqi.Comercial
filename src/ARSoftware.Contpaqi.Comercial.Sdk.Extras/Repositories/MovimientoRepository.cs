@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Excepciones;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
@@ -47,8 +48,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             while (_sdk.fPosSiguienteMovimiento() == SdkResultConstants.Success)
             {
                 yield return LeerDatosMovimientoActual();
-                if (_sdk.fPosMovimientoEOF() == 1)
-                    break;
+                if (_sdk.fPosMovimientoEOF() == 1) break;
             }
 
             _sdk.fCancelaFiltroMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
@@ -61,8 +61,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             while (_sdk.fPosSiguienteMovimiento() == SdkResultConstants.Success)
             {
                 yield return LeerDatosMovimientoActual();
-                if (_sdk.fPosMovimientoEOF() == 1)
-                    break;
+                if (_sdk.fPosMovimientoEOF() == 1) break;
             }
         }
 
@@ -85,8 +84,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             {
                 try
                 {
-                    if (!sqlModelType.HasProperty(propertyDescriptor.Name))
-                        continue;
+                    if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
 
                     propertyDescriptor.SetValue(movimiento,
                         _sdk.LeeDatoMovimiento(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));

@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -82,8 +82,7 @@ public class SeleccionarEmpresaViewModel : ObservableRecipient
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             Empresas.Clear();
-            foreach (Empresa empresa in _empresaRepository.TraerTodo().OrderBy(e => e.CNOMBREEMPRESA))
-                Empresas.Add(empresa);
+            foreach (Empresa empresa in _empresaRepository.TraerTodo().OrderBy(e => e.CNOMBREEMPRESA)) Empresas.Add(empresa);
 
             stopwatch.Stop();
             DuracionBusqueda = stopwatch.Elapsed.ToString("g");
@@ -113,8 +112,7 @@ public class SeleccionarEmpresaViewModel : ObservableRecipient
 
     private bool EmpresasView_Filter(object obj)
     {
-        if (!(obj is Empresa empresa))
-            throw new ArgumentNullException(nameof(obj));
+        if (!(obj is Empresa empresa)) throw new ArgumentNullException(nameof(obj));
 
         return empresa.Contains(Filtro);
     }

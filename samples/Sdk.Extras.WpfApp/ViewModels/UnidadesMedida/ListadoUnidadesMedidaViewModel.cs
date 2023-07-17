@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -24,8 +25,7 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
     private UnidadMedida _unidadMedidaSeleccionada;
 
     public ListadoUnidadesMedidaViewModel(IUnidadMedidaRepository<UnidadMedida> unidadMedidaRepository,
-                                          IDialogCoordinator dialogCoordinator,
-                                          IUnidadMedidaService unidadMedidaService)
+        IDialogCoordinator dialogCoordinator, IUnidadMedidaService unidadMedidaService)
     {
         _unidadMedidaRepository = unidadMedidaRepository;
         _dialogCoordinator = dialogCoordinator;
@@ -148,14 +148,11 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
     {
         try
         {
-            MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
-                "Eliminar Unidad De Medida",
-                "Esta seguro de querer eliminar la unidad de medida?",
-                MessageDialogStyle.AffirmativeAndNegative,
+            MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Eliminar Unidad De Medida",
+                "Esta seguro de querer eliminar la unidad de medida?", MessageDialogStyle.AffirmativeAndNegative,
                 new MetroDialogSettings { AffirmativeButtonText = "Si", NegativeButtonText = "Cancelar" });
 
-            if (messageDialogResult != MessageDialogResult.Affirmative)
-                return;
+            if (messageDialogResult != MessageDialogResult.Affirmative) return;
 
             _unidadMedidaService.Eliminar(UnidadMedidaSeleccionada.CIDUNIDAD);
 
@@ -186,8 +183,7 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
 
     private bool UnidadesMedidaView_Filter(object obj)
     {
-        if (!(obj is UnidadMedida unidadMedida))
-            throw new ArgumentNullException(nameof(obj));
+        if (!(obj is UnidadMedida unidadMedida)) throw new ArgumentNullException(nameof(obj));
 
         return unidadMedida.Contains(Filtro);
     }

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
@@ -24,10 +25,8 @@ public class CrearMovimientoViewModel : ObservableRecipient
     private readonly IProductoRepository<ProductoLookup> _productoRepository;
     private CrearMovimientoModel _movimiento;
 
-    public CrearMovimientoViewModel(IMovimientoService movimientoService,
-                                    IDialogCoordinator dialogCoordinator,
-                                    IProductoRepository<ProductoLookup> productoRepository,
-                                    IAlmacenRepository<Almacen> almacenRepository)
+    public CrearMovimientoViewModel(IMovimientoService movimientoService, IDialogCoordinator dialogCoordinator,
+        IProductoRepository<ProductoLookup> productoRepository, IAlmacenRepository<Almacen> almacenRepository)
     {
         _movimientoService = movimientoService;
         _dialogCoordinator = dialogCoordinator;
@@ -59,8 +58,7 @@ public class CrearMovimientoViewModel : ObservableRecipient
     public void CargarAlmacenes()
     {
         Almacenes.Clear();
-        foreach (Almacen almacen in _almacenRepository.TraerTodo().OrderBy(a => a.CNOMBREALMACEN))
-            Almacenes.Add(almacen);
+        foreach (Almacen almacen in _almacenRepository.TraerTodo().OrderBy(a => a.CNOMBREALMACEN)) Almacenes.Add(almacen);
 
         Movimiento.Almacen = Almacenes.FirstOrDefault(a => a.CNOMBREALMACEN == "1");
     }
@@ -68,8 +66,7 @@ public class CrearMovimientoViewModel : ObservableRecipient
     public void CargarProductos()
     {
         Productos.Clear();
-        foreach (ProductoLookup producto in _productoRepository.TraerTodo().OrderBy(p => p.CNOMBREPRODUCTO))
-            Productos.Add(producto);
+        foreach (ProductoLookup producto in _productoRepository.TraerTodo().OrderBy(p => p.CNOMBREPRODUCTO)) Productos.Add(producto);
 
         Movimiento.Producto = Productos.FirstOrDefault();
     }
@@ -84,8 +81,7 @@ public class CrearMovimientoViewModel : ObservableRecipient
         try
         {
             MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
-                "Usar funciones de Alto Nivel o de Bajo Nivel?",
-                "Usar funciones de Alto Nivel o de Bajo Nivel?",
+                "Usar funciones de Alto Nivel o de Bajo Nivel?", "Usar funciones de Alto Nivel o de Bajo Nivel?",
                 MessageDialogStyle.AffirmativeAndNegative,
                 new MetroDialogSettings { AffirmativeButtonText = "Alto Nivel", NegativeButtonText = "Bajo Nivel" });
 

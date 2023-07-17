@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
@@ -15,10 +16,8 @@ public sealed class EjemplosConexion
     private readonly IContpaqiSdk _sdk;
     private readonly IComercialSdkSesionService _sdkSesionService;
 
-    public EjemplosConexion(IComercialSdkSesionService sdkSesionService,
-                            ILogger<EjemplosConexion> logger,
-                            IEmpresaRepository<Empresa> empresaRepository,
-                            IContpaqiSdk sdk)
+    public EjemplosConexion(IComercialSdkSesionService sdkSesionService, ILogger<EjemplosConexion> logger,
+        IEmpresaRepository<Empresa> empresaRepository, IContpaqiSdk sdk)
     {
         _sdkSesionService = sdkSesionService;
         _logger = logger;
@@ -30,8 +29,7 @@ public sealed class EjemplosConexion
     {
         if (_sdk is FacturaElectronicaSdkExtended || _sdk is AdminpaqSdkExtended)
             IniciarConexionSinParametros();
-        else if (_sdk is ComercialSdkExtended)
-            IniciarConexionConParametros(UsuarioPruebas, ContrasenaPruebas);
+        else if (_sdk is ComercialSdkExtended) IniciarConexionConParametros(UsuarioPruebas, ContrasenaPruebas);
     }
 
     private void IniciarConexionSinParametros()
@@ -54,8 +52,7 @@ public sealed class EjemplosConexion
 
     public void TerminarConexion()
     {
-        if (!_sdkSesionService.IsSdkInicializado)
-            return;
+        if (!_sdkSesionService.IsSdkInicializado) return;
 
         _logger.LogInformation("Terminando conexion.");
         long startTime = Stopwatch.GetTimestamp();
@@ -66,8 +63,7 @@ public sealed class EjemplosConexion
 
     public void AbrirEmpresa()
     {
-        if (_sdkSesionService.IsEmpresaAbierta)
-            return;
+        if (_sdkSesionService.IsEmpresaAbierta) return;
 
         _logger.LogInformation("Abriendo empresa.");
         Empresa empresa = BuscarEmpresaPruebas();
@@ -79,8 +75,7 @@ public sealed class EjemplosConexion
 
     public void CerrarEmpresa()
     {
-        if (!_sdkSesionService.IsEmpresaAbierta)
-            return;
+        if (!_sdkSesionService.IsEmpresaAbierta) return;
 
         _logger.LogInformation("Cerrando empresa.");
         long startTime = Stopwatch.GetTimestamp();

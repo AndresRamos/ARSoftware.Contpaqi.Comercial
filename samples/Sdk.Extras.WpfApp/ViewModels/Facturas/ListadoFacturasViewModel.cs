@@ -6,9 +6,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -33,10 +33,9 @@ public class ListadoFacturasViewModel : ObservableRecipient, IRecipient<MostrarD
     private DateTime _fechaInicio = DateTime.Today;
     private string _filtro;
 
-    public ListadoFacturasViewModel(IDialogCoordinator dialogCoordinator,
-                                    IDocumentoRepository<DocumentoLookup> documentoRepository,
-                                    IClienteProveedorRepository<ClienteProveedorLookup> clienteProveedorRepository,
-                                    IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository)
+    public ListadoFacturasViewModel(IDialogCoordinator dialogCoordinator, IDocumentoRepository<DocumentoLookup> documentoRepository,
+        IClienteProveedorRepository<ClienteProveedorLookup> clienteProveedorRepository,
+        IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository)
     {
         _dialogCoordinator = dialogCoordinator;
         _documentoRepository = documentoRepository;
@@ -165,14 +164,11 @@ public class ListadoFacturasViewModel : ObservableRecipient, IRecipient<MostrarD
             Documentos.Clear();
 
             IEnumerable<DocumentoLookup> documentos = ClienteSeleccionado.CIDCLIENTEPROVEEDOR == 0
-                ? _documentoRepository.TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(FechaInicio,
-                    FechaFin,
+                ? _documentoRepository.TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(FechaInicio, FechaFin,
                     ConceptoSeleccionado.CCODIGOCONCEPTO,
                     Clientes.Where(c => c.CIDCLIENTEPROVEEDOR != 0).Select(c => c.CCODIGOCLIENTE).ToList())
-                : _documentoRepository.TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(FechaInicio,
-                    FechaFin,
-                    ConceptoSeleccionado.CCODIGOCONCEPTO,
-                    ClienteSeleccionado.CCODIGOCLIENTE);
+                : _documentoRepository.TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(FechaInicio, FechaFin,
+                    ConceptoSeleccionado.CCODIGOCONCEPTO, ClienteSeleccionado.CCODIGOCLIENTE);
 
             foreach (DocumentoLookup documento in documentos.OrderByDescending(d => d.CFOLIO))
             {
@@ -266,8 +262,7 @@ public class ListadoFacturasViewModel : ObservableRecipient, IRecipient<MostrarD
 
     private bool ProductosView_Filter(object obj)
     {
-        if (!(obj is DocumentoLookup documento))
-            throw new ArgumentNullException(nameof(obj));
+        if (!(obj is DocumentoLookup documento)) throw new ArgumentNullException(nameof(obj));
 
         return documento.Contains(Filtro);
     }

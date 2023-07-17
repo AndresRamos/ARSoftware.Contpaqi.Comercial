@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Excepciones;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Constants;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
@@ -34,8 +35,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
             {
                 try
                 {
-                    if (!sqlModelType.HasProperty(propertyDescriptor.Name))
-                        continue;
+                    if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
 
                     propertyDescriptor.SetValue(parametros,
                         _sdk.LeeDatoParametros(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
@@ -43,8 +43,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                 catch (ContpaqiSdkException e)
                 {
                     // Hay propiedades en Comercial que no estan en el esquema de la base de datos de Factura Electronica
-                    if (e.CodigoErrorSdk == SdkErrorConstants.NombreCampoInvalido)
-                        continue;
+                    if (e.CodigoErrorSdk == SdkErrorConstants.NombreCampoInvalido) continue;
 
                     throw new ContpaqiSdkInvalidOperationException(
                         $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",

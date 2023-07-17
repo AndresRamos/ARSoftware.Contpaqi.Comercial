@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -113,8 +113,7 @@ public class ListadoAgentesViewModel : ObservableRecipient
             window.ViewModel.Inicializar();
             window.ShowDialog();
 
-            await _dialogCoordinator.ShowMessageAsync(this,
-                "Volver A Buscar Catalogo",
+            await _dialogCoordinator.ShowMessageAsync(this, "Volver A Buscar Catalogo",
                 "Para ver los cambios reflejados volver a buscar el catalogo.");
         }
         catch (Exception e)
@@ -131,8 +130,7 @@ public class ListadoAgentesViewModel : ObservableRecipient
             window.ViewModel.Inicializar(AgenteSeleccionado.CIDAGENTE);
             window.ShowDialog();
 
-            await _dialogCoordinator.ShowMessageAsync(this,
-                "Volver A Buscar Catalogo",
+            await _dialogCoordinator.ShowMessageAsync(this, "Volver A Buscar Catalogo",
                 "Para ver los cambios reflejados volver a buscar el catalogo.");
         }
         catch (Exception e)
@@ -155,8 +153,7 @@ public class ListadoAgentesViewModel : ObservableRecipient
 
     private bool AgentesView_Filter(object obj)
     {
-        if (obj is not Agente agente)
-            throw new ArgumentNullException(nameof(obj));
+        if (obj is not Agente agente) throw new ArgumentNullException(nameof(obj));
 
         return agente.Contains(Filtro);
     }

@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using Microsoft.Extensions.Logging;
 using Samples.Common.Models.Dtos;
@@ -14,9 +14,8 @@ public sealed class EjemplosConcepto
     private readonly IConceptoDocumentoRepository<ConceptoDocumento> _conceptoDocumentoRepository;
     private readonly ILogger<EjemplosConcepto> _logger;
 
-    public EjemplosConcepto(IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository,
-                            ILogger<EjemplosConcepto> logger,
-                            IConceptoDocumentoRepository<ConceptoDto> conceptoDocumentoDtoRepository)
+    public EjemplosConcepto(IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository, ILogger<EjemplosConcepto> logger,
+        IConceptoDocumentoRepository<ConceptoDto> conceptoDocumentoDtoRepository)
     {
         _conceptoDocumentoRepository = conceptoDocumentoRepository;
         _logger = logger;
@@ -48,8 +47,7 @@ public sealed class EjemplosConcepto
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
         _logger.LogInformation("Se encontraron {NumeroConceptos} conceptos.", conceptos.Count);
-        foreach (ConceptoDocumento concepto in conceptos)
-            LogConcepto(concepto);
+        foreach (ConceptoDocumento concepto in conceptos) LogConcepto(concepto);
     }
 
     private void BuscarTodosLosConceptosUtilizandoDto()
@@ -60,8 +58,7 @@ public sealed class EjemplosConcepto
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
         _logger.LogInformation("Se encontraron {NumeroConceptos} conceptos.", conceptos.Count);
-        foreach (ConceptoDto concepto in conceptos)
-            LogConcepto(concepto);
+        foreach (ConceptoDto concepto in conceptos) LogConcepto(concepto);
     }
 
     private void BuscarConceptosPorDocumentoModelo(DocumentoModelo documentoModelo)
@@ -72,8 +69,7 @@ public sealed class EjemplosConcepto
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
         _logger.LogInformation("Se encontraron {NumeroConceptos} conceptos.", conceptos.Count);
-        foreach (ConceptoDocumento? concepto in conceptos)
-            LogConcepto(concepto);
+        foreach (ConceptoDocumento? concepto in conceptos) LogConcepto(concepto);
     }
 
     private void BuscarConceptoPorId(int conceptoId)
@@ -105,18 +101,14 @@ public sealed class EjemplosConcepto
     private void LogConcepto(ConceptoDocumento conceptoDocumento)
     {
         _logger.LogInformation("Id: {Id}, Codigo: {Codigo}, Nombre: {Nombre}, DocumentoModelo: {DocumentoModelo}",
-            conceptoDocumento.CIDCONCEPTODOCUMENTO,
-            conceptoDocumento.CCODIGOCONCEPTO,
-            conceptoDocumento.CNOMBRECONCEPTO,
+            conceptoDocumento.CIDCONCEPTODOCUMENTO, conceptoDocumento.CCODIGOCONCEPTO, conceptoDocumento.CNOMBRECONCEPTO,
             DocumentoModelo.FromId(conceptoDocumento.CIDDOCUMENTODE).Descripcion);
     }
 
     private void LogConcepto(ConceptoDto conceptoDocumento)
     {
         _logger.LogInformation("Id: {Id}, Codigo: {Codigo}, Nombre: {Nombre}, DocumentoModelo: {DocumentoModelo}",
-            conceptoDocumento.CIDCONCEPTODOCUMENTO,
-            conceptoDocumento.CCODIGOCONCEPTO,
-            conceptoDocumento.CNOMBRECONCEPTO,
+            conceptoDocumento.CIDCONCEPTODOCUMENTO, conceptoDocumento.CCODIGOCONCEPTO, conceptoDocumento.CNOMBRECONCEPTO,
             DocumentoModelo.FromId(conceptoDocumento.CIDDOCUMENTODE).Descripcion);
     }
 }

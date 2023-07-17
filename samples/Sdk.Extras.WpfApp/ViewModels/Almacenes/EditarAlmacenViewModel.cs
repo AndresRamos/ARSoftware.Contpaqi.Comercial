@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
@@ -20,9 +21,8 @@ public class EditarAlmacenViewModel : ObservableRecipient
     private readonly IDialogCoordinator _dialogCoordinator;
     private Almacen _almacen;
 
-    public EditarAlmacenViewModel(IAlmacenRepository<Almacen> almacenRepository,
-                                  IDialogCoordinator dialogCoordinator,
-                                  IAlmacenService almacenService)
+    public EditarAlmacenViewModel(IAlmacenRepository<Almacen> almacenRepository, IDialogCoordinator dialogCoordinator,
+        IAlmacenService almacenService)
     {
         _almacenRepository = almacenRepository;
         _dialogCoordinator = dialogCoordinator;

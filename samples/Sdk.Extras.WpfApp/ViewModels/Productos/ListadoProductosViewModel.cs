@@ -5,9 +5,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
@@ -26,10 +26,9 @@ public class ListadoProductosViewModel : ObservableRecipient
     private string _filtro;
     private Producto _productoSeleccionado;
 
-    public ListadoProductosViewModel(IProductoRepository<Producto> productoRepository,
-                                     IDialogCoordinator dialogCoordinator,
-                                     IUnidadMedidaRepository<UnidadMedida> unidadMedidaRepository,
-                                     IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
+    public ListadoProductosViewModel(IProductoRepository<Producto> productoRepository, IDialogCoordinator dialogCoordinator,
+        IUnidadMedidaRepository<UnidadMedida> unidadMedidaRepository,
+        IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
     {
         _productoRepository = productoRepository;
         _dialogCoordinator = dialogCoordinator;
@@ -276,8 +275,7 @@ public class ListadoProductosViewModel : ObservableRecipient
 
     private bool ProductosView_Filter(object obj)
     {
-        if (obj is not Producto producto)
-            throw new ArgumentNullException(nameof(obj));
+        if (obj is not Producto producto) throw new ArgumentNullException(nameof(obj));
 
         return producto.Contains(Filtro);
     }
