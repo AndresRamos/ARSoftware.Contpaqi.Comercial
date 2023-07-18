@@ -7,7 +7,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories
     {
         T BuscarPorId(int idValorClasificacion);
 
-        T BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacion tipoClasificacion, int numeroClasificacion,
+        T BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion,
             string codigoValorClasificacion);
 
         IEnumerable<T> TraerPorClasificacionId(int idClasificacion);
