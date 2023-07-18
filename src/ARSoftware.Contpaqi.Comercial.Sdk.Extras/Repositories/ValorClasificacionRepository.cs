@@ -29,10 +29,10 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
                 : null;
         }
 
-        public T BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacion tipoClasificacion, int numeroClasificacion,
+        public T BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion,
             string codigoValorClasificacion)
         {
-            return _sdk.fBuscaValorClasif((int)tipoClasificacion, numeroClasificacion, codigoValorClasificacion) ==
+            return _sdk.fBuscaValorClasif((int)tipoClasificacion, (int)numeroClasificacion, codigoValorClasificacion) ==
                    SdkResultConstants.Success
                 ? LeerDatosValorClasificacionActual()
                 : null;

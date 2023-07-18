@@ -23,12 +23,12 @@ public sealed class ValorClasificacionSqlRepository : IValorClasificacionReposit
     }
 
     /// <inheritdoc />
-    public admClasificacionesValores BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacion tipoClasificacion, int numeroClasificacion,
-        string codigoValorClasificacion)
+    public admClasificacionesValores BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacion tipoClasificacion,
+        NumeroClasificacion numeroClasificacion, string codigoValorClasificacion)
     {
         var repository = new ClasificacionSqlRepository(_context);
 
-        admClasificaciones clasificacion = repository.BuscarPorTipoYNumero(tipoClasificacion, (NumeroClasificacion)numeroClasificacion);
+        admClasificaciones clasificacion = repository.BuscarPorTipoYNumero(tipoClasificacion, numeroClasificacion);
 
         return _context.admClasificacionesValores.SingleOrDefault(valor =>
             valor.CIDCLASIFICACION == clasificacion.CIDCLASIFICACION && valor.CCODIGOVALORCLASIFICACION == codigoValorClasificacion);
