@@ -43,6 +43,7 @@ public static class ConfigureServices
         services.AddSingleton<EjemplosClasificacion>();
         services.AddSingleton<EjemplosCliente>();
         services.AddSingleton<EjemplosConcepto>();
+        services.AddSingleton<EjemplosDocumentoModelo>();
         services.AddSingleton<EjemplosEmpresa>();
         services.AddSingleton<EjemplosProducto>();
     }
