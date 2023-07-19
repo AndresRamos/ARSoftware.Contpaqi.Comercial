@@ -49,5 +49,6 @@ public static class ConfigureServices
         services.AddSingleton<EjemplosMovimiento>();
         services.AddSingleton<EjemplosParametros>();
         services.AddSingleton<EjemplosProducto>();
+        services.AddSingleton<EjemplosUnidadMedida>();
     }
 }

@@ -49,6 +49,8 @@ try
     //host.Services.GetRequiredService<EjemplosParametros>().CorrerEjemplos();
 
     //host.Services.GetRequiredService<EjemplosProducto>().CorrerEjemplos();
+
+    host.Services.GetRequiredService<EjemplosUnidadMedida>().CorrerEjemplos();
 }
 catch (Exception e)
 {
