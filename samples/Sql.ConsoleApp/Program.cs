@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Sql.ConsoleApp;
+using Sql.ConsoleApp.Ejemplos;
 
 IHost host = Host.CreateDefaultBuilder()
     .ConfigureServices(services => { services.AddSqlServices(); })
@@ -35,6 +36,8 @@ try
     //host.Services.GetRequiredService<EjemplosClasificacion>().CorrerEjemplos();
 
     //host.Services.GetRequiredService<EjemplosCliente>().CorrerEjemplos();
+
+    host.Services.GetRequiredService<EjemplosConcepto>().CorrerEjemplos();
 
     //host.Services.GetRequiredService<EjemplosProducto>().CorrerEjemplos();
 }
