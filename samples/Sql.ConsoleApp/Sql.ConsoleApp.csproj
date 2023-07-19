@@ -16,4 +16,8 @@
 		<ProjectReference Include="..\Samples.Common\Samples.Common.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Using Include="Sql.ConsoleApp.Ejemplos" />
+	</ItemGroup>
+
 </Project>
