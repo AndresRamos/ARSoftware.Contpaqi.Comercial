@@ -3,7 +3,6 @@ using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
 using ARSoftware.Contpaqi.Comercial.Sql.Factories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Sql.ConsoleApp.Ejemplos;
 
 namespace Sql.ConsoleApp;
 
@@ -47,6 +46,7 @@ public static class ConfigureServices
         services.AddSingleton<EjemplosDocumento>();
         services.AddSingleton<EjemplosEmpresa>();
         services.AddSingleton<EjemplosMoneda>();
+        services.AddSingleton<EjemplosMovimiento>();
         services.AddSingleton<EjemplosProducto>();
     }
 }
