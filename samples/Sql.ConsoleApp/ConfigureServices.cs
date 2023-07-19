@@ -39,6 +39,7 @@ public static class ConfigureServices
     private static void AddEjemplos(this IServiceCollection services)
     {
         services.AddSingleton<EjemplosAgente>();
+        services.AddSingleton<EjemplosAlmacen>();
         services.AddSingleton<EjemplosEmpresa>();
         services.AddSingleton<EjemplosProducto>();
         services.AddSingleton<EjemplosCliente>();

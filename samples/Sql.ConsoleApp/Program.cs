@@ -30,6 +30,8 @@ try
 
     //host.Services.GetRequiredService<EjemplosAgente>().CorrerEjemplos();
 
+    //host.Services.GetRequiredService<EjemplosAlmacen>().CorrerEjemplos();
+
     //host.Services.GetRequiredService<EjemplosProducto>().CorrerEjemplos();
 
     //host.Services.GetRequiredService<EjemplosCliente>().CorrerEjemplos();
