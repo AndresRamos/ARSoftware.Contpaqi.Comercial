@@ -50,5 +50,6 @@ public static class ConfigureServices
         services.AddSingleton<EjemplosParametros>();
         services.AddSingleton<EjemplosProducto>();
         services.AddSingleton<EjemplosUnidadMedida>();
+        services.AddSingleton<EjemplosValorClasificacion>();
     }
 }

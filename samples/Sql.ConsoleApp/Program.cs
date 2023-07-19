@@ -50,7 +50,8 @@ try
 
     //host.Services.GetRequiredService<EjemplosProducto>().CorrerEjemplos();
 
-    host.Services.GetRequiredService<EjemplosUnidadMedida>().CorrerEjemplos();
+    //host.Services.GetRequiredService<EjemplosUnidadMedida>().CorrerEjemplos();
+    host.Services.GetRequiredService<EjemplosValorClasificacion>().CorrerEjemplos();
 }
 catch (Exception e)
 {
