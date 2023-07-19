@@ -1,11 +1,17 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Sql.ConsoleApp.Ejemplos;
+using Sql.ConsoleApp;
 
 IHost host = Host.CreateDefaultBuilder()
     .ConfigureServices(services => { services.AddSqlServices(); })
-    .ConfigureLogging(builder => { builder.AddSimpleConsole(options => { options.SingleLine = true; }); })
+    .ConfigureLogging(builder =>
+    {
+        builder.SetMinimumLevel(LogLevel.Information);
+
+        builder.AddFilter("Microsoft", LogLevel.Warning);
+        builder.AddSimpleConsole(options => { options.SingleLine = true; });
+    })
     .Build();
 
 await host.StartAsync();
@@ -21,6 +27,8 @@ try
     // Descomenta los ejemplos que no quieras ejecutar
 
     //host.Services.GetRequiredService<EjemplosEmpresa>().CorrerEjemplos();
+
+    //host.Services.GetRequiredService<EjemplosAgente>().CorrerEjemplos();
 
     //host.Services.GetRequiredService<EjemplosProducto>().CorrerEjemplos();
 

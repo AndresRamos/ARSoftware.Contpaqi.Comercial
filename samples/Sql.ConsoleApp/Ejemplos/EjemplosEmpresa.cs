@@ -38,9 +38,9 @@ public sealed class EjemplosEmpresa
         List<Empresas> empresas = _empresaRepository.TraerTodo().ToList();
 
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
-
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
-        _logger.LogInformation("Se encontraron {NumeroEmpresas} empresas. La operacion tardo {Tiempo}", empresas.Count, elapsedTime);
+
+        _logger.LogInformation("Se encontraron {NumeroEmpresas} empresas.", empresas.Count);
 
         foreach (Empresas empresa in empresas) LogEmpresa(empresa);
 
