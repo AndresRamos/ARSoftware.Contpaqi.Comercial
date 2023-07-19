@@ -31,7 +31,9 @@ public sealed class ClienteProveedorSqlRepository : IClienteProveedorRepository<
     /// <inheritdoc />
     public IEnumerable<admClientes> TraerClientes()
     {
-        return _context.admClientes.Where(cliente => cliente.CTIPOCLIENTE == (int)TipoCliente.Cliente).ToList();
+        return _context.admClientes.Where(cliente =>
+                cliente.CTIPOCLIENTE == (int)TipoCliente.Cliente || cliente.CTIPOCLIENTE == (int)TipoCliente.ClienteProveedor)
+            .ToList();
     }
 
     /// <inheritdoc />
@@ -43,7 +45,9 @@ public sealed class ClienteProveedorSqlRepository : IClienteProveedorRepository<
     /// <inheritdoc />
     public IEnumerable<admClientes> TraerProveedores()
     {
-        return _context.admClientes.Where(cliente => cliente.CTIPOCLIENTE == (int)TipoCliente.Proveedor).ToList();
+        return _context.admClientes.Where(cliente =>
+                cliente.CTIPOCLIENTE == (int)TipoCliente.Proveedor || cliente.CTIPOCLIENTE == (int)TipoCliente.ClienteProveedor)
+            .ToList();
     }
 
     /// <inheritdoc />

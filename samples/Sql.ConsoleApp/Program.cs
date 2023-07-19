@@ -34,9 +34,9 @@ try
 
     //host.Services.GetRequiredService<EjemplosClasificacion>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<EjemplosProducto>().CorrerEjemplos();
-
     //host.Services.GetRequiredService<EjemplosCliente>().CorrerEjemplos();
+
+    //host.Services.GetRequiredService<EjemplosProducto>().CorrerEjemplos();
 }
 catch (Exception e)
 {
