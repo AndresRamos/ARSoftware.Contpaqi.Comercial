@@ -40,6 +40,8 @@ try
 
     //host.Services.GetRequiredService<EjemplosDocumentoModelo>().CorrerEjemplos();
 
+    //host.Services.GetRequiredService<EjemplosMoneda>().CorrerEjemplos();
+
     //host.Services.GetRequiredService<EjemplosProducto>().CorrerEjemplos();
 }
 catch (Exception e)

@@ -22,14 +22,14 @@ public sealed class EjemplosEmpresa
 
         _logger.LogInformation("Corriendo ejemplos de empresas.");
 
-        BuscarTodasLasEmpresas();
+        TraerTodo();
     }
 
     /// <summary>
     ///     Busca todas las empresas.
     /// </summary>
     /// <returns>Las empresas encontradas.</returns>
-    private IEnumerable<Empresas> BuscarTodasLasEmpresas()
+    private void TraerTodo()
     {
         _logger.LogInformation("Buscando todas las empresas.");
 
@@ -43,8 +43,6 @@ public sealed class EjemplosEmpresa
         _logger.LogInformation("Se encontraron {NumeroEmpresas} empresas.", empresas.Count);
 
         foreach (Empresas empresa in empresas) LogEmpresa(empresa);
-
-        return empresas;
     }
 
     private void LogEmpresa(Empresas empresa)

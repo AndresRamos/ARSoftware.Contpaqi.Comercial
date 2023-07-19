@@ -45,6 +45,7 @@ public static class ConfigureServices
         services.AddSingleton<EjemplosConcepto>();
         services.AddSingleton<EjemplosDocumentoModelo>();
         services.AddSingleton<EjemplosEmpresa>();
+        services.AddSingleton<EjemplosMoneda>();
         services.AddSingleton<EjemplosProducto>();
     }
 }
