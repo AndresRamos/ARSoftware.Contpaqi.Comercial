@@ -46,6 +46,8 @@ try
 
     //host.Services.GetRequiredService<EjemplosMovimiento>().CorrerEjemplos();
 
+    //host.Services.GetRequiredService<EjemplosParametros>().CorrerEjemplos();
+
     //host.Services.GetRequiredService<EjemplosProducto>().CorrerEjemplos();
 }
 catch (Exception e)
