@@ -1,19 +1,19 @@
 ﻿using System.Diagnostics;
-using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using Microsoft.Extensions.Logging;
-using Samples.Common.Models.Dtos;
 
 namespace Sql.ConsoleApp.Ejemplos;
 
 public sealed class EjemplosProducto
 {
-    private readonly ContpaqiComercialEmpresaDbContext _empresaDbContext;
     private readonly ILogger<EjemplosProducto> _logger;
+    private readonly IProductoRepository<admProductos> _productoRepository;
 
-    public EjemplosProducto(ContpaqiComercialEmpresaDbContext empresaDbContext, ILogger<EjemplosProducto> logger)
+    public EjemplosProducto(IProductoRepository<admProductos> productoRepository, ILogger<EjemplosProducto> logger)
     {
-        _empresaDbContext = empresaDbContext;
+        _productoRepository = productoRepository;
         _logger = logger;
     }
 
@@ -21,63 +21,82 @@ public sealed class EjemplosProducto
     {
         // Comenta los ejemplos que no quieras ejecutar
 
-        _logger.LogInformation("Corriendo pruebas de productos.");
+        _logger.LogInformation("Corriendo ejemplos de productos.");
 
-        BuscarTodosLosProductos();
+        BuscarPorCodigo("PROD001");
 
-        BuscarTodosLosProductosUtilizandoDto();
+        BuscarPorId(1);
+
+        TraerPorTipo(TipoProducto.Servicio);
+
+        TraerTodo();
     }
 
-    private void BuscarTodosLosProductos()
+    private void BuscarPorCodigo(string codigo)
+    {
+        _logger.LogInformation("Buscando producto con código {Codigo}", codigo);
+
+        long startTime = Stopwatch.GetTimestamp();
+
+        admProductos? producto = _productoRepository.BuscarPorCodigo(codigo);
+
+        TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
+        _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
+
+        if (producto is not null)
+            LogProducto(producto);
+        else
+            _logger.LogInformation("No se encontro el producto con código {Codigo}", codigo);
+    }
+
+    private void BuscarPorId(int id)
+    {
+        _logger.LogInformation("Buscando producto con id {Id}", id);
+
+        long startTime = Stopwatch.GetTimestamp();
+
+        admProductos? producto = _productoRepository.BuscarPorId(id);
+
+        TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
+        _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
+
+        if (producto is not null)
+            LogProducto(producto);
+        else
+            _logger.LogInformation("No se encontro el producto con id {Id}", id);
+    }
+
+    private void TraerPorTipo(TipoProducto tipoProducto)
+    {
+        _logger.LogInformation("Buscando productos con tipo {TipoProducto}", tipoProducto);
+
+        long startTime = Stopwatch.GetTimestamp();
+
+        IEnumerable<admProductos> productos = _productoRepository.TraerPorTipo(tipoProducto);
+
+        TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
+        _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
+
+        foreach (admProductos producto in productos) LogProducto(producto);
+    }
+
+    private void TraerTodo()
     {
         _logger.LogInformation("Buscando todos los productos.");
-        long startTime = Stopwatch.GetTimestamp();
-        List<admProductos> productos = _empresaDbContext.admProductos.OrderBy(p => p.CNOMBREPRODUCTO).ToList();
-        TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
-        _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
-        _logger.LogInformation("Se encontraron {NumeroProductos} productos.", productos.Count);
-        foreach (admProductos producto in productos)
-            LogProducto(producto);
-    }
 
-    private void BuscarTodosLosProductosUtilizandoDto()
-    {
-        _logger.LogInformation("Buscando todos los productos utilizando un DTO.");
         long startTime = Stopwatch.GetTimestamp();
-        List<ProductoDto> productos = _empresaDbContext.admProductos.OrderBy(p => p.CNOMBREPRODUCTO)
-            .Select(p => new ProductoDto
-            {
-                CIDPRODUCTO = p.CIDPRODUCTO,
-                CCODIGOPRODUCTO = p.CCODIGOPRODUCTO,
-                CNOMBREPRODUCTO = p.CNOMBREPRODUCTO,
-                CTIPOPRODUCTO = p.CTIPOPRODUCTO,
-                CCLAVESAT = p.CCLAVESAT
-            })
-            .ToList();
+
+        IEnumerable<admProductos> productos = _productoRepository.TraerTodo();
+
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(startTime);
         _logger.LogInformation("La operacion tardo {Tiempo}", elapsedTime);
-        _logger.LogInformation("Se encontraron {NumeroProductos} productos.", productos.Count);
-        foreach (ProductoDto producto in productos)
-            LogProducto(producto);
+
+        foreach (admProductos producto in productos) LogProducto(producto);
     }
 
     private void LogProducto(admProductos producto)
     {
-        _logger.LogInformation("Id: {Id}, Codigo: {Codigo}, Nombre: {Nombre}, Tipo: {Tipo}, ClaveSAT: {ClaveSat}",
-            producto.CIDPRODUCTO,
-            producto.CCODIGOPRODUCTO,
-            producto.CNOMBREPRODUCTO,
-            producto.CTIPOPRODUCTO,
-            producto.CCLAVESAT);
-    }
-
-    private void LogProducto(ProductoDto producto)
-    {
-        _logger.LogInformation("Id: {Id}, Codigo: {Codigo}, Nombre: {Nombre}, Tipo: {Tipo}, ClaveSAT: {ClaveSat}",
-            producto.CIDPRODUCTO,
-            producto.CCODIGOPRODUCTO,
-            producto.CNOMBREPRODUCTO,
-            producto.CTIPOPRODUCTO,
-            producto.CCLAVESAT);
+        _logger.LogInformation("Id: {Id}, Codigo: {Codigo}, Nombre: {Nombre}, Tipo: {Tipo}, ClaveSAT: {ClaveSat}", producto.CIDPRODUCTO,
+            producto.CCODIGOPRODUCTO, producto.CNOMBREPRODUCTO, producto.CTIPOPRODUCTO, producto.CCLAVESAT);
     }
 }
