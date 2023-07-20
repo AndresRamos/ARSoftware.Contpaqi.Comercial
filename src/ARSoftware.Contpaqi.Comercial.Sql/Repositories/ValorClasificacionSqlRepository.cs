@@ -1,17 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Ardalis.Specification.EntityFrameworkCore;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
+using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
-public sealed class ValorClasificacionSqlRepository : IValorClasificacionRepository<admClasificacionesValores>
+public sealed class ValorClasificacionSqlRepository : RepositoryBase<admClasificacionesValores>,
+    IValorClasificacionRepository<admClasificacionesValores>
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;
 
-    public ValorClasificacionSqlRepository(ContpaqiComercialEmpresaDbContext context)
+    public ValorClasificacionSqlRepository(ContpaqiComercialEmpresaDbContext context) : base(context)
     {
         _context = context;
     }
@@ -19,36 +22,43 @@ public sealed class ValorClasificacionSqlRepository : IValorClasificacionReposit
     /// <inheritdoc />
     public admClasificacionesValores BuscarPorId(int idValorClasificacion)
     {
-        return _context.admClasificacionesValores.SingleOrDefault(valor => valor.CIDVALORCLASIFICACION == idValorClasificacion);
+        return _context.admClasificacionesValores.WithSpecification(new ValorClasificacionPorIdSpecification(idValorClasificacion))
+            .SingleOrDefault();
     }
 
     /// <inheritdoc />
     public admClasificacionesValores BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacion tipoClasificacion,
         NumeroClasificacion numeroClasificacion, string codigoValorClasificacion)
     {
-        var repository = new ClasificacionSqlRepository(_context);
+        admClasificaciones clasificacion = _context.admClasificaciones
+            .WithSpecification(new ClasificacionPorTipoYNumeroSpecification(tipoClasificacion, numeroClasificacion))
+            .Single();
 
-        admClasificaciones clasificacion = repository.BuscarPorTipoYNumero(tipoClasificacion, numeroClasificacion);
-
-        return _context.admClasificacionesValores.SingleOrDefault(valor =>
-            valor.CIDCLASIFICACION == clasificacion.CIDCLASIFICACION && valor.CCODIGOVALORCLASIFICACION == codigoValorClasificacion);
+        return _context.admClasificacionesValores
+            .WithSpecification(
+                new ValorClasificacionPorClasificacionIdYCodigoSpecification(clasificacion.CIDCLASIFICACION, codigoValorClasificacion))
+            .SingleOrDefault();
     }
 
     /// <inheritdoc />
     public IEnumerable<admClasificacionesValores> TraerPorClasificacionId(int idClasificacion)
     {
-        return _context.admClasificacionesValores.Where(valor => valor.CIDCLASIFICACION == idClasificacion);
+        return _context.admClasificacionesValores
+            .WithSpecification(new ValoresClasificacionPorClasificacionIdSpecification(idClasificacion))
+            .ToList();
     }
 
     /// <inheritdoc />
     public IEnumerable<admClasificacionesValores> TraerPorClasificacionTipoYNumero(TipoClasificacion tipoClasificacion,
         NumeroClasificacion numeroClasificacion)
     {
-        var repository = new ClasificacionSqlRepository(_context);
+        admClasificaciones clasificacion = _context.admClasificaciones
+            .WithSpecification(new ClasificacionPorTipoYNumeroSpecification(tipoClasificacion, numeroClasificacion))
+            .Single();
 
-        admClasificaciones clasificacion = repository.BuscarPorTipoYNumero(tipoClasificacion, numeroClasificacion);
-
-        return _context.admClasificacionesValores.Where(valor => valor.CIDCLASIFICACION == clasificacion.CIDCLASIFICACION);
+        return _context.admClasificacionesValores
+            .WithSpecification(new ValoresClasificacionPorClasificacionIdSpecification(clasificacion.CIDCLASIFICACION))
+            .ToList();
     }
 
     /// <inheritdoc />
