@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Ardalis.Specification.EntityFrameworkCore;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
+using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
-public sealed class MonedaSqlRepository : IMonedaRepository<admMonedas>
+public sealed class MonedaSqlRepository : RepositoryBase<admMonedas>, IMonedaRepository<admMonedas>
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;
 
-    public MonedaSqlRepository(ContpaqiComercialEmpresaDbContext context)
+    public MonedaSqlRepository(ContpaqiComercialEmpresaDbContext context) : base(context)
     {
         _context = context;
     }
@@ -18,13 +20,13 @@ public sealed class MonedaSqlRepository : IMonedaRepository<admMonedas>
     /// <inheritdoc />
     public admMonedas BuscarPorId(int idMoneda)
     {
-        return _context.admMonedas.SingleOrDefault(moneda => moneda.CIDMONEDA == idMoneda);
+        return _context.admMonedas.WithSpecification(new MonedaPorIdSpecification(idMoneda)).SingleOrDefault();
     }
 
     /// <inheritdoc />
     public admMonedas BuscarPorNombre(string nombreMoneda)
     {
-        return _context.admMonedas.SingleOrDefault(moneda => moneda.CNOMBREMONEDA == nombreMoneda);
+        return _context.admMonedas.WithSpecification(new MonedaPorNombreSpecification(nombreMoneda)).SingleOrDefault();
     }
 
     /// <inheritdoc />

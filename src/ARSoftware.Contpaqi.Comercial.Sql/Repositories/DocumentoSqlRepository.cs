@@ -12,11 +12,11 @@ using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
-public sealed class DocumentoSqlRepository : IDocumentoRepository<admDocumentos>
+public sealed class DocumentoSqlRepository : RepositoryBase<admDocumentos>, IDocumentoRepository<admDocumentos>
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;
 
-    public DocumentoSqlRepository(ContpaqiComercialEmpresaDbContext context)
+    public DocumentoSqlRepository(ContpaqiComercialEmpresaDbContext context) : base(context)
     {
         _context = context;
     }
