@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Ardalis.Specification.EntityFrameworkCore;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
+using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
@@ -22,42 +24,43 @@ public sealed class DocumentoSqlRepository : IDocumentoRepository<admDocumentos>
     /// <inheritdoc />
     public admDocumentos BuscarPorId(int idDocumento)
     {
-        return _context.admDocumentos.SingleOrDefault(documento => documento.CIDDOCUMENTO == idDocumento);
+        return _context.admDocumentos.WithSpecification(new DocumentoPorIdSpecification(idDocumento)).SingleOrDefault();
     }
 
     /// <inheritdoc />
     public admDocumentos BuscarPorLlave(string codigoConcepto, string serie, string folio)
     {
-        admConceptos concepto = _context.admConceptos.SingleOrDefault(concepto => concepto.CCODIGOCONCEPTO == codigoConcepto) ??
-                                throw new ArgumentException($"El concepto con codigo {codigoConcepto} no existe.", nameof(codigoConcepto));
+        admConceptos concepto =
+            _context.admConceptos.WithSpecification(new ConceptoPorCodigoSpecification(codigoConcepto)).SingleOrDefault() ??
+            throw new ArgumentException($"El concepto con codigo {codigoConcepto} no existe.", nameof(codigoConcepto));
 
         var folioDouble = Convert.ToDouble(folio);
 
-        return _context.admDocumentos.SingleOrDefault(documento =>
-            documento.CIDCONCEPTODOCUMENTO == concepto.CIDCONCEPTODOCUMENTO &&
-            documento.CSERIEDOCUMENTO == serie &&
-            documento.CFOLIO == folioDouble);
+        return _context.admDocumentos
+            .WithSpecification(new DocumentoPorLlaveSpecification(concepto.CIDCONCEPTODOCUMENTO, serie, folioDouble))
+            .SingleOrDefault();
     }
 
     /// <inheritdoc />
     public admDocumentos BuscarPorLlave(LlaveDocumento llaveDocumento)
     {
         admConceptos concepto =
-            _context.admConceptos.SingleOrDefault(concepto => concepto.CCODIGOCONCEPTO == llaveDocumento.CodigoConcepto) ??
+            _context.admConceptos.WithSpecification(new ConceptoPorCodigoSpecification(llaveDocumento.CodigoConcepto)).SingleOrDefault() ??
             throw new ArgumentException($"El concepto con codigo {llaveDocumento.CodigoConcepto} no existe.",
                 nameof(llaveDocumento.CodigoConcepto));
 
-        return _context.admDocumentos.SingleOrDefault(documento =>
-            documento.CIDCONCEPTODOCUMENTO == concepto.CIDCONCEPTODOCUMENTO &&
-            documento.CSERIEDOCUMENTO == llaveDocumento.Serie &&
-            documento.CFOLIO == llaveDocumento.Folio);
+        return _context.admDocumentos
+            .WithSpecification(
+                new DocumentoPorLlaveSpecification(concepto.CIDCONCEPTODOCUMENTO, llaveDocumento.Serie, llaveDocumento.Folio))
+            .SingleOrDefault();
     }
 
     /// <inheritdoc />
     public LlaveDocumento BuscarSiguienteSerieYFolio(string codigoConcepto)
     {
-        admConceptos concepto = _context.admConceptos.SingleOrDefault(concepto => concepto.CCODIGOCONCEPTO == codigoConcepto) ??
-                                throw new ArgumentException($"El concepto con codigo {codigoConcepto} no existe.", nameof(codigoConcepto));
+        admConceptos concepto =
+            _context.admConceptos.WithSpecification(new ConceptoPorCodigoSpecification(codigoConcepto)).SingleOrDefault() ??
+            throw new ArgumentException($"El concepto con codigo {codigoConcepto} no existe.", nameof(codigoConcepto));
 
         return new LlaveDocumento
         {
@@ -69,18 +72,18 @@ public sealed class DocumentoSqlRepository : IDocumentoRepository<admDocumentos>
     public IEnumerable<admDocumentos> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin,
         string codigoConcepto, string codigoClienteProveedor)
     {
-        admConceptos concepto = _context.admConceptos.SingleOrDefault(concepto => concepto.CCODIGOCONCEPTO == codigoConcepto) ??
-                                throw new ArgumentException($"El concepto con codigo {codigoConcepto} no existe.", nameof(codigoConcepto));
+        admConceptos concepto =
+            _context.admConceptos.WithSpecification(new ConceptoPorCodigoSpecification(codigoConcepto)).SingleOrDefault() ??
+            throw new ArgumentException($"El concepto con codigo {codigoConcepto} no existe.", nameof(codigoConcepto));
 
-        admClientes cliente = _context.admClientes.SingleOrDefault(cliente => cliente.CCODIGOCLIENTE == codigoClienteProveedor) ??
-                              throw new ArgumentException($"El cliente/proveedor con codigo {codigoClienteProveedor} no existe.",
-                                  nameof(codigoClienteProveedor));
+        admClientes cliente =
+            _context.admClientes.WithSpecification(new ClientePorCodigoSpecification(codigoClienteProveedor)).SingleOrDefault() ??
+            throw new ArgumentException($"El cliente/proveedor con codigo {codigoClienteProveedor} no existe.",
+                nameof(codigoClienteProveedor));
 
-        return _context.admDocumentos.Where(documento =>
-                documento.CFECHA >= fechaInicio &&
-                documento.CFECHA <= fechaFin &&
-                documento.CIDCONCEPTODOCUMENTO == concepto.CIDCONCEPTODOCUMENTO &&
-                documento.CIDCLIENTEPROVEEDOR == cliente.CIDCLIENTEPROVEEDOR)
+        return _context.admDocumentos
+            .WithSpecification(new DocumentosPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(fechaInicio, fechaFin,
+                concepto.CIDCONCEPTODOCUMENTO, cliente.CIDCLIENTEPROVEEDOR))
             .ToList();
     }
 
@@ -88,22 +91,22 @@ public sealed class DocumentoSqlRepository : IDocumentoRepository<admDocumentos>
     public IEnumerable<admDocumentos> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin,
         string codigoConcepto, IEnumerable<string> codigosClienteProveedor)
     {
-        admConceptos concepto = _context.admConceptos.SingleOrDefault(concepto => concepto.CCODIGOCONCEPTO == codigoConcepto) ??
-                                throw new ArgumentException($"El concepto con codigo {codigoConcepto} no existe.", nameof(codigoConcepto));
+        admConceptos concepto =
+            _context.admConceptos.WithSpecification(new ConceptoPorCodigoSpecification(codigoConcepto)).SingleOrDefault() ??
+            throw new ArgumentException($"El concepto con codigo {codigoConcepto} no existe.", nameof(codigoConcepto));
 
         var documentos = new List<admDocumentos>();
 
         foreach (string codigoClienteProveedor in codigosClienteProveedor)
         {
-            admClientes cliente = _context.admClientes.SingleOrDefault(cliente => cliente.CCODIGOCLIENTE == codigoClienteProveedor) ??
-                                  throw new ArgumentException($"El cliente/proveedor con codigo {codigoClienteProveedor} no existe.",
-                                      nameof(codigoClienteProveedor));
+            admClientes cliente =
+                _context.admClientes.WithSpecification(new ClientePorCodigoSpecification(codigoClienteProveedor)).SingleOrDefault() ??
+                throw new ArgumentException($"El cliente/proveedor con codigo {codigoClienteProveedor} no existe.",
+                    nameof(codigoClienteProveedor));
 
-            documentos.AddRange(_context.admDocumentos.Where(documento =>
-                    documento.CFECHA >= fechaInicio &&
-                    documento.CFECHA <= fechaFin &&
-                    documento.CIDCONCEPTODOCUMENTO == concepto.CIDCONCEPTODOCUMENTO &&
-                    documento.CIDCLIENTEPROVEEDOR == cliente.CIDCLIENTEPROVEEDOR)
+            documentos.AddRange(_context.admDocumentos
+                .WithSpecification(new DocumentosPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(fechaInicio, fechaFin,
+                    concepto.CIDCONCEPTODOCUMENTO, cliente.CIDCLIENTEPROVEEDOR))
                 .ToList());
         }
 
