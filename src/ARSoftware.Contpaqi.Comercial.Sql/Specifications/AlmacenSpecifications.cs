@@ -3,17 +3,17 @@ using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 
-public sealed class AlmacenPorCodigoSpecificaion : SingleResultSpecification<admAlmacenes>
+public sealed class AlmacenPorCodigoSpecification : SingleResultSpecification<admAlmacenes>
 {
-    public AlmacenPorCodigoSpecificaion(string codigoAlmacen)
+    public AlmacenPorCodigoSpecification(string codigoAlmacen)
     {
         Query.Where(almacen => almacen.CCODIGOALMACEN == codigoAlmacen);
     }
 }
 
-public sealed class AlmacenPorIdSpecificaion : SingleResultSpecification<admAlmacenes>
+public sealed class AlmacenPorIdSpecification : SingleResultSpecification<admAlmacenes>
 {
-    public AlmacenPorIdSpecificaion(int idAlmacen)
+    public AlmacenPorIdSpecification(int idAlmacen)
     {
         Query.Where(almacen => almacen.CIDALMACEN == idAlmacen);
     }

@@ -20,13 +20,13 @@ public sealed class AlmacenSqlRepository : RepositoryBase<admAlmacenes>, IAlmace
     /// <inheritdoc />
     public admAlmacenes BuscarPorCodigo(string codigoAlmacen)
     {
-        return _context.admAlmacenes.WithSpecification(new AlmacenPorCodigoSpecificaion(codigoAlmacen)).SingleOrDefault();
+        return _context.admAlmacenes.WithSpecification(new AlmacenPorCodigoSpecification(codigoAlmacen)).SingleOrDefault();
     }
 
     /// <inheritdoc />
     public admAlmacenes BuscarPorId(int idAlmacen)
     {
-        return _context.admAlmacenes.WithSpecification(new AlmacenPorIdSpecificaion(idAlmacen)).SingleOrDefault();
+        return _context.admAlmacenes.WithSpecification(new AlmacenPorIdSpecification(idAlmacen)).SingleOrDefault();
     }
 
     /// <inheritdoc />
