@@ -22,9 +22,8 @@ try
 {
     logger.LogInformation("Iniciando Programa");
 
-    // Ejemplos del uso del SDK
-    // Se pueden ejecutar de forma independiente
-    // Descomenta los ejemplos que no quieras ejecutar
+    // Ejemplos del uso del SQL
+    // Se pueden ejecutar de forma independiente. Descomenta los ejemplos que quieres ejecutar.
 
     //host.Services.GetRequiredService<EjemplosEmpresa>().CorrerEjemplos();
 
@@ -51,7 +50,8 @@ try
     //host.Services.GetRequiredService<EjemplosProducto>().CorrerEjemplos();
 
     //host.Services.GetRequiredService<EjemplosUnidadMedida>().CorrerEjemplos();
-    host.Services.GetRequiredService<EjemplosValorClasificacion>().CorrerEjemplos();
+
+    //host.Services.GetRequiredService<EjemplosValorClasificacion>().CorrerEjemplos();
 }
 catch (Exception e)
 {
