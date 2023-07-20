@@ -24,12 +24,18 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+		<PackageReference Include="Ardalis.Specification" Version="7.0.0" />
+		<PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="7.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sdk.Abstractions\ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.csproj" />
 		<ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sql.Models\ARSoftware.Contpaqi.Comercial.Sql.Models.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Specifications\" />
 	</ItemGroup>
 
 </Project>
