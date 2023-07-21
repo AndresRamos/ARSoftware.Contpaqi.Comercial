@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<Version>5.0.0</Version>
 		<Authors>AR Software</Authors>
 		<Description>Esta libreria contiene las interfaces usadas por los poryectos de SDK y SQL </Description>

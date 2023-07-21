@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Version>4.4.0</Version>
 		<Authors>AR Software</Authors>
