@@ -11,7 +11,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Generales
         public int CIDMODULO { get; set; }
         public int CTIPO { get; set; }
         public int CCOLUMNASOCULTAR { get; set; }
-        public string CNOMBRECONSULTA { get; set; }
-        public string CSENTENCIASQL { get; set; }
+        public string CNOMBRECONSULTA { get; set; } = null!;
+        public string? CSENTENCIASQL { get; set; }
     }
 }

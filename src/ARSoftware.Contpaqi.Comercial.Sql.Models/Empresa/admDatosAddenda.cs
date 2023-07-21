@@ -10,6 +10,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public int TIPOCAT { get; set; }
         public int IDCAT { get; set; }
         public int NUMCAMPO { get; set; }
-        public string VALOR { get; set; }
+        public string VALOR { get; set; } = null!;
     }
 }

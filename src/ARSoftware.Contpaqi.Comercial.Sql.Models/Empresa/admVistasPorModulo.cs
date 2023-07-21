@@ -9,7 +9,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public int CIDMODULO { get; set; }
         public int CIDSISTEMA { get; set; }
         public int CIDIDIOMA { get; set; }
-        public string CNOMBREMODULO { get; set; }
+        public string CNOMBREMODULO { get; set; } = null!;
         public int CASPECTO { get; set; }
         public int CACTUALIZA { get; set; }
     }

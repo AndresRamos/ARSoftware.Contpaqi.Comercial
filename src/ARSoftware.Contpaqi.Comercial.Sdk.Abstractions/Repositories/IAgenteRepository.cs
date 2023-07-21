@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
+
+public interface IAgenteRepository<T> where T : class, new()
 {
-    public interface IAgenteRepository<T> where T : class, new()
-    {
-        T BuscarPorCodigo(string codigoAgente);
-        T BuscarPorId(int idAgente);
-        IEnumerable<T> TraerTodo();
-    }
+    T? BuscarPorCodigo(string codigoAgente);
+    T? BuscarPorId(int idAgente);
+    IEnumerable<T> TraerTodo();
 }

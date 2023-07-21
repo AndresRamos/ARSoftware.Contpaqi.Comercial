@@ -9,7 +9,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Generales
         public int CIDSISTEMA { get; set; }
         public int CIDIDIOMA { get; set; }
         public int CIDMODULO { get; set; }
-        public string CNOMBRENATIVOTABLA { get; set; }
-        public string CNOMBREAMIGABLETABLA { get; set; }
+        public string CNOMBRENATIVOTABLA { get; set; } = null!;
+        public string CNOMBREAMIGABLETABLA { get; set; } = null!;
     }
 }

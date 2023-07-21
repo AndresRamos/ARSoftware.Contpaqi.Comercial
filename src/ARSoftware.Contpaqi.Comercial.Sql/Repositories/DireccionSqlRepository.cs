@@ -20,7 +20,7 @@ public sealed class DireccionSqlRepository : RepositoryBase<admDomicilios>, IDir
     }
 
     /// <inheritdoc />
-    public admDomicilios BuscarPorCliente(string codigoClienteProveedor, byte tipoDireccion)
+    public admDomicilios? BuscarPorCliente(string codigoClienteProveedor, byte tipoDireccion)
     {
         admClientes cliente =
             _context.admClientes.WithSpecification(new ClientePorCodigoSpecification(codigoClienteProveedor)).SingleOrDefault() ??
@@ -32,14 +32,14 @@ public sealed class DireccionSqlRepository : RepositoryBase<admDomicilios>, IDir
     }
 
     /// <inheritdoc />
-    public admDomicilios BuscarPorDocumento(int idDocumento, byte tipoDireccion)
+    public admDomicilios? BuscarPorDocumento(int idDocumento, byte tipoDireccion)
     {
         return _context.admDomicilios.WithSpecification(new DireccionPorDocumentoSpecification(idDocumento, (TipoDireccion)tipoDireccion))
             .FirstOrDefault();
     }
 
     /// <inheritdoc />
-    public admDomicilios BuscarPorId(int idDireccion)
+    public admDomicilios? BuscarPorId(int idDireccion)
     {
         return _context.admDomicilios.WithSpecification(new DireccionPorIdSpecification(idDireccion)).SingleOrDefault();
     }

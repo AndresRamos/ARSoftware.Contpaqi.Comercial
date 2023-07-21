@@ -6,8 +6,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
     public partial class admConceptosBack
     {
         public int CIDCONCEPTODOCUMENTO { get; set; }
-        public string CCODIGOCONCEPTO { get; set; }
-        public string CNOMBRECONCEPTO { get; set; }
+        public string CCODIGOCONCEPTO { get; set; } = null!;
+        public string CNOMBRECONCEPTO { get; set; } = null!;
         public int CIDDOCUMENTODE { get; set; }
         public int CNATURALEZA { get; set; }
         public int CDOCTOACREDITO { get; set; }
@@ -15,7 +15,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public int CMAXIMOMOVTOS { get; set; }
         public int CCREACLIENTE { get; set; }
         public int CSUMARPROMOCIONES { get; set; }
-        public string CFORMAPREIMPRESA { get; set; }
+        public string CFORMAPREIMPRESA { get; set; } = null!;
         public int CORDENCALCULO { get; set; }
         public int CUSANOMBRECTEPROV { get; set; }
         public int CUSARFC { get; set; }
@@ -27,7 +27,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public int CUSANOMBREAGENTE { get; set; }
         public int CUSADIRECCION { get; set; }
         public int CUSAREFERENCIA { get; set; }
-        public string CSERIEPOROMISION { get; set; }
+        public string CSERIEPOROMISION { get; set; } = null!;
         public int CANCHOCODIGOPRODUCTO { get; set; }
         public int CUSANOMBREPRODUCTO { get; set; }
         public int CANCHONOMBREPRODUCTO { get; set; }
@@ -132,21 +132,21 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public int CPRESENTASALDAR { get; set; }
         public int CPRESENTADOCUMENTAR { get; set; }
         public int CPRESENTAGASTOSCOMPRA { get; set; }
-        public string CSEGCONTCONCEPTO { get; set; }
+        public string CSEGCONTCONCEPTO { get; set; } = null!;
         public int CBANENCABEZADO { get; set; }
         public int CBANMOVIMIENTO { get; set; }
         public int CBANDESCUENTO { get; set; }
         public int CBANIMPUESTO { get; set; }
         public int CBANACCIONAUTOMATICA { get; set; }
-        public string CTIMESTAMP { get; set; }
+        public string CTIMESTAMP { get; set; } = null!;
         public double CNOFOLIO { get; set; }
         public int CIDPROCESOSEGURIDAD { get; set; }
         public int CUSAGTOMOV { get; set; }
         public int CUSASCMOV { get; set; }
         public int CIDASTOCON { get; set; }
-        public string CSCCPTO2 { get; set; }
-        public string CSCCPTO3 { get; set; }
-        public string CSCMOVTO { get; set; }
+        public string CSCCPTO2 { get; set; } = null!;
+        public string CSCCPTO3 { get; set; } = null!;
+        public string CSCMOVTO { get; set; } = null!;
         public int CIDCONAUTO { get; set; }
         public int CIDALMASUM { get; set; }
         public int CUSACOMVTA { get; set; }
@@ -162,7 +162,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public int CGDAPASSW { get; set; }
         public int CEMITEYENT { get; set; }
         public int CBANCFD { get; set; }
-        public string CREPIMPCFD { get; set; }
+        public string CREPIMPCFD { get; set; } = null!;
         public int CIDDIRSUCU { get; set; }
         public int CBANDIRSUC { get; set; }
         public int CVERFACELE { get; set; }
@@ -180,7 +180,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public int CIDCPTODE1 { get; set; }
         public int CIDCPTODE2 { get; set; }
         public int CIDCPTODE3 { get; set; }
-        public string CPLAMIGCFD { get; set; }
+        public string CPLAMIGCFD { get; set; } = null!;
         public int CIDPRSEG07 { get; set; }
         public int CRESERVADO { get; set; }
         public int CVERREFER { get; set; }
@@ -189,15 +189,15 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public int CCARTAPOR { get; set; }
         public int CCOMPDONAT { get; set; }
         public int COBSXML { get; set; }
-        public string CRUTAENTREGA { get; set; }
-        public string CPREFIJOCONCEPTO { get; set; }
-        public string CREGIMFISC { get; set; }
+        public string CRUTAENTREGA { get; set; } = null!;
+        public string CPREFIJOCONCEPTO { get; set; } = null!;
+        public string CREGIMFISC { get; set; } = null!;
         public int CCOMPEDUCA { get; set; }
-        public string CMETODOPAG { get; set; }
-        public string CVERESQUE { get; set; }
-        public string CIDFIRMADSL { get; set; }
-        public string CORDENCAPTURA { get; set; }
-        public string CCLAVESAT { get; set; }
+        public string CMETODOPAG { get; set; } = null!;
+        public string CVERESQUE { get; set; } = null!;
+        public string CIDFIRMADSL { get; set; } = null!;
+        public string CORDENCAPTURA { get; set; } = null!;
+        public string CCLAVESAT { get; set; } = null!;
         public int CUSAOBJIMP { get; set; }
     }
 }

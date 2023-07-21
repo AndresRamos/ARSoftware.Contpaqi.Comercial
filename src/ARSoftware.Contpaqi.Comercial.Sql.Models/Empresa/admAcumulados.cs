@@ -25,6 +25,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public double CIMPORTEPERIODO10 { get; set; }
         public double CIMPORTEPERIODO11 { get; set; }
         public double CIMPORTEPERIODO12 { get; set; }
-        public string CTIMESTAMP { get; set; }
+        public string CTIMESTAMP { get; set; } = null!;
     }
 }

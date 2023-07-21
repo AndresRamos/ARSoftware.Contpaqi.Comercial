@@ -13,9 +13,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public double CEXISTENCIAMAXBASE { get; set; }
         public double CEXISTMINNOCONVERTIBLE { get; set; }
         public double CEXISTMAXNOCONVERTIBLE { get; set; }
-        public string CZONA { get; set; }
-        public string CPASILLO { get; set; }
-        public string CANAQUEL { get; set; }
-        public string CREPISA { get; set; }
+        public string CZONA { get; set; } = null!;
+        public string CPASILLO { get; set; } = null!;
+        public string CANAQUEL { get; set; } = null!;
+        public string CREPISA { get; set; } = null!;
     }
 }

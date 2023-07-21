@@ -6,8 +6,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Generales
     public partial class CAC0000C
     {
         public int CIDAUTOINCSQL { get; set; }
-        public string TABLA { get; set; }
-        public string LARGO { get; set; }
-        public string CORTO { get; set; }
+        public string TABLA { get; set; } = null!;
+        public string LARGO { get; set; } = null!;
+        public string CORTO { get; set; } = null!;
     }
 }

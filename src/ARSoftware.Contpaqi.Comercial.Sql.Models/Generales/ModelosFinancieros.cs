@@ -7,7 +7,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Generales
     {
         public int CIDMODELO { get; set; }
         public int CIDSISTEMA { get; set; }
-        public string CDESCRIPCION { get; set; }
-        public string CRUTA { get; set; }
+        public string CDESCRIPCION { get; set; } = null!;
+        public string CRUTA { get; set; } = null!;
     }
 }

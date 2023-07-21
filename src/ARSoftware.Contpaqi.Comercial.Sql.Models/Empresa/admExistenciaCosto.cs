@@ -63,6 +63,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public double CCOSTOSALIDASPERIODO11 { get; set; }
         public double CCOSTOSALIDASPERIODO12 { get; set; }
         public int CBANCONGELADO { get; set; }
-        public string CTIMESTAMP { get; set; }
+        public string CTIMESTAMP { get; set; } = null!;
     }
 }

@@ -20,14 +20,14 @@ public sealed class ValorClasificacionSqlRepository : RepositoryBase<admClasific
     }
 
     /// <inheritdoc />
-    public admClasificacionesValores BuscarPorId(int idValorClasificacion)
+    public admClasificacionesValores? BuscarPorId(int idValorClasificacion)
     {
         return _context.admClasificacionesValores.WithSpecification(new ValorClasificacionPorIdSpecification(idValorClasificacion))
             .SingleOrDefault();
     }
 
     /// <inheritdoc />
-    public admClasificacionesValores BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacion tipoClasificacion,
+    public admClasificacionesValores? BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacion tipoClasificacion,
         NumeroClasificacion numeroClasificacion, string codigoValorClasificacion)
     {
         admClasificaciones clasificacion = _context.admClasificaciones

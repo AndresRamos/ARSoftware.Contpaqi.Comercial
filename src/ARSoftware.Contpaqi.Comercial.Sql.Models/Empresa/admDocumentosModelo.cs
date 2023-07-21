@@ -6,7 +6,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
     public partial class admDocumentosModelo
     {
         public int CIDDOCUMENTODE { get; set; }
-        public string CDESCRIPCION { get; set; }
+        public string CDESCRIPCION { get; set; } = null!;
         public int CNATURALEZA { get; set; }
         public int CAFECTAEXISTENCIA { get; set; }
         public int CMODULO { get; set; }

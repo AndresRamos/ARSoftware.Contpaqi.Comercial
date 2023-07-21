@@ -22,13 +22,13 @@ public sealed class DocumentoSqlRepository : RepositoryBase<admDocumentos>, IDoc
     }
 
     /// <inheritdoc />
-    public admDocumentos BuscarPorId(int idDocumento)
+    public admDocumentos? BuscarPorId(int idDocumento)
     {
         return _context.admDocumentos.WithSpecification(new DocumentoPorIdSpecification(idDocumento)).SingleOrDefault();
     }
 
     /// <inheritdoc />
-    public admDocumentos BuscarPorLlave(string codigoConcepto, string serie, string folio)
+    public admDocumentos? BuscarPorLlave(string codigoConcepto, string serie, string folio)
     {
         admConceptos concepto =
             _context.admConceptos.WithSpecification(new ConceptoPorCodigoSpecification(codigoConcepto)).SingleOrDefault() ??
@@ -42,7 +42,7 @@ public sealed class DocumentoSqlRepository : RepositoryBase<admDocumentos>, IDoc
     }
 
     /// <inheritdoc />
-    public admDocumentos BuscarPorLlave(LlaveDocumento llaveDocumento)
+    public admDocumentos? BuscarPorLlave(LlaveDocumento llaveDocumento)
     {
         admConceptos concepto =
             _context.admConceptos.WithSpecification(new ConceptoPorCodigoSpecification(llaveDocumento.CodigoConcepto)).SingleOrDefault() ??

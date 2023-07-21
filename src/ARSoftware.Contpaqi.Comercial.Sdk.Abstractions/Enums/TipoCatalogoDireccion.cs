@@ -1,10 +1,9 @@
-﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums
+﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+
+public enum TipoCatalogoDireccion
 {
-    public enum TipoCatalogoDireccion
-    {
-        Clientes = 1,
-        Proveedores = 2,
-        Documentos = 3,
-        Empresa = 4
-    }
+    Clientes = 1,
+    Proveedores = 2,
+    Documentos = 3,
+    Empresa = 4
 }

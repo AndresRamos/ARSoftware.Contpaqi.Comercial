@@ -18,13 +18,13 @@ public sealed class AlmacenSqlRepository : RepositoryBase<admAlmacenes>, IAlmace
     }
 
     /// <inheritdoc />
-    public admAlmacenes BuscarPorCodigo(string codigoAlmacen)
+    public admAlmacenes? BuscarPorCodigo(string codigoAlmacen)
     {
         return _context.admAlmacenes.WithSpecification(new AlmacenPorCodigoSpecification(codigoAlmacen)).SingleOrDefault();
     }
 
     /// <inheritdoc />
-    public admAlmacenes BuscarPorId(int idAlmacen)
+    public admAlmacenes? BuscarPorId(int idAlmacen)
     {
         return _context.admAlmacenes.WithSpecification(new AlmacenPorIdSpecification(idAlmacen)).SingleOrDefault();
     }

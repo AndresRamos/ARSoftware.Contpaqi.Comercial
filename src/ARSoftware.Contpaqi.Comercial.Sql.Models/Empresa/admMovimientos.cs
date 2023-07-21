@@ -43,8 +43,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public double CPORCENTAJEDESCUENTO5 { get; set; }
         public double CTOTAL { get; set; }
         public double CPORCENTAJECOMISION { get; set; }
-        public string CREFERENCIA { get; set; }
-        public string COBSERVAMOV { get; set; }
+        public string CREFERENCIA { get; set; } = null!;
+        public string? COBSERVAMOV { get; set; }
         public int CAFECTAEXISTENCIA { get; set; }
         public int CAFECTADOSALDOS { get; set; }
         public int CAFECTADOINVENTARIO { get; set; }
@@ -58,20 +58,20 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public double CUNIDADESNCORIGEN { get; set; }
         public int CTIPOTRASPASO { get; set; }
         public int CIDVALORCLASIFICACION { get; set; }
-        public string CTEXTOEXTRA1 { get; set; }
-        public string CTEXTOEXTRA2 { get; set; }
-        public string CTEXTOEXTRA3 { get; set; }
+        public string CTEXTOEXTRA1 { get; set; } = null!;
+        public string CTEXTOEXTRA2 { get; set; } = null!;
+        public string CTEXTOEXTRA3 { get; set; } = null!;
         public DateTime CFECHAEXTRA { get; set; }
         public double CIMPORTEEXTRA1 { get; set; }
         public double CIMPORTEEXTRA2 { get; set; }
         public double CIMPORTEEXTRA3 { get; set; }
         public double CIMPORTEEXTRA4 { get; set; }
-        public string CTIMESTAMP { get; set; }
+        public string CTIMESTAMP { get; set; } = null!;
         public double CGTOMOVTO { get; set; }
-        public string CSCMOVTO { get; set; }
+        public string CSCMOVTO { get; set; } = null!;
         public double CCOMVENTA { get; set; }
         public int CIDMOVTODESTINO { get; set; }
         public int CNUMEROCONSOLIDACIONES { get; set; }
-        public string COBJIMPU01 { get; set; }
+        public string COBJIMPU01 { get; set; } = null!;
     }
 }

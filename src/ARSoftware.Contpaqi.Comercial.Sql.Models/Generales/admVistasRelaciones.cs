@@ -8,9 +8,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Generales
         public int CIDRELACION { get; set; }
         public int CIDSISTEMA { get; set; }
         public int CINDICEIDIOMA { get; set; }
-        public string CNOMBRENATIVOTABLA1 { get; set; }
-        public string CNOMBRENATIVOTABLA2 { get; set; }
-        public string CNOMBRERELACION { get; set; }
-        public string CSENTENCIAENLACE { get; set; }
+        public string CNOMBRENATIVOTABLA1 { get; set; } = null!;
+        public string CNOMBRENATIVOTABLA2 { get; set; } = null!;
+        public string CNOMBRERELACION { get; set; } = null!;
+        public string CSENTENCIAENLACE { get; set; } = null!;
     }
 }

@@ -5,7 +5,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Generales
 {
     public partial class ParametrosInicialesMto
     {
-        public string cDBTemplate { get; set; }
+        public string cDBTemplate { get; set; } = null!;
         public int? cLogSize { get; set; }
         public int? cLogLevel1 { get; set; }
         public int? cLogLevel2 { get; set; }

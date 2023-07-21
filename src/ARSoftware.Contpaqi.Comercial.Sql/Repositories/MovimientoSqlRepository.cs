@@ -18,7 +18,7 @@ public sealed class MovimientoSqlRepository : RepositoryBase<admMovimientos>, IM
     }
 
     /// <inheritdoc />
-    public admMovimientos BuscarPorId(int idMovimiento)
+    public admMovimientos? BuscarPorId(int idMovimiento)
     {
         return _context.admMovimientos.WithSpecification(new MovimientoPorIdSpecification(idMovimiento)).SingleOrDefault();
     }

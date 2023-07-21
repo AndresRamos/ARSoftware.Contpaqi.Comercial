@@ -19,13 +19,13 @@ public sealed class ProductoSqlRepository : RepositoryBase<admProductos>, IProdu
     }
 
     /// <inheritdoc />
-    public admProductos BuscarPorCodigo(string codigoProducto)
+    public admProductos? BuscarPorCodigo(string codigoProducto)
     {
         return _context.admProductos.WithSpecification(new ProductoPorCodigoSpecification(codigoProducto)).SingleOrDefault();
     }
 
     /// <inheritdoc />
-    public admProductos BuscarPorId(int idProducto)
+    public admProductos? BuscarPorId(int idProducto)
     {
         return _context.admProductos.WithSpecification(new ProductoPorIdSpecification(idProducto)).SingleOrDefault();
     }

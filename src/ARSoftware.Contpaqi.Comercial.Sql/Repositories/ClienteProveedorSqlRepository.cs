@@ -19,13 +19,13 @@ public sealed class ClienteProveedorSqlRepository : RepositoryBase<admClientes>,
     }
 
     /// <inheritdoc />
-    public admClientes BuscarPorCodigo(string codigoCliente)
+    public admClientes? BuscarPorCodigo(string codigoCliente)
     {
         return _context.admClientes.WithSpecification(new ClientePorCodigoSpecification(codigoCliente)).SingleOrDefault();
     }
 
     /// <inheritdoc />
-    public admClientes BuscarPorId(int idCliente)
+    public admClientes? BuscarPorId(int idCliente)
     {
         return _context.admClientes.WithSpecification(new ClientePorIdSpecification(idCliente)).SingleOrDefault();
     }

@@ -9,9 +9,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public int CIDSISTEMA { get; set; }
         public int CIDIDIOMA { get; set; }
         public int CIDMODULO { get; set; }
-        public string CNOMBRENATIVOTABLA { get; set; }
-        public string CNOMBREAMIGABLETABLA { get; set; }
+        public string CNOMBRENATIVOTABLA { get; set; } = null!;
+        public string CNOMBREAMIGABLETABLA { get; set; } = null!;
         public int CORDEN { get; set; }
-        public string CINDICES { get; set; }
+        public string CINDICES { get; set; } = null!;
     }
 }

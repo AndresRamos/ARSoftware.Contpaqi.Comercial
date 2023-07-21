@@ -18,13 +18,13 @@ public sealed class AgenteSqlRepository : RepositoryBase<admAgentes>, IAgenteRep
     }
 
     /// <inheritdoc />
-    public admAgentes BuscarPorCodigo(string codigoAgente)
+    public admAgentes? BuscarPorCodigo(string codigoAgente)
     {
         return _context.admAgentes.WithSpecification(new AgentePorCodigoSpecification(codigoAgente)).SingleOrDefault();
     }
 
     /// <inheritdoc />
-    public admAgentes BuscarPorId(int idAgente)
+    public admAgentes? BuscarPorId(int idAgente)
     {
         return _context.admAgentes.WithSpecification(new AgentePorIdSpecification(idAgente)).SingleOrDefault();
     }

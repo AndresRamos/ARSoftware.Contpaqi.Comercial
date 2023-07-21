@@ -5,8 +5,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Generales
 {
     public partial class SATUnidades
     {
-        public string CCLAVE { get; set; }
-        public string CNOMBRE { get; set; }
-        public string CDESCRIPCION { get; set; }
+        public string CCLAVE { get; set; } = null!;
+        public string CNOMBRE { get; set; } = null!;
+        public string CDESCRIPCION { get; set; } = null!;
     }
 }

@@ -8,7 +8,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public int CIDAUTOINCSQL { get; set; }
         public int CIDDOCUMENTOABONO { get; set; }
         public int CIDDOCUMENTOCARGO { get; set; }
-        public string CTEXTOTASA { get; set; }
+        public string CTEXTOTASA { get; set; } = null!;
         public double CNETO { get; set; }
         public double CTASA { get; set; }
         public int CESDETALLE { get; set; }
@@ -17,6 +17,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public double CTASACUOTA { get; set; }
         public int CESRETEN01 { get; set; }
         public double CPROPORC01 { get; set; }
-        public string CMETODOPAG { get; set; }
+        public string CMETODOPAG { get; set; } = null!;
     }
 }

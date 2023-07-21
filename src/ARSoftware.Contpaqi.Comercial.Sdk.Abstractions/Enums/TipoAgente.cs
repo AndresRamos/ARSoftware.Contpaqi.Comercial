@@ -1,9 +1,8 @@
-﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums
+﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+
+public enum TipoAgente
 {
-    public enum TipoAgente
-    {
-        Ventas = 1,
-        VentasCobro = 2,
-        Cobro = 3
-    }
+    Ventas = 1,
+    VentasCobro = 2,
+    Cobro = 3
 }

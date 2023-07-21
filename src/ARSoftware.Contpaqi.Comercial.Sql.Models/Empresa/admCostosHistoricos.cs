@@ -12,6 +12,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public double CCOSTOH { get; set; }
         public double CULTIMOCOSTOH { get; set; }
         public int CIDMOVIMIENTO { get; set; }
-        public string CTIMESTAMP { get; set; }
+        public string CTIMESTAMP { get; set; } = null!;
     }
 }

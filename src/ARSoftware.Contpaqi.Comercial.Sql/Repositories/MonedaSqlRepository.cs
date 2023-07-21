@@ -18,13 +18,13 @@ public sealed class MonedaSqlRepository : RepositoryBase<admMonedas>, IMonedaRep
     }
 
     /// <inheritdoc />
-    public admMonedas BuscarPorId(int idMoneda)
+    public admMonedas? BuscarPorId(int idMoneda)
     {
         return _context.admMonedas.WithSpecification(new MonedaPorIdSpecification(idMoneda)).SingleOrDefault();
     }
 
     /// <inheritdoc />
-    public admMonedas BuscarPorNombre(string nombreMoneda)
+    public admMonedas? BuscarPorNombre(string nombreMoneda)
     {
         return _context.admMonedas.WithSpecification(new MonedaPorNombreSpecification(nombreMoneda)).SingleOrDefault();
     }

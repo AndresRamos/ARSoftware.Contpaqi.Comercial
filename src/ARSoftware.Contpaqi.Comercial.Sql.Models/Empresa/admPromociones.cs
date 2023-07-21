@@ -6,8 +6,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
     public partial class admPromociones
     {
         public int CIDPROMOCION { get; set; }
-        public string CCODIGOPROMOCION { get; set; }
-        public string CNOMBREPROMOCION { get; set; }
+        public string CCODIGOPROMOCION { get; set; } = null!;
+        public string CNOMBREPROMOCION { get; set; } = null!;
         public DateTime CFECHAINICIO { get; set; }
         public DateTime CFECHAFIN { get; set; }
         public double CVOLUMENMINIMO { get; set; }
@@ -25,12 +25,12 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public int CIDVALORCLASIFPRODUCTO4 { get; set; }
         public int CIDVALORCLASIFPRODUCTO5 { get; set; }
         public int CIDVALORCLASIFPRODUCTO6 { get; set; }
-        public string CTIMESTAMP { get; set; }
+        public string CTIMESTAMP { get; set; } = null!;
         public int CTIPOPROMO { get; set; }
         public int CIDCPTODOC { get; set; }
         public int CSUBTIPO { get; set; }
-        public string CHORAINI { get; set; }
-        public string CHORAFIN { get; set; }
+        public string CHORAINI { get; set; } = null!;
+        public string CHORAFIN { get; set; } = null!;
         public int CTIPOPRO { get; set; }
         public int CVALA { get; set; }
         public int CVALB { get; set; }

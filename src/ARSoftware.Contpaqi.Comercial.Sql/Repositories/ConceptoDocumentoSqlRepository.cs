@@ -18,13 +18,13 @@ public sealed class ConceptoDocumentoSqlRepository : RepositoryBase<admConceptos
     }
 
     /// <inheritdoc />
-    public admConceptos BuscarPorCodigo(string codigoConcepto)
+    public admConceptos? BuscarPorCodigo(string codigoConcepto)
     {
         return _context.admConceptos.WithSpecification(new ConceptoPorCodigoSpecification(codigoConcepto)).SingleOrDefault();
     }
 
     /// <inheritdoc />
-    public admConceptos BuscarPorId(int idConcepto)
+    public admConceptos? BuscarPorId(int idConcepto)
     {
         return _context.admConceptos.WithSpecification(new ConceptoPorIdSpecification(idConcepto)).SingleOrDefault();
     }

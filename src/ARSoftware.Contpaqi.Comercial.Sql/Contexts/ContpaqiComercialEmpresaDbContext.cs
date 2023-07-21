@@ -17,68 +17,68 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
         {
         }
 
-        public virtual DbSet<admAcumulados> admAcumulados { get; set; }
-        public virtual DbSet<admAcumuladosTipos> admAcumuladosTipos { get; set; }
-        public virtual DbSet<admAgentes> admAgentes { get; set; }
-        public virtual DbSet<admAlmacenes> admAlmacenes { get; set; }
-        public virtual DbSet<admAsientosContables> admAsientosContables { get; set; }
-        public virtual DbSet<admAsocAcumConceptos> admAsocAcumConceptos { get; set; }
-        public virtual DbSet<admAsocCargosAbonos> admAsocCargosAbonos { get; set; }
-        public virtual DbSet<admAsocCargosAbonosImp> admAsocCargosAbonosImp { get; set; }
-        public virtual DbSet<admBanderas> admBanderas { get; set; }
-        public virtual DbSet<admBitacoras> admBitacoras { get; set; }
-        public virtual DbSet<admCapasProducto> admCapasProducto { get; set; }
-        public virtual DbSet<admCaracteristicas> admCaracteristicas { get; set; }
-        public virtual DbSet<admCaracteristicasValores> admCaracteristicasValores { get; set; }
-        public virtual DbSet<admClasificaciones> admClasificaciones { get; set; }
-        public virtual DbSet<admClasificacionesValores> admClasificacionesValores { get; set; }
-        public virtual DbSet<admClientes> admClientes { get; set; }
-        public virtual DbSet<admComponentesPaquete> admComponentesPaquete { get; set; }
-        public virtual DbSet<admConceptos> admConceptos { get; set; }
-        public virtual DbSet<admConceptosBack> admConceptosBack { get; set; }
-        public virtual DbSet<admConversionesUnidad> admConversionesUnidad { get; set; }
-        public virtual DbSet<admCostosHistoricos> admCostosHistoricos { get; set; }
-        public virtual DbSet<admCuentasBancarias> admCuentasBancarias { get; set; }
-        public virtual DbSet<admDatosAddenda> admDatosAddenda { get; set; }
-        public virtual DbSet<admDocumentos> admDocumentos { get; set; }
-        public virtual DbSet<admDocumentosModelo> admDocumentosModelo { get; set; }
-        public virtual DbSet<admDocumentosModelosBack> admDocumentosModelosBack { get; set; }
-        public virtual DbSet<admDomicilios> admDomicilios { get; set; }
-        public virtual DbSet<admEjercicios> admEjercicios { get; set; }
-        public virtual DbSet<admExistenciaCosto> admExistenciaCosto { get; set; }
-        public virtual DbSet<admFoliosDigitales> admFoliosDigitales { get; set; }
-        public virtual DbSet<admMaximosMinimos> admMaximosMinimos { get; set; }
-        public virtual DbSet<admMonedas> admMonedas { get; set; }
-        public virtual DbSet<admMovimientos> admMovimientos { get; set; }
-        public virtual DbSet<admMovimientosCapas> admMovimientosCapas { get; set; }
-        public virtual DbSet<admMovimientosContables> admMovimientosContables { get; set; }
-        public virtual DbSet<admMovimientosPrepoliza> admMovimientosPrepoliza { get; set; }
-        public virtual DbSet<admMovimientosSerie> admMovimientosSerie { get; set; }
-        public virtual DbSet<admMovtosBancarios> admMovtosBancarios { get; set; }
-        public virtual DbSet<admMovtosCEPs> admMovtosCEPs { get; set; }
-        public virtual DbSet<admMovtosInvFisico> admMovtosInvFisico { get; set; }
-        public virtual DbSet<admMovtosInvFisicoSerieCa> admMovtosInvFisicoSerieCa { get; set; }
-        public virtual DbSet<admNumerosSerie> admNumerosSerie { get; set; }
-        public virtual DbSet<admParametros> admParametros { get; set; }
-        public virtual DbSet<admParametrosBack> admParametrosBack { get; set; }
-        public virtual DbSet<admPreciosCompra> admPreciosCompra { get; set; }
-        public virtual DbSet<admPrepolizas> admPrepolizas { get; set; }
-        public virtual DbSet<admProductos> admProductos { get; set; }
-        public virtual DbSet<admProductosDetalles> admProductosDetalles { get; set; }
-        public virtual DbSet<admProductosFotos> admProductosFotos { get; set; }
-        public virtual DbSet<admPromociones> admPromociones { get; set; }
-        public virtual DbSet<admProyectos> admProyectos { get; set; }
-        public virtual DbSet<admSATSegmentos> admSATSegmentos { get; set; }
-        public virtual DbSet<admTiposCambio> admTiposCambio { get; set; }
-        public virtual DbSet<admUnidadesMedidaPeso> admUnidadesMedidaPeso { get; set; }
-        public virtual DbSet<admVistasCampos> admVistasCampos { get; set; }
-        public virtual DbSet<admVistasConsultas> admVistasConsultas { get; set; }
-        public virtual DbSet<admVistasPorModulo> admVistasPorModulo { get; set; }
-        public virtual DbSet<admVistasRecursos> admVistasRecursos { get; set; }
-        public virtual DbSet<admVistasRelaciones> admVistasRelaciones { get; set; }
-        public virtual DbSet<admVistasTablas> admVistasTablas { get; set; }
-        public virtual DbSet<nubeCuentas> nubeCuentas { get; set; }
-        public virtual DbSet<nubeDiarios> nubeDiarios { get; set; }
+        public virtual DbSet<admAcumulados> admAcumulados { get; set; } = null!;
+        public virtual DbSet<admAcumuladosTipos> admAcumuladosTipos { get; set; } = null!;
+        public virtual DbSet<admAgentes> admAgentes { get; set; } = null!;
+        public virtual DbSet<admAlmacenes> admAlmacenes { get; set; } = null!;
+        public virtual DbSet<admAsientosContables> admAsientosContables { get; set; } = null!;
+        public virtual DbSet<admAsocAcumConceptos> admAsocAcumConceptos { get; set; } = null!;
+        public virtual DbSet<admAsocCargosAbonos> admAsocCargosAbonos { get; set; } = null!;
+        public virtual DbSet<admAsocCargosAbonosImp> admAsocCargosAbonosImp { get; set; } = null!;
+        public virtual DbSet<admBanderas> admBanderas { get; set; } = null!;
+        public virtual DbSet<admBitacoras> admBitacoras { get; set; } = null!;
+        public virtual DbSet<admCapasProducto> admCapasProducto { get; set; } = null!;
+        public virtual DbSet<admCaracteristicas> admCaracteristicas { get; set; } = null!;
+        public virtual DbSet<admCaracteristicasValores> admCaracteristicasValores { get; set; } = null!;
+        public virtual DbSet<admClasificaciones> admClasificaciones { get; set; } = null!;
+        public virtual DbSet<admClasificacionesValores> admClasificacionesValores { get; set; } = null!;
+        public virtual DbSet<admClientes> admClientes { get; set; } = null!;
+        public virtual DbSet<admComponentesPaquete> admComponentesPaquete { get; set; } = null!;
+        public virtual DbSet<admConceptos> admConceptos { get; set; } = null!;
+        public virtual DbSet<admConceptosBack> admConceptosBack { get; set; } = null!;
+        public virtual DbSet<admConversionesUnidad> admConversionesUnidad { get; set; } = null!;
+        public virtual DbSet<admCostosHistoricos> admCostosHistoricos { get; set; } = null!;
+        public virtual DbSet<admCuentasBancarias> admCuentasBancarias { get; set; } = null!;
+        public virtual DbSet<admDatosAddenda> admDatosAddenda { get; set; } = null!;
+        public virtual DbSet<admDocumentos> admDocumentos { get; set; } = null!;
+        public virtual DbSet<admDocumentosModelo> admDocumentosModelo { get; set; } = null!;
+        public virtual DbSet<admDocumentosModelosBack> admDocumentosModelosBack { get; set; } = null!;
+        public virtual DbSet<admDomicilios> admDomicilios { get; set; } = null!;
+        public virtual DbSet<admEjercicios> admEjercicios { get; set; } = null!;
+        public virtual DbSet<admExistenciaCosto> admExistenciaCosto { get; set; } = null!;
+        public virtual DbSet<admFoliosDigitales> admFoliosDigitales { get; set; } = null!;
+        public virtual DbSet<admMaximosMinimos> admMaximosMinimos { get; set; } = null!;
+        public virtual DbSet<admMonedas> admMonedas { get; set; } = null!;
+        public virtual DbSet<admMovimientos> admMovimientos { get; set; } = null!;
+        public virtual DbSet<admMovimientosCapas> admMovimientosCapas { get; set; } = null!;
+        public virtual DbSet<admMovimientosContables> admMovimientosContables { get; set; } = null!;
+        public virtual DbSet<admMovimientosPrepoliza> admMovimientosPrepoliza { get; set; } = null!;
+        public virtual DbSet<admMovimientosSerie> admMovimientosSerie { get; set; } = null!;
+        public virtual DbSet<admMovtosBancarios> admMovtosBancarios { get; set; } = null!;
+        public virtual DbSet<admMovtosCEPs> admMovtosCEPs { get; set; } = null!;
+        public virtual DbSet<admMovtosInvFisico> admMovtosInvFisico { get; set; } = null!;
+        public virtual DbSet<admMovtosInvFisicoSerieCa> admMovtosInvFisicoSerieCa { get; set; } = null!;
+        public virtual DbSet<admNumerosSerie> admNumerosSerie { get; set; } = null!;
+        public virtual DbSet<admParametros> admParametros { get; set; } = null!;
+        public virtual DbSet<admParametrosBack> admParametrosBack { get; set; } = null!;
+        public virtual DbSet<admPreciosCompra> admPreciosCompra { get; set; } = null!;
+        public virtual DbSet<admPrepolizas> admPrepolizas { get; set; } = null!;
+        public virtual DbSet<admProductos> admProductos { get; set; } = null!;
+        public virtual DbSet<admProductosDetalles> admProductosDetalles { get; set; } = null!;
+        public virtual DbSet<admProductosFotos> admProductosFotos { get; set; } = null!;
+        public virtual DbSet<admPromociones> admPromociones { get; set; } = null!;
+        public virtual DbSet<admProyectos> admProyectos { get; set; } = null!;
+        public virtual DbSet<admSATSegmentos> admSATSegmentos { get; set; } = null!;
+        public virtual DbSet<admTiposCambio> admTiposCambio { get; set; } = null!;
+        public virtual DbSet<admUnidadesMedidaPeso> admUnidadesMedidaPeso { get; set; } = null!;
+        public virtual DbSet<admVistasCampos> admVistasCampos { get; set; } = null!;
+        public virtual DbSet<admVistasConsultas> admVistasConsultas { get; set; } = null!;
+        public virtual DbSet<admVistasPorModulo> admVistasPorModulo { get; set; } = null!;
+        public virtual DbSet<admVistasRecursos> admVistasRecursos { get; set; } = null!;
+        public virtual DbSet<admVistasRelaciones> admVistasRelaciones { get; set; } = null!;
+        public virtual DbSet<admVistasTablas> admVistasTablas { get; set; } = null!;
+        public virtual DbSet<nubeCuentas> nubeCuentas { get; set; } = null!;
+        public virtual DbSet<nubeDiarios> nubeDiarios { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -121,7 +121,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIMPORTEPERIODO9).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -134,7 +133,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDTIPOACUMULADO).ValueGeneratedNever();
 
                 entity.Property(e => e.CNOMBRE)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -172,7 +170,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDAGENTE).ValueGeneratedNever();
 
                 entity.Property(e => e.CCODIGOAGENTE)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -198,49 +195,41 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIMPORTEEXTRA4).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CNOMBREAGENTE)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSCAGENTE2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSCAGENTE3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTAGENTE)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -272,7 +261,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDALMACEN).ValueGeneratedNever();
 
                 entity.Property(e => e.CCODIGOALMACEN)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -294,49 +282,41 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIMPORTEEXTRA4).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CNOMBREALMACEN)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSCALMAC2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSCALMAC3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTALMACEN)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -353,31 +333,26 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDASIENTOCONTABLE).ValueGeneratedNever();
 
                 entity.Property(e => e.CCONCEPTO)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CDIARIO)
-                    .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREASIENTOCONTABLE)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNUMEROASIENTOCONTABLE)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -425,7 +400,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDAUTOINCSQL).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.CMETODOPAG)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -442,13 +416,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CBANDERA).HasColumnType("text");
 
                 entity.Property(e => e.CCLAVEISO)
-                    .IsRequired()
                     .HasMaxLength(3)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREBANDERA)
-                    .IsRequired()
                     .HasMaxLength(40)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -479,25 +451,21 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIMPORTE03).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CTEXTOEX01)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEX02)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEX03)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.DATOS)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -507,37 +475,31 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('18991230')");
 
                 entity.Property(e => e.HORA)
-                    .IsRequired()
                     .HasMaxLength(4)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.NOMBRE)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.NOMBRE2)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.PROCESO)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.USUARIO)
-                    .IsRequired()
                     .HasMaxLength(15)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.USUARIO2)
-                    .IsRequired()
                     .HasMaxLength(15)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -576,13 +538,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDCAPA).ValueGeneratedNever();
 
                 entity.Property(e => e.CADUANA)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCLAVESAT)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -608,19 +568,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('18991230')");
 
                 entity.Property(e => e.CNUMEROLOTE)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CPEDIMENTO)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -637,7 +594,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDPADRECARACTERISTICA).ValueGeneratedNever();
 
                 entity.Property(e => e.CNOMBRECARACTERISTICA)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -660,13 +616,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDVALORCARACTERISTICA).ValueGeneratedNever();
 
                 entity.Property(e => e.CNEMOCARACTERISTICA)
-                    .IsRequired()
                     .HasMaxLength(3)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CVALORCARACTERISTICA)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -681,7 +635,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDCLASIFICACION).ValueGeneratedNever();
 
                 entity.Property(e => e.CNOMBRECLASIFICACION)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -702,31 +655,26 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDVALORCLASIFICACION).ValueGeneratedNever();
 
                 entity.Property(e => e.CCODIGOVALORCLASIFICACION)
-                    .IsRequired()
                     .HasMaxLength(3)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONT1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONT2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONT3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CVALORCLASIFICACION)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -786,13 +734,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDCLIENTEPROVEEDOR).ValueGeneratedNever();
 
                 entity.Property(e => e.CCODIGOCLIENTE)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCODPROVCO)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -806,31 +752,26 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CCOMVENTAEXCEPCLIENTE).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CCON1NOM)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCON1TEL)
-                    .IsRequired()
                     .HasMaxLength(15)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCUENTAMENSAJERIA)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCURP)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CDENCOMERCIAL)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -842,19 +783,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CDESCUENTOPRONTOPAGO).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CEMAIL1)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CEMAIL2)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CEMAIL3)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -904,37 +842,31 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CLIMITECREDITOPROVEEDOR).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CMENSAJERIA)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMETODOPAG)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNUMCTAPAG)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRAZONSOCIAL)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CREGIMFISC)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CREPLEGAL)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -948,145 +880,121 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CRETENCIONPROVEEDOR2).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CRFC)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTCLIENTE1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTCLIENTE2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTCLIENTE3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTCLIENTE4)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTCLIENTE5)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTCLIENTE6)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTCLIENTE7)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTPROVEEDOR1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTPROVEEDOR2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTPROVEEDOR3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTPROVEEDOR4)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTPROVEEDOR5)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTPROVEEDOR6)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTPROVEEDOR7)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSITIOFTP)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA4)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA5)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CUSOCFDI)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('P01')");
 
                 entity.Property(e => e.CUSRFTP)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1128,13 +1036,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDCONCEPTODOCUMENTO).ValueGeneratedNever();
 
                 entity.Property(e => e.CCLAVESAT)
-                    .IsRequired()
                     .HasMaxLength(8)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCODIGOCONCEPTO)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1142,19 +1048,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CESTATUS).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.CFORMAPREIMPRESA)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CIDFIRMADSL)
-                    .IsRequired()
                     .HasMaxLength(40)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMETODOPAG)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1162,85 +1065,71 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CNOFOLIO).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CNOMBRECONCEPTO)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CORDENCAPTURA)
-                    .IsRequired()
                     .HasMaxLength(52)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CPLAMIGCFD)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CPREFIJOCONCEPTO)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CREGIMFISC)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CREPIMPCFD)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRUTAENTREGA)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSCCPTO2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSCCPTO3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSCMOVTO)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTCONCEPTO)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSERIEPOROMISION)
-                    .IsRequired()
                     .HasMaxLength(11)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CVERESQUE)
-                    .IsRequired()
                     .HasMaxLength(6)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1259,31 +1148,26 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDCONCEPTODOCUMENTO).ValueGeneratedNever();
 
                 entity.Property(e => e.CCLAVESAT)
-                    .IsRequired()
                     .HasMaxLength(8)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCODIGOCONCEPTO)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CFORMAPREIMPRESA)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CIDFIRMADSL)
-                    .IsRequired()
                     .HasMaxLength(40)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMETODOPAG)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1291,85 +1175,71 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CNOFOLIO).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CNOMBRECONCEPTO)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CORDENCAPTURA)
-                    .IsRequired()
                     .HasMaxLength(52)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CPLAMIGCFD)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CPREFIJOCONCEPTO)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CREGIMFISC)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CREPIMPCFD)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRUTAENTREGA)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSCCPTO2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSCCPTO3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSCMOVTO)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTCONCEPTO)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSERIEPOROMISION)
-                    .IsRequired()
                     .HasMaxLength(11)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CVERESQUE)
-                    .IsRequired()
                     .HasMaxLength(6)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1382,7 +1252,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.HasIndex(e => new { e.CIDUNIDAD2, e.CIDAUTOINCSQL }, "CIDUNIDAD2");
 
                 entity.Property(e => e.CEXPRESIONFACTOR)
-                    .IsRequired()
                     .HasMaxLength(11)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1407,7 +1276,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('18991230')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1428,19 +1296,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDCUENTA).ValueGeneratedNever();
 
                 entity.Property(e => e.CACCOUNTID)
-                    .IsRequired()
                     .HasMaxLength(26)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCLABE)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCLAVE)
-                    .IsRequired()
                     .HasMaxLength(3)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1466,67 +1331,56 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIMPORTEEXTRA4).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CNOMBANEXT)
-                    .IsRequired()
                     .HasMaxLength(254)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRECUENTA)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNUMEROCUENTA)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRFCBANCO)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONT01)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONT02)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONT03)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1541,7 +1395,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDAUTOINCSQL).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.VALOR)
-                    .IsRequired()
                     .HasMaxLength(254)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1606,13 +1459,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDDOCUMENTO).ValueGeneratedNever();
 
                 entity.Property(e => e.CCONDIPAGO)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCUENTAMENSAJERIA)
-                    .IsRequired()
                     .HasMaxLength(120)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1626,7 +1477,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CDESCUENTOPRONTOPAGO).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CDESTINATARIO)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1664,7 +1514,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CGASTO3).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CGUIDDOCUMENTO)
-                    .IsRequired()
                     .HasMaxLength(40)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1686,19 +1535,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIMPUESTO3).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CLUGAREXPE)
-                    .IsRequired()
                     .HasMaxLength(380)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMENSAJERIA)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMETODOPAG)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1706,7 +1552,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CNETO).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CNUMCTAPAG)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1714,7 +1559,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CNUMEROCAJAS).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CNUMEROGUIA)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1738,13 +1582,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CPORCENTAJERETENCION2).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CRAZONSOCIAL)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CREFERENCIA)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1754,37 +1596,31 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CRETENCION2).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CRFC)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSERIEDOCUMENTO)
-                    .IsRequired()
                     .HasMaxLength(11)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1798,7 +1634,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CTOTALUNIDADES).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CTRANSACTIONID)
-                    .IsRequired()
                     .HasMaxLength(26)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1806,13 +1641,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CUNIDADESPENDIENTES).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CUSUARIO)
-                    .IsRequired()
                     .HasMaxLength(15)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CVERESQUE)
-                    .IsRequired()
                     .HasMaxLength(6)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1831,7 +1664,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDDOCUMENTODE).ValueGeneratedNever();
 
                 entity.Property(e => e.CDESCRIPCION)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1852,7 +1684,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDDOCUMENTODE).ValueGeneratedNever();
 
                 entity.Property(e => e.CDESCRIPCION)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -1875,109 +1706,91 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDDIRECCION).ValueGeneratedNever();
 
                 entity.Property(e => e.CCIUDAD)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCODIGOPOSTAL)
-                    .IsRequired()
                     .HasMaxLength(6)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCOLONIA)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CDIRECCIONWEB)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CEMAIL)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CESTADO)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMUNICIPIO)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRECALLE)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNUMEROEXTERIOR)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNUMEROINTERIOR)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CPAIS)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSUCURSAL)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTELEFONO1)
-                    .IsRequired()
                     .HasMaxLength(15)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTELEFONO2)
-                    .IsRequired()
                     .HasMaxLength(15)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTELEFONO3)
-                    .IsRequired()
                     .HasMaxLength(15)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTELEFONO4)
-                    .IsRequired()
                     .HasMaxLength(15)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2163,7 +1976,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CSALIDASPERIODO9).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2234,25 +2046,21 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDFOLDIG).ValueGeneratedNever();
 
                 entity.Property(e => e.CACUSECAN)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CALIASBDCT)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CARCHCBB)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CARCHDIDIS)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2260,49 +2068,41 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CCADPEDI).HasColumnType("text");
 
                 entity.Property(e => e.CCODCONCBA)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CDESCAUT01)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CDESCAUT02)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CDESCAUT03)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CDESCONCBA)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CDESESTADO)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CDESPAGBAN)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CEMAIL)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2326,7 +2126,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CFOLIO).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CFOLIOBAN)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2334,19 +2133,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CFOLIOREC).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.CHORACANC)
-                    .IsRequired()
                     .HasMaxLength(8)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CHORAEMI)
-                    .IsRequired()
                     .HasMaxLength(8)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CIDDOCTODSL)
-                    .IsRequired()
                     .HasMaxLength(40)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2356,55 +2152,46 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('18991230')");
 
                 entity.Property(e => e.CNUMCTABAN)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.COBSERVA01)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRAZON)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CREFEREN01)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRFC)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSERIE)
-                    .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSERIEREC)
-                    .IsRequired()
                     .HasMaxLength(25)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIPO)
-                    .IsRequired()
                     .HasMaxLength(1)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIPOLDESC)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2412,31 +2199,26 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CTOTAL).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CUSUAUTBAN)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CUSUBAN01)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CUSUBAN02)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CUSUBAN03)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CUUID)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2451,7 +2233,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.HasIndex(e => new { e.CIDPRODUCTOPADRE, e.CIDAUTOINCSQL }, "CIDPRODUCTOPADRE");
 
                 entity.Property(e => e.CANAQUEL)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2467,19 +2248,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDAUTOINCSQL).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.CPASILLO)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CREPISA)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CZONA)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2494,43 +2272,36 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDMONEDA).ValueGeneratedNever();
 
                 entity.Property(e => e.CCLAVESAT)
-                    .IsRequired()
                     .HasMaxLength(3)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CDESCRIPCIONPROTEGIDA)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREMONEDA)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CPLURAL)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSIMBOLOMONEDA)
-                    .IsRequired()
                     .HasMaxLength(1)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSINGULAR)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2621,7 +2392,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CNUMEROMOVIMIENTO).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.COBJIMPU01)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2655,7 +2425,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CPRECIOCAPTURADO).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CREFERENCIA)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2665,31 +2434,26 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CRETENCION2).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CSCMOVTO)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2737,19 +2501,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDMOVIMIENTOCONTABLE).ValueGeneratedNever();
 
                 entity.Property(e => e.CCONCEPTO)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCUENTA)
-                    .IsRequired()
                     .HasMaxLength(250)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CDIARIO)
-                    .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2759,19 +2520,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CPORCENTAJE).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CREFERENCIA)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGNEG)
-                    .IsRequired()
                     .HasMaxLength(4)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2788,19 +2546,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDMOVIMIENTOPREPOLIZA).ValueGeneratedNever();
 
                 entity.Property(e => e.CONCEPTO)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CUENTA)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.DIARIO)
-                    .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2814,13 +2569,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.MONEDA).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.REFERENCIA)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.SEGNEG)
-                    .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2858,13 +2611,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CACCOUNTID)
-                    .IsRequired()
                     .HasMaxLength(26)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CDESCRIPCION)
-                    .IsRequired()
                     .HasMaxLength(256)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2888,31 +2639,26 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIMPORTEEXTRA4).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CREFERENCIA)
-                    .IsRequired()
                     .HasMaxLength(128)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2929,7 +2675,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDMOVTOCEP).ValueGeneratedNever();
 
                 entity.Property(e => e.CARCHIVO)
-                    .IsRequired()
                     .HasMaxLength(256)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2937,49 +2682,41 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CCADENA).HasColumnType("text");
 
                 entity.Property(e => e.CCERTIFICADO)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCLAVE)
-                    .IsRequired()
                     .HasMaxLength(12)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCONCEPTO)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CEBANCO)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CECUENTA)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CENOMBRE)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CERFC)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CETIPOCTA)
-                    .IsRequired()
                     .HasMaxLength(2)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -2993,7 +2730,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('18991230')");
 
                 entity.Property(e => e.CHORA)
-                    .IsRequired()
                     .HasMaxLength(8)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('00000000')");
@@ -3011,61 +2747,51 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIVA).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CRBANCO)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRCUENTA)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRNOMBRE)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRRFC)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRTIPOCTA)
-                    .IsRequired()
                     .HasMaxLength(2)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSELLO)
-                    .IsRequired()
                     .HasMaxLength(256)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3123,7 +2849,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDSERIECAPA).ValueGeneratedNever();
 
                 entity.Property(e => e.CADUANA)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3143,19 +2868,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('18991230')");
 
                 entity.Property(e => e.CNUMEROLOTE)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNUMEROSERIE)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CPEDIMENTO)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3184,13 +2906,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDSERIE).ValueGeneratedNever();
 
                 entity.Property(e => e.CADUANA)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCLAVESAT)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3210,25 +2930,21 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('18991230')");
 
                 entity.Property(e => e.CNUMEROLOTE)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNUMEROSERIE)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CPEDIMENTO)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3245,25 +2961,21 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDEMPRESA).ValueGeneratedNever();
 
                 entity.Property(e => e.CADJUNTO1)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CADJUNTO2)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CASUNTO)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CAUTRVOE)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3281,13 +2993,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CCONSECUTIVOORDEN).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CCORREOPRU)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCUENTAESTATAL)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3295,7 +3005,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CCUERPO).HasColumnType("text");
 
                 entity.Property(e => e.CCURPEMPRESA)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3321,37 +3030,31 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('18991230')");
 
                 entity.Property(e => e.CFIRMA)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CGUIDDSL)
-                    .IsRequired()
                     .HasMaxLength(40)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CGUIDEMPRESA)
-                    .IsRequired()
                     .HasMaxLength(40)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CHOST)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CHOSTPROXY)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CHOSTSMTP)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3363,265 +3066,221 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIMPUESTO3).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CLEYENDON1)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CLEYENDON2)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMASCARILLAAGENTE)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMASCARILLAALMACEN)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMASCARILLACLIENTES)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMASCARILLACURP)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMASCARILLAPRODUCTO)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMASCARILLARFC)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVFECEX1)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVIMPEX1)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVIMPEX2)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVIMPEX3)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVIMPEX4)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVTEXEX1)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVTEXEX2)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVTEXEX3)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRECORTO)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREDESCUENTODOC1)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREDESCUENTODOC2)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREDESCUENTOMOV1)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREDESCUENTOMOV2)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREDESCUENTOMOV3)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREDESCUENTOMOV4)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREDESCUENTOMOV5)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREEMPRESA)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREGASTO1)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREGASTO2)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREGASTO3)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREIMPUESTO1)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREIMPUESTO2)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREIMPUESTO3)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA1)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA10)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA2)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA3)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA4)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA5)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA6)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA7)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA8)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA9)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRERETENCION1)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRERETENCION2)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNUMDONAT)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3629,19 +3288,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CREFRESHTOKENCN).HasColumnType("text");
 
                 entity.Property(e => e.CREGIMFISC)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CREGISTROCAMARA)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CREPRESENTANTELEGAL)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3655,181 +3311,151 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CRETENCIONPROVEEDOR2).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CRFCEMPRESA)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRUTACONTPAQ)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRUTAEMPRESAPRED)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRUTAENTREGA)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRUTAPLA01)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRUTAPLA02)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCIVA10)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCIVA11)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCIVA15)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCIVA16)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCIVA8)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCIVAOT)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL10)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL11)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL4)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL5)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL6)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL7)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL8)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL9)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGPIVA10)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGPIVA11)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGPIVA15)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGPIVA16)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGPIVA8)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGPIVAOT)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3841,25 +3467,21 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .IsUnicode(false);
 
                 entity.Property(e => e.CUSRPROXY)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CVALIDACFD)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CVERPOSI)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CVERSIONACTUAL)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3872,25 +3494,21 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDEMPRESA).ValueGeneratedNever();
 
                 entity.Property(e => e.CADJUNTO1)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CADJUNTO2)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CASUNTO)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CAUTRVOE)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3908,13 +3526,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CCONSECUTIVOORDEN).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CCORREOPRU)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCUENTAESTATAL)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3922,7 +3538,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CCUERPO).HasColumnType("text");
 
                 entity.Property(e => e.CCURPEMPRESA)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3948,37 +3563,31 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('18991230')");
 
                 entity.Property(e => e.CFIRMA)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CGUIDDSL)
-                    .IsRequired()
                     .HasMaxLength(40)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CGUIDEMPRESA)
-                    .IsRequired()
                     .HasMaxLength(40)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CHOST)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CHOSTPROXY)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CHOSTSMTP)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -3990,265 +3599,221 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIMPUESTO3).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CLEYENDON1)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CLEYENDON2)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMASCARILLAAGENTE)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMASCARILLAALMACEN)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMASCARILLACLIENTES)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMASCARILLACURP)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMASCARILLAPRODUCTO)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMASCARILLARFC)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVFECEX1)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVIMPEX1)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVIMPEX2)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVIMPEX3)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVIMPEX4)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVTEXEX1)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVTEXEX2)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMOVTEXEX3)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRECORTO)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREDESCUENTODOC1)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREDESCUENTODOC2)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREDESCUENTOMOV1)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREDESCUENTOMOV2)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREDESCUENTOMOV3)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREDESCUENTOMOV4)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREDESCUENTOMOV5)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREEMPRESA)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREGASTO1)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREGASTO2)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREGASTO3)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREIMPUESTO1)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREIMPUESTO2)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREIMPUESTO3)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA1)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA10)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA2)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA3)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA4)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA5)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA6)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA7)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA8)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRELISTA9)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRERETENCION1)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRERETENCION2)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNUMDONAT)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4256,19 +3821,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CREFRESHTOKENCN).HasColumnType("text");
 
                 entity.Property(e => e.CREGIMFISC)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CREGISTROCAMARA)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CREPRESENTANTELEGAL)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4282,169 +3844,141 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CRETENCIONPROVEEDOR2).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CRFCEMPRESA)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRUTACONTPAQ)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRUTAEMPRESAPRED)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRUTAENTREGA)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRUTAPLA01)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRUTAPLA02)
-                    .IsRequired()
                     .HasMaxLength(253)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCIVA10)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCIVA11)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCIVA15)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCIVA16)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCIVAOT)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL10)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL11)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL4)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL5)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL6)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL7)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL8)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTGENERAL9)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGPIVA10)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGPIVA11)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGPIVA15)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGPIVA16)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGPIVAOT)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4456,25 +3990,21 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .IsUnicode(false);
 
                 entity.Property(e => e.CUSRPROXY)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CVALIDACFD)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CVERPOSI)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CVERSIONACTUAL)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4491,7 +4021,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.HasIndex(e => new { e.CIDUNIDAD, e.CIDAUTOINCSQL }, "CIDUNIDAD");
 
                 entity.Property(e => e.CCODIGOPRODUCTOPROVEEDOR)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4501,7 +4030,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CPRECIOCOMPRA).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4526,30 +4054,25 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CARGOS).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CGUIDPOLIZA)
-                    .IsRequired()
                     .HasMaxLength(40)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CHORA)
-                    .IsRequired()
                     .HasMaxLength(8)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CIDTRANSACCION)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CONCEPTO)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.DIARIO)
-                    .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4613,19 +4136,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDPRODUCTO).ValueGeneratedNever();
 
                 entity.Property(e => e.CCLAVESAT)
-                    .IsRequired()
                     .HasMaxLength(8)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCODALTERN)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCODIGOPRODUCTO)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4647,13 +4167,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CCOSTOEXT5).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CCTAPRED)
-                    .IsRequired()
                     .HasMaxLength(150)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CDESCCORTA)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4713,13 +4231,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CMARGENUTILIDAD).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CNOMALTERN)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREPRODUCTO)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4753,67 +4269,56 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CRETENCION2).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CSEGCONTPRODUCTO1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTPRODUCTO2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTPRODUCTO3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTPRODUCTO4)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTPRODUCTO5)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTPRODUCTO6)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONTPRODUCTO7)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4836,7 +4341,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDPRODUCTO).ValueGeneratedNever();
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4853,7 +4357,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CFOTOPRODUCTO).HasColumnType("text");
 
                 entity.Property(e => e.CNOMBREFOTOPRODUCTO)
-                    .IsRequired()
                     .HasMaxLength(40)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4877,7 +4380,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDPROMOCION).ValueGeneratedNever();
 
                 entity.Property(e => e.CCODIGOPROMOCION)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4895,19 +4397,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('18991230')");
 
                 entity.Property(e => e.CHORAFIN)
-                    .IsRequired()
                     .HasMaxLength(4)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CHORAINI)
-                    .IsRequired()
                     .HasMaxLength(4)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREPROMOCION)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4915,7 +4414,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CPORCENTAJEDESCUENTO).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4952,7 +4450,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDPROYECTO).ValueGeneratedNever();
 
                 entity.Property(e => e.CCODIGOPROYECTO)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -4982,49 +4479,41 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIMPORTEEXTRA4).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CNOMBREPROYECTO)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONT1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONT2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONT3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTEXTOEXTRA3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -5043,25 +4532,21 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CDESCRIPCION)
-                    .IsRequired()
                     .HasMaxLength(152)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONT1)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONT2)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGCONT3)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -5084,7 +4569,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIMPORTE).HasDefaultValueSql("((0.00))");
 
                 entity.Property(e => e.CTIMESTAMP)
-                    .IsRequired()
                     .HasMaxLength(23)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -5101,31 +4585,26 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDUNIDAD).ValueGeneratedNever();
 
                 entity.Property(e => e.CABREVIATURA)
-                    .IsRequired()
                     .HasMaxLength(3)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCLAVEINT)
-                    .IsRequired()
                     .HasMaxLength(3)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCLAVESAT)
-                    .IsRequired()
                     .HasMaxLength(3)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CDESPLIEGUE)
-                    .IsRequired()
                     .HasMaxLength(3)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREUNIDAD)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -5152,7 +4631,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDAUTOINCSQL).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.CNOMBREAMIGABLECAMPO)
-                    .IsRequired()
                     .HasMaxLength(51)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -5167,19 +4645,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDCONSULTA).ValueGeneratedNever();
 
                 entity.Property(e => e.CFILTROS)
-                    .IsRequired()
                     .HasMaxLength(128)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CINDICE)
-                    .IsRequired()
                     .HasMaxLength(26)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRECONSULTA)
-                    .IsRequired()
                     .HasMaxLength(51)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -5194,7 +4669,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDAUTOINCSQL).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.CNOMBREMODULO)
-                    .IsRequired()
                     .HasMaxLength(51)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -5215,19 +4689,16 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCAMPO0)
-                    .IsRequired()
                     .HasMaxLength(26)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCAMPO1)
-                    .IsRequired()
                     .HasMaxLength(26)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CCAMPOID)
-                    .IsRequired()
                     .HasMaxLength(26)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -5235,37 +4706,31 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDAUTOINCSQL).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.CINDICE0)
-                    .IsRequired()
                     .HasMaxLength(26)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CINDICE1)
-                    .IsRequired()
                     .HasMaxLength(26)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CRANGO)
-                    .IsRequired()
                     .HasMaxLength(51)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTABLARELA)
-                    .IsRequired()
                     .HasMaxLength(9)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTITULO0)
-                    .IsRequired()
                     .HasMaxLength(41)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTITULO1)
-                    .IsRequired()
                     .HasMaxLength(41)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -5284,55 +4749,46 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDRELACION).ValueGeneratedNever();
 
                 entity.Property(e => e.CCAMPONA01)
-                    .IsRequired()
                     .HasMaxLength(51)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CFILTRO)
-                    .IsRequired()
                     .HasMaxLength(254)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CFILTROAUX)
-                    .IsRequired()
                     .HasMaxLength(53)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRENATIVOTABLA1)
-                    .IsRequired()
                     .HasMaxLength(9)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRENATIVOTABLA2)
-                    .IsRequired()
                     .HasMaxLength(9)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRERELACION)
-                    .IsRequired()
                     .HasMaxLength(51)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSENTENCIAENLACE)
-                    .IsRequired()
                     .HasMaxLength(127)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTABLAREL1)
-                    .IsRequired()
                     .HasMaxLength(9)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTABLAREL2)
-                    .IsRequired()
                     .HasMaxLength(9)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -5352,13 +4808,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                 entity.Property(e => e.CIDAUTOINCSQL).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.CINDICES)
-                    .IsRequired()
                     .HasMaxLength(128)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBREAMIGABLETABLA)
-                    .IsRequired()
                     .HasMaxLength(51)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -5374,25 +4828,21 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CMONEDA)
-                    .IsRequired()
                     .HasMaxLength(3)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRE)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CSEGMENTO)
-                    .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CTIPO)
-                    .IsRequired()
                     .HasMaxLength(3)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");
@@ -5408,7 +4858,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts
                     .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.CNOMBRE)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')");

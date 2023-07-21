@@ -1,8 +1,7 @@
-﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums
+﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+
+public enum TipoDireccion
 {
-    public enum TipoDireccion
-    {
-        Fiscal = 0,
-        Envio = 1
-    }
+    Fiscal = 0,
+    Envio = 1
 }

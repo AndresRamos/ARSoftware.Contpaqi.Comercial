@@ -18,13 +18,13 @@ public sealed class UnidadMedidaSqlRepository : RepositoryBase<admUnidadesMedida
     }
 
     /// <inheritdoc />
-    public admUnidadesMedidaPeso BuscarPorId(int idUnidad)
+    public admUnidadesMedidaPeso? BuscarPorId(int idUnidad)
     {
         return _context.admUnidadesMedidaPeso.WithSpecification(new UnidadMedidaPorIdSpecification(idUnidad)).SingleOrDefault();
     }
 
     /// <inheritdoc />
-    public admUnidadesMedidaPeso BuscarPorNombre(string nombreUnidad)
+    public admUnidadesMedidaPeso? BuscarPorNombre(string nombreUnidad)
     {
         return _context.admUnidadesMedidaPeso.WithSpecification(new UnidadMedidaPorNombreSpecification(nombreUnidad)).SingleOrDefault();
     }

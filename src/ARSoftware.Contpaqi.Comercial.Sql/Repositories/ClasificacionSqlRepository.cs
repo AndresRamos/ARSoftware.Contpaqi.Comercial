@@ -19,13 +19,13 @@ public sealed class ClasificacionSqlRepository : RepositoryBase<admClasificacion
     }
 
     /// <inheritdoc />
-    public admClasificaciones BuscarPorId(int idClasificacion)
+    public admClasificaciones? BuscarPorId(int idClasificacion)
     {
         return _context.admClasificaciones.WithSpecification(new ClasificacionPorIdSpecification(idClasificacion)).SingleOrDefault();
     }
 
     /// <inheritdoc />
-    public admClasificaciones BuscarPorTipoYNumero(TipoClasificacion tipo, NumeroClasificacion numero)
+    public admClasificaciones? BuscarPorTipoYNumero(TipoClasificacion tipo, NumeroClasificacion numero)
     {
         return _context.admClasificaciones.WithSpecification(new ClasificacionPorTipoYNumeroSpecification(tipo, numero)).SingleOrDefault();
     }

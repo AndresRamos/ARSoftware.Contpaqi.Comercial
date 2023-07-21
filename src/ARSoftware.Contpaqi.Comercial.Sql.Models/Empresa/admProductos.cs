@@ -6,13 +6,13 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
     public partial class admProductos
     {
         public int CIDPRODUCTO { get; set; }
-        public string CCODIGOPRODUCTO { get; set; }
-        public string CNOMBREPRODUCTO { get; set; }
+        public string CCODIGOPRODUCTO { get; set; } = null!;
+        public string CNOMBREPRODUCTO { get; set; } = null!;
         public int CTIPOPRODUCTO { get; set; }
         public DateTime CFECHAALTAPRODUCTO { get; set; }
         public int CCONTROLEXISTENCIA { get; set; }
         public int CIDFOTOPRODUCTO { get; set; }
-        public string CDESCRIPCIONPRODUCTO { get; set; }
+        public string? CDESCRIPCIONPRODUCTO { get; set; }
         public int CMETODOCOSTEO { get; set; }
         public double CPESOPRODUCTO { get; set; }
         public double CCOMVENTAEXCEPPRODUCTO { get; set; }
@@ -37,12 +37,12 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public int CIDVALORCLASIFICACION4 { get; set; }
         public int CIDVALORCLASIFICACION5 { get; set; }
         public int CIDVALORCLASIFICACION6 { get; set; }
-        public string CSEGCONTPRODUCTO1 { get; set; }
-        public string CSEGCONTPRODUCTO2 { get; set; }
-        public string CSEGCONTPRODUCTO3 { get; set; }
-        public string CTEXTOEXTRA1 { get; set; }
-        public string CTEXTOEXTRA2 { get; set; }
-        public string CTEXTOEXTRA3 { get; set; }
+        public string CSEGCONTPRODUCTO1 { get; set; } = null!;
+        public string CSEGCONTPRODUCTO2 { get; set; } = null!;
+        public string CSEGCONTPRODUCTO3 { get; set; } = null!;
+        public string CTEXTOEXTRA1 { get; set; } = null!;
+        public string CTEXTOEXTRA2 { get; set; } = null!;
+        public string CTEXTOEXTRA3 { get; set; } = null!;
         public DateTime CFECHAEXTRA { get; set; }
         public double CIMPORTEEXTRA1 { get; set; }
         public double CIMPORTEEXTRA2 { get; set; }
@@ -66,7 +66,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public int CBANIMPUESTO { get; set; }
         public int CBANCODIGOBARRA { get; set; }
         public int CBANCOMPONENTE { get; set; }
-        public string CTIMESTAMP { get; set; }
+        public string CTIMESTAMP { get; set; } = null!;
         public int CERRORCOSTO { get; set; }
         public DateTime CFECHAERRORCOSTO { get; set; }
         public double CPRECIOCALCULADO { get; set; }
@@ -95,22 +95,22 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa
         public int CIDUNIDADCOMPRA { get; set; }
         public int CIDUNIDADVENTA { get; set; }
         public int CSUBTIPO { get; set; }
-        public string CCODALTERN { get; set; }
-        public string CNOMALTERN { get; set; }
-        public string CDESCCORTA { get; set; }
+        public string CCODALTERN { get; set; } = null!;
+        public string CNOMALTERN { get; set; } = null!;
+        public string CDESCCORTA { get; set; } = null!;
         public int CIDMONEDA { get; set; }
         public int CUSABASCU { get; set; }
         public int CTIPOPAQUE { get; set; }
         public int CPRECSELEC { get; set; }
         public int CDESGLOSAI2 { get; set; }
-        public string CSEGCONTPRODUCTO4 { get; set; }
-        public string CSEGCONTPRODUCTO5 { get; set; }
-        public string CSEGCONTPRODUCTO6 { get; set; }
-        public string CSEGCONTPRODUCTO7 { get; set; }
-        public string CCTAPRED { get; set; }
+        public string CSEGCONTPRODUCTO4 { get; set; } = null!;
+        public string CSEGCONTPRODUCTO5 { get; set; } = null!;
+        public string CSEGCONTPRODUCTO6 { get; set; } = null!;
+        public string CSEGCONTPRODUCTO7 { get; set; } = null!;
+        public string CCTAPRED { get; set; } = null!;
         public int CNODESCOMP { get; set; }
         public int CIDUNIXML { get; set; }
-        public string CCLAVESAT { get; set; }
+        public string CCLAVESAT { get; set; } = null!;
         public double CCANTIDADFISCAL { get; set; }
     }
 }
