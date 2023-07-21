@@ -33,8 +33,10 @@ public class MovimientoRepository<T> : IMovimientoRepository<T> where T : class,
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerPorDocumentoId(int idDocumento)
+    public List<T> TraerPorDocumentoId(int idDocumento)
     {
+        var lista = new List<T>();
+
         _sdk.fCancelaFiltroMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
 
         SdkResult resultadoSdk = _sdk.fSetFiltroMovimiento(idDocumento).ToResultadoSdk(_sdk);
@@ -45,33 +47,39 @@ public class MovimientoRepository<T> : IMovimientoRepository<T> where T : class,
 
             if (resultadoSdk.Result ==
                 2) // Si el resultado es "2" significa que no hay movimientos en el filtro pero no creo que se considere un error para tirar una excepcion
-                yield break;
+                return lista;
 
             resultadoSdk.ThrowIfError();
         }
 
         _sdk.fPosPrimerMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
-        yield return LeerDatosMovimientoActual();
+        lista.Add(LeerDatosMovimientoActual());
 
         while (_sdk.fPosSiguienteMovimiento() == SdkResultConstants.Success)
         {
-            yield return LeerDatosMovimientoActual();
+            lista.Add(LeerDatosMovimientoActual());
             if (_sdk.fPosMovimientoEOF() == 1) break;
         }
 
         _sdk.fCancelaFiltroMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
+
+        return lista;
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerTodo()
+    public List<T> TraerTodo()
     {
+        var lista = new List<T>();
+
         _sdk.fPosPrimerMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
-        yield return LeerDatosMovimientoActual();
+        lista.Add(LeerDatosMovimientoActual());
         while (_sdk.fPosSiguienteMovimiento() == SdkResultConstants.Success)
         {
-            yield return LeerDatosMovimientoActual();
+            lista.Add(LeerDatosMovimientoActual());
             if (_sdk.fPosMovimientoEOF() == 1) break;
         }
+
+        return lista;
     }
 
     private T LeerDatosMovimientoActual()

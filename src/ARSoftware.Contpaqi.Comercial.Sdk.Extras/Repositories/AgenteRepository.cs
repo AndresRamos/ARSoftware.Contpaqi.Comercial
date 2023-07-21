@@ -36,16 +36,20 @@ public class AgenteRepository<T> : IAgenteRepository<T> where T : class, new()
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerTodo()
+    public List<T> TraerTodo()
     {
+        var lista = new List<T>();
+
         _sdk.fPosPrimerAgente().ToResultadoSdk(_sdk).ThrowIfError();
-        yield return LeerDatosAgenteActual();
+        lista.Add(LeerDatosAgenteActual());
 
         while (_sdk.fPosSiguienteAgente() == SdkResultConstants.Success)
         {
-            yield return LeerDatosAgenteActual();
+            lista.Add(LeerDatosAgenteActual());
             if (_sdk.fPosEOFAgente() == 1) break;
         }
+
+        return lista;
     }
 
     private T LeerDatosAgenteActual()

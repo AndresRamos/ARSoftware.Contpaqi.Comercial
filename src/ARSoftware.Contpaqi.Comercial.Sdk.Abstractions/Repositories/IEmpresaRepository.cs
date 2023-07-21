@@ -16,5 +16,5 @@ public interface IEmpresaRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de empresas.
     /// </returns>
-    IEnumerable<T> TraerTodo();
+    List<T> TraerTodo();
 }

@@ -33,7 +33,7 @@ public sealed class UnidadMedidaSqlRepository : RepositoryBase<admUnidadesMedida
     }
 
     /// <inheritdoc />
-    public IEnumerable<admUnidadesMedidaPeso> TraerTodo()
+    public List<admUnidadesMedidaPeso> TraerTodo()
     {
         return _context.admUnidadesMedidaPeso.ToList();
     }

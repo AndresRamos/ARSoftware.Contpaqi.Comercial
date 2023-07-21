@@ -41,69 +41,84 @@ public class ClienteProveedorRepository<T> : IClienteProveedorRepository<T> wher
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerClientes()
+    public List<T> TraerClientes()
     {
+        var lista = new List<T>();
+
         var tipoDeCliente = new StringBuilder(7);
 
         _sdk.fPosPrimerCteProv().ToResultadoSdk(_sdk).ThrowIfError();
         _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
-        if (TipoClienteHelper.IsCliente(tipoDeCliente.ToString())) yield return LeerDatosClienteProveedorActual();
+        if (TipoClienteHelper.IsCliente(tipoDeCliente.ToString())) lista.Add(LeerDatosClienteProveedorActual());
 
         while (_sdk.fPosSiguienteCteProv() == SdkResultConstants.Success)
         {
             _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
-            if (TipoClienteHelper.IsCliente(tipoDeCliente.ToString())) yield return LeerDatosClienteProveedorActual();
+            if (TipoClienteHelper.IsCliente(tipoDeCliente.ToString())) lista.Add(LeerDatosClienteProveedorActual());
 
             if (_sdk.fPosEOFCteProv() == 1) break;
         }
+
+        return lista;
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerPorTipo(TipoCliente tipoCliente)
+    public List<T> TraerPorTipo(TipoCliente tipoCliente)
     {
+        var lista = new List<T>();
+
         _sdk.fPosPrimerCteProv().ToResultadoSdk(_sdk).ThrowIfError();
         var tipoDeCliente = new StringBuilder(7);
         _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
-        if (tipoCliente == TipoClienteHelper.ConvertFromSdkValue(tipoDeCliente.ToString())) yield return LeerDatosClienteProveedorActual();
+        if (tipoCliente == TipoClienteHelper.ConvertFromSdkValue(tipoDeCliente.ToString())) lista.Add(LeerDatosClienteProveedorActual());
 
         while (_sdk.fPosSiguienteCteProv() == SdkResultConstants.Success)
         {
             _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
             if (tipoCliente == TipoClienteHelper.ConvertFromSdkValue(tipoDeCliente.ToString()))
-                yield return LeerDatosClienteProveedorActual();
+                lista.Add(LeerDatosClienteProveedorActual());
 
             if (_sdk.fPosEOFCteProv() == 1) break;
         }
+
+        return lista;
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerProveedores()
+    public List<T> TraerProveedores()
     {
+        var lista = new List<T>();
         var tipoDeCliente = new StringBuilder(7);
 
         _sdk.fPosPrimerCteProv().ToResultadoSdk(_sdk).ThrowIfError();
         _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
-        if (TipoClienteHelper.IsProveedor(tipoDeCliente.ToString())) yield return LeerDatosClienteProveedorActual();
+        if (TipoClienteHelper.IsProveedor(tipoDeCliente.ToString())) lista.Add(LeerDatosClienteProveedorActual());
 
         while (_sdk.fPosSiguienteCteProv() == SdkResultConstants.Success)
         {
             _sdk.fLeeDatoCteProv("CTIPOCLIENTE", tipoDeCliente, 7).ToResultadoSdk(_sdk).ThrowIfError();
-            if (TipoClienteHelper.IsProveedor(tipoDeCliente.ToString())) yield return LeerDatosClienteProveedorActual();
+            if (TipoClienteHelper.IsProveedor(tipoDeCliente.ToString())) lista.Add(LeerDatosClienteProveedorActual());
 
             if (_sdk.fPosEOFCteProv() == 1) break;
         }
+
+        return lista;
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerTodo()
+    public List<T> TraerTodo()
     {
+        var lista = new List<T>();
+
         _sdk.fPosPrimerCteProv().ToResultadoSdk(_sdk).ThrowIfError();
-        yield return LeerDatosClienteProveedorActual();
+        lista.Add(LeerDatosClienteProveedorActual());
         while (_sdk.fPosSiguienteCteProv() == SdkResultConstants.Success)
         {
-            yield return LeerDatosClienteProveedorActual();
+            lista.Add(LeerDatosClienteProveedorActual());
             if (_sdk.fPosEOFCteProv() == 1) break;
         }
+
+        return lista;
     }
 
     private T LeerDatosClienteProveedorActual()

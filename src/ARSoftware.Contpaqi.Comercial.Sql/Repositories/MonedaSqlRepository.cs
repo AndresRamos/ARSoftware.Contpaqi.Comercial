@@ -33,7 +33,7 @@ public sealed class MonedaSqlRepository : RepositoryBase<admMonedas>, IMonedaRep
     }
 
     /// <inheritdoc />
-    public IEnumerable<admMonedas> TraerTodo()
+    public List<admMonedas> TraerTodo()
     {
         return _context.admMonedas.ToList();
     }

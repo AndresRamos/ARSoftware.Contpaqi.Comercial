@@ -16,5 +16,5 @@ public interface IDocumentoModeloRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de documentos modelo.
     /// </returns>
-    IEnumerable<T> TraerTodo();
+    List<T> TraerTodo();
 }

@@ -44,7 +44,7 @@ public sealed class ValorClasificacionSqlRepository : RepositoryBase<admClasific
     }
 
     /// <inheritdoc />
-    public IEnumerable<admClasificacionesValores> TraerPorClasificacionId(int idClasificacion)
+    public List<admClasificacionesValores> TraerPorClasificacionId(int idClasificacion)
     {
         return _context.admClasificacionesValores
             .WithSpecification(new ValoresClasificacionPorClasificacionIdSpecification(idClasificacion))
@@ -52,7 +52,7 @@ public sealed class ValorClasificacionSqlRepository : RepositoryBase<admClasific
     }
 
     /// <inheritdoc />
-    public IEnumerable<admClasificacionesValores> TraerPorClasificacionTipoYNumero(TipoClasificacion tipoClasificacion,
+    public List<admClasificacionesValores> TraerPorClasificacionTipoYNumero(TipoClasificacion tipoClasificacion,
         NumeroClasificacion numeroClasificacion)
     {
         admClasificaciones clasificacion = _context.admClasificaciones
@@ -65,7 +65,7 @@ public sealed class ValorClasificacionSqlRepository : RepositoryBase<admClasific
     }
 
     /// <inheritdoc />
-    public IEnumerable<admClasificacionesValores> TraerTodo()
+    public List<admClasificacionesValores> TraerTodo()
     {
         return _context.admClasificacionesValores.ToList();
     }

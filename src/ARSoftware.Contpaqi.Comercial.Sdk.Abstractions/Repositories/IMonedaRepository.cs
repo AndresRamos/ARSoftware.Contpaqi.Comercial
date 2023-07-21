@@ -38,5 +38,5 @@ public interface IMonedaRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de monedas.
     /// </returns>
-    IEnumerable<T> TraerTodo();
+    List<T> TraerTodo();
 }

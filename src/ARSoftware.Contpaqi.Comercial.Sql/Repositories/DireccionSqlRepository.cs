@@ -47,13 +47,13 @@ public sealed class DireccionSqlRepository : RepositoryBase<admDomicilios>, IDir
     }
 
     /// <inheritdoc />
-    public IEnumerable<admDomicilios> TraerPorTipo(TipoCatalogoDireccion tipoCatalogoDireccion)
+    public List<admDomicilios> TraerPorTipo(TipoCatalogoDireccion tipoCatalogoDireccion)
     {
         return _context.admDomicilios.WithSpecification(new DireccionPorTipoCatalogoSpecification(tipoCatalogoDireccion)).ToList();
     }
 
     /// <inheritdoc />
-    public IEnumerable<admDomicilios> TraerPorTipoYIdCatalogo(TipoCatalogoDireccion tipoCatalogoDireccion, int idCatalogo)
+    public List<admDomicilios> TraerPorTipoYIdCatalogo(TipoCatalogoDireccion tipoCatalogoDireccion, int idCatalogo)
     {
         return _context.admDomicilios
             .WithSpecification(new DireccionPorTipoCatalogoYIdCatalogoSpecification(tipoCatalogoDireccion, idCatalogo))
@@ -61,7 +61,7 @@ public sealed class DireccionSqlRepository : RepositoryBase<admDomicilios>, IDir
     }
 
     /// <inheritdoc />
-    public IEnumerable<admDomicilios> TraerTodo()
+    public List<admDomicilios> TraerTodo()
     {
         return _context.admDomicilios.ToList();
     }

@@ -33,7 +33,7 @@ public sealed class AlmacenSqlRepository : RepositoryBase<admAlmacenes>, IAlmace
     }
 
     /// <inheritdoc />
-    public IEnumerable<admAlmacenes> TraerTodo()
+    public List<admAlmacenes> TraerTodo()
     {
         return _context.admAlmacenes.ToList();
     }

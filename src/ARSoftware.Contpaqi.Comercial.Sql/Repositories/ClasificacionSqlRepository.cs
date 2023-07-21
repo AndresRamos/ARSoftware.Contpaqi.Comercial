@@ -34,13 +34,13 @@ public sealed class ClasificacionSqlRepository : RepositoryBase<admClasificacion
     }
 
     /// <inheritdoc />
-    public IEnumerable<admClasificaciones> TraerPorTipo(TipoClasificacion tipo)
+    public List<admClasificaciones> TraerPorTipo(TipoClasificacion tipo)
     {
         return _context.admClasificaciones.WithSpecification(new ClasificacionesPorTipoSpecification(tipo)).ToList();
     }
 
     /// <inheritdoc />
-    public IEnumerable<admClasificaciones> TraerTodo()
+    public List<admClasificaciones> TraerTodo()
     {
         return _context.admClasificaciones.ToList();
     }

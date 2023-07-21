@@ -80,7 +80,7 @@ public interface IDocumentoRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de documentos.
     /// </returns>
-    IEnumerable<T> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin, string codigoConcepto,
+    List<T> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin, string codigoConcepto,
         string codigoClienteProveedor);
 
     /// <summary>
@@ -101,7 +101,7 @@ public interface IDocumentoRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de documentos.
     /// </returns>
-    IEnumerable<T> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin, string codigoConcepto,
+    List<T> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin, string codigoConcepto,
         IEnumerable<string> codigosClienteProveedor);
 
     /// <summary>
@@ -110,5 +110,5 @@ public interface IDocumentoRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de documentos.
     /// </returns>
-    IEnumerable<T> TraerTodo();
+    List<T> TraerTodo();
 }

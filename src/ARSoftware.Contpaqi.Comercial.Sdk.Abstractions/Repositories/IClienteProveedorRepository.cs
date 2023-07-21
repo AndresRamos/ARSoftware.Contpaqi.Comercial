@@ -39,7 +39,7 @@ public interface IClienteProveedorRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de clientes.
     /// </returns>
-    IEnumerable<T> TraerClientes();
+    List<T> TraerClientes();
 
     /// <summary>
     ///     Busca clientes o proveedores por tipo.
@@ -50,7 +50,7 @@ public interface IClienteProveedorRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de clientes o proveedores.
     /// </returns>
-    IEnumerable<T> TraerPorTipo(TipoCliente tipoCliente);
+    List<T> TraerPorTipo(TipoCliente tipoCliente);
 
     /// <summary>
     ///     Busca todos los proveedores.
@@ -58,7 +58,7 @@ public interface IClienteProveedorRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de proveedores.
     /// </returns>
-    IEnumerable<T> TraerProveedores();
+    List<T> TraerProveedores();
 
     /// <summary>
     ///     Busca todos los clientes y proveedores.
@@ -66,5 +66,5 @@ public interface IClienteProveedorRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de clientes y proveedores.
     /// </returns>
-    IEnumerable<T> TraerTodo();
+    List<T> TraerTodo();
 }

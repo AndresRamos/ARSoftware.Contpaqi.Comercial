@@ -45,7 +45,7 @@ public interface IClasificacionRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de clasificaciones.
     /// </returns>
-    IEnumerable<T> TraerPorTipo(TipoClasificacion tipo);
+    List<T> TraerPorTipo(TipoClasificacion tipo);
 
     /// <summary>
     ///     Busca todas las clasificaciones.
@@ -53,5 +53,5 @@ public interface IClasificacionRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de clasificaciones.
     /// </returns>
-    IEnumerable<T> TraerTodo();
+    List<T> TraerTodo();
 }

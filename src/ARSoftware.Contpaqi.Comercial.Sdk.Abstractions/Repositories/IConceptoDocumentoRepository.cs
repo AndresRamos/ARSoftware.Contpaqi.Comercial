@@ -42,7 +42,7 @@ public interface IConceptoDocumentoRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de conceptos de documento.
     /// </returns>
-    IEnumerable<T> TraerPorDocumentoModeloId(int documentoModeloId);
+    List<T> TraerPorDocumentoModeloId(int documentoModeloId);
 
     /// <summary>
     ///     Busca todos los conceptos de documento.
@@ -50,5 +50,5 @@ public interface IConceptoDocumentoRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de conceptos de documento.
     /// </returns>
-    IEnumerable<T> TraerTodo();
+    List<T> TraerTodo();
 }

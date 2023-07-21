@@ -38,5 +38,5 @@ public interface IUnidadMedidaRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de unidades de medida.
     /// </returns>
-    IEnumerable<T> TraerTodo();
+    List<T> TraerTodo();
 }

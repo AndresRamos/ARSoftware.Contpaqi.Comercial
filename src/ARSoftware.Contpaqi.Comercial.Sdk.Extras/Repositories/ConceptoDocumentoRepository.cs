@@ -40,34 +40,42 @@ public class ConceptoDocumentoRepository<T> : IConceptoDocumentoRepository<T> wh
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerPorDocumentoModeloId(int documentoModeloId)
+    public List<T> TraerPorDocumentoModeloId(int documentoModeloId)
     {
+        var lista = new List<T>();
+
         var idDocumentoModelo = new StringBuilder(12);
 
         _sdk.fPosPrimerConceptoDocto().ToResultadoSdk(_sdk).ThrowIfError();
         _sdk.fLeeDatoConceptoDocto("CIDDOCUMENTODE", idDocumentoModelo, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
-        if (documentoModeloId == int.Parse(idDocumentoModelo.ToString())) yield return LeerDatosConceptoDocumentoActual();
+        if (documentoModeloId == int.Parse(idDocumentoModelo.ToString())) lista.Add(LeerDatosConceptoDocumentoActual());
 
         while (_sdk.fPosSiguienteConceptoDocto() == SdkResultConstants.Success)
         {
             _sdk.fLeeDatoConceptoDocto("CIDDOCUMENTODE", idDocumentoModelo, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
-            if (documentoModeloId == int.Parse(idDocumentoModelo.ToString())) yield return LeerDatosConceptoDocumentoActual();
+            if (documentoModeloId == int.Parse(idDocumentoModelo.ToString())) lista.Add(LeerDatosConceptoDocumentoActual());
 
             if (_sdk.fPosEOFConceptoDocto() == 1) break;
         }
+
+        return lista;
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerTodo()
+    public List<T> TraerTodo()
     {
+        var lista = new List<T>();
+
         _sdk.fPosPrimerConceptoDocto().ToResultadoSdk(_sdk).ThrowIfError();
-        yield return LeerDatosConceptoDocumentoActual();
+        lista.Add(LeerDatosConceptoDocumentoActual());
 
         while (_sdk.fPosSiguienteConceptoDocto() == SdkResultConstants.Success)
         {
-            yield return LeerDatosConceptoDocumentoActual();
+            lista.Add(LeerDatosConceptoDocumentoActual());
             if (_sdk.fPosEOFConceptoDocto() == 1) break;
         }
+
+        return lista;
     }
 
     private T LeerDatosConceptoDocumentoActual()

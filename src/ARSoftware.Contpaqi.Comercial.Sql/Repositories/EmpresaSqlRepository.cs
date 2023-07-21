@@ -20,7 +20,7 @@ public sealed class EmpresaSqlRepository : RepositoryBase<Empresas>, IEmpresaRep
     }
 
     /// <inheritdoc />
-    public IEnumerable<Empresas> TraerTodo()
+    public List<Empresas> TraerTodo()
     {
         return _context.Empresas.ToList();
     }

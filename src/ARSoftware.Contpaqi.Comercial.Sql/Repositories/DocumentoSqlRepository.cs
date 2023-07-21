@@ -69,7 +69,7 @@ public sealed class DocumentoSqlRepository : RepositoryBase<admDocumentos>, IDoc
     }
 
     /// <inheritdoc />
-    public IEnumerable<admDocumentos> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin,
+    public List<admDocumentos> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin,
         string codigoConcepto, string codigoClienteProveedor)
     {
         admConceptos concepto =
@@ -88,7 +88,7 @@ public sealed class DocumentoSqlRepository : RepositoryBase<admDocumentos>, IDoc
     }
 
     /// <inheritdoc />
-    public IEnumerable<admDocumentos> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin,
+    public List<admDocumentos> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin,
         string codigoConcepto, IEnumerable<string> codigosClienteProveedor)
     {
         admConceptos concepto =
@@ -114,7 +114,7 @@ public sealed class DocumentoSqlRepository : RepositoryBase<admDocumentos>, IDoc
     }
 
     /// <inheritdoc />
-    public IEnumerable<admDocumentos> TraerTodo()
+    public List<admDocumentos> TraerTodo()
     {
         return _context.admDocumentos.ToList();
     }

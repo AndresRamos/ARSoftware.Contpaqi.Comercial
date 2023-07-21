@@ -24,7 +24,7 @@ public class MonedaRepository : IMonedaRepository<Moneda>
     }
 
     /// <inheritdoc />
-    public IEnumerable<Moneda> TraerTodo()
+    public List<Moneda> TraerTodo()
     {
         return Moneda.ToList();
     }

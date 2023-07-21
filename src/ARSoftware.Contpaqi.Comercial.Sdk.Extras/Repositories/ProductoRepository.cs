@@ -41,34 +41,42 @@ public class ProductoRepository<T> : IProductoRepository<T> where T : class, new
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerPorTipo(TipoProducto tipoProducto)
+    public List<T> TraerPorTipo(TipoProducto tipoProducto)
     {
+        var lista = new List<T>();
+
         _sdk.fPosPrimerProducto().ToResultadoSdk(_sdk).ThrowIfError();
 
         var tipoProductoDato = new StringBuilder(7);
         _sdk.fLeeDatoProducto("CTIPOPRODUCTO", tipoProductoDato, 7).ToResultadoSdk(_sdk).ThrowIfError();
-        if (tipoProducto == TipoProductoHelper.ConvertFromSdkValue(tipoProductoDato.ToString())) yield return LeerDatosProductoActual();
+        if (tipoProducto == TipoProductoHelper.ConvertFromSdkValue(tipoProductoDato.ToString())) lista.Add(LeerDatosProductoActual());
 
         while (_sdk.fPosSiguienteProducto() == SdkResultConstants.Success)
         {
             _sdk.fLeeDatoProducto("CTIPOPRODUCTO", tipoProductoDato, 7).ToResultadoSdk(_sdk).ThrowIfError();
 
-            if (tipoProducto == TipoProductoHelper.ConvertFromSdkValue(tipoProductoDato.ToString())) yield return LeerDatosProductoActual();
+            if (tipoProducto == TipoProductoHelper.ConvertFromSdkValue(tipoProductoDato.ToString())) lista.Add(LeerDatosProductoActual());
 
             if (_sdk.fPosEOFProducto() == 1) break;
         }
+
+        return lista;
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerTodo()
+    public List<T> TraerTodo()
     {
+        var lista = new List<T>();
+
         _sdk.fPosPrimerProducto().ToResultadoSdk(_sdk).ThrowIfError();
-        yield return LeerDatosProductoActual();
+        lista.Add(LeerDatosProductoActual());
         while (_sdk.fPosSiguienteProducto() == SdkResultConstants.Success)
         {
-            yield return LeerDatosProductoActual();
+            lista.Add(LeerDatosProductoActual());
             if (_sdk.fPosEOFProducto() == 1) break;
         }
+
+        return lista;
     }
 
     private T LeerDatosProductoActual()

@@ -39,27 +39,34 @@ public class ClasificacionRepository<T> : IClasificacionRepository<T> where T : 
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerPorTipo(TipoClasificacion tipo)
+    public List<T> TraerPorTipo(TipoClasificacion tipo)
     {
-        yield return BuscarPorTipoYNumero(tipo, NumeroClasificacion.Uno);
-        yield return BuscarPorTipoYNumero(tipo, NumeroClasificacion.Dos);
-        yield return BuscarPorTipoYNumero(tipo, NumeroClasificacion.Tres);
-        yield return BuscarPorTipoYNumero(tipo, NumeroClasificacion.Cuatro);
-        yield return BuscarPorTipoYNumero(tipo, NumeroClasificacion.Cinco);
-        yield return BuscarPorTipoYNumero(tipo, NumeroClasificacion.Seis);
+        return new List<T>
+        {
+            BuscarPorTipoYNumero(tipo, NumeroClasificacion.Uno),
+            BuscarPorTipoYNumero(tipo, NumeroClasificacion.Dos),
+            BuscarPorTipoYNumero(tipo, NumeroClasificacion.Tres),
+            BuscarPorTipoYNumero(tipo, NumeroClasificacion.Cuatro),
+            BuscarPorTipoYNumero(tipo, NumeroClasificacion.Cinco),
+            BuscarPorTipoYNumero(tipo, NumeroClasificacion.Seis)
+        };
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerTodo()
+    public List<T> TraerTodo()
     {
+        var lista = new List<T>();
+
         _sdk.fPosPrimerClasificacion().ToResultadoSdk(_sdk).ThrowIfError();
-        yield return LeerDatosClasificacionActual();
+        lista.Add(LeerDatosClasificacionActual());
 
         while (_sdk.fPosSiguienteClasificacion() == SdkResultConstants.Success)
         {
-            yield return LeerDatosClasificacionActual();
+            lista.Add(LeerDatosClasificacionActual());
             if (_sdk.fPosEOFClasificacion() == 1) break;
         }
+
+        return lista;
     }
 
     private T LeerDatosClasificacionActual()

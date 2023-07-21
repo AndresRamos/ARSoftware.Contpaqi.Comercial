@@ -33,7 +33,7 @@ public sealed class AgenteSqlRepository : RepositoryBase<admAgentes>, IAgenteRep
     }
 
     /// <inheritdoc />
-    public IEnumerable<admAgentes> TraerTodo()
+    public List<admAgentes> TraerTodo()
     {
         return _context.admAgentes.ToList();
     }

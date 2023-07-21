@@ -38,16 +38,19 @@ public class AlmacenRepository<T> : IAlmacenRepository<T> where T : class, new()
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerTodo()
+    public List<T> TraerTodo()
     {
+        var lista = new List<T>();
         _sdk.fPosPrimerAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
-        yield return LeerDatosAlmacenActual();
+        lista.Add(LeerDatosAlmacenActual());
 
         while (_sdk.fPosSiguienteAlmacen() == SdkResultConstants.Success)
         {
-            yield return LeerDatosAlmacenActual();
+            lista.Add(LeerDatosAlmacenActual());
             if (_sdk.fPosEOFAlmacen() == 1) break;
         }
+
+        return lista;
     }
 
     private T LeerDatosAlmacenActual()

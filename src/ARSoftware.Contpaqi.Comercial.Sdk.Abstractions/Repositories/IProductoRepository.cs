@@ -42,7 +42,7 @@ public interface IProductoRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de productos.
     /// </returns>
-    IEnumerable<T> TraerPorTipo(TipoProducto tipoProducto);
+    List<T> TraerPorTipo(TipoProducto tipoProducto);
 
     /// <summary>
     ///     Busca todos los productos.
@@ -50,5 +50,5 @@ public interface IProductoRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de productos.
     /// </returns>
-    IEnumerable<T> TraerTodo();
+    List<T> TraerTodo();
 }

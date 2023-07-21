@@ -27,13 +27,13 @@ public sealed class MovimientoSqlRepository : RepositoryBase<admMovimientos>, IM
     }
 
     /// <inheritdoc />
-    public IEnumerable<admMovimientos> TraerPorDocumentoId(int idDocumento)
+    public List<admMovimientos> TraerPorDocumentoId(int idDocumento)
     {
         return _context.admMovimientos.WithSpecification(new MovimientosPorDocumentoIdSpecification(idDocumento)).ToList();
     }
 
     /// <inheritdoc />
-    public IEnumerable<admMovimientos> TraerTodo()
+    public List<admMovimientos> TraerTodo()
     {
         return _context.admMovimientos.ToList();
     }

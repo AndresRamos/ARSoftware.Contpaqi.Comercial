@@ -61,7 +61,7 @@ public interface IDireccionRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de direcciones.
     /// </returns>
-    IEnumerable<T> TraerPorTipo(TipoCatalogoDireccion tipoCatalogoDireccion);
+    List<T> TraerPorTipo(TipoCatalogoDireccion tipoCatalogoDireccion);
 
     /// <summary>
     ///     Busca direcciones por tipo de catálogo de dirección y id de catálogo.
@@ -75,7 +75,7 @@ public interface IDireccionRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de direcciones.
     /// </returns>
-    IEnumerable<T> TraerPorTipoYIdCatalogo(TipoCatalogoDireccion tipoCatalogoDireccion, int idCatalogo);
+    List<T> TraerPorTipoYIdCatalogo(TipoCatalogoDireccion tipoCatalogoDireccion, int idCatalogo);
 
     /// <summary>
     ///     Busca todas las direcciones.
@@ -83,5 +83,5 @@ public interface IDireccionRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de direcciones.
     /// </returns>
-    IEnumerable<T> TraerTodo();
+    List<T> TraerTodo();
 }

@@ -38,5 +38,5 @@ public interface IAgenteRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de agentes.
     /// </returns>
-    IEnumerable<T> TraerTodo();
+    List<T> TraerTodo();
 }

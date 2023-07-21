@@ -45,24 +45,27 @@ public class ValorClasificacionRepository<T> : IValorClasificacionRepository<T> 
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerPorClasificacionId(int idClasificacion)
+    public List<T> TraerPorClasificacionId(int idClasificacion)
     {
+        var lista = new List<T>();
         _sdk.fPosPrimerValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
         var id = new StringBuilder(12);
         _sdk.fLeeDatoValorClasif("CIDCLASIFICACION", id, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
-        if (idClasificacion == int.Parse(id.ToString())) yield return LeerDatosValorClasificacionActual();
+        if (idClasificacion == int.Parse(id.ToString())) lista.Add(LeerDatosValorClasificacionActual());
 
         while (_sdk.fPosSiguienteValorClasif() == SdkResultConstants.Success)
         {
             _sdk.fLeeDatoValorClasif("CIDCLASIFICACION", id, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
-            if (idClasificacion == int.Parse(id.ToString())) yield return LeerDatosValorClasificacionActual();
+            if (idClasificacion == int.Parse(id.ToString())) lista.Add(LeerDatosValorClasificacionActual());
 
             if (_sdk.fPosEOFValorClasif() == 1) break;
         }
+
+        return lista;
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerPorClasificacionTipoYNumero(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion)
+    public List<T> TraerPorClasificacionTipoYNumero(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion)
     {
         _sdk.fBuscaClasificacion((int)tipoClasificacion, (int)numeroClasificacion).ToResultadoSdk(_sdk).ThrowIfError();
         string idClasificacion = _sdk.LeeDatoClasificacion(nameof(admClasificaciones.CIDCLASIFICACION));
@@ -70,15 +73,19 @@ public class ValorClasificacionRepository<T> : IValorClasificacionRepository<T> 
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerTodo()
+    public List<T> TraerTodo()
     {
+        var lista = new List<T>();
+
         _sdk.fPosPrimerValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
-        yield return LeerDatosValorClasificacionActual();
+        lista.Add(LeerDatosValorClasificacionActual());
         while (_sdk.fPosSiguienteValorClasif() == SdkResultConstants.Success)
         {
-            yield return LeerDatosValorClasificacionActual();
+            lista.Add(LeerDatosValorClasificacionActual());
             if (_sdk.fPosEOFValorClasif() == 1) break;
         }
+
+        return lista;
     }
 
     private T LeerDatosValorClasificacionActual()

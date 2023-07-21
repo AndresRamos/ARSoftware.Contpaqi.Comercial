@@ -20,7 +20,7 @@ public sealed class DocumentoModeloSqlRepository : RepositoryBase<admDocumentosM
     }
 
     /// <inheritdoc />
-    public IEnumerable<admDocumentosModelo> TraerTodo()
+    public List<admDocumentosModelo> TraerTodo()
     {
         return _context.admDocumentosModelo.ToList();
     }

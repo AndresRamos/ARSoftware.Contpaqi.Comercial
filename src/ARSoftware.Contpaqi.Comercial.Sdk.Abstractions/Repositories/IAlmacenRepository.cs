@@ -36,5 +36,5 @@ public interface IAlmacenRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de almacenes.
     /// </returns>
-    IEnumerable<T> TraerTodo();
+    List<T> TraerTodo();
 }

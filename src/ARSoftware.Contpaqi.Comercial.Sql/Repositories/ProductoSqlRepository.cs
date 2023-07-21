@@ -34,13 +34,13 @@ public sealed class ProductoSqlRepository : RepositoryBase<admProductos>, IProdu
     }
 
     /// <inheritdoc />
-    public IEnumerable<admProductos> TraerPorTipo(TipoProducto tipoProducto)
+    public List<admProductos> TraerPorTipo(TipoProducto tipoProducto)
     {
         return _context.admProductos.WithSpecification(new ProductosPorTipoSpecification(tipoProducto)).ToList();
     }
 
     /// <inheritdoc />
-    public IEnumerable<admProductos> TraerTodo()
+    public List<admProductos> TraerTodo()
     {
         return _context.admProductos.ToList();
     }

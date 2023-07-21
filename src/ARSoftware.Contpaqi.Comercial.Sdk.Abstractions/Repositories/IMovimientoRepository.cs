@@ -30,7 +30,7 @@ public interface IMovimientoRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de movimientos.
     /// </returns>
-    IEnumerable<T> TraerPorDocumentoId(int idDocumento);
+    List<T> TraerPorDocumentoId(int idDocumento);
 
     /// <summary>
     ///     Busca todos los movimientos.
@@ -38,5 +38,5 @@ public interface IMovimientoRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de movimientos.
     /// </returns>
-    IEnumerable<T> TraerTodo();
+    List<T> TraerTodo();
 }

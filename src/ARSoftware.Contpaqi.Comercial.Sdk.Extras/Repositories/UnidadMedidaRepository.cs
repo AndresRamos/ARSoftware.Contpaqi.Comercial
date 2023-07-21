@@ -38,15 +38,19 @@ public class UnidadMedidaRepository<T> : IUnidadMedidaRepository<T> where T : cl
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerTodo()
+    public List<T> TraerTodo()
     {
+        var lista = new List<T>();
+
         _sdk.fPosPrimerUnidad().ToResultadoSdk(_sdk).ThrowIfError();
-        yield return LeerDatosUnindadActual();
+        lista.Add(LeerDatosUnindadActual());
         while (_sdk.fPosSiguienteUnidad() == SdkResultConstants.Success)
         {
-            yield return LeerDatosUnindadActual();
+            lista.Add(LeerDatosUnindadActual());
             if (_sdk.fPosEOFUnidad() == 1) break;
         }
+
+        return lista;
     }
 
     private T LeerDatosUnindadActual()

@@ -33,13 +33,13 @@ public sealed class ConceptoDocumentoSqlRepository : RepositoryBase<admConceptos
     }
 
     /// <inheritdoc />
-    public IEnumerable<admConceptos> TraerPorDocumentoModeloId(int documentoModeloId)
+    public List<admConceptos> TraerPorDocumentoModeloId(int documentoModeloId)
     {
         return _context.admConceptos.WithSpecification(new ConceptosPorDocumentoModeloIdSpecification(documentoModeloId)).ToList();
     }
 
     /// <inheritdoc />
-    public IEnumerable<admConceptos> TraerTodo()
+    public List<admConceptos> TraerTodo()
     {
         return _context.admConceptos.ToList();
     }

@@ -34,25 +34,25 @@ public sealed class ClienteProveedorSqlRepository : RepositoryBase<admClientes>,
     }
 
     /// <inheritdoc />
-    public IEnumerable<admClientes> TraerClientes()
+    public List<admClientes> TraerClientes()
     {
         return _context.admClientes.WithSpecification(new ClientesSpecification()).ToList();
     }
 
     /// <inheritdoc />
-    public IEnumerable<admClientes> TraerPorTipo(TipoCliente tipoCliente)
+    public List<admClientes> TraerPorTipo(TipoCliente tipoCliente)
     {
         return _context.admClientes.WithSpecification(new ClientesPorTipoSpecification(tipoCliente)).ToList();
     }
 
     /// <inheritdoc />
-    public IEnumerable<admClientes> TraerProveedores()
+    public List<admClientes> TraerProveedores()
     {
         return _context.admClientes.WithSpecification(new ProveedoresSpecification()).ToList();
     }
 
     /// <inheritdoc />
-    public IEnumerable<admClientes> TraerTodo()
+    public List<admClientes> TraerTodo()
     {
         return _context.admClientes.ToList();
     }

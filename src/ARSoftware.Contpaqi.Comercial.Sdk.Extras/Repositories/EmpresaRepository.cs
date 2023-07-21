@@ -22,8 +22,9 @@ public class EmpresaRepository : IEmpresaRepository<Empresa>
     }
 
     /// <inheritdoc />
-    public IEnumerable<Empresa> TraerTodo()
+    public List<Empresa> TraerTodo()
     {
+        var lista = new List<Empresa>();
         var id = 0;
         var nombre = new StringBuilder(SdkConstantes.kLongNombre);
         var ruta = new StringBuilder(SdkConstantes.kLongRuta);
@@ -34,7 +35,7 @@ public class EmpresaRepository : IEmpresaRepository<Empresa>
         empresa.CNOMBREEMPRESA = nombre.ToString();
         empresa.CRUTADATOS = ruta.ToString();
         empresa.CRUTARESPALDOS = ruta.ToString();
-        yield return empresa;
+        lista.Add(empresa);
 
         while (_sdk.fPosSiguienteEmpresa(ref id, nombre, ruta) == SdkResultConstants.Success)
         {
@@ -43,7 +44,9 @@ public class EmpresaRepository : IEmpresaRepository<Empresa>
             empresa.CNOMBREEMPRESA = nombre.ToString();
             empresa.CRUTADATOS = ruta.ToString();
             empresa.CRUTARESPALDOS = ruta.ToString();
-            yield return empresa;
+            lista.Add(empresa);
         }
+
+        return lista;
     }
 }

@@ -66,28 +66,34 @@ public class DireccionRepository<T> : IDireccionRepository<T> where T : class, n
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerPorTipo(TipoCatalogoDireccion tipoCatalogoDireccion)
+    public List<T> TraerPorTipo(TipoCatalogoDireccion tipoCatalogoDireccion)
     {
+        var lista = new List<T>();
+
         var tipoCatalogo = new StringBuilder(7);
 
         _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
         _sdk.fLeeDatoDireccion("CTIPOCATALOGO", tipoCatalogo, 7).ToResultadoSdk(_sdk).ThrowIfError();
         if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertFromSdkValue(tipoCatalogo.ToString()))
-            yield return LeerDatosDireccionActual();
+            lista.Add(LeerDatosDireccionActual());
 
         while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
         {
             _sdk.fLeeDatoDireccion("CTIPOCATALOGO", tipoCatalogo, 7).ToResultadoSdk(_sdk).ThrowIfError();
             if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertFromSdkValue(tipoCatalogo.ToString()))
-                yield return LeerDatosDireccionActual();
+                lista.Add(LeerDatosDireccionActual());
 
             if (_sdk.fPosEOFDireccion() == 1) break;
         }
+
+        return lista;
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerPorTipoYIdCatalogo(TipoCatalogoDireccion tipoCatalogoDireccion, int idCatalogo)
+    public List<T> TraerPorTipoYIdCatalogo(TipoCatalogoDireccion tipoCatalogoDireccion, int idCatalogo)
     {
+        var lista = new List<T>();
+
         var tipoCatalogo = new StringBuilder(7);
         var idCatalogoDato = new StringBuilder(12);
 
@@ -96,7 +102,7 @@ public class DireccionRepository<T> : IDireccionRepository<T> where T : class, n
         _sdk.fLeeDatoDireccion("CIDCATALOGO", idCatalogoDato, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
         if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertFromSdkValue(tipoCatalogo.ToString()) &&
             idCatalogo == int.Parse(idCatalogoDato.ToString()))
-            yield return LeerDatosDireccionActual();
+            lista.Add(LeerDatosDireccionActual());
 
         while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
         {
@@ -104,24 +110,30 @@ public class DireccionRepository<T> : IDireccionRepository<T> where T : class, n
             _sdk.fLeeDatoDireccion("CIDCATALOGO", idCatalogoDato, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
             if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertFromSdkValue(tipoCatalogo.ToString()) &&
                 idCatalogo == int.Parse(idCatalogoDato.ToString()))
-                yield return LeerDatosDireccionActual();
+                lista.Add(LeerDatosDireccionActual());
 
             if (_sdk.fPosEOFDireccion() == 1) break;
         }
+
+        return lista;
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerTodo()
+    public List<T> TraerTodo()
     {
+        var lista = new List<T>();
+
         _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
-        yield return LeerDatosDireccionActual();
+        lista.Add(LeerDatosDireccionActual());
 
         while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
         {
-            yield return LeerDatosDireccionActual();
+            lista.Add(LeerDatosDireccionActual());
 
             if (_sdk.fPosEOFDireccion() == 1) break;
         }
+
+        return lista;
     }
 
     private T LeerDatosDireccionActual()

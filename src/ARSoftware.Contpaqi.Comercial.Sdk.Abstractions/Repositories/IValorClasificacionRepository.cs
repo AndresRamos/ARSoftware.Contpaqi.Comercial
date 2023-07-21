@@ -51,7 +51,7 @@ public interface IValorClasificacionRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de valores de clasificación.
     /// </returns>
-    IEnumerable<T> TraerPorClasificacionId(int idClasificacion);
+    List<T> TraerPorClasificacionId(int idClasificacion);
 
     /// <summary>
     ///     Busca valores de clasificación por tipo de clasificación y número de clasificación.
@@ -65,7 +65,7 @@ public interface IValorClasificacionRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de valores de clasificación.
     /// </returns>
-    IEnumerable<T> TraerPorClasificacionTipoYNumero(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion);
+    List<T> TraerPorClasificacionTipoYNumero(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion);
 
     /// <summary>
     ///     Busca todos los valores de clasificación.
@@ -73,5 +73,5 @@ public interface IValorClasificacionRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de valores de clasificación.
     /// </returns>
-    IEnumerable<T> TraerTodo();
+    List<T> TraerTodo();
 }

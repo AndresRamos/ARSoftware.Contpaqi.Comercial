@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Text;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
@@ -38,7 +39,7 @@ public class DocumentoRepository<T> : IDocumentoRepository<T> where T : class, n
     /// <inheritdoc />
     public T BuscarPorLlave(string codigoConcepto, string serie, double folio)
     {
-        return _sdk.fBuscarDocumento(codigoConcepto, serie, folio.ToString()) == SdkResultConstants.Success
+        return _sdk.fBuscarDocumento(codigoConcepto, serie, folio.ToString(CultureInfo.InvariantCulture)) == SdkResultConstants.Success
             ? LeerDatosDocumentoActual()
             : null;
     }
@@ -64,9 +65,11 @@ public class DocumentoRepository<T> : IDocumentoRepository<T> where T : class, n
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin,
-        string codigoConcepto, string codigoClienteProveedor)
+    public List<T> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin, string codigoConcepto,
+        string codigoClienteProveedor)
     {
+        var lista = new List<T>();
+
         _sdk.fCancelaFiltroDocumento().ToResultadoSdk(_sdk).ThrowIfError();
 
         SdkResult resultadoSdk = _sdk.fSetFiltroDocumento(fechaInicio.ToSdkFecha(),
@@ -78,44 +81,53 @@ public class DocumentoRepository<T> : IDocumentoRepository<T> where T : class, n
             _sdk.fCancelaFiltroDocumento().ToResultadoSdk(_sdk).ThrowIfError();
 
             // Si el resultado es "2" significa que no hay documentos en el filtro pero no creo que se considere un error para tirar una excepcion
-            if (resultadoSdk.Result == 2) yield break;
+            if (resultadoSdk.Result == 2) return lista;
 
             resultadoSdk.ThrowIfError();
         }
 
         _sdk.fPosPrimerDocumento().ToResultadoSdk(_sdk).ThrowIfError();
-        yield return LeerDatosDocumentoActual();
+        lista.Add(LeerDatosDocumentoActual());
         while (_sdk.fPosSiguienteDocumento() == SdkResultConstants.Success)
         {
-            yield return LeerDatosDocumentoActual();
+            lista.Add(LeerDatosDocumentoActual());
             if (_sdk.fPosEOF() == 1) break;
         }
 
         _sdk.fCancelaFiltroDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+
+        return lista;
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin,
-        string codigoConcepto, IEnumerable<string> codigosClienteProveedor)
+    public List<T> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin, string codigoConcepto,
+        IEnumerable<string> codigosClienteProveedor)
     {
+        var lista = new List<T>();
+
         foreach (string codigoClienteProveedor in codigosClienteProveedor)
         {
-            foreach (T documento in TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(fechaInicio, fechaFin, codigoConcepto,
-                         codigoClienteProveedor))
-                yield return documento;
+            lista.AddRange(TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(fechaInicio, fechaFin, codigoConcepto,
+                codigoClienteProveedor));
         }
+
+        return lista;
     }
 
     /// <inheritdoc />
-    public IEnumerable<T> TraerTodo()
+    public List<T> TraerTodo()
     {
+        var lista = new List<T>();
+
         _sdk.fPosPrimerDocumento().ToResultadoSdk(_sdk).ThrowIfError();
-        yield return LeerDatosDocumentoActual();
+        lista.Add(LeerDatosDocumentoActual());
         while (_sdk.fPosSiguienteDocumento() == SdkResultConstants.Success)
         {
-            yield return LeerDatosDocumentoActual();
+            lista.Add(LeerDatosDocumentoActual());
             if (_sdk.fPosEOF() == 1) break;
         }
+
+        return lista;
     }
 
     private T LeerDatosDocumentoActual()
