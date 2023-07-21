@@ -12,128 +12,142 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
+
+/// <summary>
+///     Repositorio de SDK para consultar documentos.
+/// </summary>
+/// <typeparam name="T">
+///     El tipo de documento utilizado por el repositorio.
+/// </typeparam>
+public class DocumentoRepository<T> : IDocumentoRepository<T> where T : class, new()
 {
-    public class DocumentoRepository<T> : IDocumentoRepository<T> where T : class, new()
+    private readonly IContpaqiSdk _sdk;
+
+    public DocumentoRepository(IContpaqiSdk sdk)
     {
-        private readonly IContpaqiSdk _sdk;
+        _sdk = sdk;
+    }
 
-        public DocumentoRepository(IContpaqiSdk sdk)
+    /// <inheritdoc />
+    public T BuscarPorId(int idDocumento)
+    {
+        return _sdk.fBuscarIdDocumento(idDocumento) == SdkResultConstants.Success ? LeerDatosDocumentoActual() : null;
+    }
+
+    /// <inheritdoc />
+    public T BuscarPorLlave(string codigoConcepto, string serie, double folio)
+    {
+        return _sdk.fBuscarDocumento(codigoConcepto, serie, folio.ToString()) == SdkResultConstants.Success
+            ? LeerDatosDocumentoActual()
+            : null;
+    }
+
+    /// <inheritdoc />
+    public T BuscarPorLlave(LlaveDocumento llaveDocumento)
+    {
+        var llave = new tLlaveDoc
         {
-            _sdk = sdk;
-        }
+            aCodConcepto = llaveDocumento.CodigoConcepto, aSerie = llaveDocumento.Serie, aFolio = llaveDocumento.Folio
+        };
 
-        public T BuscarPorId(int idDocumento)
-        {
-            return _sdk.fBuscarIdDocumento(idDocumento) == SdkResultConstants.Success ? LeerDatosDocumentoActual() : null;
-        }
+        return _sdk.fBuscaDocumento(ref llave) == SdkResultConstants.Success ? LeerDatosDocumentoActual() : null;
+    }
 
-        public T BuscarPorLlave(string codigoConcepto, string serie, string folio)
-        {
-            return _sdk.fBuscarDocumento(codigoConcepto, serie, folio) == SdkResultConstants.Success ? LeerDatosDocumentoActual() : null;
-        }
+    /// <inheritdoc />
+    public LlaveDocumento BuscarSiguienteSerieYFolio(string codigoConcepto)
+    {
+        double folio = 0;
+        var serie = new StringBuilder();
+        _sdk.fSiguienteFolio(codigoConcepto, serie, ref folio).ToResultadoSdk(_sdk).ThrowIfError();
+        return new LlaveDocumento { CodigoConcepto = codigoConcepto, Serie = serie.ToString(), Folio = folio };
+    }
 
-        public T BuscarPorLlave(LlaveDocumento llaveDocumento)
-        {
-            var llave = new tLlaveDoc
-            {
-                aCodConcepto = llaveDocumento.CodigoConcepto, aSerie = llaveDocumento.Serie, aFolio = llaveDocumento.Folio
-            };
+    /// <inheritdoc />
+    public IEnumerable<T> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin,
+        string codigoConcepto, string codigoClienteProveedor)
+    {
+        _sdk.fCancelaFiltroDocumento().ToResultadoSdk(_sdk).ThrowIfError();
 
-            return _sdk.fBuscaDocumento(ref llave) == SdkResultConstants.Success ? LeerDatosDocumentoActual() : null;
-        }
+        SdkResult resultadoSdk = _sdk.fSetFiltroDocumento(fechaInicio.ToSdkFecha(),
+                fechaFin.ToSdkFecha(), codigoConcepto, codigoClienteProveedor)
+            .ToResultadoSdk(_sdk);
 
-        public LlaveDocumento BuscarSiguienteSerieYFolio(string codigoConcepto)
-        {
-            double folio = 0;
-            var serie = new StringBuilder();
-            _sdk.fSiguienteFolio(codigoConcepto, serie, ref folio).ToResultadoSdk(_sdk).ThrowIfError();
-            return new LlaveDocumento { CodigoConcepto = codigoConcepto, Serie = serie.ToString(), Folio = folio };
-        }
-
-        public IEnumerable<T> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin,
-            string codigoConcepto, string codigoClienteProveedor)
+        if (!resultadoSdk.IsSuccess)
         {
             _sdk.fCancelaFiltroDocumento().ToResultadoSdk(_sdk).ThrowIfError();
 
-            SdkResult resultadoSdk = _sdk.fSetFiltroDocumento(fechaInicio.ToSdkFecha(),
-                    fechaFin.ToSdkFecha(), codigoConcepto, codigoClienteProveedor)
-                .ToResultadoSdk(_sdk);
+            // Si el resultado es "2" significa que no hay documentos en el filtro pero no creo que se considere un error para tirar una excepcion
+            if (resultadoSdk.Result == 2) yield break;
 
-            if (!resultadoSdk.IsSuccess)
-            {
-                _sdk.fCancelaFiltroDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+            resultadoSdk.ThrowIfError();
+        }
 
-                // Si el resultado es "2" significa que no hay documentos en el filtro pero no creo que se considere un error para tirar una excepcion
-                if (resultadoSdk.Result == 2) yield break;
-
-                resultadoSdk.ThrowIfError();
-            }
-
-            _sdk.fPosPrimerDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+        _sdk.fPosPrimerDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+        yield return LeerDatosDocumentoActual();
+        while (_sdk.fPosSiguienteDocumento() == SdkResultConstants.Success)
+        {
             yield return LeerDatosDocumentoActual();
-            while (_sdk.fPosSiguienteDocumento() == SdkResultConstants.Success)
-            {
-                yield return LeerDatosDocumentoActual();
-                if (_sdk.fPosEOF() == 1) break;
-            }
-
-            _sdk.fCancelaFiltroDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+            if (_sdk.fPosEOF() == 1) break;
         }
 
-        public IEnumerable<T> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin,
-            string codigoConcepto, IEnumerable<string> codigosClienteProveedor)
-        {
-            foreach (string codigoClienteProveedor in codigosClienteProveedor)
-            {
-                foreach (T documento in TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(fechaInicio, fechaFin, codigoConcepto,
-                             codigoClienteProveedor))
-                    yield return documento;
-            }
-        }
+        _sdk.fCancelaFiltroDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+    }
 
-        public IEnumerable<T> TraerTodo()
+    /// <inheritdoc />
+    public IEnumerable<T> TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(DateTime fechaInicio, DateTime fechaFin,
+        string codigoConcepto, IEnumerable<string> codigosClienteProveedor)
+    {
+        foreach (string codigoClienteProveedor in codigosClienteProveedor)
         {
-            _sdk.fPosPrimerDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+            foreach (T documento in TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(fechaInicio, fechaFin, codigoConcepto,
+                         codigoClienteProveedor))
+                yield return documento;
+        }
+    }
+
+    /// <inheritdoc />
+    public IEnumerable<T> TraerTodo()
+    {
+        _sdk.fPosPrimerDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+        yield return LeerDatosDocumentoActual();
+        while (_sdk.fPosSiguienteDocumento() == SdkResultConstants.Success)
+        {
             yield return LeerDatosDocumentoActual();
-            while (_sdk.fPosSiguienteDocumento() == SdkResultConstants.Success)
+            if (_sdk.fPosEOF() == 1) break;
+        }
+    }
+
+    private T LeerDatosDocumentoActual()
+    {
+        var documento = new T();
+
+        LeerYAsignarDatos(documento);
+
+        return documento;
+    }
+
+    private void LeerYAsignarDatos(T documento)
+    {
+        Type sqlModelType = typeof(admDocumentos);
+
+        foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
+        {
+            try
             {
-                yield return LeerDatosDocumentoActual();
-                if (_sdk.fPosEOF() == 1) break;
+                if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
+
+                propertyDescriptor.SetValue(documento,
+                    _sdk.LeeDatoDocumento(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
             }
-        }
-
-        private T LeerDatosDocumentoActual()
-        {
-            var documento = new T();
-
-            LeerYAsignarDatos(documento);
-
-            return documento;
-        }
-
-        private void LeerYAsignarDatos(T documento)
-        {
-            Type sqlModelType = typeof(admDocumentos);
-
-            foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
+            catch (ContpaqiSdkException e)
             {
-                try
-                {
-                    if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
+                // Hay propiedades en Comercial que no estan en el esquema de la base de datos de Factura Electronica
+                if (e.CodigoErrorSdk == SdkErrorConstants.NombreCampoInvalido) continue;
 
-                    propertyDescriptor.SetValue(documento,
-                        _sdk.LeeDatoDocumento(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
-                }
-                catch (ContpaqiSdkException e)
-                {
-                    // Hay propiedades en Comercial que no estan en el esquema de la base de datos de Factura Electronica
-                    if (e.CodigoErrorSdk == SdkErrorConstants.NombreCampoInvalido) continue;
-
-                    throw new ContpaqiSdkInvalidOperationException(
-                        $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
-                        e);
-                }
+                throw new ContpaqiSdkInvalidOperationException(
+                    $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
+                    e);
             }
         }
     }

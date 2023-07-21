@@ -7,6 +7,9 @@ using ARSoftware.Contpaqi.Comercial.Sql.Models.Generales;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
+/// <summary>
+///     Repositorio de SQL para consultar empresas.
+/// </summary>
 public sealed class EmpresaSqlRepository : RepositoryBase<Empresas>, IEmpresaRepository<Empresas>
 {
     private readonly ContpaqiComercialGeneralesDbContext _context;

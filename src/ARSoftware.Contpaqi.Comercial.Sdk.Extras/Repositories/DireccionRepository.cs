@@ -12,134 +12,145 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
+
+/// <summary>
+///     Repositorio de SDK para consultar direcciones.
+/// </summary>
+/// <typeparam name="T">
+///     El tipo de direccion utilizado por el repositorio.
+/// </typeparam>
+public class DireccionRepository<T> : IDireccionRepository<T> where T : class, new()
 {
-    public class DireccionRepository<T> : IDireccionRepository<T> where T : class, new()
+    private readonly IContpaqiSdk _sdk;
+
+    public DireccionRepository(IContpaqiSdk sdk)
     {
-        private readonly IContpaqiSdk _sdk;
+        _sdk = sdk;
+    }
 
-        public DireccionRepository(IContpaqiSdk sdk)
+    /// <inheritdoc />
+    public T BuscarPorCliente(string codigoClienteProveedor, TipoDireccion tipoDireccion)
+    {
+        return _sdk.fBuscaDireccionCteProv(codigoClienteProveedor, (byte)tipoDireccion) == SdkResultConstants.Success
+            ? LeerDatosDireccionActual()
+            : null;
+    }
+
+    /// <inheritdoc />
+    public T BuscarPorDocumento(int idDocumento, TipoDireccion tipoDireccion)
+    {
+        return _sdk.fBuscaDireccionDocumento(idDocumento, (byte)tipoDireccion) == SdkResultConstants.Success
+            ? LeerDatosDireccionActual()
+            : null;
+    }
+
+    /// <inheritdoc />
+    public T BuscarPorId(int idDireccion)
+    {
+        var idDireccionDato = new StringBuilder(12);
+
+        _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
+        _sdk.fLeeDatoDireccion("CIDDIRECCION", idDireccionDato, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
+        if (idDireccion == int.Parse(idDireccionDato.ToString())) return LeerDatosDireccionActual();
+
+        while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
         {
-            _sdk = sdk;
-        }
-
-        public T BuscarPorCliente(string codigoClienteProveedor, byte tipoDireccion)
-        {
-            return _sdk.fBuscaDireccionCteProv(codigoClienteProveedor, tipoDireccion) == SdkResultConstants.Success
-                ? LeerDatosDireccionActual()
-                : null;
-        }
-
-        public T BuscarPorDocumento(int idDocumento, byte tipoDireccion)
-        {
-            return _sdk.fBuscaDireccionDocumento(idDocumento, tipoDireccion) == SdkResultConstants.Success
-                ? LeerDatosDireccionActual()
-                : null;
-        }
-
-        public T BuscarPorId(int idDireccion)
-        {
-            var idDireccionDato = new StringBuilder(12);
-
-            _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoDireccion("CIDDIRECCION", idDireccionDato, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
             if (idDireccion == int.Parse(idDireccionDato.ToString())) return LeerDatosDireccionActual();
 
-            while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
-            {
-                _sdk.fLeeDatoDireccion("CIDDIRECCION", idDireccionDato, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
-                if (idDireccion == int.Parse(idDireccionDato.ToString())) return LeerDatosDireccionActual();
-
-                if (_sdk.fPosEOFDireccion() == 1) break;
-            }
-
-            return null;
+            if (_sdk.fPosEOFDireccion() == 1) break;
         }
 
-        public IEnumerable<T> TraerPorTipo(TipoCatalogoDireccion tipoCatalogoDireccion)
-        {
-            var tipoCatalogo = new StringBuilder(7);
+        return null;
+    }
 
-            _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
+    /// <inheritdoc />
+    public IEnumerable<T> TraerPorTipo(TipoCatalogoDireccion tipoCatalogoDireccion)
+    {
+        var tipoCatalogo = new StringBuilder(7);
+
+        _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
+        _sdk.fLeeDatoDireccion("CTIPOCATALOGO", tipoCatalogo, 7).ToResultadoSdk(_sdk).ThrowIfError();
+        if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertFromSdkValue(tipoCatalogo.ToString()))
+            yield return LeerDatosDireccionActual();
+
+        while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
+        {
             _sdk.fLeeDatoDireccion("CTIPOCATALOGO", tipoCatalogo, 7).ToResultadoSdk(_sdk).ThrowIfError();
             if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertFromSdkValue(tipoCatalogo.ToString()))
                 yield return LeerDatosDireccionActual();
 
-            while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
-            {
-                _sdk.fLeeDatoDireccion("CTIPOCATALOGO", tipoCatalogo, 7).ToResultadoSdk(_sdk).ThrowIfError();
-                if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertFromSdkValue(tipoCatalogo.ToString()))
-                    yield return LeerDatosDireccionActual();
-
-                if (_sdk.fPosEOFDireccion() == 1) break;
-            }
+            if (_sdk.fPosEOFDireccion() == 1) break;
         }
+    }
 
-        public IEnumerable<T> TraerPorTipoYIdCatalogo(TipoCatalogoDireccion tipoCatalogoDireccion, int idCatalogo)
+    /// <inheritdoc />
+    public IEnumerable<T> TraerPorTipoYIdCatalogo(TipoCatalogoDireccion tipoCatalogoDireccion, int idCatalogo)
+    {
+        var tipoCatalogo = new StringBuilder(7);
+        var idCatalogoDato = new StringBuilder(12);
+
+        _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
+        _sdk.fLeeDatoDireccion("CTIPOCATALOGO", tipoCatalogo, 7).ToResultadoSdk(_sdk).ThrowIfError();
+        _sdk.fLeeDatoDireccion("CIDCATALOGO", idCatalogoDato, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
+        if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertFromSdkValue(tipoCatalogo.ToString()) &&
+            idCatalogo == int.Parse(idCatalogoDato.ToString()))
+            yield return LeerDatosDireccionActual();
+
+        while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
         {
-            var tipoCatalogo = new StringBuilder(7);
-            var idCatalogoDato = new StringBuilder(12);
-
-            _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoDireccion("CTIPOCATALOGO", tipoCatalogo, 7).ToResultadoSdk(_sdk).ThrowIfError();
             _sdk.fLeeDatoDireccion("CIDCATALOGO", idCatalogoDato, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
             if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertFromSdkValue(tipoCatalogo.ToString()) &&
                 idCatalogo == int.Parse(idCatalogoDato.ToString()))
                 yield return LeerDatosDireccionActual();
 
-            while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
-            {
-                _sdk.fLeeDatoDireccion("CTIPOCATALOGO", tipoCatalogo, 7).ToResultadoSdk(_sdk).ThrowIfError();
-                _sdk.fLeeDatoDireccion("CIDCATALOGO", idCatalogoDato, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
-                if (tipoCatalogoDireccion == TipoCatalogoDireccionHelper.ConvertFromSdkValue(tipoCatalogo.ToString()) &&
-                    idCatalogo == int.Parse(idCatalogoDato.ToString()))
-                    yield return LeerDatosDireccionActual();
-
-                if (_sdk.fPosEOFDireccion() == 1) break;
-            }
+            if (_sdk.fPosEOFDireccion() == 1) break;
         }
+    }
 
-        public IEnumerable<T> TraerTodo()
+    /// <inheritdoc />
+    public IEnumerable<T> TraerTodo()
+    {
+        _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
+        yield return LeerDatosDireccionActual();
+
+        while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
         {
-            _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosDireccionActual();
 
-            while (_sdk.fPosSiguienteDireccion() == SdkResultConstants.Success)
-            {
-                yield return LeerDatosDireccionActual();
+            if (_sdk.fPosEOFDireccion() == 1) break;
+        }
+    }
 
-                if (_sdk.fPosEOFDireccion() == 1) break;
+    private T LeerDatosDireccionActual()
+    {
+        var direccion = new T();
+
+        LeerYAsignarDatos(direccion);
+
+        return direccion;
+    }
+
+    private void LeerYAsignarDatos(T direccion)
+    {
+        Type sqlModelType = typeof(admDomicilios);
+
+        foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
+        {
+            try
+            {
+                if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
+
+                propertyDescriptor.SetValue(direccion,
+                    _sdk.LeeDatoDireccion(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
             }
-        }
-
-        private T LeerDatosDireccionActual()
-        {
-            var direccion = new T();
-
-            LeerYAsignarDatos(direccion);
-
-            return direccion;
-        }
-
-        private void LeerYAsignarDatos(T direccion)
-        {
-            Type sqlModelType = typeof(admDomicilios);
-
-            foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
+            catch (ContpaqiSdkException e)
             {
-                try
-                {
-                    if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
-
-                    propertyDescriptor.SetValue(direccion,
-                        _sdk.LeeDatoDireccion(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
-                }
-                catch (ContpaqiSdkException e)
-                {
-                    throw new ContpaqiSdkInvalidOperationException(
-                        $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
-                        e);
-                }
+                throw new ContpaqiSdkInvalidOperationException(
+                    $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
+                    e);
             }
         }
     }

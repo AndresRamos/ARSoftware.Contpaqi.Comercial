@@ -11,7 +11,7 @@ using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 
 /// <summary>
-///     Repositorio de SDK para buscar almacenes.
+///     Repositorio de SDK para consultar almacenes.
 /// </summary>
 /// <typeparam name="T">
 ///     El tipo de almacen utilizado por el repositorio.

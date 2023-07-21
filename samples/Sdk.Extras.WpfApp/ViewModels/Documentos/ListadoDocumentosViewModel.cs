@@ -249,8 +249,8 @@ public class ListadoDocumentosViewModel : ObservableRecipient
         documento.ConceptoDocumento = _conceptoDocumentoRepository.BuscarPorId(documento.CIDCONCEPTODOCUMENTO);
         documento.ClienteProveedor = _clienteProveedorRepository.BuscarPorId(documento.CIDCLIENTEPROVEEDOR);
         documento.Agente = _agenteRepository.BuscarPorId(documento.CIDAGENTE);
-        documento.DireccionFiscal = _direccionRepository.BuscarPorDocumento(documento.CIDDOCUMENTO, (int)TipoDireccion.Fiscal);
-        documento.DireccionEnvio = _direccionRepository.BuscarPorDocumento(documento.CIDDOCUMENTO, (int)TipoDireccion.Envio);
+        documento.DireccionFiscal = _direccionRepository.BuscarPorDocumento(documento.CIDDOCUMENTO, TipoDireccion.Fiscal);
+        documento.DireccionEnvio = _direccionRepository.BuscarPorDocumento(documento.CIDDOCUMENTO, TipoDireccion.Envio);
         documento.Movimientos = _movimientoRepository.TraerPorDocumentoId(documento.CIDDOCUMENTO).ToList();
         foreach (Movimiento movimiento in documento.Movimientos)
         {

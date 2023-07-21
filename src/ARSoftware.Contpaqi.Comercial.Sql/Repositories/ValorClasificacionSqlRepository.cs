@@ -9,6 +9,9 @@ using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
+/// <summary>
+///     Repositorio de SQL para consultar valores de clasificación.
+/// </summary>
 public sealed class ValorClasificacionSqlRepository : RepositoryBase<admClasificacionesValores>,
     IValorClasificacionRepository<admClasificacionesValores>
 {

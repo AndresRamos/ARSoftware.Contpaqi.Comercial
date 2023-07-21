@@ -8,6 +8,9 @@ using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
+/// <summary>
+///     Repositorio de SQL para consultar unidades de medida.
+/// </summary>
 public sealed class UnidadMedidaSqlRepository : RepositoryBase<admUnidadesMedidaPeso>, IUnidadMedidaRepository<admUnidadesMedidaPeso>
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;

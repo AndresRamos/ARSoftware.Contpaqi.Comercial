@@ -10,6 +10,9 @@ using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
+/// <summary>
+///     Repositorio de SQL para consultar direcciones.
+/// </summary>
 public sealed class DireccionSqlRepository : RepositoryBase<admDomicilios>, IDireccionRepository<admDomicilios>
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;
@@ -20,21 +23,20 @@ public sealed class DireccionSqlRepository : RepositoryBase<admDomicilios>, IDir
     }
 
     /// <inheritdoc />
-    public admDomicilios? BuscarPorCliente(string codigoClienteProveedor, byte tipoDireccion)
+    public admDomicilios? BuscarPorCliente(string codigoClienteProveedor, TipoDireccion tipoDireccion)
     {
         admClientes cliente =
             _context.admClientes.WithSpecification(new ClientePorCodigoSpecification(codigoClienteProveedor)).SingleOrDefault() ??
             throw new ArgumentException($"El cliente con codigo {codigoClienteProveedor} no existe.", nameof(codigoClienteProveedor));
 
-        return _context.admDomicilios
-            .WithSpecification(new DireccionesPorClienteSpecification(cliente.CIDCLIENTEPROVEEDOR, (TipoDireccion)tipoDireccion))
+        return _context.admDomicilios.WithSpecification(new DireccionesPorClienteSpecification(cliente.CIDCLIENTEPROVEEDOR, tipoDireccion))
             .FirstOrDefault();
     }
 
     /// <inheritdoc />
-    public admDomicilios? BuscarPorDocumento(int idDocumento, byte tipoDireccion)
+    public admDomicilios? BuscarPorDocumento(int idDocumento, TipoDireccion tipoDireccion)
     {
-        return _context.admDomicilios.WithSpecification(new DireccionPorDocumentoSpecification(idDocumento, (TipoDireccion)tipoDireccion))
+        return _context.admDomicilios.WithSpecification(new DireccionPorDocumentoSpecification(idDocumento, tipoDireccion))
             .FirstOrDefault();
     }
 

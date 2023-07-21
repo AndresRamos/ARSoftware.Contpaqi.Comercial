@@ -7,6 +7,9 @@ using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
+/// <summary>
+///     Repositorio de SQL para consultar documentos modelo.
+/// </summary>
 public sealed class DocumentoModeloSqlRepository : RepositoryBase<admDocumentosModelo>, IDocumentoModeloRepository<admDocumentosModelo>
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;

@@ -11,85 +11,93 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
+
+/// <summary>
+///     Repositorio de SDK para consultar productos.
+/// </summary>
+/// <typeparam name="T">
+///     El tipo de producto utilizado por el repositorio.
+/// </typeparam>
+public class ProductoRepository<T> : IProductoRepository<T> where T : class, new()
 {
-    public class ProductoRepository<T> : IProductoRepository<T> where T : class, new()
+    private readonly IContpaqiSdk _sdk;
+
+    public ProductoRepository(IContpaqiSdk sdk)
     {
-        private readonly IContpaqiSdk _sdk;
+        _sdk = sdk;
+    }
 
-        public ProductoRepository(IContpaqiSdk sdk)
+    /// <inheritdoc />
+    public T BuscarPorCodigo(string codigoProducto)
+    {
+        return _sdk.fBuscaProducto(codigoProducto) == SdkResultConstants.Success ? LeerDatosProductoActual() : null;
+    }
+
+    /// <inheritdoc />
+    public T BuscarPorId(int idProducto)
+    {
+        return _sdk.fBuscaIdProducto(idProducto) == SdkResultConstants.Success ? LeerDatosProductoActual() : null;
+    }
+
+    /// <inheritdoc />
+    public IEnumerable<T> TraerPorTipo(TipoProducto tipoProducto)
+    {
+        _sdk.fPosPrimerProducto().ToResultadoSdk(_sdk).ThrowIfError();
+
+        var tipoProductoDato = new StringBuilder(7);
+        _sdk.fLeeDatoProducto("CTIPOPRODUCTO", tipoProductoDato, 7).ToResultadoSdk(_sdk).ThrowIfError();
+        if (tipoProducto == TipoProductoHelper.ConvertFromSdkValue(tipoProductoDato.ToString())) yield return LeerDatosProductoActual();
+
+        while (_sdk.fPosSiguienteProducto() == SdkResultConstants.Success)
         {
-            _sdk = sdk;
-        }
-
-        public T BuscarPorCodigo(string codigoProducto)
-        {
-            return _sdk.fBuscaProducto(codigoProducto) == SdkResultConstants.Success ? LeerDatosProductoActual() : null;
-        }
-
-        public T BuscarPorId(int idProducto)
-        {
-            return _sdk.fBuscaIdProducto(idProducto) == SdkResultConstants.Success ? LeerDatosProductoActual() : null;
-        }
-
-        public IEnumerable<T> TraerPorTipo(TipoProducto tipoProducto)
-        {
-            _sdk.fPosPrimerProducto().ToResultadoSdk(_sdk).ThrowIfError();
-
-            var tipoProductoDato = new StringBuilder(7);
             _sdk.fLeeDatoProducto("CTIPOPRODUCTO", tipoProductoDato, 7).ToResultadoSdk(_sdk).ThrowIfError();
+
             if (tipoProducto == TipoProductoHelper.ConvertFromSdkValue(tipoProductoDato.ToString())) yield return LeerDatosProductoActual();
 
-            while (_sdk.fPosSiguienteProducto() == SdkResultConstants.Success)
-            {
-                _sdk.fLeeDatoProducto("CTIPOPRODUCTO", tipoProductoDato, 7).ToResultadoSdk(_sdk).ThrowIfError();
-
-                if (tipoProducto == TipoProductoHelper.ConvertFromSdkValue(tipoProductoDato.ToString()))
-                    yield return LeerDatosProductoActual();
-
-                if (_sdk.fPosEOFProducto() == 1) break;
-            }
+            if (_sdk.fPosEOFProducto() == 1) break;
         }
+    }
 
-        public IEnumerable<T> TraerTodo()
+    /// <inheritdoc />
+    public IEnumerable<T> TraerTodo()
+    {
+        _sdk.fPosPrimerProducto().ToResultadoSdk(_sdk).ThrowIfError();
+        yield return LeerDatosProductoActual();
+        while (_sdk.fPosSiguienteProducto() == SdkResultConstants.Success)
         {
-            _sdk.fPosPrimerProducto().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosProductoActual();
-            while (_sdk.fPosSiguienteProducto() == SdkResultConstants.Success)
+            if (_sdk.fPosEOFProducto() == 1) break;
+        }
+    }
+
+    private T LeerDatosProductoActual()
+    {
+        var productoComercial = new T();
+
+        LeerYAsignarDatos(productoComercial);
+
+        return productoComercial;
+    }
+
+    private void LeerYAsignarDatos(T producto)
+    {
+        Type sqlModelType = typeof(admProductos);
+
+        foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
+        {
+            try
             {
-                yield return LeerDatosProductoActual();
-                if (_sdk.fPosEOFProducto() == 1) break;
+                if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
+
+                propertyDescriptor.SetValue(producto,
+                    _sdk.LeeDatoProducto(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
             }
-        }
-
-        private T LeerDatosProductoActual()
-        {
-            var productoComercial = new T();
-
-            LeerYAsignarDatos(productoComercial);
-
-            return productoComercial;
-        }
-
-        private void LeerYAsignarDatos(T producto)
-        {
-            Type sqlModelType = typeof(admProductos);
-
-            foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
+            catch (ContpaqiSdkException e)
             {
-                try
-                {
-                    if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
-
-                    propertyDescriptor.SetValue(producto,
-                        _sdk.LeeDatoProducto(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
-                }
-                catch (ContpaqiSdkException e)
-                {
-                    throw new ContpaqiSdkInvalidOperationException(
-                        $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
-                        e);
-                }
+                throw new ContpaqiSdkInvalidOperationException(
+                    $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
+                    e);
             }
         }
     }

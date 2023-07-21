@@ -8,6 +8,9 @@ using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
+/// <summary>
+///     Repositorio de SQL para consultar movimientos.
+/// </summary>
 public sealed class MovimientoSqlRepository : RepositoryBase<admMovimientos>, IMovimientoRepository<admMovimientos>
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;

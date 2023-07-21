@@ -25,7 +25,7 @@ public sealed class EjemplosDocumento
 
         BuscarPorId(1);
 
-        BuscarPorLlave("400", "FAP", "1");
+        BuscarPorLlave("400", "FAP", 1);
 
         BuscarPorLlave(new LlaveDocumento("400", "FAP", 1));
 
@@ -55,7 +55,7 @@ public sealed class EjemplosDocumento
             _logger.LogInformation("No se encontro el documento con Id: {Id}", id);
     }
 
-    private void BuscarPorLlave(string codigoConcepto, string serie, string folio)
+    private void BuscarPorLlave(string codigoConcepto, string serie, double folio)
     {
         _logger.LogInformation("Buscando documento con Concepto: {Concepto}, Serie: {Serie}, Folio: {Folio}", codigoConcepto, serie, folio);
 

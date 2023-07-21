@@ -9,7 +9,7 @@ using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
 /// <summary>
-///     Repositorio de SQL para buscar almacenes.
+///     Repositorio de SQL para consultar almacenes.
 /// </summary>
 public sealed class AlmacenSqlRepository : RepositoryBase<admAlmacenes>, IAlmacenRepository<admAlmacenes>
 {

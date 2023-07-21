@@ -3,7 +3,7 @@
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 
 /// <summary>
-///     Interface de repositorio que define las operaciones que se pueden realizar sobre la tabla de agentes.
+///     Interfaz de repositorio que define métodos para consultar agentes.
 /// </summary>
 /// <typeparam name="T">
 ///     El tipo de agente utilizado por el repositorio.

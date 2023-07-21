@@ -12,6 +12,9 @@ using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
+/// <summary>
+///     Repositorio de SQL para consultar documentos.
+/// </summary>
 public sealed class DocumentoSqlRepository : RepositoryBase<admDocumentos>, IDocumentoRepository<admDocumentos>
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;
@@ -28,16 +31,13 @@ public sealed class DocumentoSqlRepository : RepositoryBase<admDocumentos>, IDoc
     }
 
     /// <inheritdoc />
-    public admDocumentos? BuscarPorLlave(string codigoConcepto, string serie, string folio)
+    public admDocumentos? BuscarPorLlave(string codigoConcepto, string serie, double folio)
     {
         admConceptos concepto =
             _context.admConceptos.WithSpecification(new ConceptoPorCodigoSpecification(codigoConcepto)).SingleOrDefault() ??
             throw new ArgumentException($"El concepto con codigo {codigoConcepto} no existe.", nameof(codigoConcepto));
 
-        var folioDouble = Convert.ToDouble(folio);
-
-        return _context.admDocumentos
-            .WithSpecification(new DocumentoPorLlaveSpecification(concepto.CIDCONCEPTODOCUMENTO, serie, folioDouble))
+        return _context.admDocumentos.WithSpecification(new DocumentoPorLlaveSpecification(concepto.CIDCONCEPTODOCUMENTO, serie, folio))
             .SingleOrDefault();
     }
 

@@ -6,6 +6,9 @@ using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
+/// <summary>
+///     Repositorio de SQL para consultar parámetros.
+/// </summary>
 public sealed class ParametrosSqlRepository : RepositoryBase<admParametros>, IParametrosRepository<admParametros>
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;

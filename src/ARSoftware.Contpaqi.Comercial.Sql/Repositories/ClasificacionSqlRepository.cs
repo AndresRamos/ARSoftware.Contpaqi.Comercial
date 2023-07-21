@@ -9,6 +9,9 @@ using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
+/// <summary>
+///     Repositorio de SQL para consultar clasificaciones.
+/// </summary>
 public sealed class ClasificacionSqlRepository : RepositoryBase<admClasificaciones>, IClasificacionRepository<admClasificaciones>
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;

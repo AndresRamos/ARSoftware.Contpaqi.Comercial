@@ -8,6 +8,9 @@ using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
+/// <summary>
+///     Repositorio de SQL para consultar conceptos de documento.
+/// </summary>
 public sealed class ConceptoDocumentoSqlRepository : RepositoryBase<admConceptos>, IConceptoDocumentoRepository<admConceptos>
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;

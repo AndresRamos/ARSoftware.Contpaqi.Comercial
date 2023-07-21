@@ -11,7 +11,7 @@ using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 
 /// <summary>
-///     Repositorio de SDK para buscar agentes.
+///     Repositorio de SDK para consultar agentes.
 /// </summary>
 /// <typeparam name="T"> El tipo de agente utilizado por el repositorio.</typeparam>
 public class AgenteRepository<T> : IAgenteRepository<T> where T : class, new()

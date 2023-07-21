@@ -9,7 +9,7 @@ using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
 /// <summary>
-///     Repositorio de SQL para buscar agentes.
+///     Repositorio de SQL para consultar agentes.
 /// </summary>
 public sealed class AgenteSqlRepository : RepositoryBase<admAgentes>, IAgenteRepository<admAgentes>
 {

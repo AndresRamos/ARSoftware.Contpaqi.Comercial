@@ -3,9 +3,11 @@
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 
 /// <summary>
-///     Interface de repositorio que define las operaciones que se pueden realizar sobre la tabla de almacenes.
+///     Interfaz de repositorio que define métodos para consultar almacenes.
 /// </summary>
-/// <typeparam name="T"> El tipo de almacén utilizado por el repositorio.</typeparam>
+/// <typeparam name="T">
+///     El tipo de almacén utilizado por el repositorio.
+/// </typeparam>
 public interface IAlmacenRepository<T> where T : class, new()
 {
     /// <summary>
