@@ -8,67 +8,75 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
+
+/// <summary>
+///     Repositorio de SDK para buscar almacenes.
+/// </summary>
+/// <typeparam name="T">
+///     El tipo de almacen utilizado por el repositorio.
+/// </typeparam>
+public class AlmacenRepository<T> : IAlmacenRepository<T> where T : class, new()
 {
-    public class AlmacenRepository<T> : IAlmacenRepository<T> where T : class, new()
+    private readonly IContpaqiSdk _sdk;
+
+    public AlmacenRepository(IContpaqiSdk sdk)
     {
-        private readonly IContpaqiSdk _sdk;
+        _sdk = sdk;
+    }
 
-        public AlmacenRepository(IContpaqiSdk sdk)
-        {
-            _sdk = sdk;
-        }
+    /// <inheritdoc />
+    public T BuscarPorCodigo(string codigoAlmacen)
+    {
+        return _sdk.fBuscaAlmacen(codigoAlmacen) == SdkResultConstants.Success ? LeerDatosAlmacenActual() : null;
+    }
 
-        public T BuscarPorCodigo(string codigoAlmacen)
-        {
-            return _sdk.fBuscaAlmacen(codigoAlmacen) == SdkResultConstants.Success ? LeerDatosAlmacenActual() : null;
-        }
+    /// <inheritdoc />
+    public T BuscarPorId(int idAlmacen)
+    {
+        return _sdk.fBuscaIdAlmacen(idAlmacen) == SdkResultConstants.Success ? LeerDatosAlmacenActual() : null;
+    }
 
-        public T BuscarPorId(int idAlmacen)
-        {
-            return _sdk.fBuscaIdAlmacen(idAlmacen) == SdkResultConstants.Success ? LeerDatosAlmacenActual() : null;
-        }
+    /// <inheritdoc />
+    public IEnumerable<T> TraerTodo()
+    {
+        _sdk.fPosPrimerAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
+        yield return LeerDatosAlmacenActual();
 
-        public IEnumerable<T> TraerTodo()
+        while (_sdk.fPosSiguienteAlmacen() == SdkResultConstants.Success)
         {
-            _sdk.fPosPrimerAlmacen().ToResultadoSdk(_sdk).ThrowIfError();
             yield return LeerDatosAlmacenActual();
+            if (_sdk.fPosEOFAlmacen() == 1) break;
+        }
+    }
 
-            while (_sdk.fPosSiguienteAlmacen() == SdkResultConstants.Success)
+    private T LeerDatosAlmacenActual()
+    {
+        var almacen = new T();
+
+        LeerYAsignarDatos(almacen);
+
+        return almacen;
+    }
+
+    private void LeerYAsignarDatos(T almacen)
+    {
+        Type sqlModelType = typeof(admAlmacenes);
+
+        foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
+        {
+            try
             {
-                yield return LeerDatosAlmacenActual();
-                if (_sdk.fPosEOFAlmacen() == 1) break;
+                if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
+
+                propertyDescriptor.SetValue(almacen,
+                    _sdk.LeeDatoAlmacen(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
             }
-        }
-
-        private T LeerDatosAlmacenActual()
-        {
-            var almacen = new T();
-
-            LeerYAsignarDatos(almacen);
-
-            return almacen;
-        }
-
-        private void LeerYAsignarDatos(T almacen)
-        {
-            Type sqlModelType = typeof(admAlmacenes);
-
-            foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
+            catch (ContpaqiSdkException e)
             {
-                try
-                {
-                    if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
-
-                    propertyDescriptor.SetValue(almacen,
-                        _sdk.LeeDatoAlmacen(propertyDescriptor.Name).Trim().ConvertFromSdkValueString(propertyDescriptor.PropertyType));
-                }
-                catch (ContpaqiSdkException e)
-                {
-                    throw new ContpaqiSdkInvalidOperationException(
-                        $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
-                        e);
-                }
+                throw new ContpaqiSdkInvalidOperationException(
+                    $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
+                    e);
             }
         }
     }
