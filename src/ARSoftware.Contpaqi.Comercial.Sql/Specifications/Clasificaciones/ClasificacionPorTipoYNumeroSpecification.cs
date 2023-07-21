@@ -4,14 +4,9 @@ using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 
-public sealed class ClasificacionPorIdSpecification : SingleResultSpecification<admClasificaciones>
-{
-    public ClasificacionPorIdSpecification(int idClasificacion)
-    {
-        Query.Where(clasificacion => clasificacion.CIDCLASIFICACION == idClasificacion);
-    }
-}
-
+/// <summary>
+///     Especificación para obtener una clasificación por su tipo y número.
+/// </summary>
 public sealed class ClasificacionPorTipoYNumeroSpecification : SingleResultSpecification<admClasificaciones>
 {
     public ClasificacionPorTipoYNumeroSpecification(TipoClasificacion tipo, NumeroClasificacion numero)
@@ -35,17 +30,5 @@ public sealed class ClasificacionPorTipoYNumeroSpecification : SingleResultSpeci
         // idNumeroClasificacion = 25 + 6 - 1 = 30
 
         Query.Where(clasificacion => clasificacion.CIDCLASIFICACION == idNumeroClasificacion);
-    }
-}
-
-public sealed class ClasificacionesPorTipoSpecification : Specification<admClasificaciones>
-{
-    public ClasificacionesPorTipoSpecification(TipoClasificacion tipo)
-    {
-        int idClasificacionInicio = ((int)tipo - 1) * 6 + 1;
-        int idClasificacionFin = idClasificacionInicio + 5;
-
-        Query.Where(clasificacion =>
-            clasificacion.CIDCLASIFICACION >= idClasificacionInicio && clasificacion.CIDCLASIFICACION <= idClasificacionFin);
     }
 }

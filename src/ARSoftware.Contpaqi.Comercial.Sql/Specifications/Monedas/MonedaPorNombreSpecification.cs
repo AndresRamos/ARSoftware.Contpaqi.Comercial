@@ -3,15 +3,10 @@ using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 
-public sealed class MonedaPorIdSpecification : SingleResultSpecification<admMonedas>
-{
-    public MonedaPorIdSpecification(int idMoneda)
-    {
-        Query.Where(moneda => moneda.CIDMONEDA == idMoneda);
-    }
-}
-
-public sealed class MonedaPorNombreSpecification : Specification<admMonedas>
+/// <summary>
+///     Especificación para obtener una moneda por su nombre.
+/// </summary>
+public sealed class MonedaPorNombreSpecification : SingleResultSpecification<admMonedas>
 {
     public MonedaPorNombreSpecification(string nombreMoneda)
     {

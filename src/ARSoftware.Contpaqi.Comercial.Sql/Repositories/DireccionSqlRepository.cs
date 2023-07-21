@@ -27,7 +27,7 @@ public sealed class DireccionSqlRepository : RepositoryBase<admDomicilios>, IDir
             throw new ArgumentException($"El cliente con codigo {codigoClienteProveedor} no existe.", nameof(codigoClienteProveedor));
 
         return _context.admDomicilios
-            .WithSpecification(new DireccionPorClienteSpecification(cliente.CIDCLIENTEPROVEEDOR, (TipoDireccion)tipoDireccion))
+            .WithSpecification(new DireccionesPorClienteSpecification(cliente.CIDCLIENTEPROVEEDOR, (TipoDireccion)tipoDireccion))
             .FirstOrDefault();
     }
 

@@ -3,18 +3,13 @@ using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 
+/// <summary>
+///     Especificación para obtener una unidad de medida por su id.
+/// </summary>
 public sealed class UnidadMedidaPorIdSpecification : SingleResultSpecification<admUnidadesMedidaPeso>
 {
     public UnidadMedidaPorIdSpecification(int idUnidad)
     {
         Query.Where(unidad => unidad.CIDUNIDAD == idUnidad);
-    }
-}
-
-public sealed class UnidadMedidaPorNombreSpecification : SingleResultSpecification<admUnidadesMedidaPeso>
-{
-    public UnidadMedidaPorNombreSpecification(string nombreUnidad)
-    {
-        Query.Where(unidad => unidad.CNOMBREUNIDAD == nombreUnidad);
     }
 }

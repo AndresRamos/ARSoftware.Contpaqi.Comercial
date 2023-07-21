@@ -82,7 +82,7 @@ public sealed class DocumentoSqlRepository : RepositoryBase<admDocumentos>, IDoc
                 nameof(codigoClienteProveedor));
 
         return _context.admDocumentos
-            .WithSpecification(new DocumentosPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(fechaInicio, fechaFin,
+            .WithSpecification(new DocumentosPorRangoFechaYConceptoYClienteSpecification(fechaInicio, fechaFin,
                 concepto.CIDCONCEPTODOCUMENTO, cliente.CIDCLIENTEPROVEEDOR))
             .ToList();
     }
@@ -105,7 +105,7 @@ public sealed class DocumentoSqlRepository : RepositoryBase<admDocumentos>, IDoc
                     nameof(codigoClienteProveedor));
 
             documentos.AddRange(_context.admDocumentos
-                .WithSpecification(new DocumentosPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(fechaInicio, fechaFin,
+                .WithSpecification(new DocumentosPorRangoFechaYConceptoYClienteSpecification(fechaInicio, fechaFin,
                     concepto.CIDCONCEPTODOCUMENTO, cliente.CIDCLIENTEPROVEEDOR))
                 .ToList());
         }
