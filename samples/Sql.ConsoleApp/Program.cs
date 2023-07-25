@@ -1,16 +1,27 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Events;
 using Sql.ConsoleApp;
 
 IHost host = Host.CreateDefaultBuilder()
     .ConfigureServices(services => { services.AddSqlServices(); })
     .ConfigureLogging(builder =>
     {
-        builder.SetMinimumLevel(LogLevel.Information);
+        //builder.SetMinimumLevel(LogLevel.Information);
 
-        builder.AddFilter("Microsoft", LogLevel.Warning);
-        builder.AddSimpleConsole(options => { options.SingleLine = true; });
+        //builder.AddFilter("Microsoft", LogLevel.Warning);
+        //builder.AddSimpleConsole(options => { options.SingleLine = true; });
+        builder.ClearProviders();
+    })
+    .UseSerilog((hostingContext, loggerConfiguration) =>
+    {
+        loggerConfiguration.MinimumLevel.Information()
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+            .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information);
+        loggerConfiguration.WriteTo.Console(LogEventLevel.Information);
+        //loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration).Enrich.FromLogContext();
     })
     .Build();
 
@@ -27,7 +38,8 @@ try
 
     //host.Services.GetRequiredService<EjemplosEmpresa>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<EjemplosAgente>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarAgenteConRepositorio>().CorrerEjemplos();
+    host.Services.GetRequiredService<BuscarAgenteDtoConRepositorio>().CorrerEjemplos();
 
     //host.Services.GetRequiredService<EjemplosAlmacen>().CorrerEjemplos();
 

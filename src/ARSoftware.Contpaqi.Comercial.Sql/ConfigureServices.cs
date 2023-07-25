@@ -1,4 +1,5 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
+﻿using System.Reflection;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Generales;
 using ARSoftware.Contpaqi.Comercial.Sql.Repositories;
@@ -11,7 +12,11 @@ public static class ConfigureServices
     public static IServiceCollection AddContpaqiComercialSqlRepositories(this IServiceCollection services,
         ServiceLifetime lifetime = ServiceLifetime.Transient)
     {
+        services.Add(new ServiceDescriptor(typeof(AgenteSqlRepository), typeof(AgenteSqlRepository), lifetime));
+        services.Add(new ServiceDescriptor(typeof(AgenteSqlRepository<>), typeof(AgenteSqlRepository<>), lifetime));
         services.Add(new ServiceDescriptor(typeof(IAgenteRepository<admAgentes>), typeof(AgenteSqlRepository), lifetime));
+        services.Add(new ServiceDescriptor(typeof(IAgenteRepository<>), typeof(AgenteSqlRepository<>), lifetime));
+
         services.Add(new ServiceDescriptor(typeof(IAlmacenRepository<admAlmacenes>), typeof(AlmacenSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(IClasificacionRepository<admClasificaciones>), typeof(ClasificacionSqlRepository),
             lifetime));
@@ -32,6 +37,8 @@ public static class ConfigureServices
             lifetime));
         services.Add(new ServiceDescriptor(typeof(IValorClasificacionRepository<admClasificacionesValores>),
             typeof(ValorClasificacionSqlRepository), lifetime));
+
+        services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
         return services;
     }

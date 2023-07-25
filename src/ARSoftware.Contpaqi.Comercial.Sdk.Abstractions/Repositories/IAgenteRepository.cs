@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 
@@ -31,6 +32,17 @@ public interface IAgenteRepository<T> where T : class, new()
     ///     Un agente, o <see langword="null" /> si no existe un agente con el id proporcionado.
     /// </returns>
     T? BuscarPorId(int idAgente);
+
+    /// <summary>
+    ///     Busca todos los agentes de un tipo.
+    /// </summary>
+    /// <param name="tipoAgente">
+    ///     Tipo de los agentes a buscar.
+    /// </param>
+    /// <returns>
+    ///     Lista de agentes.
+    /// </returns>
+    List<T> BuscarPorTipo(TipoAgente tipoAgente);
 
     /// <summary>
     ///     Busca todos los agentes.
