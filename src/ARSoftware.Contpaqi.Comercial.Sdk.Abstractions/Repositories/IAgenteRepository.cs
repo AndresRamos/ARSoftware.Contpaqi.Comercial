@@ -42,7 +42,7 @@ public interface IAgenteRepository<T> where T : class, new()
     /// <returns>
     ///     Lista de agentes.
     /// </returns>
-    List<T> BuscarPorTipo(TipoAgente tipoAgente);
+    List<T> TraerPorTipo(TipoAgente tipoAgente);
 
     /// <summary>
     ///     Busca todos los agentes.

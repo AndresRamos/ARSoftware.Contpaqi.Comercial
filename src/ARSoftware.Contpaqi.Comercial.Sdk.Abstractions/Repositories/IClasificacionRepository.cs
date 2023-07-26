@@ -25,27 +25,27 @@ public interface IClasificacionRepository<T> where T : class, new()
     /// <summary>
     ///     Busca una clasificación por tipo y número.
     /// </summary>
-    /// <param name="tipo">
+    /// <param name="tipoClasificacion">
     ///     Tipo de la clasificación a buscar.
     /// </param>
-    /// <param name="numero">
+    /// <param name="numeroClasificacion">
     ///     Número de la clasificación a buscar.
     /// </param>
     /// <returns>
     ///     Una clasificación, o <see langword="null" /> si no existe una clasificación con el tipo y número proporcionados.
     /// </returns>
-    T? BuscarPorTipoYNumero(TipoClasificacion tipo, NumeroClasificacion numero);
+    T? BuscarPorTipoYNumero(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion);
 
     /// <summary>
     ///     Busca todas las clasificaciones de un tipo.
     /// </summary>
-    /// <param name="tipo">
+    /// <param name="tipoClasificacion">
     ///     Tipo de las clasificaciones a buscar.
     /// </param>
     /// <returns>
     ///     Lista de clasificaciones.
     /// </returns>
-    List<T> TraerPorTipo(TipoClasificacion tipo);
+    List<T> TraerPorTipo(TipoClasificacion tipoClasificacion);
 
     /// <summary>
     ///     Busca todas las clasificaciones.

@@ -36,9 +36,9 @@ public sealed class ConceptoDocumentoSqlRepository : ContpaqiComercialSqlReposit
     }
 
     /// <inheritdoc />
-    public List<admConceptos> TraerPorDocumentoModeloId(int documentoModeloId)
+    public List<admConceptos> TraerPorDocumentoModeloId(int idDocumentoModelo)
     {
-        return _context.admConceptos.WithSpecification(new ConceptosPorDocumentoModeloIdSpecification(documentoModeloId)).ToList();
+        return _context.admConceptos.WithSpecification(new ConceptosPorDocumentoModeloIdSpecification(idDocumentoModelo)).ToList();
     }
 
     /// <inheritdoc />
@@ -83,9 +83,9 @@ public sealed class ConceptoDocumentoSqlRepository<T> : ContpaqiComercialSqlRepo
     }
 
     /// <inheritdoc />
-    public List<T> TraerPorDocumentoModeloId(int documentoModeloId)
+    public List<T> TraerPorDocumentoModeloId(int idDocumentoModelo)
     {
-        return _context.admConceptos.WithSpecification(new ConceptosPorDocumentoModeloIdSpecification(documentoModeloId))
+        return _context.admConceptos.WithSpecification(new ConceptosPorDocumentoModeloIdSpecification(idDocumentoModelo))
             .ProjectTo<T>(_mapper.ConfigurationProvider)
             .ToList();
     }

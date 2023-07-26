@@ -36,7 +36,7 @@ public sealed class AgenteSqlRepository : ContpaqiComercialSqlRepositoryBase<adm
     }
 
     /// <inheritdoc />
-    public List<admAgentes> BuscarPorTipo(TipoAgente tipoAgente)
+    public List<admAgentes> TraerPorTipo(TipoAgente tipoAgente)
     {
         return _context.admAgentes.WithSpecification(new AgentePorTipoSpecification(tipoAgente)).ToList();
     }
@@ -82,7 +82,7 @@ public class AgenteSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<admAgen
     }
 
     /// <inheritdoc />
-    public List<T> BuscarPorTipo(TipoAgente tipoAgente)
+    public List<T> TraerPorTipo(TipoAgente tipoAgente)
     {
         return _context.admAgentes.WithSpecification(new AgentePorTipoSpecification(tipoAgente))
             .ProjectTo<T>(_mapper.ConfigurationProvider)

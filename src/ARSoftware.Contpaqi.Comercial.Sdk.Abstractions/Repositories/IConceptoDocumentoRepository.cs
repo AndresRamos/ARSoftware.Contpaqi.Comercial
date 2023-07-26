@@ -36,13 +36,13 @@ public interface IConceptoDocumentoRepository<T> where T : class, new()
     /// <summary>
     ///     Busca conceptos de documento por documento modelo.
     /// </summary>
-    /// <param name="documentoModeloId">
+    /// <param name="idDocumentoModelo">
     ///     Id del documento modelo de los conceptos de documento a buscar.
     /// </param>
     /// <returns>
     ///     Lista de conceptos de documento.
     /// </returns>
-    List<T> TraerPorDocumentoModeloId(int documentoModeloId);
+    List<T> TraerPorDocumentoModeloId(int idDocumentoModelo);
 
     /// <summary>
     ///     Busca todos los conceptos de documento.

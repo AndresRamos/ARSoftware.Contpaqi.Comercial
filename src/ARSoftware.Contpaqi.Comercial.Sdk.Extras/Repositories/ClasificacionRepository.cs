@@ -33,22 +33,24 @@ public class ClasificacionRepository<T> : IClasificacionRepository<T> where T : 
     }
 
     /// <inheritdoc />
-    public T BuscarPorTipoYNumero(TipoClasificacion tipo, NumeroClasificacion numero)
+    public T BuscarPorTipoYNumero(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion)
     {
-        return _sdk.fBuscaClasificacion((int)tipo, (int)numero) == SdkResultConstants.Success ? LeerDatosClasificacionActual() : null;
+        return _sdk.fBuscaClasificacion((int)tipoClasificacion, (int)numeroClasificacion) == SdkResultConstants.Success
+            ? LeerDatosClasificacionActual()
+            : null;
     }
 
     /// <inheritdoc />
-    public List<T> TraerPorTipo(TipoClasificacion tipo)
+    public List<T> TraerPorTipo(TipoClasificacion tipoClasificacion)
     {
         return new List<T>
         {
-            BuscarPorTipoYNumero(tipo, NumeroClasificacion.Uno),
-            BuscarPorTipoYNumero(tipo, NumeroClasificacion.Dos),
-            BuscarPorTipoYNumero(tipo, NumeroClasificacion.Tres),
-            BuscarPorTipoYNumero(tipo, NumeroClasificacion.Cuatro),
-            BuscarPorTipoYNumero(tipo, NumeroClasificacion.Cinco),
-            BuscarPorTipoYNumero(tipo, NumeroClasificacion.Seis)
+            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Uno),
+            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Dos),
+            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Tres),
+            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Cuatro),
+            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Cinco),
+            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Seis)
         };
     }
 

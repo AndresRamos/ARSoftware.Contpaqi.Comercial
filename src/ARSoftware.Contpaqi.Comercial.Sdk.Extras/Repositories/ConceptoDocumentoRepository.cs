@@ -40,20 +40,20 @@ public class ConceptoDocumentoRepository<T> : IConceptoDocumentoRepository<T> wh
     }
 
     /// <inheritdoc />
-    public List<T> TraerPorDocumentoModeloId(int documentoModeloId)
+    public List<T> TraerPorDocumentoModeloId(int idDocumentoModelo)
     {
         var lista = new List<T>();
 
-        var idDocumentoModelo = new StringBuilder(12);
+        var documentoModeloId = new StringBuilder(12);
 
         _sdk.fPosPrimerConceptoDocto().ToResultadoSdk(_sdk).ThrowIfError();
-        _sdk.fLeeDatoConceptoDocto("CIDDOCUMENTODE", idDocumentoModelo, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
-        if (documentoModeloId == int.Parse(idDocumentoModelo.ToString())) lista.Add(LeerDatosConceptoDocumentoActual());
+        _sdk.fLeeDatoConceptoDocto("CIDDOCUMENTODE", documentoModeloId, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
+        if (idDocumentoModelo == int.Parse(documentoModeloId.ToString())) lista.Add(LeerDatosConceptoDocumentoActual());
 
         while (_sdk.fPosSiguienteConceptoDocto() == SdkResultConstants.Success)
         {
-            _sdk.fLeeDatoConceptoDocto("CIDDOCUMENTODE", idDocumentoModelo, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
-            if (documentoModeloId == int.Parse(idDocumentoModelo.ToString())) lista.Add(LeerDatosConceptoDocumentoActual());
+            _sdk.fLeeDatoConceptoDocto("CIDDOCUMENTODE", documentoModeloId, SdkConstantes.kLongId).ToResultadoSdk(_sdk).ThrowIfError();
+            if (idDocumentoModelo == int.Parse(documentoModeloId.ToString())) lista.Add(LeerDatosConceptoDocumentoActual());
 
             if (_sdk.fPosEOFConceptoDocto() == 1) break;
         }

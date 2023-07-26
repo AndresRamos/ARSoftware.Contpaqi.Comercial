@@ -31,15 +31,17 @@ public sealed class ClasificacionSqlRepository : ContpaqiComercialSqlRepositoryB
     }
 
     /// <inheritdoc />
-    public admClasificaciones? BuscarPorTipoYNumero(TipoClasificacion tipo, NumeroClasificacion numero)
+    public admClasificaciones? BuscarPorTipoYNumero(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion)
     {
-        return _context.admClasificaciones.WithSpecification(new ClasificacionPorTipoYNumeroSpecification(tipo, numero)).SingleOrDefault();
+        return _context.admClasificaciones
+            .WithSpecification(new ClasificacionPorTipoYNumeroSpecification(tipoClasificacion, numeroClasificacion))
+            .SingleOrDefault();
     }
 
     /// <inheritdoc />
-    public List<admClasificaciones> TraerPorTipo(TipoClasificacion tipo)
+    public List<admClasificaciones> TraerPorTipo(TipoClasificacion tipoClasificacion)
     {
-        return _context.admClasificaciones.WithSpecification(new ClasificacionesPorTipoSpecification(tipo)).ToList();
+        return _context.admClasificaciones.WithSpecification(new ClasificacionesPorTipoSpecification(tipoClasificacion)).ToList();
     }
 
     /// <inheritdoc />
@@ -77,17 +79,18 @@ public class ClasificacionSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<
     }
 
     /// <inheritdoc />
-    public T? BuscarPorTipoYNumero(TipoClasificacion tipo, NumeroClasificacion numero)
+    public T? BuscarPorTipoYNumero(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion)
     {
-        return _context.admClasificaciones.WithSpecification(new ClasificacionPorTipoYNumeroSpecification(tipo, numero))
+        return _context.admClasificaciones
+            .WithSpecification(new ClasificacionPorTipoYNumeroSpecification(tipoClasificacion, numeroClasificacion))
             .ProjectTo<T>(_mapper.ConfigurationProvider)
             .SingleOrDefault();
     }
 
     /// <inheritdoc />
-    public List<T> TraerPorTipo(TipoClasificacion tipo)
+    public List<T> TraerPorTipo(TipoClasificacion tipoClasificacion)
     {
-        return _context.admClasificaciones.WithSpecification(new ClasificacionesPorTipoSpecification(tipo))
+        return _context.admClasificaciones.WithSpecification(new ClasificacionesPorTipoSpecification(tipoClasificacion))
             .ProjectTo<T>(_mapper.ConfigurationProvider)
             .ToList();
     }

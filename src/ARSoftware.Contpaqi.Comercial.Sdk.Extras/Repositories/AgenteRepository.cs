@@ -38,7 +38,7 @@ public class AgenteRepository<T> : IAgenteRepository<T> where T : class, new()
     }
 
     /// <inheritdoc />
-    public List<T> BuscarPorTipo(TipoAgente tipoAgente)
+    public List<T> TraerPorTipo(TipoAgente tipoAgente)
     {
         var lista = new List<T>();
 

@@ -37,23 +37,44 @@ public static class ConfigureServices
 
     private static void AddEjemplos(this IServiceCollection services)
     {
-        services.AddSingleton<BuscarAgenteConRepositorio>();
-        services.AddSingleton<BuscarAgenteDtoConRepositorio>();
+        services.AddSingleton<BuscarAgentesConRepositorio>();
+        services.AddSingleton<BuscarAgentesDtoConRepositorio>();
 
-        services.AddSingleton<BuscarAlmacenConRepositorio>();
-        services.AddSingleton<BuscarAlmacenDtoConRepositorio>();
+        services.AddSingleton<BuscarAlmacenesConRepositorio>();
+        services.AddSingleton<BuscarAlmacenesDtoConRepositorio>();
 
-        services.AddSingleton<EjemplosClasificacion>();
-        services.AddSingleton<EjemplosCliente>();
-        services.AddSingleton<EjemplosConcepto>();
-        services.AddSingleton<EjemplosDocumentoModelo>();
-        services.AddSingleton<EjemplosDocumento>();
-        services.AddSingleton<EjemplosEmpresa>();
-        services.AddSingleton<EjemplosMoneda>();
-        services.AddSingleton<EjemplosMovimiento>();
-        services.AddSingleton<EjemplosParametros>();
-        services.AddSingleton<EjemplosProducto>();
-        services.AddSingleton<EjemplosUnidadMedida>();
-        services.AddSingleton<EjemplosValorClasificacion>();
+        services.AddSingleton<BuscarClasificacionesConRepositorio>();
+
+        services.AddSingleton<BuscarClientesProveedoresConRepositorio>();
+        services.AddSingleton<BuscarClientesProveedoresDtoConRepositorio>();
+
+        services.AddSingleton<BuscarConceptosDocumentoConRepositorio>();
+        services.AddSingleton<BuscarConceptosDocumentoDtoConRepositorio>();
+
+        services.AddSingleton<BuscarDocumentosModeloConRepositorio>();
+        services.AddSingleton<BuscarDocumentosModeloDtoConRepositorio>();
+
+        services.AddSingleton<BuscarDocumentosConRepositorio>();
+        services.AddSingleton<BuscarDocumentosDtoConRepositorio>();
+
+        services.AddSingleton<BuscarEmpresasConRepositorio>();
+        services.AddSingleton<BuscarEmpresasDtoConRepositorio>();
+
+        services.AddSingleton<BuscarMonedasConRepositorio>();
+        services.AddSingleton<BuscarMonedasDtoConRepositorio>();
+
+        services.AddSingleton<BuscarMovimientosConRepositorio>();
+        services.AddSingleton<BuscarMovimientosDtoConRepositorio>();
+
+        services.AddSingleton<BuscarParametrosConRepositorio>();
+        services.AddSingleton<BuscarParametrosDtoConRepositorio>();
+
+        services.AddSingleton<BuscarProductosConRepositorio>();
+        services.AddSingleton<BuscarProductosDtoConRepositorio>();
+
+        services.AddSingleton<BuscarUnidadesMedidaConRepositorio>();
+        services.AddSingleton<BuscarUnidadesMedidaDtoConRepositorio>();
+
+        services.AddSingleton<BuscarValoresClasificacionConRepositorio>();
     }
 }

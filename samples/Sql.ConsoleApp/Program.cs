@@ -36,35 +36,59 @@ try
     // Ejemplos del uso del SQL
     // Se pueden ejecutar de forma independiente. Descomenta los ejemplos que quieres ejecutar.
 
-    //host.Services.GetRequiredService<EjemplosEmpresa>().CorrerEjemplos();
+    // Buscar Empresas
+    //host.Services.GetRequiredService<BuscarEmpresasConRepositorio>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarEmpresasDtoConRepositorio>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<BuscarAgenteConRepositorio>().CorrerEjemplos();
-    //host.Services.GetRequiredService<BuscarAgenteDtoConRepositorio>().CorrerEjemplos();
+    // Buscar Agentes
+    //host.Services.GetRequiredService<BuscarAgentesConRepositorio>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarAgentesDtoConRepositorio>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<BuscarAlmacenConRepositorio>().CorrerEjemplos();
-    //host.Services.GetRequiredService<BuscarAlmacenDtoConRepositorio>().CorrerEjemplos();
+    // Buscar Almacenes
+    //host.Services.GetRequiredService<BuscarAlmacenesConRepositorio>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarAlmacenesDtoConRepositorio>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<EjemplosClasificacion>().CorrerEjemplos();
+    // Buscar Clasificaciones
+    //host.Services.GetRequiredService<BuscarClasificacionesConRepositorio>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<EjemplosCliente>().CorrerEjemplos();
+    // Buscar Clientes Proveedores
+    //host.Services.GetRequiredService<BuscarClientesProveedoresConRepositorio>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarClientesProveedoresDtoConRepositorio>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<EjemplosConcepto>().CorrerEjemplos();
+    // Buscar Conceptos Documento
+    //host.Services.GetRequiredService<BuscarConceptosDocumentoConRepositorio>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarConceptosDocumentoDtoConRepositorio>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<EjemplosDocumentoModelo>().CorrerEjemplos();
+    // Buscar Documentos
+    //host.Services.GetRequiredService<BuscarDocumentosConRepositorio>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarDocumentosDtoConRepositorio>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<EjemplosDocumento>().CorrerEjemplos();
+    // Buscar Documentos Modelo
+    //host.Services.GetRequiredService<BuscarDocumentosModeloConRepositorio>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarDocumentosModeloDtoConRepositorio>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<EjemplosMoneda>().CorrerEjemplos();
+    // Buscar Monedas
+    //host.Services.GetRequiredService<BuscarMonedasConRepositorio>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarMonedasDtoConRepositorio>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<EjemplosMovimiento>().CorrerEjemplos();
+    // Buscar Movimientos
+    //host.Services.GetRequiredService<BuscarMovimientosConRepositorio>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarMovimientosDtoConRepositorio>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<EjemplosParametros>().CorrerEjemplos();
+    // Buscar Parametros
+    //host.Services.GetRequiredService<BuscarParametrosConRepositorio>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarParametrosDtoConRepositorio>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<EjemplosProducto>().CorrerEjemplos();
+    // Buscar Productos
+    //host.Services.GetRequiredService<BuscarProductosConRepositorio>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarProductosDtoConRepositorio>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<EjemplosUnidadMedida>().CorrerEjemplos();
+    // Buscar Unidades Medida
+    //host.Services.GetRequiredService<BuscarUnidadesMedidaConRepositorio>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarUnidadesMedidaDtoConRepositorio>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<EjemplosValorClasificacion>().CorrerEjemplos();
+    // Buscar Valores Clasificacion
+    //host.Services.GetRequiredService<BuscarValoresClasificacionConRepositorio>().CorrerEjemplos();
 }
 catch (Exception e)
 {
