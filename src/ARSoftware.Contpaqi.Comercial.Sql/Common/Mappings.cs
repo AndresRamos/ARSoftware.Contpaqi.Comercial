@@ -9,5 +9,6 @@ public sealed class Mappings : Profile
     public Mappings()
     {
         CreateMap<admAgentes, AgenteDto>();
+        CreateMap<admAlmacenes, AlmacenDto>();
     }
 }

@@ -39,9 +39,10 @@ try
     //host.Services.GetRequiredService<EjemplosEmpresa>().CorrerEjemplos();
 
     //host.Services.GetRequiredService<BuscarAgenteConRepositorio>().CorrerEjemplos();
-    host.Services.GetRequiredService<BuscarAgenteDtoConRepositorio>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarAgenteDtoConRepositorio>().CorrerEjemplos();
 
-    //host.Services.GetRequiredService<EjemplosAlmacen>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarAlmacenConRepositorio>().CorrerEjemplos();
+    //host.Services.GetRequiredService<BuscarAlmacenDtoConRepositorio>().CorrerEjemplos();
 
     //host.Services.GetRequiredService<EjemplosClasificacion>().CorrerEjemplos();
 

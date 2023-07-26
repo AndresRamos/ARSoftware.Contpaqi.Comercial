@@ -11,7 +11,7 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 /// <summary>
 ///     Repositorio de SQL para consultar almacenes.
 /// </summary>
-public sealed class AlmacenSqlRepository : RepositoryBase<admAlmacenes>, IAlmacenRepository<admAlmacenes>
+public sealed class AlmacenSqlRepository : ContpaqiComercialSqlRepositoryBase<admAlmacenes>, IAlmacenRepository<admAlmacenes>
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;
 

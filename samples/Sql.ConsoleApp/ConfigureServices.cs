@@ -40,7 +40,9 @@ public static class ConfigureServices
         services.AddSingleton<BuscarAgenteConRepositorio>();
         services.AddSingleton<BuscarAgenteDtoConRepositorio>();
 
-        services.AddSingleton<EjemplosAlmacen>();
+        services.AddSingleton<BuscarAlmacenConRepositorio>();
+        services.AddSingleton<BuscarAlmacenDtoConRepositorio>();
+
         services.AddSingleton<EjemplosClasificacion>();
         services.AddSingleton<EjemplosCliente>();
         services.AddSingleton<EjemplosConcepto>();
