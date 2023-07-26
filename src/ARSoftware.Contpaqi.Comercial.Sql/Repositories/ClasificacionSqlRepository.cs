@@ -6,13 +6,16 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
 /// <summary>
 ///     Repositorio de SQL para consultar clasificaciones.
 /// </summary>
-public sealed class ClasificacionSqlRepository : RepositoryBase<admClasificaciones>, IClasificacionRepository<admClasificaciones>
+public sealed class ClasificacionSqlRepository : ContpaqiComercialSqlRepositoryBase<admClasificaciones>,
+    IClasificacionRepository<admClasificaciones>
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;
 
@@ -43,5 +46,55 @@ public sealed class ClasificacionSqlRepository : RepositoryBase<admClasificacion
     public List<admClasificaciones> TraerTodo()
     {
         return _context.admClasificaciones.ToList();
+    }
+}
+
+/// <summary>
+///     Repositorio de SQL para consultar clasificaciones y transformarlos a un tipo destino utilizando AutoMapper.
+/// </summary>
+/// <typeparam name="T">
+///     Tipo del objecto destino al que se mapean las clasificaciones.
+/// </typeparam>
+public class ClasificacionSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<admClasificaciones, T>, IClasificacionRepository<T>
+    where T : class, new()
+{
+    private readonly ContpaqiComercialEmpresaDbContext _context;
+    private readonly IMapper _mapper;
+
+    /// <inheritdoc />
+    public ClasificacionSqlRepository(ContpaqiComercialEmpresaDbContext context, IMapper mapper) : base(context, mapper)
+    {
+        _context = context;
+        _mapper = mapper;
+    }
+
+    /// <inheritdoc />
+    public T? BuscarPorId(int idClasificacion)
+    {
+        return _context.admClasificaciones.WithSpecification(new ClasificacionPorIdSpecification(idClasificacion))
+            .ProjectTo<T>(_mapper.ConfigurationProvider)
+            .SingleOrDefault();
+    }
+
+    /// <inheritdoc />
+    public T? BuscarPorTipoYNumero(TipoClasificacion tipo, NumeroClasificacion numero)
+    {
+        return _context.admClasificaciones.WithSpecification(new ClasificacionPorTipoYNumeroSpecification(tipo, numero))
+            .ProjectTo<T>(_mapper.ConfigurationProvider)
+            .SingleOrDefault();
+    }
+
+    /// <inheritdoc />
+    public List<T> TraerPorTipo(TipoClasificacion tipo)
+    {
+        return _context.admClasificaciones.WithSpecification(new ClasificacionesPorTipoSpecification(tipo))
+            .ProjectTo<T>(_mapper.ConfigurationProvider)
+            .ToList();
+    }
+
+    /// <inheritdoc />
+    public List<T> TraerTodo()
+    {
+        return _context.admClasificaciones.ProjectTo<T>(_mapper.ConfigurationProvider).ToList();
     }
 }

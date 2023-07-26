@@ -1,6 +1,6 @@
-﻿// ReSharper disable InconsistentNaming
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 
-using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
+// ReSharper disable InconsistentNaming
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models.Dtos;
 

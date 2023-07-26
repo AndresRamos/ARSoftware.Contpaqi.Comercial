@@ -6,13 +6,16 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 
 /// <summary>
 ///     Repositorio de SQL para consultar clientes y proveedores.
 /// </summary>
-public sealed class ClienteProveedorSqlRepository : RepositoryBase<admClientes>, IClienteProveedorRepository<admClientes>
+public sealed class ClienteProveedorSqlRepository : ContpaqiComercialSqlRepositoryBase<admClientes>,
+    IClienteProveedorRepository<admClientes>
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;
 
@@ -55,5 +58,66 @@ public sealed class ClienteProveedorSqlRepository : RepositoryBase<admClientes>,
     public List<admClientes> TraerTodo()
     {
         return _context.admClientes.ToList();
+    }
+}
+
+/// <summary>
+///     Repositorio de SQL para consultar clientes y proveedores y transformarlos a un tipo destino utilizando AutoMapper.
+/// </summary>
+/// <typeparam name="T">
+///     Tipo del objecto destino al que se mapean los clientes y proveedores.
+/// </typeparam>
+public sealed class ClienteProveedorSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<admClientes, T>, IClienteProveedorRepository<T>
+    where T : class, new()
+{
+    private readonly ContpaqiComercialEmpresaDbContext _context;
+    private readonly IMapper _mapper;
+
+    public ClienteProveedorSqlRepository(ContpaqiComercialEmpresaDbContext context, IMapper mapper) : base(context, mapper)
+    {
+        _context = context;
+        _mapper = mapper;
+    }
+
+    /// <inheritdoc />
+    public T? BuscarPorCodigo(string codigoCliente)
+    {
+        return _context.admClientes.WithSpecification(new ClientePorCodigoSpecification(codigoCliente))
+            .ProjectTo<T>(_mapper.ConfigurationProvider)
+            .SingleOrDefault();
+    }
+
+    /// <inheritdoc />
+    public T? BuscarPorId(int idCliente)
+    {
+        return _context.admClientes.WithSpecification(new ClientePorIdSpecification(idCliente))
+            .ProjectTo<T>(_mapper.ConfigurationProvider)
+            .SingleOrDefault();
+    }
+
+    /// <inheritdoc />
+    public List<T> TraerClientes()
+    {
+        return _context.admClientes.WithSpecification(new ClientesSpecification()).ProjectTo<T>(_mapper.ConfigurationProvider).ToList();
+    }
+
+    /// <inheritdoc />
+    public List<T> TraerPorTipo(TipoCliente tipoCliente)
+    {
+        return _context.admClientes.WithSpecification(new ClientesPorTipoSpecification(tipoCliente))
+            .ProjectTo<T>(_mapper.ConfigurationProvider)
+            .ToList();
+    }
+
+    /// <inheritdoc />
+    public List<T> TraerProveedores()
+    {
+        return _context.admClientes.WithSpecification(new ProveedoresSpecification()).ProjectTo<T>(_mapper.ConfigurationProvider).ToList();
+    }
+
+    /// <inheritdoc />
+    public List<T> TraerTodo()
+    {
+        return _context.admClientes.ProjectTo<T>(_mapper.ConfigurationProvider).ToList();
     }
 }
