@@ -15,11 +15,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 /// <typeparam name="T">
 ///     El tipo de parametros utilizado por el repositorio.
 /// </typeparam>
-public class ParametrosRepository<T> : IParametrosRepository<T> where T : class, new()
+public class ParametrosSdkRepository<T> : IParametrosRepository<T> where T : class, new()
 {
     private readonly IContpaqiSdk _sdk;
 
-    public ParametrosRepository(IContpaqiSdk sdk)
+    public ParametrosSdkRepository(IContpaqiSdk sdk)
     {
         _sdk = sdk;
     }

@@ -21,11 +21,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 /// <typeparam name="T">
 ///     El tipo de documento utilizado por el repositorio.
 /// </typeparam>
-public class DocumentoRepository<T> : IDocumentoRepository<T> where T : class, new()
+public class DocumentoSdkRepository<T> : IDocumentoRepository<T> where T : class, new()
 {
     private readonly IContpaqiSdk _sdk;
 
-    public DocumentoRepository(IContpaqiSdk sdk)
+    public DocumentoSdkRepository(IContpaqiSdk sdk)
     {
         _sdk = sdk;
     }

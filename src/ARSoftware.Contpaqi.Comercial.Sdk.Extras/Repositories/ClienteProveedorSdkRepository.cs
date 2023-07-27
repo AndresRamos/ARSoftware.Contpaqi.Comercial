@@ -19,11 +19,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 /// <typeparam name="T">
 ///     El tipo de cliente o proveedor utilizado por el repositorio.
 /// </typeparam>
-public class ClienteProveedorRepository<T> : IClienteProveedorRepository<T> where T : class, new()
+public class ClienteProveedorSdkRepository<T> : IClienteProveedorRepository<T> where T : class, new()
 {
     private readonly IContpaqiSdk _sdk;
 
-    public ClienteProveedorRepository(IContpaqiSdk sdk)
+    public ClienteProveedorSdkRepository(IContpaqiSdk sdk)
     {
         _sdk = sdk;
     }

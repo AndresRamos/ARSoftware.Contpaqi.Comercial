@@ -19,11 +19,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 /// <typeparam name="T">
 ///     El tipo de producto utilizado por el repositorio.
 /// </typeparam>
-public class ProductoRepository<T> : IProductoRepository<T> where T : class, new()
+public class ProductoSdkRepository<T> : IProductoRepository<T> where T : class, new()
 {
     private readonly IContpaqiSdk _sdk;
 
-    public ProductoRepository(IContpaqiSdk sdk)
+    public ProductoSdkRepository(IContpaqiSdk sdk)
     {
         _sdk = sdk;
     }

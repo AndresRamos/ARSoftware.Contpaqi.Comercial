@@ -18,11 +18,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 /// <typeparam name="T">
 ///     El tipo de concepto de documento utilizado por el repositorio.
 /// </typeparam>
-public class ConceptoDocumentoRepository<T> : IConceptoDocumentoRepository<T> where T : class, new()
+public class ConceptoDocumentoSdkRepository<T> : IConceptoDocumentoRepository<T> where T : class, new()
 {
     private readonly IContpaqiSdk _sdk;
 
-    public ConceptoDocumentoRepository(IContpaqiSdk sdk)
+    public ConceptoDocumentoSdkRepository(IContpaqiSdk sdk)
     {
         _sdk = sdk;
     }

@@ -16,11 +16,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 /// <typeparam name="T">
 ///     El tipo de almacen utilizado por el repositorio.
 /// </typeparam>
-public class AlmacenRepository<T> : IAlmacenRepository<T> where T : class, new()
+public class AlmacenSdkRepository<T> : IAlmacenRepository<T> where T : class, new()
 {
     private readonly IContpaqiSdk _sdk;
 
-    public AlmacenRepository(IContpaqiSdk sdk)
+    public AlmacenSdkRepository(IContpaqiSdk sdk)
     {
         _sdk = sdk;
     }

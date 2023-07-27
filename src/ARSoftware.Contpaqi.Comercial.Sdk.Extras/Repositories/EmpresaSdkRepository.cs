@@ -12,11 +12,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 /// <summary>
 ///     Repositorio de SDK para consultar empresas.
 /// </summary>
-public class EmpresaRepository : IEmpresaRepository<Empresa>
+public class EmpresaSdkRepository : IEmpresaRepository<Empresa>
 {
     private readonly IContpaqiSdk _sdk;
 
-    public EmpresaRepository(IContpaqiSdk sdk)
+    public EmpresaSdkRepository(IContpaqiSdk sdk)
     {
         _sdk = sdk;
     }

@@ -19,11 +19,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 /// <typeparam name="T">
 ///     El tipo de valor de clasificación utilizado por el repositorio.
 /// </typeparam>
-public class ValorClasificacionRepository<T> : IValorClasificacionRepository<T> where T : class, new()
+public class ValorClasificacionSdkRepository<T> : IValorClasificacionRepository<T> where T : class, new()
 {
     private readonly IContpaqiSdk _sdk;
 
-    public ValorClasificacionRepository(IContpaqiSdk sdk)
+    public ValorClasificacionSdkRepository(IContpaqiSdk sdk)
     {
         _sdk = sdk;
     }

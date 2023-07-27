@@ -16,11 +16,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 /// <typeparam name="T">
 ///     El tipo de unidad de medida utilizado por el repositorio.
 /// </typeparam>
-public class UnidadMedidaRepository<T> : IUnidadMedidaRepository<T> where T : class, new()
+public class UnidadMedidaSdkRepository<T> : IUnidadMedidaRepository<T> where T : class, new()
 {
     private readonly IContpaqiSdk _sdk;
 
-    public UnidadMedidaRepository(IContpaqiSdk sdk)
+    public UnidadMedidaSdkRepository(IContpaqiSdk sdk)
     {
         _sdk = sdk;
     }

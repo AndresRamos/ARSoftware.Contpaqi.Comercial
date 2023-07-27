@@ -16,11 +16,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 ///     Repositorio de SDK para consultar agentes.
 /// </summary>
 /// <typeparam name="T"> El tipo de agente utilizado por el repositorio.</typeparam>
-public class AgenteRepository<T> : IAgenteRepository<T> where T : class, new()
+public class AgenteSdkRepository<T> : IAgenteRepository<T> where T : class, new()
 {
     private readonly IContpaqiSdk _sdk;
 
-    public AgenteRepository(IContpaqiSdk sdk)
+    public AgenteSdkRepository(IContpaqiSdk sdk)
     {
         _sdk = sdk;
     }

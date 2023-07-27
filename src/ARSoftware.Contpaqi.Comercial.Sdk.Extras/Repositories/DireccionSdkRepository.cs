@@ -20,11 +20,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 /// <typeparam name="T">
 ///     El tipo de direccion utilizado por el repositorio.
 /// </typeparam>
-public class DireccionRepository<T> : IDireccionRepository<T> where T : class, new()
+public class DireccionSdkRepository<T> : IDireccionRepository<T> where T : class, new()
 {
     private readonly IContpaqiSdk _sdk;
 
-    public DireccionRepository(IContpaqiSdk sdk)
+    public DireccionSdkRepository(IContpaqiSdk sdk)
     {
         _sdk = sdk;
     }

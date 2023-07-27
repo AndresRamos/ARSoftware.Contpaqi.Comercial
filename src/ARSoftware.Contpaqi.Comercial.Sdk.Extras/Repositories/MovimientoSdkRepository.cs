@@ -17,11 +17,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 /// <typeparam name="T">
 ///     El tipo de movimiento utilizado por el repositorio.
 /// </typeparam>
-public class MovimientoRepository<T> : IMovimientoRepository<T> where T : class, new()
+public class MovimientoSdkRepository<T> : IMovimientoRepository<T> where T : class, new()
 {
     private readonly IContpaqiSdk _sdk;
 
-    public MovimientoRepository(IContpaqiSdk sdk)
+    public MovimientoSdkRepository(IContpaqiSdk sdk)
     {
         _sdk = sdk;
     }

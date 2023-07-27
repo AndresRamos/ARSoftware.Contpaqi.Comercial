@@ -41,7 +41,7 @@ try
     //host.Services.GetRequiredService<BuscarEmpresasDtoConRepositorio>().CorrerEjemplos();
 
     // Buscar Agentes
-    //host.Services.GetRequiredService<BuscarAgentesConRepositorio>().CorrerEjemplos();
+    host.Services.GetRequiredService<BuscarAgentesConRepositorio>().CorrerEjemplos();
     //host.Services.GetRequiredService<BuscarAgentesDtoConRepositorio>().CorrerEjemplos();
 
     // Buscar Almacenes

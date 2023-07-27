@@ -17,11 +17,11 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 /// <typeparam name="T">
 ///     El tipo de clasificación utilizado por el repositorio.
 /// </typeparam>
-public class ClasificacionRepository<T> : IClasificacionRepository<T> where T : class, new()
+public class ClasificacionSdkRepository<T> : IClasificacionRepository<T> where T : class, new()
 {
     private readonly IContpaqiSdk _sdk;
 
-    public ClasificacionRepository(IContpaqiSdk sdk)
+    public ClasificacionSdkRepository(IContpaqiSdk sdk)
     {
         _sdk = sdk;
     }
