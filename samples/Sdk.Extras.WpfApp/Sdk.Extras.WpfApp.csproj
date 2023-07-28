@@ -18,6 +18,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Models\Mappings\**" />
+	  <EmbeddedResource Remove="Models\Mappings\**" />
+	  <None Remove="Models\Mappings\**" />
+	  <Page Remove="Models\Mappings\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Remove="appsettings.json" />
 		<None Remove="Images\AR_LOGO01.jpg" />
 		<None Remove="Images\AR_LOGO03.ico" />
@@ -43,10 +50,6 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="MahApps.Metro" Version="2.4.9" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Models\Mappings\" />
 	</ItemGroup>
 
 	<ItemGroup>

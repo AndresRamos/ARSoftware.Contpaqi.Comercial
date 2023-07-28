@@ -1,22 +1,9 @@
-﻿using System;
-using ARSoftware.Contpaqi.Comercial.Sql.Models.Generales;
+﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
+public class Empresa
 {
-    public class Empresa : Empresas
-    {
-        public bool Contains(string filtro)
-        {
-            return string.IsNullOrWhiteSpace(filtro) ||
-                   CIDEMPRESA.ToString().IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   CNOMBREEMPRESA?.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   CRUTADATOS?.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   CRUTARESPALDOS?.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
-        }
-
-        public override string ToString()
-        {
-            return $"{CNOMBREEMPRESA}";
-        }
-    }
+    public string Nombre { get; set; } = string.Empty;
+    public string Ruta { get; set; } = string.Empty;
+    public string BaseDatos { get; set; } = string.Empty;
+    public Parametros? Parametros { get; set; }
 }

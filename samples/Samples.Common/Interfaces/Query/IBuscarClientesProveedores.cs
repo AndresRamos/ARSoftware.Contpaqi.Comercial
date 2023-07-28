@@ -1,8 +1,8 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 
-namespace Sql.ConsoleApp.Ejemplos;
+namespace Samples.Common;
 
-internal interface IBuscarClientesProveedores
+public interface IBuscarClientesProveedores
 {
     void BuscarPorCodigo(string codigoCliente);
     void BuscarPorId(int idCliente);

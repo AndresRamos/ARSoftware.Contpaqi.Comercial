@@ -2,6 +2,7 @@
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models.Dtos;
 using ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 using Microsoft.Extensions.Logging;
+using Samples.Common;
 
 namespace Sql.ConsoleApp.Ejemplos;
 

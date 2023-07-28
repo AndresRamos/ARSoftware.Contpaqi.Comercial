@@ -1,21 +1,26 @@
-﻿using System;
-using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
+﻿using System.Collections.Generic;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+
+public class ConceptoDocumento
 {
-    public class ConceptoDocumento : admConceptos
-    {
-        public bool Contains(string filtro)
-        {
-            return string.IsNullOrWhiteSpace(filtro) ||
-                   CIDCONCEPTODOCUMENTO.ToString().IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   CCODIGOCONCEPTO.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   CNOMBRECONCEPTO.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
-        }
+    /// <summary>
+    ///     Id del concepto de documento.
+    /// </summary>
+    public int Id { get; set; }
 
-        public override string ToString()
-        {
-            return $"{CCODIGOCONCEPTO} - {CNOMBRECONCEPTO}";
-        }
-    }
+    /// <summary>
+    ///     Código del concepto de documento.
+    /// </summary>
+    public string Codigo { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Nombre del concepto de documento.
+    /// </summary>
+    public string Nombre { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Datos extra del concepto de documento.
+    /// </summary>
+    public Dictionary<string, string> DatosExtra { get; set; } = new();
 }

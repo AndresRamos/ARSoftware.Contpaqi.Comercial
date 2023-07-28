@@ -1,26 +1,31 @@
-﻿using System;
-using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
-using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
+﻿using System.Collections.Generic;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+
+public class UnidadMedida
 {
-    public class UnidadMedida : admUnidadesMedidaPeso
-    {
-        public bool Contains(string filtro)
-        {
-            return string.IsNullOrWhiteSpace(filtro) ||
-                   CIDUNIDAD.ToString().IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   CNOMBREUNIDAD.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
-        }
+    /// <summary>
+    ///     Id de la unidad.
+    /// </summary>
+    public int Id { get; set; }
 
-        public override string ToString()
-        {
-            return CNOMBREUNIDAD;
-        }
+    /// <summary>
+    ///     Abreviatura de la unidad.
+    /// </summary>
+    public string Abreviatura { get; set; } = string.Empty;
 
-        public tUnidad ToTUnidad()
-        {
-            return new tUnidad { cNombreUnidad = CNOMBREUNIDAD, cAbreviatura = CABREVIATURA, cDespliegue = CDESPLIEGUE };
-        }
-    }
+    /// <summary>
+    ///     Nombre de la unidad.
+    /// </summary>
+    public string Nombre { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Clave SAT de acuerdo al Anexo 20 3.3
+    /// </summary>
+    public string ClaveSat { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Datos extra de la unidad.
+    /// </summary>
+    public Dictionary<string, string> DatosExtra { get; set; }
 }

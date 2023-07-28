@@ -15,10 +15,15 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MahApps.Metro.Controls.Dialogs;
 using Sdk.Extras.WpfApp.Messages;
+using Sdk.Extras.WpfApp.Models;
 using Sdk.Extras.WpfApp.Views.Agentes;
 using Sdk.Extras.WpfApp.Views.Almacenes;
 using Sdk.Extras.WpfApp.Views.Direcciones;
 using Sdk.Extras.WpfApp.Views.ValoresClasificacion;
+using Agente = Sdk.Extras.WpfApp.Models.Agente;
+using Almacen = Sdk.Extras.WpfApp.Models.Almacen;
+using ClienteProveedor = Sdk.Extras.WpfApp.Models.ClienteProveedor;
+using Direccion = Sdk.Extras.WpfApp.Models.Direccion;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Clientes;
 

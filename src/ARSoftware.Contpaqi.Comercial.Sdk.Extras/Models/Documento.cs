@@ -1,87 +1,102 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
+using System.Text.Json.Serialization;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
-using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+
+public class Documento
 {
-    public class Documento : admDocumentos
-    {
-        public Documento()
-        {
-            CFECHA = DateTime.Today;
-            Moneda = Moneda.PesoMexicano;
-            MetodoPago = MetodoPago.PUE;
-            CTIPOCAMBIO = 1;
-        }
+    /// <summary>
+    ///     Id del documento.
+    /// </summary>
+    public int Id { get; set; }
 
-        public Agente Agente { get; set; } = new Agente();
-        public ClienteProveedor ClienteProveedor { get; set; } = new ClienteProveedor();
-        public ConceptoDocumento ConceptoDocumento { get; set; } = new ConceptoDocumento();
-        public Direccion DireccionEnvio { get; set; } = new Direccion();
-        public Direccion DireccionFiscal { get; set; } = new Direccion();
-        public List<Movimiento> Movimientos { get; set; } = new List<Movimiento>();
+    /// <summary>
+    ///     Fecha del documento.
+    /// </summary>
+    public DateTime Fecha { get; set; }
 
-        public FormaPago FormaPago
-        {
-            get => FormaPago.FromClave(CMETODOPAG);
-            set => CMETODOPAG = value.Clave;
-        }
+    /// <summary>
+    ///     Concepto del documento.
+    /// </summary>
+    public ConceptoDocumento Concepto { get; set; } = new();
 
-        public MetodoPago MetodoPago
-        {
-            get => MetodoPagoHelper.ConvertFromSdkValue(CCANTPARCI);
-            set => CCANTPARCI = MetodoPagoHelper.ConvertToSdkValue(value);
-        }
+    /// <summary>
+    ///     Serie del documento.
+    /// </summary>
+    public string Serie { get; set; } = string.Empty;
 
-        public Moneda Moneda
-        {
-            get => Moneda.FromId(CIDMONEDA);
-            set => CIDMONEDA = value.Id;
-        }
+    /// <summary>
+    ///     Folio del documento.
+    /// </summary>
+    public int Folio { get; set; }
 
-        public bool Contains(string filtro)
-        {
-            return string.IsNullOrWhiteSpace(filtro) ||
-                   CIDDOCUMENTO.ToString().IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   ConceptoDocumento.CCODIGOCONCEPTO.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   ConceptoDocumento.CNOMBRECONCEPTO.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   CSERIEDOCUMENTO.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   CFOLIO.ToString(CultureInfo.InvariantCulture).IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
-        }
+    /// <summary>
+    ///     Cliente o proveedor del documento.
+    /// </summary>
+    public ClienteProveedor? Cliente { get; set; }
 
-        public tDocumento ToTDocumento()
-        {
-            var tdocumento = new tDocumento
-            {
-                aFolio = CFOLIO,
-                aNumMoneda = CIDMONEDA,
-                aTipoCambio = CTIPOCAMBIO,
-                aImporte = CNETO,
-                aDescuentoDoc1 = CDESCUENTODOC1,
-                aDescuentoDoc2 = CDESCUENTODOC2,
-                aSistemaOrigen = CSISTORIG,
-                aCodConcepto = ConceptoDocumento.CCODIGOCONCEPTO,
-                aSerie = CSERIEDOCUMENTO,
-                aFecha = CFECHA.ToSdkFecha(),
-                aCodigoCteProv = ClienteProveedor.CCODIGOCLIENTE,
-                aCodigoAgente = Agente.CCODIGOAGENTE,
-                aReferencia = CREFERENCIA,
-                aAfecta = CAFECTADO,
-                aGasto1 = CGASTO1,
-                aGasto2 = CGASTO2,
-                aGasto3 = CGASTO3
-            };
-            return tdocumento;
-        }
+    /// <summary>
+    ///     Moneda del documento.
+    /// </summary>
+    public Moneda Moneda { get; set; } = Moneda.PesoMexicano;
 
-        public tLlaveDoc ToTLlaveDoc()
-        {
-            return new tLlaveDoc { aCodConcepto = ConceptoDocumento.CCODIGOCONCEPTO, aSerie = CSERIEDOCUMENTO, aFolio = CFOLIO };
-        }
-    }
+    /// <summary>
+    ///     Tipo de cambio del documento.
+    /// </summary>
+    public decimal TipoCambio { get; set; } = 1;
+
+    /// <summary>
+    ///     Referencia del documento.
+    /// </summary>
+    public string Referencia { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Observaciones del documento.
+    /// </summary>
+    public string Observaciones { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Total del documento.
+    /// </summary>
+    public decimal Total { get; set; }
+
+    /// <summary>
+    ///     Agente del documento.
+    /// </summary>
+    public Agente? Agente { get; set; } = new();
+
+    /// <summary>
+    ///     Direccion fiscal del documento
+    /// </summary>
+    public Direccion? DireccionFiscal { get; set; } = new();
+
+    /// <summary>
+    ///     Forma de pago del documento.
+    /// </summary>
+    [JsonConverter(typeof(FormaPagoJsonConverter))]
+    public FormaPago? FormaPago { get; set; }
+
+    /// <summary>
+    ///     Metodo de pago del documento.
+    /// </summary>
+    [JsonConverter(typeof(MetodoPagoJsonConverter))]
+    public MetodoPago? MetodoPago { get; set; }
+
+    /// <summary>
+    ///     Movimientos del documento.
+    /// </summary>
+    public List<Movimiento> Movimientos { get; set; } = new();
+
+    /// <summary>
+    ///     Folio digital del documento.
+    /// </summary>
+    public FolioDigital? FolioDigital { get; set; } = new();
+
+    /// <summary>
+    ///     Datos extra del documento.
+    /// </summary>
+    public Dictionary<string, string> DatosExtra { get; set; } = new();
 }

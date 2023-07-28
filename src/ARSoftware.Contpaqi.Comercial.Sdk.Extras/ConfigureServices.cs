@@ -4,6 +4,7 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Services;
+using ARSoftware.Contpaqi.Comercial.Sql.Models.Generales;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras;
@@ -60,7 +61,7 @@ public static class ConfigureServices
         services.AddSingleton<IDocumentoService, DocumentoService>();
 
         // Empresas
-        services.AddSingleton<IEmpresaRepository<Empresa>, EmpresaSdkRepository>();
+        services.AddSingleton<IEmpresaRepository<Empresas>, EmpresaSdkRepository>();
 
         // Monedas
         services.AddSingleton<IMonedaRepository<Moneda>, MonedaRepository>();

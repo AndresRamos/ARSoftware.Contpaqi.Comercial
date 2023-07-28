@@ -1,6 +1,6 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 
-namespace Sql.ConsoleApp.Ejemplos;
+namespace Samples.Common;
 
 public interface IBuscarDocumentos
 {

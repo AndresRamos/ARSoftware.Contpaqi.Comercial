@@ -4,11 +4,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Sdk.Extras.WpfApp.Messages;
+using Sdk.Extras.WpfApp.Models;
 
 namespace Sdk.Extras.WpfApp.ViewModels.ValoresClasificacion;
 
@@ -61,8 +61,7 @@ public class SeleccionarValorClasificacionViewModel : ObservableRecipient
     {
         SeleccionoValor = false;
         Valores.Clear();
-        foreach (ValorClasificacion valor in valores)
-            Valores.Add(valor);
+        foreach (ValorClasificacion valor in valores) Valores.Add(valor);
 
         ValorSeleccionado = Valores.FirstOrDefault();
     }
@@ -98,8 +97,7 @@ public class SeleccionarValorClasificacionViewModel : ObservableRecipient
     private bool ValoresView_Filter(object obj)
     {
         var valor = obj as ValorClasificacion;
-        if (valor is null)
-            throw new ArgumentException("El parametro no es un tipo valido", nameof(obj));
+        if (valor is null) throw new ArgumentException("El parametro no es un tipo valido", nameof(obj));
 
         return valor.Contains(Filtro);
     }

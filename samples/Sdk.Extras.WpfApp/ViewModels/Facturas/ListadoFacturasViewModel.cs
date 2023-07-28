@@ -16,6 +16,7 @@ using MahApps.Metro.Controls.Dialogs;
 using Sdk.Extras.WpfApp.Messages;
 using Sdk.Extras.WpfApp.Models;
 using Sdk.Extras.WpfApp.Views.Facturas;
+using ConceptoDocumento = Sdk.Extras.WpfApp.Models.ConceptoDocumento;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Facturas;
 

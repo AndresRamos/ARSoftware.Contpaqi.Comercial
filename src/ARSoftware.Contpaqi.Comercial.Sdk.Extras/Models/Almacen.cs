@@ -1,29 +1,26 @@
-﻿using System;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
-using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
+﻿using System.Collections.Generic;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+
+public class Almacen
 {
-    public class Almacen : admAlmacenes
-    {
-        public Almacen()
-        {
-            CFECHAALTAALMACEN = DateTime.Today;
-            CFECHAEXTRA = SdkDateTimeHelper.CreateDefaultSdkFecha();
-            CSISTORIG = 205;
-        }
+    /// <summary>
+    ///     Id del almacén.
+    /// </summary>
+    public int Id { get; set; }
 
-        public bool Contains(string filtro)
-        {
-            return string.IsNullOrWhiteSpace(filtro) ||
-                   CIDALMACEN.ToString().IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   CCODIGOALMACEN.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   CNOMBREALMACEN.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
-        }
+    /// <summary>
+    ///     Código del almacén.
+    /// </summary>
+    public string Codigo { get; set; } = string.Empty;
 
-        public override string ToString()
-        {
-            return $"{CCODIGOALMACEN} - {CNOMBREALMACEN}";
-        }
-    }
+    /// <summary>
+    ///     Nombre del almacén.
+    /// </summary>
+    public string Nombre { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Datos extra del almacén.
+    /// </summary>
+    public Dictionary<string, string> DatosExtra { get; set; } = new();
 }

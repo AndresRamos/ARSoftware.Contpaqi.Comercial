@@ -1,4 +1,4 @@
-﻿namespace Sql.ConsoleApp.Ejemplos;
+﻿namespace Samples.Common;
 
 public interface IBuscarDocumentosModelo
 {

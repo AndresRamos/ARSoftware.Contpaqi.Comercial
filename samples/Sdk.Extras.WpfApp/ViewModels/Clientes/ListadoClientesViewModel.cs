@@ -10,7 +10,11 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
+using Sdk.Extras.WpfApp.Models;
 using Sdk.Extras.WpfApp.Views.Clientes;
+using Agente = Sdk.Extras.WpfApp.Models.Agente;
+using Almacen = Sdk.Extras.WpfApp.Models.Almacen;
+using ClienteProveedor = Sdk.Extras.WpfApp.Models.ClienteProveedor;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Clientes;
 

@@ -1,54 +1,61 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
-using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
+﻿using System.Collections.Generic;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+
+public class Movimiento
 {
-    public class Movimiento : admMovimientos
-    {
-        public Almacen Almacen { get; set; } = new Almacen();
-        public Producto Producto { get; set; } = new Producto();
-        public ValorClasificacion ValorClasificacion { get; set; } = new ValorClasificacion();
+    /// <summary>
+    ///     Id del movimiento.
+    /// </summary>
+    public int Id { get; set; }
 
-        public tMovimiento ToTMovimiento()
-        {
-            var nuevoTMovimiento = new tMovimiento
-            {
-                aConsecutivo = (int)CNUMEROMOVIMIENTO,
-                aUnidades = CUNIDADES,
-                aPrecio = CPRECIO,
-                aCosto = CCOSTOCAPTURADO,
-                aCodProdSer = Producto.CCODIGOPRODUCTO,
-                aCodAlmacen = Almacen.CCODIGOALMACEN,
-                aReferencia = CREFERENCIA,
-                aCodClasificacion = ValorClasificacion.CCODIGOVALORCLASIFICACION
-            };
-            return nuevoTMovimiento;
-        }
+    /// <summary>
+    ///     Producto del movimiento.
+    /// </summary>
+    public Producto Producto { get; set; } = new();
 
-        public tMovimientoDesc ToTMovimientoDesc()
-        {
-            var nuevoTMovimientoDesc = new tMovimientoDesc
-            {
-                aConsecutivo = (int)CNUMEROMOVIMIENTO,
-                aUnidades = CUNIDADES,
-                aPrecio = CPRECIO,
-                aCosto = CCOSTOCAPTURADO,
-                aCodProdSer = Producto.CCODIGOPRODUCTO,
-                aCodAlmacen = Almacen.CCODIGOALMACEN,
-                aReferencia = CREFERENCIA,
-                aCodClasificacion = ValorClasificacion.CCODIGOVALORCLASIFICACION,
-                aImporteDescto1 = CDESCUENTO1,
-                aImporteDescto2 = CDESCUENTO2,
-                aImporteDescto3 = CDESCUENTO3,
-                aImporteDescto4 = CDESCUENTO4,
-                aImporteDescto5 = CDESCUENTO5,
-                aPorcDescto1 = CPORCENTAJEDESCUENTO1,
-                aPorcDescto2 = CPORCENTAJEDESCUENTO2,
-                aPorcDescto3 = CPORCENTAJEDESCUENTO3,
-                aPorcDescto4 = CPORCENTAJEDESCUENTO4,
-                aPorcDescto5 = CPORCENTAJEDESCUENTO5
-            };
-            return nuevoTMovimientoDesc;
-        }
-    }
+    /// <summary>
+    ///     Cantidad de unidad base del movimiento.
+    /// </summary>
+    public double Unidades { get; set; }
+
+    /// <summary>
+    ///     Precio del producto
+    /// </summary>
+    public decimal Precio { get; set; }
+
+    /// <summary>
+    ///     Subtotal del movimiento.
+    /// </summary>
+    public decimal Subtotal { get; set; }
+
+    /// <summary>
+    ///     Total del movimiento
+    /// </summary>
+    public decimal Total { get; set; }
+
+    /// <summary>
+    ///     Almacen del movimiento
+    /// </summary>
+    public Almacen Almacen { get; set; } = new();
+
+    /// <summary>
+    ///     Referencia del movimiento.
+    /// </summary>
+    public string Referencia { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Observaciones del movimiento.
+    /// </summary>
+    public string? Observaciones { get; set; }
+
+    /// <summary>
+    ///     Series o capas del movimiento.
+    /// </summary>
+    public List<SeriesCapas> SeriesCapas { get; set; } = new();
+
+    /// <summary>
+    ///     Datos extra del movimiento.
+    /// </summary>
+    public Dictionary<string, string> DatosExtra { get; set; } = new();
 }

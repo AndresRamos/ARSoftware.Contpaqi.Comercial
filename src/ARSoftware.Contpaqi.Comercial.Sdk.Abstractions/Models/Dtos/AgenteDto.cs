@@ -29,7 +29,7 @@ public class AgenteDto
     public string CNOMBREAGENTE { get; init; } = string.Empty;
 
     /// <summary>
-    ///     Tipo de agente: 1 = Agente de Ventas. 2 = Agente Venta / Cobro. 3 = Agente de Cobro. 4 = Figuras de transporte.
+    ///     Tipo del agente: 1 = Agente de Ventas. 2 = Agente Venta / Cobro. 3 = Agente de Cobro. 4 = Figuras de transporte.
     ///     5 = Medios de transporte.
     /// </summary>
     public int CTIPOAGENTE { get; init; }

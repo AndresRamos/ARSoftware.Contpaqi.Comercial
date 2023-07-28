@@ -1,47 +1,67 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
-using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
-using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
+﻿using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+
+public class Direccion
 {
-    public class Direccion : admDomicilios
-    {
-        public TipoCatalogoDireccion TipoCatalogo
-        {
-            get => TipoCatalogoDireccionHelper.ConvertFromSdkValue(CTIPOCATALOGO);
-            set => CTIPOCATALOGO = TipoCatalogoDireccionHelper.ConvertToSdkValue(value);
-        }
+    /// <summary>
+    ///     Id de la dirección.
+    /// </summary>
+    public int Id { get; set; }
 
-        public TipoDireccion TipoDireccion
-        {
-            get => TipoDireccionHelper.ConvertFromSdkValue(CTIPODIRECCION);
-            set => CTIPODIRECCION = TipoDireccionHelper.ConvertToSdkValue(value);
-        }
+    /// <summary>
+    ///     Tipo de catálogo de la dirección.
+    /// </summary>
+    public TipoCatalogoDireccion TipoCatalogo { get; set; }
 
-        public tDireccion ToTDireccion()
-        {
-            return new tDireccion
-            {
-                cCodCteProv = "",
-                cTipoCatalogo = (int)TipoCatalogo,
-                cTipoDireccion = TipoDireccion == TipoDireccion.Fiscal ? 1 : 2,
-                cNombreCalle = CNOMBRECALLE,
-                cNumeroExterior = CNUMEROEXTERIOR,
-                cNumeroInterior = CNUMEROINTERIOR,
-                cColonia = CCOLONIA,
-                cCodigoPostal = CCODIGOPOSTAL,
-                cTelefono1 = CTELEFONO1,
-                cTelefono2 = CTELEFONO2,
-                cTelefono3 = CTELEFONO3,
-                cTelefono4 = CTELEFONO4,
-                cEmail = CEMAIL,
-                cDireccionWeb = CDIRECCIONWEB,
-                cCiudad = CCIUDAD,
-                cEstado = CESTADO,
-                cPais = CPAIS,
-                cTextoExtra = CTEXTOEXTRA
-            };
-        }
-    }
+    /// <summary>
+    ///     Tipo de dirección.
+    /// </summary>
+    public TipoDireccion Tipo { get; set; }
+
+    /// <summary>
+    ///     Nombre de la calle.
+    /// </summary>
+    public string Calle { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Número exterior de la calle.
+    /// </summary>
+    public string NumeroExterior { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Número interior del edificio o local.
+    /// </summary>
+    public string NumeroInterior { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Colonia o fraccionamiento.
+    /// </summary>
+    public string Colonia { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Nombre de la ciudad.
+    /// </summary>
+    public string Ciudad { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Nombre del estado.
+    /// </summary>
+    public string Estado { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Código postal.
+    /// </summary>
+    public string CodigoPostal { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Nombre del país.
+    /// </summary>
+    public string Pais { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Datos extra de la dirección.
+    /// </summary>
+    public Dictionary<string, string> DatosExtra { get; set; } = new();
 }

@@ -1,37 +1,34 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
-using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+
+public class Agente
 {
-    public class Agente : admAgentes
-    {
-        public Agente()
-        {
-            CFECHAALTAAGENTE = DateTime.Today;
-            CFECHAEXTRA = SdkDateTimeHelper.CreateDefaultSdkFecha();
-            Tipo = TipoAgente.VentasCobro;
-        }
+    /// <summary>
+    ///     Id del agente.
+    /// </summary>
+    public int Id { get; set; }
 
-        public TipoAgente Tipo
-        {
-            get => TipoAgenteHelper.ConvertFromSdkValue(CTIPOAGENTE);
-            set => CTIPOAGENTE = TipoAgenteHelper.ConvertToSdkValue(value);
-        }
+    /// <summary>
+    ///     Código del agente.
+    /// </summary>
+    public string Codigo { get; set; } = string.Empty;
 
-        public bool Contains(string filtro)
-        {
-            return string.IsNullOrWhiteSpace(filtro) ||
-                   CIDAGENTE.ToString().IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   CCODIGOAGENTE.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   CNOMBREAGENTE.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                   CTIPOAGENTE.ToString().IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
-        }
+    /// <summary>
+    ///     Nombre del agente.
+    /// </summary>
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public string Nombre { get; set; } = string.Empty;
 
-        public override string ToString()
-        {
-            return $"{CCODIGOAGENTE} - {CNOMBREAGENTE}";
-        }
-    }
+    /// <summary>
+    ///     Tipo del agente.
+    /// </summary>
+    public TipoAgente Tipo { get; set; } = TipoAgente.VentasCobro;
+
+    /// <summary>
+    ///     Datos extra del agente.
+    /// </summary>
+    public Dictionary<string, string> DatosExtra { get; set; } = new();
 }

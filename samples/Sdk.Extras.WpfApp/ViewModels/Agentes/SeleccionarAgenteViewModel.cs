@@ -3,11 +3,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Sdk.Extras.WpfApp.Messages;
+using Sdk.Extras.WpfApp.Models;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Agentes;
 

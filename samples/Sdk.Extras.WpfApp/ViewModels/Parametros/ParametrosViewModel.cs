@@ -12,11 +12,10 @@ namespace Sdk.Extras.WpfApp.ViewModels.Parametros;
 public class ParametrosViewModel : ObservableRecipient
 {
     private readonly IDialogCoordinator _dialogCoordinator;
-    private readonly IParametrosRepository<ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Parametros> _parametrosRepository;
+    private readonly IParametrosRepository<Models.Parametros> _parametrosRepository;
     private string _duracionBusqueda;
 
-    public ParametrosViewModel(IParametrosRepository<ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Parametros> parametrosRepository,
-        IDialogCoordinator dialogCoordinator)
+    public ParametrosViewModel(IParametrosRepository<Models.Parametros> parametrosRepository, IDialogCoordinator dialogCoordinator)
     {
         _parametrosRepository = parametrosRepository;
         _dialogCoordinator = dialogCoordinator;
@@ -26,7 +25,7 @@ public class ParametrosViewModel : ObservableRecipient
 
     public string Title => "Parametros";
 
-    public ObservableCollection<ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Parametros> Parametros { get; } = new();
+    public ObservableCollection<Models.Parametros> Parametros { get; } = new();
 
     public IAsyncRelayCommand BuscarParametrosCommand { get; }
 

@@ -1,6 +1,7 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 using Microsoft.Extensions.Logging;
+using Samples.Common;
 
 namespace Sql.ConsoleApp.Ejemplos;
 

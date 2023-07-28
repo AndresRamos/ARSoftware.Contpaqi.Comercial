@@ -20,6 +20,11 @@ public class UnidadMedidaDto
     public int CIDUNIDAD { get; set; }
 
     /// <summary>
+    ///     Abreviatura de la unidad.
+    /// </summary>
+    public string CABREVIATURA { get; set; } = string.Empty;
+
+    /// <summary>
     ///     Nombre de la unidad.
     /// </summary>
     public string CNOMBREUNIDAD { get; set; } = string.Empty;
@@ -28,9 +33,4 @@ public class UnidadMedidaDto
     ///     Clave SAT de acuerdo al Anexo 20 3.3
     /// </summary>
     public string CCLAVEINT { get; set; } = string.Empty;
-
-    /// <summary>
-    ///     Clave SAT utilizada por el Complemento de Comercio Exterior
-    /// </summary>
-    public string CCLAVESAT { get; set; } = string.Empty;
 }
