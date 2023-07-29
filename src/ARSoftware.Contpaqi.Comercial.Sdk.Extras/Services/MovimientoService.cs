@@ -17,6 +17,7 @@ public class MovimientoService : IMovimientoService
         _sdk = sdk;
     }
 
+    /// <inheritdoc />
     public void Actualizar(int idMovimiento, Dictionary<string, string> datosMovimiento)
     {
         _sdk.fBuscarIdMovimiento(idMovimiento).ToResultadoSdk(_sdk).ThrowIfError();
@@ -25,6 +26,7 @@ public class MovimientoService : IMovimientoService
         _sdk.fGuardaMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public int Crear(int idDocumento, tMovimientoDesc movimiento)
     {
         var movimientoId = 0;
@@ -32,6 +34,7 @@ public class MovimientoService : IMovimientoService
         return movimientoId;
     }
 
+    /// <inheritdoc />
     public int Crear(int idDocumento, tMovimiento movimiento)
     {
         var movimientoId = 0;
@@ -42,12 +45,27 @@ public class MovimientoService : IMovimientoService
     /// <inheritdoc />
     public int Crear(int idDocumento, Movimiento movimiento)
     {
-        tMovimiento movimientoSdk = movimiento.ToSdkMovimiento();
-        int nuevoMovimientoId = Crear(idDocumento, movimientoSdk);
+        int nuevoMovimientoId;
+
+        if (movimiento.Descuentos is not null)
+        {
+            tMovimientoDesc movimientoSdk = movimiento.ToSdkMovimientoDescuento();
+            nuevoMovimientoId = Crear(idDocumento, movimientoSdk);
+        }
+        else
+        {
+            tMovimiento movimientoSdk = movimiento.ToSdkMovimiento();
+            nuevoMovimientoId = Crear(idDocumento, movimientoSdk);
+        }
+
         var datosMovimiento = new Dictionary<string, string>(movimiento.DatosExtra);
 
         if (!string.IsNullOrWhiteSpace(movimiento.Observaciones))
             datosMovimiento.TryAdd(nameof(admMovimientos.COBSERVAMOV), movimiento.Observaciones);
+
+        movimiento.AddImpuestosToDictionary(datosMovimiento);
+
+        movimiento.AddRetencionesToDictionary(datosMovimiento);
 
         Actualizar(nuevoMovimientoId, datosMovimiento);
 
@@ -57,11 +75,7 @@ public class MovimientoService : IMovimientoService
         return nuevoMovimientoId;
     }
 
-    public void CrearSeriesCapas(int movimientoId, tSeriesCapas seriesCapas)
-    {
-        _sdk.fAltaMovimientoSeriesCapas(movimientoId, ref seriesCapas).ToResultadoSdk(_sdk).ThrowIfError();
-    }
-
+    /// <inheritdoc />
     public int Crear(Dictionary<string, string> datosMovimiento)
     {
         _sdk.fInsertarMovimiento().ToResultadoSdk(_sdk).ThrowIfError();
@@ -71,6 +85,13 @@ public class MovimientoService : IMovimientoService
         return int.Parse(idMovimientoDato);
     }
 
+    /// <inheritdoc />
+    public void CrearSeriesCapas(int movimientoId, tSeriesCapas seriesCapas)
+    {
+        _sdk.fAltaMovimientoSeriesCapas(movimientoId, ref seriesCapas).ToResultadoSdk(_sdk).ThrowIfError();
+    }
+
+    /// <inheritdoc />
     public void Eliminar(int idDocumento, int idMovimiento)
     {
         _sdk.fBuscarIdMovimiento(idMovimiento).ToResultadoSdk(_sdk).ThrowIfError();

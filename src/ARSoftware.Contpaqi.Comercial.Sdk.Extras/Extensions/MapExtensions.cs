@@ -78,8 +78,30 @@ public static class MapExtensions
             aCodProdSer = movimiento.Producto.Codigo,
             aUnidades = movimiento.Unidades,
             aPrecio = (double)movimiento.Precio,
-            aCodAlmacen = movimiento.Almacen.Codigo,
+            aCodAlmacen = movimiento.Almacen?.Codigo ?? string.Empty,
             aReferencia = movimiento.Referencia
+        };
+    }
+
+    public static tMovimientoDesc ToSdkMovimientoDescuento(this Movimiento movimiento)
+    {
+        return new tMovimientoDesc
+        {
+            aCodProdSer = movimiento.Producto.Codigo,
+            aUnidades = movimiento.Unidades,
+            aPrecio = (double)movimiento.Precio,
+            aCodAlmacen = movimiento.Almacen?.Codigo ?? string.Empty,
+            aReferencia = movimiento.Referencia,
+            aPorcDescto1 = (double)(movimiento.Descuentos?.Descuento1.Tasa ?? 0),
+            aImporteDescto1 = (double)(movimiento.Descuentos?.Descuento1.Importe ?? 0),
+            aPorcDescto2 = (double)(movimiento.Descuentos?.Descuento1.Tasa ?? 0),
+            aImporteDescto2 = (double)(movimiento.Descuentos?.Descuento1.Importe ?? 0),
+            aPorcDescto3 = (double)(movimiento.Descuentos?.Descuento1.Tasa ?? 0),
+            aImporteDescto3 = (double)(movimiento.Descuentos?.Descuento1.Importe ?? 0),
+            aPorcDescto4 = (double)(movimiento.Descuentos?.Descuento1.Tasa ?? 0),
+            aImporteDescto4 = (double)(movimiento.Descuentos?.Descuento1.Importe ?? 0),
+            aPorcDescto5 = (double)(movimiento.Descuentos?.Descuento1.Tasa ?? 0),
+            aImporteDescto5 = (double)(movimiento.Descuentos?.Descuento1.Importe ?? 0)
         };
     }
 

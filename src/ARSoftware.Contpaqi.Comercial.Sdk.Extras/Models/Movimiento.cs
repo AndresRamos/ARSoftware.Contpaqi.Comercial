@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.ValueObjects;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 
@@ -17,7 +18,7 @@ public class Movimiento
     /// <summary>
     ///     Almacen del movimiento
     /// </summary>
-    public Almacen Almacen { get; set; } = new();
+    public Almacen? Almacen { get; set; } = new();
 
     /// <summary>
     ///     Cantidad de unidad base del movimiento.
@@ -33,6 +34,21 @@ public class Movimiento
     ///     Subtotal del movimiento.
     /// </summary>
     public decimal Subtotal { get; set; }
+
+    /// <summary>
+    ///     Descuentos del movimiento.
+    /// </summary>
+    public DescuentosMovimiento? Descuentos { get; set; }
+
+    /// <summary>
+    ///     Impuestos del movimiento.
+    /// </summary>
+    public ImpuestosMovimiento? Impuestos { get; set; }
+
+    /// <summary>
+    ///     Retenciones del movimiento.
+    /// </summary>
+    public RetencionesMovimiento? Retenciones { get; set; }
 
     /// <summary>
     ///     Total del movimiento
