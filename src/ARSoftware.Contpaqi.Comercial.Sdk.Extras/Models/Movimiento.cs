@@ -15,6 +15,11 @@ public class Movimiento
     public Producto Producto { get; set; } = new();
 
     /// <summary>
+    ///     Almacen del movimiento
+    /// </summary>
+    public Almacen Almacen { get; set; } = new();
+
+    /// <summary>
     ///     Cantidad de unidad base del movimiento.
     /// </summary>
     public double Unidades { get; set; }
@@ -33,11 +38,6 @@ public class Movimiento
     ///     Total del movimiento
     /// </summary>
     public decimal Total { get; set; }
-
-    /// <summary>
-    ///     Almacen del movimiento
-    /// </summary>
-    public Almacen Almacen { get; set; } = new();
 
     /// <summary>
     ///     Referencia del movimiento.

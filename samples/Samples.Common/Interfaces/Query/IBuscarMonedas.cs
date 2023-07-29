@@ -2,7 +2,7 @@
 
 public interface IBuscarMonedas
 {
-    void BuscarPorId(int idMoneda);
-    void BuscarPorNombre(string nombreMoneda);
+    void BuscarPorId();
+    void BuscarPorNombre();
     void TraerTodo();
 }

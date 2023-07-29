@@ -2,7 +2,7 @@
 
 public interface IBuscarUnidadesMedida
 {
-    void BuscarPorId(int id);
-    void BuscarPorNombre(string nombre);
+    void BuscarPorId();
+    void BuscarPorNombre();
     void TraerTodo();
 }

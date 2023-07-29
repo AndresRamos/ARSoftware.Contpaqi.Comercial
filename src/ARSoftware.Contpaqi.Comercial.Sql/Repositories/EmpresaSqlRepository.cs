@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Ardalis.Specification.EntityFrameworkCore;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Generales;
+using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 
@@ -18,6 +20,12 @@ public sealed class EmpresaSqlRepository : ContpaqiComercialSqlRepositoryBase<Em
     public EmpresaSqlRepository(ContpaqiComercialGeneralesDbContext context) : base(context)
     {
         _context = context;
+    }
+
+    /// <inheritdoc />
+    public Empresas? BuscarPorNombre(string nombreEmpresa)
+    {
+        return _context.Empresas.WithSpecification(new EmpresaPorNombreSpecification(nombreEmpresa)).FirstOrDefault();
     }
 
     /// <inheritdoc />
@@ -42,6 +50,14 @@ public sealed class EmpresaSqlRepository<T> : ContpaqiComercialSqlRepositoryBase
     {
         _context = context;
         _mapper = mapper;
+    }
+
+    /// <inheritdoc />
+    public T? BuscarPorNombre(string nombreEmpresa)
+    {
+        return _context.Empresas.WithSpecification(new EmpresaPorNombreSpecification(nombreEmpresa))
+            .ProjectTo<T>(_mapper.ConfigurationProvider)
+            .FirstOrDefault();
     }
 
     /// <inheritdoc />

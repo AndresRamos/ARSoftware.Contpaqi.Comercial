@@ -11,6 +11,17 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 public interface IEmpresaRepository<T> where T : class, new()
 {
     /// <summary>
+    ///     Busca una empresa por su nombre.
+    /// </summary>
+    /// <param name="nombreEmpresa">
+    ///     Nombre de la empresa a buscar.
+    /// </param>
+    /// <returns>
+    ///     Una empresa, o <see langword="null" /> si no existe una empresa con el nombre proporcionado.
+    /// </returns>
+    T? BuscarPorNombre(string nombreEmpresa);
+
+    /// <summary>
     ///     Busca todas las empresas.
     /// </summary>
     /// <returns>

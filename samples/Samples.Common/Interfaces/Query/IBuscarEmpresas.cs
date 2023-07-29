@@ -2,5 +2,7 @@
 
 public interface IBuscarEmpresas
 {
+    void BuscarPorNombre();
+
     void TraerTodo();
 }

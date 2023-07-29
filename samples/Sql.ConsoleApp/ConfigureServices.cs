@@ -29,13 +29,10 @@ public static class ConfigureServices
         // Registrar repositorios
         services.AddContpaqiComercialSqlRepositories();
 
-        // Registrar ejemplos
-        services.AddEjemplos();
-
         return services;
     }
 
-    private static void AddEjemplos(this IServiceCollection services)
+    public static void AddEjemplos(this IServiceCollection services)
     {
         services.AddSingleton<BuscarAgentesConRepositorio>();
         services.AddSingleton<BuscarAgentesDtoConRepositorio>();

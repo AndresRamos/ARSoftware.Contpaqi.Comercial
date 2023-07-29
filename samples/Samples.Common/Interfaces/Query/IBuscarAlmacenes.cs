@@ -2,7 +2,7 @@
 
 public interface IBuscarAlmacenes
 {
-    void BuscarPorCodigo(string codigoAlmacen);
-    void BuscarPorId(int idAlmacen);
+    void BuscarPorCodigo();
+    void BuscarPorId();
     void TraerTodo();
 }

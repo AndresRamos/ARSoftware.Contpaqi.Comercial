@@ -2,8 +2,8 @@
 
 public interface IBuscarConceptosDocumento
 {
-    void BuscarPorCodigo(string codigoConcepto);
-    void BuscarPorId(int idConcepto);
-    void TraerPorDocumentoModeloId(int idDocumentoModelo);
+    void BuscarPorCodigo();
+    void BuscarPorId();
+    void TraerPorDocumentoModeloId();
     void TraerTodo();
 }

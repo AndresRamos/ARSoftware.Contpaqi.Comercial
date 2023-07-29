@@ -2,7 +2,7 @@
 
 public interface IBuscarMovimientos
 {
-    void BuscarPorId(int idMovimiento);
-    void TraerPorDocumentoId(int idDocumento);
+    void BuscarPorId();
+    void TraerPorDocumentoId();
     void TraerTodo();
 }

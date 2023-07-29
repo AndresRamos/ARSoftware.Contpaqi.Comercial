@@ -22,6 +22,7 @@ public interface IDocumentoService
     int Crear(Dictionary<string, string> datosDocumento);
     int Crear(Documento documento);
     int CrearCargoAbono(tDocumento documento);
+    int CrearCargoAbono(Documento documento);
     void DesbloquearDocumento(int idDocumento);
     void Eliminar(int idDocumento);
     void Eliminar(string codigoConcepto, string serie, string folio);

@@ -1,13 +1,11 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
-
-namespace Samples.Common;
+﻿namespace Samples.Common;
 
 public interface IBuscarClientesProveedores
 {
-    void BuscarPorCodigo(string codigoCliente);
-    void BuscarPorId(int idCliente);
+    void BuscarPorCodigo();
+    void BuscarPorId();
     void TraerClientes();
-    void TraerPorTipo(TipoCliente tipoCliente);
+    void TraerPorTipo();
     void TraerProveedores();
     void TraerTodo();
 }

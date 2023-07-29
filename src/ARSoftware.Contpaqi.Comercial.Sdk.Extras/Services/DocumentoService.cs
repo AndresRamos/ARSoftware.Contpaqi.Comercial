@@ -117,6 +117,12 @@ public class DocumentoService : IDocumentoService
         return int.Parse(idDocumentoDato);
     }
 
+    public int CrearCargoAbono(Documento documento)
+    {
+        tDocumento documentoSdk = documento.ToSdkDocumento();
+        return CrearCargoAbono(documentoSdk);
+    }
+
     public void DesbloquearDocumento(int idDocumento)
     {
         _sdk.fBuscarIdDocumento(idDocumento).ToResultadoSdk(_sdk).ThrowIfError();

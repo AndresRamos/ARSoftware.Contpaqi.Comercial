@@ -38,6 +38,7 @@
 
 	<ItemGroup>
 	  <Folder Include="Common\" />
+	  <Folder Include="Specifications\Empresas\" />
 	</ItemGroup>
 
 </Project>
