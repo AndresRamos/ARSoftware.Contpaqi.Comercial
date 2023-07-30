@@ -8,10 +8,10 @@ namespace Sdk.Extras.ConsoleApp;
 
 public class BuscarClientesDtoConRepositorio : IBuscarClientesProveedores
 {
-    private readonly IClienteProveedorRepository<ClienteDto> _clienteProveedorRepository;
+    private readonly IClienteProveedorRepository<ClienteProveedorDto> _clienteProveedorRepository;
     private readonly ILogger<BuscarClientesDtoConRepositorio> _logger;
 
-    public BuscarClientesDtoConRepositorio(IClienteProveedorRepository<ClienteDto> clienteProveedorRepository,
+    public BuscarClientesDtoConRepositorio(IClienteProveedorRepository<ClienteProveedorDto> clienteProveedorRepository,
         ILogger<BuscarClientesDtoConRepositorio> logger)
     {
         _clienteProveedorRepository = clienteProveedorRepository;
@@ -23,7 +23,7 @@ public class BuscarClientesDtoConRepositorio : IBuscarClientesProveedores
     {
         var codigoCliente = "PRUEBA";
 
-        ClienteDto? clienteProveedor = _clienteProveedorRepository.BuscarPorCodigo(codigoCliente);
+        ClienteProveedorDto? clienteProveedor = _clienteProveedorRepository.BuscarPorCodigo(codigoCliente);
 
         _logger.LogInformation("{@Cliente}", clienteProveedor);
     }
@@ -33,7 +33,7 @@ public class BuscarClientesDtoConRepositorio : IBuscarClientesProveedores
     {
         var idCliente = 1;
 
-        ClienteDto? clienteProveedor = _clienteProveedorRepository.BuscarPorId(idCliente);
+        ClienteProveedorDto? clienteProveedor = _clienteProveedorRepository.BuscarPorId(idCliente);
 
         _logger.LogInformation("{@Cliente}", clienteProveedor);
     }
@@ -41,7 +41,7 @@ public class BuscarClientesDtoConRepositorio : IBuscarClientesProveedores
     /// <inheritdoc />
     public void TraerClientes()
     {
-        List<ClienteDto> clientes = _clienteProveedorRepository.TraerClientes();
+        List<ClienteProveedorDto> clientes = _clienteProveedorRepository.TraerClientes();
 
         _logger.LogInformation("{@Clientes}", clientes);
     }
@@ -51,7 +51,7 @@ public class BuscarClientesDtoConRepositorio : IBuscarClientesProveedores
     {
         var tipoCliente = TipoCliente.Cliente;
 
-        List<ClienteDto> clientes = _clienteProveedorRepository.TraerPorTipo(tipoCliente);
+        List<ClienteProveedorDto> clientes = _clienteProveedorRepository.TraerPorTipo(tipoCliente);
 
         _logger.LogInformation("{@Clientes}", clientes);
     }
@@ -59,7 +59,7 @@ public class BuscarClientesDtoConRepositorio : IBuscarClientesProveedores
     /// <inheritdoc />
     public void TraerProveedores()
     {
-        List<ClienteDto> clientes = _clienteProveedorRepository.TraerProveedores();
+        List<ClienteProveedorDto> clientes = _clienteProveedorRepository.TraerProveedores();
 
         _logger.LogInformation("{@Clientes}", clientes);
     }
@@ -67,7 +67,7 @@ public class BuscarClientesDtoConRepositorio : IBuscarClientesProveedores
     /// <inheritdoc />
     public void TraerTodo()
     {
-        List<ClienteDto> clientes = _clienteProveedorRepository.TraerTodo();
+        List<ClienteProveedorDto> clientes = _clienteProveedorRepository.TraerTodo();
 
         _logger.LogInformation("{@Clientes}", clientes);
     }

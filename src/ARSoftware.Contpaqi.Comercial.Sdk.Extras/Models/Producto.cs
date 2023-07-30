@@ -12,12 +12,6 @@ public class Producto
     public int Id { get; set; }
 
     /// <summary>
-    ///     Tipo del producto.
-    /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
-    public TipoProducto Tipo { get; set; } = TipoProducto.Producto;
-
-    /// <summary>
     ///     Codigo del producto.
     /// </summary>
     public string Codigo { get; set; } = string.Empty;
@@ -26,6 +20,12 @@ public class Producto
     ///     Nombre del producto.
     /// </summary>
     public string Nombre { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Tipo del producto.
+    /// </summary>
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public TipoProducto Tipo { get; set; } = TipoProducto.Producto;
 
     /// <summary>
     ///     Clave SAT del producto.

@@ -46,11 +46,6 @@ public class DocumentoDto
     public int CIDCLIENTEPROVEEDOR { get; set; }
 
     /// <summary>
-    ///     Id del agente del documento.
-    /// </summary>
-    public int CIDAGENTE { get; set; }
-
-    /// <summary>
     ///     Moneda asociada al documento.
     /// </summary>
     public int CIDMONEDA { get; set; }
@@ -59,6 +54,11 @@ public class DocumentoDto
     ///     Tipo de cambio del documento.
     /// </summary>
     public double CTIPOCAMBIO { get; set; }
+
+    /// <summary>
+    ///     Id del agente del documento.
+    /// </summary>
+    public int CIDAGENTE { get; set; }
 
     /// <summary>
     ///     Referencia del documento.

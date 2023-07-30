@@ -11,8 +11,9 @@ public sealed class Mappings : Profile
     {
         CreateMap<admAgentes, AgenteDto>();
         CreateMap<admAlmacenes, AlmacenDto>();
-        CreateMap<admClientes, ClienteDto>();
+        CreateMap<admClientes, ClienteProveedorDto>();
         CreateMap<admConceptos, ConceptoDocumentoDto>();
+        CreateMap<admDomicilios, DireccionDto>();
         CreateMap<admDocumentos, DocumentoDto>();
         CreateMap<admDocumentosModelo, DocumentoModeloDto>();
         CreateMap<Empresas, EmpresaDto>();

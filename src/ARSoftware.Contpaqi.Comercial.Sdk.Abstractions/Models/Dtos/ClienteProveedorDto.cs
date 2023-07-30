@@ -10,9 +10,9 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models.Dtos;
 ///     propiedades.
 ///     Las propiedades de este modelo tienen los los mismos nombres que las propiedades del modelo de SQL para facilitar
 ///     la asignacion de valores cuando se utiliza con los repositorios genericos de Clientes y Proveedores, como por
-///     ejemplo los que implementan <see cref="IClienteProveedorRepository{T}" /> de <see cref="ClienteDto" />.
+///     ejemplo los que implementan <see cref="IClienteProveedorRepository{T}" /> de <see cref="ClienteProveedorDto" />.
 /// </summary>
-public class ClienteDto
+public class ClienteProveedorDto
 {
     /// <summary>
     ///     Id del cliente o proveedor.

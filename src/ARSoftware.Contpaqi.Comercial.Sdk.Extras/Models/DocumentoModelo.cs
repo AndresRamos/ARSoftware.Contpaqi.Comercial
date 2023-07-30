@@ -59,7 +59,14 @@ public class DocumentoModelo
         Descripcion = descripcion;
     }
 
+    /// <summary>
+    ///     Id del documento modelo.
+    /// </summary>
     public int Id { get; set; }
+
+    /// <summary>
+    ///     Descripción del documento modelo.
+    /// </summary>
     public string Descripcion { get; set; }
 
     public static DocumentoModelo FromDescripcion(string descripcion)

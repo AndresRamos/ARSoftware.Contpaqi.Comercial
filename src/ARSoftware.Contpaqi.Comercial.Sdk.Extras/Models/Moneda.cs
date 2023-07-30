@@ -24,7 +24,14 @@ public class Moneda
         Nombre = nombre;
     }
 
+    /// <summary>
+    ///     Id de la moneda del documento.
+    /// </summary>
     public int Id { get; set; }
+
+    /// <summary>
+    ///     Nombre de la moneda.
+    /// </summary>
     public string Nombre { get; set; }
 
     public static List<Moneda> ToList()
