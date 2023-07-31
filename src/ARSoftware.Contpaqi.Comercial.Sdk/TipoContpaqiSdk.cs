@@ -1,9 +1,8 @@
-﻿namespace ARSoftware.Contpaqi.Comercial.Sdk
+﻿namespace ARSoftware.Contpaqi.Comercial.Sdk;
+
+public enum TipoContpaqiSdk
 {
-    public enum TipoContpaqiSdk
-    {
-        Comercial = 0,
-        Adminpaq = 1,
-        FacturaElectronica = 2
-    }
+    Comercial = 0,
+    Adminpaq = 1,
+    FacturaElectronica = 2
 }

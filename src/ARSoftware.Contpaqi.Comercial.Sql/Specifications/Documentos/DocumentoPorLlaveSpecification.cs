@@ -10,6 +10,8 @@ public sealed class DocumentoPorLlaveSpecification : SingleResultSpecification<a
 {
     public DocumentoPorLlaveSpecification(int idConcepto, string serie, double folio)
     {
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+
         Query.Where(documento =>
             documento.CIDCONCEPTODOCUMENTO == idConcepto && documento.CSERIEDOCUMENTO == serie && documento.CFOLIO == folio);
     }

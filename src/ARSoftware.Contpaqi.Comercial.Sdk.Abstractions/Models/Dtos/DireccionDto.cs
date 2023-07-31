@@ -37,8 +37,8 @@ public class DireccionDto
     /// </summary>
     public string CCOLONIA { get; set; } = null!;
 
-    // <summary>
-    /// Nombre de la ciudad.
+    /// <summary>
+    ///     Nombre de la ciudad.
     /// </summary>
     public string CCIUDAD { get; set; } = null!;
 

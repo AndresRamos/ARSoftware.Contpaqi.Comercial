@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
 		<Version>4.4.0</Version>
 		<Authors>AR Software</Authors>
 		<Description>Este proyecto tiene declaradas todas las funciones y clases utilizadas por el SDK de CONTPAQi Comercial, CONTPAQi Adminpaq, y CONTPAQi Factura Electronica.</Description>
@@ -20,10 +21,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="..\..\images\AR_LOGO03.jpg">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
+		<None Include="..\..\images\AR_LOGO03.jpg">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 </Project>
