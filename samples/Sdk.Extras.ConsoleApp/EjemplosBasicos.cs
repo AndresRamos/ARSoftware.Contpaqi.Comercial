@@ -26,6 +26,8 @@ public class EjemplosBasicos
             .Build();
 
         IServiceProvider services = host.Services;
+
+        var sdkSesionService = services.GetRequiredService<IComercialSdkSesionService>();
     }
 
     public void CrearDocumento(IServiceProvider services)
