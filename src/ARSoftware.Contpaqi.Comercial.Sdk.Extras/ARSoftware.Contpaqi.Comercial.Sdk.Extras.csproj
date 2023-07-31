@@ -12,10 +12,8 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Contpaqi Comercial SDK Adminpaq Factura Electronica</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
 		<Title>CONTPAQi Comercial SDK Extras</Title>
-		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>

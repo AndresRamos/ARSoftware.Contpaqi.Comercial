@@ -12,7 +12,6 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Contpaqi Comercial Sql</PackageTags>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<PackageLicenseExpression>(MIT)</PackageLicenseExpression>
 		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
 	</PropertyGroup>
 
