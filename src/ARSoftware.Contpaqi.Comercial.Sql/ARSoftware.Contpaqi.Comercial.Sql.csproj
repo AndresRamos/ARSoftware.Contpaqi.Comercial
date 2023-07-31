@@ -35,9 +35,4 @@
 		<ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sql.Models\ARSoftware.Contpaqi.Comercial.Sql.Models.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Common\" />
-	  <Folder Include="Specifications\Empresas\" />
-	</ItemGroup>
-
 </Project>
