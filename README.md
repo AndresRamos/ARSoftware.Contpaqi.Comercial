@@ -143,10 +143,15 @@ foreach (ProductoDto productoDto in productosDto)
 }
 ```
 
+# Licencia
+
+**Este proyecto no es Open Source.** Si deseas utilizarlo en tu organizacion, debes adquirir una licencia de uso.
+
+El costo de la licencia anual es de $300 dlls por RFC.
+
+Para informacion de como adquirir una licencia de uso puedes contactarme en mi [pagina web](https://www.arsoft.net/).
+
 # :heart: Como me puedes ayudar?
 
 ## :star: Dame una estrella
 Si estas utilizando alguno de los proyectos dentro de este repositorio por favor dale una estrella. Te lo agradeceria! :pray:
-
-## :money_with_wings: Patrociname
-Si este proyecto es de beneficio para ti y te beneficia economicamente aumentando tus ingresos y/o productividad, me puedes ayudar donando al proyecto o convirtiendote en un patrocinador.
