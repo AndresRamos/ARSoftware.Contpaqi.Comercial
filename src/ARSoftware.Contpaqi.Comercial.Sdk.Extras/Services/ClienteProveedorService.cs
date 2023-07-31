@@ -55,17 +55,6 @@ public class ClienteProveedorService : IClienteProveedorService
         return int.Parse(idClienteProveedorDato);
     }
 
-    public void Eliminar(int idClienteProveedor)
-    {
-        _sdk.fBuscaIdCteProv(idClienteProveedor).ToResultadoSdk(_sdk).ThrowIfError();
-        _sdk.fBorraCteProv().ToResultadoSdk(_sdk).ThrowIfError();
-    }
-
-    public void Eliminar(string codigoClienteProveedor)
-    {
-        _sdk.fEliminarCteProv(codigoClienteProveedor).ToResultadoSdk(_sdk).ThrowIfError();
-    }
-
     public int Crear(ClienteProveedor clienteProveedor)
     {
         tCteProv cliente = clienteProveedor.ToSdkCteProv();
@@ -83,6 +72,17 @@ public class ClienteProveedorService : IClienteProveedorService
         Actualizar(nuevoClienteId, datosClienteProveedor);
 
         return nuevoClienteId;
+    }
+
+    public void Eliminar(int idClienteProveedor)
+    {
+        _sdk.fBuscaIdCteProv(idClienteProveedor).ToResultadoSdk(_sdk).ThrowIfError();
+        _sdk.fBorraCteProv().ToResultadoSdk(_sdk).ThrowIfError();
+    }
+
+    public void Eliminar(string codigoClienteProveedor)
+    {
+        _sdk.fEliminarCteProv(codigoClienteProveedor).ToResultadoSdk(_sdk).ThrowIfError();
     }
 
     public void SetDatos(Dictionary<string, string> datos)

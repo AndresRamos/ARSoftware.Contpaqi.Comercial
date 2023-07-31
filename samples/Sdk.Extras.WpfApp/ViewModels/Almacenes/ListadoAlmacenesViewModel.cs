@@ -35,19 +35,6 @@ public class ListadoAlmacenesViewModel : ObservableRecipient
         EditarAlmacenCommand = new AsyncRelayCommand(EditarAlmacenAsync, CanEditarAlmacen);
     }
 
-    public string Title => "Almacenes";
-
-    public string Filtro
-    {
-        get => _filtro;
-        set
-        {
-            SetProperty(ref _filtro, value);
-            AlmacenesView.Refresh();
-            OnPropertyChanged(nameof(NumeroAlmacenes));
-        }
-    }
-
     public ObservableCollection<Almacen> Almacenes { get; }
 
     public ICollectionView AlmacenesView { get; }
@@ -62,7 +49,8 @@ public class ListadoAlmacenesViewModel : ObservableRecipient
         }
     }
 
-    public int NumeroAlmacenes => AlmacenesView.Cast<object>().Count();
+    public IAsyncRelayCommand BuscarAlmacenesCommand { get; }
+    public IAsyncRelayCommand CrearAlmacenCommand { get; }
 
     public string DuracionBusqueda
     {
@@ -70,9 +58,29 @@ public class ListadoAlmacenesViewModel : ObservableRecipient
         private set => SetProperty(ref _duracionBusqueda, value);
     }
 
-    public IAsyncRelayCommand BuscarAlmacenesCommand { get; }
-    public IAsyncRelayCommand CrearAlmacenCommand { get; }
     public IAsyncRelayCommand EditarAlmacenCommand { get; }
+
+    public string Filtro
+    {
+        get => _filtro;
+        set
+        {
+            SetProperty(ref _filtro, value);
+            AlmacenesView.Refresh();
+            OnPropertyChanged(nameof(NumeroAlmacenes));
+        }
+    }
+
+    public int NumeroAlmacenes => AlmacenesView.Cast<object>().Count();
+
+    public string Title => "Almacenes";
+
+    private bool AlmacenesView_Filter(object obj)
+    {
+        if (!(obj is Almacen almacen)) throw new ArgumentNullException(nameof(obj));
+
+        return almacen.Contains(Filtro);
+    }
 
     public async Task BuscarAlmacenesAsync()
     {
@@ -103,6 +111,11 @@ public class ListadoAlmacenesViewModel : ObservableRecipient
             await progressDialogController.CloseAsync();
             OnPropertyChanged(nameof(NumeroAlmacenes));
         }
+    }
+
+    private bool CanEditarAlmacen()
+    {
+        return AlmacenSeleccionado is not null;
     }
 
     private async Task CrearAlmacenAsync()
@@ -139,22 +152,10 @@ public class ListadoAlmacenesViewModel : ObservableRecipient
         }
     }
 
-    private bool CanEditarAlmacen()
-    {
-        return AlmacenSeleccionado is not null;
-    }
-
     private void RaiseGuards()
     {
         BuscarAlmacenesCommand.NotifyCanExecuteChanged();
         CrearAlmacenCommand.NotifyCanExecuteChanged();
         EditarAlmacenCommand.NotifyCanExecuteChanged();
-    }
-
-    private bool AlmacenesView_Filter(object obj)
-    {
-        if (!(obj is Almacen almacen)) throw new ArgumentNullException(nameof(obj));
-
-        return almacen.Contains(Filtro);
     }
 }

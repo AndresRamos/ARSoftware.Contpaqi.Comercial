@@ -11,15 +11,14 @@ public partial class EditarProductoView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<EditarProductoViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (EditarProductoView)recipient;
-                    view.Close();
-                }
-            });
+                var view = (EditarProductoView)recipient;
+                view.Close();
+            }
+        });
     }
 
     public EditarProductoViewModel ViewModel => (EditarProductoViewModel)DataContext;

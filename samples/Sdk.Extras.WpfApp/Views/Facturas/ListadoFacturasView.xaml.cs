@@ -14,15 +14,14 @@ public partial class ListadoFacturasView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<ListadoFacturasViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (ListadoFacturasView)recipient;
-                    view.Close();
-                }
-            });
+                var view = (ListadoFacturasView)recipient;
+                view.Close();
+            }
+        });
     }
 
     public ListadoFacturasViewModel ViewModel => (ListadoFacturasViewModel)DataContext;

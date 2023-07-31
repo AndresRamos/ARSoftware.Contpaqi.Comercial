@@ -48,7 +48,7 @@ public class Producto : admProductos
         return string.IsNullOrWhiteSpace(filtro) ||
                CCODIGOPRODUCTO.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
                CNOMBREPRODUCTO.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-               CDESCRIPCIONPRODUCTO.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
+               CDESCRIPCIONPRODUCTO?.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
     }
 
     public override string ToString()
@@ -62,7 +62,7 @@ public class Producto : admProductos
         {
             cCodigoProducto = CCODIGOPRODUCTO,
             cNombreProducto = CNOMBREPRODUCTO,
-            cDescripcionProducto = CDESCRIPCIONPRODUCTO,
+            cDescripcionProducto = CDESCRIPCIONPRODUCTO ?? string.Empty,
             cTipoProducto = TipoProductoHelper.ConvertToSdkValue(Tipo),
             cFechaAltaProducto = CFECHAALTAPRODUCTO.ToSdkFecha(),
             cFechaBaja = CFECHABAJA.ToSdkFecha(),

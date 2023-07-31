@@ -13,25 +13,6 @@ public static class ConfigureServices
 
     public static readonly string NombreBaseDatosEmpresa = "adUNIVERSIDAD_ROBOTICA";
 
-    public static IServiceCollection AddSqlServices(this IServiceCollection services)
-    {
-        // Registrar generales context
-        services.AddDbContext<ContpaqiComercialGeneralesDbContext>(builder =>
-            builder.UseSqlServer(
-                ContpaqiComercialSqlConnectionStringFactory.CreateContpaqiComercialGeneralesConnectionString(ContpaqiConnectionString)));
-
-        // Registrar empresa context
-        services.AddDbContext<ContpaqiComercialEmpresaDbContext>(builder =>
-            builder.UseSqlServer(
-                ContpaqiComercialSqlConnectionStringFactory.CreateContpaqiComercialEmpresaConnectionString(ContpaqiConnectionString,
-                    NombreBaseDatosEmpresa)));
-
-        // Registrar repositorios
-        services.AddContpaqiComercialSqlRepositories();
-
-        return services;
-    }
-
     public static void AddEjemplos(this IServiceCollection services)
     {
         services.AddSingleton<BuscarAgentesConRepositorio>();
@@ -73,5 +54,24 @@ public static class ConfigureServices
         services.AddSingleton<BuscarUnidadesMedidaDtoConRepositorio>();
 
         services.AddSingleton<BuscarValoresClasificacionConRepositorio>();
+    }
+
+    public static IServiceCollection AddSqlServices(this IServiceCollection services)
+    {
+        // Registrar generales context
+        services.AddDbContext<ContpaqiComercialGeneralesDbContext>(builder =>
+            builder.UseSqlServer(
+                ContpaqiComercialSqlConnectionStringFactory.CreateContpaqiComercialGeneralesConnectionString(ContpaqiConnectionString)));
+
+        // Registrar empresa context
+        services.AddDbContext<ContpaqiComercialEmpresaDbContext>(builder =>
+            builder.UseSqlServer(
+                ContpaqiComercialSqlConnectionStringFactory.CreateContpaqiComercialEmpresaConnectionString(ContpaqiConnectionString,
+                    NombreBaseDatosEmpresa)));
+
+        // Registrar repositorios
+        services.AddContpaqiComercialSqlRepositories();
+
+        return services;
     }
 }

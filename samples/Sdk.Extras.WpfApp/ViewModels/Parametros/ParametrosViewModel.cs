@@ -23,10 +23,6 @@ public class ParametrosViewModel : ObservableRecipient
         BuscarParametrosCommand = new AsyncRelayCommand(CargarParametrosAsync);
     }
 
-    public string Title => "Parametros";
-
-    public ObservableCollection<Models.Parametros> Parametros { get; } = new();
-
     public IAsyncRelayCommand BuscarParametrosCommand { get; }
 
     public string DuracionBusqueda
@@ -34,6 +30,10 @@ public class ParametrosViewModel : ObservableRecipient
         get => _duracionBusqueda;
         private set => SetProperty(ref _duracionBusqueda, value);
     }
+
+    public ObservableCollection<Models.Parametros> Parametros { get; } = new();
+
+    public string Title => "Parametros";
 
     private async Task CargarParametrosAsync()
     {

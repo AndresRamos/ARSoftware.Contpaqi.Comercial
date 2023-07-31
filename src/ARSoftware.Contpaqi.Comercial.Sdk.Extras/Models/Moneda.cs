@@ -32,7 +32,7 @@ public class Moneda
     /// <summary>
     ///     Nombre de la moneda.
     /// </summary>
-    public string Nombre { get; set; }
+    public string Nombre { get; set; } = string.Empty;
 
     public static List<Moneda> ToList()
     {

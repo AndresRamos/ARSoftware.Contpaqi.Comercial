@@ -35,18 +35,12 @@ public class CrearValorClasificacionViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(CerrarVista);
     }
 
-    public string Title { get; } = "Crear Valor De Clasificacion";
+    public IRelayCommand CancelarCommand { get; }
 
     public int ClasificacionId
     {
         get => _clasificacionId;
         private set => SetProperty(ref _clasificacionId, value);
-    }
-
-    public int ClasificacionNumero
-    {
-        get => _clasificacionNumero;
-        private set => SetProperty(ref _clasificacionNumero, value);
     }
 
     public string ClasificacionNombre
@@ -55,20 +49,27 @@ public class CrearValorClasificacionViewModel : ObservableRecipient
         private set => SetProperty(ref _clasificacionNombre, value);
     }
 
+    public int ClasificacionNumero
+    {
+        get => _clasificacionNumero;
+        private set => SetProperty(ref _clasificacionNumero, value);
+    }
+
     public string Codigo
     {
         get => _codigo;
         set => SetProperty(ref _codigo, value);
     }
 
+    public IAsyncRelayCommand CrearCommand { get; }
+
+    public string Title { get; } = "Crear Valor De Clasificacion";
+
     public string Valor
     {
         get => _valor;
         set => SetProperty(ref _valor, value);
     }
-
-    public IAsyncRelayCommand CrearCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
 
     public void CerrarVista()
     {
@@ -94,7 +95,8 @@ public class CrearValorClasificacionViewModel : ObservableRecipient
 
     public void Inicializar(int clasificacionId)
     {
-        Clasificacion clasificacion = _clasificacionRepository.BuscarPorId(clasificacionId);
+        Clasificacion clasificacion = _clasificacionRepository.BuscarPorId(clasificacionId) ??
+                                      throw new ArgumentException("No se encontro la clasificacion.");
         ClasificacionId = clasificacion.CIDCLASIFICACION;
         ClasificacionNumero = ClasificacionHelper.BuscarNumeroPorId(clasificacionId);
         ClasificacionNombre = clasificacion.CNOMBRECLASIFICACION;

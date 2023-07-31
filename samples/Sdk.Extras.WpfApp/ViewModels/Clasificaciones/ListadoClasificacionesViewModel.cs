@@ -56,18 +56,12 @@ public class ListadoClasificacionesViewModel : ObservableRecipient
         EliminarValorClasificacionCommand = new AsyncRelayCommand(EliminarValorClasificacionAsync, CanEliminarValorClasificacionAsync);
     }
 
-    public string Title => "Clasificaciones";
-
-    public string Filtro
-    {
-        get => _filtro;
-        set
-        {
-            SetProperty(ref _filtro, value);
-            ClasificacionesView.Refresh();
-            OnPropertyChanged(nameof(NumeroClasificaciones));
-        }
-    }
+    public IAsyncRelayCommand BuscarClasificacionesCommand { get; }
+    public IAsyncRelayCommand BuscarClasificacionesDeAgenteCommand { get; }
+    public IAsyncRelayCommand BuscarClasificacionesDeAlmacenCommand { get; }
+    public IAsyncRelayCommand BuscarClasificacionesDeClienteCommand { get; }
+    public IAsyncRelayCommand BuscarClasificacionesDeProductoCommand { get; }
+    public IAsyncRelayCommand BuscarClasificacionesDeProveedorCommand { get; }
 
     public ObservableCollection<Clasificacion> Clasificaciones { get; }
 
@@ -83,6 +77,33 @@ public class ListadoClasificacionesViewModel : ObservableRecipient
         }
     }
 
+    public IAsyncRelayCommand CrearValorClasificacionCommand { get; }
+
+    public string DuracionBusqueda
+    {
+        get => _duracionBusqueda;
+        private set => SetProperty(ref _duracionBusqueda, value);
+    }
+
+    public IAsyncRelayCommand EditarClasificacionCommand { get; }
+    public IAsyncRelayCommand EditarValorClasificacionCommand { get; }
+    public IAsyncRelayCommand EliminarValorClasificacionCommand { get; }
+
+    public string Filtro
+    {
+        get => _filtro;
+        set
+        {
+            SetProperty(ref _filtro, value);
+            ClasificacionesView.Refresh();
+            OnPropertyChanged(nameof(NumeroClasificaciones));
+        }
+    }
+
+    public int NumeroClasificaciones => ClasificacionesView.Cast<object>().Count();
+
+    public string Title => "Clasificaciones";
+
     public ValorClasificacion ValorClasificacionSeleccionado
     {
         get => _valorClasificacionSeleccionado;
@@ -92,25 +113,6 @@ public class ListadoClasificacionesViewModel : ObservableRecipient
             RaiseGuards();
         }
     }
-
-    public int NumeroClasificaciones => ClasificacionesView.Cast<object>().Count();
-
-    public string DuracionBusqueda
-    {
-        get => _duracionBusqueda;
-        private set => SetProperty(ref _duracionBusqueda, value);
-    }
-
-    public IAsyncRelayCommand BuscarClasificacionesCommand { get; }
-    public IAsyncRelayCommand BuscarClasificacionesDeAgenteCommand { get; }
-    public IAsyncRelayCommand BuscarClasificacionesDeClienteCommand { get; }
-    public IAsyncRelayCommand BuscarClasificacionesDeProveedorCommand { get; }
-    public IAsyncRelayCommand BuscarClasificacionesDeAlmacenCommand { get; }
-    public IAsyncRelayCommand BuscarClasificacionesDeProductoCommand { get; }
-    public IAsyncRelayCommand EditarClasificacionCommand { get; }
-    public IAsyncRelayCommand CrearValorClasificacionCommand { get; }
-    public IAsyncRelayCommand EditarValorClasificacionCommand { get; }
-    public IAsyncRelayCommand EliminarValorClasificacionCommand { get; }
 
     public async Task BuscarClasificacionesAsync()
     {

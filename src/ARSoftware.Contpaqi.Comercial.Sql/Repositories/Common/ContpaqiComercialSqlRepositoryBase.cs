@@ -26,16 +26,21 @@ public abstract class ContpaqiComercialSqlRepositoryBase<T> : IContpaqiComercial
     }
 
     /// <inheritdoc />
-    public virtual async Task<T?> FirstOrDefaultAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
+    public virtual async Task<bool> AnyAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
     {
-        return await ApplySpecification(specification).FirstOrDefaultAsync(cancellationToken);
+        return await ApplySpecification(specification, true).AnyAsync(cancellationToken);
     }
 
     /// <inheritdoc />
-    public virtual async Task<T?> SingleOrDefaultAsync(ISingleResultSpecification<T> specification,
-        CancellationToken cancellationToken = default)
+    public virtual async Task<int> CountAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
     {
-        return await ApplySpecification(specification).SingleOrDefaultAsync(cancellationToken);
+        return await ApplySpecification(specification, true).CountAsync(cancellationToken);
+    }
+
+    /// <inheritdoc />
+    public virtual async Task<T?> FirstOrDefaultAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
+    {
+        return await ApplySpecification(specification).FirstOrDefaultAsync(cancellationToken);
     }
 
     /// <inheritdoc />
@@ -47,15 +52,10 @@ public abstract class ContpaqiComercialSqlRepositoryBase<T> : IContpaqiComercial
     }
 
     /// <inheritdoc />
-    public virtual async Task<int> CountAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
+    public virtual async Task<T?> SingleOrDefaultAsync(ISingleResultSpecification<T> specification,
+        CancellationToken cancellationToken = default)
     {
-        return await ApplySpecification(specification, true).CountAsync(cancellationToken);
-    }
-
-    /// <inheritdoc />
-    public virtual async Task<bool> AnyAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
-    {
-        return await ApplySpecification(specification, true).AnyAsync(cancellationToken);
+        return await ApplySpecification(specification).SingleOrDefaultAsync(cancellationToken);
     }
 
     /// <summary>
@@ -94,26 +94,9 @@ public abstract class ContpaqiComercialSqlRepositoryBase<T, TResult> : IContpaqi
     }
 
     /// <inheritdoc />
-    public async Task<TResult?> FirstOrDefaultAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
+    public virtual async Task<bool> AnyAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
     {
-        return await ApplySpecification(specification)
-            .ProjectTo<TResult>(_mapper.ConfigurationProvider)
-            .FirstOrDefaultAsync(cancellationToken);
-    }
-
-    /// <inheritdoc />
-    public async Task<TResult?> SingleOrDefaultAsync(ISingleResultSpecification<T> specification,
-        CancellationToken cancellationToken = default)
-    {
-        return await ApplySpecification(specification)
-            .ProjectTo<TResult>(_mapper.ConfigurationProvider)
-            .SingleOrDefaultAsync(cancellationToken);
-    }
-
-    /// <inheritdoc />
-    public async Task<List<TResult>> ListAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
-    {
-        return await ApplySpecification(specification).ProjectTo<TResult>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken);
+        return await ApplySpecification(specification, true).AnyAsync(cancellationToken);
     }
 
     /// <inheritdoc />
@@ -123,9 +106,26 @@ public abstract class ContpaqiComercialSqlRepositoryBase<T, TResult> : IContpaqi
     }
 
     /// <inheritdoc />
-    public virtual async Task<bool> AnyAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
+    public async Task<TResult?> FirstOrDefaultAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
     {
-        return await ApplySpecification(specification, true).AnyAsync(cancellationToken);
+        return await ApplySpecification(specification)
+            .ProjectTo<TResult>(_mapper.ConfigurationProvider)
+            .FirstOrDefaultAsync(cancellationToken);
+    }
+
+    /// <inheritdoc />
+    public async Task<List<TResult>> ListAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
+    {
+        return await ApplySpecification(specification).ProjectTo<TResult>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken);
+    }
+
+    /// <inheritdoc />
+    public async Task<TResult?> SingleOrDefaultAsync(ISingleResultSpecification<T> specification,
+        CancellationToken cancellationToken = default)
+    {
+        return await ApplySpecification(specification)
+            .ProjectTo<TResult>(_mapper.ConfigurationProvider)
+            .SingleOrDefaultAsync(cancellationToken);
     }
 
     /// <summary>

@@ -13,34 +13,14 @@ namespace Sdk.ConsoleApp.Documentos;
 public sealed class MovimientoSdk
 {
     /// <summary>
-    ///     Campo CIDMOVIMIENTO - Identificador del movimiento.
-    /// </summary>
-    public int Id { get; set; }
-
-    /// <summary>
     ///     Campo CIDDOCUMENTO - Identificador del documento dueño del movimiento.
     /// </summary>
     public int DocumentoId { get; set; }
 
     /// <summary>
-    ///     Campo CIDPRODUCTO - Identificador del producto del movimiento
+    ///     Campo CIDMOVIMIENTO - Identificador del movimiento.
     /// </summary>
-    public int ProductoId { get; set; }
-
-    /// <summary>
-    ///     Campo CUNIDADES - Cantidad de unidad base del movimiento.
-    /// </summary>
-    public double Unidades { get; set; }
-
-    /// <summary>
-    ///     Campo CPRECIO - Precio del producto.
-    /// </summary>
-    public double Precio { get; set; }
-
-    /// <summary>
-    ///     Campo CREFERENCIA - Referencia del movimiento.
-    /// </summary>
-    public string Referencia { get; set; }
+    public int Id { get; set; }
 
     /// <summary>
     ///     Campo COBSERVAMOV - Observaciones del movimiento.
@@ -48,53 +28,48 @@ public sealed class MovimientoSdk
     public string Observaciones { get; set; }
 
     /// <summary>
+    ///     Campo CPRECIO - Precio del producto.
+    /// </summary>
+    public double Precio { get; set; }
+
+    /// <summary>
+    ///     Campo CIDPRODUCTO - Identificador del producto del movimiento
+    /// </summary>
+    public int ProductoId { get; set; }
+
+    /// <summary>
+    ///     Campo CREFERENCIA - Referencia del movimiento.
+    /// </summary>
+    public string Referencia { get; set; }
+
+    /// <summary>
     ///     Campo CTOTAL - Importe del total del movimiento.
     /// </summary>
     public double Total { get; set; }
 
-    public override string ToString()
-    {
-        return $"{Id} - {ProductoSdk.BuscarProductoPorId(ProductoId).Nombre} - {Unidades} - {Precio} - {Total:C}";
-    }
+    /// <summary>
+    ///     Campo CUNIDADES - Cantidad de unidad base del movimiento.
+    /// </summary>
+    public double Unidades { get; set; }
 
     /// <summary>
-    ///     Lee los datos del movimiento donde el SDK esta posicionado.
+    ///     Actualiza los datos de un movimiento.
     /// </summary>
-    /// <returns>Regresa un movimiento con los sus datos asignados.</returns>
-    private static MovimientoSdk LeerDatosMovimiento()
+    /// <param name="movimiento">Movimiento con los datos a actualizar.</param>
+    public static void ActualizarMovimiento(MovimientoSdk movimiento)
     {
-        // Declarar variables a leer de la base de datos
-        var idBd = new StringBuilder(3000);
-        var documentoIdBd = new StringBuilder(3000);
-        var productoIdBd = new StringBuilder(3000);
-        var unidadesBd = new StringBuilder(3000);
-        var precioBd = new StringBuilder(3000);
-        var referenciaBd = new StringBuilder(3000);
-        var observacionesBd = new StringBuilder(3000);
-        var totalBd = new StringBuilder(3000);
+        // Buscar el movimiento
+        // Si el movimiento existe el SDK se posiciona en el registro
+        ComercialSdk.fBuscarIdMovimiento(movimiento.Id).TirarSiEsError();
 
-        // Leer los datos del registro donde el SDK esta posicionado
-        ComercialSdk.fLeeDatoMovimiento("CIDMOVIMIENTO", idBd, 3000).TirarSiEsError();
-        ComercialSdk.fLeeDatoMovimiento("CIDDOCUMENTO", documentoIdBd, 3000).TirarSiEsError();
-        ComercialSdk.fLeeDatoMovimiento("CIDPRODUCTO", productoIdBd, 3000).TirarSiEsError();
-        ComercialSdk.fLeeDatoMovimiento("CUNIDADES", unidadesBd, 3000).TirarSiEsError();
-        ComercialSdk.fLeeDatoMovimiento("CPRECIO", precioBd, 3000).TirarSiEsError();
-        ComercialSdk.fLeeDatoMovimiento("CREFERENCIA", referenciaBd, 3000).TirarSiEsError();
-        ComercialSdk.fLeeDatoMovimiento("COBSERVAMOV", observacionesBd, 3000).TirarSiEsError();
-        ComercialSdk.fLeeDatoMovimiento("CTOTAL", totalBd, 3000).TirarSiEsError();
+        // Activar el modo de edición
+        ComercialSdk.fEditarMovimiento().TirarSiEsError();
 
-        // Instanciar un movimiento y asignar los datos de la base de datos
-        return new MovimientoSdk
-        {
-            Id = int.Parse(idBd.ToString()),
-            DocumentoId = int.Parse(documentoIdBd.ToString()),
-            ProductoId = int.Parse(productoIdBd.ToString()),
-            Unidades = double.Parse(unidadesBd.ToString()),
-            Precio = double.Parse(precioBd.ToString()),
-            Referencia = referenciaBd.ToString(),
-            Observaciones = observacionesBd.ToString(),
-            Total = double.Parse(totalBd.ToString())
-        };
+        // Actualizar los campos del registro donde el SDK esta posicionado
+        ComercialSdk.fSetDatoMovimiento("COBSERVAMOV", movimiento.Observaciones).TirarSiEsError();
+
+        // Guardar los cambios realizados al registro
+        ComercialSdk.fGuardaMovimiento().TirarSiEsError();
     }
 
     /// <summary>
@@ -141,8 +116,7 @@ public sealed class MovimientoSdk
 
             // Checar si el SDK esta posicionado en el ultimo registro
             // Si el SDK esta posicionado en el ultimo registro salir del loop
-            if (ComercialSdk.fPosMovimientoEOF() == 1)
-                break;
+            if (ComercialSdk.fPosMovimientoEOF() == 1) break;
         }
 
         // Cancelar filtro
@@ -185,27 +159,6 @@ public sealed class MovimientoSdk
     }
 
     /// <summary>
-    ///     Actualiza los datos de un movimiento.
-    /// </summary>
-    /// <param name="movimiento">Movimiento con los datos a actualizar.</param>
-    public static void ActualizarMovimiento(MovimientoSdk movimiento)
-    {
-        // Buscar el movimiento
-        // Si el movimiento existe el SDK se posiciona en el registro
-        ComercialSdk.fBuscarIdMovimiento(movimiento.Id).TirarSiEsError();
-
-        // Activar el modo de edición
-        ComercialSdk.fEditarMovimiento().TirarSiEsError();
-        ;
-
-        // Actualizar los campos del registro donde el SDK esta posicionado
-        ComercialSdk.fSetDatoMovimiento("COBSERVAMOV", movimiento.Observaciones).TirarSiEsError();
-
-        // Guardar los cambios realizados al registro
-        ComercialSdk.fGuardaMovimiento().TirarSiEsError();
-    }
-
-    /// <summary>
     ///     Eliminar un movimiento.
     /// </summary>
     /// <param name="movimiento">El movimiento a eliminar.</param>
@@ -217,5 +170,50 @@ public sealed class MovimientoSdk
 
         // Eliminar movimiento
         ComercialSdk.fBorraMovimiento(movimiento.DocumentoId, movimiento.Id).TirarSiEsError();
+    }
+
+    /// <summary>
+    ///     Lee los datos del movimiento donde el SDK esta posicionado.
+    /// </summary>
+    /// <returns>Regresa un movimiento con los sus datos asignados.</returns>
+    private static MovimientoSdk LeerDatosMovimiento()
+    {
+        // Declarar variables a leer de la base de datos
+        var idBd = new StringBuilder(3000);
+        var documentoIdBd = new StringBuilder(3000);
+        var productoIdBd = new StringBuilder(3000);
+        var unidadesBd = new StringBuilder(3000);
+        var precioBd = new StringBuilder(3000);
+        var referenciaBd = new StringBuilder(3000);
+        var observacionesBd = new StringBuilder(3000);
+        var totalBd = new StringBuilder(3000);
+
+        // Leer los datos del registro donde el SDK esta posicionado
+        ComercialSdk.fLeeDatoMovimiento("CIDMOVIMIENTO", idBd, 3000).TirarSiEsError();
+        ComercialSdk.fLeeDatoMovimiento("CIDDOCUMENTO", documentoIdBd, 3000).TirarSiEsError();
+        ComercialSdk.fLeeDatoMovimiento("CIDPRODUCTO", productoIdBd, 3000).TirarSiEsError();
+        ComercialSdk.fLeeDatoMovimiento("CUNIDADES", unidadesBd, 3000).TirarSiEsError();
+        ComercialSdk.fLeeDatoMovimiento("CPRECIO", precioBd, 3000).TirarSiEsError();
+        ComercialSdk.fLeeDatoMovimiento("CREFERENCIA", referenciaBd, 3000).TirarSiEsError();
+        ComercialSdk.fLeeDatoMovimiento("COBSERVAMOV", observacionesBd, 3000).TirarSiEsError();
+        ComercialSdk.fLeeDatoMovimiento("CTOTAL", totalBd, 3000).TirarSiEsError();
+
+        // Instanciar un movimiento y asignar los datos de la base de datos
+        return new MovimientoSdk
+        {
+            Id = int.Parse(idBd.ToString()),
+            DocumentoId = int.Parse(documentoIdBd.ToString()),
+            ProductoId = int.Parse(productoIdBd.ToString()),
+            Unidades = double.Parse(unidadesBd.ToString()),
+            Precio = double.Parse(precioBd.ToString()),
+            Referencia = referenciaBd.ToString(),
+            Observaciones = observacionesBd.ToString(),
+            Total = double.Parse(totalBd.ToString())
+        };
+    }
+
+    public override string ToString()
+    {
+        return $"{Id} - {ProductoSdk.BuscarProductoPorId(ProductoId).Nombre} - {Unidades} - {Precio} - {Total:C}";
     }
 }

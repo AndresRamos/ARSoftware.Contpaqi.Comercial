@@ -11,15 +11,14 @@ public partial class ListadoClasificacionesView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<ListadoClasificacionesViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (ListadoClasificacionesView)recipient;
-                    view.Close();
-                }
-            });
+                var view = (ListadoClasificacionesView)recipient;
+                view.Close();
+            }
+        });
     }
 
     public ListadoClasificacionesViewModel ViewModel => (ListadoClasificacionesViewModel)DataContext;

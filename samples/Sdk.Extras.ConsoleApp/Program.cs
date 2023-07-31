@@ -13,7 +13,7 @@ IHost host = Host.CreateDefaultBuilder()
         services.AddEjemplos();
     })
     .ConfigureLogging(builder => { builder.ClearProviders(); })
-    .UseSerilog((hostingContext, loggerConfiguration) =>
+    .UseSerilog((_, loggerConfiguration) =>
     {
         loggerConfiguration.MinimumLevel.Information()
             .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)

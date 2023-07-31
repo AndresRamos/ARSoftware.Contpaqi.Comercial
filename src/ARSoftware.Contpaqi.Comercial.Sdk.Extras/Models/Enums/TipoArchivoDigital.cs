@@ -1,8 +1,7 @@
-﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums
+﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
+
+public enum TipoArchivoDigital
 {
-    public enum TipoArchivoDigital
-    {
-        Xml = 0,
-        Pdf = 1
-    }
+    Xml = 0,
+    Pdf = 1
 }

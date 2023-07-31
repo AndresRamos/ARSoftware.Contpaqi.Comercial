@@ -13,12 +13,6 @@ public class GenerarDocumentoDigitalDocumento
         _documentoService = documentoService;
     }
 
-    public void CrearXml()
-    {
-        var llaveDocumento = new tLlaveDoc { aCodConcepto = "PRUEBAFACTURA", aSerie = "PRUEBA", aFolio = 1 };
-        _documentoService.GenerarDocumentoDigital(llaveDocumento, TipoArchivoDigital.Xml);
-    }
-
     public void CrearPdf()
     {
         var llaveDocumento = new tLlaveDoc { aCodConcepto = "PRUEBAFACTURA", aSerie = "PRUEBA", aFolio = 1 };
@@ -26,5 +20,11 @@ public class GenerarDocumentoDigitalDocumento
             @"\\AR-SERVER\Compac\Empresas\Reportes\Formatos Digitales\reportes_Servidor\COMERCIAL\Facturav40.rdl"; // La ruta a la plantilla en mi servidor ya que las pruebas las hago en una temrinal.
 
         _documentoService.GenerarDocumentoDigital(llaveDocumento, TipoArchivoDigital.Pdf, rutaPlantilla);
+    }
+
+    public void CrearXml()
+    {
+        var llaveDocumento = new tLlaveDoc { aCodConcepto = "PRUEBAFACTURA", aSerie = "PRUEBA", aFolio = 1 };
+        _documentoService.GenerarDocumentoDigital(llaveDocumento, TipoArchivoDigital.Xml);
     }
 }

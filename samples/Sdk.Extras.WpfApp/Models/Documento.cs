@@ -25,7 +25,6 @@ public class Documento : admDocumentos
     public ConceptoDocumento ConceptoDocumento { get; set; } = new();
     public Direccion DireccionEnvio { get; set; } = new();
     public Direccion DireccionFiscal { get; set; } = new();
-    public List<Movimiento> Movimientos { get; set; } = new();
 
     public FormaPago FormaPago
     {
@@ -44,6 +43,8 @@ public class Documento : admDocumentos
         get => Moneda.FromId(CIDMONEDA);
         set => CIDMONEDA = value.Id;
     }
+
+    public List<Movimiento> Movimientos { get; set; } = new();
 
     public bool Contains(string filtro)
     {

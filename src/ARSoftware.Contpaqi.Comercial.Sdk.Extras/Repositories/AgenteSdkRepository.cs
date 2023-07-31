@@ -26,13 +26,13 @@ public class AgenteSdkRepository<T> : IAgenteRepository<T> where T : class, new(
     }
 
     /// <inheritdoc />
-    public T BuscarPorCodigo(string codigoAgente)
+    public T? BuscarPorCodigo(string codigoAgente)
     {
         return _sdk.fBuscaAgente(codigoAgente) == SdkResultConstants.Success ? LeerDatosAgenteActual() : null;
     }
 
     /// <inheritdoc />
-    public T BuscarPorId(int idAgente)
+    public T? BuscarPorId(int idAgente)
     {
         return _sdk.fBuscaIdAgente(idAgente) == SdkResultConstants.Success ? LeerDatosAgenteActual() : null;
     }

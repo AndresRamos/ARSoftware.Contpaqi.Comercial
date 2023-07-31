@@ -65,7 +65,11 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
         BuscarAgenteCobroCommand = new AsyncRelayCommand(BuscarAgenteCobroAsync);
     }
 
-    public string Title { get; } = "Crear Cliente/Proveedor";
+    public IAsyncRelayCommand BuscarAgenteCobroCommand { get; }
+    public IAsyncRelayCommand BuscarAgenteVentaCommand { get; }
+    public IAsyncRelayCommand BuscarAlmacenCommand { get; }
+    public IRelayCommand<string> BuscarValorClasificacionCommand { get; }
+    public IRelayCommand CancelarCommand { get; }
 
     public ClienteProveedor ClienteProveedor
     {
@@ -73,20 +77,9 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
         private set => SetProperty(ref _clienteProveedor, value);
     }
 
-    public IEnumerable<Moneda> Monedas { get; } = Moneda.ToList();
-
-    public IEnumerable<TipoCliente> TiposCliente { get; } = Enum.GetValues(typeof(TipoCliente)).Cast<TipoCliente>().ToList();
+    public IRelayCommand CrearDireccionCommand { get; }
 
     public ObservableCollection<Direccion> Direcciones { get; } = new();
-
-    public IRelayCommand GuardarCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
-    public IRelayCommand<string> BuscarValorClasificacionCommand { get; }
-    public IRelayCommand CrearDireccionCommand { get; }
-    public IRelayCommand EditarDireccionCommand { get; }
-    public IAsyncRelayCommand BuscarAlmacenCommand { get; }
-    public IAsyncRelayCommand BuscarAgenteVentaCommand { get; }
-    public IAsyncRelayCommand BuscarAgenteCobroCommand { get; }
 
     public Direccion DireccionSeleccionada
     {
@@ -97,6 +90,16 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
             RaiseGuards();
         }
     }
+
+    public IRelayCommand EditarDireccionCommand { get; }
+
+    public IRelayCommand GuardarCommand { get; }
+
+    public IEnumerable<Moneda> Monedas { get; } = Moneda.ToList();
+
+    public IEnumerable<TipoCliente> TiposCliente { get; } = Enum.GetValues(typeof(TipoCliente)).Cast<TipoCliente>().ToList();
+
+    public string Title { get; } = "Crear Cliente/Proveedor";
 
     private async Task BuscarAgenteCobroAsync()
     {
@@ -301,7 +304,7 @@ public class EditarClienteProveedorViewModel : ObservableRecipient
 
     private void CargarCliente(int idCliente)
     {
-        ClienteProveedor = _clienteProveedorRepository.BuscarPorId(idCliente);
+        ClienteProveedor = _clienteProveedorRepository.BuscarPorId(idCliente) ?? throw new ArgumentException("No se encontro el cliente.");
         CargarRelaciones(ClienteProveedor);
         CargarDirecciones(ClienteProveedor.Tipo, ClienteProveedor.CIDCLIENTEPROVEEDOR);
     }

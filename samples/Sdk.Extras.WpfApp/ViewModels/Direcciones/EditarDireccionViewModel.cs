@@ -35,7 +35,7 @@ public class EditarDireccionViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(CerrarVista);
     }
 
-    public string Title { get; } = "Editar Direccion";
+    public IRelayCommand CancelarCommand { get; }
 
     public string CodigoClienteProveedor { get; set; }
 
@@ -45,10 +45,11 @@ public class EditarDireccionViewModel : ObservableRecipient
         private set => SetProperty(ref _direccion, value);
     }
 
+    public IAsyncRelayCommand GuardarCommand { get; }
+
     public IEnumerable<TipoDireccion> TiposDireccion { get; } = Enum.GetValues(typeof(TipoDireccion)).Cast<TipoDireccion>().ToList();
 
-    public IAsyncRelayCommand GuardarCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
+    public string Title { get; } = "Editar Direccion";
 
     private void CargarDireccion(int idDireccion)
     {

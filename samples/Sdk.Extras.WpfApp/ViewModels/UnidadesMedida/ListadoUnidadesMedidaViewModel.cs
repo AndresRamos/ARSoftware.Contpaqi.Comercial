@@ -40,7 +40,17 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
         EliminarUnidadCommand = new AsyncRelayCommand(EliminarUnidadAsync, CanEliminarUnidad);
     }
 
-    public string Title => "Unidades De Medida";
+    public IAsyncRelayCommand BuscarUnidadesCommand { get; }
+    public IAsyncRelayCommand CrearUnidadCommand { get; }
+
+    public string DuracionBusqueda
+    {
+        get => _duracionBusqueda;
+        private set => SetProperty(ref _duracionBusqueda, value);
+    }
+
+    public IAsyncRelayCommand EditarUnidadCommand { get; }
+    public IAsyncRelayCommand EliminarUnidadCommand { get; }
 
     public string Filtro
     {
@@ -52,6 +62,10 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
             OnPropertyChanged(nameof(NumeroUnidades));
         }
     }
+
+    public int NumeroUnidades => UnidadesMedidaView.Cast<object>().Count();
+
+    public string Title => "Unidades De Medida";
 
     public ObservableCollection<UnidadMedida> UnidadesMedida { get; }
 
@@ -66,19 +80,6 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
             RaiseGuards();
         }
     }
-
-    public int NumeroUnidades => UnidadesMedidaView.Cast<object>().Count();
-
-    public string DuracionBusqueda
-    {
-        get => _duracionBusqueda;
-        private set => SetProperty(ref _duracionBusqueda, value);
-    }
-
-    public IAsyncRelayCommand BuscarUnidadesCommand { get; }
-    public IAsyncRelayCommand CrearUnidadCommand { get; }
-    public IAsyncRelayCommand EditarUnidadCommand { get; }
-    public IAsyncRelayCommand EliminarUnidadCommand { get; }
 
     private async Task BuscarUnidadesAsync()
     {
@@ -111,6 +112,16 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
         }
     }
 
+    private bool CanEditarUnidad()
+    {
+        return UnidadMedidaSeleccionada is not null;
+    }
+
+    private bool CanEliminarUnidad()
+    {
+        return UnidadMedidaSeleccionada is not null;
+    }
+
     private async Task CrearUnidadAsync()
     {
         try
@@ -139,11 +150,6 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
         }
     }
 
-    private bool CanEditarUnidad()
-    {
-        return UnidadMedidaSeleccionada is not null;
-    }
-
     private async Task EliminarUnidadAsync()
     {
         try
@@ -166,11 +172,6 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
         {
             RaiseGuards();
         }
-    }
-
-    private bool CanEliminarUnidad()
-    {
-        return UnidadMedidaSeleccionada is not null;
     }
 
     private void RaiseGuards()

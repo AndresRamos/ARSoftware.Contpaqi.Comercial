@@ -39,9 +39,11 @@ public class EditarMovimientoViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(CerrarVista);
     }
 
-    public string Title { get; } = "Editar Movimiento";
+    public IRelayCommand CancelarCommand { get; }
 
     public int DocumentoId { get; private set; }
+
+    public IAsyncRelayCommand GuardarMovimientoCommand { get; }
 
     public Movimiento Movimiento
     {
@@ -49,8 +51,7 @@ public class EditarMovimientoViewModel : ObservableRecipient
         private set => SetProperty(ref _movimiento, value);
     }
 
-    public IAsyncRelayCommand GuardarMovimientoCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
+    public string Title { get; } = "Editar Movimiento";
 
     private async Task ActualizarMovimientoAsync()
     {

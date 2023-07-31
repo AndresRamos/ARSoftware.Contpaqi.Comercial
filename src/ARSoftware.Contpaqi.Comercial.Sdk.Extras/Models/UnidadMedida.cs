@@ -27,5 +27,5 @@ public class UnidadMedida
     /// <summary>
     ///     Datos extra de la unidad.
     /// </summary>
-    public Dictionary<string, string> DatosExtra { get; set; }
+    public Dictionary<string, string> DatosExtra { get; set; } = new();
 }

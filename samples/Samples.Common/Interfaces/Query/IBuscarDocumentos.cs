@@ -2,8 +2,8 @@
 
 public interface IBuscarDocumentos
 {
-    void BuscarPorId();
     void BuscarPorConceptoSerieFolio();
+    void BuscarPorId();
     void BuscarPorLlave();
     void BuscarSiguienteSerieYFolio();
     void TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor();

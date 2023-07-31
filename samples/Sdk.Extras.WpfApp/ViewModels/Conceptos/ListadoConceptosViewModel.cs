@@ -33,7 +33,23 @@ public class ListadoConceptosViewModel : ObservableRecipient
         BuscarConceptosCommand = new AsyncRelayCommand(BuscarConceptosAsync);
     }
 
-    public string Title => "Conceptos";
+    public IAsyncRelayCommand BuscarConceptosCommand { get; }
+
+    public ObservableCollection<ConceptoDocumento> Conceptos { get; }
+
+    public ConceptoDocumento ConceptoSeleccionado
+    {
+        get => _conceptoSeleccionado;
+        set => SetProperty(ref _conceptoSeleccionado, value);
+    }
+
+    public ICollectionView ConceptosView { get; }
+
+    public string DuracionBusqueda
+    {
+        get => _duracionBusqueda;
+        private set => SetProperty(ref _duracionBusqueda, value);
+    }
 
     public string Filtro
     {
@@ -46,25 +62,9 @@ public class ListadoConceptosViewModel : ObservableRecipient
         }
     }
 
-    public ObservableCollection<ConceptoDocumento> Conceptos { get; }
-
-    public ICollectionView ConceptosView { get; }
-
-    public ConceptoDocumento ConceptoSeleccionado
-    {
-        get => _conceptoSeleccionado;
-        set => SetProperty(ref _conceptoSeleccionado, value);
-    }
-
     public int NumeroConceptos => ConceptosView.Cast<object>().Count();
 
-    public string DuracionBusqueda
-    {
-        get => _duracionBusqueda;
-        private set => SetProperty(ref _duracionBusqueda, value);
-    }
-
-    public IAsyncRelayCommand BuscarConceptosCommand { get; }
+    public string Title => "Conceptos";
 
     public async Task BuscarConceptosAsync()
     {

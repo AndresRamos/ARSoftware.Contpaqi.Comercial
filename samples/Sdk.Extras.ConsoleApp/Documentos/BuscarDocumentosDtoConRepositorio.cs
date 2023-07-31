@@ -19,16 +19,6 @@ public sealed class BuscarDocumentosDtoConRepositorio : IBuscarDocumentos
     }
 
     /// <inheritdoc />
-    public void BuscarPorId()
-    {
-        var idDocumento = 1;
-
-        DocumentoDto? documento = _documentoRepository.BuscarPorId(idDocumento);
-
-        _logger.LogInformation("{@Documento}", documento);
-    }
-
-    /// <inheritdoc />
     public void BuscarPorConceptoSerieFolio()
     {
         var codigoConcepto = "PRUEBA";
@@ -36,6 +26,16 @@ public sealed class BuscarDocumentosDtoConRepositorio : IBuscarDocumentos
         double folio = 1;
 
         DocumentoDto? documento = _documentoRepository.BuscarPorLlave(codigoConcepto, serie, folio);
+
+        _logger.LogInformation("{@Documento}", documento);
+    }
+
+    /// <inheritdoc />
+    public void BuscarPorId()
+    {
+        var idDocumento = 1;
+
+        DocumentoDto? documento = _documentoRepository.BuscarPorId(idDocumento);
 
         _logger.LogInformation("{@Documento}", documento);
     }

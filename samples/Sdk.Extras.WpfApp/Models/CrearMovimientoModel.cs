@@ -1,5 +1,4 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable InconsistentNaming
@@ -17,6 +16,22 @@ public class CrearMovimientoModel : ObservableObject
     private double _cunidadescapturadas;
     private ProductoLookup _producto;
 
+    public Almacen Almacen
+    {
+        get => _almacen;
+        set
+        {
+            SetProperty(ref _almacen, value);
+            CIDALMACEN = value?.CIDALMACEN ?? 0;
+        }
+    }
+
+    public int CIDALMACEN
+    {
+        get => _cidalmacen;
+        set => SetProperty(ref _cidalmacen, value);
+    }
+
     public int CIDDOCUMENTO
     {
         get => _ciddocumento;
@@ -27,18 +42,6 @@ public class CrearMovimientoModel : ObservableObject
     {
         get => _cidproducto;
         set => SetProperty(ref _cidproducto, value);
-    }
-
-    public int CIDALMACEN
-    {
-        get => _cidalmacen;
-        set => SetProperty(ref _cidalmacen, value);
-    }
-
-    public double CUNIDADESCAPTURADAS
-    {
-        get => _cunidadescapturadas;
-        set => SetProperty(ref _cunidadescapturadas, value);
     }
 
     public double CPRECIO
@@ -53,6 +56,12 @@ public class CrearMovimientoModel : ObservableObject
         set => SetProperty(ref _creferencia, value);
     }
 
+    public double CUNIDADESCAPTURADAS
+    {
+        get => _cunidadescapturadas;
+        set => SetProperty(ref _cunidadescapturadas, value);
+    }
+
     public ProductoLookup Producto
     {
         get => _producto;
@@ -60,16 +69,6 @@ public class CrearMovimientoModel : ObservableObject
         {
             SetProperty(ref _producto, value);
             CIDPRODUCTO = value?.CIDPRODUCTO ?? 0;
-        }
-    }
-
-    public Almacen Almacen
-    {
-        get => _almacen;
-        set
-        {
-            SetProperty(ref _almacen, value);
-            CIDALMACEN = value?.CIDALMACEN ?? 0;
         }
     }
 }

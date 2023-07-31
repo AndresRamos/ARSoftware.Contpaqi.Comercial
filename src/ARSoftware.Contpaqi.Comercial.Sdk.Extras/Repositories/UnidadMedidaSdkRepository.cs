@@ -26,13 +26,13 @@ public class UnidadMedidaSdkRepository<T> : IUnidadMedidaRepository<T> where T :
     }
 
     /// <inheritdoc />
-    public T BuscarPorId(int idUnidad)
+    public T? BuscarPorId(int idUnidad)
     {
         return _sdk.fBuscaIdUnidad(idUnidad) == SdkResultConstants.Success ? LeerDatosUnindadActual() : null;
     }
 
     /// <inheritdoc />
-    public T BuscarPorNombre(string nombreUnidad)
+    public T? BuscarPorNombre(string nombreUnidad)
     {
         return _sdk.fBuscaUnidad(nombreUnidad) == SdkResultConstants.Success ? LeerDatosUnindadActual() : null;
     }

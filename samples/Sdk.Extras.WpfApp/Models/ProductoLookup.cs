@@ -9,8 +9,8 @@ namespace Sdk.Extras.WpfApp.Models;
 
 public class ProductoLookup
 {
-    public int CIDPRODUCTO { get; set; }
     public string CCODIGOPRODUCTO { get; set; }
+    public int CIDPRODUCTO { get; set; }
     public string CNOMBREPRODUCTO { get; set; }
     public int CTIPOPRODUCTO { get; set; }
 

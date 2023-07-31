@@ -29,17 +29,7 @@ public sealed class IniciarSesionViewModel : ObservableRecipient
         CerrarVistaCommand = new RelayCommand(CerrarVista);
     }
 
-    public string Title { get; } = "Iniciar Sesion";
-
-    public string NombreUsuario
-    {
-        get => _nombreUsuario;
-        set
-        {
-            SetProperty(ref _nombreUsuario, value);
-            RaiseGuards();
-        }
-    }
+    public IRelayCommand CerrarVistaCommand { get; }
 
     public string Contrasena
     {
@@ -47,16 +37,6 @@ public sealed class IniciarSesionViewModel : ObservableRecipient
         set
         {
             SetProperty(ref _contrasena, value);
-            RaiseGuards();
-        }
-    }
-
-    public string NombreUsuarioContabilidad
-    {
-        get => _nombreUsuarioContabilidad;
-        set
-        {
-            SetProperty(ref _nombreUsuarioContabilidad, value);
             RaiseGuards();
         }
     }
@@ -74,7 +54,43 @@ public sealed class IniciarSesionViewModel : ObservableRecipient
     public IAsyncRelayCommand IniciarSesionSdkCommand { get; }
     public IAsyncRelayCommand IniciarSesionSdkParametrosCommand { get; }
     public IAsyncRelayCommand IniciarSesionSdkParametrosContabilidadCommand { get; }
-    public IRelayCommand CerrarVistaCommand { get; }
+
+    public string NombreUsuario
+    {
+        get => _nombreUsuario;
+        set
+        {
+            SetProperty(ref _nombreUsuario, value);
+            RaiseGuards();
+        }
+    }
+
+    public string NombreUsuarioContabilidad
+    {
+        get => _nombreUsuarioContabilidad;
+        set
+        {
+            SetProperty(ref _nombreUsuarioContabilidad, value);
+            RaiseGuards();
+        }
+    }
+
+    public string Title { get; } = "Iniciar Sesion";
+
+    public bool CanIniciarSesionSdkParametrosAsync()
+    {
+        return !string.IsNullOrWhiteSpace(NombreUsuario);
+    }
+
+    public bool CanIniciarSesionSdkParametrosContabilidadAsync()
+    {
+        return !string.IsNullOrWhiteSpace(NombreUsuario) && !string.IsNullOrWhiteSpace(NombreUsuarioContabilidad);
+    }
+
+    public void CerrarVista()
+    {
+        Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
+    }
 
     public async Task IniciarSesionSdkAsync()
     {
@@ -102,16 +118,6 @@ public sealed class IniciarSesionViewModel : ObservableRecipient
         }
     }
 
-    public bool CanIniciarSesionSdkParametrosAsync()
-    {
-        return !string.IsNullOrWhiteSpace(NombreUsuario);
-    }
-
-    public bool CanIniciarSesionSdkParametrosContabilidadAsync()
-    {
-        return !string.IsNullOrWhiteSpace(NombreUsuario) && !string.IsNullOrWhiteSpace(NombreUsuarioContabilidad);
-    }
-
     public async Task IniciarSesionSdkParametrosContabilidadAsync()
     {
         try
@@ -123,11 +129,6 @@ public sealed class IniciarSesionViewModel : ObservableRecipient
         {
             await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
         }
-    }
-
-    public void CerrarVista()
-    {
-        Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
     }
 
     private void RaiseGuards()

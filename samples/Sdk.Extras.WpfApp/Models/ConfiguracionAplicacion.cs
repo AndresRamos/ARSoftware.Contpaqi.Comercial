@@ -1,5 +1,4 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Sdk.Extras.WpfApp.Models;
 

@@ -56,12 +56,23 @@ public class CrearFacturaViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(CerrarVista);
     }
 
-    public string Title => "Crear Factura";
+    public ObservableCollection<Agente> Agentes { get; } = new();
 
-    public DateTime Fecha
+    public Agente AgenteSeleccionado
     {
-        get => _fecha;
-        set => SetProperty(ref _fecha, value);
+        get => _agenteSeleccionado;
+        set => SetProperty(ref _agenteSeleccionado, value);
+    }
+
+    public IAsyncRelayCommand BuscarSiguienteFolioCommand { get; }
+    public IRelayCommand CancelarCommand { get; }
+
+    public ObservableCollection<ClienteProveedorLookup> Clientes { get; } = new();
+
+    public ClienteProveedorLookup ClienteSeleccionado
+    {
+        get => _clienteSeleccionado;
+        set => SetProperty(ref _clienteSeleccionado, value);
     }
 
     public ObservableCollection<ConceptoDocumento> Conceptos { get; } = new();
@@ -76,10 +87,12 @@ public class CrearFacturaViewModel : ObservableRecipient
         }
     }
 
-    public string Serie
+    public IAsyncRelayCommand CrearFacturaCommand { get; }
+
+    public DateTime Fecha
     {
-        get => _serie;
-        set => SetProperty(ref _serie, value);
+        get => _fecha;
+        set => SetProperty(ref _fecha, value);
     }
 
     public double Folio
@@ -88,32 +101,12 @@ public class CrearFacturaViewModel : ObservableRecipient
         set => SetProperty(ref _folio, value);
     }
 
-    public ObservableCollection<ClienteProveedorLookup> Clientes { get; } = new();
-
-    public ClienteProveedorLookup ClienteSeleccionado
-    {
-        get => _clienteSeleccionado;
-        set => SetProperty(ref _clienteSeleccionado, value);
-    }
-
-    public ObservableCollection<Agente> Agentes { get; } = new();
-
-    public Agente AgenteSeleccionado
-    {
-        get => _agenteSeleccionado;
-        set => SetProperty(ref _agenteSeleccionado, value);
-    }
+    public IRelayCommand InicializarCommand { get; }
 
     public int Moneda
     {
         get => _moneda;
         set => SetProperty(ref _moneda, value);
-    }
-
-    public double TipoCambio
-    {
-        get => _tipoCambio;
-        set => SetProperty(ref _tipoCambio, value);
     }
 
     public string Referencia
@@ -122,10 +115,19 @@ public class CrearFacturaViewModel : ObservableRecipient
         set => SetProperty(ref _referencia, value);
     }
 
-    public IRelayCommand InicializarCommand { get; }
-    public IAsyncRelayCommand CrearFacturaCommand { get; }
-    public IAsyncRelayCommand BuscarSiguienteFolioCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
+    public string Serie
+    {
+        get => _serie;
+        set => SetProperty(ref _serie, value);
+    }
+
+    public double TipoCambio
+    {
+        get => _tipoCambio;
+        set => SetProperty(ref _tipoCambio, value);
+    }
+
+    public string Title => "Crear Factura";
 
     public async Task BuscarSiguienteFolioAsync()
     {

@@ -7,10 +7,6 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 
 public interface IContpaqiSdk
 {
-    string NombreLlaveRegistro { get; }
-
-    string NombrePaq { get; }
-
     int fAbreEmpresa(string aDirectorioEmpresa);
 
     int fActivarPrecioCompra(int aActivar);
@@ -688,4 +684,7 @@ public interface IContpaqiSdk
     string LeeDatoValorClasificacion(string dato, int longitud = 512);
 
     string LeeMensajeError(int numeroError);
+    string NombreLlaveRegistro { get; }
+
+    string NombrePaq { get; }
 }

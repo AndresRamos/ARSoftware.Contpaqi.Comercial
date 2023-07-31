@@ -27,7 +27,7 @@ public class MovimientoSdkRepository<T> : IMovimientoRepository<T> where T : cla
     }
 
     /// <inheritdoc />
-    public T BuscarPorId(int idMovimiento)
+    public T? BuscarPorId(int idMovimiento)
     {
         return _sdk.fBuscarIdMovimiento(idMovimiento) == SdkResultConstants.Success ? LeerDatosMovimientoActual() : null;
     }

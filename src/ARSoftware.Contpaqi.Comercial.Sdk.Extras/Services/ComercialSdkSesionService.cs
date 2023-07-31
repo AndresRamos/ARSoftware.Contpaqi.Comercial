@@ -84,7 +84,19 @@ public class ComercialSdkSesionService : IComercialSdkSesionService
         _sdk.fInicioSesionSDKCONTPAQi(nombreUsuarioContabilidad, contrasenaContabilidad);
     }
 
+    /// <inheritdoc />
+    public bool IsComercialSdk()
+    {
+        return _sdk is ComercialSdkExtended;
+    }
+
     public bool IsEmpresaAbierta { get; private set; }
+
+    /// <inheritdoc />
+    public bool IsFacturaElectronicaSdk()
+    {
+        return _sdk is FacturaElectronicaSdkExtended;
+    }
 
     public bool IsSdkInicializado { get; private set; }
 
@@ -95,17 +107,5 @@ public class ComercialSdkSesionService : IComercialSdkSesionService
 
         _sdk.fTerminaSDK();
         IsSdkInicializado = false;
-    }
-
-    /// <inheritdoc />
-    public bool IsComercialSdk()
-    {
-        return _sdk is ComercialSdkExtended;
-    }
-
-    /// <inheritdoc />
-    public bool IsFacturaElectronicaSdk()
-    {
-        return _sdk is FacturaElectronicaSdkExtended;
     }
 }

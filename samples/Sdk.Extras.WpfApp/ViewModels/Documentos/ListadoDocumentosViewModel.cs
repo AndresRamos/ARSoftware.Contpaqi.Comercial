@@ -61,48 +61,21 @@ public class ListadoDocumentosViewModel : ObservableRecipient
         BuscarConFiltroCommand = new AsyncRelayCommand(BuscarConFiltroAsync, PuedeBuscaConFiltroAsync);
     }
 
-    public string Title => "Documentos";
+    public IAsyncRelayCommand BuscarConFiltroCommand { get; }
 
-    public string Filtro
+    public IAsyncRelayCommand BuscarTodoCommand { get; }
+
+    public ClienteProveedorLookup ClienteProveedorSeleccionado
     {
-        get => _filtro;
+        get => _clienteProveedorSeleccionado;
         set
         {
-            SetProperty(ref _filtro, value);
-            DocumentosView.Refresh();
-            OnPropertyChanged(nameof(NumeroDocumentos));
-        }
-    }
-
-    public DateTime FechaInicio
-    {
-        get => _fechaInicio;
-        set
-        {
-            SetProperty(ref _fechaInicio, value);
+            SetProperty(ref _clienteProveedorSeleccionado, value);
             RaiseGuards();
         }
     }
 
-    public DateTime FechaFin
-    {
-        get => _fechaFin;
-        set
-        {
-            SetProperty(ref _fechaFin, value);
-            RaiseGuards();
-        }
-    }
-
-    public ObservableCollection<Documento> Documentos { get; } = new();
-
-    public ICollectionView DocumentosView { get; }
-
-    public Documento DocumentoSeleccionado
-    {
-        get => _documentoSeleccionado;
-        set => SetProperty(ref _documentoSeleccionado, value);
-    }
+    public ObservableCollection<ClienteProveedorLookup> ClientesProveedores { get; } = new();
 
     public ObservableCollection<ConceptoDocumento> Conceptos { get; } = new();
 
@@ -116,19 +89,15 @@ public class ListadoDocumentosViewModel : ObservableRecipient
         }
     }
 
-    public ObservableCollection<ClienteProveedorLookup> ClientesProveedores { get; } = new();
+    public ObservableCollection<Documento> Documentos { get; } = new();
 
-    public ClienteProveedorLookup ClienteProveedorSeleccionado
+    public Documento DocumentoSeleccionado
     {
-        get => _clienteProveedorSeleccionado;
-        set
-        {
-            SetProperty(ref _clienteProveedorSeleccionado, value);
-            RaiseGuards();
-        }
+        get => _documentoSeleccionado;
+        set => SetProperty(ref _documentoSeleccionado, value);
     }
 
-    public int NumeroDocumentos => DocumentosView.Cast<object>().Count();
+    public ICollectionView DocumentosView { get; }
 
     public string DuracionBusqueda
     {
@@ -136,52 +105,42 @@ public class ListadoDocumentosViewModel : ObservableRecipient
         set => SetProperty(ref _duracionBusqueda, value);
     }
 
-    public IAsyncRelayCommand BuscarTodoCommand { get; }
-    public IAsyncRelayCommand BuscarConFiltroCommand { get; }
-    public IRelayCommand InicializarCommand { get; }
-
-    public void Inicializar()
+    public DateTime FechaFin
     {
-        CargarConceptos();
-        CargarClientes();
+        get => _fechaFin;
+        set
+        {
+            SetProperty(ref _fechaFin, value);
+            RaiseGuards();
+        }
     }
 
-    public async Task BuscarTodoAsync()
+    public DateTime FechaInicio
     {
-        ProgressDialogController progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
-        await Task.Delay(1000);
-
-        try
+        get => _fechaInicio;
+        set
         {
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
-            Documentos.Clear();
-            foreach (Documento documento in _documentoRepository.TraerTodo())
-            {
-                CargarRelaciones(documento);
-                Documentos.Add(documento);
-                progressDialogController.SetMessage($"Numero de documentos: {Documentos.Count}");
-                await Task.Delay(50);
-            }
-
-            stopwatch.Stop();
-            DuracionBusqueda = stopwatch.Elapsed.ToString("g");
+            SetProperty(ref _fechaInicio, value);
+            RaiseGuards();
         }
-        catch (Exception e)
+    }
+
+    public string Filtro
+    {
+        get => _filtro;
+        set
         {
-            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
-        }
-        finally
-        {
-            await progressDialogController.CloseAsync();
+            SetProperty(ref _filtro, value);
+            DocumentosView.Refresh();
             OnPropertyChanged(nameof(NumeroDocumentos));
         }
     }
 
-    public bool PuedeBuscaConFiltroAsync()
-    {
-        return FechaInicio <= FechaFin && ConceptoSeleccionado != null && ClienteProveedorSeleccionado != null;
-    }
+    public IRelayCommand InicializarCommand { get; }
+
+    public int NumeroDocumentos => DocumentosView.Cast<object>().Count();
+
+    public string Title => "Documentos";
 
     public async Task BuscarConFiltroAsync()
     {
@@ -216,11 +175,36 @@ public class ListadoDocumentosViewModel : ObservableRecipient
         }
     }
 
-    private void CargarConceptos()
+    public async Task BuscarTodoAsync()
     {
-        Conceptos.Clear();
-        foreach (ConceptoDocumento concepto in _conceptoDocumentoRepository.TraerTodo().OrderBy(c => c.CNOMBRECONCEPTO))
-            Conceptos.Add(concepto);
+        ProgressDialogController progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
+        await Task.Delay(1000);
+
+        try
+        {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            Documentos.Clear();
+            foreach (Documento documento in _documentoRepository.TraerTodo())
+            {
+                CargarRelaciones(documento);
+                Documentos.Add(documento);
+                progressDialogController.SetMessage($"Numero de documentos: {Documentos.Count}");
+                await Task.Delay(50);
+            }
+
+            stopwatch.Stop();
+            DuracionBusqueda = stopwatch.Elapsed.ToString("g");
+        }
+        catch (Exception e)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+        }
+        finally
+        {
+            await progressDialogController.CloseAsync();
+            OnPropertyChanged(nameof(NumeroDocumentos));
+        }
     }
 
     private void CargarClientes()
@@ -230,17 +214,11 @@ public class ListadoDocumentosViewModel : ObservableRecipient
             ClientesProveedores.Add(clienteProveedor);
     }
 
-    private void RaiseGuards()
+    private void CargarConceptos()
     {
-        BuscarTodoCommand.NotifyCanExecuteChanged();
-        BuscarConFiltroCommand.NotifyCanExecuteChanged();
-    }
-
-    private bool ProductosView_Filter(object obj)
-    {
-        if (!(obj is Documento documento)) throw new ArgumentNullException(nameof(obj));
-
-        return documento.Contains(Filtro);
+        Conceptos.Clear();
+        foreach (ConceptoDocumento concepto in _conceptoDocumentoRepository.TraerTodo().OrderBy(c => c.CNOMBRECONCEPTO))
+            Conceptos.Add(concepto);
     }
 
     private void CargarRelaciones(Documento documento)
@@ -257,5 +235,29 @@ public class ListadoDocumentosViewModel : ObservableRecipient
             movimiento.Almacen = _almacenRepository.BuscarPorId(movimiento.CIDALMACEN);
             movimiento.ValorClasificacion = _valorClasificacionRepository.BuscarPorId(movimiento.CIDVALORCLASIFICACION);
         }
+    }
+
+    public void Inicializar()
+    {
+        CargarConceptos();
+        CargarClientes();
+    }
+
+    private bool ProductosView_Filter(object obj)
+    {
+        if (!(obj is Documento documento)) throw new ArgumentNullException(nameof(obj));
+
+        return documento.Contains(Filtro);
+    }
+
+    public bool PuedeBuscaConFiltroAsync()
+    {
+        return FechaInicio <= FechaFin && ConceptoSeleccionado != null && ClienteProveedorSeleccionado != null;
+    }
+
+    private void RaiseGuards()
+    {
+        BuscarTodoCommand.NotifyCanExecuteChanged();
+        BuscarConFiltroCommand.NotifyCanExecuteChanged();
     }
 }

@@ -14,15 +14,14 @@ public partial class EditarClienteProveedorView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<EditarClienteProveedorViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (EditarClienteProveedorView)recipient;
-                    view.Close();
-                }
-            });
+                var view = (EditarClienteProveedorView)recipient;
+                view.Close();
+            }
+        });
     }
 
     public EditarClienteProveedorViewModel ViewModel => (EditarClienteProveedorViewModel)DataContext;

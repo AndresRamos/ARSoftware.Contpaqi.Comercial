@@ -28,21 +28,7 @@ public class SeleccionarAgenteViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(CerrarVista);
     }
 
-    public string Title => "Seleccionar Agente";
-
-    public string Filtro
-    {
-        get => _filtro;
-        set
-        {
-            SetProperty(ref _filtro, value);
-            AgentesView.Refresh();
-        }
-    }
-
     public ObservableCollection<Agente> Agentes { get; }
-
-    public ICollectionView AgentesView { get; }
 
     public Agente AgenteSeleccionado
     {
@@ -54,21 +40,31 @@ public class SeleccionarAgenteViewModel : ObservableRecipient
         }
     }
 
-    public bool SeleccionoAgente { get; private set; }
-
-    public IRelayCommand SeleccionarCommand { get; }
+    public ICollectionView AgentesView { get; }
     public IRelayCommand CancelarCommand { get; }
 
-    public void Inicializar()
+    public string Filtro
     {
-        Agentes.Clear();
-        foreach (Agente agente in _agenteRepository.TraerTodo()) Agentes.Add(agente);
+        get => _filtro;
+        set
+        {
+            SetProperty(ref _filtro, value);
+            AgentesView.Refresh();
+        }
     }
 
-    public void Seleccionar()
+    public IRelayCommand SeleccionarCommand { get; }
+
+    public bool SeleccionoAgente { get; private set; }
+
+    public string Title => "Seleccionar Agente";
+
+    private bool AgentesView_Filter(object obj)
     {
-        SeleccionoAgente = true;
-        CerrarVista();
+        var agente = obj as Agente;
+        if (agente is null) throw new ArgumentNullException(nameof(obj));
+
+        return agente.Contains(Filtro);
     }
 
     public bool CanSeleccionar()
@@ -81,17 +77,21 @@ public class SeleccionarAgenteViewModel : ObservableRecipient
         Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
     }
 
+    public void Inicializar()
+    {
+        Agentes.Clear();
+        foreach (Agente agente in _agenteRepository.TraerTodo()) Agentes.Add(agente);
+    }
+
     private void RaiseGuards()
     {
         SeleccionarCommand.NotifyCanExecuteChanged();
         CancelarCommand.NotifyCanExecuteChanged();
     }
 
-    private bool AgentesView_Filter(object obj)
+    public void Seleccionar()
     {
-        var agente = obj as Agente;
-        if (agente is null) throw new ArgumentNullException(nameof(obj));
-
-        return agente.Contains(Filtro);
+        SeleccionoAgente = true;
+        CerrarVista();
     }
 }

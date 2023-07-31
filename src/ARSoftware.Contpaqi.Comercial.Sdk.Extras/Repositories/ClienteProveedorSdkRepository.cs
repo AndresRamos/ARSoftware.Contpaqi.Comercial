@@ -29,13 +29,13 @@ public class ClienteProveedorSdkRepository<T> : IClienteProveedorRepository<T> w
     }
 
     /// <inheritdoc />
-    public T BuscarPorCodigo(string codigoCliente)
+    public T? BuscarPorCodigo(string codigoCliente)
     {
         return _sdk.fBuscaCteProv(codigoCliente) == SdkResultConstants.Success ? LeerDatosClienteProveedorActual() : null;
     }
 
     /// <inheritdoc />
-    public T BuscarPorId(int idCliente)
+    public T? BuscarPorId(int idCliente)
     {
         return _sdk.fBuscaIdCteProv(idCliente) == SdkResultConstants.Success ? LeerDatosClienteProveedorActual() : null;
     }

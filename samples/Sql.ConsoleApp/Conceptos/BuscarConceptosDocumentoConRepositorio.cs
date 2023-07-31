@@ -38,19 +38,19 @@ public sealed class BuscarConceptosDocumentoConRepositorio : IBuscarConceptosDoc
     }
 
     /// <inheritdoc />
-    public void TraerTodo()
-    {
-        List<admConceptos> conceptos = _conceptoDocumentoRepository.TraerTodo();
-
-        _logger.LogInformation("{@Conceptos}", conceptos);
-    }
-
-    /// <inheritdoc />
     public void TraerPorDocumentoModeloId()
     {
         var idDocumentoModelo = 1;
 
         List<admConceptos> conceptos = _conceptoDocumentoRepository.TraerPorDocumentoModeloId(idDocumentoModelo);
+
+        _logger.LogInformation("{@Conceptos}", conceptos);
+    }
+
+    /// <inheritdoc />
+    public void TraerTodo()
+    {
+        List<admConceptos> conceptos = _conceptoDocumentoRepository.TraerTodo();
 
         _logger.LogInformation("{@Conceptos}", conceptos);
     }

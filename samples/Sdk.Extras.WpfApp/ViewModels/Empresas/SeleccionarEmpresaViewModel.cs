@@ -37,21 +37,16 @@ public class SeleccionarEmpresaViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(Cancelar);
     }
 
-    public string Title { get; } = "Seleccionar Empresa";
+    public IAsyncRelayCommand BuscarEmpresasCommand { get; }
+    public IRelayCommand CancelarCommand { get; }
 
-    public string Filtro
+    public string DuracionBusqueda
     {
-        get => _filtro;
-        set
-        {
-            SetProperty(ref _filtro, value);
-            EmpresasView.Refresh();
-        }
+        get => _duracionBusqueda;
+        set => SetProperty(ref _duracionBusqueda, value);
     }
 
     public ObservableCollection<Empresa> Empresas { get; }
-
-    public ICollectionView EmpresasView { get; }
 
     public Empresa EmpresaSeleccionada
     {
@@ -63,17 +58,23 @@ public class SeleccionarEmpresaViewModel : ObservableRecipient
         }
     }
 
-    public bool SeleccionoEmpresa { get; private set; }
+    public ICollectionView EmpresasView { get; }
 
-    public string DuracionBusqueda
+    public string Filtro
     {
-        get => _duracionBusqueda;
-        set => SetProperty(ref _duracionBusqueda, value);
+        get => _filtro;
+        set
+        {
+            SetProperty(ref _filtro, value);
+            EmpresasView.Refresh();
+        }
     }
 
-    public IAsyncRelayCommand BuscarEmpresasCommand { get; }
     public IRelayCommand SeleccionarCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
+
+    public bool SeleccionoEmpresa { get; private set; }
+
+    public string Title { get; } = "Seleccionar Empresa";
 
     public async Task BuscarEmpresasAsync()
     {
@@ -93,9 +94,9 @@ public class SeleccionarEmpresaViewModel : ObservableRecipient
         }
     }
 
-    public void Seleccionar()
+    public void Cancelar()
     {
-        SeleccionoEmpresa = true;
+        SeleccionoEmpresa = false;
         Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
     }
 
@@ -104,16 +105,16 @@ public class SeleccionarEmpresaViewModel : ObservableRecipient
         return EmpresaSeleccionada != null;
     }
 
-    public void Cancelar()
-    {
-        SeleccionoEmpresa = false;
-        Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
-    }
-
     private bool EmpresasView_Filter(object obj)
     {
         if (!(obj is Empresa empresa)) throw new ArgumentNullException(nameof(obj));
 
         return empresa.Contains(Filtro);
+    }
+
+    public void Seleccionar()
+    {
+        SeleccionoEmpresa = true;
+        Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
     }
 }

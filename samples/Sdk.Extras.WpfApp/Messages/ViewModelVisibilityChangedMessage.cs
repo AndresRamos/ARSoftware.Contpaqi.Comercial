@@ -8,7 +8,7 @@ public class ViewModelVisibilityChangedMessage
         IsOpen = isOpen;
     }
 
-    public object Sender { get; }
-
     public bool IsOpen { get; }
+
+    public object Sender { get; }
 }

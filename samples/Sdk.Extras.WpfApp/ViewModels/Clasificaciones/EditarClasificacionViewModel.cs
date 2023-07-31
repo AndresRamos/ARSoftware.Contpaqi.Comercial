@@ -32,7 +32,7 @@ public class EditarClasificacionViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(CerrarVista);
     }
 
-    public string Title => "Editar Clasificacion";
+    public IRelayCommand CancelarCommand { get; }
 
     public Clasificacion Clasificacion
     {
@@ -41,7 +41,8 @@ public class EditarClasificacionViewModel : ObservableRecipient
     }
 
     public IAsyncRelayCommand GuardarCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
+
+    public string Title => "Editar Clasificacion";
 
     private void CargarClasificacion(int idClasificacion)
     {

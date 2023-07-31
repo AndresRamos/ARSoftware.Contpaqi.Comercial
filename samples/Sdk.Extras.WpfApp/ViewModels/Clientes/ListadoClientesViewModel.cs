@@ -51,7 +51,33 @@ public class ListadoClientesViewModel : ObservableRecipient
         EditarClienteProveedorCommand = new AsyncRelayCommand(EditarClienteProveedorAsync, CanEditarClienteProveedorAsync);
     }
 
-    public string Title => "Clientes/Proveedores";
+    public IAsyncRelayCommand BuscarClientesCommand { get; }
+    public IAsyncRelayCommand BuscarProveedoresCommand { get; }
+
+    public IAsyncRelayCommand BuscarTodoCommand { get; }
+
+    public ClienteProveedor ClienteProveedorSeleccionado
+    {
+        get => _clienteProveedorSeleccionado;
+        set
+        {
+            SetProperty(ref _clienteProveedorSeleccionado, value);
+            RaiseGuards();
+        }
+    }
+
+    public ObservableCollection<ClienteProveedor> ClientesProveedores { get; }
+
+    public ICollectionView ClientesProveedoresView { get; }
+    public IAsyncRelayCommand CrearClienteProveedorCommand { get; }
+
+    public string DuracionBusqueda
+    {
+        get => _duracionBusqueda;
+        private set => SetProperty(ref _duracionBusqueda, value);
+    }
+
+    public IAsyncRelayCommand EditarClienteProveedorCommand { get; }
 
     public string Filtro
     {
@@ -64,66 +90,9 @@ public class ListadoClientesViewModel : ObservableRecipient
         }
     }
 
-    public ObservableCollection<ClienteProveedor> ClientesProveedores { get; }
-
-    public ICollectionView ClientesProveedoresView { get; }
-
-    public ClienteProveedor ClienteProveedorSeleccionado
-    {
-        get => _clienteProveedorSeleccionado;
-        set
-        {
-            SetProperty(ref _clienteProveedorSeleccionado, value);
-            RaiseGuards();
-        }
-    }
-
     public int NumeroClientesProveedores => ClientesProveedoresView.Cast<object>().Count();
 
-    public string DuracionBusqueda
-    {
-        get => _duracionBusqueda;
-        private set => SetProperty(ref _duracionBusqueda, value);
-    }
-
-    public IAsyncRelayCommand BuscarTodoCommand { get; }
-    public IAsyncRelayCommand BuscarClientesCommand { get; }
-    public IAsyncRelayCommand BuscarProveedoresCommand { get; }
-    public IAsyncRelayCommand CrearClienteProveedorCommand { get; }
-    public IAsyncRelayCommand EditarClienteProveedorCommand { get; }
-
-    public async Task BuscarTodoAsync()
-    {
-        ProgressDialogController progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
-        await Task.Delay(1000);
-
-        try
-        {
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
-            ClientesProveedores.Clear();
-
-            foreach (ClienteProveedor cliente in _clienteProveedorRepository.TraerTodo())
-            {
-                CargarRelaciones(cliente);
-                ClientesProveedores.Add(cliente);
-                progressDialogController.SetMessage($"Numero de clientes: {ClientesProveedores.Count}");
-                await Task.Delay(20);
-            }
-
-            stopwatch.Stop();
-            DuracionBusqueda = stopwatch.Elapsed.ToString("g");
-        }
-        catch (Exception e)
-        {
-            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
-        }
-        finally
-        {
-            await progressDialogController.CloseAsync();
-            OnPropertyChanged(nameof(NumeroClientesProveedores));
-        }
-    }
+    public string Title => "Clientes/Proveedores";
 
     public async Task BuscarClientesAsync()
     {
@@ -188,6 +157,77 @@ public class ListadoClientesViewModel : ObservableRecipient
         }
     }
 
+    public async Task BuscarTodoAsync()
+    {
+        ProgressDialogController progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
+        await Task.Delay(1000);
+
+        try
+        {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            ClientesProveedores.Clear();
+
+            foreach (ClienteProveedor cliente in _clienteProveedorRepository.TraerTodo())
+            {
+                CargarRelaciones(cliente);
+                ClientesProveedores.Add(cliente);
+                progressDialogController.SetMessage($"Numero de clientes: {ClientesProveedores.Count}");
+                await Task.Delay(20);
+            }
+
+            stopwatch.Stop();
+            DuracionBusqueda = stopwatch.Elapsed.ToString("g");
+        }
+        catch (Exception e)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+        }
+        finally
+        {
+            await progressDialogController.CloseAsync();
+            OnPropertyChanged(nameof(NumeroClientesProveedores));
+        }
+    }
+
+    public bool CanEditarClienteProveedorAsync()
+    {
+        return ClienteProveedorSeleccionado != null;
+    }
+
+    private void CargarRelaciones(ClienteProveedor clienteProveedor)
+    {
+        clienteProveedor.Moneda = _monedaRepository.BuscarPorId(clienteProveedor.CIDMONEDA);
+        clienteProveedor.Almacen = _almacenRepository.BuscarPorId(clienteProveedor.CIDALMACEN);
+        clienteProveedor.AgenteVenta = _agenteRepository.BuscarPorId(clienteProveedor.CIDAGENTEVENTA);
+        clienteProveedor.AgenteCobro = _agenteRepository.BuscarPorId(clienteProveedor.CIDAGENTECOBRO);
+        clienteProveedor.ValorClasificacionCliente1 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFCLIENTE1);
+        clienteProveedor.ValorClasificacionCliente2 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFCLIENTE2);
+        clienteProveedor.ValorClasificacionCliente3 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFCLIENTE3);
+        clienteProveedor.ValorClasificacionCliente4 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFCLIENTE4);
+        clienteProveedor.ValorClasificacionCliente5 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFCLIENTE5);
+        clienteProveedor.ValorClasificacionCliente6 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFCLIENTE6);
+        clienteProveedor.ValorClasificacionProveedor1 =
+            _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFPROVEEDOR1);
+        clienteProveedor.ValorClasificacionProveedor2 =
+            _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFPROVEEDOR2);
+        clienteProveedor.ValorClasificacionProveedor3 =
+            _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFPROVEEDOR3);
+        clienteProveedor.ValorClasificacionProveedor4 =
+            _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFPROVEEDOR4);
+        clienteProveedor.ValorClasificacionProveedor5 =
+            _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFPROVEEDOR5);
+        clienteProveedor.ValorClasificacionProveedor6 =
+            _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFPROVEEDOR6);
+    }
+
+    private bool ClientesProveedoresView_Filter(object obj)
+    {
+        if (obj is not ClienteProveedor cliente) throw new ArgumentNullException(nameof(obj));
+
+        return cliente.Contains(Filtro);
+    }
+
     public async Task CrearClienteProveedorAsync()
     {
         try
@@ -222,11 +262,6 @@ public class ListadoClientesViewModel : ObservableRecipient
         }
     }
 
-    public bool CanEditarClienteProveedorAsync()
-    {
-        return ClienteProveedorSeleccionado != null;
-    }
-
     private void RaiseGuards()
     {
         BuscarTodoCommand.NotifyCanExecuteChanged();
@@ -234,38 +269,5 @@ public class ListadoClientesViewModel : ObservableRecipient
         BuscarProveedoresCommand.NotifyCanExecuteChanged();
         CrearClienteProveedorCommand.NotifyCanExecuteChanged();
         EditarClienteProveedorCommand.NotifyCanExecuteChanged();
-    }
-
-    private bool ClientesProveedoresView_Filter(object obj)
-    {
-        if (obj is not ClienteProveedor cliente) throw new ArgumentNullException(nameof(obj));
-
-        return cliente.Contains(Filtro);
-    }
-
-    private void CargarRelaciones(ClienteProveedor clienteProveedor)
-    {
-        clienteProveedor.Moneda = _monedaRepository.BuscarPorId(clienteProveedor.CIDMONEDA);
-        clienteProveedor.Almacen = _almacenRepository.BuscarPorId(clienteProveedor.CIDALMACEN);
-        clienteProveedor.AgenteVenta = _agenteRepository.BuscarPorId(clienteProveedor.CIDAGENTEVENTA);
-        clienteProveedor.AgenteCobro = _agenteRepository.BuscarPorId(clienteProveedor.CIDAGENTECOBRO);
-        clienteProveedor.ValorClasificacionCliente1 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFCLIENTE1);
-        clienteProveedor.ValorClasificacionCliente2 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFCLIENTE2);
-        clienteProveedor.ValorClasificacionCliente3 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFCLIENTE3);
-        clienteProveedor.ValorClasificacionCliente4 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFCLIENTE4);
-        clienteProveedor.ValorClasificacionCliente5 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFCLIENTE5);
-        clienteProveedor.ValorClasificacionCliente6 = _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFCLIENTE6);
-        clienteProveedor.ValorClasificacionProveedor1 =
-            _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFPROVEEDOR1);
-        clienteProveedor.ValorClasificacionProveedor2 =
-            _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFPROVEEDOR2);
-        clienteProveedor.ValorClasificacionProveedor3 =
-            _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFPROVEEDOR3);
-        clienteProveedor.ValorClasificacionProveedor4 =
-            _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFPROVEEDOR4);
-        clienteProveedor.ValorClasificacionProveedor5 =
-            _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFPROVEEDOR5);
-        clienteProveedor.ValorClasificacionProveedor6 =
-            _valorClasificacionRepository.BuscarPorId(clienteProveedor.CIDVALORCLASIFPROVEEDOR6);
     }
 }

@@ -96,14 +96,16 @@
                              Text="{Binding Contrasena, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center" Margin="5" controls:TextBoxHelper.ClearTextButton="True"
                              controls:TextBoxHelper.Watermark="Contrasena" />
-                    <Label Grid.Row="2" Grid.Column="0" Content="Nombre De Usuario Contabilidad:" VerticalAlignment="Center"
+                    <Label Grid.Row="2" Grid.Column="0" Content="Nombre De Usuario Contabilidad:"
+                           VerticalAlignment="Center"
                            Margin="5"
                            FontWeight="Bold" />
                     <TextBox Grid.Row="2" Grid.Column="1"
                              Text="{Binding NombreUsuarioContabilidad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center" Margin="5" controls:TextBoxHelper.ClearTextButton="True"
                              controls:TextBoxHelper.Watermark="Nombre De Usuario" />
-                    <Label Grid.Row="3" Grid.Column="0" Content="Contrasena Contabilidad:" VerticalAlignment="Center" Margin="5"
+                    <Label Grid.Row="3" Grid.Column="0" Content="Contrasena Contabilidad:" VerticalAlignment="Center"
+                           Margin="5"
                            FontWeight="Bold" />
                     <TextBox Grid.Row="3" Grid.Column="1"
                              Text="{Binding ContrasenaContabilidad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -111,7 +113,8 @@
                              controls:TextBoxHelper.Watermark="Contrasena" />
                     <UniformGrid Grid.Row="4" Grid.Column="1" Rows="1" Columns="2">
                         <Button Content="Iniciar Sesion"
-                                Command="{Binding IniciarSesionSdkParametrosContabilidadCommand}" VerticalAlignment="Center"
+                                Command="{Binding IniciarSesionSdkParametrosContabilidadCommand}"
+                                VerticalAlignment="Center"
                                 Margin="5"
                                 Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
                         <Button Content="Cancelar"

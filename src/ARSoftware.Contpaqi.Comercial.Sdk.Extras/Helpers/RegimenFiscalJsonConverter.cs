@@ -10,7 +10,7 @@ public sealed class RegimenFiscalJsonConverter : JsonConverter<RegimenFiscal>
     public override RegimenFiscal? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         string? regimenFiscalString = reader.GetString();
-        return RegimenFiscal.FromClave(regimenFiscalString);
+        return regimenFiscalString is null ? null : RegimenFiscal.FromClave(regimenFiscalString);
     }
 
     public override void Write(Utf8JsonWriter writer, RegimenFiscal value, JsonSerializerOptions options)

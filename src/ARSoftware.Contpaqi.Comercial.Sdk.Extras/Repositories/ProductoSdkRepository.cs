@@ -29,13 +29,13 @@ public class ProductoSdkRepository<T> : IProductoRepository<T> where T : class, 
     }
 
     /// <inheritdoc />
-    public T BuscarPorCodigo(string codigoProducto)
+    public T? BuscarPorCodigo(string codigoProducto)
     {
         return _sdk.fBuscaProducto(codigoProducto) == SdkResultConstants.Success ? LeerDatosProductoActual() : null;
     }
 
     /// <inheritdoc />
-    public T BuscarPorId(int idProducto)
+    public T? BuscarPorId(int idProducto)
     {
         return _sdk.fBuscaIdProducto(idProducto) == SdkResultConstants.Success ? LeerDatosProductoActual() : null;
     }

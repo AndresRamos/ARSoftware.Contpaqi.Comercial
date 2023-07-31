@@ -31,13 +31,13 @@ public class DocumentoSdkRepository<T> : IDocumentoRepository<T> where T : class
     }
 
     /// <inheritdoc />
-    public T BuscarPorId(int idDocumento)
+    public T? BuscarPorId(int idDocumento)
     {
         return _sdk.fBuscarIdDocumento(idDocumento) == SdkResultConstants.Success ? LeerDatosDocumentoActual() : null;
     }
 
     /// <inheritdoc />
-    public T BuscarPorLlave(string codigoConcepto, string serie, double folio)
+    public T? BuscarPorLlave(string codigoConcepto, string serie, double folio)
     {
         return _sdk.fBuscarDocumento(codigoConcepto, serie, folio.ToString(CultureInfo.InvariantCulture)) == SdkResultConstants.Success
             ? LeerDatosDocumentoActual()
@@ -45,7 +45,7 @@ public class DocumentoSdkRepository<T> : IDocumentoRepository<T> where T : class
     }
 
     /// <inheritdoc />
-    public T BuscarPorLlave(LlaveDocumento llaveDocumento)
+    public T? BuscarPorLlave(LlaveDocumento llaveDocumento)
     {
         var llave = new tLlaveDoc
         {

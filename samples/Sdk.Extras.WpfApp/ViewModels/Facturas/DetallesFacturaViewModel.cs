@@ -96,13 +96,31 @@ public class DetallesFacturaViewModel : ObservableRecipient
         BuscarDatosCfdiCommand = new AsyncRelayCommand(BuscarDatosCfdiAsync);
     }
 
-    public string Title => "Detalles De Factura";
+    public IAsyncRelayCommand BuscarDatosCfdiCommand { get; }
+    public IAsyncRelayCommand CancelarDocumentoAdministrativamenteCommand { get; }
+    public IAsyncRelayCommand CancelarDocumentoCommand { get; }
+
+    public IAsyncRelayCommand CrearMovimientoCommand { get; }
+
+    public DatosCfdi DatosCfdi
+    {
+        get => _datosCfdi;
+        set => SetProperty(ref _datosCfdi, value);
+    }
+
+    public IAsyncRelayCommand EditarMovimientoCommand { get; }
+    public IAsyncRelayCommand EliminarDocumentoCommand { get; }
+    public IAsyncRelayCommand EliminarMovimientoCommand { get; }
 
     public Documento Factura
     {
         get => _factura;
         set => SetProperty(ref _factura, value);
     }
+
+    public IAsyncRelayCommand GenerarPdfDocumentoCommand { get; }
+    public IAsyncRelayCommand GenerarXmlDocumentoCommand { get; }
+    public IAsyncRelayCommand GuardarDocumentoCommand { get; }
 
     public Movimiento MovimientoSeleccionado
     {
@@ -114,25 +132,11 @@ public class DetallesFacturaViewModel : ObservableRecipient
         }
     }
 
-    public IAsyncRelayCommand CrearMovimientoCommand { get; }
-    public IAsyncRelayCommand EditarMovimientoCommand { get; }
-    public IAsyncRelayCommand EliminarMovimientoCommand { get; }
-    public IAsyncRelayCommand GuardarDocumentoCommand { get; }
-    public IAsyncRelayCommand CancelarDocumentoCommand { get; }
-    public IAsyncRelayCommand CancelarDocumentoAdministrativamenteCommand { get; }
-    public IAsyncRelayCommand EliminarDocumentoCommand { get; }
     public IAsyncRelayCommand TimbrarDocumentoCommand { get; }
-    public IAsyncRelayCommand GenerarPdfDocumentoCommand { get; }
-    public IAsyncRelayCommand GenerarXmlDocumentoCommand { get; }
-    public IAsyncRelayCommand BuscarDatosCfdiCommand { get; }
+
+    public string Title => "Detalles De Factura";
 
     public double TotalImpuestos => Factura?.CIMPUESTO1 ?? 0 + Factura?.CIMPUESTO2 ?? 0 + Factura?.CIMPUESTO3 ?? 0;
-
-    public DatosCfdi DatosCfdi
-    {
-        get => _datosCfdi;
-        set => SetProperty(ref _datosCfdi, value);
-    }
 
     public async Task BuscarDatosCfdiAsync()
     {
@@ -140,6 +144,29 @@ public class DetallesFacturaViewModel : ObservableRecipient
         {
             DatosCfdi = _datosCfdiRepository.BuscarPorDocumentoId(Factura.CIDDOCUMENTO);
             await _dialogCoordinator.ShowMessageAsync(this, "Proceso Terminado", "Proceso terminado.");
+        }
+        catch (Exception e)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+        }
+    }
+
+    public async Task CancelarDocumentoAdministrativamenteAsync()
+    {
+        try
+        {
+            MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
+                "Cancelar Documento Administrativamente", "Esta seguro de querer cancelar este documento?",
+                MessageDialogStyle.AffirmativeAndNegative,
+                new MetroDialogSettings { AffirmativeButtonText = "Cancelar Documento", NegativeButtonText = "Cancelar" });
+
+            if (messageDialogResult != MessageDialogResult.Affirmative) return;
+
+            _documentoService.CancelarAdministrativamente(Factura.CIDDOCUMENTO);
+
+            CargarFactura(Factura.CIDDOCUMENTO);
+
+            await _dialogCoordinator.ShowMessageAsync(this, "Documento Cancelado", "Documento cancelado.");
         }
         catch (Exception e)
         {
@@ -163,29 +190,6 @@ public class DetallesFacturaViewModel : ObservableRecipient
             if (string.IsNullOrWhiteSpace(contrasenaCertificado)) return;
 
             _documentoService.Cancelar(Factura.CIDDOCUMENTO, contrasenaCertificado);
-
-            CargarFactura(Factura.CIDDOCUMENTO);
-
-            await _dialogCoordinator.ShowMessageAsync(this, "Documento Cancelado", "Documento cancelado.");
-        }
-        catch (Exception e)
-        {
-            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
-        }
-    }
-
-    public async Task CancelarDocumentoAdministrativamenteAsync()
-    {
-        try
-        {
-            MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
-                "Cancelar Documento Administrativamente", "Esta seguro de querer cancelar este documento?",
-                MessageDialogStyle.AffirmativeAndNegative,
-                new MetroDialogSettings { AffirmativeButtonText = "Cancelar Documento", NegativeButtonText = "Cancelar" });
-
-            if (messageDialogResult != MessageDialogResult.Affirmative) return;
-
-            _documentoService.CancelarAdministrativamente(Factura.CIDDOCUMENTO);
 
             CargarFactura(Factura.CIDDOCUMENTO);
 

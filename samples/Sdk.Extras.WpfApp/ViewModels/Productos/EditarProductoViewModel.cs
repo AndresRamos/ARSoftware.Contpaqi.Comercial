@@ -44,7 +44,10 @@ public class EditarProductoViewModel : ObservableRecipient
         BuscarValorClasificacionCommand = new AsyncRelayCommand<string>(BuscarValorClasificacionAsync);
     }
 
-    public string Title => "Editar Producto";
+    public IRelayCommand<string> BuscarValorClasificacionCommand { get; }
+    public IRelayCommand CancelarCommand { get; }
+
+    public IAsyncRelayCommand GuardarCommand { get; }
 
     public Producto Producto
     {
@@ -58,9 +61,7 @@ public class EditarProductoViewModel : ObservableRecipient
 
     public IEnumerable<TipoProducto> TiposProducto { get; } = Enum.GetValues<TipoProducto>().ToList();
 
-    public IAsyncRelayCommand GuardarCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
-    public IRelayCommand<string> BuscarValorClasificacionCommand { get; }
+    public string Title => "Editar Producto";
 
     private async Task BuscarValorClasificacionAsync(string propertyName)
     {
@@ -70,49 +71,43 @@ public class EditarProductoViewModel : ObservableRecipient
             switch (propertyName)
             {
                 case nameof(Producto.ValorClasificacion1):
-                    window.ViewModel.Inicializar(_clasificacionRepository
-                        .BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Uno)
-                        .Valores);
+                    window.ViewModel.Inicializar(
+                        _clasificacionRepository.BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Uno)!.Valores);
                     window.ShowDialog();
                     if (window.ViewModel.SeleccionoValor) Producto.ValorClasificacion1 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(Producto.ValorClasificacion2):
-                    window.ViewModel.Inicializar(_clasificacionRepository
-                        .BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Dos)
-                        .Valores);
+                    window.ViewModel.Inicializar(
+                        _clasificacionRepository.BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Dos)!.Valores);
                     window.ShowDialog();
                     if (window.ViewModel.SeleccionoValor) Producto.ValorClasificacion2 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(Producto.ValorClasificacion3):
-                    window.ViewModel.Inicializar(_clasificacionRepository
-                        .BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Tres)
-                        .Valores);
+                    window.ViewModel.Inicializar(
+                        _clasificacionRepository.BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Tres)!.Valores);
                     window.ShowDialog();
                     if (window.ViewModel.SeleccionoValor) Producto.ValorClasificacion3 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(Producto.ValorClasificacion4):
-                    window.ViewModel.Inicializar(_clasificacionRepository
-                        .BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Cuatro)
-                        .Valores);
+                    window.ViewModel.Inicializar(
+                        _clasificacionRepository.BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Cuatro)!.Valores);
                     window.ShowDialog();
                     if (window.ViewModel.SeleccionoValor) Producto.ValorClasificacion4 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(Producto.ValorClasificacion5):
-                    window.ViewModel.Inicializar(_clasificacionRepository
-                        .BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Cinco)
-                        .Valores);
+                    window.ViewModel.Inicializar(
+                        _clasificacionRepository.BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Cinco)!.Valores);
                     window.ShowDialog();
                     if (window.ViewModel.SeleccionoValor) Producto.ValorClasificacion5 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(Producto.ValorClasificacion6):
-                    window.ViewModel.Inicializar(_clasificacionRepository
-                        .BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Seis)
-                        .Valores);
+                    window.ViewModel.Inicializar(
+                        _clasificacionRepository.BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Seis)!.Valores);
                     window.ShowDialog();
                     if (window.ViewModel.SeleccionoValor) Producto.ValorClasificacion6 = window.ViewModel.ValorSeleccionado;
 

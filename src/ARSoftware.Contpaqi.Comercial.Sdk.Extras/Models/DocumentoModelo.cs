@@ -67,7 +67,7 @@ public class DocumentoModelo
     /// <summary>
     ///     Descripción del documento modelo.
     /// </summary>
-    public string Descripcion { get; set; }
+    public string Descripcion { get; set; } = string.Empty;
 
     public static DocumentoModelo FromDescripcion(string descripcion)
     {

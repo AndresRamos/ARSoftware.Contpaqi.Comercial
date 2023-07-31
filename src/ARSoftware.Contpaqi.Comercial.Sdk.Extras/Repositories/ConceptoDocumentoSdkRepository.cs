@@ -28,13 +28,13 @@ public class ConceptoDocumentoSdkRepository<T> : IConceptoDocumentoRepository<T>
     }
 
     /// <inheritdoc />
-    public T BuscarPorCodigo(string codigoConcepto)
+    public T? BuscarPorCodigo(string codigoConcepto)
     {
         return _sdk.fBuscaConceptoDocto(codigoConcepto) == SdkResultConstants.Success ? LeerDatosConceptoDocumentoActual() : null;
     }
 
     /// <inheritdoc />
-    public T BuscarPorId(int idConcepto)
+    public T? BuscarPorId(int idConcepto)
     {
         return _sdk.fBuscaIdConceptoDocto(idConcepto) == SdkResultConstants.Success ? LeerDatosConceptoDocumentoActual() : null;
     }

@@ -27,13 +27,13 @@ public class ClasificacionSdkRepository<T> : IClasificacionRepository<T> where T
     }
 
     /// <inheritdoc />
-    public T BuscarPorId(int idClasificacion)
+    public T? BuscarPorId(int idClasificacion)
     {
         return _sdk.fBuscaIdClasificacion(idClasificacion) == SdkResultConstants.Success ? LeerDatosClasificacionActual() : null;
     }
 
     /// <inheritdoc />
-    public T BuscarPorTipoYNumero(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion)
+    public T? BuscarPorTipoYNumero(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion)
     {
         return _sdk.fBuscaClasificacion((int)tipoClasificacion, (int)numeroClasificacion) == SdkResultConstants.Success
             ? LeerDatosClasificacionActual()
@@ -45,12 +45,12 @@ public class ClasificacionSdkRepository<T> : IClasificacionRepository<T> where T
     {
         return new List<T>
         {
-            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Uno),
-            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Dos),
-            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Tres),
-            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Cuatro),
-            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Cinco),
-            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Seis)
+            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Uno) ?? throw new InvalidOperationException(),
+            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Dos) ?? throw new InvalidOperationException(),
+            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Tres) ?? throw new InvalidOperationException(),
+            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Cuatro) ?? throw new InvalidOperationException(),
+            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Cinco) ?? throw new InvalidOperationException(),
+            BuscarPorTipoYNumero(tipoClasificacion, NumeroClasificacion.Seis) ?? throw new InvalidOperationException()
         };
     }
 

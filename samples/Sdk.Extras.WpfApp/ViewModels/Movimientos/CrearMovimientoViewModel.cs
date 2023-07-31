@@ -35,7 +35,10 @@ public class CrearMovimientoViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(CerrarVista);
     }
 
-    public string Title { get; } = "Crear Movimiento";
+    public ObservableCollection<Almacen> Almacenes { get; } = new();
+    public IRelayCommand CancelarCommand { get; }
+
+    public IAsyncRelayCommand CrearMovimientoCommand { get; }
 
     public CrearMovimientoModel Movimiento
     {
@@ -49,10 +52,7 @@ public class CrearMovimientoViewModel : ObservableRecipient
 
     public ObservableCollection<ProductoLookup> Productos { get; } = new();
 
-    public ObservableCollection<Almacen> Almacenes { get; } = new();
-
-    public IAsyncRelayCommand CrearMovimientoCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
+    public string Title { get; } = "Crear Movimiento";
 
     public void CargarAlmacenes()
     {

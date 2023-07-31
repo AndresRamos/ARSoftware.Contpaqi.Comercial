@@ -38,6 +38,11 @@ public static class ConfigureServices
         return services;
     }
 
+    private static void RegisterInfrastructureServices(this IServiceCollection services)
+    {
+        services.AddSingleton(DialogCoordinator.Instance);
+    }
+
     private static void RegisterViewModels(this IServiceCollection services)
     {
         services.AddSingleton<ConfiguracionAplicacion>();
@@ -104,10 +109,5 @@ public static class ConfigureServices
         services.AddTransient<CrearValorClasificacionViewModel>();
         services.AddTransient<EditarValorClasificacionViewModel>();
         services.AddTransient<SeleccionarValorClasificacionViewModel>();
-    }
-
-    private static void RegisterInfrastructureServices(this IServiceCollection services)
-    {
-        services.AddSingleton(DialogCoordinator.Instance);
     }
 }

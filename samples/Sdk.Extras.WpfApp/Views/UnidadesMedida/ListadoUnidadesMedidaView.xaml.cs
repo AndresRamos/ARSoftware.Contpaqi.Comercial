@@ -11,15 +11,14 @@ public partial class ListadoUnidadesMedidaView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<ListadoUnidadesMedidaViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (ListadoUnidadesMedidaView)recipient;
-                    view.Close();
-                }
-            });
+                var view = (ListadoUnidadesMedidaView)recipient;
+                view.Close();
+            }
+        });
     }
 
     public ListadoUnidadesMedidaViewModel ViewModel => (ListadoUnidadesMedidaViewModel)DataContext;

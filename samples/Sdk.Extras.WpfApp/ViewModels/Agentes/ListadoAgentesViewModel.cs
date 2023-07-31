@@ -35,7 +35,30 @@ public class ListadoAgentesViewModel : ObservableRecipient
         EditarAgenteCommand = new AsyncRelayCommand(EditarAgenteAsync, CanEditarAgenteAsync);
     }
 
-    public string Title => "Agentes";
+    public ObservableCollection<Agente> Agentes { get; }
+
+    public Agente AgenteSeleccionado
+    {
+        get => _agenteSeleccionado;
+        set
+        {
+            SetProperty(ref _agenteSeleccionado, value);
+            RaiseGuards();
+        }
+    }
+
+    public ICollectionView AgentesView { get; }
+
+    public IAsyncRelayCommand BuscarAgentesCommand { get; }
+    public IAsyncRelayCommand CrearAgenteCommand { get; }
+
+    public string DuracionBusqueda
+    {
+        get => _duracionBusqueda;
+        private set => SetProperty(ref _duracionBusqueda, value);
+    }
+
+    public IAsyncRelayCommand EditarAgenteCommand { get; }
 
     public string Filtro
     {
@@ -48,31 +71,16 @@ public class ListadoAgentesViewModel : ObservableRecipient
         }
     }
 
-    public ObservableCollection<Agente> Agentes { get; }
-
-    public ICollectionView AgentesView { get; }
-
-    public Agente AgenteSeleccionado
-    {
-        get => _agenteSeleccionado;
-        set
-        {
-            SetProperty(ref _agenteSeleccionado, value);
-            RaiseGuards();
-        }
-    }
-
     public int NumeroAgentes => AgentesView.Cast<object>().Count();
 
-    public string DuracionBusqueda
-    {
-        get => _duracionBusqueda;
-        private set => SetProperty(ref _duracionBusqueda, value);
-    }
+    public string Title => "Agentes";
 
-    public IAsyncRelayCommand BuscarAgentesCommand { get; }
-    public IAsyncRelayCommand CrearAgenteCommand { get; }
-    public IAsyncRelayCommand EditarAgenteCommand { get; }
+    private bool AgentesView_Filter(object obj)
+    {
+        if (obj is not Agente agente) throw new ArgumentNullException(nameof(obj));
+
+        return agente.Contains(Filtro);
+    }
 
     private async Task BuscarAgentesAsync()
     {
@@ -103,6 +111,11 @@ public class ListadoAgentesViewModel : ObservableRecipient
             await progressDialogController.CloseAsync();
             OnPropertyChanged(nameof(NumeroAgentes));
         }
+    }
+
+    private bool CanEditarAgenteAsync()
+    {
+        return AgenteSeleccionado != null;
     }
 
     private async Task CrearAgenteAsync()
@@ -139,22 +152,10 @@ public class ListadoAgentesViewModel : ObservableRecipient
         }
     }
 
-    private bool CanEditarAgenteAsync()
-    {
-        return AgenteSeleccionado != null;
-    }
-
     private void RaiseGuards()
     {
         BuscarAgentesCommand.NotifyCanExecuteChanged();
         CrearAgenteCommand.NotifyCanExecuteChanged();
         EditarAgenteCommand.NotifyCanExecuteChanged();
-    }
-
-    private bool AgentesView_Filter(object obj)
-    {
-        if (obj is not Agente agente) throw new ArgumentNullException(nameof(obj));
-
-        return agente.Contains(Filtro);
     }
 }

@@ -14,15 +14,14 @@ public partial class ListadoDocumentosView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<ListadoDocumentosViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (ListadoDocumentosView)recipient;
-                    view.Close();
-                }
-            });
+                var view = (ListadoDocumentosView)recipient;
+                view.Close();
+            }
+        });
     }
 
     public ListadoDocumentosViewModel ViewModel => (ListadoDocumentosViewModel)DataContext;

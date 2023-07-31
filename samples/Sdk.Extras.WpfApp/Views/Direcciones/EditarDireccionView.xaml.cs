@@ -14,15 +14,14 @@ public partial class EditarDireccionView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<EditarDireccionViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (EditarDireccionView)recipient;
-                    view.Close();
-                }
-            });
+                var view = (EditarDireccionView)recipient;
+                view.Close();
+            }
+        });
     }
 
     public EditarDireccionViewModel ViewModel => (EditarDireccionViewModel)DataContext;

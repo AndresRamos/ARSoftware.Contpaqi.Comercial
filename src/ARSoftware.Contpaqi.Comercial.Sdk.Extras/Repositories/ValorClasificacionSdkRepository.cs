@@ -29,13 +29,13 @@ public class ValorClasificacionSdkRepository<T> : IValorClasificacionRepository<
     }
 
     /// <inheritdoc />
-    public T BuscarPorId(int idValorClasificacion)
+    public T? BuscarPorId(int idValorClasificacion)
     {
         return _sdk.fBuscaIdValorClasif(idValorClasificacion) == SdkResultConstants.Success ? LeerDatosValorClasificacionActual() : null;
     }
 
     /// <inheritdoc />
-    public T BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion,
+    public T? BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion,
         string codigoValorClasificacion)
     {
         return _sdk.fBuscaValorClasif((int)tipoClasificacion, (int)numeroClasificacion, codigoValorClasificacion) ==

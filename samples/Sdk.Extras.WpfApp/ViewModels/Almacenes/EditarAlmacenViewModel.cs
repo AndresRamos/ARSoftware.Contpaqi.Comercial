@@ -32,16 +32,17 @@ public class EditarAlmacenViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(CloseView);
     }
 
-    public string Title => "Editar Almacen";
-
     public Almacen Almacen
     {
         get => _almacen;
         private set => SetProperty(ref _almacen, value);
     }
 
-    public IAsyncRelayCommand GuardarCommand { get; }
     public IRelayCommand CancelarCommand { get; }
+
+    public IAsyncRelayCommand GuardarCommand { get; }
+
+    public string Title => "Editar Almacen";
 
     private void CargarAlmacen(int almacenId)
     {

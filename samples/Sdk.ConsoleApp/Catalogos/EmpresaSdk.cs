@@ -39,8 +39,7 @@ public sealed class EmpresaSdk
 
         // Posicionar el SDK en el primer registro
         int sdkResult = ComercialSdk.fPosPrimerEmpresa(ref idBd, nombreBd, rutaBd);
-        if (sdkResult != SdkConstantes.CodigoExito)
-            return empresasList;
+        if (sdkResult != SdkConstantes.CodigoExito) return empresasList;
 
         // Instanciar una empresa y asignar los datos de la base de datos
         empresasList.Add(new EmpresaSdk { Id = idBd, Nombre = nombreBd.ToString(), Ruta = rutaBd.ToString() });

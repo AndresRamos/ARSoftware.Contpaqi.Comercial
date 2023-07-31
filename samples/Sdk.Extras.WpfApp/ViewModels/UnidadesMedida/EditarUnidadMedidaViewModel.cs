@@ -32,12 +32,13 @@ public class EditarUnidadMedidaViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(CerrarVista);
     }
 
+    public IRelayCommand CancelarCommand { get; }
+
+    public IAsyncRelayCommand GuardarCommand { get; }
+
     public string Title => "Editar Unidad De Medida";
 
     public UnidadMedida UnidadMedida { get; private set; } = new();
-
-    public IAsyncRelayCommand GuardarCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
 
     private void CargarUnidadMedida(int idUnidadMedida)
     {

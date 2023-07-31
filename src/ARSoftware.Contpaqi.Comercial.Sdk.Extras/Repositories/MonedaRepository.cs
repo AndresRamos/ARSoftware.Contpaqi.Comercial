@@ -12,13 +12,13 @@ namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 public class MonedaRepository : IMonedaRepository<Moneda>
 {
     /// <inheritdoc />
-    public Moneda BuscarPorId(int idMoneda)
+    public Moneda? BuscarPorId(int idMoneda)
     {
         return Moneda.ToList().SingleOrDefault(m => m.Id == idMoneda);
     }
 
     /// <inheritdoc />
-    public Moneda BuscarPorNombre(string nombreMoneda)
+    public Moneda? BuscarPorNombre(string nombreMoneda)
     {
         return Moneda.ToList().SingleOrDefault(m => m.Nombre.IndexOf(nombreMoneda, StringComparison.OrdinalIgnoreCase) >= 0);
     }

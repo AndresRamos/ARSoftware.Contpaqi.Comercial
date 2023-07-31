@@ -11,16 +11,15 @@ public partial class EditarMovimientoView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<EditarMovimientoViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (EditarMovimientoView)recipient;
-                    view.Close();
-                    Close();
-                }
-            });
+                var view = (EditarMovimientoView)recipient;
+                view.Close();
+                Close();
+            }
+        });
     }
 
     public EditarMovimientoViewModel ViewModel => (EditarMovimientoViewModel)DataContext;

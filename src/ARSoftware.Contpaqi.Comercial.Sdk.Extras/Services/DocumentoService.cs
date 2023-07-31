@@ -110,6 +110,26 @@ public class DocumentoService : IDocumentoService
         return int.Parse(idDocumentoDato);
     }
 
+    public int Crear(Documento documento)
+    {
+        tDocumento documentoSdk = documento.ToSdkDocumento();
+        int nuevoDocumentoId = Crear(documentoSdk);
+
+        var datosDocumento = new Dictionary<string, string>(documento.DatosExtra);
+
+        if (!string.IsNullOrEmpty(documento.Observaciones))
+            datosDocumento.TryAdd(nameof(admDocumentos.COBSERVACIONES), documento.Observaciones);
+
+        if (documento.FormaPago is not null) datosDocumento.TryAdd(nameof(admDocumentos.CMETODOPAG), documento.FormaPago.Clave);
+
+        if (documento.MetodoPago is not null)
+            datosDocumento.TryAdd(nameof(admDocumentos.CCANTPARCI), MetodoPagoHelper.ConvertToSdkValue(documento.MetodoPago).ToString());
+
+        Actualizar(nuevoDocumentoId, datosDocumento);
+
+        return nuevoDocumentoId;
+    }
+
     public int CrearCargoAbono(tDocumento documento)
     {
         _sdk.fAltaDocumentoCargoAbono(ref documento).ToResultadoSdk(_sdk).ThrowIfError();
@@ -208,26 +228,6 @@ public class DocumentoService : IDocumentoService
         _sdk.fEmitirDocumento(documento.aCodConcepto, documento.aSerie, documento.aFolio, contrasenaCertificado, rutaArchivoAdicional)
             .ToResultadoSdk(_sdk)
             .ThrowIfError();
-    }
-
-    public int Crear(Documento documento)
-    {
-        tDocumento documentoSdk = documento.ToSdkDocumento();
-        int nuevoDocumentoId = Crear(documentoSdk);
-
-        var datosDocumento = new Dictionary<string, string>(documento.DatosExtra);
-
-        if (!string.IsNullOrEmpty(documento.Observaciones))
-            datosDocumento.TryAdd(nameof(admDocumentos.COBSERVACIONES), documento.Observaciones);
-
-        if (documento.FormaPago is not null) datosDocumento.TryAdd(nameof(admDocumentos.CMETODOPAG), documento.FormaPago.Clave);
-
-        if (documento.MetodoPago is not null)
-            datosDocumento.TryAdd(nameof(admDocumentos.CCANTPARCI), MetodoPagoHelper.ConvertToSdkValue(documento.MetodoPago).ToString());
-
-        Actualizar(nuevoDocumentoId, datosDocumento);
-
-        return nuevoDocumentoId;
     }
 
     public void SetDatos(Dictionary<string, string> datos)

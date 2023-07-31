@@ -32,17 +32,7 @@ public class ListadoErroresViewModel : ObservableRecipient
         BuscarErroresCommand = new AsyncRelayCommand(BuscarErroresAsync, CanBuscarErrores);
     }
 
-    public string Title { get; } = "Errores";
-
-    public int CodigoInicio
-    {
-        get => _codigoInicio;
-        set
-        {
-            SetProperty(ref _codigoInicio, value);
-            BuscarErroresCommand.NotifyCanExecuteChanged();
-        }
-    }
+    public IAsyncRelayCommand BuscarErroresCommand { get; }
 
     public int CodigoFin
     {
@@ -54,6 +44,26 @@ public class ListadoErroresViewModel : ObservableRecipient
         }
     }
 
+    public int CodigoInicio
+    {
+        get => _codigoInicio;
+        set
+        {
+            SetProperty(ref _codigoInicio, value);
+            BuscarErroresCommand.NotifyCanExecuteChanged();
+        }
+    }
+
+    public string DuracionBusqueda
+    {
+        get => _duracionBusqueda;
+        set => SetProperty(ref _duracionBusqueda, value);
+    }
+
+    public ObservableCollection<SdkError> Errores { get; } = new();
+
+    public ICollectionView ErroresView { get; }
+
     public string Filtro
     {
         get => _filtro;
@@ -64,28 +74,7 @@ public class ListadoErroresViewModel : ObservableRecipient
         }
     }
 
-    public ObservableCollection<SdkError> Errores { get; } = new();
-
-    public ICollectionView ErroresView { get; }
-
-    public IAsyncRelayCommand BuscarErroresCommand { get; }
-
-    public string DuracionBusqueda
-    {
-        get => _duracionBusqueda;
-        set => SetProperty(ref _duracionBusqueda, value);
-    }
-
-    private bool ErroresView_Filter(object obj)
-    {
-        var error = obj as SdkError;
-        if (error is null)
-            throw new ArgumentException("El tipo no es valido", nameof(obj));
-
-        return string.IsNullOrWhiteSpace(Filtro) ||
-               error.Numero.ToString().IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-               error.Mensaje.IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0;
-    }
+    public string Title { get; } = "Errores";
 
     public async Task BuscarErroresAsync()
     {
@@ -102,8 +91,7 @@ public class ListadoErroresViewModel : ObservableRecipient
             {
                 Debug.WriteLine(i);
                 string errorMensaje = _sdkErrorRepository.BuscarMensajePorNumero(i);
-                if (errorMensaje is "" or "CACSql.dll" or "Plataforma" or ".")
-                    continue;
+                if (errorMensaje is "" or "CACSql.dll" or "Plataforma" or ".") continue;
 
                 Errores.Add(new SdkError(i, errorMensaje));
             }
@@ -125,5 +113,15 @@ public class ListadoErroresViewModel : ObservableRecipient
     public bool CanBuscarErrores()
     {
         return CodigoInicio <= CodigoFin;
+    }
+
+    private bool ErroresView_Filter(object obj)
+    {
+        var error = obj as SdkError;
+        if (error is null) throw new ArgumentException("El tipo no es valido", nameof(obj));
+
+        return string.IsNullOrWhiteSpace(Filtro) ||
+               error.Numero.ToString().IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
+               error.Mensaje.IndexOf(Filtro, StringComparison.OrdinalIgnoreCase) >= 0;
     }
 }

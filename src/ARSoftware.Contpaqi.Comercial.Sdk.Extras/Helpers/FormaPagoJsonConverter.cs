@@ -10,7 +10,8 @@ public sealed class FormaPagoJsonConverter : JsonConverter<FormaPago>
     public override FormaPago? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         string? formaPagoString = reader.GetString();
-        return FormaPago.FromClave(formaPagoString);
+
+        return formaPagoString is null ? null : FormaPago.FromClave(formaPagoString);
     }
 
     public override void Write(Utf8JsonWriter writer, FormaPago value, JsonSerializerOptions options)

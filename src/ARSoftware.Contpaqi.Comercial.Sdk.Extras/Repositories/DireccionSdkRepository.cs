@@ -30,7 +30,7 @@ public class DireccionSdkRepository<T> : IDireccionRepository<T> where T : class
     }
 
     /// <inheritdoc />
-    public T BuscarPorCliente(string codigoClienteProveedor, TipoDireccion tipoDireccion)
+    public T? BuscarPorCliente(string codigoClienteProveedor, TipoDireccion tipoDireccion)
     {
         return _sdk.fBuscaDireccionCteProv(codigoClienteProveedor, (byte)tipoDireccion) == SdkResultConstants.Success
             ? LeerDatosDireccionActual()
@@ -38,7 +38,7 @@ public class DireccionSdkRepository<T> : IDireccionRepository<T> where T : class
     }
 
     /// <inheritdoc />
-    public T BuscarPorDocumento(int idDocumento, TipoDireccion tipoDireccion)
+    public T? BuscarPorDocumento(int idDocumento, TipoDireccion tipoDireccion)
     {
         return _sdk.fBuscaDireccionDocumento(idDocumento, (byte)tipoDireccion) == SdkResultConstants.Success
             ? LeerDatosDireccionActual()
@@ -46,7 +46,7 @@ public class DireccionSdkRepository<T> : IDireccionRepository<T> where T : class
     }
 
     /// <inheritdoc />
-    public T BuscarPorId(int idDireccion)
+    public T? BuscarPorId(int idDireccion)
     {
         var idDireccionDato = new StringBuilder(12);
 

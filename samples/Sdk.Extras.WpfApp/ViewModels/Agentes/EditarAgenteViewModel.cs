@@ -34,18 +34,19 @@ public class EditarAgenteViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(CerrarVista);
     }
 
-    public string Title => "Editar Agente";
-
-    public IEnumerable<TipoAgente> TiposAgente { get; } = Enum.GetValues(typeof(TipoAgente)).Cast<TipoAgente>().ToList();
-
     public Agente Agente
     {
         get => _agente;
         private set => SetProperty(ref _agente, value);
     }
 
-    public IAsyncRelayCommand GuardarCommand { get; }
     public IRelayCommand CancelarCommand { get; }
+
+    public IAsyncRelayCommand GuardarCommand { get; }
+
+    public IEnumerable<TipoAgente> TiposAgente { get; } = Enum.GetValues(typeof(TipoAgente)).Cast<TipoAgente>().ToList();
+
+    public string Title => "Editar Agente";
 
     private void CargarAgente(int idAgente)
     {

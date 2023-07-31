@@ -6,52 +6,6 @@ namespace Sdk.ConsoleApp.Pruebas;
 
 internal class DocumentoPrueba
 {
-    public static int CrearDocumentoPrueba()
-    {
-        ConceptoSdk concepto = ConceptoSdk.BuscarConceptoPorCodigo("400");
-        ClienteSdk cliente = ClienteSdk.BuscarClientePorCodigo("CTE001");
-
-        tLlaveDoc siguienteFolio = DocumentoSdk.BuscarSiguienteSerieYFolio(concepto.Codigo);
-
-        var nuevoDocumento = new DocumentoSdk
-        {
-            ConceptoId = concepto.Id,
-            Fecha = DateTime.Today,
-            Serie = siguienteFolio.aSerie,
-            Folio = siguienteFolio.aFolio,
-            ClienteId = cliente.Id,
-            Referencia = "Referencia documento",
-            Observaciones = "Observaciones documento"
-        };
-
-        return DocumentoSdk.CrearDocumento(nuevoDocumento);
-    }
-
-    public static int CrearFacturaPrueba()
-    {
-        ConceptoSdk concepto = ConceptoSdk.BuscarConceptoPorCodigo("400");
-        ClienteSdk cliente = ClienteSdk.BuscarClientePorCodigo("CTE001");
-
-        tLlaveDoc siguienteFolio = DocumentoSdk.BuscarSiguienteSerieYFolio(concepto.Codigo);
-
-        var nuevoDocumento = new DocumentoSdk
-        {
-            ConceptoId = concepto.Id,
-            Fecha = DateTime.Today,
-            Serie = siguienteFolio.aSerie,
-            Folio = siguienteFolio.aFolio,
-            ClienteId = cliente.Id,
-            Referencia = "Referencia factura",
-            Observaciones = "Observaciones factura"
-        };
-
-        int nuevoDocumentoId = DocumentoSdk.CrearDocumento(nuevoDocumento);
-
-        CrearMovimientoPrueba(nuevoDocumentoId);
-
-        return nuevoDocumentoId;
-    }
-
     public static int CrearCompraPrueba()
     {
         ConceptoSdk concepto = ConceptoSdk.BuscarConceptoPorCodigo("21");
@@ -99,6 +53,52 @@ internal class DocumentoPrueba
         };
 
         return DocumentoSdk.CrearDocumentoCargoAbono(nuevoDocumento);
+    }
+
+    public static int CrearDocumentoPrueba()
+    {
+        ConceptoSdk concepto = ConceptoSdk.BuscarConceptoPorCodigo("400");
+        ClienteSdk cliente = ClienteSdk.BuscarClientePorCodigo("CTE001");
+
+        tLlaveDoc siguienteFolio = DocumentoSdk.BuscarSiguienteSerieYFolio(concepto.Codigo);
+
+        var nuevoDocumento = new DocumentoSdk
+        {
+            ConceptoId = concepto.Id,
+            Fecha = DateTime.Today,
+            Serie = siguienteFolio.aSerie,
+            Folio = siguienteFolio.aFolio,
+            ClienteId = cliente.Id,
+            Referencia = "Referencia documento",
+            Observaciones = "Observaciones documento"
+        };
+
+        return DocumentoSdk.CrearDocumento(nuevoDocumento);
+    }
+
+    public static int CrearFacturaPrueba()
+    {
+        ConceptoSdk concepto = ConceptoSdk.BuscarConceptoPorCodigo("400");
+        ClienteSdk cliente = ClienteSdk.BuscarClientePorCodigo("CTE001");
+
+        tLlaveDoc siguienteFolio = DocumentoSdk.BuscarSiguienteSerieYFolio(concepto.Codigo);
+
+        var nuevoDocumento = new DocumentoSdk
+        {
+            ConceptoId = concepto.Id,
+            Fecha = DateTime.Today,
+            Serie = siguienteFolio.aSerie,
+            Folio = siguienteFolio.aFolio,
+            ClienteId = cliente.Id,
+            Referencia = "Referencia factura",
+            Observaciones = "Observaciones factura"
+        };
+
+        int nuevoDocumentoId = DocumentoSdk.CrearDocumento(nuevoDocumento);
+
+        CrearMovimientoPrueba(nuevoDocumentoId);
+
+        return nuevoDocumentoId;
     }
 
     public static int CrearMovimientoPrueba(int documentoId)

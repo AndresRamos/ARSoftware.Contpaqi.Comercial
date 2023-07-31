@@ -14,6 +14,39 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 public interface IContpaqiComercialSqlRepositoryBase<T> where T : class
 {
     /// <summary>
+    ///     Devuelve de forma asincrónica un valor que indica si existe algún elemento de una secuencia que satisface una
+    ///     condición especificada.
+    /// </summary>
+    /// <param name="specification">
+    ///     Especificación que define el filtro de búsqueda.
+    /// </param>
+    /// <param name="cancellationToken">
+    ///     Token de cancelación que se debe observar mientras se espera a que se complete la
+    ///     tarea.
+    /// </param>
+    /// <returns>
+    ///     Una tarea que representa la operación asincrónica. El resultado de la tarea contiene un valor que indica si existe
+    ///     algún elemento de la secuencia que satisface la condición especificada.
+    /// </returns>
+    Task<bool> AnyAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    ///     Devuelve de forma asincrónica el número de elementos de una secuencia que satisfacen una condición especificada.
+    /// </summary>
+    /// <param name="specification">
+    ///     Especificación que define el filtro de búsqueda.
+    /// </param>
+    /// <param name="cancellationToken">
+    ///     Token de cancelación que se debe observar mientras se espera a que se complete la
+    ///     tarea.
+    /// </param>
+    /// <returns>
+    ///     Una tarea que representa la operación asincrónica. El resultado de la tarea contiene el número de elementos de la
+    ///     secuencia que satisface la condición especificada.
+    /// </returns>
+    Task<int> CountAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
+
+    /// <summary>
     ///     Devuelve de forma asincrónica el primer elemento de una secuencia o un valor predeterminado si la secuencia no
     ///     contiene ningún elemento.
     /// </summary>
@@ -29,6 +62,22 @@ public interface IContpaqiComercialSqlRepositoryBase<T> where T : class
     ///     tipo de elemento.
     /// </returns>
     Task<T?> FirstOrDefaultAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    ///     Devuelve de forma asincrónica una lista de elementos que satisfacen la condición especificada.
+    /// </summary>
+    /// <param name="specification">
+    ///     Especificación que define el filtro de búsqueda.
+    /// </param>
+    /// <param name="cancellationToken">
+    ///     Token de cancelación que se debe observar mientras se espera a que se complete la
+    ///     tarea.
+    /// </param>
+    /// <returns>
+    ///     Una tarea que representa la operación asincrónica. El resultado de la tarea contiene una lista de elementos que
+    ///     satisfacen la condición especificada.
+    /// </returns>
+    Task<List<T>> ListAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
 
     /// <summary>
     ///     Devuelve de forma asincrónica el único elemento de una secuencia que satisface una condición especificada o un
@@ -48,9 +97,22 @@ public interface IContpaqiComercialSqlRepositoryBase<T> where T : class
     ///     secuencia está vacía.
     /// </returns>
     Task<T?> SingleOrDefaultAsync(ISingleResultSpecification<T> specification, CancellationToken cancellationToken = default);
+}
 
+/// <summary>
+///     Interfaz base para los repositorios de SQL de Contpaqi Comercial.
+/// </summary>
+/// <typeparam name="T">
+///     Tabla de SQL de Contpaqi Comercial.
+/// </typeparam>
+/// <typeparam name="TResult">
+///     Tipo al que se va a mapear el resultado de la consulta.
+/// </typeparam>
+public interface IContpaqiComercialSqlRepositoryBase<T, TResult> where T : class
+{
     /// <summary>
-    ///     Devuelve de forma asincrónica una lista de elementos que satisfacen la condición especificada.
+    ///     Devuelve de forma asincrónica un valor que indica si existe algún elemento de una secuencia que satisface una
+    ///     condición especificada.
     /// </summary>
     /// <param name="specification">
     ///     Especificación que define el filtro de búsqueda.
@@ -60,10 +122,10 @@ public interface IContpaqiComercialSqlRepositoryBase<T> where T : class
     ///     tarea.
     /// </param>
     /// <returns>
-    ///     Una tarea que representa la operación asincrónica. El resultado de la tarea contiene una lista de elementos que
-    ///     satisfacen la condición especificada.
+    ///     Una tarea que representa la operación asincrónica. El resultado de la tarea contiene un valor que indica si existe
+    ///     algún elemento de la secuencia que satisface la condición especificada.
     /// </returns>
-    Task<List<T>> ListAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
+    Task<bool> AnyAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
 
     /// <summary>
     ///     Devuelve de forma asincrónica el número de elementos de una secuencia que satisfacen una condición especificada.
@@ -82,35 +144,6 @@ public interface IContpaqiComercialSqlRepositoryBase<T> where T : class
     Task<int> CountAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
 
     /// <summary>
-    ///     Devuelve de forma asincrónica un valor que indica si existe algún elemento de una secuencia que satisface una
-    ///     condición especificada.
-    /// </summary>
-    /// <param name="specification">
-    ///     Especificación que define el filtro de búsqueda.
-    /// </param>
-    /// <param name="cancellationToken">
-    ///     Token de cancelación que se debe observar mientras se espera a que se complete la
-    ///     tarea.
-    /// </param>
-    /// <returns>
-    ///     Una tarea que representa la operación asincrónica. El resultado de la tarea contiene un valor que indica si existe
-    ///     algún elemento de la secuencia que satisface la condición especificada.
-    /// </returns>
-    Task<bool> AnyAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
-}
-
-/// <summary>
-///     Interfaz base para los repositorios de SQL de Contpaqi Comercial.
-/// </summary>
-/// <typeparam name="T">
-///     Tabla de SQL de Contpaqi Comercial.
-/// </typeparam>
-/// <typeparam name="TResult">
-///     Tipo al que se va a mapear el resultado de la consulta.
-/// </typeparam>
-public interface IContpaqiComercialSqlRepositoryBase<T, TResult> where T : class
-{
-    /// <summary>
     ///     Devuelve de forma asincrónica el primer elemento de una secuencia o un valor predeterminado si la secuencia no
     ///     contiene ningún elemento.
     /// </summary>
@@ -126,6 +159,22 @@ public interface IContpaqiComercialSqlRepositoryBase<T, TResult> where T : class
     ///     tipo de elemento.
     /// </returns>
     Task<TResult?> FirstOrDefaultAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    ///     Devuelve de forma asincrónica una lista de elementos que satisfacen la condición especificada.
+    /// </summary>
+    /// <param name="specification">
+    ///     Especificación que define el filtro de búsqueda.
+    /// </param>
+    /// <param name="cancellationToken">
+    ///     Token de cancelación que se debe observar mientras se espera a que se complete la
+    ///     tarea.
+    /// </param>
+    /// <returns>
+    ///     Una tarea que representa la operación asincrónica. El resultado de la tarea contiene una lista de elementos que
+    ///     satisfacen la condición especificada.
+    /// </returns>
+    Task<List<TResult>> ListAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
 
     /// <summary>
     ///     Devuelve de forma asincrónica el único elemento de una secuencia que satisface una condición especificada o un
@@ -145,53 +194,4 @@ public interface IContpaqiComercialSqlRepositoryBase<T, TResult> where T : class
     ///     secuencia está vacía.
     /// </returns>
     Task<TResult?> SingleOrDefaultAsync(ISingleResultSpecification<T> specification, CancellationToken cancellationToken = default);
-
-    /// <summary>
-    ///     Devuelve de forma asincrónica una lista de elementos que satisfacen la condición especificada.
-    /// </summary>
-    /// <param name="specification">
-    ///     Especificación que define el filtro de búsqueda.
-    /// </param>
-    /// <param name="cancellationToken">
-    ///     Token de cancelación que se debe observar mientras se espera a que se complete la
-    ///     tarea.
-    /// </param>
-    /// <returns>
-    ///     Una tarea que representa la operación asincrónica. El resultado de la tarea contiene una lista de elementos que
-    ///     satisfacen la condición especificada.
-    /// </returns>
-    Task<List<TResult>> ListAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
-
-    /// <summary>
-    ///     Devuelve de forma asincrónica el número de elementos de una secuencia que satisfacen una condición especificada.
-    /// </summary>
-    /// <param name="specification">
-    ///     Especificación que define el filtro de búsqueda.
-    /// </param>
-    /// <param name="cancellationToken">
-    ///     Token de cancelación que se debe observar mientras se espera a que se complete la
-    ///     tarea.
-    /// </param>
-    /// <returns>
-    ///     Una tarea que representa la operación asincrónica. El resultado de la tarea contiene el número de elementos de la
-    ///     secuencia que satisface la condición especificada.
-    /// </returns>
-    Task<int> CountAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
-
-    /// <summary>
-    ///     Devuelve de forma asincrónica un valor que indica si existe algún elemento de una secuencia que satisface una
-    ///     condición especificada.
-    /// </summary>
-    /// <param name="specification">
-    ///     Especificación que define el filtro de búsqueda.
-    /// </param>
-    /// <param name="cancellationToken">
-    ///     Token de cancelación que se debe observar mientras se espera a que se complete la
-    ///     tarea.
-    /// </param>
-    /// <returns>
-    ///     Una tarea que representa la operación asincrónica. El resultado de la tarea contiene un valor que indica si existe
-    ///     algún elemento de la secuencia que satisface la condición especificada.
-    /// </returns>
-    Task<bool> AnyAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
 }

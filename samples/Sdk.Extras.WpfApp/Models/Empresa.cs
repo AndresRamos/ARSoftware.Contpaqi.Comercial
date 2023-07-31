@@ -9,9 +9,9 @@ public class Empresa : Empresas
     {
         return string.IsNullOrWhiteSpace(filtro) ||
                CIDEMPRESA.ToString().IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-               CNOMBREEMPRESA?.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-               CRUTADATOS?.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-               CRUTARESPALDOS?.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
+               CNOMBREEMPRESA.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
+               CRUTADATOS.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0 ||
+               CRUTARESPALDOS.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
     }
 
     public override string ToString()

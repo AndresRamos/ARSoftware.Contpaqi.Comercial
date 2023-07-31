@@ -77,7 +77,10 @@
                        Margin="10"
                        HorizontalAlignment="Center">
                 <Hyperlink RequestNavigate="Hyperlink_RequestNavigate"
-                           NavigateUri="https://www.arsoft.net">https://www.arsoft.net</Hyperlink></TextBlock>
+                           NavigateUri="https://www.arsoft.net">
+                    https://www.arsoft.net
+                </Hyperlink>
+            </TextBlock>
             <TextBlock Grid.Row="2"
                        FontWeight="Bold"
                        FontSize="30"

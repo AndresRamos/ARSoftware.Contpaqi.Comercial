@@ -26,7 +26,7 @@ public class SeleccionarValorClasificacionViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(Cancelar);
     }
 
-    public string Title { get; } = "Seleccionar Valor De Clasificacion";
+    public IRelayCommand CancelarCommand { get; }
 
     public string Filtro
     {
@@ -37,6 +37,12 @@ public class SeleccionarValorClasificacionViewModel : ObservableRecipient
             ValoresView.Refresh();
         }
     }
+
+    public IRelayCommand SeleccionarCommand { get; }
+
+    public bool SeleccionoValor { get; private set; }
+
+    public string Title { get; } = "Seleccionar Valor De Clasificacion";
 
     public ObservableCollection<ValorClasificacion> Valores { get; } = new();
 
@@ -52,10 +58,22 @@ public class SeleccionarValorClasificacionViewModel : ObservableRecipient
         }
     }
 
-    public bool SeleccionoValor { get; private set; }
+    public void Cancelar()
+    {
+        SeleccionoValor = false;
+        ValorSeleccionado = null;
+        CerrarVista();
+    }
 
-    public IRelayCommand SeleccionarCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
+    public bool CanSeleccionar()
+    {
+        return ValorSeleccionado != null;
+    }
+
+    public void CerrarVista()
+    {
+        Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
+    }
 
     public void Inicializar(IEnumerable<ValorClasificacion> valores)
     {
@@ -66,32 +84,15 @@ public class SeleccionarValorClasificacionViewModel : ObservableRecipient
         ValorSeleccionado = Valores.FirstOrDefault();
     }
 
+    private void RaiseGuards()
+    {
+        SeleccionarCommand.NotifyCanExecuteChanged();
+    }
+
     public void Seleccionar()
     {
         SeleccionoValor = true;
         CerrarVista();
-    }
-
-    public bool CanSeleccionar()
-    {
-        return ValorSeleccionado != null;
-    }
-
-    public void Cancelar()
-    {
-        SeleccionoValor = false;
-        ValorSeleccionado = null;
-        CerrarVista();
-    }
-
-    public void CerrarVista()
-    {
-        Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
-    }
-
-    private void RaiseGuards()
-    {
-        SeleccionarCommand.NotifyCanExecuteChanged();
     }
 
     private bool ValoresView_Filter(object obj)

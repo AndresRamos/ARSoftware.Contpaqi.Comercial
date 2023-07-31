@@ -32,13 +32,9 @@ public partial class App
         Ioc.Default.ConfigureServices(_host.Services.CreateScope().ServiceProvider);
     }
 
-    protected override async void OnStartup(StartupEventArgs e)
+    private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
     {
-        _logger.LogInformation("Iniciando aplicacion.");
-        await _host.StartAsync();
-        var window = _host.Services.GetRequiredService<MainView>();
-        window.Show();
-        base.OnStartup(e);
+        MessageBox.Show(e.Exception.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
     }
 
     protected override async void OnExit(ExitEventArgs e)
@@ -63,8 +59,12 @@ public partial class App
         base.OnExit(e);
     }
 
-    private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+    protected override async void OnStartup(StartupEventArgs e)
     {
-        MessageBox.Show(e.Exception.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        _logger.LogInformation("Iniciando aplicacion.");
+        await _host.StartAsync();
+        var window = _host.Services.GetRequiredService<MainView>();
+        window.Show();
+        base.OnStartup(e);
     }
 }

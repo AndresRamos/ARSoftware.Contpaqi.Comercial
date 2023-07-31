@@ -26,13 +26,13 @@ public class AlmacenSdkRepository<T> : IAlmacenRepository<T> where T : class, ne
     }
 
     /// <inheritdoc />
-    public T BuscarPorCodigo(string codigoAlmacen)
+    public T? BuscarPorCodigo(string codigoAlmacen)
     {
         return _sdk.fBuscaAlmacen(codigoAlmacen) == SdkResultConstants.Success ? LeerDatosAlmacenActual() : null;
     }
 
     /// <inheritdoc />
-    public T BuscarPorId(int idAlmacen)
+    public T? BuscarPorId(int idAlmacen)
     {
         return _sdk.fBuscaIdAlmacen(idAlmacen) == SdkResultConstants.Success ? LeerDatosAlmacenActual() : null;
     }
