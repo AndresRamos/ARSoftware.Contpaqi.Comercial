@@ -94,14 +94,14 @@ public static class MapExtensions
             aReferencia = movimiento.Referencia,
             aPorcDescto1 = (double)(movimiento.Descuentos?.Descuento1.Tasa ?? 0),
             aImporteDescto1 = (double)(movimiento.Descuentos?.Descuento1.Importe ?? 0),
-            aPorcDescto2 = (double)(movimiento.Descuentos?.Descuento1.Tasa ?? 0),
-            aImporteDescto2 = (double)(movimiento.Descuentos?.Descuento1.Importe ?? 0),
-            aPorcDescto3 = (double)(movimiento.Descuentos?.Descuento1.Tasa ?? 0),
-            aImporteDescto3 = (double)(movimiento.Descuentos?.Descuento1.Importe ?? 0),
-            aPorcDescto4 = (double)(movimiento.Descuentos?.Descuento1.Tasa ?? 0),
-            aImporteDescto4 = (double)(movimiento.Descuentos?.Descuento1.Importe ?? 0),
-            aPorcDescto5 = (double)(movimiento.Descuentos?.Descuento1.Tasa ?? 0),
-            aImporteDescto5 = (double)(movimiento.Descuentos?.Descuento1.Importe ?? 0)
+            aPorcDescto2 = (double)(movimiento.Descuentos?.Descuento2.Tasa ?? 0),
+            aImporteDescto2 = (double)(movimiento.Descuentos?.Descuento2.Importe ?? 0),
+            aPorcDescto3 = (double)(movimiento.Descuentos?.Descuento3.Tasa ?? 0),
+            aImporteDescto3 = (double)(movimiento.Descuentos?.Descuento3.Importe ?? 0),
+            aPorcDescto4 = (double)(movimiento.Descuentos?.Descuento4.Tasa ?? 0),
+            aImporteDescto4 = (double)(movimiento.Descuentos?.Descuento4.Importe ?? 0),
+            aPorcDescto5 = (double)(movimiento.Descuentos?.Descuento5.Tasa ?? 0),
+            aImporteDescto5 = (double)(movimiento.Descuentos?.Descuento5.Importe ?? 0)
         };
     }
 
