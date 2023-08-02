@@ -158,7 +158,7 @@ public sealed class UsoCfdiEnum : SmartEnum<UsoCfdiEnum, string>
     {
         foreach (string regimen in regimenesFiscales)
         {
-            RegimenesFiscales.Add(RegimenFiscalEnum.TryFromName(regimen, out RegimenFiscalEnum? regimenResult)
+            RegimenesFiscales.Add(RegimenFiscalEnum.TryFromValue(regimen, out RegimenFiscalEnum regimenResult)
                 ? regimenResult
                 : throw new InvalidOperationException($"El regimen fiscal {regimen} no es valido."));
         }

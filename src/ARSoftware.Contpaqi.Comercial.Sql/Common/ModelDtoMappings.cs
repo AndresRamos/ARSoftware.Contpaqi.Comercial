@@ -5,9 +5,9 @@ using AutoMapper;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Common;
 
-public sealed class Mappings : Profile
+public sealed class ModelDtoMappings : Profile
 {
-    public Mappings()
+    public ModelDtoMappings()
     {
         CreateMap<admAgentes, AgenteDto>();
         CreateMap<admAlmacenes, AlmacenDto>();
@@ -17,6 +17,7 @@ public sealed class Mappings : Profile
         CreateMap<admDocumentos, DocumentoDto>();
         CreateMap<admDocumentosModelo, DocumentoModeloDto>();
         CreateMap<Empresas, EmpresaDto>();
+        CreateMap<admFoliosDigitales, FolioDigitalDto>();
         CreateMap<admMonedas, MonedaDto>();
         CreateMap<admMovimientos, MovimientoDto>();
         CreateMap<admParametros, ParametrosDto>();

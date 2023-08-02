@@ -35,4 +35,8 @@
 		<ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sql.Models\ARSoftware.Contpaqi.Comercial.Sql.Models.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Specifications\FoliosDigitales\" />
+	</ItemGroup>
+
 </Project>
