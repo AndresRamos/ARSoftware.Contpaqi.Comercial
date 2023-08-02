@@ -1,4 +1,5 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Dtos;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums.CatalogosCfdi;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
