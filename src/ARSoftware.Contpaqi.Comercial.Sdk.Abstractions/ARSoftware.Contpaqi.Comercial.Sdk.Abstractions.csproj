@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<Version>5.0.0-beta</Version>
+		<Version>5.0.0-beta.1</Version>
 		<Authors>AR Software</Authors>
 		<Description>Esta libreria contiene las interfaces usadas por los poryectos de SDK y SQL </Description>
 		<Copyright>Copyright © AR Software 2023</Copyright>
