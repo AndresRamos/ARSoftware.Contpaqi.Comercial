@@ -1,9 +1,8 @@
 ﻿using Ardalis.Specification;
-using ARSoftware.Contpaqi.Comercial.Sql.Models.Generales;
 
-namespace ARSoftware.Contpaqi.Comercial.Sql.Specifications;
+namespace ARSoftware.Contpaqi.Comercial.Sql.Specifications.Empresas;
 
-public sealed class EmpresaPorNombreSpecification : SingleResultSpecification<Empresas>
+public sealed class EmpresaPorNombreSpecification : SingleResultSpecification<Models.Generales.Empresas>
 {
     public EmpresaPorNombreSpecification(string nombreEmpresa)
     {

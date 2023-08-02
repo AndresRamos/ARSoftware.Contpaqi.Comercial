@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.ValueObjects;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 

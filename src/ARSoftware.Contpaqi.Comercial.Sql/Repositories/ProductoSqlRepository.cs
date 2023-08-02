@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Ardalis.Specification.EntityFrameworkCore;
-using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
-using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
+using ARSoftware.Contpaqi.Comercial.Sql.Specifications.Productos;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 

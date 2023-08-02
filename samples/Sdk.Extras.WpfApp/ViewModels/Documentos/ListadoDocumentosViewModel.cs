@@ -5,20 +5,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
 using Sdk.Extras.WpfApp.Models;
-using Agente = Sdk.Extras.WpfApp.Models.Agente;
-using Almacen = Sdk.Extras.WpfApp.Models.Almacen;
-using ClienteProveedor = Sdk.Extras.WpfApp.Models.ClienteProveedor;
-using ConceptoDocumento = Sdk.Extras.WpfApp.Models.ConceptoDocumento;
-using Direccion = Sdk.Extras.WpfApp.Models.Direccion;
-using Documento = Sdk.Extras.WpfApp.Models.Documento;
-using Movimiento = Sdk.Extras.WpfApp.Models.Movimiento;
-using Producto = Sdk.Extras.WpfApp.Models.Producto;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Documentos;
 

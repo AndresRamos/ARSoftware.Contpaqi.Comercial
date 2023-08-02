@@ -2,7 +2,7 @@
 using Ardalis.Specification;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
-namespace ARSoftware.Contpaqi.Comercial.Sql.Specifications;
+namespace ARSoftware.Contpaqi.Comercial.Sql.Specifications.Documentos;
 
 /// <summary>
 ///     Especificación para obtener documentos por rango de fecha, concepto y cliente.

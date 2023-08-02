@@ -5,15 +5,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
 using Sdk.Extras.WpfApp.Models;
 using Sdk.Extras.WpfApp.Views.Productos;
-using Producto = Sdk.Extras.WpfApp.Models.Producto;
-using UnidadMedida = Sdk.Extras.WpfApp.Models.UnidadMedida;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Productos;
 

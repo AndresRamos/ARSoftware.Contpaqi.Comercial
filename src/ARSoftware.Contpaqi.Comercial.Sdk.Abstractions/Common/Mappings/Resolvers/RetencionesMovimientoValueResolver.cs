@@ -1,5 +1,6 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Dtos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.ValueObjects;
 using AutoMapper;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Common.Mappings.Resolvers;

@@ -6,7 +6,9 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
-using ARSoftware.Contpaqi.Comercial.Sql.Specifications;
+using ARSoftware.Contpaqi.Comercial.Sql.Specifications.Clientes;
+using ARSoftware.Contpaqi.Comercial.Sql.Specifications.Conceptos;
+using ARSoftware.Contpaqi.Comercial.Sql.Specifications.Documentos;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 

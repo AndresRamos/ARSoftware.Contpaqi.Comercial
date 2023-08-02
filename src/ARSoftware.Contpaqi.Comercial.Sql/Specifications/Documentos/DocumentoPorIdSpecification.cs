@@ -3,7 +3,7 @@ using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
-namespace ARSoftware.Contpaqi.Comercial.Sql.Specifications;
+namespace ARSoftware.Contpaqi.Comercial.Sql.Specifications.Documentos;
 
 /// <summary>
 ///     Especificación para obtener un documento por su id.

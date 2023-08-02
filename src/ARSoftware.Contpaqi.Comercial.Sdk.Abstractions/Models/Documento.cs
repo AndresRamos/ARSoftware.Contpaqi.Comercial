@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Ardalis.SmartEnum.SystemTextJson;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums.CatalogosCfdi;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 

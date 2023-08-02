@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;

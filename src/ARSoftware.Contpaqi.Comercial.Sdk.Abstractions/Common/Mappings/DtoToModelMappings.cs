@@ -2,6 +2,7 @@
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Common.Mappings.Converters;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Common.Mappings.Resolvers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Dtos;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 using AutoMapper;
 

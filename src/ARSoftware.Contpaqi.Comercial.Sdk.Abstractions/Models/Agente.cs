@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 

@@ -1,7 +1,7 @@
 ﻿using Ardalis.Specification;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
-namespace ARSoftware.Contpaqi.Comercial.Sql.Specifications;
+namespace ARSoftware.Contpaqi.Comercial.Sql.Specifications.Conceptos;
 
 /// <summary>
 ///     Especificación para obtener los conceptos de un documento modelo.

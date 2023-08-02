@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
@@ -23,14 +23,6 @@ using Microsoft.Win32;
 using Sdk.Extras.WpfApp.Messages;
 using Sdk.Extras.WpfApp.Models;
 using Sdk.Extras.WpfApp.Views.Movimientos;
-using Agente = Sdk.Extras.WpfApp.Models.Agente;
-using Almacen = Sdk.Extras.WpfApp.Models.Almacen;
-using ClienteProveedor = Sdk.Extras.WpfApp.Models.ClienteProveedor;
-using ConceptoDocumento = Sdk.Extras.WpfApp.Models.ConceptoDocumento;
-using Direccion = Sdk.Extras.WpfApp.Models.Direccion;
-using Documento = Sdk.Extras.WpfApp.Models.Documento;
-using Movimiento = Sdk.Extras.WpfApp.Models.Movimiento;
-using Producto = Sdk.Extras.WpfApp.Models.Producto;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Facturas;
 

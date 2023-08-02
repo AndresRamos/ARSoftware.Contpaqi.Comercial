@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -16,7 +16,6 @@ using MahApps.Metro.Controls.Dialogs;
 using Sdk.Extras.WpfApp.Messages;
 using Sdk.Extras.WpfApp.Models;
 using Sdk.Extras.WpfApp.Views.Facturas;
-using ConceptoDocumento = Sdk.Extras.WpfApp.Models.ConceptoDocumento;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Facturas;
 

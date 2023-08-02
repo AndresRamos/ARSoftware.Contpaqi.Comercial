@@ -1,4 +1,4 @@
-﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.ValueObjects;
 
 public class ImpuestosMovimiento
 {

@@ -1,7 +1,7 @@
 ﻿using Ardalis.Specification;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
-namespace ARSoftware.Contpaqi.Comercial.Sql.Specifications;
+namespace ARSoftware.Contpaqi.Comercial.Sql.Specifications.Almacenes;
 
 /// <summary>
 ///     Especificación para obtener un almacén por su id.

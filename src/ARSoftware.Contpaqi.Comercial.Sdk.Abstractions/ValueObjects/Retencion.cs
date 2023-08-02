@@ -1,6 +1,6 @@
-﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.ValueObjects;
 
-public class Impuesto
+public class Retencion
 {
     /// <summary>
     ///     Tasa del impuesto.

@@ -1,6 +1,6 @@
 ﻿using Ardalis.SmartEnum;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums.CatalogosCfdi;
 
 public sealed class RegimenFiscalEnum : SmartEnum<RegimenFiscalEnum, string>
 {
