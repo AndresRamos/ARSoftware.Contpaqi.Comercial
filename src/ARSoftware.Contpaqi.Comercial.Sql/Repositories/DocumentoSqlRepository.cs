@@ -49,9 +49,9 @@ public sealed class DocumentoSqlRepository : ContpaqiComercialSqlRepositoryBase<
     public admDocumentos? BuscarPorLlave(LlaveDocumento llaveDocumento)
     {
         admConceptos concepto =
-            _context.admConceptos.WithSpecification(new ConceptoPorCodigoSpecification(llaveDocumento.CodigoConcepto)).SingleOrDefault() ??
-            throw new ArgumentException($"El concepto con codigo {llaveDocumento.CodigoConcepto} no existe.",
-                nameof(llaveDocumento.CodigoConcepto));
+            _context.admConceptos.WithSpecification(new ConceptoPorCodigoSpecification(llaveDocumento.ConceptoCodigo)).SingleOrDefault() ??
+            throw new ArgumentException($"El concepto con codigo {llaveDocumento.ConceptoCodigo} no existe.",
+                nameof(llaveDocumento.ConceptoCodigo));
 
         return _context.admDocumentos
             .WithSpecification(
@@ -68,7 +68,7 @@ public sealed class DocumentoSqlRepository : ContpaqiComercialSqlRepositoryBase<
 
         return new LlaveDocumento
         {
-            CodigoConcepto = concepto.CCODIGOCONCEPTO, Serie = concepto.CSERIEPOROMISION, Folio = concepto.CNOFOLIO
+            ConceptoCodigo = concepto.CCODIGOCONCEPTO, Serie = concepto.CSERIEPOROMISION, Folio = concepto.CNOFOLIO
         };
     }
 
@@ -166,9 +166,9 @@ public sealed class DocumentoSqlRepository<T> : ContpaqiComercialSqlRepositoryBa
     public T? BuscarPorLlave(LlaveDocumento llaveDocumento)
     {
         admConceptos concepto =
-            _context.admConceptos.WithSpecification(new ConceptoPorCodigoSpecification(llaveDocumento.CodigoConcepto)).SingleOrDefault() ??
-            throw new ArgumentException($"El concepto con codigo {llaveDocumento.CodigoConcepto} no existe.",
-                nameof(llaveDocumento.CodigoConcepto));
+            _context.admConceptos.WithSpecification(new ConceptoPorCodigoSpecification(llaveDocumento.ConceptoCodigo)).SingleOrDefault() ??
+            throw new ArgumentException($"El concepto con codigo {llaveDocumento.ConceptoCodigo} no existe.",
+                nameof(llaveDocumento.ConceptoCodigo));
 
         return _context.admDocumentos
             .WithSpecification(
@@ -186,7 +186,7 @@ public sealed class DocumentoSqlRepository<T> : ContpaqiComercialSqlRepositoryBa
 
         return new LlaveDocumento
         {
-            CodigoConcepto = concepto.CCODIGOCONCEPTO, Serie = concepto.CSERIEPOROMISION, Folio = concepto.CNOFOLIO
+            ConceptoCodigo = concepto.CCODIGOCONCEPTO, Serie = concepto.CSERIEPOROMISION, Folio = concepto.CNOFOLIO
         };
     }
 

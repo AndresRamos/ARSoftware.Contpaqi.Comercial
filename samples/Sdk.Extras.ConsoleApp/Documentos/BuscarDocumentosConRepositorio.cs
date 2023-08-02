@@ -43,7 +43,7 @@ public sealed class BuscarDocumentosConRepositorio : IBuscarDocumentos
     /// <inheritdoc />
     public void BuscarPorLlave()
     {
-        var llaveDocumento = new LlaveDocumento { CodigoConcepto = "PRUEBA", Serie = "PRUEBA", Folio = 1 };
+        var llaveDocumento = new LlaveDocumento { ConceptoCodigo = "PRUEBA", Serie = "PRUEBA", Folio = 1 };
 
         admDocumentos? documento = _documentoRepository.BuscarPorLlave(llaveDocumento);
 

@@ -49,7 +49,7 @@ public class DocumentoSdkRepository<T> : IDocumentoRepository<T> where T : class
     {
         var llave = new tLlaveDoc
         {
-            aCodConcepto = llaveDocumento.CodigoConcepto, aSerie = llaveDocumento.Serie, aFolio = llaveDocumento.Folio
+            aCodConcepto = llaveDocumento.ConceptoCodigo, aSerie = llaveDocumento.Serie, aFolio = llaveDocumento.Folio
         };
 
         return _sdk.fBuscaDocumento(ref llave) == SdkResultConstants.Success ? LeerDatosDocumentoActual() : null;
@@ -61,7 +61,7 @@ public class DocumentoSdkRepository<T> : IDocumentoRepository<T> where T : class
         double folio = 0;
         var serie = new StringBuilder();
         _sdk.fSiguienteFolio(codigoConcepto, serie, ref folio).ToResultadoSdk(_sdk).ThrowIfError();
-        return new LlaveDocumento { CodigoConcepto = codigoConcepto, Serie = serie.ToString(), Folio = folio };
+        return new LlaveDocumento { ConceptoCodigo = codigoConcepto, Serie = serie.ToString(), Folio = folio };
     }
 
     /// <inheritdoc />
