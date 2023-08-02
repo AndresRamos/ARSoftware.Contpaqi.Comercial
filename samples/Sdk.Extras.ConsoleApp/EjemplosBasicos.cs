@@ -1,10 +1,10 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
-using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models.Dtos;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Dtos;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using Microsoft.Extensions.DependencyInjection;
@@ -60,7 +60,7 @@ public class EjemplosBasicos
             FormaPago = FormaPagoEnum._03,
             MetodoPago = MetodoPagoEnum.PPD,
             Observaciones = "Observaciones",
-            Moneda = Moneda.PesoMexicano,
+            Moneda = MonedaEnum.PesoMexicano.ToMoneda(),
             TipoCambio = 1,
             Agente = new Agente { Codigo = "PRUEBA" }
         };

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
@@ -15,6 +15,8 @@ using MahApps.Metro.Controls.Dialogs;
 using Sdk.Extras.WpfApp.Messages;
 using Sdk.Extras.WpfApp.Models;
 using Sdk.Extras.WpfApp.Views.ValoresClasificacion;
+using Producto = Sdk.Extras.WpfApp.Models.Producto;
+using UnidadMedida = Sdk.Extras.WpfApp.Models.UnidadMedida;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Productos;
 

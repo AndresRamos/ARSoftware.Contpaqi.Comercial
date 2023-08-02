@@ -9,7 +9,7 @@ public sealed class MonedaEnum : SmartEnum<MonedaEnum>
     public static readonly MonedaEnum DolarAmericano = new("Dólar Americano", 2);
 
     /// <inheritdoc />
-    public MonedaEnum(string name, int value) : base(name, value)
+    private MonedaEnum(string name, int value) : base(name, value)
     {
     }
 }

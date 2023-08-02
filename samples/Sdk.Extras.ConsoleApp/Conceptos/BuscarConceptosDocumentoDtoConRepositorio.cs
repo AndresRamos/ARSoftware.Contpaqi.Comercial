@@ -1,4 +1,4 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models.Dtos;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Dtos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using Microsoft.Extensions.Logging;

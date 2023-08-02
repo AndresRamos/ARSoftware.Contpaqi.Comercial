@@ -1,4 +1,4 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models.Dtos;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Dtos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using Microsoft.Extensions.Logging;
 using Samples.Common;

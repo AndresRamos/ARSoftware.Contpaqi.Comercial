@@ -1,4 +1,4 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models.Dtos;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Dtos;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Generales;
 using AutoMapper;

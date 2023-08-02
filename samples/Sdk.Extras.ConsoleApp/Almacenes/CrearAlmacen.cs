@@ -1,6 +1,6 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace Sdk.Extras.ConsoleApp;

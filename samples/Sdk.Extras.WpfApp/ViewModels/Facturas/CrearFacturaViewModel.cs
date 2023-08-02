@@ -14,6 +14,9 @@ using CommunityToolkit.Mvvm.Messaging;
 using MahApps.Metro.Controls.Dialogs;
 using Sdk.Extras.WpfApp.Messages;
 using Sdk.Extras.WpfApp.Models;
+using Agente = Sdk.Extras.WpfApp.Models.Agente;
+using ConceptoDocumento = Sdk.Extras.WpfApp.Models.ConceptoDocumento;
+using Documento = Sdk.Extras.WpfApp.Models.Documento;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Facturas;
 

@@ -1,6 +1,6 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 
 namespace Sdk.Extras.ConsoleApp;
 
@@ -19,7 +19,7 @@ public class SaldarDocumento
         var documentoPago = new tLlaveDoc { aCodConcepto = "PRUEBAABONO", aSerie = "PRUEBA", aFolio = 1 };
         var importe = 100;
         DateTime fecha = DateTime.Today;
-        int moneda = Moneda.PesoMexicano.Id;
+        int moneda = MonedaEnum.PesoMexicano.Value;
 
         _documentoService.SaldarDocumento(documentoPagar, documentoPago, fecha, importe, moneda);
     }

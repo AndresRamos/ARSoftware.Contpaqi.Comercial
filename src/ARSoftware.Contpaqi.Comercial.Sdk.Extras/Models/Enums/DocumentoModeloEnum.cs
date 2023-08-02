@@ -44,7 +44,7 @@ public sealed class DocumentoModeloEnum : SmartEnum<DocumentoModeloEnum>
     public static readonly DocumentoModeloEnum CotizacionDelProveedor = new("Cotización del Proveedor", 38);
 
     /// <inheritdoc />
-    public DocumentoModeloEnum(string name, int value) : base(name, value)
+    private DocumentoModeloEnum(string name, int value) : base(name, value)
     {
     }
 }

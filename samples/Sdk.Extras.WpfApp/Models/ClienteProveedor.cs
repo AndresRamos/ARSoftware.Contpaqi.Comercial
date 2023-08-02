@@ -1,9 +1,8 @@
 ﻿using System;
-using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
@@ -36,7 +35,7 @@ public class ClienteProveedor : admClientes
         set => CESTATUS = EstatusHelper.ConvertToSdkValue(value);
     }
 
-    public Moneda Moneda { get; set; } = Moneda.PesoMexicano;
+    public Moneda Moneda { get; set; } = MonedaEnum.PesoMexicano.ToMoneda();
 
     public TipoCliente Tipo
     {
