@@ -19,12 +19,12 @@ public class Agente
     /// <summary>
     ///     Nombre del agente.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public string Nombre { get; set; } = string.Empty;
 
     /// <summary>
     ///     Tipo del agente.
     /// </summary>
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public TipoAgente Tipo { get; set; } = TipoAgente.VentasCobro;
 
     /// <summary>

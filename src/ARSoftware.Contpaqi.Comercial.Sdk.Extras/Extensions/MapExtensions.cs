@@ -2,6 +2,7 @@
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
@@ -151,5 +152,10 @@ public static class MapExtensions
             cCodigoPostal = direccion.CodigoPostal,
             cPais = direccion.Pais
         };
+    }
+
+    public static Moneda ToMoneda(this MonedaEnum monedaEnum)
+    {
+        return new Moneda { Id = monedaEnum.Value, Nombre = monedaEnum.Name };
     }
 }

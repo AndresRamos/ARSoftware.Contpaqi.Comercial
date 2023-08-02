@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 
@@ -14,18 +15,18 @@ public class MonedaRepository : IMonedaRepository<Moneda>
     /// <inheritdoc />
     public Moneda? BuscarPorId(int idMoneda)
     {
-        return Moneda.ToList().SingleOrDefault(m => m.Id == idMoneda);
+        return MonedaEnum.TryFromValue(idMoneda, out MonedaEnum? moneda) ? moneda.ToMoneda() : null;
     }
 
     /// <inheritdoc />
     public Moneda? BuscarPorNombre(string nombreMoneda)
     {
-        return Moneda.ToList().SingleOrDefault(m => m.Nombre.IndexOf(nombreMoneda, StringComparison.OrdinalIgnoreCase) >= 0);
+        return MonedaEnum.TryFromName(nombreMoneda, out MonedaEnum? moneda) ? moneda.ToMoneda() : null;
     }
 
     /// <inheritdoc />
     public List<Moneda> TraerTodo()
     {
-        return Moneda.ToList();
+        return MonedaEnum.List.Select(monedaEnum => monedaEnum.ToMoneda()).ToList();
     }
 }

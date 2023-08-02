@@ -81,7 +81,7 @@ public class ClienteProveedor : admClientes
             cCURP = CCURP,
             cDenComercial = CDENCOMERCIAL,
             cRepLegal = CREPLEGAL,
-            cNombreMoneda = Moneda.Id == Moneda.Ninguna.Id ? "" : Moneda.Nombre,
+            cNombreMoneda = Moneda.Id == MonedaEnum.Ninguna.Value ? "" : Moneda.Nombre,
             cListaPreciosCliente = CLISTAPRECIOCLIENTE,
             cDescuentoMovto = CDESCUENTOMOVTO,
             cBanVentaCredito = CBANVENTACREDITO,

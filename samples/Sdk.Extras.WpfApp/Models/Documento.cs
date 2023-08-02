@@ -6,6 +6,7 @@ using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace Sdk.Extras.WpfApp.Models;
@@ -40,7 +41,7 @@ public class Documento : admDocumentos
 
     public Moneda Moneda
     {
-        get => Moneda.FromId(CIDMONEDA);
+        get => MonedaEnum.FromValue(CIDMONEDA).ToMoneda();
         set => CIDMONEDA = value.Id;
     }
 
