@@ -23,7 +23,7 @@ public class CrearCliente
             RazonSocial = "CLIENTE DE PRUEBAS",
             Rfc = "XAXX010101000",
             Tipo = TipoCliente.ClienteProveedor,
-            UsoCfdi = UsoCfdi.S01,
+            UsoCfdi = UsoCfdiEnum.S01,
             RegimenFiscal = RegimenFiscalEnum._616
         };
 

@@ -66,7 +66,7 @@ public class ClienteProveedorService : IClienteProveedorService
 
         var datosClienteProveedor = new Dictionary<string, string>(clienteProveedor.DatosExtra);
         if (clienteProveedor.UsoCfdi is not null)
-            datosClienteProveedor.TryAdd(nameof(admClientes.CUSOCFDI), clienteProveedor.UsoCfdi.Clave);
+            datosClienteProveedor.TryAdd(nameof(admClientes.CUSOCFDI), clienteProveedor.UsoCfdi.Value);
         if (clienteProveedor.RegimenFiscal is not null)
             datosClienteProveedor.TryAdd(nameof(admClientes.CREGIMFISC), clienteProveedor.RegimenFiscal.Value);
         Actualizar(nuevoClienteId, datosClienteProveedor);

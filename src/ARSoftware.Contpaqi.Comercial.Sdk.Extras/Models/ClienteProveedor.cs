@@ -2,8 +2,6 @@
 using System.Text.Json.Serialization;
 using Ardalis.SmartEnum.SystemTextJson;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 
@@ -38,8 +36,8 @@ public class ClienteProveedor
     /// <summary>
     ///     Uso que el cliente le dará a los CFDIs.
     /// </summary>
-    [JsonConverter(typeof(UsoCfdiJsonConverter))]
-    public UsoCfdi? UsoCfdi { get; set; }
+    [JsonConverter(typeof(SmartEnumValueConverter<UsoCfdiEnum, string>))]
+    public UsoCfdiEnum? UsoCfdi { get; set; }
 
     /// <summary>
     ///     Régimen Fiscal del cliente.
