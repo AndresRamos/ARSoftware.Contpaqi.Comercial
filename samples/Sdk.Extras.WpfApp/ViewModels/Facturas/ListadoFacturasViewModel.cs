@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -16,7 +16,6 @@ using MahApps.Metro.Controls.Dialogs;
 using Sdk.Extras.WpfApp.Messages;
 using Sdk.Extras.WpfApp.Models;
 using Sdk.Extras.WpfApp.Views.Facturas;
-using ConceptoDocumento = Sdk.Extras.WpfApp.Models.ConceptoDocumento;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Facturas;
 
@@ -210,7 +209,7 @@ public class ListadoFacturasViewModel : ObservableRecipient, IRecipient<MostrarD
     private void CargarConceptos()
     {
         Conceptos.Clear();
-        foreach (ConceptoDocumento concepto in _conceptoDocumentoRepository.TraerPorDocumentoModeloId(DocumentoModelo.Factura.Id)
+        foreach (ConceptoDocumento concepto in _conceptoDocumentoRepository.TraerPorDocumentoModeloId(DocumentoModeloEnum.Factura.Value)
                      .OrderBy(c => c.CNOMBRECONCEPTO))
             Conceptos.Add(concepto);
 

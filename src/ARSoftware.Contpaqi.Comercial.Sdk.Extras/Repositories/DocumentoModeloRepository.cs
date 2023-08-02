@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
 
@@ -12,6 +14,6 @@ public class DocumentoModeloRepository : IDocumentoModeloRepository<DocumentoMod
     /// <inheritdoc />
     public List<DocumentoModelo> TraerTodo()
     {
-        return DocumentoModelo.ToList();
+        return DocumentoModeloEnum.List.Select(d => new DocumentoModelo { Id = d.Value, Descripcion = d.Name }).ToList();
     }
 }

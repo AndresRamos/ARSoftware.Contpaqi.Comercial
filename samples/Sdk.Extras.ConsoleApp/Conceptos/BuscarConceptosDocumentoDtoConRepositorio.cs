@@ -1,6 +1,6 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models.Dtos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using Microsoft.Extensions.Logging;
 using Samples.Common;
 
@@ -41,7 +41,7 @@ public sealed class BuscarConceptosDocumentoDtoConRepositorio : IBuscarConceptos
     /// <inheritdoc />
     public void TraerPorDocumentoModeloId()
     {
-        int idDocumentoModelo = DocumentoModelo.Factura.Id;
+        int idDocumentoModelo = DocumentoModeloEnum.Factura.Value;
 
         List<ConceptoDocumentoDto> conceptos = _conceptoDocumentoRepository.TraerPorDocumentoModeloId(idDocumentoModelo);
 

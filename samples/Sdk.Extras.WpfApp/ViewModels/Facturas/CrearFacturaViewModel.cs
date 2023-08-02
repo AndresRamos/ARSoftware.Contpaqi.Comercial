@@ -7,16 +7,13 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MahApps.Metro.Controls.Dialogs;
 using Sdk.Extras.WpfApp.Messages;
 using Sdk.Extras.WpfApp.Models;
-using Agente = Sdk.Extras.WpfApp.Models.Agente;
-using ConceptoDocumento = Sdk.Extras.WpfApp.Models.ConceptoDocumento;
-using Documento = Sdk.Extras.WpfApp.Models.Documento;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Facturas;
 
@@ -169,7 +166,7 @@ public class CrearFacturaViewModel : ObservableRecipient
     private void CargarConceptosFactura()
     {
         Conceptos.Clear();
-        foreach (ConceptoDocumento concepto in _conceptoDocumentoRepository.TraerPorDocumentoModeloId(DocumentoModelo.Factura.Id)
+        foreach (ConceptoDocumento concepto in _conceptoDocumentoRepository.TraerPorDocumentoModeloId(DocumentoModeloEnum.Factura.Value)
                      .OrderBy(c => c.CNOMBRECONCEPTO))
             Conceptos.Add(concepto);
 
