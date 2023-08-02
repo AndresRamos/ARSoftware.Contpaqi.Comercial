@@ -1,4 +1,6 @@
-﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+﻿using System.IO;
+
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 
 public class Empresa
 {
@@ -17,7 +19,10 @@ public class Empresa
     /// </summary>
     public string Ruta { get; set; } = string.Empty;
 
-    public string BaseDatos { get; set; } = string.Empty;
+    /// <summary>
+    ///     Nombre de la base de datos.
+    /// </summary>
+    public string BaseDatos => new DirectoryInfo(Ruta).Name;
 
     /// <summary>
     ///     Parametros de la empresa.
