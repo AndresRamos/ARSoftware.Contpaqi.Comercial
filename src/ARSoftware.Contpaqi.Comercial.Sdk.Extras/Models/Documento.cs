@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Ardalis.SmartEnum.SystemTextJson;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 
@@ -78,8 +77,8 @@ public class Documento
     /// <summary>
     ///     Metodo de pago del documento.
     /// </summary>
-    [JsonConverter(typeof(MetodoPagoJsonConverter))]
-    public MetodoPago? MetodoPago { get; set; }
+    [JsonConverter(typeof(SmartEnumValueConverter<MetodoPagoEnum, string>))]
+    public MetodoPagoEnum? MetodoPago { get; set; }
 
     /// <summary>
     ///     Movimientos del documento.

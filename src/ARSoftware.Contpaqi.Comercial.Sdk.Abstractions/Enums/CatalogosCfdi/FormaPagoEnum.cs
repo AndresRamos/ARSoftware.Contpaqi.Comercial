@@ -1,6 +1,6 @@
 ﻿using Ardalis.SmartEnum;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 
 public sealed class FormaPagoEnum : SmartEnum<FormaPagoEnum, string>
 {

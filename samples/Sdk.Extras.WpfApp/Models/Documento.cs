@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace Sdk.Extras.WpfApp.Models;
@@ -16,7 +16,7 @@ public class Documento : admDocumentos
     {
         CFECHA = DateTime.Today;
         Moneda = Moneda.PesoMexicano;
-        MetodoPago = MetodoPago.PUE;
+        MetodoPago = MetodoPagoEnum.PUE;
         CTIPOCAMBIO = 1;
     }
 
@@ -32,7 +32,7 @@ public class Documento : admDocumentos
         set => CMETODOPAG = value.Value;
     }
 
-    public MetodoPago MetodoPago
+    public MetodoPagoEnum MetodoPago
     {
         get => MetodoPagoHelper.ConvertFromSdkValue(CCANTPARCI);
         set => CCANTPARCI = MetodoPagoHelper.ConvertToSdkValue(value);

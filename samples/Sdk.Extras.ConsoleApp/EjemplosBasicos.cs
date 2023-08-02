@@ -58,7 +58,7 @@ public class EjemplosBasicos
             Cliente = new ClienteProveedor { Codigo = "PRUEBA" },
             Referencia = "Referencia",
             FormaPago = FormaPagoEnum._03,
-            MetodoPago = MetodoPago.PPD,
+            MetodoPago = MetodoPagoEnum.PPD,
             Observaciones = "Observaciones",
             Moneda = Moneda.PesoMexicano,
             TipoCambio = 1,
