@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using Ardalis.SmartEnum.SystemTextJson;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
@@ -43,8 +44,8 @@ public class ClienteProveedor
     /// <summary>
     ///     Régimen Fiscal del cliente.
     /// </summary>
-    [JsonConverter(typeof(RegimenFiscalJsonConverter))]
-    public RegimenFiscal? RegimenFiscal { get; set; }
+    [JsonConverter(typeof(SmartEnumValueConverter<RegimenFiscalEnum, string>))]
+    public RegimenFiscalEnum? RegimenFiscal { get; set; }
 
     /// <summary>
     ///     Direccion fiscal del cliente.

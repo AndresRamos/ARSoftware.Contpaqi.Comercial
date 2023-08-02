@@ -24,7 +24,7 @@ public class CrearCliente
             Rfc = "XAXX010101000",
             Tipo = TipoCliente.ClienteProveedor,
             UsoCfdi = UsoCfdi.S01,
-            RegimenFiscal = RegimenFiscal._616
+            RegimenFiscal = RegimenFiscalEnum._616
         };
 
         cliente.DatosExtra.Add(nameof(admClientes.CTEXTOEXTRA1), "Texto Extra 1");

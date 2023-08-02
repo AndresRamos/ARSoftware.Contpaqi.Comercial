@@ -50,7 +50,7 @@ public static class MapExtensions
             { nameof(admClientes.CRFC), clienteProveedor.Rfc },
             { nameof(admClientes.CTIPOCLIENTE), TipoClienteHelper.ConvertToSdkValue(clienteProveedor.Tipo).ToString() },
             { nameof(admClientes.CUSOCFDI), clienteProveedor.UsoCfdi?.Clave ?? string.Empty },
-            { nameof(admClientes.CREGIMFISC), clienteProveedor.RegimenFiscal?.Clave ?? string.Empty }
+            { nameof(admClientes.CREGIMFISC), clienteProveedor.RegimenFiscal?.Value ?? string.Empty }
         };
     }
 

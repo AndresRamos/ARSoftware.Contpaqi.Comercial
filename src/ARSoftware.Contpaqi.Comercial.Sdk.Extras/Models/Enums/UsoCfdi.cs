@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 
@@ -161,14 +162,15 @@ public class UsoCfdi
 
         foreach (string regimen in regimenesFiscales)
         {
-            RegimenesFiscales.Add(RegimenFiscal.FromClave(regimen) ??
-                                  throw new InvalidOperationException($"El regimen fiscal {regimen} no es valido."));
+            RegimenesFiscales.Add(RegimenFiscalEnum.TryFromName(regimen, out RegimenFiscalEnum? regimenResult)
+                ? regimenResult
+                : throw new InvalidOperationException($"El regimen fiscal {regimen} no es valido."));
         }
     }
 
     public string Descripcion { get; }
     public string Clave { get; }
-    public List<RegimenFiscal> RegimenesFiscales { get; } = new();
+    public List<RegimenFiscalEnum> RegimenesFiscales { get; } = new();
 
     public static UsoCfdi? FromClave(string clave)
     {

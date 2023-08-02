@@ -68,7 +68,7 @@ public class ClienteProveedorService : IClienteProveedorService
         if (clienteProveedor.UsoCfdi is not null)
             datosClienteProveedor.TryAdd(nameof(admClientes.CUSOCFDI), clienteProveedor.UsoCfdi.Clave);
         if (clienteProveedor.RegimenFiscal is not null)
-            datosClienteProveedor.TryAdd(nameof(admClientes.CREGIMFISC), clienteProveedor.RegimenFiscal.Clave);
+            datosClienteProveedor.TryAdd(nameof(admClientes.CREGIMFISC), clienteProveedor.RegimenFiscal.Value);
         Actualizar(nuevoClienteId, datosClienteProveedor);
 
         return nuevoClienteId;
