@@ -120,7 +120,7 @@ public class DocumentoService : IDocumentoService
         if (!string.IsNullOrEmpty(documento.Observaciones))
             datosDocumento.TryAdd(nameof(admDocumentos.COBSERVACIONES), documento.Observaciones);
 
-        if (documento.FormaPago is not null) datosDocumento.TryAdd(nameof(admDocumentos.CMETODOPAG), documento.FormaPago.Clave);
+        if (documento.FormaPago is not null) datosDocumento.TryAdd(nameof(admDocumentos.CMETODOPAG), documento.FormaPago.Value);
 
         if (documento.MetodoPago is not null)
             datosDocumento.TryAdd(nameof(admDocumentos.CCANTPARCI), MetodoPagoHelper.ConvertToSdkValue(documento.MetodoPago).ToString());

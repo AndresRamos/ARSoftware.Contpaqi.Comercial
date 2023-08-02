@@ -24,4 +24,9 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="Ardalis.SmartEnum" Version="2.1.0" />
+	  <PackageReference Include="Ardalis.SmartEnum.SystemTextJson" Version="2.1.0" />
+	</ItemGroup>
+
 </Project>

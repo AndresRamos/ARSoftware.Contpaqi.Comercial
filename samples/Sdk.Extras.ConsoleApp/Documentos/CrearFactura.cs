@@ -1,4 +1,5 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
@@ -29,7 +30,7 @@ public class CrearFactura
             Fecha = DateTime.Today,
             Cliente = new ClienteProveedor { Codigo = "PRUEBA" },
             Referencia = "Referencia",
-            FormaPago = FormaPago._03,
+            FormaPago = FormaPagoEnum._03,
             MetodoPago = MetodoPago.PPD,
             Observaciones = "Observaciones",
             Moneda = Moneda.PesoMexicano,

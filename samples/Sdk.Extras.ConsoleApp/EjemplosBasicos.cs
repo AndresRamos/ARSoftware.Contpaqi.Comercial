@@ -1,4 +1,5 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models.Dtos;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models.Dtos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
@@ -56,7 +57,7 @@ public class EjemplosBasicos
             Fecha = DateTime.Today,
             Cliente = new ClienteProveedor { Codigo = "PRUEBA" },
             Referencia = "Referencia",
-            FormaPago = FormaPago._03,
+            FormaPago = FormaPagoEnum._03,
             MetodoPago = MetodoPago.PPD,
             Observaciones = "Observaciones",
             Moneda = Moneda.PesoMexicano,

@@ -26,10 +26,10 @@ public class Documento : admDocumentos
     public Direccion DireccionEnvio { get; set; } = new();
     public Direccion DireccionFiscal { get; set; } = new();
 
-    public FormaPago FormaPago
+    public FormaPagoEnum FormaPago
     {
-        get => FormaPago.FromClave(CMETODOPAG);
-        set => CMETODOPAG = value.Clave;
+        get => FormaPagoEnum.FromValue(CMETODOPAG);
+        set => CMETODOPAG = value.Value;
     }
 
     public MetodoPago MetodoPago
