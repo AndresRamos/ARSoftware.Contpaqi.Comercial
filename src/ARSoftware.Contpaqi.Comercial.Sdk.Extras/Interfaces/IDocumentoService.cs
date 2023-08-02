@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
@@ -13,8 +14,8 @@ public interface IDocumentoService
     void Actualizar(tLlaveDoc tLlaveDocumento, Dictionary<string, string> datosDocumento);
     tLlaveDoc BuscarSiguienteSerieYFolio(string codigoConcepto);
     void Cancelar(int idDocumento, string contrasenaCertificado);
-    void Cancelar(int idDocumento, string contrasenaCertificado, MotivoCancelacion motivoCancelacion, string uuidRemplazo);
-    void Cancelar(tLlaveDoc tLlaveDocumento, string contrasenaCertificado, MotivoCancelacion motivoCancelacion, string uuidRemplazo);
+    void Cancelar(int idDocumento, string contrasenaCertificado, MotivoCancelacionEnum motivoCancelacion, string uuidRemplazo);
+    void Cancelar(tLlaveDoc tLlaveDocumento, string contrasenaCertificado, MotivoCancelacionEnum motivoCancelacion, string uuidRemplazo);
     void CancelarAdministrativamente(int idDocumento);
     void CancelarAdministrativamente(string codigoConcepto, string serie, string folio);
     void CancelarAdministrativamente(tLlaveDoc tLlaveDocumento);

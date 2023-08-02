@@ -1,6 +1,6 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 
 namespace Sdk.Extras.ConsoleApp;
 
@@ -17,7 +17,7 @@ public class CancelarDocumento
     {
         var llaveDocumento = new tLlaveDoc { aCodConcepto = "PRUEBAFACTURA", aSerie = "PRUEBA", aFolio = 1 };
         var contrasenaCertificado = "12345678a";
-        MotivoCancelacion motivoCancelacion = MotivoCancelacion._02;
+        MotivoCancelacionEnum motivoCancelacion = MotivoCancelacionEnum._02;
 
         _documentoService.Cancelar(llaveDocumento, contrasenaCertificado, motivoCancelacion, string.Empty);
     }

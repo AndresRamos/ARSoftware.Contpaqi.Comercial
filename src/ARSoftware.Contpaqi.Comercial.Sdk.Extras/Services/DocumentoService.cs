@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
@@ -62,18 +63,19 @@ public class DocumentoService : IDocumentoService
         _sdk.fCancelaDocumento().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
-    public void Cancelar(int idDocumento, string contrasenaCertificado, MotivoCancelacion motivoCancelacion, string uuidRemplazo)
+    public void Cancelar(int idDocumento, string contrasenaCertificado, MotivoCancelacionEnum motivoCancelacion, string uuidRemplazo)
     {
         _sdk.fBuscarIdDocumento(idDocumento).ToResultadoSdk(_sdk).ThrowIfError();
         _sdk.fCancelaDoctoInfo(contrasenaCertificado).ToResultadoSdk(_sdk).ThrowIfError();
-        _sdk.fCancelaDocumentoConMotivo(motivoCancelacion.Clave, uuidRemplazo);
+        _sdk.fCancelaDocumentoConMotivo(motivoCancelacion.Value, uuidRemplazo);
     }
 
-    public void Cancelar(tLlaveDoc tLlaveDocumento, string contrasenaCertificado, MotivoCancelacion motivoCancelacion, string uuidRemplazo)
+    public void Cancelar(tLlaveDoc tLlaveDocumento, string contrasenaCertificado, MotivoCancelacionEnum motivoCancelacion,
+        string uuidRemplazo)
     {
         _sdk.fBuscaDocumento(ref tLlaveDocumento).ToResultadoSdk(_sdk).ThrowIfError();
         _sdk.fCancelaDoctoInfo(contrasenaCertificado).ToResultadoSdk(_sdk).ThrowIfError();
-        _sdk.fCancelaDocumentoConMotivo(motivoCancelacion.Clave, uuidRemplazo);
+        _sdk.fCancelaDocumentoConMotivo(motivoCancelacion.Value, uuidRemplazo);
     }
 
     public void CancelarAdministrativamente(int idDocumento)
