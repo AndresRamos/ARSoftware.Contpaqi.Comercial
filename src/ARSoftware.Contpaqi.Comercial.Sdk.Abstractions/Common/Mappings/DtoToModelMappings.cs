@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Common.Mappings.Converters;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Common.Mappings.Resolvers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Dtos;
@@ -69,7 +70,8 @@ public sealed class DtoToModelMappings : Profile
         CreateMap<EmpresaDto, Empresa>()
             .ForMember(des => des.Id, opt => opt.MapFrom(src => src.CIDEMPRESA))
             .ForMember(des => des.Nombre, opt => opt.MapFrom(src => src.CNOMBREEMPRESA))
-            .ForMember(des => des.Ruta, opt => opt.MapFrom(src => src.CRUTADATOS));
+            .ForMember(des => des.Ruta, opt => opt.MapFrom(src => src.CRUTADATOS))
+            .ForMember(des => des.BaseDatos, opt => opt.MapFrom(src => new DirectoryInfo(src.CRUTADATOS).Name));
 
         CreateMap<FolioDigitalDto, FolioDigital>()
             .ForMember(des => des.Id, opt => opt.MapFrom(src => src.CIDFOLDIG))
