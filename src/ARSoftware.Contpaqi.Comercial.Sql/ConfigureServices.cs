@@ -21,7 +21,7 @@ public static class ConfigureServices
 
         services.Add(new ServiceDescriptor(typeof(AlmacenSqlRepository), typeof(AlmacenSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(AlmacenSqlRepository<>), typeof(AlmacenSqlRepository<>), lifetime));
-        services.Add(new ServiceDescriptor(typeof(IAlmacenRepository<admAgentes>), typeof(AlmacenSqlRepository), lifetime));
+        services.Add(new ServiceDescriptor(typeof(IAlmacenRepository<admAlmacenes>), typeof(AlmacenSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(IAlmacenRepository<>), typeof(AlmacenSqlRepository<>), lifetime));
 
         services.Add(new ServiceDescriptor(typeof(ClasificacionSqlRepository), typeof(ClasificacionSqlRepository), lifetime));
@@ -31,7 +31,7 @@ public static class ConfigureServices
         services.Add(new ServiceDescriptor(typeof(IClasificacionRepository<>), typeof(ClasificacionSqlRepository<>), lifetime));
 
         services.Add(new ServiceDescriptor(typeof(ClienteProveedorSqlRepository), typeof(ClienteProveedorSqlRepository), lifetime));
-        services.Add(new ServiceDescriptor(typeof(ClasificacionSqlRepository<>), typeof(ClasificacionSqlRepository<>), lifetime));
+        services.Add(new ServiceDescriptor(typeof(ClienteProveedorSqlRepository<>), typeof(ClienteProveedorSqlRepository<>), lifetime));
         services.Add(new ServiceDescriptor(typeof(IClienteProveedorRepository<admClientes>), typeof(ClienteProveedorSqlRepository),
             lifetime));
         services.Add(new ServiceDescriptor(typeof(IClienteProveedorRepository<>), typeof(ClienteProveedorSqlRepository<>), lifetime));
