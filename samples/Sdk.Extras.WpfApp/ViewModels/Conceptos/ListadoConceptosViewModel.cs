@@ -5,11 +5,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
+using Sdk.Extras.WpfApp.Models;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Conceptos;
 
@@ -22,7 +22,7 @@ public class ListadoConceptosViewModel : ObservableRecipient
     private string _filtro;
 
     public ListadoConceptosViewModel(IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository,
-                                     IDialogCoordinator dialogCoordinator)
+        IDialogCoordinator dialogCoordinator)
     {
         _conceptoDocumentoRepository = conceptoDocumentoRepository;
         _dialogCoordinator = dialogCoordinator;
@@ -33,7 +33,23 @@ public class ListadoConceptosViewModel : ObservableRecipient
         BuscarConceptosCommand = new AsyncRelayCommand(BuscarConceptosAsync);
     }
 
-    public string Title => "Conceptos";
+    public IAsyncRelayCommand BuscarConceptosCommand { get; }
+
+    public ObservableCollection<ConceptoDocumento> Conceptos { get; }
+
+    public ConceptoDocumento ConceptoSeleccionado
+    {
+        get => _conceptoSeleccionado;
+        set => SetProperty(ref _conceptoSeleccionado, value);
+    }
+
+    public ICollectionView ConceptosView { get; }
+
+    public string DuracionBusqueda
+    {
+        get => _duracionBusqueda;
+        private set => SetProperty(ref _duracionBusqueda, value);
+    }
 
     public string Filtro
     {
@@ -46,25 +62,9 @@ public class ListadoConceptosViewModel : ObservableRecipient
         }
     }
 
-    public ObservableCollection<ConceptoDocumento> Conceptos { get; }
-
-    public ICollectionView ConceptosView { get; }
-
-    public ConceptoDocumento ConceptoSeleccionado
-    {
-        get => _conceptoSeleccionado;
-        set => SetProperty(ref _conceptoSeleccionado, value);
-    }
-
     public int NumeroConceptos => ConceptosView.Cast<object>().Count();
 
-    public string DuracionBusqueda
-    {
-        get => _duracionBusqueda;
-        private set => SetProperty(ref _duracionBusqueda, value);
-    }
-
-    public IAsyncRelayCommand BuscarConceptosCommand { get; }
+    public string Title => "Conceptos";
 
     public async Task BuscarConceptosAsync()
     {
@@ -99,8 +99,7 @@ public class ListadoConceptosViewModel : ObservableRecipient
 
     private bool ConceptosView_Filter(object obj)
     {
-        if (!(obj is ConceptoDocumento concepto))
-            throw new ArgumentNullException(nameof(obj));
+        if (!(obj is ConceptoDocumento concepto)) throw new ArgumentNullException(nameof(obj));
 
         return concepto.Contains(Filtro);
     }

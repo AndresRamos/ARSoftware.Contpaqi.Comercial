@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MahApps.Metro.Controls.Dialogs;
 using Sdk.Extras.WpfApp.Messages;
+using Sdk.Extras.WpfApp.Models;
 
 namespace Sdk.Extras.WpfApp.ViewModels.ValoresClasificacion;
 
@@ -24,8 +25,7 @@ public class CrearValorClasificacionViewModel : ObservableRecipient
     private string _valor;
 
     public CrearValorClasificacionViewModel(IValorClasificacionService valorClasificacionService,
-                                            IClasificacionRepository<Clasificacion> clasificacionRepository,
-                                            IDialogCoordinator dialogCoordinator)
+        IClasificacionRepository<Clasificacion> clasificacionRepository, IDialogCoordinator dialogCoordinator)
     {
         _valorClasificacionService = valorClasificacionService;
         _clasificacionRepository = clasificacionRepository;
@@ -35,18 +35,12 @@ public class CrearValorClasificacionViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(CerrarVista);
     }
 
-    public string Title { get; } = "Crear Valor De Clasificacion";
+    public IRelayCommand CancelarCommand { get; }
 
     public int ClasificacionId
     {
         get => _clasificacionId;
         private set => SetProperty(ref _clasificacionId, value);
-    }
-
-    public int ClasificacionNumero
-    {
-        get => _clasificacionNumero;
-        private set => SetProperty(ref _clasificacionNumero, value);
     }
 
     public string ClasificacionNombre
@@ -55,20 +49,27 @@ public class CrearValorClasificacionViewModel : ObservableRecipient
         private set => SetProperty(ref _clasificacionNombre, value);
     }
 
+    public int ClasificacionNumero
+    {
+        get => _clasificacionNumero;
+        private set => SetProperty(ref _clasificacionNumero, value);
+    }
+
     public string Codigo
     {
         get => _codigo;
         set => SetProperty(ref _codigo, value);
     }
 
+    public IAsyncRelayCommand CrearCommand { get; }
+
+    public string Title { get; } = "Crear Valor De Clasificacion";
+
     public string Valor
     {
         get => _valor;
         set => SetProperty(ref _valor, value);
     }
-
-    public IAsyncRelayCommand CrearCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
 
     public void CerrarVista()
     {
@@ -94,7 +95,8 @@ public class CrearValorClasificacionViewModel : ObservableRecipient
 
     public void Inicializar(int clasificacionId)
     {
-        Clasificacion clasificacion = _clasificacionRepository.BuscarPorId(clasificacionId);
+        Clasificacion clasificacion = _clasificacionRepository.BuscarPorId(clasificacionId) ??
+                                      throw new ArgumentException("No se encontro la clasificacion.");
         ClasificacionId = clasificacion.CIDCLASIFICACION;
         ClasificacionNumero = ClasificacionHelper.BuscarNumeroPorId(clasificacionId);
         ClasificacionNombre = clasificacion.CNOMBRECLASIFICACION;

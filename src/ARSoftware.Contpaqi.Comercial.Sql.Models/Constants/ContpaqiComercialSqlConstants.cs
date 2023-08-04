@@ -1,7 +1,6 @@
-﻿namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Constants
+﻿namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Constants;
+
+public static class ContpaqiComercialSqlConstants
 {
-    public static class ContpaqiComercialSqlConstants
-    {
-        public const string ContpaqiComercialGeneralesDatabaseName = "CompacWAdmin";
-    }
+    public const string ContpaqiComercialGeneralesDatabaseName = "CompacWAdmin";
 }

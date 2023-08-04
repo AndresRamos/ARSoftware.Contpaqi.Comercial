@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<Version>5.0.0</Version>
+		<Authors>AR Software</Authors>
+		<Description>Esta libreria contiene las interfaces usadas por los poryectos de SDK y SQL </Description>
+		<Copyright>Copyright © AR Software 2023</Copyright>
+		<RepositoryUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</PackageProjectUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>Contpaqi SDK Comercial Adminpaq Factura Electronica</PackageTags>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\images\AR_LOGO03.jpg">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Ardalis.SmartEnum" Version="7.0.0" />
+		<PackageReference Include="Ardalis.SmartEnum.SystemTextJson" Version="7.0.0" />
+		<PackageReference Include="AutoMapper" Version="12.0.1" />
+	</ItemGroup>
+
+</Project>

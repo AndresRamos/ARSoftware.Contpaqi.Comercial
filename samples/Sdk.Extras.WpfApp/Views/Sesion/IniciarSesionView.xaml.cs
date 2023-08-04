@@ -14,16 +14,15 @@ public partial class IniciarSesionView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<IniciarSesionViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (IniciarSesionView)recipient;
-                    view.Close();
-                    Close();
-                }
-            });
+                var view = (IniciarSesionView)recipient;
+                view.Close();
+                Close();
+            }
+        });
     }
 
     public IniciarSesionViewModel ViewModel => (IniciarSesionViewModel)DataContext;

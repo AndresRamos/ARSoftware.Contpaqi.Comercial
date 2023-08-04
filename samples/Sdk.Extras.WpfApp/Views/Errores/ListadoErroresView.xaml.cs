@@ -14,15 +14,14 @@ public partial class ListadoErroresView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<ListadoErroresViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (ListadoErroresView)recipient;
-                    view.Close();
-                }
-            });
+                var view = (ListadoErroresView)recipient;
+                view.Close();
+            }
+        });
     }
 
     public ListadoErroresViewModel ViewModel => (ListadoErroresViewModel)DataContext;

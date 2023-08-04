@@ -5,12 +5,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
+using Sdk.Extras.WpfApp.Models;
 using Sdk.Extras.WpfApp.Views.Productos;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Productos;
@@ -26,10 +26,9 @@ public class ListadoProductosViewModel : ObservableRecipient
     private string _filtro;
     private Producto _productoSeleccionado;
 
-    public ListadoProductosViewModel(IProductoRepository<Producto> productoRepository,
-                                     IDialogCoordinator dialogCoordinator,
-                                     IUnidadMedidaRepository<UnidadMedida> unidadMedidaRepository,
-                                     IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
+    public ListadoProductosViewModel(IProductoRepository<Producto> productoRepository, IDialogCoordinator dialogCoordinator,
+        IUnidadMedidaRepository<UnidadMedida> unidadMedidaRepository,
+        IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
     {
         _productoRepository = productoRepository;
         _dialogCoordinator = dialogCoordinator;
@@ -46,7 +45,26 @@ public class ListadoProductosViewModel : ObservableRecipient
         EditarProductoCommand = new AsyncRelayCommand(EditarProductoAsync, CanEditarProducto);
     }
 
-    public string Title => "Productos";
+    public bool BuscarObjectosRelacionados
+    {
+        get => _buscarObjectosRelacionados;
+        set => SetProperty(ref _buscarObjectosRelacionados, value);
+    }
+
+    public IAsyncRelayCommand BuscarPaquetesCommand { get; }
+    public IAsyncRelayCommand BuscarProductosCommand { get; }
+    public IAsyncRelayCommand BuscarServiciosCommand { get; }
+
+    public IAsyncRelayCommand BuscarTodoCommand { get; }
+    public IAsyncRelayCommand CrearProductoCommand { get; }
+
+    public string DuracionBusqueda
+    {
+        get => _duracionBusqueda;
+        set => SetProperty(ref _duracionBusqueda, value);
+    }
+
+    public IAsyncRelayCommand EditarProductoCommand { get; }
 
     public string Filtro
     {
@@ -59,9 +77,9 @@ public class ListadoProductosViewModel : ObservableRecipient
         }
     }
 
-    public ObservableCollection<Producto> Productos { get; } = new();
+    public int NumeroProductos => ProductosView.Cast<object>().Count();
 
-    public ICollectionView ProductosView { get; }
+    public ObservableCollection<Producto> Productos { get; } = new();
 
     public Producto ProductoSeleccionado
     {
@@ -73,28 +91,11 @@ public class ListadoProductosViewModel : ObservableRecipient
         }
     }
 
-    public int NumeroProductos => ProductosView.Cast<object>().Count();
+    public ICollectionView ProductosView { get; }
 
-    public bool BuscarObjectosRelacionados
-    {
-        get => _buscarObjectosRelacionados;
-        set => SetProperty(ref _buscarObjectosRelacionados, value);
-    }
+    public string Title => "Productos";
 
-    public string DuracionBusqueda
-    {
-        get => _duracionBusqueda;
-        set => SetProperty(ref _duracionBusqueda, value);
-    }
-
-    public IAsyncRelayCommand BuscarTodoCommand { get; }
-    public IAsyncRelayCommand BuscarProductosCommand { get; }
-    public IAsyncRelayCommand BuscarServiciosCommand { get; }
-    public IAsyncRelayCommand BuscarPaquetesCommand { get; }
-    public IAsyncRelayCommand CrearProductoCommand { get; }
-    public IAsyncRelayCommand EditarProductoCommand { get; }
-
-    private async Task BuscarTodoAsync()
+    private async Task BuscarPaquetesAsync()
     {
         ProgressDialogController progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
         await Task.Delay(1000);
@@ -104,11 +105,11 @@ public class ListadoProductosViewModel : ObservableRecipient
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             Productos.Clear();
-            foreach (Producto producto in _productoRepository.TraerTodo())
+            foreach (Producto paquete in _productoRepository.TraerPorTipo(TipoProducto.Paquete))
             {
-                CargarRelaciones(producto);
-                Productos.Add(producto);
-                progressDialogController.SetMessage($"Numero de productos: {Productos.Count}");
+                CargarRelaciones(paquete);
+                Productos.Add(paquete);
+                progressDialogController.SetMessage($"Numero de paquetes: {Productos.Count}");
                 await Task.Delay(50);
             }
 
@@ -191,7 +192,7 @@ public class ListadoProductosViewModel : ObservableRecipient
         }
     }
 
-    private async Task BuscarPaquetesAsync()
+    private async Task BuscarTodoAsync()
     {
         ProgressDialogController progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
         await Task.Delay(1000);
@@ -201,11 +202,11 @@ public class ListadoProductosViewModel : ObservableRecipient
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             Productos.Clear();
-            foreach (Producto paquete in _productoRepository.TraerPorTipo(TipoProducto.Paquete))
+            foreach (Producto producto in _productoRepository.TraerTodo())
             {
-                CargarRelaciones(paquete);
-                Productos.Add(paquete);
-                progressDialogController.SetMessage($"Numero de paquetes: {Productos.Count}");
+                CargarRelaciones(producto);
+                Productos.Add(producto);
+                progressDialogController.SetMessage($"Numero de productos: {Productos.Count}");
                 await Task.Delay(50);
             }
 
@@ -221,6 +222,23 @@ public class ListadoProductosViewModel : ObservableRecipient
             await progressDialogController.CloseAsync();
             OnPropertyChanged(nameof(NumeroProductos));
         }
+    }
+
+    private bool CanEditarProducto()
+    {
+        return ProductoSeleccionado is not null;
+    }
+
+    private void CargarRelaciones(Producto producto)
+    {
+        producto.UnidadBase = _unidadMedidaRepository.BuscarPorId(producto.CIDUNIDADBASE);
+        producto.UnidadNoConvertible = _unidadMedidaRepository.BuscarPorId(producto.CIDUNIDADNOCONVERTIBLE);
+        producto.ValorClasificacion1 = _valorClasificacionRepository.BuscarPorId(producto.CIDVALORCLASIFICACION1);
+        producto.ValorClasificacion2 = _valorClasificacionRepository.BuscarPorId(producto.CIDVALORCLASIFICACION2);
+        producto.ValorClasificacion3 = _valorClasificacionRepository.BuscarPorId(producto.CIDVALORCLASIFICACION3);
+        producto.ValorClasificacion4 = _valorClasificacionRepository.BuscarPorId(producto.CIDVALORCLASIFICACION4);
+        producto.ValorClasificacion5 = _valorClasificacionRepository.BuscarPorId(producto.CIDVALORCLASIFICACION5);
+        producto.ValorClasificacion6 = _valorClasificacionRepository.BuscarPorId(producto.CIDVALORCLASIFICACION6);
     }
 
     private async Task CrearProductoAsync()
@@ -259,9 +277,11 @@ public class ListadoProductosViewModel : ObservableRecipient
         }
     }
 
-    private bool CanEditarProducto()
+    private bool ProductosView_Filter(object obj)
     {
-        return ProductoSeleccionado is not null;
+        if (obj is not Producto producto) throw new ArgumentNullException(nameof(obj));
+
+        return producto.Contains(Filtro);
     }
 
     private void RaiseGuards()
@@ -272,25 +292,5 @@ public class ListadoProductosViewModel : ObservableRecipient
         BuscarPaquetesCommand.NotifyCanExecuteChanged();
         CrearProductoCommand.NotifyCanExecuteChanged();
         EditarProductoCommand.NotifyCanExecuteChanged();
-    }
-
-    private bool ProductosView_Filter(object obj)
-    {
-        if (obj is not Producto producto)
-            throw new ArgumentNullException(nameof(obj));
-
-        return producto.Contains(Filtro);
-    }
-
-    private void CargarRelaciones(Producto producto)
-    {
-        producto.UnidadBase = _unidadMedidaRepository.BuscarPorId(producto.CIDUNIDADBASE);
-        producto.UnidadNoConvertible = _unidadMedidaRepository.BuscarPorId(producto.CIDUNIDADNOCONVERTIBLE);
-        producto.ValorClasificacion1 = _valorClasificacionRepository.BuscarPorId(producto.CIDVALORCLASIFICACION1);
-        producto.ValorClasificacion2 = _valorClasificacionRepository.BuscarPorId(producto.CIDVALORCLASIFICACION2);
-        producto.ValorClasificacion3 = _valorClasificacionRepository.BuscarPorId(producto.CIDVALORCLASIFICACION3);
-        producto.ValorClasificacion4 = _valorClasificacionRepository.BuscarPorId(producto.CIDVALORCLASIFICACION4);
-        producto.ValorClasificacion5 = _valorClasificacionRepository.BuscarPorId(producto.CIDVALORCLASIFICACION5);
-        producto.ValorClasificacion6 = _valorClasificacionRepository.BuscarPorId(producto.CIDVALORCLASIFICACION6);
     }
 }

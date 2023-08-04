@@ -7,30 +7,30 @@ namespace Sdk.ConsoleApp.Catalogos;
 public sealed class ConceptoSdk
 {
     /// <summary>
-    ///     Campo CIDCONCEPTODOCUMENTO - Identificador del concepto de documento.
-    /// </summary>
-    public int Id { get; set; }
-
-    /// <summary>
     ///     Campo CCODIGOCONCEPTO - Código del concepto.
     /// </summary>
     public string Codigo { get; set; }
+
+    /// <summary>
+    ///     Campo CIDCONCEPTODOCUMENTO - Identificador del concepto de documento.
+    /// </summary>
+    public int Id { get; set; }
 
     /// <summary>
     ///     Campo CNOMBRECONCEPTO - Nombre del concepto.
     /// </summary>
     public string Nombre { get; set; }
 
-    public static ConceptoSdk BuscarConceptoPorId(int conceptoId)
+    public static ConceptoSdk BuscarConceptoPorCodigo(string conceptoCodigo)
     {
-        ComercialSdk.fBuscaIdConceptoDocto(conceptoId).TirarSiEsError();
+        ComercialSdk.fBuscaConceptoDocto(conceptoCodigo).TirarSiEsError();
 
         return LeerDatosConcepto();
     }
 
-    public static ConceptoSdk BuscarConceptoPorCodigo(string conceptoCodigo)
+    public static ConceptoSdk BuscarConceptoPorId(int conceptoId)
     {
-        ComercialSdk.fBuscaConceptoDocto(conceptoCodigo).TirarSiEsError();
+        ComercialSdk.fBuscaIdConceptoDocto(conceptoId).TirarSiEsError();
 
         return LeerDatosConcepto();
     }

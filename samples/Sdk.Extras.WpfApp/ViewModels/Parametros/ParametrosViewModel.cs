@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
@@ -12,21 +12,16 @@ namespace Sdk.Extras.WpfApp.ViewModels.Parametros;
 public class ParametrosViewModel : ObservableRecipient
 {
     private readonly IDialogCoordinator _dialogCoordinator;
-    private readonly IParametrosRepository<ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Parametros> _parametrosRepository;
+    private readonly IParametrosRepository<Models.Parametros> _parametrosRepository;
     private string _duracionBusqueda;
 
-    public ParametrosViewModel(IParametrosRepository<ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Parametros> parametrosRepository,
-                               IDialogCoordinator dialogCoordinator)
+    public ParametrosViewModel(IParametrosRepository<Models.Parametros> parametrosRepository, IDialogCoordinator dialogCoordinator)
     {
         _parametrosRepository = parametrosRepository;
         _dialogCoordinator = dialogCoordinator;
 
         BuscarParametrosCommand = new AsyncRelayCommand(CargarParametrosAsync);
     }
-
-    public string Title => "Parametros";
-
-    public ObservableCollection<ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Parametros> Parametros { get; } = new();
 
     public IAsyncRelayCommand BuscarParametrosCommand { get; }
 
@@ -35,6 +30,10 @@ public class ParametrosViewModel : ObservableRecipient
         get => _duracionBusqueda;
         private set => SetProperty(ref _duracionBusqueda, value);
     }
+
+    public ObservableCollection<Models.Parametros> Parametros { get; } = new();
+
+    public string Title => "Parametros";
 
     private async Task CargarParametrosAsync()
     {

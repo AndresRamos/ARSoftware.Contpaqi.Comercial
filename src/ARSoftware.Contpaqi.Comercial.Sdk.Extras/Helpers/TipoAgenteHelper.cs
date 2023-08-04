@@ -1,28 +1,26 @@
 ﻿using System;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
+
+public static class TipoAgenteHelper
 {
-    public static class TipoAgenteHelper
+    public static TipoAgente ConvertFromSdkValue(string sdkTipo)
     {
-        public static TipoAgente ConvertFromSdkValue(string sdkTipo)
-        {
-            bool result = Enum.TryParse(sdkTipo, true, out TipoAgente tipoAgente);
+        bool result = Enum.TryParse(sdkTipo, true, out TipoAgente tipoAgente);
 
-            if (result)
-                return tipoAgente;
+        if (result) return tipoAgente;
 
-            throw new InvalidOperationException($"El tipo {sdkTipo} no es un tipo de agente valido.");
-        }
+        throw new InvalidOperationException($"El tipo {sdkTipo} no es un tipo de agente valido.");
+    }
 
-        public static TipoAgente ConvertFromSdkValue(int sdkTipo)
-        {
-            return ConvertFromSdkValue(sdkTipo.ToString());
-        }
+    public static TipoAgente ConvertFromSdkValue(int sdkTipo)
+    {
+        return ConvertFromSdkValue(sdkTipo.ToString());
+    }
 
-        public static int ConvertToSdkValue(TipoAgente tipo)
-        {
-            return (int)tipo;
-        }
+    public static int ConvertToSdkValue(TipoAgente tipo)
+    {
+        return (int)tipo;
     }
 }

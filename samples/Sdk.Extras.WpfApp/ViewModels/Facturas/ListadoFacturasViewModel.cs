@@ -6,8 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -33,10 +33,9 @@ public class ListadoFacturasViewModel : ObservableRecipient, IRecipient<MostrarD
     private DateTime _fechaInicio = DateTime.Today;
     private string _filtro;
 
-    public ListadoFacturasViewModel(IDialogCoordinator dialogCoordinator,
-                                    IDocumentoRepository<DocumentoLookup> documentoRepository,
-                                    IClienteProveedorRepository<ClienteProveedorLookup> clienteProveedorRepository,
-                                    IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository)
+    public ListadoFacturasViewModel(IDialogCoordinator dialogCoordinator, IDocumentoRepository<DocumentoLookup> documentoRepository,
+        IClienteProveedorRepository<ClienteProveedorLookup> clienteProveedorRepository,
+        IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository)
     {
         _dialogCoordinator = dialogCoordinator;
         _documentoRepository = documentoRepository;
@@ -51,49 +50,16 @@ public class ListadoFacturasViewModel : ObservableRecipient, IRecipient<MostrarD
         CrearFacturaViewCommand = new AsyncRelayCommand(CrearFacturaViewAsync);
     }
 
-    public string Title => "Facturas";
+    public IAsyncRelayCommand BuscarConFiltroCommand { get; }
 
-    public string Filtro
+    public ObservableCollection<ClienteProveedorLookup> Clientes { get; } = new();
+
+    public ClienteProveedorLookup ClienteSeleccionado
     {
-        get => _filtro;
+        get => _clienteSeleccionado;
         set
         {
-            SetProperty(ref _filtro, value);
-            DocumentosView.Refresh();
-            OnPropertyChanged(nameof(NumeroDocumentos));
-        }
-    }
-
-    public DateTime FechaInicio
-    {
-        get => _fechaInicio;
-        set
-        {
-            SetProperty(ref _fechaInicio, value);
-            RaiseGuards();
-        }
-    }
-
-    public DateTime FechaFin
-    {
-        get => _fechaFin;
-        set
-        {
-            SetProperty(ref _fechaFin, value);
-            RaiseGuards();
-        }
-    }
-
-    public ObservableCollection<DocumentoLookup> Documentos { get; } = new();
-
-    public ICollectionView DocumentosView { get; }
-
-    public DocumentoLookup DocumentoSeleccionado
-    {
-        get => _documentoSeleccionado;
-        set
-        {
-            SetProperty(ref _documentoSeleccionado, value);
+            SetProperty(ref _clienteSeleccionado, value);
             RaiseGuards();
         }
     }
@@ -110,19 +76,21 @@ public class ListadoFacturasViewModel : ObservableRecipient, IRecipient<MostrarD
         }
     }
 
-    public ObservableCollection<ClienteProveedorLookup> Clientes { get; } = new();
+    public IAsyncRelayCommand CrearFacturaViewCommand { get; }
 
-    public ClienteProveedorLookup ClienteSeleccionado
+    public ObservableCollection<DocumentoLookup> Documentos { get; } = new();
+
+    public DocumentoLookup DocumentoSeleccionado
     {
-        get => _clienteSeleccionado;
+        get => _documentoSeleccionado;
         set
         {
-            SetProperty(ref _clienteSeleccionado, value);
+            SetProperty(ref _documentoSeleccionado, value);
             RaiseGuards();
         }
     }
 
-    public int NumeroDocumentos => DocumentosView.Cast<object>().Count();
+    public ICollectionView DocumentosView { get; }
 
     public string DuracionBusqueda
     {
@@ -130,27 +98,49 @@ public class ListadoFacturasViewModel : ObservableRecipient, IRecipient<MostrarD
         set => SetProperty(ref _duracionBusqueda, value);
     }
 
-    public IAsyncRelayCommand BuscarConFiltroCommand { get; }
+    public DateTime FechaFin
+    {
+        get => _fechaFin;
+        set
+        {
+            SetProperty(ref _fechaFin, value);
+            RaiseGuards();
+        }
+    }
+
+    public DateTime FechaInicio
+    {
+        get => _fechaInicio;
+        set
+        {
+            SetProperty(ref _fechaInicio, value);
+            RaiseGuards();
+        }
+    }
+
+    public string Filtro
+    {
+        get => _filtro;
+        set
+        {
+            SetProperty(ref _filtro, value);
+            DocumentosView.Refresh();
+            OnPropertyChanged(nameof(NumeroDocumentos));
+        }
+    }
+
     public IRelayCommand InicializarCommand { get; }
     public IAsyncRelayCommand MostrarDetallesFacturaViewCommand { get; }
-    public IAsyncRelayCommand CrearFacturaViewCommand { get; }
+
+    public int NumeroDocumentos => DocumentosView.Cast<object>().Count();
+
+    public string Title => "Facturas";
 
     public void Receive(MostrarDetallesFacturaMessage message)
     {
         var window = new DetallesFacturaView();
         window.ViewModel.Inicializar(message.FacturaId);
         window.Show();
-    }
-
-    public void Inicializar()
-    {
-        CargarConceptos();
-        CargarClientes();
-    }
-
-    public bool PuedeBuscaConFiltroAsync()
-    {
-        return FechaInicio <= FechaFin && ConceptoSeleccionado != null && ClienteSeleccionado != null;
     }
 
     public async Task BuscarConFiltroAsync()
@@ -165,14 +155,11 @@ public class ListadoFacturasViewModel : ObservableRecipient, IRecipient<MostrarD
             Documentos.Clear();
 
             IEnumerable<DocumentoLookup> documentos = ClienteSeleccionado.CIDCLIENTEPROVEEDOR == 0
-                ? _documentoRepository.TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(FechaInicio,
-                    FechaFin,
+                ? _documentoRepository.TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(FechaInicio, FechaFin,
                     ConceptoSeleccionado.CCODIGOCONCEPTO,
                     Clientes.Where(c => c.CIDCLIENTEPROVEEDOR != 0).Select(c => c.CCODIGOCLIENTE).ToList())
-                : _documentoRepository.TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(FechaInicio,
-                    FechaFin,
-                    ConceptoSeleccionado.CCODIGOCONCEPTO,
-                    ClienteSeleccionado.CCODIGOCLIENTE);
+                : _documentoRepository.TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(FechaInicio, FechaFin,
+                    ConceptoSeleccionado.CCODIGOCONCEPTO, ClienteSeleccionado.CCODIGOCLIENTE);
 
             foreach (DocumentoLookup documento in documentos.OrderByDescending(d => d.CFOLIO))
             {
@@ -196,14 +183,9 @@ public class ListadoFacturasViewModel : ObservableRecipient, IRecipient<MostrarD
         }
     }
 
-    private void CargarConceptos()
+    public bool CanMostrarDetallesFacturaViewAsync()
     {
-        Conceptos.Clear();
-        foreach (ConceptoDocumento concepto in _conceptoDocumentoRepository.TraerPorDocumentoModeloId(DocumentoModelo.Factura.Id)
-                     .OrderBy(c => c.CNOMBRECONCEPTO))
-            Conceptos.Add(concepto);
-
-        ConceptoSeleccionado = Conceptos.FirstOrDefault();
+        return DocumentoSeleccionado != null;
     }
 
     private void CargarClientes()
@@ -224,6 +206,22 @@ public class ListadoFacturasViewModel : ObservableRecipient, IRecipient<MostrarD
         ClienteSeleccionado = Clientes.FirstOrDefault();
     }
 
+    private void CargarConceptos()
+    {
+        Conceptos.Clear();
+        foreach (ConceptoDocumento concepto in _conceptoDocumentoRepository.TraerPorDocumentoModeloId(DocumentoModeloEnum.Factura.Value)
+                     .OrderBy(c => c.CNOMBRECONCEPTO))
+            Conceptos.Add(concepto);
+
+        ConceptoSeleccionado = Conceptos.FirstOrDefault();
+    }
+
+    private void CargarRelaciones(DocumentoLookup documento)
+    {
+        documento.ConceptoDocumento = _conceptoDocumentoRepository.BuscarPorId(documento.CIDCONCEPTODOCUMENTO);
+        documento.ClienteProveedor = _clienteProveedorRepository.BuscarPorId(documento.CIDCLIENTEPROVEEDOR);
+    }
+
     public async Task CrearFacturaViewAsync()
     {
         try
@@ -238,9 +236,10 @@ public class ListadoFacturasViewModel : ObservableRecipient, IRecipient<MostrarD
         }
     }
 
-    public bool CanMostrarDetallesFacturaViewAsync()
+    public void Inicializar()
     {
-        return DocumentoSeleccionado != null;
+        CargarConceptos();
+        CargarClientes();
     }
 
     public async Task MostrarDetallesFacturaViewAsync()
@@ -257,24 +256,22 @@ public class ListadoFacturasViewModel : ObservableRecipient, IRecipient<MostrarD
         }
     }
 
+    private bool ProductosView_Filter(object obj)
+    {
+        if (!(obj is DocumentoLookup documento)) throw new ArgumentNullException(nameof(obj));
+
+        return documento.Contains(Filtro);
+    }
+
+    public bool PuedeBuscaConFiltroAsync()
+    {
+        return FechaInicio <= FechaFin && ConceptoSeleccionado != null && ClienteSeleccionado != null;
+    }
+
     private void RaiseGuards()
     {
         BuscarConFiltroCommand.NotifyCanExecuteChanged();
         MostrarDetallesFacturaViewCommand.NotifyCanExecuteChanged();
         CrearFacturaViewCommand.NotifyCanExecuteChanged();
-    }
-
-    private bool ProductosView_Filter(object obj)
-    {
-        if (!(obj is DocumentoLookup documento))
-            throw new ArgumentNullException(nameof(obj));
-
-        return documento.Contains(Filtro);
-    }
-
-    private void CargarRelaciones(DocumentoLookup documento)
-    {
-        documento.ConceptoDocumento = _conceptoDocumentoRepository.BuscarPorId(documento.CIDCONCEPTODOCUMENTO);
-        documento.ClienteProveedor = _clienteProveedorRepository.BuscarPorId(documento.CIDCLIENTEPROVEEDOR);
     }
 }

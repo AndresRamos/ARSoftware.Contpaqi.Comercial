@@ -14,15 +14,14 @@ public partial class SeleccionarEmpresaView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<SeleccionarEmpresaViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (SeleccionarEmpresaView)recipient;
-                    view.Close();
-                }
-            });
+                var view = (SeleccionarEmpresaView)recipient;
+                view.Close();
+            }
+        });
     }
 
     public SeleccionarEmpresaViewModel ViewModel => (SeleccionarEmpresaViewModel)DataContext;

@@ -107,9 +107,9 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <StackPanel  Grid.Row="0"
-                         Grid.Column="0"
-                         Orientation="Horizontal">
+            <StackPanel Grid.Row="0"
+                        Grid.Column="0"
+                        Orientation="Horizontal">
                 <TextBlock Text="Clasificaciones"
                            FontWeight="Bold"
                            FontSize="15"

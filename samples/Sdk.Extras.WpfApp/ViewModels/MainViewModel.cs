@@ -28,9 +28,8 @@ public class MainViewModel : ObservableRecipient
     private readonly ConfiguracionAplicacion _configuracionAplicacion;
     private readonly IDialogCoordinator _dialogCoordinator;
 
-    public MainViewModel(IDialogCoordinator dialogCoordinator,
-                         IComercialSdkSesionService comercialSdkSesionService,
-                         ConfiguracionAplicacion configuracionAplicacion)
+    public MainViewModel(IDialogCoordinator dialogCoordinator, IComercialSdkSesionService comercialSdkSesionService,
+        ConfiguracionAplicacion configuracionAplicacion)
     {
         _dialogCoordinator = dialogCoordinator;
         _comercialSdkSesionService = comercialSdkSesionService;
@@ -53,66 +52,24 @@ public class MainViewModel : ObservableRecipient
         MostrarParametrosViewCommand = new RelayCommand(MostrarParametrosViewAsync, IsSdkListo);
     }
 
-    public IAsyncRelayCommand MostrarIniciarSesionViewCommand { get; }
-    public IAsyncRelayCommand TerminarSesionCommand { get; }
     public IAsyncRelayCommand AbrirEmpresaCommand { get; }
     public IAsyncRelayCommand CerrarEmpresaCommand { get; }
-    public IRelayCommand MostrarListadoClientesViewCommand { get; }
-    public IRelayCommand MostrarListadoAgentesViewCommand { get; }
-    public IRelayCommand MostrarListadoAlmacenesViewCommand { get; }
-    public IRelayCommand MostrarListadoProductosViewCommand { get; }
-    public IRelayCommand MostrarListadoConceptosViewCommand { get; }
-    public IRelayCommand MostrarListadoUnidadesMedidaViewCommand { get; }
-    public IRelayCommand MostrarListadoClasificacionesViewCommand { get; }
-    public IRelayCommand MostrarListadoDocumentosViewCommand { get; }
-    public IRelayCommand MostrarListadoFacturasViewCommand { get; }
-    public IRelayCommand MostrarListadoErroresViewCommand { get; }
-    public IRelayCommand MostrarParametrosViewCommand { get; }
 
     public string Mensaje => GetMensage();
 
-    public async Task MostrarIniciarSesionViewAsync()
-    {
-        try
-        {
-            var window = new IniciarSesionView();
-            window.ShowDialog();
-        }
-        catch (Exception e)
-        {
-            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
-        }
-        finally
-        {
-            RaiseGuards();
-        }
-    }
-
-    public bool CanMostrarIniciarSesionView()
-    {
-        return _comercialSdkSesionService.CanIniciarSesion;
-    }
-
-    public async Task TerminarSesionAsync()
-    {
-        try
-        {
-            _comercialSdkSesionService.TerminarSesionSdk();
-        }
-        catch (Exception e)
-        {
-            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
-        }
-        finally
-        {
-            RaiseGuards();
-        }
-    }
-
-    public bool CanTerminarSesionAsync()
-    {
-        return _comercialSdkSesionService.CanTerminarSesion;
-    }
+    public IAsyncRelayCommand MostrarIniciarSesionViewCommand { get; }
+    public IRelayCommand MostrarListadoAgentesViewCommand { get; }
+    public IRelayCommand MostrarListadoAlmacenesViewCommand { get; }
+    public IRelayCommand MostrarListadoClasificacionesViewCommand { get; }
+    public IRelayCommand MostrarListadoClientesViewCommand { get; }
+    public IRelayCommand MostrarListadoConceptosViewCommand { get; }
+    public IRelayCommand MostrarListadoDocumentosViewCommand { get; }
+    public IRelayCommand MostrarListadoErroresViewCommand { get; }
+    public IRelayCommand MostrarListadoFacturasViewCommand { get; }
+    public IRelayCommand MostrarListadoProductosViewCommand { get; }
+    public IRelayCommand MostrarListadoUnidadesMedidaViewCommand { get; }
+    public IRelayCommand MostrarParametrosViewCommand { get; }
+    public IAsyncRelayCommand TerminarSesionCommand { get; }
 
     public async Task AbrirEmpresaAsync()
     {
@@ -141,6 +98,21 @@ public class MainViewModel : ObservableRecipient
         return _comercialSdkSesionService.CanAbrirEmpresa;
     }
 
+    public bool CanCerrarEmpresaAsync()
+    {
+        return _comercialSdkSesionService.CanCerrarEmpresa;
+    }
+
+    public bool CanMostrarIniciarSesionView()
+    {
+        return _comercialSdkSesionService.CanIniciarSesion;
+    }
+
+    public bool CanTerminarSesionAsync()
+    {
+        return _comercialSdkSesionService.CanTerminarSesion;
+    }
+
     public async Task CerrarEmpresaAsync()
     {
         try
@@ -158,9 +130,12 @@ public class MainViewModel : ObservableRecipient
         }
     }
 
-    public bool CanCerrarEmpresaAsync()
+    public string GetMensage()
     {
-        return _comercialSdkSesionService.CanCerrarEmpresa;
+        var stringBuilder = new StringBuilder();
+        stringBuilder.AppendLine(
+            "En este proyecto podran enonctrar varios ejemplos de como utilizar el SDK para listar los multiples catalogos del sistema y tambien como dar de alta documentos como facturas.");
+        return stringBuilder.ToString();
     }
 
     public bool IsSdkListo()
@@ -168,10 +143,21 @@ public class MainViewModel : ObservableRecipient
         return _comercialSdkSesionService.IsSdkInicializado && _comercialSdkSesionService.IsEmpresaAbierta;
     }
 
-    public void MostrarListadoClientesView()
+    public async Task MostrarIniciarSesionViewAsync()
     {
-        var window = new ListadoClientesView();
-        window.Show();
+        try
+        {
+            var window = new IniciarSesionView();
+            window.ShowDialog();
+        }
+        catch (Exception e)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+        }
+        finally
+        {
+            RaiseGuards();
+        }
     }
 
     public void MostrarListadoAgentesView()
@@ -186,9 +172,15 @@ public class MainViewModel : ObservableRecipient
         window.Show();
     }
 
-    public void MostrarListadoProductosView()
+    public void MostrarListadoClasificacionesView()
     {
-        var window = new ListadoProductosView();
+        var window = new ListadoClasificacionesView();
+        window.Show();
+    }
+
+    public void MostrarListadoClientesView()
+    {
+        var window = new ListadoClientesView();
         window.Show();
     }
 
@@ -198,27 +190,9 @@ public class MainViewModel : ObservableRecipient
         window.Show();
     }
 
-    public void MostrarListadoUnidadesMedidaView()
-    {
-        var window = new ListadoUnidadesMedidaView();
-        window.Show();
-    }
-
-    public void MostrarListadoClasificacionesView()
-    {
-        var window = new ListadoClasificacionesView();
-        window.Show();
-    }
-
     public void MostrarListadoDocumentosViewAsync()
     {
         var window = new ListadoDocumentosView();
-        window.Show();
-    }
-
-    public void MostrarListadoFacturasViewAsync()
-    {
-        var window = new ListadoFacturasView();
         window.Show();
     }
 
@@ -228,18 +202,28 @@ public class MainViewModel : ObservableRecipient
         window.Show();
     }
 
+    public void MostrarListadoFacturasViewAsync()
+    {
+        var window = new ListadoFacturasView();
+        window.Show();
+    }
+
+    public void MostrarListadoProductosView()
+    {
+        var window = new ListadoProductosView();
+        window.Show();
+    }
+
+    public void MostrarListadoUnidadesMedidaView()
+    {
+        var window = new ListadoUnidadesMedidaView();
+        window.Show();
+    }
+
     public void MostrarParametrosViewAsync()
     {
         var window = new ParametrosView();
         window.Show();
-    }
-
-    public string GetMensage()
-    {
-        var stringBuilder = new StringBuilder();
-        stringBuilder.AppendLine(
-            "En este proyecto podran enonctrar varios ejemplos de como utilizar el SDK para listar los multiples catalogos del sistema y tambien como dar de alta documentos como facturas.");
-        return stringBuilder.ToString();
     }
 
     private void RaiseGuards()
@@ -259,5 +243,21 @@ public class MainViewModel : ObservableRecipient
         MostrarListadoFacturasViewCommand.NotifyCanExecuteChanged();
         MostrarListadoErroresViewCommand.NotifyCanExecuteChanged();
         MostrarParametrosViewCommand.NotifyCanExecuteChanged();
+    }
+
+    public async Task TerminarSesionAsync()
+    {
+        try
+        {
+            _comercialSdkSesionService.TerminarSesionSdk();
+        }
+        catch (Exception e)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+        }
+        finally
+        {
+            RaiseGuards();
+        }
     }
 }

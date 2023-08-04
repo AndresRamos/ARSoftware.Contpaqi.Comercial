@@ -1,26 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
+
+/// <summary>
+///     Repositorio de SDK para consultar monedas.
+/// </summary>
+public class MonedaRepository : IMonedaRepository<Moneda>
 {
-    public class MonedaRepository : IMonedaRepository<Moneda>
+    /// <inheritdoc />
+    public Moneda? BuscarPorId(int idMoneda)
     {
-        public Moneda BuscarPorId(int idMoneda)
-        {
-            return Moneda.ToList().SingleOrDefault(m => m.Id == idMoneda);
-        }
+        return MonedaEnum.TryFromValue(idMoneda, out MonedaEnum? moneda) ? moneda.ToMoneda() : null;
+    }
 
-        public Moneda BuscarPorNombre(string nombreMoneda)
-        {
-            return Moneda.ToList().SingleOrDefault(m => m.Nombre.IndexOf(nombreMoneda, StringComparison.OrdinalIgnoreCase) >= 0);
-        }
+    /// <inheritdoc />
+    public Moneda? BuscarPorNombre(string nombreMoneda)
+    {
+        return MonedaEnum.TryFromName(nombreMoneda, out MonedaEnum? moneda) ? moneda.ToMoneda() : null;
+    }
 
-        public IEnumerable<Moneda> TraerTodo()
-        {
-            return Moneda.ToList();
-        }
+    /// <inheritdoc />
+    public List<Moneda> TraerTodo()
+    {
+        return MonedaEnum.List.Select(monedaEnum => monedaEnum.ToMoneda()).ToList();
     }
 }

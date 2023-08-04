@@ -28,10 +28,12 @@
                    Margin="5" />
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal">
-            <Label Content="Codigo Inicio:" FontWeight="Bold" VerticalAlignment="Center" Margin="5"></Label>
-            <TextBox Text="{Binding CodigoInicio, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="150" Margin="5"></TextBox>
-            <Label Content="Codigo Fin:" FontWeight="Bold" VerticalAlignment="Center" Margin="5"></Label>
-            <TextBox Text="{Binding CodigoFin, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="150" Margin="5"></TextBox>
+            <Label Content="Codigo Inicio:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <TextBox Text="{Binding CodigoInicio, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center" Width="150" Margin="5" />
+            <Label Content="Codigo Fin:" FontWeight="Bold" VerticalAlignment="Center" Margin="5" />
+            <TextBox Text="{Binding CodigoFin, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center" Width="150" Margin="5" />
             <Button Content="Buscar"
                     Command="{Binding BuscarErroresCommand}"
                     Width="150"

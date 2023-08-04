@@ -2,48 +2,42 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Sdk.Extras.ConsoleApp.Ejemplos;
+using Sdk.Extras.ConsoleApp;
+using Serilog;
+using Serilog.Events;
 
 IHost host = Host.CreateDefaultBuilder()
-    .ConfigureServices(collection =>
+    .ConfigureServices(services =>
     {
-        collection.AddContpaqiComercialSdkServices();
-        collection.AddSingleton<EjemplosConexion>()
-            .AddSingleton<EjemplosEmpresa>()
-            .AddSingleton<EjemplosCliente>()
-            .AddSingleton<EjemplosProducto>()
-            .AddSingleton<EjemplosConcepto>()
-            .AddSingleton<EjemplosDocumento>();
+        services.AddContpaqiComercialSdkServices();
+        services.AddEjemplos();
     })
-    .ConfigureLogging(builder => { builder.AddSimpleConsole(options => { options.SingleLine = true; }); })
+    .ConfigureLogging(builder => { builder.ClearProviders(); })
+    .UseSerilog((_, loggerConfiguration) =>
+    {
+        loggerConfiguration.MinimumLevel.Information()
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+            .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information);
+        loggerConfiguration.WriteTo.Console(LogEventLevel.Information);
+    })
     .Build();
 
 await host.StartAsync();
 
 var logger = host.Services.GetRequiredService<ILogger<Program>>();
-logger.LogInformation("Iniciando Programa");
-
-var conexionSdk = host.Services.GetRequiredService<EjemplosConexion>();
 
 try
 {
-    conexionSdk.IniciarConexion();
+    var iniciarSesion = host.Services.GetRequiredService<IniciarSesion>();
+    iniciarSesion.IniciarConParametros();
 
-    conexionSdk.AbrirEmpresa();
+    var abrirEmpresa = host.Services.GetRequiredService<AbrirEmpresa>();
+    abrirEmpresa.Abrir();
 
-    // Ejemplos del uso del SDK
-    // Se pueden ejecutar de forma independiente
-    // Comenta los ejemplos que no quieras ejecutar
-
-    host.Services.GetRequiredService<EjemplosEmpresa>().CorrerEjemplos();
-
-    host.Services.GetRequiredService<EjemplosCliente>().CorrerEjemplos();
-
-    host.Services.GetRequiredService<EjemplosConcepto>().CorrerEjemplos();
-
-    host.Services.GetRequiredService<EjemplosProducto>().CorrerEjemplos();
-
-    host.Services.GetRequiredService<EjemplosDocumento>().CorrerEjemplos();
+    // 1. Busca la clase con los ejemplos que quieras probar utilizando el proveedor de servicios.
+    // 2. Ejecuta el metodo que quieras probar.
+    var ejemplo = host.Services.GetRequiredService<CrearFactura>();
+    ejemplo.Crear();
 }
 catch (Exception e)
 {
@@ -51,9 +45,11 @@ catch (Exception e)
 }
 finally
 {
-    conexionSdk.CerrarEmpresa();
+    var cerrarEmpresa = host.Services.GetRequiredService<CerrarEmpresa>();
+    cerrarEmpresa.Cerrar();
 
-    conexionSdk.TerminarConexion();
+    var terminasSesion = host.Services.GetRequiredService<TerminasSesion>();
+    terminasSesion.Terminar();
 }
 
 await host.StopAsync();

@@ -13,9 +13,9 @@ namespace Sdk.ConsoleApp.Documentos;
 public sealed class DocumentoSdk
 {
     /// <summary>
-    ///     Campo CIDDOCUMENTO - Identificador del documento.
+    ///     Campo CIDCLIENTEPROVEEDOR - Identificador del cliente o proveedor del documento.
     /// </summary>
-    public int Id { get; set; }
+    public int ClienteId { get; set; }
 
     /// <summary>
     ///     Campo CIDCONCEPTODOCUMENTO - Identificador del concepto del documento.
@@ -23,9 +23,9 @@ public sealed class DocumentoSdk
     public int ConceptoId { get; set; }
 
     /// <summary>
-    ///     Campo CSERIEDOCUMENTO - Serie del documento.
+    ///     Campo CFECHA - Fecha del documento.
     /// </summary>
-    public string Serie { get; set; }
+    public DateTime Fecha { get; set; }
 
     /// <summary>
     ///     Campo CFOLIO - Folio del documento.
@@ -33,19 +33,9 @@ public sealed class DocumentoSdk
     public double Folio { get; set; }
 
     /// <summary>
-    ///     Campo CFECHA - Fecha del documento.
+    ///     Campo CIDDOCUMENTO - Identificador del documento.
     /// </summary>
-    public DateTime Fecha { get; set; }
-
-    /// <summary>
-    ///     Campo CIDCLIENTEPROVEEDOR - Identificador del cliente o proveedor del documento.
-    /// </summary>
-    public int ClienteId { get; set; }
-
-    /// <summary>
-    ///     Campo CREFERENCIA - Referencia del documento.
-    /// </summary>
-    public string Referencia { get; set; }
+    public int Id { get; set; }
 
     /// <summary>
     ///     Campo COBSERVACIONES - Observaciones del documento.
@@ -53,56 +43,90 @@ public sealed class DocumentoSdk
     public string Observaciones { get; set; }
 
     /// <summary>
+    ///     Campo CREFERENCIA - Referencia del documento.
+    /// </summary>
+    public string Referencia { get; set; }
+
+    /// <summary>
+    ///     Campo CSERIEDOCUMENTO - Serie del documento.
+    /// </summary>
+    public string Serie { get; set; }
+
+    /// <summary>
     ///     Campo CTOTAL - Importe del total de los totales de los movimientos para el documento.
     /// </summary>
     public double Total { get; set; }
 
-    public override string ToString()
+    /// <summary>
+    ///     Actualiza los datos de un documento.
+    /// </summary>
+    /// <param name="documento">Documento con los datos a actualizar.</param>
+    public static void ActualizarDocumento(DocumentoSdk documento)
     {
-        return
-            $"{Id} - {Fecha:MM/dd/yyyy} - {ConceptoSdk.BuscarConceptoPorId(ConceptoId).Nombre} - {Serie} - {Folio} - {ClienteSdk.BuscarClientePorId(ClienteId).RazonSocial} - {Total:C}";
+        // Buscar el documento
+        // Si el documento existe el SDK se posiciona en el registro
+        ComercialSdk.fBuscarIdDocumento(documento.Id).TirarSiEsError();
+
+        // Activar el modo de edición
+        ComercialSdk.fEditarDocumento().TirarSiEsError();
+
+        // Actualizar los campos del registro donde el SDK esta posicionado
+        ComercialSdk.fSetDatoDocumento("COBSERVACIONES", documento.Observaciones).TirarSiEsError();
+
+        // Guardar los cambios realizados al registro
+        ComercialSdk.fGuardaDocumento().TirarSiEsError();
     }
 
     /// <summary>
-    ///     Lee los datos del documento donde el SDK esta posicionado.
+    ///     Obtiene los datos del CFDI.
     /// </summary>
-    /// <returns>Un documento con los sus datos asignados.</returns>
-    private static DocumentoSdk LeerDatosDocumento()
+    /// <param name="documentoId">El id del documento a obtener los datos.</param>
+    /// <returns>Los datos del CFDI.</returns>
+    public static DatosCfdi BuscarDatosCfdi(int documentoId)
     {
+        // Buscar el documento
+        // Si el documento existe el SDK se posiciona en el registro
+        ComercialSdk.fBuscarIdDocumento(documentoId).TirarSiEsError();
+
         // Declarar variables a leer de la base de datos
-        var idBd = new StringBuilder(3000);
-        var conceptoIdBd = new StringBuilder(3000);
-        var serieBd = new StringBuilder(3000);
-        var folioBd = new StringBuilder(3000);
-        var fechaBd = new StringBuilder(3000);
-        var clienteIdBd = new StringBuilder(3000);
-        var referenciaBd = new StringBuilder(3000);
-        var observacionesBd = new StringBuilder(3000);
-        var totalBd = new StringBuilder(3000);
+        var serieCertificadoEmisor = new StringBuilder(3000);
+        var folioFiscalUUid = new StringBuilder(3000);
+        var serieCertificadoSat = new StringBuilder(3000);
+        var fecha = new StringBuilder(3000);
+        var selloDigital = new StringBuilder(3000);
+        var selloSat = new StringBuilder(3000);
+        var cadenaOriginalComplementoSat = new StringBuilder(3000);
+        var regimen = new StringBuilder(3000);
+        var lugarExpedicion = new StringBuilder(3000);
+        var moneda = new StringBuilder(3000);
+        var folioFiscalOriginal = new StringBuilder(3000);
+        var serieFolioFiscal = new StringBuilder(3000);
+        var fechaFolioFiscal = new StringBuilder(3000);
+        var montoFolioFiscal = new StringBuilder(3000);
 
-        // Leer los datos del registro donde el SDK esta posicionado
-        ComercialSdk.fLeeDatoDocumento("CIDDOCUMENTO", idBd, 3000).TirarSiEsError();
-        ComercialSdk.fLeeDatoDocumento("CIDCONCEPTODOCUMENTO", conceptoIdBd, 3000).TirarSiEsError();
-        ComercialSdk.fLeeDatoDocumento("CSERIEDOCUMENTO", serieBd, 3000).TirarSiEsError();
-        ComercialSdk.fLeeDatoDocumento("CFOLIO", folioBd, 3000).TirarSiEsError();
-        ComercialSdk.fLeeDatoDocumento("CFECHA", fechaBd, 3000).TirarSiEsError();
-        ComercialSdk.fLeeDatoDocumento("CIDCLIENTEPROVEEDOR", clienteIdBd, 3000).TirarSiEsError();
-        ComercialSdk.fLeeDatoDocumento("CREFERENCIA", referenciaBd, 3000).TirarSiEsError();
-        ComercialSdk.fLeeDatoDocumento("COBSERVACIONES", observacionesBd, 3000).TirarSiEsError();
-        ComercialSdk.fLeeDatoDocumento("CTOTAL", totalBd, 3000).TirarSiEsError();
+        // Buscar los datos CFDI
+        ComercialSdk.fGetDatosCFDI(serieCertificadoEmisor, folioFiscalUUid, serieCertificadoSat, fecha, selloDigital, selloSat,
+                cadenaOriginalComplementoSat, regimen, lugarExpedicion, moneda, folioFiscalOriginal, serieFolioFiscal, fechaFolioFiscal,
+                montoFolioFiscal)
+            .TirarSiEsError();
 
-        // Instanciar un documento y asignar los datos de la base de datos
-        return new DocumentoSdk
+        // Instanciar un objecto DatosCfdi y asignar los valores de la base de datos
+        return new DatosCfdi
         {
-            Id = int.Parse(idBd.ToString()),
-            ConceptoId = int.Parse(conceptoIdBd.ToString()),
-            Serie = serieBd.ToString(),
-            Folio = double.Parse(folioBd.ToString()),
-            Fecha = DateTime.ParseExact(fechaBd.ToString(), FormatosFechaSdk.Comercial, null),
-            ClienteId = int.Parse(clienteIdBd.ToString()),
-            Referencia = referenciaBd.ToString(),
-            Observaciones = observacionesBd.ToString(),
-            Total = double.Parse(totalBd.ToString())
+            SerieCertificadoEmisor = serieCertificadoEmisor.ToString(),
+            FolioFiscalUUid = folioFiscalUUid.ToString(),
+            SerieCertificadoSat = serieCertificadoSat.ToString(),
+            Fecha = fecha.ToString(),
+            SelloDigital = selloDigital.ToString(),
+            SelloSat = selloSat.ToString(),
+            CadenaOriginalComplementoSat = cadenaOriginalComplementoSat.ToString(),
+            Regimen = regimen.ToString(),
+            LugarExpedicion = lugarExpedicion.ToString(),
+            Moneda = moneda.ToString(),
+            FolioFiscalOriginal = folioFiscalOriginal.ToString(),
+            SerieFolioFiscal = serieFolioFiscal.ToString(),
+            FechaFolioFiscal = fechaFolioFiscal.ToString(),
+            MontoFolioFiscal = montoFolioFiscal.ToString()
         };
     }
 
@@ -146,10 +170,8 @@ public sealed class DocumentoSdk
     /// <param name="codigoConcepto">Código del concepto de documento.</param>
     /// <param name="codigoClienteProveedor">Código del cliente.</param>
     /// <returns>Lista de documentos con sus datos asignados.</returns>
-    public static List<DocumentoSdk> BuscarDocumentosPorFiltro(DateTime fechaInicio,
-                                                               DateTime fechaFin,
-                                                               string codigoConcepto,
-                                                               string codigoClienteProveedor)
+    public static List<DocumentoSdk> BuscarDocumentosPorFiltro(DateTime fechaInicio, DateTime fechaFin, string codigoConcepto,
+        string codigoClienteProveedor)
     {
         var documentosList = new List<DocumentoSdk>();
 
@@ -157,10 +179,8 @@ public sealed class DocumentoSdk
         ComercialSdk.fCancelaFiltroDocumento().TirarSiEsError();
 
         // Filtrar documentos
-        ComercialSdk.fSetFiltroDocumento(fechaInicio.ToString(FormatosFechaSdk.Fecha),
-                fechaFin.ToString(FormatosFechaSdk.Fecha),
-                codigoConcepto,
-                codigoClienteProveedor)
+        ComercialSdk.fSetFiltroDocumento(fechaInicio.ToString(FormatosFechaSdk.Fecha), fechaFin.ToString(FormatosFechaSdk.Fecha),
+                codigoConcepto, codigoClienteProveedor)
             .TirarSiEsError();
 
         // Posicionar el SDK en el primer registro
@@ -177,8 +197,7 @@ public sealed class DocumentoSdk
 
             // Checar si el SDK esta posicionado en el ultimo registro
             // Si el SDK esta posicionado en el ultimo registro salir del loop
-            if (ComercialSdk.fPosEOF() == 1)
-                break;
+            if (ComercialSdk.fPosEOF() == 1) break;
         }
 
         // Cancelar filtro
@@ -203,6 +222,25 @@ public sealed class DocumentoSdk
 
         // Instanciar una llave y asignar los datos asignados por el SDK
         return new tLlaveDoc { aCodConcepto = codigoConcepto, aSerie = serieBd.ToString(), aFolio = folioBd };
+    }
+
+    /// <summary>
+    ///     Cancelar un documento.
+    /// </summary>
+    /// <param name="idDocumento">El id del documento a cancelar.</param>
+    /// <param name="contrasenaCertificado">La contraseña del certificado.</param>
+    /// <param name="motivoCancelacion">El código de motivo de cancelación.</param>
+    /// <param name="uuidRemplazo">El UUID de reemplazo si se requiere.</param>
+    public static void CancelarDocumento(int idDocumento, string contrasenaCertificado, string motivoCancelacion, string uuidRemplazo)
+    {
+        // Buscar el documento
+        ComercialSdk.fBuscarIdDocumento(idDocumento).TirarSiEsError();
+
+        // Ingresar la contraseña del certificado
+        ComercialSdk.fCancelaDoctoInfo(contrasenaCertificado).TirarSiEsError();
+
+        // Cancelar el documento
+        ComercialSdk.fCancelaDocumentoConMotivo(motivoCancelacion, uuidRemplazo).TirarSiEsError();
     }
 
     /// <summary>
@@ -283,26 +321,6 @@ public sealed class DocumentoSdk
     }
 
     /// <summary>
-    ///     Actualiza los datos de un documento.
-    /// </summary>
-    /// <param name="documento">Documento con los datos a actualizar.</param>
-    public static void ActualizarDocumento(DocumentoSdk documento)
-    {
-        // Buscar el documento
-        // Si el documento existe el SDK se posiciona en el registro
-        ComercialSdk.fBuscarIdDocumento(documento.Id).TirarSiEsError();
-
-        // Activar el modo de edición
-        ComercialSdk.fEditarDocumento().TirarSiEsError();
-
-        // Actualizar los campos del registro donde el SDK esta posicionado
-        ComercialSdk.fSetDatoDocumento("COBSERVACIONES", documento.Observaciones).TirarSiEsError();
-
-        // Guardar los cambios realizados al registro
-        ComercialSdk.fGuardaDocumento().TirarSiEsError();
-    }
-
-    /// <summary>
     ///     Elimina un documento.
     /// </summary>
     /// <param name="documento">El documento a eliminar.</param>
@@ -314,6 +332,65 @@ public sealed class DocumentoSdk
 
         // Eliminar el documento
         ComercialSdk.fBorraDocumento().TirarSiEsError();
+    }
+
+    /// <summary>
+    ///     Genera el documento digital de un CFDI.
+    /// </summary>
+    /// <param name="codigoConceptoDocumento">El código de concepto del documento a generar.</param>
+    /// <param name="serieDocumento">La serie del documento generar.</param>
+    /// <param name="folioDocumento">El folio del documento a generar.</param>
+    /// <param name="tipoArchivo">El tipo de archivo. 0 = XML, 1 = PDF</param>
+    /// <param name="rutaPlantilla">Ruta de la plantilla cuando se genera el PDF.</param>
+    public static void GenerarDocumentoDigital(string codigoConceptoDocumento, string serieDocumento, double folioDocumento,
+        int tipoArchivo, string rutaPlantilla)
+    {
+        // Generar el documento digital del CFDI
+        ComercialSdk.fEntregEnDiscoXML(codigoConceptoDocumento, serieDocumento, folioDocumento, tipoArchivo, rutaPlantilla)
+            .TirarSiEsError();
+    }
+
+    /// <summary>
+    ///     Lee los datos del documento donde el SDK esta posicionado.
+    /// </summary>
+    /// <returns>Un documento con los sus datos asignados.</returns>
+    private static DocumentoSdk LeerDatosDocumento()
+    {
+        // Declarar variables a leer de la base de datos
+        var idBd = new StringBuilder(3000);
+        var conceptoIdBd = new StringBuilder(3000);
+        var serieBd = new StringBuilder(3000);
+        var folioBd = new StringBuilder(3000);
+        var fechaBd = new StringBuilder(3000);
+        var clienteIdBd = new StringBuilder(3000);
+        var referenciaBd = new StringBuilder(3000);
+        var observacionesBd = new StringBuilder(3000);
+        var totalBd = new StringBuilder(3000);
+
+        // Leer los datos del registro donde el SDK esta posicionado
+        ComercialSdk.fLeeDatoDocumento("CIDDOCUMENTO", idBd, 3000).TirarSiEsError();
+        ComercialSdk.fLeeDatoDocumento("CIDCONCEPTODOCUMENTO", conceptoIdBd, 3000).TirarSiEsError();
+        ComercialSdk.fLeeDatoDocumento("CSERIEDOCUMENTO", serieBd, 3000).TirarSiEsError();
+        ComercialSdk.fLeeDatoDocumento("CFOLIO", folioBd, 3000).TirarSiEsError();
+        ComercialSdk.fLeeDatoDocumento("CFECHA", fechaBd, 3000).TirarSiEsError();
+        ComercialSdk.fLeeDatoDocumento("CIDCLIENTEPROVEEDOR", clienteIdBd, 3000).TirarSiEsError();
+        ComercialSdk.fLeeDatoDocumento("CREFERENCIA", referenciaBd, 3000).TirarSiEsError();
+        ComercialSdk.fLeeDatoDocumento("COBSERVACIONES", observacionesBd, 3000).TirarSiEsError();
+        ComercialSdk.fLeeDatoDocumento("CTOTAL", totalBd, 3000).TirarSiEsError();
+
+        // Instanciar un documento y asignar los datos de la base de datos
+        return new DocumentoSdk
+        {
+            Id = int.Parse(idBd.ToString()),
+            ConceptoId = int.Parse(conceptoIdBd.ToString()),
+            Serie = serieBd.ToString(),
+            Folio = double.Parse(folioBd.ToString()),
+            Fecha = DateTime.ParseExact(fechaBd.ToString(), FormatosFechaSdk.Comercial, null),
+            ClienteId = int.Parse(clienteIdBd.ToString()),
+            Referencia = referenciaBd.ToString(),
+            Observaciones = observacionesBd.ToString(),
+            Total = double.Parse(totalBd.ToString())
+        };
     }
 
     /// <summary>
@@ -337,116 +414,17 @@ public sealed class DocumentoSdk
     /// <param name="folioDocumento">El folio del documento a timbrar.</param>
     /// <param name="contrasenaCertificado">La contraseña del certificado.</param>
     /// <param name="rutaArchivoAdicional">Un archivo adicional como un complemento.</param>
-    public static void TimbrarDocumento(string codigoConceptoDocumento,
-                                        string serieDocumento,
-                                        double folioDocumento,
-                                        string contrasenaCertificado,
-                                        string rutaArchivoAdicional)
+    public static void TimbrarDocumento(string codigoConceptoDocumento, string serieDocumento, double folioDocumento,
+        string contrasenaCertificado, string rutaArchivoAdicional)
     {
         // Timbrar el documento
         ComercialSdk.fEmitirDocumento(codigoConceptoDocumento, serieDocumento, folioDocumento, contrasenaCertificado, rutaArchivoAdicional)
             .TirarSiEsError();
     }
 
-    /// <summary>
-    ///     Obtiene los datos del CFDI.
-    /// </summary>
-    /// <param name="documentoId">El id del documento a obtener los datos.</param>
-    /// <returns>Los datos del CFDI.</returns>
-    public static DatosCfdi BuscarDatosCfdi(int documentoId)
+    public override string ToString()
     {
-        // Buscar el documento
-        // Si el documento existe el SDK se posiciona en el registro
-        ComercialSdk.fBuscarIdDocumento(documentoId).TirarSiEsError();
-
-        // Declarar variables a leer de la base de datos
-        var serieCertificadoEmisor = new StringBuilder(3000);
-        var folioFiscalUUid = new StringBuilder(3000);
-        var serieCertificadoSat = new StringBuilder(3000);
-        var fecha = new StringBuilder(3000);
-        var selloDigital = new StringBuilder(3000);
-        var selloSat = new StringBuilder(3000);
-        var cadenaOriginalComplementoSat = new StringBuilder(3000);
-        var regimen = new StringBuilder(3000);
-        var lugarExpedicion = new StringBuilder(3000);
-        var moneda = new StringBuilder(3000);
-        var folioFiscalOriginal = new StringBuilder(3000);
-        var serieFolioFiscal = new StringBuilder(3000);
-        var fechaFolioFiscal = new StringBuilder(3000);
-        var montoFolioFiscal = new StringBuilder(3000);
-
-        // Buscar los datos CFDI
-        ComercialSdk.fGetDatosCFDI(serieCertificadoEmisor,
-                folioFiscalUUid,
-                serieCertificadoSat,
-                fecha,
-                selloDigital,
-                selloSat,
-                cadenaOriginalComplementoSat,
-                regimen,
-                lugarExpedicion,
-                moneda,
-                folioFiscalOriginal,
-                serieFolioFiscal,
-                fechaFolioFiscal,
-                montoFolioFiscal)
-            .TirarSiEsError();
-
-        // Instanciar un objecto DatosCfdi y asignar los valores de la base de datos
-        return new DatosCfdi
-        {
-            SerieCertificadoEmisor = serieCertificadoEmisor.ToString(),
-            FolioFiscalUUid = folioFiscalUUid.ToString(),
-            SerieCertificadoSat = serieCertificadoSat.ToString(),
-            Fecha = fecha.ToString(),
-            SelloDigital = selloDigital.ToString(),
-            SelloSat = selloSat.ToString(),
-            CadenaOriginalComplementoSat = cadenaOriginalComplementoSat.ToString(),
-            Regimen = regimen.ToString(),
-            LugarExpedicion = lugarExpedicion.ToString(),
-            Moneda = moneda.ToString(),
-            FolioFiscalOriginal = folioFiscalOriginal.ToString(),
-            SerieFolioFiscal = serieFolioFiscal.ToString(),
-            FechaFolioFiscal = fechaFolioFiscal.ToString(),
-            MontoFolioFiscal = montoFolioFiscal.ToString()
-        };
-    }
-
-    /// <summary>
-    ///     Genera el documento digital de un CFDI.
-    /// </summary>
-    /// <param name="codigoConceptoDocumento">El código de concepto del documento a generar.</param>
-    /// <param name="serieDocumento">La serie del documento generar.</param>
-    /// <param name="folioDocumento">El folio del documento a generar.</param>
-    /// <param name="tipoArchivo">El tipo de archivo. 0 = XML, 1 = PDF</param>
-    /// <param name="rutaPlantilla">Ruta de la plantilla cuando se genera el PDF.</param>
-    public static void GenerarDocumentoDigital(string codigoConceptoDocumento,
-                                               string serieDocumento,
-                                               double folioDocumento,
-                                               int tipoArchivo,
-                                               string rutaPlantilla)
-    {
-        // Generar el documento digital del CFDI
-        ComercialSdk.fEntregEnDiscoXML(codigoConceptoDocumento, serieDocumento, folioDocumento, tipoArchivo, rutaPlantilla)
-            .TirarSiEsError();
-    }
-
-    /// <summary>
-    ///     Cancelar un documento.
-    /// </summary>
-    /// <param name="idDocumento">El id del documento a cancelar.</param>
-    /// <param name="contrasenaCertificado">La contraseña del certificado.</param>
-    /// <param name="motivoCancelacion">El código de motivo de cancelación.</param>
-    /// <param name="uuidRemplazo">El UUID de reemplazo si se requiere.</param>
-    public static void CancelarDocumento(int idDocumento, string contrasenaCertificado, string motivoCancelacion, string uuidRemplazo)
-    {
-        // Buscar el documento
-        ComercialSdk.fBuscarIdDocumento(idDocumento).TirarSiEsError();
-
-        // Ingresar la contraseña del certificado
-        ComercialSdk.fCancelaDoctoInfo(contrasenaCertificado).TirarSiEsError();
-
-        // Cancelar el documento
-        ComercialSdk.fCancelaDocumentoConMotivo(motivoCancelacion, uuidRemplazo).TirarSiEsError();
+        return
+            $"{Id} - {Fecha:MM/dd/yyyy} - {ConceptoSdk.BuscarConceptoPorId(ConceptoId).Nombre} - {Serie} - {Folio} - {ClienteSdk.BuscarClientePorId(ClienteId).RazonSocial} - {Total:C}";
     }
 }

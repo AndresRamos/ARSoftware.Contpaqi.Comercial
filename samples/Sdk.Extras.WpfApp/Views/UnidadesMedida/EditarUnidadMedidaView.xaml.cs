@@ -11,16 +11,15 @@ public partial class EditarUnidadMedidaView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<EditarUnidadMedidaViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (EditarUnidadMedidaView)recipient;
-                    view.Close();
-                    Close();
-                }
-            });
+                var view = (EditarUnidadMedidaView)recipient;
+                view.Close();
+                Close();
+            }
+        });
     }
 
     public EditarUnidadMedidaViewModel ViewModel => (EditarUnidadMedidaViewModel)DataContext;

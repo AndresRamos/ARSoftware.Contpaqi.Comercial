@@ -5,13 +5,14 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -46,22 +47,13 @@ public class DetallesFacturaViewModel : ObservableRecipient
     private Documento _factura = new();
     private Movimiento _movimientoSeleccionado;
 
-    public DetallesFacturaViewModel(IDocumentoRepository<Documento> documentoRepository,
-                                    IDialogCoordinator dialogCoordinator,
-                                    IMovimientoService movimientoService,
-                                    IDocumentoService documentoService,
-                                    IDatosCfdiRepository datosCfdiRepository,
-                                    ConfiguracionAplicacion configuracionAplicacion,
-                                    IDireccionService direccionService,
-                                    IAgenteRepository<Agente> agenteRepository,
-                                    IAlmacenRepository<Almacen> almacenRepository,
-                                    IClienteProveedorRepository<ClienteProveedor> clienteProveedorRepository,
-                                    IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository,
-                                    IDireccionRepository<Direccion> direccionRepository,
-                                    IMovimientoRepository<Movimiento> movimientoRepository,
-                                    IProductoRepository<Producto> productoRepository,
-                                    IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository,
-                                    IContpaqiSdk contpaqiSdk)
+    public DetallesFacturaViewModel(IDocumentoRepository<Documento> documentoRepository, IDialogCoordinator dialogCoordinator,
+        IMovimientoService movimientoService, IDocumentoService documentoService, IDatosCfdiRepository datosCfdiRepository,
+        ConfiguracionAplicacion configuracionAplicacion, IDireccionService direccionService, IAgenteRepository<Agente> agenteRepository,
+        IAlmacenRepository<Almacen> almacenRepository, IClienteProveedorRepository<ClienteProveedor> clienteProveedorRepository,
+        IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository, IDireccionRepository<Direccion> direccionRepository,
+        IMovimientoRepository<Movimiento> movimientoRepository, IProductoRepository<Producto> productoRepository,
+        IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository, IContpaqiSdk contpaqiSdk)
     {
         _documentoRepository = documentoRepository;
         _dialogCoordinator = dialogCoordinator;
@@ -95,13 +87,31 @@ public class DetallesFacturaViewModel : ObservableRecipient
         BuscarDatosCfdiCommand = new AsyncRelayCommand(BuscarDatosCfdiAsync);
     }
 
-    public string Title => "Detalles De Factura";
+    public IAsyncRelayCommand BuscarDatosCfdiCommand { get; }
+    public IAsyncRelayCommand CancelarDocumentoAdministrativamenteCommand { get; }
+    public IAsyncRelayCommand CancelarDocumentoCommand { get; }
+
+    public IAsyncRelayCommand CrearMovimientoCommand { get; }
+
+    public DatosCfdi DatosCfdi
+    {
+        get => _datosCfdi;
+        set => SetProperty(ref _datosCfdi, value);
+    }
+
+    public IAsyncRelayCommand EditarMovimientoCommand { get; }
+    public IAsyncRelayCommand EliminarDocumentoCommand { get; }
+    public IAsyncRelayCommand EliminarMovimientoCommand { get; }
 
     public Documento Factura
     {
         get => _factura;
         set => SetProperty(ref _factura, value);
     }
+
+    public IAsyncRelayCommand GenerarPdfDocumentoCommand { get; }
+    public IAsyncRelayCommand GenerarXmlDocumentoCommand { get; }
+    public IAsyncRelayCommand GuardarDocumentoCommand { get; }
 
     public Movimiento MovimientoSeleccionado
     {
@@ -113,25 +123,11 @@ public class DetallesFacturaViewModel : ObservableRecipient
         }
     }
 
-    public IAsyncRelayCommand CrearMovimientoCommand { get; }
-    public IAsyncRelayCommand EditarMovimientoCommand { get; }
-    public IAsyncRelayCommand EliminarMovimientoCommand { get; }
-    public IAsyncRelayCommand GuardarDocumentoCommand { get; }
-    public IAsyncRelayCommand CancelarDocumentoCommand { get; }
-    public IAsyncRelayCommand CancelarDocumentoAdministrativamenteCommand { get; }
-    public IAsyncRelayCommand EliminarDocumentoCommand { get; }
     public IAsyncRelayCommand TimbrarDocumentoCommand { get; }
-    public IAsyncRelayCommand GenerarPdfDocumentoCommand { get; }
-    public IAsyncRelayCommand GenerarXmlDocumentoCommand { get; }
-    public IAsyncRelayCommand BuscarDatosCfdiCommand { get; }
+
+    public string Title => "Detalles De Factura";
 
     public double TotalImpuestos => Factura?.CIMPUESTO1 ?? 0 + Factura?.CIMPUESTO2 ?? 0 + Factura?.CIMPUESTO3 ?? 0;
-
-    public DatosCfdi DatosCfdi
-    {
-        get => _datosCfdi;
-        set => SetProperty(ref _datosCfdi, value);
-    }
 
     public async Task BuscarDatosCfdiAsync()
     {
@@ -146,26 +142,18 @@ public class DetallesFacturaViewModel : ObservableRecipient
         }
     }
 
-    public async Task CancelarDocumentoAsync()
+    public async Task CancelarDocumentoAdministrativamenteAsync()
     {
         try
         {
             MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
-                "Cancelar Documento",
-                "Esta seguro de querer cancelar este documento?",
+                "Cancelar Documento Administrativamente", "Esta seguro de querer cancelar este documento?",
                 MessageDialogStyle.AffirmativeAndNegative,
                 new MetroDialogSettings { AffirmativeButtonText = "Cancelar Documento", NegativeButtonText = "Cancelar" });
 
-            if (messageDialogResult != MessageDialogResult.Affirmative)
-                return;
+            if (messageDialogResult != MessageDialogResult.Affirmative) return;
 
-            string contrasenaCertificado =
-                await _dialogCoordinator.ShowInputAsync(this, "Contrasena Del Certificado", "Proporcione la contrasena del certificado.");
-
-            if (string.IsNullOrWhiteSpace(contrasenaCertificado))
-                return;
-
-            _documentoService.Cancelar(Factura.CIDDOCUMENTO, contrasenaCertificado);
+            _documentoService.CancelarAdministrativamente(Factura.CIDDOCUMENTO);
 
             CargarFactura(Factura.CIDDOCUMENTO);
 
@@ -177,20 +165,22 @@ public class DetallesFacturaViewModel : ObservableRecipient
         }
     }
 
-    public async Task CancelarDocumentoAdministrativamenteAsync()
+    public async Task CancelarDocumentoAsync()
     {
         try
         {
-            MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
-                "Cancelar Documento Administrativamente",
-                "Esta seguro de querer cancelar este documento?",
-                MessageDialogStyle.AffirmativeAndNegative,
+            MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Cancelar Documento",
+                "Esta seguro de querer cancelar este documento?", MessageDialogStyle.AffirmativeAndNegative,
                 new MetroDialogSettings { AffirmativeButtonText = "Cancelar Documento", NegativeButtonText = "Cancelar" });
 
-            if (messageDialogResult != MessageDialogResult.Affirmative)
-                return;
+            if (messageDialogResult != MessageDialogResult.Affirmative) return;
 
-            _documentoService.CancelarAdministrativamente(Factura.CIDDOCUMENTO);
+            string contrasenaCertificado =
+                await _dialogCoordinator.ShowInputAsync(this, "Contrasena Del Certificado", "Proporcione la contrasena del certificado.");
+
+            if (string.IsNullOrWhiteSpace(contrasenaCertificado)) return;
+
+            _documentoService.Cancelar(Factura.CIDDOCUMENTO, contrasenaCertificado);
 
             CargarFactura(Factura.CIDDOCUMENTO);
 
@@ -216,8 +206,7 @@ public class DetallesFacturaViewModel : ObservableRecipient
     {
         Factura = _documentoRepository.BuscarPorId(facturaId);
         CargarRelaciones(Factura);
-        if (_contpaqiSdk is ComercialSdkExtended)
-            _documentoService.DesbloquearDocumento(facturaId);
+        if (_contpaqiSdk is ComercialSdkExtended) _documentoService.DesbloquearDocumento(facturaId);
         OnPropertyChanged(nameof(TotalImpuestos));
         OnPropertyChanged(nameof(Factura));
     }
@@ -227,8 +216,8 @@ public class DetallesFacturaViewModel : ObservableRecipient
         documento.ConceptoDocumento = _conceptoDocumentoRepository.BuscarPorId(documento.CIDCONCEPTODOCUMENTO);
         documento.ClienteProveedor = _clienteProveedorRepository.BuscarPorId(documento.CIDCLIENTEPROVEEDOR);
         documento.Agente = _agenteRepository.BuscarPorId(documento.CIDAGENTE);
-        documento.DireccionFiscal = _direccionRepository.BuscarPorDocumento(documento.CIDDOCUMENTO, (int)TipoDireccion.Fiscal);
-        documento.DireccionEnvio = _direccionRepository.BuscarPorDocumento(documento.CIDDOCUMENTO, (int)TipoDireccion.Envio);
+        documento.DireccionFiscal = _direccionRepository.BuscarPorDocumento(documento.CIDDOCUMENTO, TipoDireccion.Fiscal);
+        documento.DireccionEnvio = _direccionRepository.BuscarPorDocumento(documento.CIDDOCUMENTO, TipoDireccion.Envio);
         documento.Movimientos = _movimientoRepository.TraerPorDocumentoId(documento.CIDDOCUMENTO).ToList();
         foreach (Movimiento movimiento in documento.Movimientos)
         {
@@ -285,14 +274,11 @@ public class DetallesFacturaViewModel : ObservableRecipient
     {
         try
         {
-            MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
-                "Eliminar Documento",
-                "Esta seguro de querer eliminar este documento?",
-                MessageDialogStyle.AffirmativeAndNegative,
+            MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Eliminar Documento",
+                "Esta seguro de querer eliminar este documento?", MessageDialogStyle.AffirmativeAndNegative,
                 new MetroDialogSettings { AffirmativeButtonText = "Eliminar", NegativeButtonText = "Cancelar" });
 
-            if (messageDialogResult != MessageDialogResult.Affirmative)
-                return;
+            if (messageDialogResult != MessageDialogResult.Affirmative) return;
 
             _documentoService.Eliminar(Factura.CIDDOCUMENTO);
 
@@ -308,14 +294,11 @@ public class DetallesFacturaViewModel : ObservableRecipient
 
     public async Task EliminarMovimientoAsync()
     {
-        MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
-            "Eliminar Movimiento",
-            "Esta seguro de querer eliminar este movimiento?",
-            MessageDialogStyle.AffirmativeAndNegative,
+        MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Eliminar Movimiento",
+            "Esta seguro de querer eliminar este movimiento?", MessageDialogStyle.AffirmativeAndNegative,
             new MetroDialogSettings { AffirmativeButtonText = "Eliminar", NegativeButtonText = "Cancelar" });
 
-        if (messageDialogResult != MessageDialogResult.Affirmative)
-            return;
+        if (messageDialogResult != MessageDialogResult.Affirmative) return;
 
         try
         {
@@ -341,21 +324,15 @@ public class DetallesFacturaViewModel : ObservableRecipient
             bool? showDialog = openFileDialog.ShowDialog();
             if (showDialog == true)
             {
-                _documentoService.GenerarDocumentoDigital(Factura.ConceptoDocumento.CCODIGOCONCEPTO,
-                    Factura.CSERIEDOCUMENTO,
-                    Factura.CFOLIO,
-                    TipoArchivoDigital.Pdf,
-                    openFileDialog.FileName);
+                _documentoService.GenerarDocumentoDigital(Factura.ConceptoDocumento.CCODIGOCONCEPTO, Factura.CSERIEDOCUMENTO,
+                    Factura.CFOLIO, TipoArchivoDigital.Pdf, openFileDialog.FileName);
 
                 string rutaArchivo = ArchivoDigitalHelper.GenerarRutaArchivoDigital(TipoArchivoDigital.Pdf,
-                    _configuracionAplicacion.Empresa.CRUTADATOS,
-                    Factura.CSERIEDOCUMENTO,
+                    _configuracionAplicacion.Empresa.CRUTADATOS, Factura.CSERIEDOCUMENTO,
                     Factura.CFOLIO.ToString(CultureInfo.InvariantCulture));
 
-                MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
-                    "Archivo PDF Generado",
-                    "Archivo PDF generado.",
-                    MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary,
+                MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Archivo PDF Generado",
+                    "Archivo PDF generado.", MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary,
                     new MetroDialogSettings
                     {
                         AffirmativeButtonText = "Abrir Archivo",
@@ -365,8 +342,7 @@ public class DetallesFacturaViewModel : ObservableRecipient
 
                 if (messageDialogResult == MessageDialogResult.Affirmative)
                     new Process { StartInfo = new ProcessStartInfo(rutaArchivo) { UseShellExecute = true } }.Start();
-                else if (messageDialogResult == MessageDialogResult.FirstAuxiliary)
-                    Clipboard.SetText(rutaArchivo);
+                else if (messageDialogResult == MessageDialogResult.FirstAuxiliary) Clipboard.SetText(rutaArchivo);
             }
         }
         catch (Exception e)
@@ -379,20 +355,15 @@ public class DetallesFacturaViewModel : ObservableRecipient
     {
         try
         {
-            _documentoService.GenerarDocumentoDigital(Factura.ConceptoDocumento.CCODIGOCONCEPTO,
-                Factura.CSERIEDOCUMENTO,
-                Factura.CFOLIO,
+            _documentoService.GenerarDocumentoDigital(Factura.ConceptoDocumento.CCODIGOCONCEPTO, Factura.CSERIEDOCUMENTO, Factura.CFOLIO,
                 TipoArchivoDigital.Xml);
 
             string rutaArchivo = ArchivoDigitalHelper.GenerarRutaArchivoDigital(TipoArchivoDigital.Xml,
-                _configuracionAplicacion.Empresa.CRUTADATOS,
-                Factura.CSERIEDOCUMENTO,
+                _configuracionAplicacion.Empresa.CRUTADATOS, Factura.CSERIEDOCUMENTO,
                 Factura.CFOLIO.ToString(CultureInfo.InvariantCulture));
 
-            MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
-                "Archivo XML Generado",
-                "Archivo XML generado.",
-                MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary,
+            MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Archivo XML Generado",
+                "Archivo XML generado.", MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary,
                 new MetroDialogSettings
                 {
                     AffirmativeButtonText = "Abrir Archivo", NegativeButtonText = "Cancelar", FirstAuxiliaryButtonText = "Copiar Ruta"
@@ -400,8 +371,7 @@ public class DetallesFacturaViewModel : ObservableRecipient
 
             if (messageDialogResult == MessageDialogResult.Affirmative)
                 new Process { StartInfo = new ProcessStartInfo(rutaArchivo) { UseShellExecute = true } }.Start();
-            else if (messageDialogResult == MessageDialogResult.FirstAuxiliary)
-                Clipboard.SetText(rutaArchivo);
+            else if (messageDialogResult == MessageDialogResult.FirstAuxiliary) Clipboard.SetText(rutaArchivo);
         }
         catch (Exception e)
         {
@@ -483,8 +453,7 @@ public class DetallesFacturaViewModel : ObservableRecipient
             string dialogResult =
                 await _dialogCoordinator.ShowInputAsync(this, "Contrasena Del Certificado", "Proporcione la contrasena del certificado.");
 
-            if (string.IsNullOrWhiteSpace(dialogResult))
-                return;
+            if (string.IsNullOrWhiteSpace(dialogResult)) return;
 
             _documentoService.Timbrar(Factura.ConceptoDocumento.CCODIGOCONCEPTO, Factura.CSERIEDOCUMENTO, Factura.CFOLIO, dialogResult);
 

@@ -15,15 +15,15 @@
                       dialog:DialogParticipation.Register="{Binding}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding Title}"
                    FontWeight="Bold"
                    FontSize="20"
                    VerticalAlignment="Center"
-                   Margin="5"></TextBlock>
+                   Margin="5" />
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal">
             <Button Content="Guardar"
@@ -31,87 +31,87 @@
                     VerticalAlignment="Center"
                     Margin="5"
                     Width="150"
-                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}"></Button>
+                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
             <Button Content="Cancelar"
                     Command="{Binding CancelarCommand}"
                     VerticalAlignment="Center"
                     Margin="5"
                     Width="150"
-                    Style="{StaticResource MahApps.Styles.Button.Square}"></Button>
+                    Style="{StaticResource MahApps.Styles.Button.Square}" />
         </StackPanel>
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0"
                        Grid.Column="0"
                        Content="Codigo:"
                        FontWeight="Bold"
                        VerticalAlignment="Center"
-                       Margin="5"></Label>
+                       Margin="5" />
                 <TextBox Grid.Row="0"
                          Grid.Column="1"
                          Text="{Binding Producto.CCODIGOPRODUCTO}"
                          VerticalAlignment="Center"
-                         Margin="5"></TextBox>
+                         Margin="5" />
                 <Label Grid.Row="1"
                        Grid.Column="0"
                        Content="Nombre:"
                        FontWeight="Bold"
                        VerticalAlignment="Center"
-                       Margin="5"></Label>
+                       Margin="5" />
                 <TextBox Grid.Row="1"
                          Grid.Column="1"
                          Text="{Binding Producto.CNOMBREPRODUCTO}"
                          VerticalAlignment="Center"
-                         Margin="5"></TextBox>
+                         Margin="5" />
             </Grid>
             <TabControl Grid.Row="1">
                 <TabItem Header="Datos Generales">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <GroupBox Grid.Column="0"
                                       Header="Clasificacion"
                                       Margin="5">
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Row="0"
                                            Grid.Column="0"
                                            Content="Clasificacion 1 Del Producto:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
-                                           Margin="5"></Label>
+                                           Margin="5" />
                                     <TextBox Grid.Row="0"
                                              Grid.Column="1"
                                              Text="{Binding Producto.ValorClasificacion1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
@@ -131,7 +131,7 @@
                                            Content="Clasificacion 2 Del Producto:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
-                                           Margin="5"></Label>
+                                           Margin="5" />
                                     <TextBox Grid.Row="1"
                                              Grid.Column="1"
                                              Text="{Binding Producto.ValorClasificacion2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
@@ -151,7 +151,7 @@
                                            Content="Clasificacion 3 Del Producto:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
-                                           Margin="5"></Label>
+                                           Margin="5" />
                                     <TextBox Grid.Row="2"
                                              Grid.Column="1"
                                              Text="{Binding Producto.ValorClasificacion3, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
@@ -171,7 +171,7 @@
                                            Content="Clasificacion 4 Del Producto:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
-                                           Margin="5"></Label>
+                                           Margin="5" />
                                     <TextBox Grid.Row="3"
                                              Grid.Column="1"
                                              Text="{Binding Producto.ValorClasificacion4, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
@@ -191,7 +191,7 @@
                                            Content="Clasificacion 5 Del Producto:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
-                                           Margin="5"></Label>
+                                           Margin="5" />
                                     <TextBox Grid.Row="4"
                                              Grid.Column="1"
                                              Text="{Binding Producto.ValorClasificacion5, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
@@ -211,7 +211,7 @@
                                            Content="Clasificacion 6 Del Producto:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
-                                           Margin="5"></Label>
+                                           Margin="5" />
                                     <TextBox Grid.Row="5"
                                              Grid.Column="1"
                                              Text="{Binding Producto.ValorClasificacion6, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
@@ -233,10 +233,10 @@
                                       Margin="5">
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <ComboBox ItemsSource="{Binding TiposProducto}"
-                                              SelectedItem="{Binding Producto.Tipo}"></ComboBox>
+                                              SelectedItem="{Binding Producto.Tipo}" />
                                 </Grid>
                             </GroupBox>
                         </Grid>
@@ -245,11 +245,11 @@
                                   Margin="5">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -260,56 +260,56 @@
                                        Content="Codigo Alterno:"
                                        FontWeight="Bold"
                                        VerticalAlignment="Center"
-                                       Margin="5"></Label>
+                                       Margin="5" />
                                 <TextBox Grid.Row="0"
                                          Grid.Column="1"
                                          Text="{Binding Producto.CCODALTERN}"
                                          VerticalAlignment="Center"
-                                         Margin="5"></TextBox>
+                                         Margin="5" />
                                 <Label Grid.Row="1"
                                        Grid.Column="0"
                                        Content="Nombre Alterno:"
                                        FontWeight="Bold"
                                        VerticalAlignment="Center"
-                                       Margin="5"></Label>
+                                       Margin="5" />
                                 <TextBox Grid.Row="1"
                                          Grid.Column="1"
                                          Text="{Binding Producto.CNOMALTERN}"
                                          VerticalAlignment="Center"
-                                         Margin="5"></TextBox>
+                                         Margin="5" />
                                 <Label Grid.Row="2"
                                        Grid.Column="0"
                                        Content="Clave SAT:"
                                        FontWeight="Bold"
                                        VerticalAlignment="Center"
-                                       Margin="5"></Label>
+                                       Margin="5" />
                                 <TextBox Grid.Row="2"
                                          Grid.Column="1"
                                          Text="{Binding Producto.CCLAVESAT}"
                                          VerticalAlignment="Center"
-                                         Margin="5"></TextBox>
+                                         Margin="5" />
                                 <Label Grid.Row="3"
                                        Grid.Column="0"
                                        Content="Descripcion Corta:"
                                        FontWeight="Bold"
                                        VerticalAlignment="Center"
-                                       Margin="5"></Label>
+                                       Margin="5" />
                                 <TextBox Grid.Row="3"
                                          Grid.Column="1"
                                          Text="{Binding Producto.CDESCCORTA}"
                                          VerticalAlignment="Center"
-                                         Margin="5"></TextBox>
+                                         Margin="5" />
                                 <Label Grid.Row="4"
                                        Grid.Column="0"
                                        Content="Descripcion:"
                                        FontWeight="Bold"
                                        VerticalAlignment="Center"
-                                       Margin="5"></Label>
+                                       Margin="5" />
                                 <TextBox Grid.Row="4"
                                          Grid.Column="1"
                                          Text="{Binding Producto.CDESCRIPCIONPRODUCTO}"
                                          VerticalAlignment="Center"
-                                         Margin="5"></TextBox>
+                                         Margin="5" />
                             </Grid>
                         </GroupBox>
                     </Grid>
@@ -317,10 +317,10 @@
                 <TabItem Header="Precios">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <GroupBox Header="Precios"
                                   Margin="5">
@@ -330,110 +330,110 @@
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CPRECIO1}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Precio 2:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CPRECIO2}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Precio 3:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CPRECIO3}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Precio 4:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CPRECIO4}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Precio 5:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CPRECIO5}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Precio 6:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CPRECIO6}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Precio 7:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CPRECIO7}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Precio 8:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CPRECIO8}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Precio 9:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CPRECIO9}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Precio 1:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CPRECIO10}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
@@ -442,11 +442,11 @@
                 <TabItem Header="Usuario">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <GroupBox Grid.Column="0"
                                   Header="Textos Extra"
@@ -457,33 +457,33 @@
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CTEXTOEXTRA1}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Texto Extra 2:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CTEXTOEXTRA2}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Texto Extra 3:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CTEXTOEXTRA3}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
@@ -496,44 +496,44 @@
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CIMPORTEEXTRA1}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Importe Extra 2:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CIMPORTEEXTRA2}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Importe Extra 3:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CIMPORTEEXTRA3}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Importe Extra 4:"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center"
                                            Margin="5"
-                                           Width="100"></Label>
+                                           Width="100" />
                                     <TextBox Text="{Binding Producto.CIMPORTEEXTRA4}"
                                              VerticalAlignment="Center"
                                              Margin="5"
-                                             Width="150"></TextBox>
+                                             Width="150" />
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>

@@ -5,9 +5,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
@@ -36,17 +35,12 @@ public class ListadoDocumentosViewModel : ObservableRecipient
     private DateTime _fechaInicio = DateTime.Today;
     private string _filtro;
 
-    public ListadoDocumentosViewModel(IDialogCoordinator dialogCoordinator,
-                                      IDocumentoRepository<Documento> documentoRepository,
-                                      IClienteProveedorRepository<ClienteProveedorLookup> clienteProveedorLookupRepository,
-                                      IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository,
-                                      IMovimientoRepository<Movimiento> movimientoRepository,
-                                      IAgenteRepository<Agente> agenteRepository,
-                                      IProductoRepository<Producto> productoRepository,
-                                      IAlmacenRepository<Almacen> almacenRepository,
-                                      IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository,
-                                      IDireccionRepository<Direccion> direccionRepository,
-                                      IClienteProveedorRepository<ClienteProveedor> clienteProveedorRepository)
+    public ListadoDocumentosViewModel(IDialogCoordinator dialogCoordinator, IDocumentoRepository<Documento> documentoRepository,
+        IClienteProveedorRepository<ClienteProveedorLookup> clienteProveedorLookupRepository,
+        IConceptoDocumentoRepository<ConceptoDocumento> conceptoDocumentoRepository, IMovimientoRepository<Movimiento> movimientoRepository,
+        IAgenteRepository<Agente> agenteRepository, IProductoRepository<Producto> productoRepository,
+        IAlmacenRepository<Almacen> almacenRepository, IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository,
+        IDireccionRepository<Direccion> direccionRepository, IClienteProveedorRepository<ClienteProveedor> clienteProveedorRepository)
     {
         _dialogCoordinator = dialogCoordinator;
         _documentoRepository = documentoRepository;
@@ -67,48 +61,21 @@ public class ListadoDocumentosViewModel : ObservableRecipient
         BuscarConFiltroCommand = new AsyncRelayCommand(BuscarConFiltroAsync, PuedeBuscaConFiltroAsync);
     }
 
-    public string Title => "Documentos";
+    public IAsyncRelayCommand BuscarConFiltroCommand { get; }
 
-    public string Filtro
+    public IAsyncRelayCommand BuscarTodoCommand { get; }
+
+    public ClienteProveedorLookup ClienteProveedorSeleccionado
     {
-        get => _filtro;
+        get => _clienteProveedorSeleccionado;
         set
         {
-            SetProperty(ref _filtro, value);
-            DocumentosView.Refresh();
-            OnPropertyChanged(nameof(NumeroDocumentos));
-        }
-    }
-
-    public DateTime FechaInicio
-    {
-        get => _fechaInicio;
-        set
-        {
-            SetProperty(ref _fechaInicio, value);
+            SetProperty(ref _clienteProveedorSeleccionado, value);
             RaiseGuards();
         }
     }
 
-    public DateTime FechaFin
-    {
-        get => _fechaFin;
-        set
-        {
-            SetProperty(ref _fechaFin, value);
-            RaiseGuards();
-        }
-    }
-
-    public ObservableCollection<Documento> Documentos { get; } = new();
-
-    public ICollectionView DocumentosView { get; }
-
-    public Documento DocumentoSeleccionado
-    {
-        get => _documentoSeleccionado;
-        set => SetProperty(ref _documentoSeleccionado, value);
-    }
+    public ObservableCollection<ClienteProveedorLookup> ClientesProveedores { get; } = new();
 
     public ObservableCollection<ConceptoDocumento> Conceptos { get; } = new();
 
@@ -122,19 +89,15 @@ public class ListadoDocumentosViewModel : ObservableRecipient
         }
     }
 
-    public ObservableCollection<ClienteProveedorLookup> ClientesProveedores { get; } = new();
+    public ObservableCollection<Documento> Documentos { get; } = new();
 
-    public ClienteProveedorLookup ClienteProveedorSeleccionado
+    public Documento DocumentoSeleccionado
     {
-        get => _clienteProveedorSeleccionado;
-        set
-        {
-            SetProperty(ref _clienteProveedorSeleccionado, value);
-            RaiseGuards();
-        }
+        get => _documentoSeleccionado;
+        set => SetProperty(ref _documentoSeleccionado, value);
     }
 
-    public int NumeroDocumentos => DocumentosView.Cast<object>().Count();
+    public ICollectionView DocumentosView { get; }
 
     public string DuracionBusqueda
     {
@@ -142,14 +105,74 @@ public class ListadoDocumentosViewModel : ObservableRecipient
         set => SetProperty(ref _duracionBusqueda, value);
     }
 
-    public IAsyncRelayCommand BuscarTodoCommand { get; }
-    public IAsyncRelayCommand BuscarConFiltroCommand { get; }
+    public DateTime FechaFin
+    {
+        get => _fechaFin;
+        set
+        {
+            SetProperty(ref _fechaFin, value);
+            RaiseGuards();
+        }
+    }
+
+    public DateTime FechaInicio
+    {
+        get => _fechaInicio;
+        set
+        {
+            SetProperty(ref _fechaInicio, value);
+            RaiseGuards();
+        }
+    }
+
+    public string Filtro
+    {
+        get => _filtro;
+        set
+        {
+            SetProperty(ref _filtro, value);
+            DocumentosView.Refresh();
+            OnPropertyChanged(nameof(NumeroDocumentos));
+        }
+    }
+
     public IRelayCommand InicializarCommand { get; }
 
-    public void Inicializar()
+    public int NumeroDocumentos => DocumentosView.Cast<object>().Count();
+
+    public string Title => "Documentos";
+
+    public async Task BuscarConFiltroAsync()
     {
-        CargarConceptos();
-        CargarClientes();
+        ProgressDialogController progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
+        await Task.Delay(1000);
+
+        try
+        {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            Documentos.Clear();
+            foreach (Documento documento in _documentoRepository.TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(FechaInicio,
+                         FechaFin, ConceptoSeleccionado.CCODIGOCONCEPTO, ClienteProveedorSeleccionado.CCODIGOCLIENTE))
+            {
+                CargarRelaciones(documento);
+                Documentos.Add(documento);
+                progressDialogController.SetMessage($"Numero de documentos: {Documentos.Count}");
+                await Task.Delay(50);
+            }
+
+            stopwatch.Stop();
+            DuracionBusqueda = stopwatch.Elapsed.ToString("g");
+        }
+        catch (Exception e)
+        {
+            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
+        }
+        finally
+        {
+            await progressDialogController.CloseAsync();
+            OnPropertyChanged(nameof(NumeroDocumentos));
+        }
     }
 
     public async Task BuscarTodoAsync()
@@ -184,44 +207,11 @@ public class ListadoDocumentosViewModel : ObservableRecipient
         }
     }
 
-    public bool PuedeBuscaConFiltroAsync()
+    private void CargarClientes()
     {
-        return FechaInicio <= FechaFin && ConceptoSeleccionado != null && ClienteProveedorSeleccionado != null;
-    }
-
-    public async Task BuscarConFiltroAsync()
-    {
-        ProgressDialogController progressDialogController = await _dialogCoordinator.ShowProgressAsync(this, "Buscando", "Buscando");
-        await Task.Delay(1000);
-
-        try
-        {
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
-            Documentos.Clear();
-            foreach (Documento documento in _documentoRepository.TraerPorRangoFechaYCodigoConceptoYCodigoClienteProveedor(FechaInicio,
-                         FechaFin,
-                         ConceptoSeleccionado.CCODIGOCONCEPTO,
-                         ClienteProveedorSeleccionado.CCODIGOCLIENTE))
-            {
-                CargarRelaciones(documento);
-                Documentos.Add(documento);
-                progressDialogController.SetMessage($"Numero de documentos: {Documentos.Count}");
-                await Task.Delay(50);
-            }
-
-            stopwatch.Stop();
-            DuracionBusqueda = stopwatch.Elapsed.ToString("g");
-        }
-        catch (Exception e)
-        {
-            await _dialogCoordinator.ShowMessageAsync(this, "Error", e.ToString());
-        }
-        finally
-        {
-            await progressDialogController.CloseAsync();
-            OnPropertyChanged(nameof(NumeroDocumentos));
-        }
+        ClientesProveedores.Clear();
+        foreach (ClienteProveedorLookup clienteProveedor in _clienteProveedorLookupRepository.TraerTodo().OrderBy(c => c.CRAZONSOCIAL))
+            ClientesProveedores.Add(clienteProveedor);
     }
 
     private void CargarConceptos()
@@ -231,34 +221,13 @@ public class ListadoDocumentosViewModel : ObservableRecipient
             Conceptos.Add(concepto);
     }
 
-    private void CargarClientes()
-    {
-        ClientesProveedores.Clear();
-        foreach (ClienteProveedorLookup clienteProveedor in _clienteProveedorLookupRepository.TraerTodo().OrderBy(c => c.CRAZONSOCIAL))
-            ClientesProveedores.Add(clienteProveedor);
-    }
-
-    private void RaiseGuards()
-    {
-        BuscarTodoCommand.NotifyCanExecuteChanged();
-        BuscarConFiltroCommand.NotifyCanExecuteChanged();
-    }
-
-    private bool ProductosView_Filter(object obj)
-    {
-        if (!(obj is Documento documento))
-            throw new ArgumentNullException(nameof(obj));
-
-        return documento.Contains(Filtro);
-    }
-
     private void CargarRelaciones(Documento documento)
     {
         documento.ConceptoDocumento = _conceptoDocumentoRepository.BuscarPorId(documento.CIDCONCEPTODOCUMENTO);
         documento.ClienteProveedor = _clienteProveedorRepository.BuscarPorId(documento.CIDCLIENTEPROVEEDOR);
         documento.Agente = _agenteRepository.BuscarPorId(documento.CIDAGENTE);
-        documento.DireccionFiscal = _direccionRepository.BuscarPorDocumento(documento.CIDDOCUMENTO, (int)TipoDireccion.Fiscal);
-        documento.DireccionEnvio = _direccionRepository.BuscarPorDocumento(documento.CIDDOCUMENTO, (int)TipoDireccion.Envio);
+        documento.DireccionFiscal = _direccionRepository.BuscarPorDocumento(documento.CIDDOCUMENTO, TipoDireccion.Fiscal);
+        documento.DireccionEnvio = _direccionRepository.BuscarPorDocumento(documento.CIDDOCUMENTO, TipoDireccion.Envio);
         documento.Movimientos = _movimientoRepository.TraerPorDocumentoId(documento.CIDDOCUMENTO).ToList();
         foreach (Movimiento movimiento in documento.Movimientos)
         {
@@ -266,5 +235,29 @@ public class ListadoDocumentosViewModel : ObservableRecipient
             movimiento.Almacen = _almacenRepository.BuscarPorId(movimiento.CIDALMACEN);
             movimiento.ValorClasificacion = _valorClasificacionRepository.BuscarPorId(movimiento.CIDVALORCLASIFICACION);
         }
+    }
+
+    public void Inicializar()
+    {
+        CargarConceptos();
+        CargarClientes();
+    }
+
+    private bool ProductosView_Filter(object obj)
+    {
+        if (!(obj is Documento documento)) throw new ArgumentNullException(nameof(obj));
+
+        return documento.Contains(Filtro);
+    }
+
+    public bool PuedeBuscaConFiltroAsync()
+    {
+        return FechaInicio <= FechaFin && ConceptoSeleccionado != null && ClienteProveedorSeleccionado != null;
+    }
+
+    private void RaiseGuards()
+    {
+        BuscarTodoCommand.NotifyCanExecuteChanged();
+        BuscarConFiltroCommand.NotifyCanExecuteChanged();
     }
 }

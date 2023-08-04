@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MahApps.Metro.Controls.Dialogs;
 using Sdk.Extras.WpfApp.Messages;
+using Sdk.Extras.WpfApp.Models;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Movimientos;
 
@@ -23,12 +24,9 @@ public class EditarMovimientoViewModel : ObservableRecipient
     private readonly IValorClasificacionRepository<ValorClasificacion> _valorClasificacionRepository;
     private Movimiento _movimiento;
 
-    public EditarMovimientoViewModel(IMovimientoRepository<Movimiento> movimientoRepository,
-                                     IMovimientoService movimientoService,
-                                     IDialogCoordinator dialogCoordinator,
-                                     IAlmacenRepository<Almacen> almacenRepository,
-                                     IProductoRepository<Producto> productoRepository,
-                                     IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
+    public EditarMovimientoViewModel(IMovimientoRepository<Movimiento> movimientoRepository, IMovimientoService movimientoService,
+        IDialogCoordinator dialogCoordinator, IAlmacenRepository<Almacen> almacenRepository,
+        IProductoRepository<Producto> productoRepository, IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
     {
         _movimientoRepository = movimientoRepository;
         _movimientoService = movimientoService;
@@ -41,9 +39,11 @@ public class EditarMovimientoViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(CerrarVista);
     }
 
-    public string Title { get; } = "Editar Movimiento";
+    public IRelayCommand CancelarCommand { get; }
 
     public int DocumentoId { get; private set; }
+
+    public IAsyncRelayCommand GuardarMovimientoCommand { get; }
 
     public Movimiento Movimiento
     {
@@ -51,8 +51,7 @@ public class EditarMovimientoViewModel : ObservableRecipient
         private set => SetProperty(ref _movimiento, value);
     }
 
-    public IAsyncRelayCommand GuardarMovimientoCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
+    public string Title { get; } = "Editar Movimiento";
 
     private async Task ActualizarMovimientoAsync()
     {

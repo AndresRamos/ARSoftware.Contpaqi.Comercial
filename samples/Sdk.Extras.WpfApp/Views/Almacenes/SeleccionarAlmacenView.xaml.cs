@@ -14,15 +14,14 @@ public partial class SeleccionarAlmacenView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<SeleccionarAlmacenViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (SeleccionarAlmacenView)recipient;
-                    view.Close();
-                }
-            });
+                var view = (SeleccionarAlmacenView)recipient;
+                view.Close();
+            }
+        });
     }
 
     public SeleccionarAlmacenViewModel ViewModel => (SeleccionarAlmacenViewModel)DataContext;

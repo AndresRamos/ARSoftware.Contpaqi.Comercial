@@ -12,6 +12,7 @@ En este repositorio podrás encontrar proyectos para trabajar programáticamente
 | --- | --- | --- | ---
 | [ARSoftware.Contpaqi.Comercial.Sdk](src/ARSoftware.Contpaqi.Comercial.Sdk) | [![Nuget](https://img.shields.io/nuget/v/ARSoftware.Contpaqi.Comercial.Sdk?style=for-the-badge)](https://www.nuget.org/packages/ARSoftware.Contpaqi.Comercial.Sdk)  | Este proyecto es un wrapper del SDK con todas las funciones, estructuras, y constantes del SDK ya declaradas correctamente y listas para mandar a invocar en tu desarrollo. | <ul><li>[Curso](https://www.arsoft.net/courses/contpaqi-comercial-sdk-course)</li><li>[Wiki](https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial/wiki#sdk)</li><li>[Ejemplos](samples/Sdk.ConsoleApp)</li></ul> 
 | [ARSoftware.Contpaqi.Comercial.Sdk.Extras](src/ARSoftware.Contpaqi.Comercial.Sdk.Extras) | [![Nuget](https://img.shields.io/nuget/v/ARSoftware.Contpaqi.Comercial.Sdk.Extras?style=for-the-badge)](https://www.nuget.org/packages/ARSoftware.Contpaqi.Comercial.Sdk.Extras)  | Este proyecto expone diferentes servicios que encapsulan las diferentes funcionalidades del SDK, como la de iniciar sesión, abrir empresas, consultar catálogos, crear y editar catálogos, crear documentos, timbrar y cancelar documentos, y mucho más. | <ul><li>[Curso](https://www.arsoft.net/courses/contpaqi-comercial-sdk-extras-course)</li><li>[Wiki](https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial/wiki#sdk-extras)</li><li>[Ejemplos](samples/Sdk.Extras.ConsoleApp)</li></ul>
+| [ARSoftware.Contpaqi.Comercial.Sdk.Abstractions](src/ARSoftware.Contpaqi.Comercial.Sdk.Abstractions) | [![Nuget](https://img.shields.io/nuget/v/ARSoftware.Contpaqi.Comercial.Sdk.Abstractions?style=for-the-badge)](https://www.nuget.org/packages/ARSoftware.Contpaqi.Comercial.Sdk.Abstractions)  | Este proyecto inlcluye los modelos e interfaces utlizados por el SDK y SQL | 
 | [ARSoftware.Contpaqi.Comercial.Sql](src/ARSoftware.Contpaqi.Comercial.Sql) | [![Nuget](https://img.shields.io/nuget/v/ARSoftware.Contpaqi.Comercial.Sql?style=for-the-badge)](https://www.nuget.org/packages/ARSoftware.Contpaqi.Comercial.Sql)  | Este proyecto tiene declarados los DbContexts de Entity Framework para poder consultar las bases de datos de SQL. |
 | [ARSoftware.Contpaqi.Comercial.Sql.Models](src/ARSoftware.Contpaqi.Comercial.Sql.Models) | [![Nuget](https://img.shields.io/nuget/v/ARSoftware.Contpaqi.Comercial.Sql.Models?style=for-the-badge)](https://www.nuget.org/packages/ARSoftware.Contpaqi.Comercial.Sql.Models)  | Este proyecto tiene declaradas las clases de los esquemas de las bases de datos de SQL de CONTPAQi Comercial |
 
@@ -20,95 +21,138 @@ Si lo que buscas es contratar a un desarrollador para crear tu aplicación o int
 
 Me especializo en el desarrollo de aplicaciones e interfaces para los sistemas de CONTPAQi y me gustaría agendar una reunión contigo para platicar más sobre tus necesidades y requerimientos.
 
-# Ejemplo
+# Ejemplos
 
-Ejemplo de como facilmente podemos crear y timbrar una factura haciendo uso de los repositorios y servicios en [ARSoftware.Contpaqi.Comercial.Sdk.Extras](src/ARSoftware.Contpaqi.Comercial.Sdk.Extras).
-
+## Registrar Servicios
 ```csharp
-// Registrar servicios del SDK con el proveedor de proveedor de servicios (dependency injection)
 IHost host = Host.CreateDefaultBuilder()
-    .ConfigureServices(collection => { collection.AddContpaqiComercialSdkServices(TipoContpaqiSdk.Comercial); })
+    .ConfigureServices(services =>
+    {
+        // Agregar servicios del SDK
+        services.AddContpaqiComercialSdkServices();
+    })
     .Build();
 
-await host.StartAsync();
+IServiceProvider services = host.Services;
 
-// Buscar los servicios a utilizar
-var comercialSdkSesionService = host.Services.GetRequiredService<IComercialSdkSesionService>(); // Para iniciar y terminar conexion con el sdk
-var empresaRepository = host.Services.GetRequiredService<IEmpresaRepository<Empresa>>(); // Para buscar empresas
-var conceptoDocumentoRepository = host.Services.GetRequiredService<IConceptoDocumentoRepository<ConceptoDocumento>>(); // Para buscar conceptos
-var clienteRepository = host.Services.GetRequiredService<IClienteProveedorRepository<ClienteProveedor>>(); // Para buscar clientes
-var productoRepository = host.Services.GetRequiredService<IProductoRepository<Producto>>(); // Para buscar productos
-var almacenRepository = host.Services.GetRequiredService<IAlmacenRepository<Almacen>>(); // Para buscar almacenes
-var documentoService = host.Services.GetRequiredService<IDocumentoService>(); // Para crear y timbrar documentos
-var movimientoService = host.Services.GetRequiredService<IMovimientoService>(); // Para crear movimientos
+var sdkSesionService = services.GetRequiredService<IComercialSdkSesionService>();
+```
 
-// Iniciar conexion con el sdk
-comercialSdkSesionService.IniciarSesionSdk("SUPERVISOR", "Passw0rd!");
+## Crear y timbrar una factura haciendo uso de los repositorios y servicios en [ARSoftware.Contpaqi.Comercial.Sdk.Extras](src/ARSoftware.Contpaqi.Comercial.Sdk.Extras).
 
-// Buscar empresa de prueba
-List<Empresa> empresas = empresaRepository.TraerTodo().ToList();
-Empresa empresaSeleccionada = empresas.First(e => e.CNOMBREEMPRESA == "EMPRESA PRUEBA");
+```csharp
+// Iniciar sesion
+var sdkSesionService = services.GetRequiredService<IComercialSdkSesionService>();
+sdkSesionService.IniciarSesionSdk("SUPERVISOR", "");
+
+// Buscar empresa
+var empresaRepository = services.GetRequiredService<IEmpresaRepository<EmpresaDto>>();
+EmpresaDto empresa = empresaRepository.BuscarPorNombre("EMPRESA PRUEBA") ?? throw new Exception("No se encontro la empresa.");
 
 // Abrir empresa
-comercialSdkSesionService.AbrirEmpresa(empresaSeleccionada.CRUTADATOS);
+sdkSesionService.AbrirEmpresa(empresa.CRUTADATOS);
 
-// Instanciar modelo y asignar datos de la factura
-var factura = new Documento();
-factura.ConceptoDocumento = conceptoDocumentoRepository.BuscarPorCodigo("400"); // Buscar y asignar concepto de prueba
-factura.ClienteProveedor = clienteRepository.BuscarPorCodigo("CTE001"); // Buscar y asignar cliente de prueba
-factura.CREFERENCIA = "Referencia documento";
-factura.FormaPago = FormaPago._03;
-factura.MetodoPago = MetodoPago.PPD;
-factura.COBSERVACIONES = "Observaciones documento";
+// Buscar siguiente folio del concepto
+var _documentoService = services.GetRequiredService<IDocumentoService>();
+tLlaveDoc llaveDocumento = _documentoService.BuscarSiguienteSerieYFolio("PRUEBAFACTURA");
 
-// Buscar y asignar el folio consecutivo del concepto
-tLlaveDoc siguienteFolio = documentoService.BuscarSiguienteSerieYFolio(factura.ConceptoDocumento.CCODIGOCONCEPTO);
-factura.CSERIEDOCUMENTO = siguienteFolio.aSerie;
-factura.CFOLIO = siguienteFolio.aFolio;
-
-// Crear documento
-int documentoId = documentoService.Crear(factura.ToTDocumento());
-
-// Actualizar datos extra del documento (que no son parte de la estructura tDocumento)
-var datosDocumento = new Dictionary<string, string>
+// Crear estructura de una factura
+var documento = new Documento
 {
-    { nameof(admDocumentos.COBSERVACIONES), factura.COBSERVACIONES },
-    { nameof(admDocumentos.CMETODOPAG), factura.CMETODOPAG },
-    { nameof(admDocumentos.CCANTPARCI), factura.CCANTPARCI.ToString() }
+    Concepto = new ConceptoDocumento { Codigo = "PRUEBAFACTURA" },
+    Serie = llaveDocumento.aSerie,
+    Folio = (int)llaveDocumento.aFolio,
+    Fecha = DateTime.Today,
+    Cliente = new ClienteProveedor { Codigo = "PRUEBA" },
+    Referencia = "Referencia",
+    FormaPago = FormaPago._03,
+    MetodoPago = MetodoPago.PPD,
+    Observaciones = "Observaciones",
+    Moneda = Moneda.PesoMexicano,
+    TipoCambio = 1,
+    Agente = new Agente { Codigo = "PRUEBA" }
 };
 
-documentoService.Actualizar(documentoId, datosDocumento);
+// Agregar datos extra
+documento.DatosExtra.Add(nameof(admDocumentos.CTEXTOEXTRA1), "Texto Extra 1");
+documento.DatosExtra.Add(nameof(admDocumentos.CTEXTOEXTRA2), "Texto Extra 2");
 
-// Instanciar modelo y asignar datos del un movimiento para la factura
-var movimiento = new Movimiento();
-movimiento.Producto = productoRepository.BuscarPorCodigo("SERV001"); // Buscar y asignar producto de prueba
-movimiento.CUNIDADES = 1;
-movimiento.CPRECIO = 100;
-movimiento.CREFERENCIA = "Referencia movimiento";
-movimiento.Almacen = almacenRepository.BuscarPorCodigo("1"); // Buscar y asignar almancen
+// Crear estructura de un movimiento
+var movimiento = new Movimiento
+{
+    Producto = new Producto { Codigo = "PRUEBA" },
+    Almacen = new Almacen { Codigo = "1" },
+    Unidades = 1,
+    Precio = 100,
+    Referencia = "Referencia",
+    Observaciones = "Observaciones"
+};
 
-// Crear movimiento
-int movimientoId = movimientoService.Crear(documentoId, movimiento.ToTMovimiento());
+// Agregar datos extra del movimiento
+movimiento.DatosExtra.Add(nameof(admMovimientos.CTEXTOEXTRA1), "Texto Extra 1");
 
-// Timbrar Documento
-documentoService.Timbrar(factura.ToTLlaveDoc(), "12345678a");
+// Agregar movimiento a la factura
+documento.Movimientos.Add(movimiento);
 
-// Generar PDF
-documentoService.GenerarDocumentoDigital(factura.ToTLlaveDoc(), TipoArchivoDigital.Pdf, "C://rutaDeLaPlantillaPdf.rdl");
+// Crear factura
+int nuevoDocumentoId = _documentoService.Crear(documento);
+
+// Crear movimientos
+var _movimientoService = services.GetRequiredService<IMovimientoService>();
+foreach (Movimiento mov in documento.Movimientos) _movimientoService.Crear(nuevoDocumentoId, mov);
+
+// Timbrar factura
+_documentoService.Timbrar(llaveDocumento, "12345678a");
+
+// Generar XML de la factura
+_documentoService.GenerarDocumentoDigital(llaveDocumento, TipoArchivoDigital.Xml);
+
+// Generar PDF de la factura
+_documentoService.GenerarDocumentoDigital(llaveDocumento, TipoArchivoDigital.Pdf,
+    @"\\AR-SERVER\Compac\Empresas\Reportes\Formatos Digitales\reportes_Servidor\COMERCIAL\Facturav40.rdl");
 
 // Cerrar empresa
-comercialSdkSesionService.CerrarEmpresa();
+sdkSesionService.CerrarEmpresa();
 
-// Terminar SDK
-comercialSdkSesionService.TerminarSesionSdk();
-
-await host.StopAsync();
+// Terminar sesion
+sdkSesionService.TerminarSesionSdk();
 ```
+
+## Consultar Catalogos
+```csharp
+// Buscar productos de tipo admProductos
+// admProductos es la estructura de la tabla de productos de Contpaqi Comercial y tiene todas las columnas de la tabla.
+var productoRepository = provider.GetRequiredService<IProductoRepository<admProductos>>();
+List<admProductos> productos = productoRepository.TraerTodo();
+
+foreach (admProductos admProductos in productos)
+{
+    int prodcutoId = admProductos.CIDPRODUCTO;
+    string productoCodigo = admProductos.CCODIGOPRODUCTO;
+}
+
+// Buscar productos de tipo ProductoDto
+// ProductoDto es una estructura simplificada de la tabla de productos de Contpaqi Comercial y solo tiene las columnas mas utilizadas.
+// Mientras las propiedades tengan el mismo nombre que la columna de la tabla, se pueden mapear automaticamente.
+var productoDtoRepository = provider.GetRequiredService<IProductoRepository<ProductoDto>>();
+List<ProductoDto> productosDto = productoDtoRepository.TraerTodo();
+
+foreach (ProductoDto productoDto in productosDto)
+{
+    int prodcutoId = productoDto.CIDPRODUCTO;
+    string productoCodigo = productoDto.CCODIGOPRODUCTO;
+}
+```
+
+# Licencia
+
+**Este proyecto no es Open Source.** Si deseas utilizarlo en tu organizacion, debes adquirir una licencia de uso.
+
+El costo de la licencia anual es de $300 dlls por RFC.
+
+Para informacion de como adquirir una licencia de uso puedes contactarme en mi [pagina web](https://www.arsoft.net/).
 
 # :heart: Como me puedes ayudar?
 
 ## :star: Dame una estrella
 Si estas utilizando alguno de los proyectos dentro de este repositorio por favor dale una estrella. Te lo agradeceria! :pray:
-
-## :money_with_wings: Patrociname
-Si este proyecto es de beneficio para ti y te beneficia economicamente aumentando tus ingresos y/o productividad, me puedes ayudar donando al proyecto o convirtiendote en un patrocinador.

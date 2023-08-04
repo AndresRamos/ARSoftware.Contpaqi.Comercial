@@ -140,25 +140,25 @@
                   Style="{StaticResource MahApps.Styles.DataGrid.Azure}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Fecha"
-                                    Binding="{Binding CFECHA}"></DataGridTextColumn>
+                                    Binding="{Binding CFECHA}" />
                 <DataGridTextColumn Header="Concepto Codigo"
-                                    Binding="{Binding ConceptoDocumento.CCODIGOCONCEPTO}"></DataGridTextColumn>
+                                    Binding="{Binding ConceptoDocumento.CCODIGOCONCEPTO}" />
                 <DataGridTextColumn Header="Concepto Nombre"
-                                    Binding="{Binding ConceptoDocumento.CNOMBRECONCEPTO}"></DataGridTextColumn>
+                                    Binding="{Binding ConceptoDocumento.CNOMBRECONCEPTO}" />
                 <DataGridTextColumn Header="Serie"
-                                    Binding="{Binding CSERIEDOCUMENTO}"></DataGridTextColumn>
+                                    Binding="{Binding CSERIEDOCUMENTO}" />
                 <DataGridTextColumn Header="Folio"
-                                    Binding="{Binding CFOLIO}"></DataGridTextColumn>
+                                    Binding="{Binding CFOLIO}" />
                 <DataGridTextColumn Header="Cliente Codigo"
-                                    Binding="{Binding ClienteProveedor.CCODIGOCLIENTE}"></DataGridTextColumn>
+                                    Binding="{Binding ClienteProveedor.CCODIGOCLIENTE}" />
                 <DataGridTextColumn Header="Cliente Razon Social"
-                                    Binding="{Binding ClienteProveedor.CRAZONSOCIAL}"></DataGridTextColumn>
+                                    Binding="{Binding ClienteProveedor.CRAZONSOCIAL}" />
                 <DataGridTextColumn Header="Cliente RFC"
-                                    Binding="{Binding ClienteProveedor.CRFC}"></DataGridTextColumn>
+                                    Binding="{Binding ClienteProveedor.CRFC}" />
                 <DataGridTextColumn Header="Moneda"
-                                    Binding="{Binding CIDMONEDA}"></DataGridTextColumn>
+                                    Binding="{Binding CIDMONEDA}" />
                 <DataGridTextColumn Header="Total"
-                                    Binding="{Binding CTOTAL}"></DataGridTextColumn>
+                                    Binding="{Binding CTOTAL}" />
             </DataGrid.Columns>
         </DataGrid>
         <!-- ReSharper restore Xaml.BindingWithContextNotResolved -->

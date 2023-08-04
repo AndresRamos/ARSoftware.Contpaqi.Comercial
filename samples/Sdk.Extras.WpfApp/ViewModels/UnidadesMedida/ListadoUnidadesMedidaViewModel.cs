@@ -5,11 +5,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
+using Sdk.Extras.WpfApp.Models;
 using Sdk.Extras.WpfApp.Views.UnidadesMedida;
 
 namespace Sdk.Extras.WpfApp.ViewModels.UnidadesMedida;
@@ -24,8 +25,7 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
     private UnidadMedida _unidadMedidaSeleccionada;
 
     public ListadoUnidadesMedidaViewModel(IUnidadMedidaRepository<UnidadMedida> unidadMedidaRepository,
-                                          IDialogCoordinator dialogCoordinator,
-                                          IUnidadMedidaService unidadMedidaService)
+        IDialogCoordinator dialogCoordinator, IUnidadMedidaService unidadMedidaService)
     {
         _unidadMedidaRepository = unidadMedidaRepository;
         _dialogCoordinator = dialogCoordinator;
@@ -40,7 +40,17 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
         EliminarUnidadCommand = new AsyncRelayCommand(EliminarUnidadAsync, CanEliminarUnidad);
     }
 
-    public string Title => "Unidades De Medida";
+    public IAsyncRelayCommand BuscarUnidadesCommand { get; }
+    public IAsyncRelayCommand CrearUnidadCommand { get; }
+
+    public string DuracionBusqueda
+    {
+        get => _duracionBusqueda;
+        private set => SetProperty(ref _duracionBusqueda, value);
+    }
+
+    public IAsyncRelayCommand EditarUnidadCommand { get; }
+    public IAsyncRelayCommand EliminarUnidadCommand { get; }
 
     public string Filtro
     {
@@ -52,6 +62,10 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
             OnPropertyChanged(nameof(NumeroUnidades));
         }
     }
+
+    public int NumeroUnidades => UnidadesMedidaView.Cast<object>().Count();
+
+    public string Title => "Unidades De Medida";
 
     public ObservableCollection<UnidadMedida> UnidadesMedida { get; }
 
@@ -66,19 +80,6 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
             RaiseGuards();
         }
     }
-
-    public int NumeroUnidades => UnidadesMedidaView.Cast<object>().Count();
-
-    public string DuracionBusqueda
-    {
-        get => _duracionBusqueda;
-        private set => SetProperty(ref _duracionBusqueda, value);
-    }
-
-    public IAsyncRelayCommand BuscarUnidadesCommand { get; }
-    public IAsyncRelayCommand CrearUnidadCommand { get; }
-    public IAsyncRelayCommand EditarUnidadCommand { get; }
-    public IAsyncRelayCommand EliminarUnidadCommand { get; }
 
     private async Task BuscarUnidadesAsync()
     {
@@ -111,6 +112,16 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
         }
     }
 
+    private bool CanEditarUnidad()
+    {
+        return UnidadMedidaSeleccionada is not null;
+    }
+
+    private bool CanEliminarUnidad()
+    {
+        return UnidadMedidaSeleccionada is not null;
+    }
+
     private async Task CrearUnidadAsync()
     {
         try
@@ -139,23 +150,15 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
         }
     }
 
-    private bool CanEditarUnidad()
-    {
-        return UnidadMedidaSeleccionada is not null;
-    }
-
     private async Task EliminarUnidadAsync()
     {
         try
         {
-            MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
-                "Eliminar Unidad De Medida",
-                "Esta seguro de querer eliminar la unidad de medida?",
-                MessageDialogStyle.AffirmativeAndNegative,
+            MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Eliminar Unidad De Medida",
+                "Esta seguro de querer eliminar la unidad de medida?", MessageDialogStyle.AffirmativeAndNegative,
                 new MetroDialogSettings { AffirmativeButtonText = "Si", NegativeButtonText = "Cancelar" });
 
-            if (messageDialogResult != MessageDialogResult.Affirmative)
-                return;
+            if (messageDialogResult != MessageDialogResult.Affirmative) return;
 
             _unidadMedidaService.Eliminar(UnidadMedidaSeleccionada.CIDUNIDAD);
 
@@ -171,11 +174,6 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
         }
     }
 
-    private bool CanEliminarUnidad()
-    {
-        return UnidadMedidaSeleccionada is not null;
-    }
-
     private void RaiseGuards()
     {
         BuscarUnidadesCommand.NotifyCanExecuteChanged();
@@ -186,8 +184,7 @@ public class ListadoUnidadesMedidaViewModel : ObservableRecipient
 
     private bool UnidadesMedidaView_Filter(object obj)
     {
-        if (!(obj is UnidadMedida unidadMedida))
-            throw new ArgumentNullException(nameof(obj));
+        if (!(obj is UnidadMedida unidadMedida)) throw new ArgumentNullException(nameof(obj));
 
         return unidadMedida.Contains(Filtro);
     }

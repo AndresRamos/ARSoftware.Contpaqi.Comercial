@@ -14,15 +14,14 @@ public partial class SeleccionarAgenteView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<SeleccionarAgenteViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (SeleccionarAgenteView)recipient;
-                    view.Close();
-                }
-            });
+                var view = (SeleccionarAgenteView)recipient;
+                view.Close();
+            }
+        });
     }
 
     public SeleccionarAgenteViewModel ViewModel => (SeleccionarAgenteViewModel)DataContext;

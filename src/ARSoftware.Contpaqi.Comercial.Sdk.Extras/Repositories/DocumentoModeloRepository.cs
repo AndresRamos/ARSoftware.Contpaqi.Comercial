@@ -1,14 +1,19 @@
 ﻿using System.Collections.Generic;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using System.Linq;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Repositories;
+
+/// <summary>
+///     Repositorio de SDK para consultar documentos modelo.
+/// </summary>
+public class DocumentoModeloRepository : IDocumentoModeloRepository<DocumentoModelo>
 {
-    public class DocumentoModeloRepository : IDocumentoModeloRepository<DocumentoModelo>
+    /// <inheritdoc />
+    public List<DocumentoModelo> TraerTodo()
     {
-        public IEnumerable<DocumentoModelo> TraerTodo()
-        {
-            return DocumentoModelo.ToList();
-        }
+        return DocumentoModeloEnum.List.Select(d => new DocumentoModelo { Id = d.Value, Descripcion = d.Name }).ToList();
     }
 }

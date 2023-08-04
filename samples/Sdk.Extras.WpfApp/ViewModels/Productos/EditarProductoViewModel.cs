@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MahApps.Metro.Controls.Dialogs;
 using Sdk.Extras.WpfApp.Messages;
+using Sdk.Extras.WpfApp.Models;
 using Sdk.Extras.WpfApp.Views.ValoresClasificacion;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Productos;
@@ -27,12 +28,10 @@ public class EditarProductoViewModel : ObservableRecipient
     private readonly IValorClasificacionRepository<ValorClasificacion> _valorClasificacionRepository;
     private Producto _producto;
 
-    public EditarProductoViewModel(IProductoRepository<Producto> productoRepository,
-                                   IProductoService productoService,
-                                   IDialogCoordinator dialogCoordinator,
-                                   IClasificacionRepository<Clasificacion> clasificacionRepository,
-                                   IUnidadMedidaRepository<UnidadMedida> unidadMedidaRepository,
-                                   IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
+    public EditarProductoViewModel(IProductoRepository<Producto> productoRepository, IProductoService productoService,
+        IDialogCoordinator dialogCoordinator, IClasificacionRepository<Clasificacion> clasificacionRepository,
+        IUnidadMedidaRepository<UnidadMedida> unidadMedidaRepository,
+        IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
     {
         _productoRepository = productoRepository;
         _productoService = productoService;
@@ -45,7 +44,10 @@ public class EditarProductoViewModel : ObservableRecipient
         BuscarValorClasificacionCommand = new AsyncRelayCommand<string>(BuscarValorClasificacionAsync);
     }
 
-    public string Title => "Editar Producto";
+    public IRelayCommand<string> BuscarValorClasificacionCommand { get; }
+    public IRelayCommand CancelarCommand { get; }
+
+    public IAsyncRelayCommand GuardarCommand { get; }
 
     public Producto Producto
     {
@@ -59,9 +61,7 @@ public class EditarProductoViewModel : ObservableRecipient
 
     public IEnumerable<TipoProducto> TiposProducto { get; } = Enum.GetValues<TipoProducto>().ToList();
 
-    public IAsyncRelayCommand GuardarCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
-    public IRelayCommand<string> BuscarValorClasificacionCommand { get; }
+    public string Title => "Editar Producto";
 
     private async Task BuscarValorClasificacionAsync(string propertyName)
     {
@@ -71,57 +71,45 @@ public class EditarProductoViewModel : ObservableRecipient
             switch (propertyName)
             {
                 case nameof(Producto.ValorClasificacion1):
-                    window.ViewModel.Inicializar(_clasificacionRepository
-                        .BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Uno)
-                        .Valores);
+                    window.ViewModel.Inicializar(
+                        _clasificacionRepository.BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Uno)!.Valores);
                     window.ShowDialog();
-                    if (window.ViewModel.SeleccionoValor)
-                        Producto.ValorClasificacion1 = window.ViewModel.ValorSeleccionado;
+                    if (window.ViewModel.SeleccionoValor) Producto.ValorClasificacion1 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(Producto.ValorClasificacion2):
-                    window.ViewModel.Inicializar(_clasificacionRepository
-                        .BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Dos)
-                        .Valores);
+                    window.ViewModel.Inicializar(
+                        _clasificacionRepository.BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Dos)!.Valores);
                     window.ShowDialog();
-                    if (window.ViewModel.SeleccionoValor)
-                        Producto.ValorClasificacion2 = window.ViewModel.ValorSeleccionado;
+                    if (window.ViewModel.SeleccionoValor) Producto.ValorClasificacion2 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(Producto.ValorClasificacion3):
-                    window.ViewModel.Inicializar(_clasificacionRepository
-                        .BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Tres)
-                        .Valores);
+                    window.ViewModel.Inicializar(
+                        _clasificacionRepository.BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Tres)!.Valores);
                     window.ShowDialog();
-                    if (window.ViewModel.SeleccionoValor)
-                        Producto.ValorClasificacion3 = window.ViewModel.ValorSeleccionado;
+                    if (window.ViewModel.SeleccionoValor) Producto.ValorClasificacion3 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(Producto.ValorClasificacion4):
-                    window.ViewModel.Inicializar(_clasificacionRepository
-                        .BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Cuatro)
-                        .Valores);
+                    window.ViewModel.Inicializar(
+                        _clasificacionRepository.BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Cuatro)!.Valores);
                     window.ShowDialog();
-                    if (window.ViewModel.SeleccionoValor)
-                        Producto.ValorClasificacion4 = window.ViewModel.ValorSeleccionado;
+                    if (window.ViewModel.SeleccionoValor) Producto.ValorClasificacion4 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(Producto.ValorClasificacion5):
-                    window.ViewModel.Inicializar(_clasificacionRepository
-                        .BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Cinco)
-                        .Valores);
+                    window.ViewModel.Inicializar(
+                        _clasificacionRepository.BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Cinco)!.Valores);
                     window.ShowDialog();
-                    if (window.ViewModel.SeleccionoValor)
-                        Producto.ValorClasificacion5 = window.ViewModel.ValorSeleccionado;
+                    if (window.ViewModel.SeleccionoValor) Producto.ValorClasificacion5 = window.ViewModel.ValorSeleccionado;
 
                     break;
                 case nameof(Producto.ValorClasificacion6):
-                    window.ViewModel.Inicializar(_clasificacionRepository
-                        .BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Seis)
-                        .Valores);
+                    window.ViewModel.Inicializar(
+                        _clasificacionRepository.BuscarPorTipoYNumero(TipoClasificacion.Producto, NumeroClasificacion.Seis)!.Valores);
                     window.ShowDialog();
-                    if (window.ViewModel.SeleccionoValor)
-                        Producto.ValorClasificacion6 = window.ViewModel.ValorSeleccionado;
+                    if (window.ViewModel.SeleccionoValor) Producto.ValorClasificacion6 = window.ViewModel.ValorSeleccionado;
 
                     break;
             }
@@ -165,8 +153,7 @@ public class EditarProductoViewModel : ObservableRecipient
         try
         {
             MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
-                "Usar funciones de Alto Nivel o de Bajo Nivel?",
-                "Usar funciones de Alto Nivel o de Bajo Nivel?",
+                "Usar funciones de Alto Nivel o de Bajo Nivel?", "Usar funciones de Alto Nivel o de Bajo Nivel?",
                 MessageDialogStyle.AffirmativeAndNegative,
                 new MetroDialogSettings { AffirmativeButtonText = "Alto Nivel", NegativeButtonText = "Bajo Nivel" });
 

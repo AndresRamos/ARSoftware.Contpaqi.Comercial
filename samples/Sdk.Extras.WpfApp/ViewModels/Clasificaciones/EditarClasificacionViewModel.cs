@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MahApps.Metro.Controls.Dialogs;
 using Sdk.Extras.WpfApp.Messages;
+using Sdk.Extras.WpfApp.Models;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Clasificaciones;
 
@@ -21,8 +22,7 @@ public class EditarClasificacionViewModel : ObservableRecipient
     private Clasificacion _clasificacion;
 
     public EditarClasificacionViewModel(IClasificacionRepository<Clasificacion> clasificacionRepository,
-                                        IClasificacionService clasificacionService,
-                                        IDialogCoordinator dialogCoordinator)
+        IClasificacionService clasificacionService, IDialogCoordinator dialogCoordinator)
     {
         _clasificacionRepository = clasificacionRepository;
         _clasificacionService = clasificacionService;
@@ -32,7 +32,7 @@ public class EditarClasificacionViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(CerrarVista);
     }
 
-    public string Title => "Editar Clasificacion";
+    public IRelayCommand CancelarCommand { get; }
 
     public Clasificacion Clasificacion
     {
@@ -41,7 +41,8 @@ public class EditarClasificacionViewModel : ObservableRecipient
     }
 
     public IAsyncRelayCommand GuardarCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
+
+    public string Title => "Editar Clasificacion";
 
     private void CargarClasificacion(int idClasificacion)
     {

@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Factories;
 
-public class ContpaqiComercialSqlConnectionStringFactory
+public static class ContpaqiComercialSqlConnectionStringFactory
 {
     public static string CreateContpaqiComercialGeneralesConnectionString(string contpaqiConnectionString)
     {

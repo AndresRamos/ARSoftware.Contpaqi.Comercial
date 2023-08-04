@@ -5,11 +5,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
+using Sdk.Extras.WpfApp.Models;
 using Sdk.Extras.WpfApp.Views.Agentes;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Agentes;
@@ -35,7 +35,30 @@ public class ListadoAgentesViewModel : ObservableRecipient
         EditarAgenteCommand = new AsyncRelayCommand(EditarAgenteAsync, CanEditarAgenteAsync);
     }
 
-    public string Title => "Agentes";
+    public ObservableCollection<Agente> Agentes { get; }
+
+    public Agente AgenteSeleccionado
+    {
+        get => _agenteSeleccionado;
+        set
+        {
+            SetProperty(ref _agenteSeleccionado, value);
+            RaiseGuards();
+        }
+    }
+
+    public ICollectionView AgentesView { get; }
+
+    public IAsyncRelayCommand BuscarAgentesCommand { get; }
+    public IAsyncRelayCommand CrearAgenteCommand { get; }
+
+    public string DuracionBusqueda
+    {
+        get => _duracionBusqueda;
+        private set => SetProperty(ref _duracionBusqueda, value);
+    }
+
+    public IAsyncRelayCommand EditarAgenteCommand { get; }
 
     public string Filtro
     {
@@ -48,31 +71,16 @@ public class ListadoAgentesViewModel : ObservableRecipient
         }
     }
 
-    public ObservableCollection<Agente> Agentes { get; }
-
-    public ICollectionView AgentesView { get; }
-
-    public Agente AgenteSeleccionado
-    {
-        get => _agenteSeleccionado;
-        set
-        {
-            SetProperty(ref _agenteSeleccionado, value);
-            RaiseGuards();
-        }
-    }
-
     public int NumeroAgentes => AgentesView.Cast<object>().Count();
 
-    public string DuracionBusqueda
-    {
-        get => _duracionBusqueda;
-        private set => SetProperty(ref _duracionBusqueda, value);
-    }
+    public string Title => "Agentes";
 
-    public IAsyncRelayCommand BuscarAgentesCommand { get; }
-    public IAsyncRelayCommand CrearAgenteCommand { get; }
-    public IAsyncRelayCommand EditarAgenteCommand { get; }
+    private bool AgentesView_Filter(object obj)
+    {
+        if (obj is not Agente agente) throw new ArgumentNullException(nameof(obj));
+
+        return agente.Contains(Filtro);
+    }
 
     private async Task BuscarAgentesAsync()
     {
@@ -105,6 +113,11 @@ public class ListadoAgentesViewModel : ObservableRecipient
         }
     }
 
+    private bool CanEditarAgenteAsync()
+    {
+        return AgenteSeleccionado != null;
+    }
+
     private async Task CrearAgenteAsync()
     {
         try
@@ -113,8 +126,7 @@ public class ListadoAgentesViewModel : ObservableRecipient
             window.ViewModel.Inicializar();
             window.ShowDialog();
 
-            await _dialogCoordinator.ShowMessageAsync(this,
-                "Volver A Buscar Catalogo",
+            await _dialogCoordinator.ShowMessageAsync(this, "Volver A Buscar Catalogo",
                 "Para ver los cambios reflejados volver a buscar el catalogo.");
         }
         catch (Exception e)
@@ -131,8 +143,7 @@ public class ListadoAgentesViewModel : ObservableRecipient
             window.ViewModel.Inicializar(AgenteSeleccionado.CIDAGENTE);
             window.ShowDialog();
 
-            await _dialogCoordinator.ShowMessageAsync(this,
-                "Volver A Buscar Catalogo",
+            await _dialogCoordinator.ShowMessageAsync(this, "Volver A Buscar Catalogo",
                 "Para ver los cambios reflejados volver a buscar el catalogo.");
         }
         catch (Exception e)
@@ -141,23 +152,10 @@ public class ListadoAgentesViewModel : ObservableRecipient
         }
     }
 
-    private bool CanEditarAgenteAsync()
-    {
-        return AgenteSeleccionado != null;
-    }
-
     private void RaiseGuards()
     {
         BuscarAgentesCommand.NotifyCanExecuteChanged();
         CrearAgenteCommand.NotifyCanExecuteChanged();
         EditarAgenteCommand.NotifyCanExecuteChanged();
-    }
-
-    private bool AgentesView_Filter(object obj)
-    {
-        if (obj is not Agente agente)
-            throw new ArgumentNullException(nameof(obj));
-
-        return agente.Contains(Filtro);
     }
 }

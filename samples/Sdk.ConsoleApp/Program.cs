@@ -23,7 +23,7 @@ try
 
     Console.WriteLine("Selecciona una empresa del listado. Ingresa el Id:");
     string empresaKey = Console.ReadLine();
-    int empresaId = int.Parse(empresaKey);
+    int empresaId = int.Parse(empresaKey ?? throw new InvalidOperationException());
     EmpresaSdk empresaSeleccionada = empresaList.First(e => e.Id == empresaId);
 
     Console.WriteLine($"Abriendo empresa {empresaSeleccionada.Nombre}.");

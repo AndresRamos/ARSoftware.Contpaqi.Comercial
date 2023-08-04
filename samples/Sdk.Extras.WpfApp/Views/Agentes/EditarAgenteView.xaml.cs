@@ -11,15 +11,14 @@ public partial class EditarAgenteView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<EditarAgenteViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (EditarAgenteView)recipient;
-                    view.Close();
-                }
-            });
+                var view = (EditarAgenteView)recipient;
+                view.Close();
+            }
+        });
     }
 
     public EditarAgenteViewModel ViewModel => (EditarAgenteViewModel)DataContext;

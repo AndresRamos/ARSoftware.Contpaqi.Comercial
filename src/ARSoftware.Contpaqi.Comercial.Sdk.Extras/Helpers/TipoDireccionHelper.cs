@@ -1,28 +1,26 @@
 ﻿using System;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
+
+public static class TipoDireccionHelper
 {
-    public static class TipoDireccionHelper
+    public static TipoDireccion ConvertFromSdkValue(string sdkTipo)
     {
-        public static TipoDireccion ConvertFromSdkValue(string sdkTipo)
-        {
-            bool result = Enum.TryParse(sdkTipo, true, out TipoDireccion tipoDireccion);
+        bool result = Enum.TryParse(sdkTipo, true, out TipoDireccion tipoDireccion);
 
-            if (result)
-                return tipoDireccion;
+        if (result) return tipoDireccion;
 
-            throw new InvalidOperationException($"El tipo {sdkTipo} no es un tipo de direccion valido.");
-        }
+        throw new InvalidOperationException($"El tipo {sdkTipo} no es un tipo de direccion valido.");
+    }
 
-        public static TipoDireccion ConvertFromSdkValue(int sdkTipo)
-        {
-            return ConvertFromSdkValue(sdkTipo.ToString());
-        }
+    public static TipoDireccion ConvertFromSdkValue(int sdkTipo)
+    {
+        return ConvertFromSdkValue(sdkTipo.ToString());
+    }
 
-        public static int ConvertToSdkValue(TipoDireccion tipo)
-        {
-            return (int)tipo;
-        }
+    public static int ConvertToSdkValue(TipoDireccion tipo)
+    {
+        return (int)tipo;
     }
 }

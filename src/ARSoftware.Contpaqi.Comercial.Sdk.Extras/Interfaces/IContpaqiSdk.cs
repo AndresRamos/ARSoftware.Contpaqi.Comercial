@@ -3,921 +3,688 @@ using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 
 // ReSharper disable InconsistentNaming
 
-namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces
+namespace ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+
+public interface IContpaqiSdk
 {
-    public interface IContpaqiSdk
-    {
-        string NombreLlaveRegistro { get; }
-
-        string NombrePaq { get; }
-
-        int fAbreEmpresa(string aDirectorioEmpresa);
-
-        int fActivarPrecioCompra(int aActivar);
-
-        int fActualizaClasificacion(int aClasificacionDe, int aNumClasificacion, string aNombreClasificacion);
-
-        int fActualizaCteProv(string aCodigoCteProv, ref tCteProv astCteProv);
-
-        int fActualizaDireccion(ref tDireccion astDireccion);
-        int fActualizaProducto(string aCodigoProducto, ref tProducto astProducto);
-
-        int fActualizaUnidad(string aNombreUnidad, ref tUnidad astUnidad);
-
-        int fActualizaValorClasif(string aCodigoValorClasif, ref tValorClasificacion astValorClasif);
-
-        int fAfectaDocto(ref tLlaveDoc aLlaveDocto, bool aAfecta);
-
-        int fAfectaDocto_Param(string aCodConcepto, string aSerie, double aFolio, bool aAfecta);
-
-        int fAfectaSerie(int aIdMovto, string aNumeroSerie);
-
-        int fAgregarRelacionCFDI(string aCodConcepto,
-                                 string aSerie,
-                                 string aFolio,
-                                 string aTipoRelacion,
-                                 string aConceptoRelacionar,
-                                 string aSerieRelacionar,
-                                 string aFolioRelacionar);
-
-        int fAgregarRelacionCFDI2(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aUUID);
-
-        int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv);
-
-        int fAltaCuentaBancariaCliente(ref int aIdCtaBancaria,
-                                       string aCuentaBancaria,
-                                       string aNombreCuenta,
-                                       string aNombreMoneda,
-                                       string aClaveBanco,
-                                       string aClabe,
-                                       string aRfcBanco,
-                                       string aNombreBancoExtranjero,
-                                       string aCodigoCliente);
-
-        int fAltaCuentaBancariaEmpresa(ref int aIdCtaBancaria,
-                                       string aCuentaBancaria,
-                                       string aNombreCuenta,
-                                       string aNombreMoneda,
-                                       string aClaveBanco,
-                                       string aClabe,
-                                       string aRfcBanco,
-                                       string aNombreBancoExtranjero);
-
-        int fAltaDireccion(ref int aIdDireccion, ref tDireccion astDireccion);
+    int fAbreEmpresa(string aDirectorioEmpresa);
 
-        int fAltaDoctoAjusteIESPSCteProv(string aCodigoClienteProveedor,
-                                         int aEsCliente,
-                                         string aFechaDocto,
-                                         int aIdMoneda,
-                                         double aTipoCambio,
-                                         double aImporteIVA,
-                                         double aTasaIVA,
-                                         double aImporteIESPS,
-                                         double aTasaIESPS,
-                                         int aIdFacturaBase,
-                                         string aMetodo,
-                                         string aLugar,
-                                         ref int aIdDoctoGenerado);
+    int fActivarPrecioCompra(int aActivar);
 
-        int fAltaDoctoAjusteIVAClienteProveedor(string aCodigoClienteProveedor,
-                                                int aEsCliente,
-                                                int aAbsorberAjusteIVA,
-                                                string aFechaDocto,
-                                                int aIdMoneda,
-                                                double aTipoCambio,
-                                                double aImporteIVA,
-                                                double aTasaIVA,
-                                                int aIdFacturaBase,
-                                                string aMetodo,
-                                                string aLugar,
-                                                ref int aIdDoctoGenerado);
+    int fActualizaClasificacion(int aClasificacionDe, int aNumClasificacion, string aNombreClasificacion);
 
-        int fAltaDocumento(ref int aIdDocumento, ref tDocumento aDocumento);
+    int fActualizaCteProv(string aCodigoCteProv, ref tCteProv astCteProv);
 
-        int fAltaDocumentoCargoAbono(ref tDocumento aDocumento);
+    int fActualizaDireccion(ref tDireccion astDireccion);
 
-        int fAltaDocumentoCargoAbonoExtras(ref tDocumento aDocumento,
-                                           string aTextoExtra1,
-                                           string aTextoExtra2,
-                                           string aTextoExtra3,
-                                           string aFechaExtra,
-                                           double aImporteExtra1,
-                                           double aImporteExtra2,
-                                           double aImporteExtra3,
-                                           double aImporteExtra4);
+    int fActualizaProducto(string aCodigoProducto, ref tProducto astProducto);
 
-        int fAltaMovimiento(int aIdDocumento, ref int aIdMovimiento, ref tMovimiento astMovimiento);
+    int fActualizaUnidad(string aNombreUnidad, ref tUnidad astUnidad);
 
-        int fAltaMovimientoCaracteristicas(int aIdMovimiento, ref int aIdMovtoCaracteristicas, ref tCaracteristicas aCaracteristicas);
+    int fActualizaValorClasif(string aCodigoValorClasif, ref tValorClasificacion astValorClasif);
 
-        int fAltaMovimientoCaracteristicas_Param(string aIdMovimiento,
-                                                 string aIdMovtoCaracteristicas,
-                                                 string aUnidades,
-                                                 string aValorCaracteristica1,
-                                                 string aValorCaracteristica2,
-                                                 string aValorCaracteristica3);
+    int fAfectaDocto(ref tLlaveDoc aLlaveDocto, bool aAfecta);
 
-        int fAltaMovimientoCDesct(int aIdDocumento, ref int aIdMovimiento, ref tMovimientoDesc astMovimiento);
+    int fAfectaDocto_Param(string aCodConcepto, string aSerie, double aFolio, bool aAfecta);
 
-        int fAltaMovimientoEx(ref int aIdMovimiento, ref tTipoProducto aTipoProducto);
+    int fAfectaSerie(int aIdMovto, string aNumeroSerie);
 
-        int fAltaMovimientoSeriesCapas(int aIdMovimiento, ref tSeriesCapas aSeriesCapas);
+    int fAgregarRelacionCFDI(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aConceptoRelacionar,
+        string aSerieRelacionar, string aFolioRelacionar);
 
-        int fAltaMovimientoSeriesCapas_Param(string aIdMovimiento,
-                                             string aUnidades,
-                                             string aTipoCambio,
-                                             string aSeries,
-                                             string aPedimento,
-                                             string aAgencia,
-                                             string aFechaPedimento,
-                                             string aNumeroLote,
-                                             string aFechaFabricacion,
-                                             string aFechaCaducidad);
+    int fAgregarRelacionCFDI2(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, string aUUID);
 
-        int fAltaMovtoCaracteristicasUnidades(int aIdMovimiento,
-                                              ref int aIdMovtoCaracteristicas,
-                                              ref tCaracteristicas aCaracteristicasUnidades);
+    int fAltaCteProv(ref int aIdCteProv, ref tCteProv astCteProv);
 
-        int fAltaMovtoCaracteristicasUnidades_Param(string aIdMovimiento,
-                                                    string aIdMovtoCaracteristicas,
-                                                    string aUnidad,
-                                                    string aUnidades,
-                                                    string aUnidadesNC,
-                                                    string aValorCaracteristica1,
-                                                    string aValorCaracteristica2,
-                                                    string aValorCaracteristica3);
+    int fAltaCuentaBancariaCliente(ref int aIdCtaBancaria, string aCuentaBancaria, string aNombreCuenta, string aNombreMoneda,
+        string aClaveBanco, string aClabe, string aRfcBanco, string aNombreBancoExtranjero, string aCodigoCliente);
 
-        int fAltaProducto(ref int aIdProducto, ref tProducto astProducto);
+    int fAltaCuentaBancariaEmpresa(ref int aIdCtaBancaria, string aCuentaBancaria, string aNombreCuenta, string aNombreMoneda,
+        string aClaveBanco, string aClabe, string aRfcBanco, string aNombreBancoExtranjero);
 
-        int fAltaUnidad(ref int aIdUnidad, ref tUnidad astUnidad);
+    int fAltaDireccion(ref int aIdDireccion, ref tDireccion astDireccion);
 
-        int fAltaValorClasif(ref int aIdValorClasif, ref tValorClasificacion astValorClasif);
+    int fAltaDoctoAjusteIESPSCteProv(string aCodigoClienteProveedor, int aEsCliente, string aFechaDocto, int aIdMoneda, double aTipoCambio,
+        double aImporteIVA, double aTasaIVA, double aImporteIESPS, double aTasaIESPS, int aIdFacturaBase, string aMetodo, string aLugar,
+        ref int aIdDoctoGenerado);
 
-        int fBorraCteProv();
+    int fAltaDoctoAjusteIVAClienteProveedor(string aCodigoClienteProveedor, int aEsCliente, int aAbsorberAjusteIVA, string aFechaDocto,
+        int aIdMoneda, double aTipoCambio, double aImporteIVA, double aTasaIVA, int aIdFacturaBase, string aMetodo, string aLugar,
+        ref int aIdDoctoGenerado);
 
-        int fBorraCuentaBancariaCliente(string aCuentaBancaria, string aCodigoCliente);
+    int fAltaDocumento(ref int aIdDocumento, ref tDocumento aDocumento);
 
-        int fBorraCuentaBancariaEmpresa(string aCuentaBancaria);
+    int fAltaDocumentoCargoAbono(ref tDocumento aDocumento);
 
-        int fBorraDocumento();
+    int fAltaDocumentoCargoAbonoExtras(ref tDocumento aDocumento, string aTextoExtra1, string aTextoExtra2, string aTextoExtra3,
+        string aFechaExtra, double aImporteExtra1, double aImporteExtra2, double aImporteExtra3, double aImporteExtra4);
 
-        int fBorraDocumento_CW();
+    int fAltaMovimiento(int aIdDocumento, ref int aIdMovimiento, ref tMovimiento astMovimiento);
 
-        int fBorraMovimiento(int aIdDocumento, int aIdMovimiento);
+    int fAltaMovimientoCaracteristicas(int aIdMovimiento, ref int aIdMovtoCaracteristicas, ref tCaracteristicas aCaracteristicas);
 
-        int fBorraProducto();
+    int fAltaMovimientoCaracteristicas_Param(string aIdMovimiento, string aIdMovtoCaracteristicas, string aUnidades,
+        string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3);
 
-        int fBorrarAsociacion(tLlaveDoc aDoctoaPagar, tLlaveDoc aDoctoPago);
+    int fAltaMovimientoCDesct(int aIdDocumento, ref int aIdMovimiento, ref tMovimientoDesc astMovimiento);
 
-        int fBorrarAsociacion_Param(string aCodConcepto_Pagar,
-                                    string aSerie_Pagar,
-                                    double aFolio_Pagar,
-                                    string aCodConcepto_Pago,
-                                    string aSerie_Pago,
-                                    double aFolio_Pago);
+    int fAltaMovimientoEx(ref int aIdMovimiento, ref tTipoProducto aTipoProducto);
 
-        int fBorraUnidad();
+    int fAltaMovimientoSeriesCapas(int aIdMovimiento, ref tSeriesCapas aSeriesCapas);
 
-        int fBorraValorClasif();
+    int fAltaMovimientoSeriesCapas_Param(string aIdMovimiento, string aUnidades, string aTipoCambio, string aSeries, string aPedimento,
+        string aAgencia, string aFechaPedimento, string aNumeroLote, string aFechaFabricacion, string aFechaCaducidad);
 
-        int fBuscaAgente(string aCodigoAgente);
+    int fAltaMovtoCaracteristicasUnidades(int aIdMovimiento, ref int aIdMovtoCaracteristicas,
+        ref tCaracteristicas aCaracteristicasUnidades);
 
-        int fBuscaAlmacen(string aCodigoAlmacen);
+    int fAltaMovtoCaracteristicasUnidades_Param(string aIdMovimiento, string aIdMovtoCaracteristicas, string aUnidad, string aUnidades,
+        string aUnidadesNC, string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3);
 
-        int fBuscaClasificacion(int aClasificacionDe, int aNumClasificacion);
+    int fAltaProducto(ref int aIdProducto, ref tProducto astProducto);
 
-        int fBuscaConceptoDocto(string aCodConcepto);
+    int fAltaUnidad(ref int aIdUnidad, ref tUnidad astUnidad);
 
-        int fBuscaCteProv(string aCodCteProv);
+    int fAltaValorClasif(ref int aIdValorClasif, ref tValorClasificacion astValorClasif);
 
-        int fBuscaDireccionCteProv(string aCodCteProv, byte aTipoDireccion);
+    int fBorraCteProv();
 
-        int fBuscaDireccionDocumento(int aIdDocumento, byte aTipoDireccion);
+    int fBorraCuentaBancariaCliente(string aCuentaBancaria, string aCodigoCliente);
 
-        int fBuscaDireccionEmpresa();
+    int fBorraCuentaBancariaEmpresa(string aCuentaBancaria);
 
-        int fBuscaDocumento(ref tLlaveDoc aLlaveDocto);
+    int fBorraDocumento();
 
-        int fBuscaIdAgente(int aIdAgente);
+    int fBorraDocumento_CW();
 
-        int fBuscaIdAlmacen(int aIdAlmacen);
+    int fBorraMovimiento(int aIdDocumento, int aIdMovimiento);
 
-        int fBuscaIdClasificacion(int aIdClasificacion);
+    int fBorraProducto();
 
-        int fBuscaIdConceptoDocto(int aIdConcepto);
+    int fBorrarAsociacion(tLlaveDoc aDoctoaPagar, tLlaveDoc aDoctoPago);
 
-        int fBuscaIdCteProv(int aIdCteProv);
+    int fBorrarAsociacion_Param(string aCodConcepto_Pagar, string aSerie_Pagar, double aFolio_Pagar, string aCodConcepto_Pago,
+        string aSerie_Pago, double aFolio_Pago);
 
-        int fBuscaIdProducto(int aIdProducto);
+    int fBorraUnidad();
 
-        int fBuscaIdUnidad(int aIdUnidad);
+    int fBorraValorClasif();
 
-        int fBuscaIdValorClasif(int aIdValorClasif);
+    int fBuscaAgente(string aCodigoAgente);
 
-        int fBuscaProducto(string aCodProducto);
+    int fBuscaAlmacen(string aCodigoAlmacen);
 
-        int fBuscarDocumento(string aCodConcepto, string aSerie, string aFolio);
+    int fBuscaClasificacion(int aClasificacionDe, int aNumClasificacion);
 
-        int fBuscarIdDocumento(int aIdDocumento);
+    int fBuscaConceptoDocto(string aCodConcepto);
 
-        int fBuscarIdMovimiento(int aIdMovimiento);
+    int fBuscaCteProv(string aCodCteProv);
 
-        int fBuscaUnidad(string aNombreUnidad);
+    int fBuscaDireccionCteProv(string aCodCteProv, byte aTipoDireccion);
 
-        int fBuscaValorClasif(int aClasificacionDe, int aNumClasificacion, string aCodValorClasif);
+    int fBuscaDireccionDocumento(int aIdDocumento, byte aTipoDireccion);
 
-        int fCalculaMovtoSerieCapa(int aIdMovimiento);
+    int fBuscaDireccionEmpresa();
 
-        int fCancelaCambiosMovimiento();
+    int fBuscaDocumento(ref tLlaveDoc aLlaveDocto);
 
-        int fCancelaComplementoPagoUUID(string aUUID, string aIdDConcepto, string aPass);
+    int fBuscaIdAgente(int aIdAgente);
 
-        int fCancelaDoctoInfo(string aPass);
+    int fBuscaIdAlmacen(int aIdAlmacen);
 
-        int fCancelaDocumento();
+    int fBuscaIdClasificacion(int aIdClasificacion);
 
-        int fCancelaDocumento_CW();
+    int fBuscaIdConceptoDocto(int aIdConcepto);
 
-        int fCancelaDocumentoAdministrativamente();
+    int fBuscaIdCteProv(int aIdCteProv);
 
-        int fCancelaDocumentoConMotivo(string aMotivoCancelacion, string aUUIDRemplaza);
+    int fBuscaIdProducto(int aIdProducto);
 
-        int fCancelaFiltroDocumento();
+    int fBuscaIdUnidad(int aIdUnidad);
 
-        int fCancelaFiltroMovimiento();
+    int fBuscaIdValorClasif(int aIdValorClasif);
 
-        int fCancelaNominaUUID(string aUUID, string aIdDConcepto, string aPass);
+    int fBuscaProducto(string aCodProducto);
 
-        int fCancelarModificacionAgente();
+    int fBuscarDocumento(string aCodConcepto, string aSerie, string aFolio);
 
-        int fCancelarModificacionAlmacen();
+    int fBuscarIdDocumento(int aIdDocumento);
 
-        int fCancelarModificacionClasificacion();
+    int fBuscarIdMovimiento(int aIdMovimiento);
 
-        int fCancelarModificacionCteProv();
+    int fBuscaUnidad(string aNombreUnidad);
 
-        int fCancelarModificacionDireccion();
+    int fBuscaValorClasif(int aClasificacionDe, int aNumClasificacion, string aCodValorClasif);
 
-        int fCancelarModificacionDocumento();
+    int fCalculaMovtoSerieCapa(int aIdMovimiento);
 
-        int fCancelarModificacionProducto();
+    int fCancelaCambiosMovimiento();
 
-        int fCancelarModificacionUnidad();
+    int fCancelaComplementoPagoUUID(string aUUID, string aIdDConcepto, string aPass);
 
-        int fCancelarModificacionValorClasif();
+    int fCancelaDoctoInfo(string aPass);
 
-        int fCancelaUUID(string aUUID, string aIdDConcepto, string aPass);
+    int fCancelaDocumento();
 
-        int fCancelaUUID40(string aUUID,
-                           string aMotivoCancelacion,
-                           string aUUIDReemplaza,
-                           string RFCReceptor,
-                           double aTotal,
-                           string aIdDConcepto,
-                           string aPass,
-                           ref int aEstatusCancelacion);
+    int fCancelaDocumento_CW();
 
-        void fCierraEmpresa();
+    int fCancelaDocumentoAdministrativamente();
 
-        int fCuentaBancariaEmpresaDoctos(string aCuentaBancaria);
+    int fCancelaDocumentoConMotivo(string aMotivoCancelacion, string aUUIDRemplaza);
 
-        int fDesbloqueaDocumento();
+    int fCancelaFiltroDocumento();
 
-        int fDocumentoBloqueado(ref int aImpreso);
+    int fCancelaFiltroMovimiento();
 
-        int fDocumentoDevuelto(ref int aDevuelto);
+    int fCancelaNominaUUID(string aUUID, string aIdDConcepto, string aPass);
 
-        int fDocumentoImpreso(ref bool aImpreso);
+    int fCancelarModificacionAgente();
 
-        int fDocumentoUUID(StringBuilder aCodConcepto, StringBuilder aSerie, double aFolio, StringBuilder atPtrCFDIUUID);
+    int fCancelarModificacionAlmacen();
 
-        int fEditaAgente();
+    int fCancelarModificacionClasificacion();
 
-        int fEditaAlmacen();
+    int fCancelarModificacionCteProv();
 
-        int fEditaClasificacion();
+    int fCancelarModificacionDireccion();
 
-        int fEditaConceptoDocto();
+    int fCancelarModificacionDocumento();
 
-        int fEditaCteProv();
+    int fCancelarModificacionProducto();
 
-        int fEditaDireccion();
+    int fCancelarModificacionUnidad();
 
-        int fEditaMovtoContable();
+    int fCancelarModificacionValorClasif();
 
-        int fEditaParametros();
+    int fCancelaUUID(string aUUID, string aIdDConcepto, string aPass);
 
-        int fEditaProducto();
+    int fCancelaUUID40(string aUUID, string aMotivoCancelacion, string aUUIDReemplaza, string RFCReceptor, double aTotal,
+        string aIdDConcepto, string aPass, ref int aEstatusCancelacion);
 
-        int fEditarDocumento();
+    void fCierraEmpresa();
 
-        int fEditarDocumentoCheqpaq();
+    int fCuentaBancariaEmpresaDoctos(string aCuentaBancaria);
 
-        int fEditarMovimiento();
+    int fDesbloqueaDocumento();
 
-        int fEditaUnidad();
+    int fDocumentoBloqueado(ref int aImpreso);
 
-        int fEditaValorClasif();
+    int fDocumentoDevuelto(ref int aDevuelto);
 
-        int fEliminarCteProv(string aCodigoCteProv);
+    int fDocumentoImpreso(ref bool aImpreso);
 
-        int fEliminarProducto(string aCodigoProducto);
+    int fDocumentoUUID(StringBuilder aCodConcepto, StringBuilder aSerie, double aFolio, StringBuilder atPtrCFDIUUID);
 
-        int fEliminarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio);
+    int fEditaAgente();
 
-        int fEliminarUnidad(string aNombreUnidad);
+    int fEditaAlmacen();
 
-        int fEliminarValorClasif(int aClasificacionDe, int aNumClasificacion, string aCodigoValorClasif);
+    int fEditaClasificacion();
 
-        int fEmitirDocumento(string aCodConcepto, string aSerie, double aFolio, string aPassword, string aArchivoAdicional);
+    int fEditaConceptoDocto();
 
-        int fEntregEnDiscoXML(string aCodConcepto, string aSerie, double aFolio, int aFormato, string aFormatoAmig);
+    int fEditaCteProv();
 
-        void fError(int aNumError, StringBuilder aMensaje, int aLen);
+    int fEditaDireccion();
 
-        int fGetCantidadParcialidades(StringBuilder atPtrPassword, StringBuilder aCantidadParcialidades);
+    int fEditaMovtoContable();
 
-        int fGetDatosCFDI(StringBuilder aSerieCertEmisor,
-                          StringBuilder aFolioFiscalUUID,
-                          StringBuilder aSerieCertSAT,
-                          StringBuilder aFechaHora,
-                          StringBuilder aSelloDigCFDI,
-                          StringBuilder aSelloSAAT,
-                          StringBuilder aCadOrigComplSAT,
-                          StringBuilder aRegimen,
-                          StringBuilder aLugarExpedicion,
-                          StringBuilder aMoneda,
-                          StringBuilder aFolioFiscalOrig,
-                          StringBuilder aSerieFolioFiscalOrig,
-                          StringBuilder aFechaFolioFiscalOrig,
-                          StringBuilder aMontoFolioFiscalOrig);
+    int fEditaParametros();
 
-        int fGetNumParcialidades(StringBuilder atPtrPassword, StringBuilder aNumParcialidades);
+    int fEditaProducto();
 
-        int fGetSelloDigitalYCadena(StringBuilder atPtrPassword, StringBuilder atPtrSelloDigital, StringBuilder atPtrCadenaOriginal);
+    int fEditarDocumento();
 
-        int fGetSerieCertificado(StringBuilder atPtrPassword, StringBuilder aSerieCertificado);
+    int fEditarDocumentoCheqpaq();
 
-        int fGetTamSelloDigitalYCadena(StringBuilder atPtrPassword, ref int aEspSelloDig, ref int aEspCadOrig);
+    int fEditarMovimiento();
 
-        int fGuardaAgente();
+    int fEditaUnidad();
 
-        int fGuardaAlmacen();
+    int fEditaValorClasif();
 
-        int fGuardaClasificacion();
+    int fEliminarCteProv(string aCodigoCteProv);
 
-        int fGuardaConceptoDocto();
+    int fEliminarProducto(string aCodigoProducto);
 
-        int fGuardaCteProv();
+    int fEliminarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio);
 
-        int fGuardaDireccion();
+    int fEliminarUnidad(string aNombreUnidad);
 
-        int fGuardaDocumento();
+    int fEliminarValorClasif(int aClasificacionDe, int aNumClasificacion, string aCodigoValorClasif);
 
-        int fGuardaMovimiento();
+    int fEmitirDocumento(string aCodConcepto, string aSerie, double aFolio, string aPassword, string aArchivoAdicional);
 
-        int fGuardaMovtoContable();
+    int fEntregEnDiscoXML(string aCodConcepto, string aSerie, double aFolio, int aFormato, string aFormatoAmig);
 
-        int fGuardaParametros();
+    void fError(int aNumError, StringBuilder aMensaje, int aLen);
 
-        int fGuardaProducto();
+    int fGetCantidadParcialidades(StringBuilder atPtrPassword, StringBuilder aCantidadParcialidades);
 
-        int fGuardaUnidad();
+    int fGetDatosCFDI(StringBuilder aSerieCertEmisor, StringBuilder aFolioFiscalUUID, StringBuilder aSerieCertSAT, StringBuilder aFechaHora,
+        StringBuilder aSelloDigCFDI, StringBuilder aSelloSAAT, StringBuilder aCadOrigComplSAT, StringBuilder aRegimen,
+        StringBuilder aLugarExpedicion, StringBuilder aMoneda, StringBuilder aFolioFiscalOrig, StringBuilder aSerieFolioFiscalOrig,
+        StringBuilder aFechaFolioFiscalOrig, StringBuilder aMontoFolioFiscalOrig);
 
-        int fGuardaValorClasif();
+    int fGetNumParcialidades(StringBuilder atPtrPassword, StringBuilder aNumParcialidades);
 
-        int fInformacionCliente(StringBuilder aCodigo,
-                                ref int aPermiteCredito,
-                                ref double aLimiteCredito,
-                                ref int aLimiteDoctosVencidos,
-                                ref int aPermiteExcederCredito,
-                                StringBuilder aFecha,
-                                ref double aSaldo,
-                                ref double aSaldoPendiente,
-                                ref int aDoctosVencidos);
+    int fGetSelloDigitalYCadena(StringBuilder atPtrPassword, StringBuilder atPtrSelloDigital, StringBuilder atPtrCadenaOriginal);
 
-        int fInicializaLicenseInfo(byte aSistema);
+    int fGetSerieCertificado(StringBuilder atPtrPassword, StringBuilder aSerieCertificado);
 
-        int fInicializaSDK();
+    int fGetTamSelloDigitalYCadena(StringBuilder atPtrPassword, ref int aEspSelloDig, ref int aEspCadOrig);
 
-        void fInicioSesionSDK(string aUsuario, string aContrasenia);
+    int fGuardaAgente();
 
-        void fInicioSesionSDKCONTPAQi(string aUsuario, string aContrasenia);
+    int fGuardaAlmacen();
 
-        int fInsertaAgente();
+    int fGuardaClasificacion();
 
-        int fInsertaAlmacen();
+    int fGuardaConceptoDocto();
 
-        int fInsertaCteProv();
+    int fGuardaCteProv();
 
-        int fInsertaDatoAddendaDocto(int aIdAddenda, int aIdCatalogo, int aNumCampo, string aDato);
+    int fGuardaDireccion();
 
-        int fInsertaDatoAddendaMovto(int aIdAddenda, int aIdCatalogo, int aNumCampo, string aDato);
+    int fGuardaDocumento();
 
-        int fInsertaDatoCompEducativo(int aIdServicio, int aNumCampo, string aDato);
+    int fGuardaMovimiento();
 
-        int fInsertaDireccion();
+    int fGuardaMovtoContable();
 
-        int fInsertaProducto();
+    int fGuardaParametros();
 
-        int fInsertarDocumento();
+    int fGuardaProducto();
 
-        int fInsertarMovimiento();
+    int fGuardaUnidad();
 
-        int fInsertaUnidad();
+    int fGuardaValorClasif();
 
-        int fInsertaValorClasif();
+    int fInformacionCliente(StringBuilder aCodigo, ref int aPermiteCredito, ref double aLimiteCredito, ref int aLimiteDoctosVencidos,
+        ref int aPermiteExcederCredito, StringBuilder aFecha, ref double aSaldo, ref double aSaldoPendiente, ref int aDoctosVencidos);
 
-        int fLeeDatoAgente(string aCampo, StringBuilder aValor, int aLen);
+    int fInicializaLicenseInfo(byte aSistema);
 
-        int fLeeDatoAlmacen(string aCampo, StringBuilder aValor, int aLen);
+    int fInicializaSDK();
 
-        int fLeeDatoCFDI(StringBuilder aValor, int aDato);
+    void fInicioSesionSDK(string aUsuario, string aContrasenia);
 
-        int fLeeDatoClasificacion(string aCampo, StringBuilder aValor, int aLen);
+    void fInicioSesionSDKCONTPAQi(string aUsuario, string aContrasenia);
 
-        int fLeeDatoConceptoDocto(string aCampo, StringBuilder aValor, int aLen);
+    int fInsertaAgente();
 
-        int fLeeDatoCteProv(string aCampo, StringBuilder aValor, int aLen);
+    int fInsertaAlmacen();
 
-        int fLeeDatoDireccion(string aCampo, StringBuilder aValor, int aLen);
+    int fInsertaCteProv();
 
-        int fLeeDatoDocumento(string aCampo, StringBuilder aValor, int aLongitud);
+    int fInsertaDatoAddendaDocto(int aIdAddenda, int aIdCatalogo, int aNumCampo, string aDato);
 
-        int fLeeDatoMovimiento(string aCampo, StringBuilder aValor, int aLen);
+    int fInsertaDatoAddendaMovto(int aIdAddenda, int aIdCatalogo, int aNumCampo, string aDato);
 
-        int fLeeDatoMovtoContable(string aCampo, StringBuilder aValor, int aLen);
+    int fInsertaDatoCompEducativo(int aIdServicio, int aNumCampo, string aDato);
 
-        int fLeeDatoParametros(string aCampo, StringBuilder aValor, int aLen);
+    int fInsertaDireccion();
 
-        int fLeeDatoProducto(string aCampo, StringBuilder aValor, int aLen);
+    int fInsertaProducto();
 
-        int fLeeDatoUnidad(string aCampo, StringBuilder aValor, int aLen);
+    int fInsertarDocumento();
 
-        int fLeeDatoValorClasif(string aCampo, StringBuilder aValor, int aLen);
+    int fInsertarMovimiento();
 
-        int fLlenaRegistroCteProv(ref tCteProv astCteProv, int aEsAlta);
+    int fInsertaUnidad();
 
-        int fLlenaRegistroDireccion(ref tDireccion astDireccion, int aEsAlta);
+    int fInsertaValorClasif();
 
-        int fLlenaRegistroProducto(ref tProducto astProducto, int aEsAlta);
+    int fLeeDatoAgente(string aCampo, StringBuilder aValor, int aLen);
 
-        int fLlenaRegistroUnidad(ref tUnidad astUnidad);
+    int fLeeDatoAlmacen(string aCampo, StringBuilder aValor, int aLen);
 
-        int fLlenaRegistroValorClasif(ref tValorClasificacion astValorClasif);
+    int fLeeDatoCFDI(StringBuilder aValor, int aDato);
 
-        int fModificaCostoEntrada(string aIdMovimiento, string aCostoEntrada);
+    int fLeeDatoClasificacion(string aCampo, StringBuilder aValor, int aLen);
 
-        int fModificaCuentaBancariaCliente(string aCuentaBancaria,
-                                           string aNombreCuenta,
-                                           string aNombreMoneda,
-                                           string aClaveBanco,
-                                           string aRfcBanco,
-                                           string aClabe,
-                                           string aNombreExtranjero,
-                                           string aCodigoCliente);
+    int fLeeDatoConceptoDocto(string aCampo, StringBuilder aValor, int aLen);
 
-        int fModificaCuentaBancariaEmpresa(string aCuentaBancaria,
-                                           string aNombreCuenta,
-                                           string aNombreMoneda,
-                                           string aClaveBanco,
-                                           string aRfcBanco,
-                                           string aClabe,
-                                           string aNombreExtranjero);
+    int fLeeDatoCteProv(string aCampo, StringBuilder aValor, int aLen);
 
-        int fObtenCeryKey(int aIdFirmarl, string aRutaKey, string aRutaCer);
+    int fLeeDatoDireccion(string aCampo, StringBuilder aValor, int aLen);
 
-        int fObtieneDatosCFDI(string atPtrPassword);
+    int fLeeDatoDocumento(string aCampo, StringBuilder aValor, int aLongitud);
 
-        int fObtieneLicencia(StringBuilder aCodAcvtiva, StringBuilder aCodSitio, StringBuilder aSerie, StringBuilder aTagVersion);
+    int fLeeDatoMovimiento(string aCampo, StringBuilder aValor, int aLen);
 
-        int fObtienePassProxy(StringBuilder aPassProxy);
+    int fLeeDatoMovtoContable(string aCampo, StringBuilder aValor, int aLen);
 
-        int fObtieneUnidadesPendientes(string aConceptoDocto, string aCodigoProducto, string aCodigoAlmacen, StringBuilder aUnidades);
+    int fLeeDatoParametros(string aCampo, StringBuilder aValor, int aLen);
 
-        int fObtieneUnidadesPendientesCarac(string aConceptoDocto,
-                                            string aCodigoProducto,
-                                            string aCodigoAlmacen,
-                                            string aValorCaracteristica1,
-                                            string aValorCaracteristica2,
-                                            string aValorCaracteristica3,
-                                            StringBuilder aUnidades);
+    int fLeeDatoProducto(string aCampo, StringBuilder aValor, int aLen);
 
-        int fPosAnteriorAgente();
+    int fLeeDatoUnidad(string aCampo, StringBuilder aValor, int aLen);
 
-        int fPosAnteriorAlmacen();
+    int fLeeDatoValorClasif(string aCampo, StringBuilder aValor, int aLen);
 
-        int fPosAnteriorClasificacion();
+    int fLlenaRegistroCteProv(ref tCteProv astCteProv, int aEsAlta);
 
-        int fPosAnteriorConceptoDocto();
+    int fLlenaRegistroDireccion(ref tDireccion astDireccion, int aEsAlta);
 
-        int fPosAnteriorCteProv();
+    int fLlenaRegistroProducto(ref tProducto astProducto, int aEsAlta);
 
-        int fPosAnteriorDireccion();
+    int fLlenaRegistroUnidad(ref tUnidad astUnidad);
 
-        int fPosAnteriorDocumento();
+    int fLlenaRegistroValorClasif(ref tValorClasificacion astValorClasif);
 
-        int fPosAnteriorMovimiento();
+    int fModificaCostoEntrada(string aIdMovimiento, string aCostoEntrada);
 
-        int fPosAnteriorProducto();
+    int fModificaCuentaBancariaCliente(string aCuentaBancaria, string aNombreCuenta, string aNombreMoneda, string aClaveBanco,
+        string aRfcBanco, string aClabe, string aNombreExtranjero, string aCodigoCliente);
 
-        int fPosAnteriorUnidad();
+    int fModificaCuentaBancariaEmpresa(string aCuentaBancaria, string aNombreCuenta, string aNombreMoneda, string aClaveBanco,
+        string aRfcBanco, string aClabe, string aNombreExtranjero);
 
-        int fPosAnteriorValorClasif();
+    int fObtenCeryKey(int aIdFirmarl, string aRutaKey, string aRutaCer);
 
-        int fPosBOF();
+    int fObtieneDatosCFDI(string atPtrPassword);
 
-        int fPosBOFAgente();
+    int fObtieneLicencia(StringBuilder aCodAcvtiva, StringBuilder aCodSitio, StringBuilder aSerie, StringBuilder aTagVersion);
 
-        int fPosBOFAlmacen();
+    int fObtienePassProxy(StringBuilder aPassProxy);
 
-        int fPosBOFClasificacion();
+    int fObtieneUnidadesPendientes(string aConceptoDocto, string aCodigoProducto, string aCodigoAlmacen, StringBuilder aUnidades);
 
-        int fPosBOFConceptoDocto();
+    int fObtieneUnidadesPendientesCarac(string aConceptoDocto, string aCodigoProducto, string aCodigoAlmacen, string aValorCaracteristica1,
+        string aValorCaracteristica2, string aValorCaracteristica3, StringBuilder aUnidades);
 
-        int fPosBOFCteProv();
+    int fPosAnteriorAgente();
 
-        int fPosBOFDireccion();
+    int fPosAnteriorAlmacen();
 
-        int fPosBOFProducto();
+    int fPosAnteriorClasificacion();
 
-        int fPosBOFUnidad();
+    int fPosAnteriorConceptoDocto();
 
-        int fPosBOFValorClasif();
+    int fPosAnteriorCteProv();
 
-        int fPosEOF();
+    int fPosAnteriorDireccion();
 
-        int fPosEOFAgente();
+    int fPosAnteriorDocumento();
 
-        int fPosEOFAlmacen();
+    int fPosAnteriorMovimiento();
 
-        int fPosEOFClasificacion();
+    int fPosAnteriorProducto();
 
-        int fPosEOFConceptoDocto();
+    int fPosAnteriorUnidad();
 
-        int fPosEOFCteProv();
+    int fPosAnteriorValorClasif();
 
-        int fPosEOFDireccion();
+    int fPosBOF();
 
-        int fPosEOFMovtoContable();
+    int fPosBOFAgente();
 
-        int fPosEOFProducto();
+    int fPosBOFAlmacen();
 
-        int fPosEOFUnidad();
+    int fPosBOFClasificacion();
 
-        int fPosEOFValorClasif();
+    int fPosBOFConceptoDocto();
 
-        int fPosMovimientoBOF();
+    int fPosBOFCteProv();
 
-        int fPosMovimientoEOF();
+    int fPosBOFDireccion();
 
-        int fPosPrimerAgente();
+    int fPosBOFProducto();
 
-        int fPosPrimerAlmacen();
+    int fPosBOFUnidad();
 
-        int fPosPrimerClasificacion();
+    int fPosBOFValorClasif();
 
-        int fPosPrimerConceptoDocto();
+    int fPosEOF();
 
-        int fPosPrimerCteProv();
+    int fPosEOFAgente();
 
-        int fPosPrimerDireccion();
+    int fPosEOFAlmacen();
 
-        int fPosPrimerDocumento();
+    int fPosEOFClasificacion();
 
-        int fPosPrimerEmpresa(ref int aIdEmpresa, StringBuilder aNombreEmpresa, StringBuilder aDirectorioEmpresa);
+    int fPosEOFConceptoDocto();
 
-        int fPosPrimerMovimiento();
+    int fPosEOFCteProv();
 
-        int fPosPrimerMovtoContable();
+    int fPosEOFDireccion();
 
-        int fPosPrimerProducto();
+    int fPosEOFMovtoContable();
 
-        int fPosPrimerUnidad();
+    int fPosEOFProducto();
 
-        int fPosPrimerValorClasif();
+    int fPosEOFUnidad();
 
-        int fPosSiguienteAgente();
+    int fPosEOFValorClasif();
 
-        int fPosSiguienteAlmacen();
+    int fPosMovimientoBOF();
 
-        int fPosSiguienteClasificacion();
+    int fPosMovimientoEOF();
 
-        int fPosSiguienteConceptoDocto();
+    int fPosPrimerAgente();
 
-        int fPosSiguienteCteProv();
+    int fPosPrimerAlmacen();
 
-        int fPosSiguienteDireccion();
+    int fPosPrimerClasificacion();
 
-        int fPosSiguienteDocumento();
+    int fPosPrimerConceptoDocto();
 
-        int fPosSiguienteEmpresa(ref int aIdEmpresa, StringBuilder aNombreEmpresa, StringBuilder aDirectorioEmpresa);
+    int fPosPrimerCteProv();
 
-        int fPosSiguienteMovimiento();
+    int fPosPrimerDireccion();
 
-        int fPosSiguienteMovtoContable();
+    int fPosPrimerDocumento();
 
-        int fPosSiguienteProducto();
+    int fPosPrimerEmpresa(ref int aIdEmpresa, StringBuilder aNombreEmpresa, StringBuilder aDirectorioEmpresa);
 
-        int fPosSiguienteUnidad();
+    int fPosPrimerMovimiento();
 
-        int fPosSiguienteValorClasif();
+    int fPosPrimerMovtoContable();
 
-        int fPosUltimaConceptoDocto();
+    int fPosPrimerProducto();
 
-        int fPosUltimaDireccion();
+    int fPosPrimerUnidad();
 
-        int fPosUltimoAgente();
+    int fPosPrimerValorClasif();
 
-        int fPosUltimoAlmacen();
+    int fPosSiguienteAgente();
 
-        int fPosUltimoClasificacion();
+    int fPosSiguienteAlmacen();
 
-        int fPosUltimoCteProv();
+    int fPosSiguienteClasificacion();
 
-        int fPosUltimoDocumento();
+    int fPosSiguienteConceptoDocto();
 
-        int fPosUltimoMovimiento();
+    int fPosSiguienteCteProv();
 
-        int fPosUltimoProducto();
+    int fPosSiguienteDireccion();
 
-        int fPosUltimoUnidad();
+    int fPosSiguienteDocumento();
 
-        int fPosUltimoValorClasif();
+    int fPosSiguienteEmpresa(ref int aIdEmpresa, StringBuilder aNombreEmpresa, StringBuilder aDirectorioEmpresa);
 
-        int fProyectoEmpresaDoctos(string aCodigoProyecto);
+    int fPosSiguienteMovimiento();
 
-        int fRecosteoProducto(string aCodigoProducto,
-                              int aEjercicio,
-                              int aPeriodo,
-                              string aCodigoClasificacion1,
-                              string aCodigoClasificacion2,
-                              string aCodigoClasificacion3,
-                              string aCodigoClasificacion4,
-                              string aCodigoClasificacion5,
-                              string aCodigoClasificacion6,
-                              string aNombreBitacora,
-                              int aSobreEscribirBitacora,
-                              int aEsCalculoArimetico);
+    int fPosSiguienteMovtoContable();
 
-        int fRecuperarRelacionesCFDIs(string aCodConcepto,
-                                      string aSerie,
-                                      string aFolio,
-                                      string aTipoRelacion,
-                                      StringBuilder aUUIDs,
-                                      string aRutaNombreArchivoInfo);
+    int fPosSiguienteProducto();
 
-        int fRecuperaTipoProducto(ref bool aUnidades, ref bool aSerie, ref bool aLote, ref bool aPedimento, ref bool aCaracteristicas);
+    int fPosSiguienteUnidad();
 
-        int fRegresaCostoCapa(string aCodigoProducto, string aCodigoAlmacen, double aUnidades, StringBuilder aImporteCosto);
+    int fPosSiguienteValorClasif();
 
-        int fRegresaCostoEstandar(string aCodigoProducto, StringBuilder aCostoEstandar);
+    int fPosUltimaConceptoDocto();
 
-        int fRegresaCostoPromedio(string aCodigoProducto,
-                                  string aCodigoAlmacen,
-                                  string aAnio,
-                                  string aMes,
-                                  string aDia,
-                                  StringBuilder aCostoPromedio);
+    int fPosUltimaDireccion();
 
-        int fRegresaExistencia(string aCodigoProducto,
-                               string aCodigoAlmacen,
-                               string aAnio,
-                               string aMes,
-                               string aDia,
-                               ref double aExistencia);
+    int fPosUltimoAgente();
 
-        int fRegresaExistenciaCaracteristicas(string aCodigoProducto,
-                                              string aCodigoAlmacen,
-                                              string aAnio,
-                                              string aMes,
-                                              string aDia,
-                                              string aValorCaracteristica1,
-                                              string aValorCaracteristica2,
-                                              string aValorCaracteristica3,
-                                              ref double aExistencia);
+    int fPosUltimoAlmacen();
 
-        int fRegresaExistenciaLotePedimento(string aCodigoProducto,
-                                            string aCodigoAlmacen,
-                                            string aPedimento,
-                                            string aLote,
-                                            ref double aExistencia);
+    int fPosUltimoClasificacion();
 
-        int fRegresaIVACargo(tLlaveDoc aLlaveDocto,
-                             double aNetoTasa15,
-                             double aNetoTasa10,
-                             double aNetoTasaCero,
-                             double aNetoTasaExcenta,
-                             double aNetoOtrasTasas,
-                             double aIVATasa15,
-                             double aIVATasa10,
-                             double aIVAOtrasTasas);
+    int fPosUltimoCteProv();
 
-        int fRegresaIVACargo_2010(tLlaveDoc aLlaveDocto,
-                                  double aNetoTasa15,
-                                  double aNetoTasa10,
-                                  double aNetoTasa16,
-                                  double aNetoTasa11,
-                                  double aNetoTasaCero,
-                                  double aNetoTasaExcenta,
-                                  double aNetoOtrasTasas,
-                                  double aIVATasa15,
-                                  double aIVATasa10,
-                                  double aIVATasa16,
-                                  double aIVATasa11,
-                                  double aIVAOtrasTasas);
+    int fPosUltimoDocumento();
 
-        int fRegresaIVACargoRet_2010(tLlaveDoc aLlaveDocto,
-                                     double aNetoTasa15,
-                                     double aNetoTasa10,
-                                     double aNetoTasa16,
-                                     double aNetoTasa11,
-                                     double aNetoTasaCero,
-                                     double aNetoTasaExcenta,
-                                     double aNetoOtrasTasas,
-                                     double aIVATasa15,
-                                     double aIVATasa10,
-                                     double aIVATasa16,
-                                     double aIVATasa11,
-                                     double aIVAOtrasTasas,
-                                     double aRetIVA,
-                                     double aRetI);
+    int fPosUltimoMovimiento();
 
-        int fRegresaIVAPago(tLlaveDoc aLlaveDocto,
-                            double aNetoTasa15,
-                            double aNetoTasa10,
-                            double aNetoTasaCero,
-                            double aNetoTasaExcenta,
-                            double aNetoOtrasTasas,
-                            double aIVATasa15,
-                            double aIVATasa10,
-                            double aIVAOtrasTasas);
+    int fPosUltimoProducto();
 
-        int fRegresaIVAPago_2010(tLlaveDoc aLlaveDocto,
-                                 double aNetoTasa15,
-                                 double aNetoTasa10,
-                                 double aNetoTasa16,
-                                 double aNetoTasa11,
-                                 double aNetoTasaCero,
-                                 double aNetoTasaExcenta,
-                                 double aNetoOtrasTasas,
-                                 double aIVATasa15,
-                                 double aIVATasa10,
-                                 double aIVATasa16,
-                                 double aIVATasa11,
-                                 double aIVAOtrasTasas);
+    int fPosUltimoUnidad();
 
-        int fRegresaIVAPagoRet_2010(tLlaveDoc aLlaveDocto,
-                                    double aNetoTasa15,
-                                    double aNetoTasa10,
-                                    double aNetoTasa16,
-                                    double aNetoTasa11,
-                                    double aNetoTasaCero,
-                                    double aNetoTasaExcenta,
-                                    double aNetoOtrasTasas,
-                                    double aIVATasa15,
-                                    double aIVATasa10,
-                                    double aIVATasa16,
-                                    double aIVATasa11,
-                                    double aIVAOtrasTasas,
-                                    double aRetIVA,
-                                    double aRetI);
+    int fPosUltimoValorClasif();
 
-        int fRegresaPrecioVenta(string aCodigoConcepto, string aCodigoCliente, string aCodigoProducto, StringBuilder aPrecioVenta);
+    int fProyectoEmpresaDoctos(string aCodigoProyecto);
 
-        int fRegresaUltimoCosto(string aCodigoProducto,
-                                string aCodigoAlmacen,
-                                string aAnio,
-                                string aMes,
-                                string aDia,
-                                StringBuilder aUltimoCosto);
+    int fRecosteoProducto(string aCodigoProducto, int aEjercicio, int aPeriodo, string aCodigoClasificacion1, string aCodigoClasificacion2,
+        string aCodigoClasificacion3, string aCodigoClasificacion4, string aCodigoClasificacion5, string aCodigoClasificacion6,
+        string aNombreBitacora, int aSobreEscribirBitacora, int aEsCalculoArimetico);
 
-        int fRegresPorcentajeImpuesto(int aIdConceptoDocumento, int aIdClienteProveedor, int aIdProducto, ref double aPorcentajeImpuesto);
+    int fRecuperarRelacionesCFDIs(string aCodConcepto, string aSerie, string aFolio, string aTipoRelacion, StringBuilder aUUIDs,
+        string aRutaNombreArchivoInfo);
 
-        int fSaldarDocumento(ref tLlaveDoc aDoctoaPagar, ref tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha);
+    int fRecuperaTipoProducto(ref bool aUnidades, ref bool aSerie, ref bool aLote, ref bool aPedimento, ref bool aCaracteristicas);
 
-        int fSaldarDocumento_Param(string aCodConcepto_Pagar,
-                                   string aSerie_Pagar,
-                                   double aFolio_Pagar,
-                                   string aCodConcepto_Pago,
-                                   string aSerie_Pago,
-                                   double aFolio_Pago,
-                                   double aImporte,
-                                   int aIdMoneda,
-                                   string aFecha);
+    int fRegresaCostoCapa(string aCodigoProducto, string aCodigoAlmacen, double aUnidades, StringBuilder aImporteCosto);
 
-        int fSaldarDocumentoCheqPAQ(tLlaveDoc aDoctoaPagar,
-                                    tLlaveDoc aDoctoPago,
-                                    double aImporte,
-                                    int aIdMoneda,
-                                    string aFecha,
-                                    double aTipoCambioCheqPAQ);
+    int fRegresaCostoEstandar(string aCodigoProducto, StringBuilder aCostoEstandar);
 
-        int fSetDatoAgente(string aCampo, string aValor);
+    int fRegresaCostoPromedio(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia,
+        StringBuilder aCostoPromedio);
 
-        int fSetDatoAlmacen(string aCampo, string aValor);
+    int fRegresaExistencia(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia, ref double aExistencia);
 
-        int fSetDatoClasificacion(string aCampo, string aValor);
+    int fRegresaExistenciaCaracteristicas(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia,
+        string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3, ref double aExistencia);
 
-        int fSetDatoConceptoDocto(string aCampo, string aValor);
+    int fRegresaExistenciaLotePedimento(string aCodigoProducto, string aCodigoAlmacen, string aPedimento, string aLote,
+        ref double aExistencia);
 
-        int fSetDatoCteProv(string aCampo, string aValor);
+    int fRegresaIVACargo(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasaCero, double aNetoTasaExcenta,
+        double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVAOtrasTasas);
 
-        int fSetDatoDireccion(string aCampo, string aValor);
+    int fRegresaIVACargo_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11,
+        double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16,
+        double aIVATasa11, double aIVAOtrasTasas);
 
-        int fSetDatoDocumento(string aCampo, string aValor);
+    int fRegresaIVACargoRet_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11,
+        double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16,
+        double aIVATasa11, double aIVAOtrasTasas, double aRetIVA, double aRetI);
 
-        int fSetDatoMovimiento(string aCampo, string aValor);
+    int fRegresaIVAPago(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasaCero, double aNetoTasaExcenta,
+        double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVAOtrasTasas);
 
-        int fSetDatoMovtoContable(string aCampo, string aValor);
+    int fRegresaIVAPago_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11,
+        double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16,
+        double aIVATasa11, double aIVAOtrasTasas);
 
-        int fSetDatoParametros(string aCampo, StringBuilder aValor);
+    int fRegresaIVAPagoRet_2010(tLlaveDoc aLlaveDocto, double aNetoTasa15, double aNetoTasa10, double aNetoTasa16, double aNetoTasa11,
+        double aNetoTasaCero, double aNetoTasaExcenta, double aNetoOtrasTasas, double aIVATasa15, double aIVATasa10, double aIVATasa16,
+        double aIVATasa11, double aIVAOtrasTasas, double aRetIVA, double aRetI);
 
-        int fSetDatoProducto(string aCampo, string aValor);
+    int fRegresaPrecioVenta(string aCodigoConcepto, string aCodigoCliente, string aCodigoProducto, StringBuilder aPrecioVenta);
 
-        int fSetDatoUnidad(string aCampo, string aValor);
+    int fRegresaUltimoCosto(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia,
+        StringBuilder aUltimoCosto);
 
-        int fSetDatoValorClasif(string aCampo, string aValor);
+    int fRegresPorcentajeImpuesto(int aIdConceptoDocumento, int aIdClienteProveedor, int aIdProducto, ref double aPorcentajeImpuesto);
 
-        int fSetDescripcionProducto(string aCampo, string aValor);
+    int fSaldarDocumento(ref tLlaveDoc aDoctoaPagar, ref tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha);
 
-        int fSetFiltroDocumento(string aFechaInicio, string aFechaFin, string aCodigoConcepto, string aCodigoCteProv);
+    int fSaldarDocumento_Param(string aCodConcepto_Pagar, string aSerie_Pagar, double aFolio_Pagar, string aCodConcepto_Pago,
+        string aSerie_Pago, double aFolio_Pago, double aImporte, int aIdMoneda, string aFecha);
 
-        int fSetFiltroMovimiento(int aIdDocumento);
+    int fSaldarDocumentoCheqPAQ(tLlaveDoc aDoctoaPagar, tLlaveDoc aDoctoPago, double aImporte, int aIdMoneda, string aFecha,
+        double aTipoCambioCheqPAQ);
 
-        void fSetModoImportacion(bool aImportacion);
+    int fSetDatoAgente(string aCampo, string aValor);
 
-        int fSetNombrePAQ(string aSistema);
+    int fSetDatoAlmacen(string aCampo, string aValor);
 
-        int fSiguienteFolio(string aCodigoConcepto, StringBuilder aSerie, ref double aFolio);
+    int fSetDatoClasificacion(string aCampo, string aValor);
 
-        void fTerminaSDK();
+    int fSetDatoConceptoDocto(string aCampo, string aValor);
 
-        int fTimbraComplementoPagoXML(string aRutaXML,
-                                      string aCodConcepto,
-                                      StringBuilder aUUID,
-                                      string aRutaDDA,
-                                      string aRutaResultado,
-                                      string aPass,
-                                      string aRutaFormato);
+    int fSetDatoCteProv(string aCampo, string aValor);
 
-        int fTimbraComplementoXML(string aRutaXML,
-                                  string aCodCOncepto,
-                                  StringBuilder aUUID,
-                                  string aRutaDDA,
-                                  string aRutaResultado,
-                                  string aPass,
-                                  string aRutaFormato,
-                                  int aComplemento);
+    int fSetDatoDireccion(string aCampo, string aValor);
 
-        int fTimbraNominaXML(string aRutaXML,
-                             string aCodCOncepto,
-                             StringBuilder aUUID,
-                             string aRutaDDA,
-                             string aRutaResultado,
-                             string aPass,
-                             string aRutaFormato);
+    int fSetDatoDocumento(string aCampo, string aValor);
 
-        int fTimbraXML(string aRutaXML,
-                       string aCodCOncepto,
-                       StringBuilder aUUID,
-                       string aRutaDDA,
-                       string aRutaResultado,
-                       string aPass,
-                       string aRutaFormato);
+    int fSetDatoMovimiento(string aCampo, string aValor);
 
-        int InicializarSDK();
+    int fSetDatoMovtoContable(string aCampo, string aValor);
 
-        int InicializarSDK(string usuario, string password);
+    int fSetDatoParametros(string aCampo, StringBuilder aValor);
 
-        int InicializarSDK(string usuario, string password, string usuarioContabilidad, string passwordContabilidad);
+    int fSetDatoProducto(string aCampo, string aValor);
 
-        string LeeDatoAgente(string dato, int longitud = 512);
+    int fSetDatoUnidad(string aCampo, string aValor);
 
-        string LeeDatoAlmacen(string dato, int longitud = 512);
+    int fSetDatoValorClasif(string aCampo, string aValor);
 
-        string LeeDatoCfdi(int dato, int longitud = 3000);
+    int fSetDescripcionProducto(string aCampo, string aValor);
 
-        string LeeDatoClasificacion(string dato, int longitud = 512);
+    int fSetFiltroDocumento(string aFechaInicio, string aFechaFin, string aCodigoConcepto, string aCodigoCteProv);
 
-        string LeeDatoClienteProveedor(string dato, int longitud = 512);
+    int fSetFiltroMovimiento(int aIdDocumento);
 
-        string LeeDatoConcepto(string dato, int longitud = 512);
+    void fSetModoImportacion(bool aImportacion);
 
-        string LeeDatoDireccion(string dato, int longitud = 512);
+    int fSetNombrePAQ(string aSistema);
 
-        string LeeDatoDocumento(string dato, int longitud = 512);
+    int fSiguienteFolio(string aCodigoConcepto, StringBuilder aSerie, ref double aFolio);
 
-        string LeeDatoMovimiento(string dato, int longitud = 512);
+    void fTerminaSDK();
 
-        string LeeDatoParametros(string dato, int longitud = 512);
+    int fTimbraComplementoPagoXML(string aRutaXML, string aCodConcepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado,
+        string aPass, string aRutaFormato);
 
-        string LeeDatoProducto(string dato, int longitud = 512);
+    int fTimbraComplementoXML(string aRutaXML, string aCodCOncepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado,
+        string aPass, string aRutaFormato, int aComplemento);
 
-        string LeeDatoUnidad(string dato, int longitud = 512);
+    int fTimbraNominaXML(string aRutaXML, string aCodCOncepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass,
+        string aRutaFormato);
 
-        string LeeDatoValorClasificacion(string dato, int longitud = 512);
+    int fTimbraXML(string aRutaXML, string aCodCOncepto, StringBuilder aUUID, string aRutaDDA, string aRutaResultado, string aPass,
+        string aRutaFormato);
 
-        string LeeMensajeError(int numeroError);
-    }
+    int InicializarSDK();
+
+    int InicializarSDK(string usuario, string password);
+
+    int InicializarSDK(string usuario, string password, string usuarioContabilidad, string passwordContabilidad);
+
+    string LeeDatoAgente(string dato, int longitud = 512);
+
+    string LeeDatoAlmacen(string dato, int longitud = 512);
+
+    string LeeDatoCfdi(int dato, int longitud = 3000);
+
+    string LeeDatoClasificacion(string dato, int longitud = 512);
+
+    string LeeDatoClienteProveedor(string dato, int longitud = 512);
+
+    string LeeDatoConcepto(string dato, int longitud = 512);
+
+    string LeeDatoDireccion(string dato, int longitud = 512);
+
+    string LeeDatoDocumento(string dato, int longitud = 512);
+
+    string LeeDatoMovimiento(string dato, int longitud = 512);
+
+    string LeeDatoParametros(string dato, int longitud = 512);
+
+    string LeeDatoProducto(string dato, int longitud = 512);
+
+    string LeeDatoUnidad(string dato, int longitud = 512);
+
+    string LeeDatoValorClasificacion(string dato, int longitud = 512);
+
+    string LeeMensajeError(int numeroError);
+    string NombreLlaveRegistro { get; }
+
+    string NombrePaq { get; }
 }

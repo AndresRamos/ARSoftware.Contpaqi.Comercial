@@ -12,14 +12,14 @@ namespace Sdk.ConsoleApp.Catalogos;
 public sealed class ClienteSdk
 {
     /// <summary>
-    ///     Campo CIDCLIENTEPROVEEDOR - Identificador del cliente o proveedor.
-    /// </summary>
-    public int Id { get; set; }
-
-    /// <summary>
     ///     Campo CCODIGOCLIENTE - Código del cliente o proveedor.
     /// </summary>
     public string Codigo { get; set; }
+
+    /// <summary>
+    ///     Campo CIDCLIENTEPROVEEDOR - Identificador del cliente o proveedor.
+    /// </summary>
+    public int Id { get; set; }
 
     /// <summary>
     ///     Campo CRAZONSOCIAL - Razón Social del cliente o proveedor.
@@ -36,24 +36,25 @@ public sealed class ClienteSdk
     /// </summary>
     public int Tipo { get; set; }
 
-    public override string ToString()
-    {
-        return $"{Id} - {Codigo} - {RazonSocial} - {Rfc} - {Tipo}";
-    }
-
     /// <summary>
-    ///     Busca un cliente por id.
+    ///     Actualiza un cliente.
     /// </summary>
-    /// <param name="clienteId">El id del cliente a buscar.</param>
-    /// <returns>El cliente a buscar.</returns>
-    public static ClienteSdk BuscarClientePorId(int clienteId)
+    /// <param name="cliente">Cliente del que se asignaran los datos a modificar.</param>
+    public static void ActualizarCliente(ClienteSdk cliente)
     {
-        // Buscar el cliente por id
+        // Buscar el cliente por código
         // Si el cliente existe el SDK se posiciona en el registro
-        ComercialSdk.fBuscaIdCteProv(clienteId).TirarSiEsError();
+        ComercialSdk.fBuscaCteProv(cliente.Codigo).TirarSiEsError();
 
-        // Leer los datos del registro donde el SDK esta posicionado
-        return LeerDatosCliente();
+        // Activar el modo de edición
+        ComercialSdk.fEditaCteProv().TirarSiEsError();
+
+        // Actualizar los campos del registro donde el SDK esta posicionado
+        ComercialSdk.fSetDatoCteProv("CRAZONSOCIAL", cliente.RazonSocial).TirarSiEsError();
+        ComercialSdk.fSetDatoCteProv("CRFC", cliente.Rfc).TirarSiEsError();
+
+        // Guardar los cambios realizados al registro
+        ComercialSdk.fGuardaCteProv().TirarSiEsError();
     }
 
     /// <summary>
@@ -66,6 +67,21 @@ public sealed class ClienteSdk
         // Buscar el cliente por código
         // Si el cliente existe el SDK se posiciona en el registro
         ComercialSdk.fBuscaCteProv(clienteCodigo).TirarSiEsError();
+
+        // Leer los datos del registro donde el SDK esta posicionado
+        return LeerDatosCliente();
+    }
+
+    /// <summary>
+    ///     Busca un cliente por id.
+    /// </summary>
+    /// <param name="clienteId">El id del cliente a buscar.</param>
+    /// <returns>El cliente a buscar.</returns>
+    public static ClienteSdk BuscarClientePorId(int clienteId)
+    {
+        // Buscar el cliente por id
+        // Si el cliente existe el SDK se posiciona en el registro
+        ComercialSdk.fBuscaIdCteProv(clienteId).TirarSiEsError();
 
         // Leer los datos del registro donde el SDK esta posicionado
         return LeerDatosCliente();
@@ -95,11 +111,51 @@ public sealed class ClienteSdk
 
             // Checar si el SDK esta posicionado en el ultimo registro
             // Si el SDK esta posicionado en el ultimo registro salir del loop
-            if (ComercialSdk.fPosEOFCteProv() == 1)
-                break;
+            if (ComercialSdk.fPosEOFCteProv() == 1) break;
         }
 
         return clientesList;
+    }
+
+    /// <summary>
+    ///     Crea un cliente nuevo.
+    /// </summary>
+    /// <param name="cliente">Cliente del cual se asignaran los datos.</param>
+    /// <returns>El id del cliente creado.</returns>
+    public static int CrearCliente(ClienteSdk cliente)
+    {
+        // Instanciar un cliente con la estructura tCteProv del SDK
+        var clienteNuevo = new tCteProv
+        {
+            cCodigoCliente = cliente.Codigo,
+            cRazonSocial = cliente.RazonSocial,
+            cRFC = cliente.Rfc,
+            cTipoCliente = cliente.Tipo,
+            cFechaAlta = DateTime.Today.ToString(FormatosFechaSdk.Fecha),
+            cEstatus = 1
+        };
+
+        // Declarar una variable donde se asignara el id del cliente nuevo
+        var clienteNuevoId = 0;
+
+        // Crear cliente nuevo
+        ComercialSdk.fAltaCteProv(ref clienteNuevoId, ref clienteNuevo).TirarSiEsError();
+
+        return clienteNuevoId;
+    }
+
+    /// <summary>
+    ///     Elimina un cliente.
+    /// </summary>
+    /// <param name="cliente">El cliente a eliminar.</param>
+    public static void EliminarCliente(ClienteSdk cliente)
+    {
+        // Buscar el cliente por código
+        // Si el cliente existe el SDK se posiciona en el registro
+        ComercialSdk.fBuscaCteProv(cliente.Codigo).TirarSiEsError();
+
+        // Borrar el registro de la base de datos 
+        ComercialSdk.fBorraCteProv().TirarSiEsError();
     }
 
     /// <summary>
@@ -133,65 +189,8 @@ public sealed class ClienteSdk
         };
     }
 
-    /// <summary>
-    ///     Crea un cliente nuevo.
-    /// </summary>
-    /// <param name="cliente">Cliente del cual se asignaran los datos.</param>
-    /// <returns>El id del cliente creado.</returns>
-    public static int CrearCliente(ClienteSdk cliente)
+    public override string ToString()
     {
-        // Instanciar un cliente con la estructura tCteProv del SDK
-        var clienteNuevo = new tCteProv
-        {
-            cCodigoCliente = cliente.Codigo,
-            cRazonSocial = cliente.RazonSocial,
-            cRFC = cliente.Rfc,
-            cTipoCliente = cliente.Tipo,
-            cFechaAlta = DateTime.Today.ToString(FormatosFechaSdk.Fecha),
-            cEstatus = 1
-        };
-
-        // Declarar una variable donde se asignara el id del cliente nuevo
-        var clienteNuevoId = 0;
-
-        // Crear cliente nuevo
-        ComercialSdk.fAltaCteProv(ref clienteNuevoId, ref clienteNuevo).TirarSiEsError();
-
-        return clienteNuevoId;
-    }
-
-    /// <summary>
-    ///     Actualiza un cliente.
-    /// </summary>
-    /// <param name="cliente">Cliente del que se asignaran los datos a modificar.</param>
-    public static void ActualizarCliente(ClienteSdk cliente)
-    {
-        // Buscar el cliente por código
-        // Si el cliente existe el SDK se posiciona en el registro
-        ComercialSdk.fBuscaCteProv(cliente.Codigo).TirarSiEsError();
-
-        // Activar el modo de edición
-        ComercialSdk.fEditaCteProv().TirarSiEsError();
-
-        // Actualizar los campos del registro donde el SDK esta posicionado
-        ComercialSdk.fSetDatoCteProv("CRAZONSOCIAL", cliente.RazonSocial).TirarSiEsError();
-        ComercialSdk.fSetDatoCteProv("CRFC", cliente.Rfc).TirarSiEsError();
-
-        // Guardar los cambios realizados al registro
-        ComercialSdk.fGuardaCteProv().TirarSiEsError();
-    }
-
-    /// <summary>
-    ///     Elimina un cliente.
-    /// </summary>
-    /// <param name="cliente">El cliente a eliminar.</param>
-    public static void EliminarCliente(ClienteSdk cliente)
-    {
-        // Buscar el cliente por código
-        // Si el cliente existe el SDK se posiciona en el registro
-        ComercialSdk.fBuscaCteProv(cliente.Codigo).TirarSiEsError();
-
-        // Borrar el registro de la base de datos 
-        ComercialSdk.fBorraCteProv().TirarSiEsError();
+        return $"{Id} - {Codigo} - {RazonSocial} - {Rfc} - {Tipo}";
     }
 }

@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Generales
+namespace ARSoftware.Contpaqi.Comercial.Sql.Models.Generales;
+
+public partial class nubeEmpresas
 {
-    public partial class nubeEmpresas
-    {
-        public string CIDEMPRESA { get; set; }
-        public string CEMPRESA { get; set; }
-        public string CRFC { get; set; }
-        public string CTIPO { get; set; }
-        public string CPROPIETARIO { get; set; }
-    }
+    public string CIDEMPRESA { get; set; } = null!;
+
+    public string CEMPRESA { get; set; } = null!;
+
+    public string CRFC { get; set; } = null!;
+
+    public string CTIPO { get; set; } = null!;
+
+    public string CPROPIETARIO { get; set; } = null!;
 }

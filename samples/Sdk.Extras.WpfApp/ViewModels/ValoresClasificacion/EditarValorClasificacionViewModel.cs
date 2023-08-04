@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MahApps.Metro.Controls.Dialogs;
 using Sdk.Extras.WpfApp.Messages;
+using Sdk.Extras.WpfApp.Models;
 
 namespace Sdk.Extras.WpfApp.ViewModels.ValoresClasificacion;
 
@@ -27,9 +28,8 @@ public class EditarValorClasificacionViewModel : ObservableRecipient
     private int _valorClasificacionId;
 
     public EditarValorClasificacionViewModel(IValorClasificacionService valorClasificacionService,
-                                             IClasificacionRepository<Clasificacion> clasificacionRepository,
-                                             IDialogCoordinator dialogCoordinator,
-                                             IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
+        IClasificacionRepository<Clasificacion> clasificacionRepository, IDialogCoordinator dialogCoordinator,
+        IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
     {
         _valorClasificacionService = valorClasificacionService;
         _clasificacionRepository = clasificacionRepository;
@@ -40,18 +40,12 @@ public class EditarValorClasificacionViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(CerrarVista);
     }
 
-    public string Title { get; } = "Editar Valor De Clasificacion";
+    public IRelayCommand CancelarCommand { get; }
 
     public int ClasificacionId
     {
         get => _clasificacionId;
         private set => SetProperty(ref _clasificacionId, value);
-    }
-
-    public int ClasificacionNumero
-    {
-        get => _clasificacionNumero;
-        private set => SetProperty(ref _clasificacionNumero, value);
     }
 
     public string ClasificacionNombre
@@ -60,10 +54,10 @@ public class EditarValorClasificacionViewModel : ObservableRecipient
         private set => SetProperty(ref _clasificacionNombre, value);
     }
 
-    public int ValorClasificacionId
+    public int ClasificacionNumero
     {
-        get => _valorClasificacionId;
-        set => SetProperty(ref _valorClasificacionId, value);
+        get => _clasificacionNumero;
+        private set => SetProperty(ref _clasificacionNumero, value);
     }
 
     public string Codigo
@@ -72,26 +66,25 @@ public class EditarValorClasificacionViewModel : ObservableRecipient
         set => SetProperty(ref _codigo, value);
     }
 
+    public IAsyncRelayCommand GuardarCommand { get; }
+
+    public string Title { get; } = "Editar Valor De Clasificacion";
+
     public string Valor
     {
         get => _valor;
         set => SetProperty(ref _valor, value);
     }
 
-    public IAsyncRelayCommand GuardarCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
-
-    public void Inicializar(int valorClasificacionId)
+    public int ValorClasificacionId
     {
-        ValorClasificacion valor = _valorClasificacionRepository.BuscarPorId(valorClasificacionId);
-        ValorClasificacionId = valor.CIDVALORCLASIFICACION;
-        Codigo = valor.CCODIGOVALORCLASIFICACION;
-        Valor = valor.CVALORCLASIFICACION;
+        get => _valorClasificacionId;
+        set => SetProperty(ref _valorClasificacionId, value);
+    }
 
-        Clasificacion clasificacion = _clasificacionRepository.BuscarPorId(valor.CIDCLASIFICACION);
-        ClasificacionId = clasificacion.CIDCLASIFICACION;
-        ClasificacionNumero = ClasificacionHelper.BuscarNumeroPorId(clasificacion.CIDCLASIFICACION);
-        ClasificacionNombre = clasificacion.CNOMBRECLASIFICACION;
+    public void CerrarVista()
+    {
+        Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
     }
 
     public async Task GuardarAsync()
@@ -111,8 +104,18 @@ public class EditarValorClasificacionViewModel : ObservableRecipient
         }
     }
 
-    public void CerrarVista()
+    public void Inicializar(int valorClasificacionId)
     {
-        Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
+        ValorClasificacion valor = _valorClasificacionRepository.BuscarPorId(valorClasificacionId) ??
+                                   throw new ArgumentException("No se encontro el valor.");
+        ValorClasificacionId = valor.CIDVALORCLASIFICACION;
+        Codigo = valor.CCODIGOVALORCLASIFICACION;
+        Valor = valor.CVALORCLASIFICACION;
+
+        Clasificacion clasificacion = _clasificacionRepository.BuscarPorId(valor.CIDCLASIFICACION) ??
+                                      throw new ArgumentException("No se encontro la clasificacion.");
+        ClasificacionId = clasificacion.CIDCLASIFICACION;
+        ClasificacionNumero = ClasificacionHelper.BuscarNumeroPorId(clasificacion.CIDCLASIFICACION);
+        ClasificacionNombre = clasificacion.CNOMBRECLASIFICACION;
     }
 }

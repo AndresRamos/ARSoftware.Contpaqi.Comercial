@@ -1,53 +1,40 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
-using ARSoftware.Contpaqi.Comercial.Sql.Factories;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Sql.ConsoleApp.Ejemplos;
+using Serilog;
+using Serilog.Events;
+using Sql.ConsoleApp;
 
 IHost host = Host.CreateDefaultBuilder()
-    .ConfigureServices(collection =>
+    .ConfigureServices(services =>
     {
-        var connectionString = @"Data Source=AR-SERVER\COMPAC;User ID=sa;Password=Sdmramos1;Connect Timeout=30;";
-        var nombreBaseDatosEmpresa = "adUNIVERSIDAD_ROBOTICA";
-
-        // Registrar generales context
-        collection.AddDbContext<ContpaqiComercialGeneralesDbContext>(builder =>
-            builder.UseSqlServer(
-                ContpaqiComercialSqlConnectionStringFactory.CreateContpaqiComercialGeneralesConnectionString(connectionString)));
-
-        // Registrar empresa context
-        collection.AddDbContext<ContpaqiComercialEmpresaDbContext>(builder =>
-            builder.UseSqlServer(
-                ContpaqiComercialSqlConnectionStringFactory.CreateContpaqiComercialEmpresaConnectionString(connectionString,
-                    nombreBaseDatosEmpresa)));
-
-        collection.AddSingleton<EjemplosEmpresa>();
-        collection.AddSingleton<EjemplosProducto>();
-        collection.AddSingleton<EjemplosCliente>();
+        services.AddSqlServices();
+        services.AddEjemplos();
     })
-    .ConfigureLogging(builder => { builder.AddSimpleConsole(options => { options.SingleLine = true; }); })
+    .ConfigureLogging(builder => { builder.ClearProviders(); })
+    .UseSerilog((_, loggerConfiguration) =>
+    {
+        loggerConfiguration.MinimumLevel.Information()
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+            .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information);
+        loggerConfiguration.WriteTo.Console(LogEventLevel.Information);
+    })
     .Build();
+
 await host.StartAsync();
 
 var logger = host.Services.GetRequiredService<ILogger<Program>>();
-logger.LogInformation("Iniciando Programa");
+
 try
 {
-    // Ejemplos del uso del SDK
-    // Se pueden ejecutar de forma independiente
-    // Comenta los ejemplos que no quieras ejecutar
-
-    host.Services.GetRequiredService<EjemplosEmpresa>().CorrerEjemplos();
-
-    host.Services.GetRequiredService<EjemplosProducto>().CorrerEjemplos();
-
-    host.Services.GetRequiredService<EjemplosCliente>().CorrerEjemplos();
+    // 1. Busca la clase con los ejemplos que quieras probar utilizando el proveedor de servicios.
+    // 2. Ejecuta el metodo que quieras probar.
+    var ejemplo = host.Services.GetRequiredService<BuscarEmpresasConRepositorio>();
+    ejemplo.TraerTodo();
 }
 catch (Exception e)
 {
-    logger.LogCritical(e, "Ocurrio un error");
+    logger.LogCritical(e, "Ocurrio un error.");
 }
 
 await host.StopAsync();

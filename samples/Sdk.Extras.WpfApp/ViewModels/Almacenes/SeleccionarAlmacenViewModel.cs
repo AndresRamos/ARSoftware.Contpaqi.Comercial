@@ -2,12 +2,12 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Sdk.Extras.WpfApp.Messages;
+using Sdk.Extras.WpfApp.Models;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Almacenes;
 
@@ -28,18 +28,6 @@ public class SeleccionarAlmacenViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(CerrarVista);
     }
 
-    public string Title => "Seleccionar Almacen";
-
-    public string Filtro
-    {
-        get => _filtro;
-        set
-        {
-            SetProperty(ref _filtro, value);
-            AlmacenesView.Refresh();
-        }
-    }
-
     public ObservableCollection<Almacen> Almacenes { get; }
 
     public ICollectionView AlmacenesView { get; }
@@ -54,16 +42,29 @@ public class SeleccionarAlmacenViewModel : ObservableRecipient
         }
     }
 
-    public bool SeleccionoAlmacen { get; private set; }
-
-    public IRelayCommand SeleccionarCommand { get; }
     public IRelayCommand CancelarCommand { get; }
 
-    public void Inicializar()
+    public string Filtro
     {
-        Almacenes.Clear();
-        foreach (Almacen almacen in _almacenRepository.TraerTodo())
-            Almacenes.Add(almacen);
+        get => _filtro;
+        set
+        {
+            SetProperty(ref _filtro, value);
+            AlmacenesView.Refresh();
+        }
+    }
+
+    public IRelayCommand SeleccionarCommand { get; }
+
+    public bool SeleccionoAlmacen { get; private set; }
+
+    public string Title => "Seleccionar Almacen";
+
+    private bool AlmacenesView_Filter(object obj)
+    {
+        if (!(obj is Almacen almacen)) throw new ArgumentNullException(nameof(obj));
+
+        return almacen.Contains(Filtro);
     }
 
     public bool CanSelccionar()
@@ -71,15 +72,15 @@ public class SeleccionarAlmacenViewModel : ObservableRecipient
         return AlmacenSeleccionado != null;
     }
 
-    public void Seleccionar()
-    {
-        SeleccionoAlmacen = true;
-        CerrarVista();
-    }
-
     public void CerrarVista()
     {
         Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
+    }
+
+    public void Inicializar()
+    {
+        Almacenes.Clear();
+        foreach (Almacen almacen in _almacenRepository.TraerTodo()) Almacenes.Add(almacen);
     }
 
     private void RaiseGuards()
@@ -88,11 +89,9 @@ public class SeleccionarAlmacenViewModel : ObservableRecipient
         CancelarCommand.NotifyCanExecuteChanged();
     }
 
-    private bool AlmacenesView_Filter(object obj)
+    public void Seleccionar()
     {
-        if (!(obj is Almacen almacen))
-            throw new ArgumentNullException(nameof(obj));
-
-        return almacen.Contains(Filtro);
+        SeleccionoAlmacen = true;
+        CerrarVista();
     }
 }

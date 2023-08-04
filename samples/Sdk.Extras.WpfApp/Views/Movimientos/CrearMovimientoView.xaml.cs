@@ -14,15 +14,14 @@ public partial class CrearMovimientoView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<CrearMovimientoViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (CrearMovimientoView)recipient;
-                    view.Close();
-                }
-            });
+                var view = (CrearMovimientoView)recipient;
+                view.Close();
+            }
+        });
     }
 
     public CrearMovimientoViewModel ViewModel => (CrearMovimientoViewModel)DataContext;

@@ -14,15 +14,14 @@ public partial class SeleccionarValorClasificacionView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<SeleccionarValorClasificacionViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (SeleccionarValorClasificacionView)recipient;
-                    view.Close();
-                }
-            });
+                var view = (SeleccionarValorClasificacionView)recipient;
+                view.Close();
+            }
+        });
     }
 
     public SeleccionarValorClasificacionViewModel ViewModel => (SeleccionarValorClasificacionViewModel)DataContext;

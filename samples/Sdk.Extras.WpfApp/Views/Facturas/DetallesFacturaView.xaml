@@ -59,9 +59,9 @@
                                      Margin="5">
                 <controls:DropDownButton.Items>
                     <MenuItem Header="Cancelar"
-                              Command="{Binding CancelarDocumentoCommand}"></MenuItem>
+                              Command="{Binding CancelarDocumentoCommand}" />
                     <MenuItem Header="Cancelar Administrativamente"
-                              Command="{Binding CancelarDocumentoAdministrativamenteCommand}"></MenuItem>
+                              Command="{Binding CancelarDocumentoAdministrativamenteCommand}" />
                 </controls:DropDownButton.Items>
             </controls:DropDownButton>
             <Button Content="Eliminar"
@@ -241,56 +241,62 @@
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
-                            <TextBox Text="{Binding Factura.ClienteProveedor.CRAZONSOCIAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     MinWidth="300"
-                                     VerticalAlignment="Center"
-                                     Margin="5"
-                                     IsReadOnly="True" />
+                            <TextBox
+                                Text="{Binding Factura.ClienteProveedor.CRAZONSOCIAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                MinWidth="300"
+                                VerticalAlignment="Center"
+                                Margin="5"
+                                IsReadOnly="True" />
                             <Label Content="RFC:"
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
-                            <TextBox Text="{Binding Factura.ClienteProveedor.CRFC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     MinWidth="200"
-                                     VerticalAlignment="Center"
-                                     Margin="5"
-                                     IsReadOnly="True" />
+                            <TextBox
+                                Text="{Binding Factura.ClienteProveedor.CRFC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                MinWidth="200"
+                                VerticalAlignment="Center"
+                                Margin="5"
+                                IsReadOnly="True" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Fecha Vencimiento:"
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
-                            <DatePicker SelectedDate="{Binding Factura.CFECHAVENCIMIENTO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                        MinWidth="200"
-                                        VerticalAlignment="Center"
-                                        Margin="5" />
+                            <DatePicker
+                                SelectedDate="{Binding Factura.CFECHAVENCIMIENTO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                MinWidth="200"
+                                VerticalAlignment="Center"
+                                Margin="5" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Fecha Entrega:"
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
-                            <DatePicker SelectedDate="{Binding Factura.CFECHAENTREGARECEPCION, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                        MinWidth="200"
-                                        VerticalAlignment="Center"
-                                        Margin="5" />
+                            <DatePicker
+                                SelectedDate="{Binding Factura.CFECHAENTREGARECEPCION, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                MinWidth="200"
+                                VerticalAlignment="Center"
+                                Margin="5" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Agente:"
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
-                            <TextBox Text="{Binding Factura.Agente.CCODIGOAGENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     MinWidth="200"
-                                     VerticalAlignment="Center"
-                                     Margin="5"
-                                     IsReadOnly="True" />
-                            <TextBox Text="{Binding Factura.Agente.CNOMBREAGENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     MinWidth="200"
-                                     VerticalAlignment="Center"
-                                     Margin="5"
-                                     IsReadOnly="True" />
+                            <TextBox
+                                Text="{Binding Factura.Agente.CCODIGOAGENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                MinWidth="200"
+                                VerticalAlignment="Center"
+                                Margin="5"
+                                IsReadOnly="True" />
+                            <TextBox
+                                Text="{Binding Factura.Agente.CNOMBREAGENTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                MinWidth="200"
+                                VerticalAlignment="Center"
+                                Margin="5"
+                                IsReadOnly="True" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.Row="1">
@@ -304,82 +310,91 @@
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
-                            <TextBox Text="{Binding Factura.DireccionFiscal.CPAIS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     MinWidth="200"
-                                     VerticalAlignment="Center"
-                                     Margin="5" />
+                            <TextBox
+                                Text="{Binding Factura.DireccionFiscal.CPAIS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                MinWidth="200"
+                                VerticalAlignment="Center"
+                                Margin="5" />
                             <Label Content="Codigo Postal:"
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
-                            <TextBox Text="{Binding Factura.DireccionFiscal.CCODIGOPOSTAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     MinWidth="200"
-                                     VerticalAlignment="Center"
-                                     Margin="5" />
+                            <TextBox
+                                Text="{Binding Factura.DireccionFiscal.CCODIGOPOSTAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                MinWidth="200"
+                                VerticalAlignment="Center"
+                                Margin="5" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Estado:"
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
-                            <TextBox Text="{Binding Factura.DireccionFiscal.CESTADO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     MinWidth="200"
-                                     VerticalAlignment="Center"
-                                     Margin="5" />
+                            <TextBox
+                                Text="{Binding Factura.DireccionFiscal.CESTADO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                MinWidth="200"
+                                VerticalAlignment="Center"
+                                Margin="5" />
                             <Label Content="Ciudad:"
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
-                            <TextBox Text="{Binding Factura.DireccionFiscal.CCIUDAD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     MinWidth="200"
-                                     VerticalAlignment="Center"
-                                     Margin="5" />
+                            <TextBox
+                                Text="{Binding Factura.DireccionFiscal.CCIUDAD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                MinWidth="200"
+                                VerticalAlignment="Center"
+                                Margin="5" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Colonia:"
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
-                            <TextBox Text="{Binding Factura.DireccionFiscal.CCOLONIA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     MinWidth="300"
-                                     VerticalAlignment="Center"
-                                     Margin="5" />
+                            <TextBox
+                                Text="{Binding Factura.DireccionFiscal.CCOLONIA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                MinWidth="300"
+                                VerticalAlignment="Center"
+                                Margin="5" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Calle:"
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
-                            <TextBox Text="{Binding Factura.DireccionFiscal.CNOMBRECALLE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     MinWidth="300"
-                                     VerticalAlignment="Center"
-                                     Margin="5" />
+                            <TextBox
+                                Text="{Binding Factura.DireccionFiscal.CNOMBRECALLE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                MinWidth="300"
+                                VerticalAlignment="Center"
+                                Margin="5" />
                             <Label Content="Numero Exterior:"
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
-                            <TextBox Text="{Binding Factura.DireccionFiscal.CNUMEROEXTERIOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     MinWidth="100"
-                                     VerticalAlignment="Center"
-                                     Margin="5" />
+                            <TextBox
+                                Text="{Binding Factura.DireccionFiscal.CNUMEROEXTERIOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                MinWidth="100"
+                                VerticalAlignment="Center"
+                                Margin="5" />
                             <Label Content="Numero Interior:"
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
-                            <TextBox Text="{Binding Factura.DireccionFiscal.CNUMEROINTERIOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     MinWidth="100"
-                                     VerticalAlignment="Center"
-                                     Margin="5" />
+                            <TextBox
+                                Text="{Binding Factura.DireccionFiscal.CNUMEROINTERIOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                MinWidth="100"
+                                VerticalAlignment="Center"
+                                Margin="5" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Telefono:"
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="5" />
-                            <TextBox Text="{Binding Factura.DireccionFiscal.CTELEFONO1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     MinWidth="200"
-                                     VerticalAlignment="Center"
-                                     Margin="5" />
+                            <TextBox
+                                Text="{Binding Factura.DireccionFiscal.CTELEFONO1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                MinWidth="200"
+                                VerticalAlignment="Center"
+                                Margin="5" />
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -451,13 +466,14 @@
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.COBSERVACIONES, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="500"
-                                 VerticalAlignment="Center"
-                                 Margin="5"
-                                 AcceptsReturn="True"
-                                 AcceptsTab="True"
-                                 TextWrapping="Wrap" />
+                        <TextBox
+                            Text="{Binding Factura.COBSERVACIONES, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="500"
+                            VerticalAlignment="Center"
+                            Margin="5"
+                            AcceptsReturn="True"
+                            AcceptsTab="True"
+                            TextWrapping="Wrap" />
                     </StackPanel>
                 </StackPanel>
             </TabItem>
@@ -468,30 +484,33 @@
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.CTEXTOEXTRA1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="200"
-                                 VerticalAlignment="Center"
-                                 Margin="5" />
+                        <TextBox
+                            Text="{Binding Factura.CTEXTOEXTRA1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="200"
+                            VerticalAlignment="Center"
+                            Margin="5" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Texto Extra 2:"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.CTEXTOEXTRA2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="200"
-                                 VerticalAlignment="Center"
-                                 Margin="5" />
+                        <TextBox
+                            Text="{Binding Factura.CTEXTOEXTRA2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="200"
+                            VerticalAlignment="Center"
+                            Margin="5" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Texto Extra 3:"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.CTEXTOEXTRA3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="200"
-                                 VerticalAlignment="Center"
-                                 Margin="5" />
+                        <TextBox
+                            Text="{Binding Factura.CTEXTOEXTRA3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="200"
+                            VerticalAlignment="Center"
+                            Margin="5" />
                     </StackPanel>
                 </StackPanel>
             </TabItem>
@@ -507,10 +526,11 @@
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.CDESTINATARIO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="300"
-                                 VerticalAlignment="Center"
-                                 Margin="5" />
+                        <TextBox
+                            Text="{Binding Factura.CDESTINATARIO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="300"
+                            VerticalAlignment="Center"
+                            Margin="5" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Numero Guia:"
@@ -535,20 +555,22 @@
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.CCUENTAMENSAJERIA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="200"
-                                 VerticalAlignment="Center"
-                                 Margin="5" />
+                        <TextBox
+                            Text="{Binding Factura.CCUENTAMENSAJERIA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="200"
+                            VerticalAlignment="Center"
+                            Margin="5" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Numero De Cajas:"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.CNUMEROCAJAS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="200"
-                                 VerticalAlignment="Center"
-                                 Margin="5" />
+                        <TextBox
+                            Text="{Binding Factura.CNUMEROCAJAS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="200"
+                            VerticalAlignment="Center"
+                            Margin="5" />
                         <Label Content="Peso Envio:"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
@@ -568,82 +590,91 @@
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.DireccionEnvio.CPAIS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="200"
-                                 VerticalAlignment="Center"
-                                 Margin="5" />
+                        <TextBox
+                            Text="{Binding Factura.DireccionEnvio.CPAIS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="200"
+                            VerticalAlignment="Center"
+                            Margin="5" />
                         <Label Content="Codigo Postal:"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.DireccionEnvio.CCODIGOPOSTAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="200"
-                                 VerticalAlignment="Center"
-                                 Margin="5" />
+                        <TextBox
+                            Text="{Binding Factura.DireccionEnvio.CCODIGOPOSTAL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="200"
+                            VerticalAlignment="Center"
+                            Margin="5" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Estado:"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.DireccionEnvio.CESTADO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="200"
-                                 VerticalAlignment="Center"
-                                 Margin="5" />
+                        <TextBox
+                            Text="{Binding Factura.DireccionEnvio.CESTADO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="200"
+                            VerticalAlignment="Center"
+                            Margin="5" />
                         <Label Content="Ciudad:"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.DireccionEnvio.CCIUDAD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="200"
-                                 VerticalAlignment="Center"
-                                 Margin="5" />
+                        <TextBox
+                            Text="{Binding Factura.DireccionEnvio.CCIUDAD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="200"
+                            VerticalAlignment="Center"
+                            Margin="5" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Colonia:"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.DireccionEnvio.CCOLONIA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="300"
-                                 VerticalAlignment="Center"
-                                 Margin="5" />
+                        <TextBox
+                            Text="{Binding Factura.DireccionEnvio.CCOLONIA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="300"
+                            VerticalAlignment="Center"
+                            Margin="5" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Calle:"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.DireccionEnvio.CNOMBRECALLE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="300"
-                                 VerticalAlignment="Center"
-                                 Margin="5" />
+                        <TextBox
+                            Text="{Binding Factura.DireccionEnvio.CNOMBRECALLE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="300"
+                            VerticalAlignment="Center"
+                            Margin="5" />
                         <Label Content="Numero Exterior:"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.DireccionEnvio.CNUMEROEXTERIOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="100"
-                                 VerticalAlignment="Center"
-                                 Margin="5" />
+                        <TextBox
+                            Text="{Binding Factura.DireccionEnvio.CNUMEROEXTERIOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="100"
+                            VerticalAlignment="Center"
+                            Margin="5" />
                         <Label Content="Numero Interior:"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.DireccionEnvio.CNUMEROINTERIOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="100"
-                                 VerticalAlignment="Center"
-                                 Margin="5" />
+                        <TextBox
+                            Text="{Binding Factura.DireccionEnvio.CNUMEROINTERIOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="100"
+                            VerticalAlignment="Center"
+                            Margin="5" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Telefono:"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="5" />
-                        <TextBox Text="{Binding Factura.DireccionEnvio.CTELEFONO1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="200"
-                                 VerticalAlignment="Center"
-                                 Margin="5" />
+                        <TextBox
+                            Text="{Binding Factura.DireccionEnvio.CTELEFONO1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            MinWidth="200"
+                            VerticalAlignment="Center"
+                            Margin="5" />
                     </StackPanel>
                 </StackPanel>
             </TabItem>

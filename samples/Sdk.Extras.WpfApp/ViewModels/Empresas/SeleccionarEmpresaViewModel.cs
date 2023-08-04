@@ -5,13 +5,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MahApps.Metro.Controls.Dialogs;
 using Sdk.Extras.WpfApp.Messages;
+using Sdk.Extras.WpfApp.Models;
 
 namespace Sdk.Extras.WpfApp.ViewModels.Empresas;
 
@@ -37,21 +37,16 @@ public class SeleccionarEmpresaViewModel : ObservableRecipient
         CancelarCommand = new RelayCommand(Cancelar);
     }
 
-    public string Title { get; } = "Seleccionar Empresa";
+    public IAsyncRelayCommand BuscarEmpresasCommand { get; }
+    public IRelayCommand CancelarCommand { get; }
 
-    public string Filtro
+    public string DuracionBusqueda
     {
-        get => _filtro;
-        set
-        {
-            SetProperty(ref _filtro, value);
-            EmpresasView.Refresh();
-        }
+        get => _duracionBusqueda;
+        set => SetProperty(ref _duracionBusqueda, value);
     }
 
     public ObservableCollection<Empresa> Empresas { get; }
-
-    public ICollectionView EmpresasView { get; }
 
     public Empresa EmpresaSeleccionada
     {
@@ -63,17 +58,23 @@ public class SeleccionarEmpresaViewModel : ObservableRecipient
         }
     }
 
-    public bool SeleccionoEmpresa { get; private set; }
+    public ICollectionView EmpresasView { get; }
 
-    public string DuracionBusqueda
+    public string Filtro
     {
-        get => _duracionBusqueda;
-        set => SetProperty(ref _duracionBusqueda, value);
+        get => _filtro;
+        set
+        {
+            SetProperty(ref _filtro, value);
+            EmpresasView.Refresh();
+        }
     }
 
-    public IAsyncRelayCommand BuscarEmpresasCommand { get; }
     public IRelayCommand SeleccionarCommand { get; }
-    public IRelayCommand CancelarCommand { get; }
+
+    public bool SeleccionoEmpresa { get; private set; }
+
+    public string Title { get; } = "Seleccionar Empresa";
 
     public async Task BuscarEmpresasAsync()
     {
@@ -82,8 +83,7 @@ public class SeleccionarEmpresaViewModel : ObservableRecipient
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             Empresas.Clear();
-            foreach (Empresa empresa in _empresaRepository.TraerTodo().OrderBy(e => e.CNOMBREEMPRESA))
-                Empresas.Add(empresa);
+            foreach (Empresa empresa in _empresaRepository.TraerTodo().OrderBy(e => e.CNOMBREEMPRESA)) Empresas.Add(empresa);
 
             stopwatch.Stop();
             DuracionBusqueda = stopwatch.Elapsed.ToString("g");
@@ -94,9 +94,9 @@ public class SeleccionarEmpresaViewModel : ObservableRecipient
         }
     }
 
-    public void Seleccionar()
+    public void Cancelar()
     {
-        SeleccionoEmpresa = true;
+        SeleccionoEmpresa = false;
         Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
     }
 
@@ -105,17 +105,16 @@ public class SeleccionarEmpresaViewModel : ObservableRecipient
         return EmpresaSeleccionada != null;
     }
 
-    public void Cancelar()
-    {
-        SeleccionoEmpresa = false;
-        Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
-    }
-
     private bool EmpresasView_Filter(object obj)
     {
-        if (!(obj is Empresa empresa))
-            throw new ArgumentNullException(nameof(obj));
+        if (!(obj is Empresa empresa)) throw new ArgumentNullException(nameof(obj));
 
         return empresa.Contains(Filtro);
+    }
+
+    public void Seleccionar()
+    {
+        SeleccionoEmpresa = true;
+        Messenger.Send(new ViewModelVisibilityChangedMessage(this, false));
     }
 }

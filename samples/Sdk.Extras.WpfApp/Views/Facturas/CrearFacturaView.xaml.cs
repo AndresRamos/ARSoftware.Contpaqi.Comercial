@@ -14,15 +14,14 @@ public partial class CrearFacturaView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<CrearFacturaViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (CrearFacturaView)recipient;
-                    view.Close();
-                }
-            });
+                var view = (CrearFacturaView)recipient;
+                view.Close();
+            }
+        });
     }
 
     public CrearFacturaViewModel ViewModel => (CrearFacturaViewModel)DataContext;

@@ -5,12 +5,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
+using Sdk.Extras.WpfApp.Models;
 using Sdk.Extras.WpfApp.Views.Clasificaciones;
 using Sdk.Extras.WpfApp.Views.ValoresClasificacion;
 
@@ -30,9 +31,8 @@ public class ListadoClasificacionesViewModel : ObservableRecipient
     private ValorClasificacion _valorClasificacionSeleccionado;
 
     public ListadoClasificacionesViewModel(IClasificacionRepository<Clasificacion> clasificacionRepository,
-                                           IDialogCoordinator dialogCoordinator,
-                                           IValorClasificacionService valorClasificacionService,
-                                           IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
+        IDialogCoordinator dialogCoordinator, IValorClasificacionService valorClasificacionService,
+        IValorClasificacionRepository<ValorClasificacion> valorClasificacionRepository)
     {
         _clasificacionRepository = clasificacionRepository;
         _dialogCoordinator = dialogCoordinator;
@@ -56,18 +56,12 @@ public class ListadoClasificacionesViewModel : ObservableRecipient
         EliminarValorClasificacionCommand = new AsyncRelayCommand(EliminarValorClasificacionAsync, CanEliminarValorClasificacionAsync);
     }
 
-    public string Title => "Clasificaciones";
-
-    public string Filtro
-    {
-        get => _filtro;
-        set
-        {
-            SetProperty(ref _filtro, value);
-            ClasificacionesView.Refresh();
-            OnPropertyChanged(nameof(NumeroClasificaciones));
-        }
-    }
+    public IAsyncRelayCommand BuscarClasificacionesCommand { get; }
+    public IAsyncRelayCommand BuscarClasificacionesDeAgenteCommand { get; }
+    public IAsyncRelayCommand BuscarClasificacionesDeAlmacenCommand { get; }
+    public IAsyncRelayCommand BuscarClasificacionesDeClienteCommand { get; }
+    public IAsyncRelayCommand BuscarClasificacionesDeProductoCommand { get; }
+    public IAsyncRelayCommand BuscarClasificacionesDeProveedorCommand { get; }
 
     public ObservableCollection<Clasificacion> Clasificaciones { get; }
 
@@ -83,6 +77,33 @@ public class ListadoClasificacionesViewModel : ObservableRecipient
         }
     }
 
+    public IAsyncRelayCommand CrearValorClasificacionCommand { get; }
+
+    public string DuracionBusqueda
+    {
+        get => _duracionBusqueda;
+        private set => SetProperty(ref _duracionBusqueda, value);
+    }
+
+    public IAsyncRelayCommand EditarClasificacionCommand { get; }
+    public IAsyncRelayCommand EditarValorClasificacionCommand { get; }
+    public IAsyncRelayCommand EliminarValorClasificacionCommand { get; }
+
+    public string Filtro
+    {
+        get => _filtro;
+        set
+        {
+            SetProperty(ref _filtro, value);
+            ClasificacionesView.Refresh();
+            OnPropertyChanged(nameof(NumeroClasificaciones));
+        }
+    }
+
+    public int NumeroClasificaciones => ClasificacionesView.Cast<object>().Count();
+
+    public string Title => "Clasificaciones";
+
     public ValorClasificacion ValorClasificacionSeleccionado
     {
         get => _valorClasificacionSeleccionado;
@@ -92,25 +113,6 @@ public class ListadoClasificacionesViewModel : ObservableRecipient
             RaiseGuards();
         }
     }
-
-    public int NumeroClasificaciones => ClasificacionesView.Cast<object>().Count();
-
-    public string DuracionBusqueda
-    {
-        get => _duracionBusqueda;
-        private set => SetProperty(ref _duracionBusqueda, value);
-    }
-
-    public IAsyncRelayCommand BuscarClasificacionesCommand { get; }
-    public IAsyncRelayCommand BuscarClasificacionesDeAgenteCommand { get; }
-    public IAsyncRelayCommand BuscarClasificacionesDeClienteCommand { get; }
-    public IAsyncRelayCommand BuscarClasificacionesDeProveedorCommand { get; }
-    public IAsyncRelayCommand BuscarClasificacionesDeAlmacenCommand { get; }
-    public IAsyncRelayCommand BuscarClasificacionesDeProductoCommand { get; }
-    public IAsyncRelayCommand EditarClasificacionCommand { get; }
-    public IAsyncRelayCommand CrearValorClasificacionCommand { get; }
-    public IAsyncRelayCommand EditarValorClasificacionCommand { get; }
-    public IAsyncRelayCommand EliminarValorClasificacionCommand { get; }
 
     public async Task BuscarClasificacionesAsync()
     {
@@ -382,8 +384,7 @@ public class ListadoClasificacionesViewModel : ObservableRecipient
             window.ViewModel.Inicializar(ClasificacionSeleccionada.CIDCLASIFICACION);
             window.ShowDialog();
 
-            await _dialogCoordinator.ShowMessageAsync(this,
-                "Volver A Buscar Catalogo",
+            await _dialogCoordinator.ShowMessageAsync(this, "Volver A Buscar Catalogo",
                 "Para ver los cambios reflejados volver a buscar el catalogo.");
         }
         catch (Exception e)
@@ -409,14 +410,11 @@ public class ListadoClasificacionesViewModel : ObservableRecipient
 
     public async Task EliminarValorClasificacionAsync()
     {
-        MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this,
-            "Eliminar Valor De Clasificacion",
-            "Esta seguro de querer eliminar este valor de clasificacion?",
-            MessageDialogStyle.AffirmativeAndNegative,
+        MessageDialogResult messageDialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Eliminar Valor De Clasificacion",
+            "Esta seguro de querer eliminar este valor de clasificacion?", MessageDialogStyle.AffirmativeAndNegative,
             new MetroDialogSettings { AffirmativeButtonText = "Eliminar", NegativeButtonText = "Cancelar" });
 
-        if (messageDialogResult != MessageDialogResult.Affirmative)
-            return;
+        if (messageDialogResult != MessageDialogResult.Affirmative) return;
 
         try
         {
@@ -439,8 +437,7 @@ public class ListadoClasificacionesViewModel : ObservableRecipient
 
     private bool UnidadesMedidaView_Filter(object obj)
     {
-        if (!(obj is Clasificacion clasificacion))
-            throw new ArgumentNullException(nameof(obj));
+        if (!(obj is Clasificacion clasificacion)) throw new ArgumentNullException(nameof(obj));
 
         return clasificacion.Contains(Filtro);
     }

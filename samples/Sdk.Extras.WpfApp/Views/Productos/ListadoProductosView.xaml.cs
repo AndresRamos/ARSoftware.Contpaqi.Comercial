@@ -14,16 +14,15 @@ public partial class ListadoProductosView
     {
         InitializeComponent();
         DataContext = Ioc.Default.GetService<ListadoProductosViewModel>();
-        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this,
-            (recipient, message) =>
+        WeakReferenceMessenger.Default.Register<ViewModelVisibilityChangedMessage>(this, (recipient, message) =>
+        {
+            if (message.Sender == ViewModel && message.IsOpen == false)
             {
-                if (message.Sender == ViewModel && message.IsOpen == false)
-                {
-                    var view = (ListadoProductosView)recipient;
-                    view.Close();
-                    Close();
-                }
-            });
+                var view = (ListadoProductosView)recipient;
+                view.Close();
+                Close();
+            }
+        });
     }
 
     public ListadoProductosViewModel ViewModel => (ListadoProductosViewModel)DataContext;

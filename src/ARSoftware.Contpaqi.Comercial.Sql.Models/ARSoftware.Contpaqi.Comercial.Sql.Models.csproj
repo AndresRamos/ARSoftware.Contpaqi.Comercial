@@ -1,23 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>4.4.0</Version>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<Version>5.0.0</Version>
 		<Authors>AR Software</Authors>
-		<Description>Modelo de las bases de datos de CONTPAQi Comercial version 8.1.1</Description>
-		<Copyright>Copyright © AR Software 2022</Copyright>
+		<Description>Modelo de las bases de datos de CONTPAQi Comercial v8.2.1</Description>
+		<Copyright>Copyright © AR Software 2023</Copyright>
 		<RepositoryUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Contpaqi Comercial Sql</PackageTags>
-		<PackageLicenseExpression>(MIT)</PackageLicenseExpression>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<Folder Include="Generales\" />
-	</ItemGroup>
 
 	<ItemGroup>
 	  <None Include="..\..\images\AR_LOGO03.jpg">
