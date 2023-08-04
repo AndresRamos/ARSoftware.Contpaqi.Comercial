@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Ardalis.SmartEnum;
 
+// ReSharper disable InconsistentNaming
+
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums.CatalogosCfdi;
 
 public sealed class UsoCfdiEnum : SmartEnum<UsoCfdiEnum, string>
@@ -157,11 +159,9 @@ public sealed class UsoCfdiEnum : SmartEnum<UsoCfdiEnum, string>
     private UsoCfdiEnum(string descripcion, string clave, IEnumerable<string> regimenesFiscales) : base(descripcion, clave)
     {
         foreach (string regimen in regimenesFiscales)
-        {
             RegimenesFiscales.Add(RegimenFiscalEnum.TryFromValue(regimen, out RegimenFiscalEnum regimenResult)
                 ? regimenResult
                 : throw new InvalidOperationException($"El regimen fiscal {regimen} no es valido."));
-        }
     }
 
     public List<RegimenFiscalEnum> RegimenesFiscales { get; } = new();

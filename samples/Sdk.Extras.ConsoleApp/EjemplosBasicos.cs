@@ -47,8 +47,8 @@ public class EjemplosBasicos
         sdkSesionService.AbrirEmpresa(empresa.CRUTADATOS);
 
         // Buscar siguiente folio del concepto
-        var _documentoService = services.GetRequiredService<IDocumentoService>();
-        tLlaveDoc llaveDocumento = _documentoService.BuscarSiguienteSerieYFolio("PRUEBAFACTURA");
+        var documentoService = services.GetRequiredService<IDocumentoService>();
+        tLlaveDoc llaveDocumento = documentoService.BuscarSiguienteSerieYFolio("PRUEBAFACTURA");
 
         // Crear estructura de una factura
         var documento = new Documento
@@ -89,20 +89,20 @@ public class EjemplosBasicos
         documento.Movimientos.Add(movimiento);
 
         // Crear factura
-        int nuevoDocumentoId = _documentoService.Crear(documento);
+        int nuevoDocumentoId = documentoService.Crear(documento);
 
         // Crear movimientos
-        var _movimientoService = services.GetRequiredService<IMovimientoService>();
-        foreach (Movimiento mov in documento.Movimientos) _movimientoService.Crear(nuevoDocumentoId, mov);
+        var movimientoService = services.GetRequiredService<IMovimientoService>();
+        foreach (Movimiento mov in documento.Movimientos) movimientoService.Crear(nuevoDocumentoId, mov);
 
         // Timbrar factura
-        _documentoService.Timbrar(llaveDocumento, "12345678a");
+        documentoService.Timbrar(llaveDocumento, "12345678a");
 
         // Generar XML de la factura
-        _documentoService.GenerarDocumentoDigital(llaveDocumento, TipoArchivoDigital.Xml);
+        documentoService.GenerarDocumentoDigital(llaveDocumento, TipoArchivoDigital.Xml);
 
         // Generar PDF de la factura
-        _documentoService.GenerarDocumentoDigital(llaveDocumento, TipoArchivoDigital.Pdf,
+        documentoService.GenerarDocumentoDigital(llaveDocumento, TipoArchivoDigital.Pdf,
             @"\\AR-SERVER\Compac\Empresas\Reportes\Formatos Digitales\reportes_Servidor\COMERCIAL\Facturav40.rdl");
 
         // Cerrar empresa

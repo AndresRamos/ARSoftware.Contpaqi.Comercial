@@ -4,6 +4,7 @@ using Ardalis.Specification.EntityFrameworkCore;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Generales;
+using ARSoftware.Contpaqi.Comercial.Sql.Repositories.Common;
 using ARSoftware.Contpaqi.Comercial.Sql.Specifications.Empresas;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;

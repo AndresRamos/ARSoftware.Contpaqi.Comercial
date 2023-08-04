@@ -3,6 +3,7 @@ using System.Linq;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
+using ARSoftware.Contpaqi.Comercial.Sql.Repositories.Common;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 

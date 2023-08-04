@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<Version>5.0.0-beta.1</Version>
+		<Version>5.0.0</Version>
 		<Authors>AR Software</Authors>
 		<Description>Esta libreria contiene las interfaces usadas por los poryectos de SDK y SQL </Description>
 		<Copyright>Copyright © AR Software 2023</Copyright>
@@ -25,8 +25,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Ardalis.SmartEnum" Version="2.1.0" />
-		<PackageReference Include="Ardalis.SmartEnum.SystemTextJson" Version="2.1.0" />
+		<PackageReference Include="Ardalis.SmartEnum" Version="7.0.0" />
+		<PackageReference Include="Ardalis.SmartEnum.SystemTextJson" Version="7.0.0" />
 		<PackageReference Include="AutoMapper" Version="12.0.1" />
 	</ItemGroup>
 

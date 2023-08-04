@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.Specification;
 
-namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
+namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories.Common;
 
 /// <summary>
 ///     Interfaz base para los repositorios de SQL de Contpaqi Comercial.

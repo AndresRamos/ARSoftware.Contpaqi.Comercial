@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<Version>5.0.0-beta.1</Version>
+		<Version>5.0.0</Version>
 		<Authors>AR Software</Authors>
 		<Description>Entity Framework DbContexts para hacer query las bases de datos de CONTPAQi Comercial v8.2.1</Description>
 		<Copyright>Copyright © AR Software 2023</Copyright>
@@ -12,6 +12,8 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Contpaqi Sql Comercial</PackageTags>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
 	</PropertyGroup>
 
@@ -25,9 +27,8 @@
 	<ItemGroup>
 		<PackageReference Include="Ardalis.Specification" Version="7.0.0" />
 		<PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="7.0.0" />
-		<PackageReference Include="AutoMapper" Version="12.0.1" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

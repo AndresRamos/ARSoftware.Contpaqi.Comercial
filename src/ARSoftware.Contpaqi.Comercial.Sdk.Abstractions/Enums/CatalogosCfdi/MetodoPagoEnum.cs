@@ -1,5 +1,7 @@
 ﻿using Ardalis.SmartEnum;
 
+// ReSharper disable InconsistentNaming
+
 namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums.CatalogosCfdi;
 
 public sealed class MetodoPagoEnum : SmartEnum<MetodoPagoEnum, string>

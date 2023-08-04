@@ -8,7 +8,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
+namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories.Common;
 
 public abstract class ContpaqiComercialSqlRepositoryBase<T> : IContpaqiComercialSqlRepositoryBase<T> where T : class
 {
