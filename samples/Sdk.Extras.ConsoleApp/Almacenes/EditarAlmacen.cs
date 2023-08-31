@@ -19,8 +19,9 @@ public class EditarAlmacen
         var datosAlmacen = new Dictionary<string, string>
         {
             { nameof(admAlmacenes.CNOMBREALMACEN), "ALMACEN DE PRUEBAS MODIFICADO" },
-            { nameof(admAlmacenes.CTEXTOEXTRA1), "Texto Modificado" },
-            { nameof(admAlmacenes.CTEXTOEXTRA2), "Texto Extra 2" }
+            { nameof(admAlmacenes.CTEXTOEXTRA1), "Texto extra 1" },
+            { nameof(admAlmacenes.CTEXTOEXTRA2), "Texto extra 2" },
+            { nameof(admAlmacenes.CTEXTOEXTRA3), "Texto extra 3" }
         };
 
         _almacenService.Actualizar(codigoAlmacen, datosAlmacen);

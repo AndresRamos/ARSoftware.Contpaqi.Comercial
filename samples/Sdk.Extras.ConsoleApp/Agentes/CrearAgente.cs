@@ -1,6 +1,5 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
@@ -19,8 +18,9 @@ public class CrearAgente
     {
         var agente = new Agente { Codigo = "PRUEBA", Nombre = "AGENTE DE PRUEBAS", Tipo = TipoAgente.VentasCobro };
 
-        agente.DatosExtra.Add(nameof(admAgentes.CFECHAALTAAGENTE), DateTime.Today.ToSdkFecha());
-        agente.DatosExtra.Add(nameof(admAgentes.CTEXTOEXTRA1), "Texto Extra 1");
+        agente.DatosExtra.Add(nameof(admAgentes.CCOMISIONVENTAAGENTE), "5"); // Comisión de venta del agente.
+        agente.DatosExtra.Add(nameof(admAgentes.CTEXTOEXTRA1), "Texto extra 1"); // Texto extra 1.
+        agente.DatosExtra.Add(nameof(admAgentes.CTEXTOEXTRA2), "Texto extra 2"); // Texto extra 2.
 
         int nuevoAgenteId = _ageteService.Crear(agente);
 

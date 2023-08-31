@@ -29,7 +29,7 @@ public sealed class BuscarEmpresasConRepositorio : IBuscarEmpresas
     /// <inheritdoc />
     public void TraerTodo()
     {
-        List<Empresas> empresas = _empresaRepository.TraerTodo().ToList();
+        List<Empresas> empresas = _empresaRepository.TraerTodo();
 
         _logger.LogInformation("{@Empresas}", empresas);
     }

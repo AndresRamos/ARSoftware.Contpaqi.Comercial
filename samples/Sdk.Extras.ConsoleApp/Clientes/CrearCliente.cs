@@ -34,11 +34,4 @@ public class CrearCliente
 
         return clienteId;
     }
-
-    public void Eliminar()
-    {
-        var codigoCliente = "PRUEBA";
-
-        _clienteProveedorService.Eliminar(codigoCliente);
-    }
 }

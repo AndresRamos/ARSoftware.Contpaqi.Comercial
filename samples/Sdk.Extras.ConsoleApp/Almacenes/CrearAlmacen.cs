@@ -1,5 +1,4 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
@@ -18,9 +17,11 @@ public class CrearAlmacen
     {
         var almacen = new Almacen { Codigo = "PRUEBA", Nombre = "ALMACEN DE PRUEBAS" };
 
-        almacen.DatosExtra.Add(nameof(admAlmacenes.CFECHAALTAALMACEN), DateTime.Today.ToSdkFecha());
-        almacen.DatosExtra.Add(nameof(admAlmacenes.CTEXTOEXTRA1), "Texto Extra 1");
+        almacen.DatosExtra.Add(nameof(admAlmacenes.CTEXTOEXTRA1), "Texto extra 2");
+        almacen.DatosExtra.Add(nameof(admAlmacenes.CTEXTOEXTRA2), "Texto extra 2");
 
-        return _almacenService.Crear(almacen);
+        int nuevoAlmacenId = _almacenService.Crear(almacen);
+
+        return nuevoAlmacenId;
     }
 }
