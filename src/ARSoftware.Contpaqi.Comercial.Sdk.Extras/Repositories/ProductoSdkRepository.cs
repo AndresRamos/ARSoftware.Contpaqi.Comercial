@@ -41,6 +41,39 @@ public class ProductoSdkRepository<T> : IProductoRepository<T> where T : class, 
     }
 
     /// <inheritdoc />
+    public double BuscaExistencias(string codigoProducto, string codigoAlmacen, DateOnly fecha)
+    {
+        var existencias = 0.0;
+        _sdk.fRegresaExistencia(codigoProducto, codigoAlmacen, fecha.Year.ToString(), fecha.Month.ToString(), fecha.Day.ToString(),
+                ref existencias)
+            .ToResultadoSdk(_sdk)
+            .ThrowIfError();
+        return existencias;
+    }
+
+    /// <inheritdoc />
+    public double BuscaExistenciasConCaracteristicas(string codigoProducto, string codigoAlmacen, DateOnly fecha,
+        string valorCaracteristica1, string valorCaracteristica2, string valorCaracteristica3)
+    {
+        var existencias = 0.0;
+        _sdk.fRegresaExistenciaCaracteristicas(codigoProducto, codigoAlmacen, fecha.Year.ToString(), fecha.Month.ToString(),
+                fecha.Day.ToString(), valorCaracteristica1, valorCaracteristica2, valorCaracteristica3, ref existencias)
+            .ToResultadoSdk(_sdk)
+            .ThrowIfError();
+        return existencias;
+    }
+
+    /// <inheritdoc />
+    public double BuscaExistenciasConCapas(string codigoProducto, string codigoAlmacen, string pedimento, string lote)
+    {
+        var existencias = 0.0;
+        _sdk.fRegresaExistenciaLotePedimento(codigoProducto, codigoAlmacen, pedimento, lote, ref existencias)
+            .ToResultadoSdk(_sdk)
+            .ThrowIfError();
+        return existencias;
+    }
+
+    /// <inheritdoc />
     public List<T> TraerPorTipo(TipoProducto tipoProducto)
     {
         var lista = new List<T>();
@@ -93,7 +126,6 @@ public class ProductoSdkRepository<T> : IProductoRepository<T> where T : class, 
         Type sqlModelType = typeof(admProductos);
 
         foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
-        {
             try
             {
                 if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
@@ -107,6 +139,5 @@ public class ProductoSdkRepository<T> : IProductoRepository<T> where T : class, 
                     $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
                     e);
             }
-        }
     }
 }
