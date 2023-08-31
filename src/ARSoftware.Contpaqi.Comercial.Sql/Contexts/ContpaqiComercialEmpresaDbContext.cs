@@ -1,7 +1,7 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
+﻿using System;
+using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using Microsoft.EntityFrameworkCore;
-
-// ReSharper disable InconsistentNaming
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts;
 
