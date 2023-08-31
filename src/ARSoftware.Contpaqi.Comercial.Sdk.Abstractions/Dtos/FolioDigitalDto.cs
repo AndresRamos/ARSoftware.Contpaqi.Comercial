@@ -1,5 +1,6 @@
 ﻿namespace ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Dtos;
 
+// ReSharper disable InconsistentNaming
 public class FolioDigitalDto
 {
     /// <summary>

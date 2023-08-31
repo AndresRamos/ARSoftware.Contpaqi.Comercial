@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
+﻿using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using Microsoft.EntityFrameworkCore;
+
+// ReSharper disable All
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts;
 
@@ -12,129 +12,129 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
     {
     }
 
-    public virtual DbSet<admAcumulados> admAcumulados { get; set; }
+    public virtual DbSet<admAcumulados> admAcumulados { get; set; } = null!;
 
-    public virtual DbSet<admAcumuladosTipos> admAcumuladosTipos { get; set; }
+    public virtual DbSet<admAcumuladosTipos> admAcumuladosTipos { get; set; } = null!;
 
-    public virtual DbSet<admAgentes> admAgentes { get; set; }
+    public virtual DbSet<admAgentes> admAgentes { get; set; } = null!;
 
-    public virtual DbSet<admAlmacenes> admAlmacenes { get; set; }
+    public virtual DbSet<admAlmacenes> admAlmacenes { get; set; } = null!;
 
-    public virtual DbSet<admAsientosContables> admAsientosContables { get; set; }
+    public virtual DbSet<admAsientosContables> admAsientosContables { get; set; } = null!;
 
-    public virtual DbSet<admAsocAcumConceptos> admAsocAcumConceptos { get; set; }
+    public virtual DbSet<admAsocAcumConceptos> admAsocAcumConceptos { get; set; } = null!;
 
-    public virtual DbSet<admAsocCargosAbonos> admAsocCargosAbonos { get; set; }
+    public virtual DbSet<admAsocCargosAbonos> admAsocCargosAbonos { get; set; } = null!;
 
-    public virtual DbSet<admAsocCargosAbonosImp> admAsocCargosAbonosImp { get; set; }
+    public virtual DbSet<admAsocCargosAbonosImp> admAsocCargosAbonosImp { get; set; } = null!;
 
-    public virtual DbSet<admBanderas> admBanderas { get; set; }
+    public virtual DbSet<admBanderas> admBanderas { get; set; } = null!;
 
-    public virtual DbSet<admBitacoras> admBitacoras { get; set; }
+    public virtual DbSet<admBitacoras> admBitacoras { get; set; } = null!;
 
-    public virtual DbSet<admCapasProducto> admCapasProducto { get; set; }
+    public virtual DbSet<admCapasProducto> admCapasProducto { get; set; } = null!;
 
-    public virtual DbSet<admCaracteristicas> admCaracteristicas { get; set; }
+    public virtual DbSet<admCaracteristicas> admCaracteristicas { get; set; } = null!;
 
-    public virtual DbSet<admCaracteristicasValores> admCaracteristicasValores { get; set; }
+    public virtual DbSet<admCaracteristicasValores> admCaracteristicasValores { get; set; } = null!;
 
-    public virtual DbSet<admClasificaciones> admClasificaciones { get; set; }
+    public virtual DbSet<admClasificaciones> admClasificaciones { get; set; } = null!;
 
-    public virtual DbSet<admClasificacionesValores> admClasificacionesValores { get; set; }
+    public virtual DbSet<admClasificacionesValores> admClasificacionesValores { get; set; } = null!;
 
-    public virtual DbSet<admClientes> admClientes { get; set; }
+    public virtual DbSet<admClientes> admClientes { get; set; } = null!;
 
-    public virtual DbSet<admComponentesPaquete> admComponentesPaquete { get; set; }
+    public virtual DbSet<admComponentesPaquete> admComponentesPaquete { get; set; } = null!;
 
-    public virtual DbSet<admConceptos> admConceptos { get; set; }
+    public virtual DbSet<admConceptos> admConceptos { get; set; } = null!;
 
-    public virtual DbSet<admConceptosBack> admConceptosBack { get; set; }
+    public virtual DbSet<admConceptosBack> admConceptosBack { get; set; } = null!;
 
-    public virtual DbSet<admConversionesUnidad> admConversionesUnidad { get; set; }
+    public virtual DbSet<admConversionesUnidad> admConversionesUnidad { get; set; } = null!;
 
-    public virtual DbSet<admCostosHistoricos> admCostosHistoricos { get; set; }
+    public virtual DbSet<admCostosHistoricos> admCostosHistoricos { get; set; } = null!;
 
-    public virtual DbSet<admCuentasBancarias> admCuentasBancarias { get; set; }
+    public virtual DbSet<admCuentasBancarias> admCuentasBancarias { get; set; } = null!;
 
-    public virtual DbSet<admDatosAddenda> admDatosAddenda { get; set; }
+    public virtual DbSet<admDatosAddenda> admDatosAddenda { get; set; } = null!;
 
-    public virtual DbSet<admDocumentos> admDocumentos { get; set; }
+    public virtual DbSet<admDocumentos> admDocumentos { get; set; } = null!;
 
-    public virtual DbSet<admDocumentosModelo> admDocumentosModelo { get; set; }
+    public virtual DbSet<admDocumentosModelo> admDocumentosModelo { get; set; } = null!;
 
-    public virtual DbSet<admDocumentosModelosBack> admDocumentosModelosBack { get; set; }
+    public virtual DbSet<admDocumentosModelosBack> admDocumentosModelosBack { get; set; } = null!;
 
-    public virtual DbSet<admDomicilios> admDomicilios { get; set; }
+    public virtual DbSet<admDomicilios> admDomicilios { get; set; } = null!;
 
-    public virtual DbSet<admEjercicios> admEjercicios { get; set; }
+    public virtual DbSet<admEjercicios> admEjercicios { get; set; } = null!;
 
-    public virtual DbSet<admExistenciaCosto> admExistenciaCosto { get; set; }
+    public virtual DbSet<admExistenciaCosto> admExistenciaCosto { get; set; } = null!;
 
-    public virtual DbSet<admFoliosDigitales> admFoliosDigitales { get; set; }
+    public virtual DbSet<admFoliosDigitales> admFoliosDigitales { get; set; } = null!;
 
-    public virtual DbSet<admMaximosMinimos> admMaximosMinimos { get; set; }
+    public virtual DbSet<admMaximosMinimos> admMaximosMinimos { get; set; } = null!;
 
-    public virtual DbSet<admMonedas> admMonedas { get; set; }
+    public virtual DbSet<admMonedas> admMonedas { get; set; } = null!;
 
-    public virtual DbSet<admMovimientos> admMovimientos { get; set; }
+    public virtual DbSet<admMovimientos> admMovimientos { get; set; } = null!;
 
-    public virtual DbSet<admMovimientosCapas> admMovimientosCapas { get; set; }
+    public virtual DbSet<admMovimientosCapas> admMovimientosCapas { get; set; } = null!;
 
-    public virtual DbSet<admMovimientosContables> admMovimientosContables { get; set; }
+    public virtual DbSet<admMovimientosContables> admMovimientosContables { get; set; } = null!;
 
-    public virtual DbSet<admMovimientosPrepoliza> admMovimientosPrepoliza { get; set; }
+    public virtual DbSet<admMovimientosPrepoliza> admMovimientosPrepoliza { get; set; } = null!;
 
-    public virtual DbSet<admMovimientosSerie> admMovimientosSerie { get; set; }
+    public virtual DbSet<admMovimientosSerie> admMovimientosSerie { get; set; } = null!;
 
-    public virtual DbSet<admMovtosBancarios> admMovtosBancarios { get; set; }
+    public virtual DbSet<admMovtosBancarios> admMovtosBancarios { get; set; } = null!;
 
-    public virtual DbSet<admMovtosCEPs> admMovtosCEPs { get; set; }
+    public virtual DbSet<admMovtosCEPs> admMovtosCEPs { get; set; } = null!;
 
-    public virtual DbSet<admMovtosInvFisico> admMovtosInvFisico { get; set; }
+    public virtual DbSet<admMovtosInvFisico> admMovtosInvFisico { get; set; } = null!;
 
-    public virtual DbSet<admMovtosInvFisicoSerieCa> admMovtosInvFisicoSerieCa { get; set; }
+    public virtual DbSet<admMovtosInvFisicoSerieCa> admMovtosInvFisicoSerieCa { get; set; } = null!;
 
-    public virtual DbSet<admNumerosSerie> admNumerosSerie { get; set; }
+    public virtual DbSet<admNumerosSerie> admNumerosSerie { get; set; } = null!;
 
-    public virtual DbSet<admParametros> admParametros { get; set; }
+    public virtual DbSet<admParametros> admParametros { get; set; } = null!;
 
-    public virtual DbSet<admParametrosBack> admParametrosBack { get; set; }
+    public virtual DbSet<admParametrosBack> admParametrosBack { get; set; } = null!;
 
-    public virtual DbSet<admPreciosCompra> admPreciosCompra { get; set; }
+    public virtual DbSet<admPreciosCompra> admPreciosCompra { get; set; } = null!;
 
-    public virtual DbSet<admPrepolizas> admPrepolizas { get; set; }
+    public virtual DbSet<admPrepolizas> admPrepolizas { get; set; } = null!;
 
-    public virtual DbSet<admProductos> admProductos { get; set; }
+    public virtual DbSet<admProductos> admProductos { get; set; } = null!;
 
-    public virtual DbSet<admProductosDetalles> admProductosDetalles { get; set; }
+    public virtual DbSet<admProductosDetalles> admProductosDetalles { get; set; } = null!;
 
-    public virtual DbSet<admProductosFotos> admProductosFotos { get; set; }
+    public virtual DbSet<admProductosFotos> admProductosFotos { get; set; } = null!;
 
-    public virtual DbSet<admPromociones> admPromociones { get; set; }
+    public virtual DbSet<admPromociones> admPromociones { get; set; } = null!;
 
-    public virtual DbSet<admProyectos> admProyectos { get; set; }
+    public virtual DbSet<admProyectos> admProyectos { get; set; } = null!;
 
-    public virtual DbSet<admSATSegmentos> admSATSegmentos { get; set; }
+    public virtual DbSet<admSATSegmentos> admSATSegmentos { get; set; } = null!;
 
-    public virtual DbSet<admTiposCambio> admTiposCambio { get; set; }
+    public virtual DbSet<admTiposCambio> admTiposCambio { get; set; } = null!;
 
-    public virtual DbSet<admUnidadesMedidaPeso> admUnidadesMedidaPeso { get; set; }
+    public virtual DbSet<admUnidadesMedidaPeso> admUnidadesMedidaPeso { get; set; } = null!;
 
-    public virtual DbSet<admVistasCampos> admVistasCampos { get; set; }
+    public virtual DbSet<admVistasCampos> admVistasCampos { get; set; } = null!;
 
-    public virtual DbSet<admVistasConsultas> admVistasConsultas { get; set; }
+    public virtual DbSet<admVistasConsultas> admVistasConsultas { get; set; } = null!;
 
-    public virtual DbSet<admVistasPorModulo> admVistasPorModulo { get; set; }
+    public virtual DbSet<admVistasPorModulo> admVistasPorModulo { get; set; } = null!;
 
-    public virtual DbSet<admVistasRecursos> admVistasRecursos { get; set; }
+    public virtual DbSet<admVistasRecursos> admVistasRecursos { get; set; } = null!;
 
-    public virtual DbSet<admVistasRelaciones> admVistasRelaciones { get; set; }
+    public virtual DbSet<admVistasRelaciones> admVistasRelaciones { get; set; } = null!;
 
-    public virtual DbSet<admVistasTablas> admVistasTablas { get; set; }
+    public virtual DbSet<admVistasTablas> admVistasTablas { get; set; } = null!;
 
-    public virtual DbSet<nubeCuentas> nubeCuentas { get; set; }
+    public virtual DbSet<nubeCuentas> nubeCuentas { get; set; } = null!;
 
-    public virtual DbSet<nubeDiarios> nubeDiarios { get; set; }
+    public virtual DbSet<nubeDiarios> nubeDiarios { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
