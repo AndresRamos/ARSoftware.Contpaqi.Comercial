@@ -35,10 +35,9 @@ public static class ConfigureServices
         services.Add(new ServiceDescriptor(typeof(IConceptoDocumentoRepository<>), typeof(ConceptoDocumentoSqlRepository<>), lifetime));
         services.Add(new ServiceDescriptor(typeof(IConceptoDocumentoSqlRepository<>), typeof(ConceptoDocumentoSqlRepository<>), lifetime));
 
-        services.Add(new ServiceDescriptor(typeof(DireccionSqlRepository), typeof(DireccionSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(DireccionSqlRepository<>), typeof(DireccionSqlRepository<>), lifetime));
-        services.Add(new ServiceDescriptor(typeof(IDireccionRepository<admDomicilios>), typeof(DireccionSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(IDireccionRepository<>), typeof(DireccionSqlRepository<>), lifetime));
+        services.Add(new ServiceDescriptor(typeof(IDireccionSqlRepository<>), typeof(DireccionSqlRepository<>), lifetime));
 
         services.Add(new ServiceDescriptor(typeof(DocumentoModeloSqlRepository), typeof(DocumentoModeloSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(DocumentoModeloSqlRepository<>), typeof(DocumentoModeloSqlRepository<>), lifetime));
