@@ -16,6 +16,7 @@
 		<Title>CONTPAQi Comercial SDK Extras</Title>
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -33,6 +34,13 @@
 		<ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sdk.Abstractions\ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.csproj" />
 		<ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sdk\ARSoftware.Contpaqi.Comercial.Sdk.csproj" />
 		<ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sql.Models\ARSoftware.Contpaqi.Comercial.Sql.Models.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>

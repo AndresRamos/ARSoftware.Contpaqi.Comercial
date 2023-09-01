@@ -15,6 +15,7 @@
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -40,6 +41,13 @@
 	  <Folder Include="Specifications\FoliosDigitales\" />
 	  <Folder Include="Specifications\CapasProducto\" />
 	  <Folder Include="Specifications\ProductosDetalles\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>
