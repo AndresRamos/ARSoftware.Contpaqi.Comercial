@@ -1,33 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
+using System.Threading;
+using System.Threading.Tasks;
 using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
+using ARSoftware.Contpaqi.Comercial.Sql.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using ARSoftware.Contpaqi.Comercial.Sql.Repositories.Common;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
-
-/// <summary>
-///     Repositorio de SQL para consultar documentos modelo.
-/// </summary>
-public sealed class DocumentoModeloSqlRepository : ContpaqiComercialSqlRepositoryBase<admDocumentosModelo>,
-    IDocumentoModeloRepository<admDocumentosModelo>
-{
-    private readonly ContpaqiComercialEmpresaDbContext _context;
-
-    public DocumentoModeloSqlRepository(ContpaqiComercialEmpresaDbContext context) : base(context)
-    {
-        _context = context;
-    }
-
-    /// <inheritdoc />
-    public List<admDocumentosModelo> TraerTodo()
-    {
-        return _context.admDocumentosModelo.ToList();
-    }
-}
 
 /// <summary>
 ///     Repositorio de SQL para consultar documentos modelo y transformarlos a un tipo destino utilizando AutoMapper.
@@ -36,7 +19,7 @@ public sealed class DocumentoModeloSqlRepository : ContpaqiComercialSqlRepositor
 ///     Tipo del objecto destino al que se mapean los documentos modelo.
 /// </typeparam>
 public sealed class DocumentoModeloSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<admDocumentosModelo, T>,
-    IDocumentoModeloRepository<T> where T : class, new()
+    IDocumentoModeloSqlRepository<T> where T : class, new()
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;
     private readonly IMapper _mapper;
@@ -51,5 +34,11 @@ public sealed class DocumentoModeloSqlRepository<T> : ContpaqiComercialSqlReposi
     public List<T> TraerTodo()
     {
         return _context.admDocumentosModelo.ProjectTo<T>(_mapper.ConfigurationProvider).ToList();
+    }
+
+    /// <inheritdoc />
+    public async Task<List<T>> TraerTodoAsync(CancellationToken cancellationToken)
+    {
+        return await _context.admDocumentosModelo.ProjectTo<T>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken);
     }
 }
