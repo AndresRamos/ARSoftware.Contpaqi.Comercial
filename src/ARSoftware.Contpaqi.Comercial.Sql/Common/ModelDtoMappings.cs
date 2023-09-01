@@ -9,19 +9,50 @@ public sealed class ModelDtoMappings : Profile
 {
     public ModelDtoMappings()
     {
+        CreateMap<admAgentes, admAgentes>();
         CreateMap<admAgentes, AgenteDto>();
+
+        CreateMap<admAlmacenes, admAlmacenes>();
         CreateMap<admAlmacenes, AlmacenDto>();
+
+        CreateMap<admClasificaciones, admClasificaciones>();
+
+        CreateMap<admClientes, admClientes>();
         CreateMap<admClientes, ClienteProveedorDto>();
+
+        CreateMap<admConceptos, admConceptos>();
         CreateMap<admConceptos, ConceptoDocumentoDto>();
+
+        CreateMap<admDomicilios, admDomicilios>();
         CreateMap<admDomicilios, DireccionDto>();
-        CreateMap<admDocumentos, DocumentoDto>();
+
+        CreateMap<admDocumentosModelo, admDocumentosModelo>();
         CreateMap<admDocumentosModelo, DocumentoModeloDto>();
+
+        CreateMap<admDocumentos, admDocumentos>();
+        CreateMap<admDocumentos, DocumentoDto>();
+
+        CreateMap<Empresas, Empresas>();
         CreateMap<Empresas, EmpresaDto>();
+
+        CreateMap<admFoliosDigitales, admFoliosDigitales>();
         CreateMap<admFoliosDigitales, FolioDigitalDto>();
+
+        CreateMap<admMonedas, admMonedas>();
         CreateMap<admMonedas, MonedaDto>();
+
+        CreateMap<admMovimientos, admMovimientos>();
         CreateMap<admMovimientos, MovimientoDto>();
+
+        CreateMap<admParametros, admParametros>();
         CreateMap<admParametros, ParametrosDto>();
+
+        CreateMap<admProductos, admProductos>();
         CreateMap<admProductos, ProductoDto>();
+
+        CreateMap<admUnidadesMedidaPeso, admUnidadesMedidaPeso>();
         CreateMap<admUnidadesMedidaPeso, UnidadMedidaDto>();
+
+        CreateMap<admClasificacionesValores, admClasificacionesValores>();
     }
 }
