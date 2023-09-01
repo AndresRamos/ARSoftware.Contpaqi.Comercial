@@ -93,7 +93,6 @@ public class ProductoSdkRepository<T> : IProductoRepository<T> where T : class, 
         Type sqlModelType = typeof(admProductos);
 
         foreach (PropertyDescriptor propertyDescriptor in TypeDescriptor.GetProperties(typeof(T)))
-        {
             try
             {
                 if (!sqlModelType.HasProperty(propertyDescriptor.Name)) continue;
@@ -107,6 +106,5 @@ public class ProductoSdkRepository<T> : IProductoRepository<T> where T : class, 
                     $"Error al leer el dato {propertyDescriptor.Name} de tipo {propertyDescriptor.PropertyType}. Error: {e.MensajeErrorSdk}",
                     e);
             }
-        }
     }
 }

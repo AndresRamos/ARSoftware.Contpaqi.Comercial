@@ -3,9 +3,9 @@
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<Version>5.0.0</Version>
+		<Version>5.1.0</Version>
 		<Authors>AR Software</Authors>
-		<Description>Esta libreria contiene las interfaces usadas por los poryectos de SDK y SQL </Description>
+		<Description>Esta libreria contiene las interfaces usadas por los poryectos de SDK y SQL.</Description>
 		<Copyright>Copyright © AR Software 2023</Copyright>
 		<RepositoryUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</PackageProjectUrl>
@@ -15,6 +15,16 @@
 		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <NoWarn>1701;1702;1591</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <NoWarn>1701;1702;1591</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -28,6 +38,13 @@
 		<PackageReference Include="Ardalis.SmartEnum" Version="7.0.0" />
 		<PackageReference Include="Ardalis.SmartEnum.SystemTextJson" Version="7.0.0" />
 		<PackageReference Include="AutoMapper" Version="12.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>

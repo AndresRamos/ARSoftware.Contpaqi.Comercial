@@ -1,7 +1,7 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Sql.Models.Generales;
 using Microsoft.EntityFrameworkCore;
 
-// ReSharper disable InconsistentNaming
+// ReSharper disable All
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Contexts;
 
@@ -12,67 +12,67 @@ public partial class ContpaqiComercialGeneralesDbContext : DbContext
     {
     }
 
-    public virtual DbSet<Anexos20> Anexos20 { get; set; }
+    public virtual DbSet<Anexos20> Anexos20 { get; set; } = null!;
 
-    public virtual DbSet<CAC00003> CAC00003 { get; set; }
+    public virtual DbSet<CAC00003> CAC00003 { get; set; } = null!;
 
-    public virtual DbSet<CAC0000C> CAC0000C { get; set; }
+    public virtual DbSet<CAC0000C> CAC0000C { get; set; } = null!;
 
-    public virtual DbSet<CAC0000I> CAC0000I { get; set; }
+    public virtual DbSet<CAC0000I> CAC0000I { get; set; } = null!;
 
-    public virtual DbSet<CACIdiom> CACIdiom { get; set; }
+    public virtual DbSet<CACIdiom> CACIdiom { get; set; } = null!;
 
-    public virtual DbSet<ControlProcesos> ControlProcesos { get; set; }
+    public virtual DbSet<ControlProcesos> ControlProcesos { get; set; } = null!;
 
-    public virtual DbSet<Empresas> Empresas { get; set; }
+    public virtual DbSet<Empresas> Empresas { get; set; } = null!;
 
-    public virtual DbSet<EmpresasModelo> EmpresasModelo { get; set; }
+    public virtual DbSet<EmpresasModelo> EmpresasModelo { get; set; } = null!;
 
-    public virtual DbSet<Etiquetas> Etiquetas { get; set; }
+    public virtual DbSet<Etiquetas> Etiquetas { get; set; } = null!;
 
-    public virtual DbSet<FormatosEtiquetas> FormatosEtiquetas { get; set; }
+    public virtual DbSet<FormatosEtiquetas> FormatosEtiquetas { get; set; } = null!;
 
-    public virtual DbSet<Formulas> Formulas { get; set; }
+    public virtual DbSet<Formulas> Formulas { get; set; } = null!;
 
-    public virtual DbSet<IdxAdminPAQ> IdxAdminPAQ { get; set; }
+    public virtual DbSet<IdxAdminPAQ> IdxAdminPAQ { get; set; } = null!;
 
-    public virtual DbSet<MantenimientoBDDErrores> MantenimientoBDDErrores { get; set; }
+    public virtual DbSet<MantenimientoBDDErrores> MantenimientoBDDErrores { get; set; } = null!;
 
-    public virtual DbSet<MantenimientoBDDIndexTmps> MantenimientoBDDIndexTmps { get; set; }
+    public virtual DbSet<MantenimientoBDDIndexTmps> MantenimientoBDDIndexTmps { get; set; } = null!;
 
-    public virtual DbSet<MantenimientoBDDProcesos> MantenimientoBDDProcesos { get; set; }
+    public virtual DbSet<MantenimientoBDDProcesos> MantenimientoBDDProcesos { get; set; } = null!;
 
-    public virtual DbSet<ModelosFinancieros> ModelosFinancieros { get; set; }
+    public virtual DbSet<ModelosFinancieros> ModelosFinancieros { get; set; } = null!;
 
-    public virtual DbSet<ParametrosInicialesMto> ParametrosInicialesMto { get; set; }
+    public virtual DbSet<ParametrosInicialesMto> ParametrosInicialesMto { get; set; } = null!;
 
-    public virtual DbSet<SATBancos> SATBancos { get; set; }
+    public virtual DbSet<SATBancos> SATBancos { get; set; } = null!;
 
-    public virtual DbSet<SATClaveProdServ> SATClaveProdServ { get; set; }
+    public virtual DbSet<SATClaveProdServ> SATClaveProdServ { get; set; } = null!;
 
-    public virtual DbSet<SATEstaciones> SATEstaciones { get; set; }
+    public virtual DbSet<SATEstaciones> SATEstaciones { get; set; } = null!;
 
-    public virtual DbSet<SATFracciones> SATFracciones { get; set; }
+    public virtual DbSet<SATFracciones> SATFracciones { get; set; } = null!;
 
-    public virtual DbSet<SATMonedas> SATMonedas { get; set; }
+    public virtual DbSet<SATMonedas> SATMonedas { get; set; } = null!;
 
-    public virtual DbSet<SATUnidades> SATUnidades { get; set; }
+    public virtual DbSet<SATUnidades> SATUnidades { get; set; } = null!;
 
-    public virtual DbSet<UsuariosActivos> UsuariosActivos { get; set; }
+    public virtual DbSet<UsuariosActivos> UsuariosActivos { get; set; } = null!;
 
-    public virtual DbSet<UsuariosActivosBloqueos> UsuariosActivosBloqueos { get; set; }
+    public virtual DbSet<UsuariosActivosBloqueos> UsuariosActivosBloqueos { get; set; } = null!;
 
-    public virtual DbSet<admVistasCampos> admVistasCampos { get; set; }
+    public virtual DbSet<admVistasCampos> admVistasCampos { get; set; } = null!;
 
-    public virtual DbSet<admVistasConsultas> admVistasConsultas { get; set; }
+    public virtual DbSet<admVistasConsultas> admVistasConsultas { get; set; } = null!;
 
-    public virtual DbSet<admVistasPorModulo> admVistasPorModulo { get; set; }
+    public virtual DbSet<admVistasPorModulo> admVistasPorModulo { get; set; } = null!;
 
-    public virtual DbSet<admVistasRelaciones> admVistasRelaciones { get; set; }
+    public virtual DbSet<admVistasRelaciones> admVistasRelaciones { get; set; } = null!;
 
-    public virtual DbSet<admVistasTablas> admVistasTablas { get; set; }
+    public virtual DbSet<admVistasTablas> admVistasTablas { get; set; } = null!;
 
-    public virtual DbSet<nubeEmpresas> nubeEmpresas { get; set; }
+    public virtual DbSet<nubeEmpresas> nubeEmpresas { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

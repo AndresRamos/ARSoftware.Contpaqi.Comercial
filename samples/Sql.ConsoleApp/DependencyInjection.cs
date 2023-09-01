@@ -6,10 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Sql.ConsoleApp;
 
-public static class ConfigureServices
+public static class DependencyInjection
 {
     public static readonly string ContpaqiConnectionString =
-        @"Data Source=AR-SERVER\COMPAC;User ID=sa;Password=Sdmramos1;Connect Timeout=30;";
+        @"Data Source=AR-SERVER\COMPAC;User ID=sa;Password=Sdmramos1;Connect Timeout=30;Encrypt=False";
 
     public static readonly string NombreBaseDatosEmpresa = "adUNIVERSIDAD_ROBOTICA";
 
@@ -37,6 +37,8 @@ public static class ConfigureServices
 
         services.AddSingleton<BuscarEmpresasConRepositorio>();
         services.AddSingleton<BuscarEmpresasDtoConRepositorio>();
+
+        services.AddSingleton<BuscarExistenciasConRepositorio>();
 
         services.AddSingleton<BuscarMonedasConRepositorio>();
         services.AddSingleton<BuscarMonedasDtoConRepositorio>();

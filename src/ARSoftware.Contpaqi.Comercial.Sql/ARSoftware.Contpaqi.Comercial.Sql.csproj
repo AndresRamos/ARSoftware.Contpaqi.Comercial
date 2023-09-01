@@ -3,9 +3,9 @@
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<Version>5.0.0</Version>
+		<Version>5.1.0</Version>
 		<Authors>AR Software</Authors>
-		<Description>Entity Framework DbContexts para hacer query las bases de datos de CONTPAQi Comercial v8.2.1</Description>
+		<Description>Entity Framework DbContexts para hacer query las bases de datos de CONTPAQi Comercial v9.0.1</Description>
 		<Copyright>Copyright © AR Software 2023</Copyright>
 		<RepositoryUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</PackageProjectUrl>
@@ -15,6 +15,7 @@
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageIcon>AR_LOGO03.jpg</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -38,6 +39,15 @@
 
 	<ItemGroup>
 	  <Folder Include="Specifications\FoliosDigitales\" />
+	  <Folder Include="Specifications\CapasProducto\" />
+	  <Folder Include="Specifications\ProductosDetalles\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>
