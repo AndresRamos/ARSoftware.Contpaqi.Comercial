@@ -47,7 +47,9 @@ public sealed class ModelDtoMappings : Profile
         CreateMap<admParametros, admParametros>();
         CreateMap<admParametros, ParametrosDto>();
 
+        CreateMap<admProductos, admProductos>();
         CreateMap<admProductos, ProductoDto>();
+
         CreateMap<admUnidadesMedidaPeso, UnidadMedidaDto>();
     }
 }
