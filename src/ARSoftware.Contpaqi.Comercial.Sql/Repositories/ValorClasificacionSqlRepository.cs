@@ -1,79 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Ardalis.Specification.EntityFrameworkCore;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
-using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
+using ARSoftware.Contpaqi.Comercial.Sql.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using ARSoftware.Contpaqi.Comercial.Sql.Repositories.Common;
 using ARSoftware.Contpaqi.Comercial.Sql.Specifications.Clasificaciones;
 using ARSoftware.Contpaqi.Comercial.Sql.Specifications.ValoresClasificacion;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
-
-/// <summary>
-///     Repositorio de SQL para consultar valores de clasificación.
-/// </summary>
-public sealed class ValorClasificacionSqlRepository : ContpaqiComercialSqlRepositoryBase<admClasificacionesValores>,
-    IValorClasificacionRepository<admClasificacionesValores>
-{
-    private readonly ContpaqiComercialEmpresaDbContext _context;
-
-    public ValorClasificacionSqlRepository(ContpaqiComercialEmpresaDbContext context) : base(context)
-    {
-        _context = context;
-    }
-
-    /// <inheritdoc />
-    public admClasificacionesValores? BuscarPorId(int idValorClasificacion)
-    {
-        return _context.admClasificacionesValores.WithSpecification(new ValorClasificacionPorIdSpecification(idValorClasificacion))
-            .SingleOrDefault();
-    }
-
-    /// <inheritdoc />
-    public admClasificacionesValores? BuscarPorTipoClasificacionNumeroYCodigo(TipoClasificacion tipoClasificacion,
-        NumeroClasificacion numeroClasificacion, string codigoValorClasificacion)
-    {
-        admClasificaciones clasificacion = _context.admClasificaciones
-            .WithSpecification(new ClasificacionPorTipoYNumeroSpecification(tipoClasificacion, numeroClasificacion))
-            .Single();
-
-        return _context.admClasificacionesValores
-            .WithSpecification(
-                new ValorClasificacionPorClasificacionIdYCodigoSpecification(clasificacion.CIDCLASIFICACION, codigoValorClasificacion))
-            .SingleOrDefault();
-    }
-
-    /// <inheritdoc />
-    public List<admClasificacionesValores> TraerPorClasificacionId(int idClasificacion)
-    {
-        return _context.admClasificacionesValores
-            .WithSpecification(new ValoresClasificacionPorClasificacionIdSpecification(idClasificacion))
-            .ToList();
-    }
-
-    /// <inheritdoc />
-    public List<admClasificacionesValores> TraerPorClasificacionTipoYNumero(TipoClasificacion tipoClasificacion,
-        NumeroClasificacion numeroClasificacion)
-    {
-        admClasificaciones clasificacion = _context.admClasificaciones
-            .WithSpecification(new ClasificacionPorTipoYNumeroSpecification(tipoClasificacion, numeroClasificacion))
-            .Single();
-
-        return _context.admClasificacionesValores
-            .WithSpecification(new ValoresClasificacionPorClasificacionIdSpecification(clasificacion.CIDCLASIFICACION))
-            .ToList();
-    }
-
-    /// <inheritdoc />
-    public List<admClasificacionesValores> TraerTodo()
-    {
-        return _context.admClasificacionesValores.ToList();
-    }
-}
 
 /// <summary>
 ///     Repositorio de SQL para consultar valores de clasificación y transformarlos a un tipo destino utilizando
@@ -83,7 +24,7 @@ public sealed class ValorClasificacionSqlRepository : ContpaqiComercialSqlReposi
 ///     Tipo del objecto destino al que se mapean los valores de clasificación.
 /// </typeparam>
 public sealed class ValorClasificacionSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<admClasificacionesValores, T>,
-    IValorClasificacionRepository<T> where T : class, new()
+    IValorClasificacionSqlRepository<T> where T : class, new()
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;
     private readonly IMapper _mapper;
@@ -143,5 +84,57 @@ public sealed class ValorClasificacionSqlRepository<T> : ContpaqiComercialSqlRep
     public List<T> TraerTodo()
     {
         return _context.admClasificacionesValores.ProjectTo<T>(_mapper.ConfigurationProvider).ToList();
+    }
+
+    /// <inheritdoc />
+    public async Task<T?> BuscarPorIdAsync(int idValorClasificacion, CancellationToken cancellationToken)
+    {
+        return await _context.admClasificacionesValores.WithSpecification(new ValorClasificacionPorIdSpecification(idValorClasificacion))
+            .ProjectTo<T>(_mapper.ConfigurationProvider)
+            .SingleOrDefaultAsync(cancellationToken);
+    }
+
+    /// <inheritdoc />
+    public async Task<T?> BuscarPorTipoClasificacionNumeroYCodigoAsync(TipoClasificacion tipoClasificacion,
+        NumeroClasificacion numeroClasificacion, string codigoValorClasificacion, CancellationToken cancellationToken)
+    {
+        admClasificaciones clasificacion = await _context.admClasificaciones
+            .WithSpecification(new ClasificacionPorTipoYNumeroSpecification(tipoClasificacion, numeroClasificacion))
+            .SingleAsync(cancellationToken);
+
+        return await _context.admClasificacionesValores
+            .WithSpecification(
+                new ValorClasificacionPorClasificacionIdYCodigoSpecification(clasificacion.CIDCLASIFICACION, codigoValorClasificacion))
+            .ProjectTo<T>(_mapper.ConfigurationProvider)
+            .SingleOrDefaultAsync(cancellationToken);
+    }
+
+    /// <inheritdoc />
+    public async Task<List<T>> TraerPorClasificacionIdAsync(int idClasificacion, CancellationToken cancellationToken)
+    {
+        return await _context.admClasificacionesValores
+            .WithSpecification(new ValoresClasificacionPorClasificacionIdSpecification(idClasificacion))
+            .ProjectTo<T>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
+    }
+
+    /// <inheritdoc />
+    public async Task<List<T>> TraerPorClasificacionTipoYNumeroAsync(TipoClasificacion tipoClasificacion,
+        NumeroClasificacion numeroClasificacion, CancellationToken cancellationToken)
+    {
+        admClasificaciones clasificacion = await _context.admClasificaciones
+            .WithSpecification(new ClasificacionPorTipoYNumeroSpecification(tipoClasificacion, numeroClasificacion))
+            .SingleAsync(cancellationToken);
+
+        return await _context.admClasificacionesValores
+            .WithSpecification(new ValoresClasificacionPorClasificacionIdSpecification(clasificacion.CIDCLASIFICACION))
+            .ProjectTo<T>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
+    }
+
+    /// <inheritdoc />
+    public async Task<List<T>> TraerTodoAsync(CancellationToken cancellationToken)
+    {
+        return await _context.admClasificacionesValores.ProjectTo<T>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken);
     }
 }

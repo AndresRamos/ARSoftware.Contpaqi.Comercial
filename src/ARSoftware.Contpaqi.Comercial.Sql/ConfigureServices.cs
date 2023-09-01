@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Interfaces;
-using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -73,11 +72,10 @@ public static class ConfigureServices
         services.Add(new ServiceDescriptor(typeof(IUnidadMedidaRepository<>), typeof(UnidadMedidaSqlRepository<>), lifetime));
         services.Add(new ServiceDescriptor(typeof(IUnidadMedidaSqlRepository<>), typeof(UnidadMedidaSqlRepository<>), lifetime));
 
-        services.Add(new ServiceDescriptor(typeof(ValorClasificacionSqlRepository), typeof(ValorClasificacionSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(ValorClasificacionSqlRepository<>), typeof(ValorClasificacionSqlRepository<>), lifetime));
-        services.Add(new ServiceDescriptor(typeof(IValorClasificacionRepository<admClasificacionesValores>),
-            typeof(ValorClasificacionSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(IValorClasificacionRepository<>), typeof(ValorClasificacionSqlRepository<>), lifetime));
+        services.Add(new ServiceDescriptor(typeof(IValorClasificacionSqlRepository<>), typeof(ValorClasificacionSqlRepository<>),
+            lifetime));
 
         return services;
     }
