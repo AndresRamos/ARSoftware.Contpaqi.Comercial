@@ -21,7 +21,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 /// <typeparam name="T">
 ///     Tipo del objecto destino al que se mapean los agentes.
 /// </typeparam>
-public class AgenteSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<admAgentes, T>, IAgenteSqlRepository<T> where T : class, new()
+public sealed class AgenteSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<admAgentes, T>, IAgenteSqlRepository<T>
+    where T : class, new()
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;
     private readonly IMapper _mapper;

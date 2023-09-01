@@ -20,7 +20,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 /// <typeparam name="T">
 ///     Tipo del objecto destino al que se mapean los almacenes.
 /// </typeparam>
-public class AlmacenSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<admAlmacenes, T>, IAlmacenSqlRepository<T> where T : class, new()
+public sealed class AlmacenSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<admAlmacenes, T>, IAlmacenSqlRepository<T>
+    where T : class, new()
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;
     private readonly IMapper _mapper;

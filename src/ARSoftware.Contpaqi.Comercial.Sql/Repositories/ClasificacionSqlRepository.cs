@@ -21,8 +21,8 @@ namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 /// <typeparam name="T">
 ///     Tipo del objecto destino al que se mapean las clasificaciones.
 /// </typeparam>
-public class ClasificacionSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<admClasificaciones, T>, IClasificacionSqlRepository<T>
-    where T : class, new()
+public sealed class ClasificacionSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<admClasificaciones, T>,
+    IClasificacionSqlRepository<T> where T : class, new()
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;
     private readonly IMapper _mapper;
