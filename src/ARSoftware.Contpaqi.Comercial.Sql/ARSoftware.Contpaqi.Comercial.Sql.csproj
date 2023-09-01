@@ -37,6 +37,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Interfaces\" />
 	  <Folder Include="Specifications\FoliosDigitales\" />
 	  <Folder Include="Specifications\CapasProducto\" />
 	  <Folder Include="Specifications\ProductosDetalles\" />

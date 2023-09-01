@@ -20,7 +20,7 @@ public sealed class BuscarAgentesConRepositorio : IBuscarAgentes
     /// <inheritdoc />
     public void BuscarPorCodigo()
     {
-        var codigoAgente = "1";
+        var codigoAgente = "PRUEBA";
 
         admAgentes? agente = _agenteRepository.BuscarPorCodigo(codigoAgente);
 
