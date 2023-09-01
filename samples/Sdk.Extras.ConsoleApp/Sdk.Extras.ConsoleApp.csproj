@@ -18,5 +18,9 @@
     <ProjectReference Include="..\..\src\ARSoftware.Contpaqi.Comercial.Sdk.Extras\ARSoftware.Contpaqi.Comercial.Sdk.Extras.csproj" />
     <ProjectReference Include="..\Samples.Common\Samples.Common.csproj" />
   </ItemGroup>
+ 
+  <ItemGroup>
+    <Folder Include="Existencias\" />
+  </ItemGroup>
 
 </Project>

@@ -1368,10 +1368,10 @@ public class ComercialSdkExtended : IContpaqiSdk
     }
 
     public int fRegresaExistenciaCaracteristicas(string aCodigoProducto, string aCodigoAlmacen, string aAnio, string aMes, string aDia,
-        string aValorCaracteristica1, string aValorCaracteristica2, string aValorCaracteristica3, ref double aExistencia)
+        string abreviaturaValorCaracteristica1, string abreviaturaValorCaracteristica2, string abreviaturaValorCaracteristica3, ref double aExistencia)
     {
-        return ComercialSdk.fRegresaExistenciaCaracteristicas(aCodigoProducto, aCodigoAlmacen, aAnio, aMes, aDia, aValorCaracteristica1,
-            aValorCaracteristica2, aValorCaracteristica3, ref aExistencia);
+        return ComercialSdk.fRegresaExistenciaCaracteristicas(aCodigoProducto, aCodigoAlmacen, aAnio, aMes, aDia, abreviaturaValorCaracteristica1,
+            abreviaturaValorCaracteristica2, abreviaturaValorCaracteristica3, ref aExistencia);
     }
 
     public int fRegresaExistenciaLotePedimento(string aCodigoProducto, string aCodigoAlmacen, string aPedimento, string aLote,

@@ -63,6 +63,8 @@ public static class ConfigureServices
         services.Add(new ServiceDescriptor(typeof(IEmpresaRepository<Empresas>), typeof(EmpresaSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(IEmpresaRepository<>), typeof(EmpresaSqlRepository<>), lifetime));
 
+        services.Add(new ServiceDescriptor(typeof(IExistenciasRepository), typeof(ExistenciasSqlRepository), lifetime));
+
         services.Add(new ServiceDescriptor(typeof(MonedaSqlRepository), typeof(MonedaSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(MonedaSqlRepository<>), typeof(MonedaSqlRepository<>), lifetime));
         services.Add(new ServiceDescriptor(typeof(IMonedaRepository<admMonedas>), typeof(MonedaSqlRepository), lifetime));

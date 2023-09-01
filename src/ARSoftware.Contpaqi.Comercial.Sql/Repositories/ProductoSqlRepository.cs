@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Ardalis.Specification.EntityFrameworkCore;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
@@ -35,28 +34,6 @@ public sealed class ProductoSqlRepository : ContpaqiComercialSqlRepositoryBase<a
     public admProductos? BuscarPorId(int idProducto)
     {
         return _context.admProductos.WithSpecification(new ProductoPorIdSpecification(idProducto)).SingleOrDefault();
-    }
-
-    /// <inheritdoc />
-    public double BuscaExistencias(string codigoProducto, string codigoAlmacen, DateOnly fecha)
-    {
-        throw new NotImplementedException(
-            $"La función {nameof(BuscaExistencias)} no esta implementada en el repositorio de SQL en esta version.");
-    }
-
-    /// <inheritdoc />
-    public double BuscaExistenciasConCaracteristicas(string codigoProducto, string codigoAlmacen, DateOnly fecha,
-        string valorCaracteristica1, string valorCaracteristica2, string valorCaracteristica3)
-    {
-        throw new NotImplementedException(
-            $"La función {nameof(BuscaExistenciasConCaracteristicas)} no esta implementada en el repositorio de SQL en esta version.");
-    }
-
-    /// <inheritdoc />
-    public double BuscaExistenciasConCapas(string codigoProducto, string codigoAlmacen, string pedimento, string lote)
-    {
-        throw new NotImplementedException(
-            $"La función {nameof(BuscaExistenciasConCapas)} no esta implementada en el repositorio de SQL en esta version.");
     }
 
     /// <inheritdoc />
@@ -104,28 +81,6 @@ public sealed class ProductoSqlRepository<T> : ContpaqiComercialSqlRepositoryBas
         return _context.admProductos.WithSpecification(new ProductoPorIdSpecification(idProducto))
             .ProjectTo<T>(_mapper.ConfigurationProvider)
             .SingleOrDefault();
-    }
-
-    /// <inheritdoc />
-    public double BuscaExistencias(string codigoProducto, string codigoAlmacen, DateOnly fecha)
-    {
-        throw new NotImplementedException(
-            $"La función {nameof(BuscaExistencias)} no esta implementada en el repositorio de SQL en esta version.");
-    }
-
-    /// <inheritdoc />
-    public double BuscaExistenciasConCaracteristicas(string codigoProducto, string codigoAlmacen, DateOnly fecha,
-        string valorCaracteristica1, string valorCaracteristica2, string valorCaracteristica3)
-    {
-        throw new NotImplementedException(
-            $"La función {nameof(BuscaExistenciasConCaracteristicas)} no esta implementada en el repositorio de SQL en esta version.");
-    }
-
-    /// <inheritdoc />
-    public double BuscaExistenciasConCapas(string codigoProducto, string codigoAlmacen, string pedimento, string lote)
-    {
-        throw new NotImplementedException(
-            $"La función {nameof(BuscaExistenciasConCapas)} no esta implementada en el repositorio de SQL en esta version.");
     }
 
     /// <inheritdoc />

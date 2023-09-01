@@ -64,6 +64,9 @@ public static class ConfigureServices
         // Empresas
         services.AddSingleton<IEmpresaRepository<Empresas>, EmpresaSdkRepository>();
 
+        // Existencias
+        services.AddSingleton(typeof(IExistenciasRepository), typeof(ExistenciasSdkRepository));
+
         // Monedas
         services.AddSingleton<IMonedaRepository<Moneda>, MonedaRepository>();
 

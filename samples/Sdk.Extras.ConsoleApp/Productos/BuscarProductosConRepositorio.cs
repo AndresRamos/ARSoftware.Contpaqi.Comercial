@@ -55,42 +55,4 @@ public sealed class BuscarProductosConRepositorio : IBuscarProductos
 
         _logger.LogInformation("{@Productos}", productos);
     }
-
-    public void BuscaExistencias()
-    {
-        var codigoProducto = "PRUEBA";
-        var codigoAlmacen = "PRUEBA";
-        var fecha = new DateOnly(2023, 1, 1);
-
-        double existencias = _productoRepository.BuscaExistencias(codigoProducto, codigoAlmacen, fecha);
-
-        _logger.LogInformation("Existencias: {Existencias}", existencias);
-    }
-
-    public void BuscaExistenciasConCaracteristicas()
-    {
-        var codigoProducto = "PRUEBA";
-        var codigoAlmacen = "PRUEBA";
-        var fecha = new DateOnly(2023, 1, 1);
-        var valorCaracteristica1 = "CARACTERISTICA1";
-        var valorCaracteristica2 = "CARACTERISTICA2";
-        var valorCaracteristica3 = "CARACTERISTICA3";
-
-        double existencias = _productoRepository.BuscaExistenciasConCaracteristicas(codigoProducto, codigoAlmacen, fecha,
-            valorCaracteristica1, valorCaracteristica2, valorCaracteristica3);
-
-        _logger.LogInformation("Existencias: {Existencias}", existencias);
-    }
-
-    public void BuscaExistenciasConCapas()
-    {
-        var codigoProducto = "PRUEBA";
-        var codigoAlmacen = "PRUEBA";
-        var pedimento = "11 11 1111 111111";
-        var lote = "1234";
-
-        double existencias = _productoRepository.BuscaExistenciasConCapas(codigoProducto, codigoAlmacen, pedimento, lote);
-
-        _logger.LogInformation("Existencias: {Existencias}", existencias);
-    }
 }
