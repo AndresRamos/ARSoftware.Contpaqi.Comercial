@@ -23,11 +23,9 @@ public static class ConfigureServices
         services.Add(new ServiceDescriptor(typeof(IAlmacenRepository<>), typeof(AlmacenSqlRepository<>), lifetime));
         services.Add(new ServiceDescriptor(typeof(IAlmacenSqlRepository<>), typeof(AlmacenSqlRepository<>), lifetime));
 
-        services.Add(new ServiceDescriptor(typeof(ClasificacionSqlRepository), typeof(ClasificacionSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(ClasificacionSqlRepository<>), typeof(ClasificacionSqlRepository<>), lifetime));
-        services.Add(new ServiceDescriptor(typeof(IClasificacionRepository<admClasificaciones>), typeof(ClasificacionSqlRepository),
-            lifetime));
         services.Add(new ServiceDescriptor(typeof(IClasificacionRepository<>), typeof(ClasificacionSqlRepository<>), lifetime));
+        services.Add(new ServiceDescriptor(typeof(IClasificacionSqlRepository<>), typeof(ClasificacionSqlRepository<>), lifetime));
 
         services.Add(new ServiceDescriptor(typeof(ClienteProveedorSqlRepository), typeof(ClienteProveedorSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(ClienteProveedorSqlRepository<>), typeof(ClienteProveedorSqlRepository<>), lifetime));

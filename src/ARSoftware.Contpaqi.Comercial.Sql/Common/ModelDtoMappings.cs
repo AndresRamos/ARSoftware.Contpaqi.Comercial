@@ -15,6 +15,8 @@ public sealed class ModelDtoMappings : Profile
         CreateMap<admAlmacenes, admAlmacenes>();
         CreateMap<admAlmacenes, AlmacenDto>();
 
+        CreateMap<admClasificaciones, admClasificaciones>();
+
         CreateMap<admClientes, ClienteProveedorDto>();
         CreateMap<admConceptos, ConceptoDocumentoDto>();
         CreateMap<admDomicilios, DireccionDto>();
