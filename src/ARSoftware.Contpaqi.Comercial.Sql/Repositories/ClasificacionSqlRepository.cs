@@ -65,6 +65,7 @@ public class ClasificacionSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<
         return _context.admClasificaciones.ProjectTo<T>(_mapper.ConfigurationProvider).ToList();
     }
 
+    /// <inheritdoc />
     public async Task<T?> BuscarPorIdAsyc(int idClasificacion, CancellationToken cancellationToken)
     {
         return await _context.admClasificaciones.WithSpecification(new ClasificacionPorIdSpecification(idClasificacion))
@@ -72,6 +73,7 @@ public class ClasificacionSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<
             .SingleOrDefaultAsync(cancellationToken);
     }
 
+    /// <inheritdoc />
     public async Task<T?> BuscarPorTipoYNumeroAsync(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion,
         CancellationToken cancellationToken)
     {
@@ -81,6 +83,7 @@ public class ClasificacionSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<
             .SingleOrDefaultAsync(cancellationToken);
     }
 
+    /// <inheritdoc />
     public async Task<List<T>> TraerPorTipoAsync(TipoClasificacion tipoClasificacion, CancellationToken cancellationToken)
     {
         return await _context.admClasificaciones.WithSpecification(new ClasificacionesPorTipoSpecification(tipoClasificacion))
@@ -88,6 +91,7 @@ public class ClasificacionSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<
             .ToListAsync(cancellationToken);
     }
 
+    /// <inheritdoc />
     public async Task<List<T>> TraerTodoAsync(CancellationToken cancellationToken)
     {
         return await _context.admClasificaciones.ProjectTo<T>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken);
