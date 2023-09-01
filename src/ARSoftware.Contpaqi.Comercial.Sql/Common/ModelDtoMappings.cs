@@ -29,7 +29,9 @@ public sealed class ModelDtoMappings : Profile
         CreateMap<admDocumentosModelo, admDocumentosModelo>();
         CreateMap<admDocumentosModelo, DocumentoModeloDto>();
 
+        CreateMap<admDocumentos, admDocumentos>();
         CreateMap<admDocumentos, DocumentoDto>();
+
         CreateMap<Empresas, EmpresaDto>();
         CreateMap<admFoliosDigitales, FolioDigitalDto>();
         CreateMap<admMonedas, MonedaDto>();
