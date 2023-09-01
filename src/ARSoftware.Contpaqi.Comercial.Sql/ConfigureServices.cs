@@ -2,7 +2,6 @@
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
-using ARSoftware.Contpaqi.Comercial.Sql.Models.Generales;
 using ARSoftware.Contpaqi.Comercial.Sql.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -47,10 +46,9 @@ public static class ConfigureServices
         services.Add(new ServiceDescriptor(typeof(IDocumentoRepository<>), typeof(DocumentoSqlRepository<>), lifetime));
         services.Add(new ServiceDescriptor(typeof(IDocumentoSqlRepository<>), typeof(DocumentoSqlRepository<>), lifetime));
 
-        services.Add(new ServiceDescriptor(typeof(EmpresaSqlRepository), typeof(EmpresaSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(EmpresaSqlRepository<>), typeof(EmpresaSqlRepository<>), lifetime));
-        services.Add(new ServiceDescriptor(typeof(IEmpresaRepository<Empresas>), typeof(EmpresaSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(IEmpresaRepository<>), typeof(EmpresaSqlRepository<>), lifetime));
+        services.Add(new ServiceDescriptor(typeof(IEmpresaSqlRepository<>), typeof(EmpresaSqlRepository<>), lifetime));
 
         services.Add(new ServiceDescriptor(typeof(IExistenciasRepository), typeof(ExistenciasSqlRepository), lifetime));
 
