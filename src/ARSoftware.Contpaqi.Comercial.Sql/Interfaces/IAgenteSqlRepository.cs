@@ -6,6 +6,7 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Interfaces;
 
+/// <inheritdoc cref="IAgenteRepository{T}" />
 public interface IAgenteSqlRepository<T> : IAgenteRepository<T> where T : class, new()
 {
     /// <summary>

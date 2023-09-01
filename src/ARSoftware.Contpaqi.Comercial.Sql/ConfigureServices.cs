@@ -19,10 +19,9 @@ public static class ConfigureServices
         services.Add(new ServiceDescriptor(typeof(IAgenteRepository<>), typeof(AgenteSqlRepository<>), lifetime));
         services.Add(new ServiceDescriptor(typeof(IAgenteSqlRepository<>), typeof(AgenteSqlRepository<>), lifetime));
 
-        services.Add(new ServiceDescriptor(typeof(AlmacenSqlRepository), typeof(AlmacenSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(AlmacenSqlRepository<>), typeof(AlmacenSqlRepository<>), lifetime));
-        services.Add(new ServiceDescriptor(typeof(IAlmacenRepository<admAlmacenes>), typeof(AlmacenSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(IAlmacenRepository<>), typeof(AlmacenSqlRepository<>), lifetime));
+        services.Add(new ServiceDescriptor(typeof(IAlmacenSqlRepository<>), typeof(AlmacenSqlRepository<>), lifetime));
 
         services.Add(new ServiceDescriptor(typeof(ClasificacionSqlRepository), typeof(ClasificacionSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(ClasificacionSqlRepository<>), typeof(ClasificacionSqlRepository<>), lifetime));
