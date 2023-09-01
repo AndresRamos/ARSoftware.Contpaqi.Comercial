@@ -1,46 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Ardalis.Specification.EntityFrameworkCore;
-using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Contexts;
+using ARSoftware.Contpaqi.Comercial.Sql.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 using ARSoftware.Contpaqi.Comercial.Sql.Repositories.Common;
 using ARSoftware.Contpaqi.Comercial.Sql.Specifications.Movimientos;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace ARSoftware.Contpaqi.Comercial.Sql.Repositories;
-
-/// <summary>
-///     Repositorio de SQL para consultar movimientos.
-/// </summary>
-public sealed class MovimientoSqlRepository : ContpaqiComercialSqlRepositoryBase<admMovimientos>, IMovimientoRepository<admMovimientos>
-{
-    private readonly ContpaqiComercialEmpresaDbContext _context;
-
-    public MovimientoSqlRepository(ContpaqiComercialEmpresaDbContext context) : base(context)
-    {
-        _context = context;
-    }
-
-    /// <inheritdoc />
-    public admMovimientos? BuscarPorId(int idMovimiento)
-    {
-        return _context.admMovimientos.WithSpecification(new MovimientoPorIdSpecification(idMovimiento)).SingleOrDefault();
-    }
-
-    /// <inheritdoc />
-    public List<admMovimientos> TraerPorDocumentoId(int idDocumento)
-    {
-        return _context.admMovimientos.WithSpecification(new MovimientosPorDocumentoIdSpecification(idDocumento)).ToList();
-    }
-
-    /// <inheritdoc />
-    public List<admMovimientos> TraerTodo()
-    {
-        return _context.admMovimientos.ToList();
-    }
-}
 
 /// <summary>
 ///     Repositorio de SQL para consultar movimientos y transformarlos a un tipo destino utilizando AutoMapper.
@@ -48,7 +20,7 @@ public sealed class MovimientoSqlRepository : ContpaqiComercialSqlRepositoryBase
 /// <typeparam name="T">
 ///     Tipo del objecto destino al que se mapean los movimientos.
 /// </typeparam>
-public sealed class MovimientoSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<admMovimientos, T>, IMovimientoRepository<T>
+public sealed class MovimientoSqlRepository<T> : ContpaqiComercialSqlRepositoryBase<admMovimientos, T>, IMovimientoSqlRepository<T>
     where T : class, new()
 {
     private readonly ContpaqiComercialEmpresaDbContext _context;
@@ -80,5 +52,27 @@ public sealed class MovimientoSqlRepository<T> : ContpaqiComercialSqlRepositoryB
     public List<T> TraerTodo()
     {
         return _context.admMovimientos.ProjectTo<T>(_mapper.ConfigurationProvider).ToList();
+    }
+
+    /// <inheritdoc />
+    public async Task<T?> BuscarPorIdAsync(int idMovimiento, CancellationToken cancellationToken)
+    {
+        return await _context.admMovimientos.WithSpecification(new MovimientoPorIdSpecification(idMovimiento))
+            .ProjectTo<T>(_mapper.ConfigurationProvider)
+            .SingleOrDefaultAsync(cancellationToken);
+    }
+
+    /// <inheritdoc />
+    public async Task<List<T>> TraerPorDocumentoIdAsync(int idDocumento, CancellationToken cancellationToken)
+    {
+        return await _context.admMovimientos.WithSpecification(new MovimientosPorDocumentoIdSpecification(idDocumento))
+            .ProjectTo<T>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
+    }
+
+    /// <inheritdoc />
+    public async Task<List<T>> TraerTodoAsync(CancellationToken cancellationToken)
+    {
+        return await _context.admMovimientos.ProjectTo<T>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken);
     }
 }

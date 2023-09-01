@@ -57,10 +57,9 @@ public static class ConfigureServices
         services.Add(new ServiceDescriptor(typeof(IMonedaRepository<>), typeof(MonedaSqlRepository<>), lifetime));
         services.Add(new ServiceDescriptor(typeof(IMonedaSqlRepository<>), typeof(MonedaSqlRepository<>), lifetime));
 
-        services.Add(new ServiceDescriptor(typeof(MovimientoSqlRepository), typeof(MovimientoSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(MovimientoSqlRepository<>), typeof(MovimientoSqlRepository<>), lifetime));
-        services.Add(new ServiceDescriptor(typeof(IMovimientoRepository<admMovimientos>), typeof(MovimientoSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(IMovimientoRepository<>), typeof(MovimientoSqlRepository<>), lifetime));
+        services.Add(new ServiceDescriptor(typeof(IMovimientoSqlRepository<>), typeof(MovimientoSqlRepository<>), lifetime));
 
         services.Add(new ServiceDescriptor(typeof(ParametrosSqlRepository), typeof(ParametrosSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(ParametrosSqlRepository<>), typeof(ParametrosSqlRepository<>), lifetime));
