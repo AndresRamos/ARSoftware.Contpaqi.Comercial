@@ -38,6 +38,8 @@
 
 	<ItemGroup>
 	  <Folder Include="Specifications\FoliosDigitales\" />
+	  <Folder Include="Specifications\CapasProducto\" />
+	  <Folder Include="Specifications\ProductosDetalles\" />
 	</ItemGroup>
 
 </Project>

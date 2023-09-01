@@ -2,7 +2,7 @@
 
 namespace Sdk.Extras.ConsoleApp;
 
-public static class ConfigureServices
+public static class DependencyInjection
 {
     public static IServiceCollection AddEjemplos(this IServiceCollection serviceCollection)
     {
@@ -46,6 +46,9 @@ public static class ConfigureServices
         // Empresas
         serviceCollection.AddTransient<BuscarEmpresasConRepositorio>();
         serviceCollection.AddTransient<BuscarEmpresasDtoConRepositorio>();
+
+        // Existencias
+        serviceCollection.AddTransient<BuscarExistenciasConRepositorio>();
 
         // Movimientos
         serviceCollection.AddTransient<BuscarMovimientosConRepositorio>();
