@@ -14,6 +14,9 @@ public interface IEmpresaSqlRepository<T> : IEmpresaRepository<T> where T : clas
     /// <param name="nombreEmpresa">
     ///     Nombre de la empresa a buscar.
     /// </param>
+    /// <param name="cancellationToken">
+    ///     Token de cancelación.
+    /// </param>
     /// <returns>
     ///     Una empresa, o <see langword="null" /> si no existe una empresa con el nombre proporcionado.
     /// </returns>
@@ -22,6 +25,9 @@ public interface IEmpresaSqlRepository<T> : IEmpresaRepository<T> where T : clas
     /// <summary>
     ///     Busca todas las empresas.
     /// </summary>
+    /// <param name="cancellationToken">
+    ///     Token de cancelación.
+    /// </param>
     /// <returns>
     ///     Lista de empresas.
     /// </returns>
