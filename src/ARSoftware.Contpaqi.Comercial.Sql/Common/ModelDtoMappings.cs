@@ -50,6 +50,7 @@ public sealed class ModelDtoMappings : Profile
         CreateMap<admProductos, admProductos>();
         CreateMap<admProductos, ProductoDto>();
 
+        CreateMap<admUnidadesMedidaPeso, admUnidadesMedidaPeso>();
         CreateMap<admUnidadesMedidaPeso, UnidadMedidaDto>();
     }
 }

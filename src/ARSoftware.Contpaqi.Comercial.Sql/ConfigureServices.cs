@@ -69,11 +69,9 @@ public static class ConfigureServices
         services.Add(new ServiceDescriptor(typeof(IProductoRepository<>), typeof(ProductoSqlRepository<>), lifetime));
         services.Add(new ServiceDescriptor(typeof(IProductoSqlRepository<>), typeof(ProductoSqlRepository<>), lifetime));
 
-        services.Add(new ServiceDescriptor(typeof(UnidadMedidaSqlRepository), typeof(UnidadMedidaSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(UnidadMedidaSqlRepository<>), typeof(UnidadMedidaSqlRepository<>), lifetime));
-        services.Add(new ServiceDescriptor(typeof(IUnidadMedidaRepository<admUnidadesMedidaPeso>), typeof(UnidadMedidaSqlRepository),
-            lifetime));
         services.Add(new ServiceDescriptor(typeof(IUnidadMedidaRepository<>), typeof(UnidadMedidaSqlRepository<>), lifetime));
+        services.Add(new ServiceDescriptor(typeof(IUnidadMedidaSqlRepository<>), typeof(UnidadMedidaSqlRepository<>), lifetime));
 
         services.Add(new ServiceDescriptor(typeof(ValorClasificacionSqlRepository), typeof(ValorClasificacionSqlRepository), lifetime));
         services.Add(new ServiceDescriptor(typeof(ValorClasificacionSqlRepository<>), typeof(ValorClasificacionSqlRepository<>), lifetime));
