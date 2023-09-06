@@ -7,7 +7,6 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 namespace ARSoftware.Contpaqi.Comercial.Sql.Interfaces;
 
 /// <inheritdoc cref="IClienteProveedorRepository{T}" />
-/// "/>
 public interface IClienteProveedorSqlRepository<T> : IClienteProveedorRepository<T> where T : class, new()
 {
     /// <summary>

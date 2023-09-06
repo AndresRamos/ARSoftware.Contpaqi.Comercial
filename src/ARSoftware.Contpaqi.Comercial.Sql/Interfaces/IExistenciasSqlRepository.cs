@@ -6,7 +6,6 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 namespace ARSoftware.Contpaqi.Comercial.Sql.Interfaces;
 
 /// <inheritdoc cref="IExistenciasRepository" />
-/// "/>
 public interface IExistenciasSqlRepository : IExistenciasRepository
 {
     /// <summary>
