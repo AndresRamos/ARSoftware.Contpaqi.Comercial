@@ -44,19 +44,47 @@ public static class SdkExtensions
         {
             if (!sqlModelType.HasProperty(propertyDescriptor.Name) || propertyDescriptor.Name == "CTIMESTAMP") continue;
 
-            string? propetyValue;
+            string? propertyValue;
 
             if (propertyDescriptor.PropertyType == typeof(DateTime))
             {
                 var value = (DateTime?)propertyDescriptor.GetValue(model);
-                propetyValue = value?.ToSdkFecha();
+                propertyValue = value?.ToSdkFecha();
             }
             else
-                propetyValue = propertyDescriptor.GetValue(model)?.ToString();
+                propertyValue = propertyDescriptor.GetValue(model)?.ToString();
 
-            if (propetyValue is null) continue;
+            if (propertyValue is null) continue;
 
-            datosDictionary.Add(propertyDescriptor.Name, propetyValue);
+            datosDictionary.Add(propertyDescriptor.Name, propertyValue);
+        }
+
+        return datosDictionary;
+    }
+
+    public static Dictionary<string, string> ToDatosDictionary(this object model, IEnumerable<string> propertyNames)
+    {
+        var datosDictionary = new Dictionary<string, string>();
+
+        PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(model);
+
+        foreach (string propertyName in propertyNames)
+        {
+            PropertyDescriptor? propertyDescriptor = properties.Find(propertyName, true);
+
+            if (propertyDescriptor == null) continue;
+
+            string? propertyValue;
+
+            if (propertyDescriptor.PropertyType == typeof(DateTime))
+            {
+                var value = (DateTime?)propertyDescriptor.GetValue(model);
+                propertyValue = value?.ToSdkFecha();
+            }
+            else
+                propertyValue = propertyDescriptor.GetValue(model)?.ToString();
+
+            datosDictionary.Add(propertyDescriptor.Name, propertyValue ?? string.Empty);
         }
 
         return datosDictionary;
