@@ -120,7 +120,7 @@ public static class MovimientoExtensions
 
         if (movimiento.Impuestos.Impuesto3.Tasa != 0)
         {
-            datosMovimiento.TryAdd(nameof(admMovimientos.CIMPUESTO3),
+            datosMovimiento.TryAdd(nameof(admMovimientos.CPORCENTAJEIMPUESTO3),
                 movimiento.Impuestos.Impuesto3.Tasa.ToString(CultureInfo.InvariantCulture));
         }
 
