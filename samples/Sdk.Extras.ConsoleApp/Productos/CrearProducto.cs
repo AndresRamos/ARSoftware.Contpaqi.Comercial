@@ -26,4 +26,22 @@ public class CrearProducto
 
         return _productoService.Crear(producto);
     }
+
+    public int CrearConUnidadMedida()
+    {
+        var producto = new Producto
+        {
+            Codigo = "PRUEBAUNI",
+            Nombre = "PRODUCTO CON UNIDAD",
+            Tipo = TipoProducto.Producto,
+            ControlExistencias = ControlExistencias.Unidades,
+            UnidadMedida = new UnidadMedida { Nombre = "PIEZA" },
+            ClaveSat = "11121600"
+        };
+
+        producto.DatosExtra.Add(nameof(admProductos.CTEXTOEXTRA1), "Texto Extra 1");
+        producto.DatosExtra.Add(nameof(admProductos.CTEXTOEXTRA2), "Texto Extra 2");
+
+        return _productoService.Crear(producto);
+    }
 }
