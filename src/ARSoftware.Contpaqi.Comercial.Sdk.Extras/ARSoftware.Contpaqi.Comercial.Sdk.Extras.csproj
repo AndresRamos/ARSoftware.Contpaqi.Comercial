@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net7.0-windows</TargetFramework>
 		<Nullable>enable</Nullable>
-		<Version>5.1.0</Version>
+		<Version>5.2.0</Version>
 		<Authors>AR Software</Authors>
 		<Description>Este proyecto extiende el proyecto ARSoftware.Contpaqi.Comercial.Sdk y dispone de varios repositorios y servicios que implementan las diferentes funcionalidades del SDK.</Description>
 		<Copyright>Copyright © AR Software 2023</Copyright>

@@ -34,6 +34,17 @@ public class ProductoDto
     public int CTIPOPRODUCTO { get; set; }
 
     /// <summary>
+    ///     Control de existencias mediante: 00000001 = Unidades, 00000010 = Características, 00000100 = Series, 00001000 =
+    ///     Pedimentos, 00010000 = Lotes
+    /// </summary>
+    public int CCONTROLEXISTENCIA { get; set; }
+
+    /// <summary>
+    ///     Id de la unidad de medida base del producto.
+    /// </summary>
+    public int CIDUNIDADBASE { get; set; }
+
+    /// <summary>
     ///     Clave SAT para identificar al producto o servicio.
     /// </summary>
     public string CCLAVESAT { get; set; } = string.Empty;

@@ -102,6 +102,8 @@ public sealed class DtoToModelMappings : Profile
             .ForMember(des => des.Codigo, opt => opt.MapFrom(src => src.CCODIGOPRODUCTO))
             .ForMember(des => des.Nombre, opt => opt.MapFrom(src => src.CNOMBREPRODUCTO))
             .ForMember(des => des.Tipo, opt => opt.MapFrom(src => Enum.Parse<TipoProducto>(src.CTIPOPRODUCTO.ToString())))
+            .ForMember(des => des.ControlExistencias,
+                opt => opt.MapFrom(src => Enum.Parse<ControlExistencias>(src.CCONTROLEXISTENCIA.ToString())))
             .ForMember(des => des.ClaveSat, opt => opt.MapFrom(src => src.CCLAVESAT));
 
         CreateMap<UnidadMedidaDto, UnidadMedida>()
