@@ -28,6 +28,12 @@ public class Producto
     public TipoProducto Tipo { get; set; } = TipoProducto.Producto;
 
     /// <summary>
+    ///     Control de existencias del producto.
+    /// </summary>
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public ControlExistencias ControlExistencias { get; set; } = ControlExistencias.Ninguno;
+
+    /// <summary>
     ///     Clave SAT del producto.
     /// </summary>
     public string ClaveSat { get; set; } = string.Empty;
