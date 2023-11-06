@@ -40,6 +40,11 @@ public class ProductoDto
     public int CCONTROLEXISTENCIA { get; set; }
 
     /// <summary>
+    ///     Id de la unidad de medida base del producto.
+    /// </summary>
+    public int CIDUNIDADBASE { get; set; }
+
+    /// <summary>
     ///     Clave SAT para identificar al producto o servicio.
     /// </summary>
     public string CCLAVESAT { get; set; } = string.Empty;
