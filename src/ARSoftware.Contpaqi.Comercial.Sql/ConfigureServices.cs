@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Common.Mappings;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Repositories;
 using ARSoftware.Contpaqi.Comercial.Sql.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sql.Repositories;
@@ -12,6 +13,7 @@ public static class ConfigureServices
         ServiceLifetime lifetime = ServiceLifetime.Transient)
     {
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        services.AddAutoMapper(typeof(DtoToModelMappings));
 
         services.Add(new ServiceDescriptor(typeof(AgenteSqlRepository<>), typeof(AgenteSqlRepository<>), lifetime));
         services.Add(new ServiceDescriptor(typeof(IAgenteRepository<>), typeof(AgenteSqlRepository<>), lifetime));

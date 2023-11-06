@@ -128,7 +128,9 @@ public static class MapExtensions
         {
             cCodigoProducto = producto.Codigo,
             cNombreProducto = producto.Nombre,
-            cTipoProducto = TipoProductoHelper.ConvertToSdkValue(producto.Tipo)
+            cTipoProducto = TipoProductoHelper.ConvertToSdkValue(producto.Tipo),
+            cControlExistencia = (int)producto.ControlExistencias,
+            cCodigoUnidadBase = producto.UnidadMedida.Nombre
         };
     }
 
