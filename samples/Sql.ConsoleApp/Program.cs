@@ -29,13 +29,7 @@ try
 {
     // 1. Busca la clase con los ejemplos que quieras probar utilizando el proveedor de servicios.
     // 2. Ejecuta el metodo que quieras probar.
-    //var ejemplo = host.Services.GetRequiredService<BuscarEmpresasConRepositorio>();
-    //ejemplo.TraerTodo();
-
-    var ejemplo = host.Services.GetRequiredService<BuscarAgentesConRepositorio>();
-    ejemplo.BuscarPorCodigo();
-    ejemplo.BuscarPorId();
-    ejemplo.TraerPorTipo();
+    var ejemplo = host.Services.GetRequiredService<BuscarEmpresasConRepositorio>();
     ejemplo.TraerTodo();
 }
 catch (Exception e)
