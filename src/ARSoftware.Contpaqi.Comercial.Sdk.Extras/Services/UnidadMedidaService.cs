@@ -54,7 +54,6 @@ public class UnidadMedidaService : IUnidadMedidaService
         return int.Parse(idUnidadDato);
     }
 
-    /// <inheritdoc />
     public int Crear(UnidadMedida unidad)
     {
         tUnidad unidadSdk = unidad.ToSdkUnidad();
@@ -73,9 +72,9 @@ public class UnidadMedidaService : IUnidadMedidaService
         _sdk.fBorraUnidad().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
-    public void Eliminar(string codigoUnidad)
+    public void Eliminar(string nombreUnidad)
     {
-        _sdk.fEliminarUnidad(codigoUnidad).ToResultadoSdk(_sdk).ThrowIfError();
+        _sdk.fEliminarUnidad(nombreUnidad).ToResultadoSdk(_sdk).ThrowIfError();
     }
 
     public void SetDatos(Dictionary<string, string> datos)
