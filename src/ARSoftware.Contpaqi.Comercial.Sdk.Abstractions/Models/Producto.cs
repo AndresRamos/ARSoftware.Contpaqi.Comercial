@@ -34,6 +34,11 @@ public class Producto
     public ControlExistencias ControlExistencias { get; set; } = ControlExistencias.Ninguno;
 
     /// <summary>
+    ///     Unidad de medida base del producto.
+    /// </summary>
+    public UnidadMedida UnidadMedida { get; set; } = new();
+
+    /// <summary>
     ///     Clave SAT del producto.
     /// </summary>
     public string ClaveSat { get; set; } = string.Empty;
