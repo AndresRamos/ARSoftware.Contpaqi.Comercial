@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<Version>5.1.0</Version>
+		<Version>5.2.0</Version>
 		<Authors>AR Software</Authors>
 		<Description>Entity Framework DbContexts para hacer query las bases de datos de CONTPAQi Comercial v9.0.1</Description>
 		<Copyright>Copyright © AR Software 2023</Copyright>
@@ -35,12 +35,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sdk.Abstractions\ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.csproj" />
 		<ProjectReference Include="..\ARSoftware.Contpaqi.Comercial.Sql.Models\ARSoftware.Contpaqi.Comercial.Sql.Models.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Specifications\FoliosDigitales\" />
-	  <Folder Include="Specifications\CapasProducto\" />
-	  <Folder Include="Specifications\ProductosDetalles\" />
 	</ItemGroup>
 
 	<ItemGroup>
