@@ -30,6 +30,14 @@ public class UnidadMedidaService : IUnidadMedidaService
         _sdk.fGuardaUnidad().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    public void Actualizar(string nombreUnidad, Dictionary<string, string> datosUnidad)
+    {
+        _sdk.fBuscaUnidad(nombreUnidad).ToResultadoSdk(_sdk).ThrowIfError();
+        _sdk.fEditaUnidad().ToResultadoSdk(_sdk).ThrowIfError();
+        SetDatos(datosUnidad);
+        _sdk.fGuardaUnidad().ToResultadoSdk(_sdk).ThrowIfError();
+    }
+
     public int Crear(tUnidad unidad)
     {
         var idUnidad = 0;

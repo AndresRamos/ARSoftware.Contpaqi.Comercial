@@ -8,6 +8,7 @@ public interface IUnidadMedidaService
 {
     void Actualizar(string nombreUnidad, tUnidad unidad);
     void Actualizar(int idUnidad, Dictionary<string, string> datosUnidad);
+    void Actualizar(string nombreUnidad, Dictionary<string, string> datosUnidad);
     int Crear(tUnidad unidad);
     int Crear(Dictionary<string, string> datosUnidad);
     public int Crear(UnidadMedida unidad);

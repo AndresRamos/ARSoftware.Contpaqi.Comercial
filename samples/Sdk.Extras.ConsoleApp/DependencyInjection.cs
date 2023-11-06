@@ -78,6 +78,7 @@ public static class DependencyInjection
         serviceCollection.AddTransient<BuscarUnidadesMedidaConRepositorio>();
         serviceCollection.AddTransient<BuscarUnidadesMedidaDtoConRepositorio>();
         serviceCollection.AddTransient<CrearUnidadMedida>();
+        serviceCollection.AddTransient<EditarUnidadMedida>();
 
         // Valores Clasificacion
         serviceCollection.AddTransient<BuscarValoresClasificacionConRepositorio>();
