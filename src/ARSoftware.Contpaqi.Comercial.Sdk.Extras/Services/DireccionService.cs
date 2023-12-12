@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.Constantes;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
@@ -25,6 +26,8 @@ public class DireccionService : IDireccionService
 
     public void Actualizar(int idDireccion, Dictionary<string, string> datosDireccion)
     {
+        if (!datosDireccion.Any()) return;
+
         _sdk.fPosPrimerDireccion().ToResultadoSdk(_sdk).ThrowIfError();
         string idDireccionDato = _sdk.LeeDatoDireccion(nameof(admDomicilios.CIDDIRECCION), SdkConstantes.kLongId);
         if (idDireccion == int.Parse(idDireccionDato))
@@ -68,6 +71,7 @@ public class DireccionService : IDireccionService
 
     public int Crear(string codigoClienteProveedor, Direccion direccion)
     {
+        _sdk.fBuscaCteProv(codigoClienteProveedor).ToResultadoSdk(_sdk).ThrowIfError();
         tDireccion sdkDireccion = direccion.ToSdkDireccion();
         sdkDireccion.cCodCteProv = codigoClienteProveedor;
         int nuevaDireccionId = Crear(sdkDireccion);
