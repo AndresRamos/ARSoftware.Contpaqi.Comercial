@@ -138,6 +138,12 @@ public interface IDocumentoService
     void DesbloquearDocumento(int idDocumento);
 
     /// <summary>
+    ///     Desbloquea un documento por su llave.
+    /// </summary>
+    /// <param name="llave">Llave del documento a desbloquear.</param>
+    void DesbloquearDocumento(LlaveDocumento llave);
+
+    /// <summary>
     ///     Elimina un documento por su id.
     /// </summary>
     /// <param name="idDocumento">Id del documento a eliminar.</param>
