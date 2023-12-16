@@ -60,4 +60,18 @@ public class CrearMovimiento
 
         return _movimientoService.Crear(documentoId, movimiento);
     }
+
+    public int CrearMovimientoConSeries(int documentoId)
+    {
+        var movimiento = new Movimiento
+        {
+            Producto = new Producto { Codigo = "PRODSERIES" },
+            Almacen = new Almacen { Codigo = "PRUEBA" },
+            Unidades = 1,
+            Precio = 100,
+            SeriesCapas = new List<SeriesCapas> { new() { Series = "123456" } }
+        };
+
+        return _movimientoService.Crear(documentoId, movimiento);
+    }
 }

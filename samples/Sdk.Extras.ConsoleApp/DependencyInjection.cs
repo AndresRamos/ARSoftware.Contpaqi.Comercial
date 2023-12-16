@@ -42,6 +42,7 @@ public static class DependencyInjection
         serviceCollection.AddTransient<BuscarDocumentosConRepositorio>();
         serviceCollection.AddTransient<BuscarDocumentosDtoConRepositorio>();
         serviceCollection.AddTransient<CancelarDocumento>();
+        serviceCollection.AddTransient<CrearDocumento>();
         serviceCollection.AddTransient<CrearDocumentoCargoAbono>();
         serviceCollection.AddTransient<CrearFactura>();
         serviceCollection.AddTransient<DesbloquearDocumento>();
