@@ -48,6 +48,7 @@ public static class DependencyInjection
         serviceCollection.AddTransient<DesbloquearDocumento>();
         serviceCollection.AddTransient<EliminarDocumento>();
         serviceCollection.AddTransient<GenerarDocumentoDigitalDocumento>();
+        serviceCollection.AddTransient<RelacionarDocumento>();
         serviceCollection.AddTransient<SaldarDocumento>();
         serviceCollection.AddTransient<TimbrarDocumento>();
 
