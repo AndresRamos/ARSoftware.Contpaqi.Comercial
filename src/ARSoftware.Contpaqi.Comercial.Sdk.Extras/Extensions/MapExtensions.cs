@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
@@ -144,7 +145,7 @@ public static class MapExtensions
         return new tDireccion
         {
             cTipoCatalogo = (int)direccion.TipoCatalogo,
-            cTipoDireccion = (int)direccion.Tipo,
+            cTipoDireccion = direccion.Tipo == TipoDireccion.Fiscal ? 1 : 2,
             cNombreCalle = direccion.Calle,
             cNumeroExterior = direccion.NumeroExterior,
             cNumeroInterior = direccion.NumeroInterior,
