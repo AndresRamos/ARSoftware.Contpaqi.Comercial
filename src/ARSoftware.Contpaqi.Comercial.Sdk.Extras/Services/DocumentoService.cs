@@ -151,6 +151,13 @@ public class DocumentoService : IDocumentoService
         _sdk.fDesbloqueaDocumento().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    public void DesbloquearDocumento(LlaveDocumento llave)
+    {
+        var llaveSdk = new tLlaveDoc { aCodConcepto = llave.ConceptoCodigo, aSerie = llave.Serie, aFolio = llave.Folio };
+        _sdk.fBuscaDocumento(ref llaveSdk);
+        _sdk.fDesbloqueaDocumento().ToResultadoSdk(_sdk).ThrowIfError();
+    }
+
     public void Eliminar(int idDocumento)
     {
         _sdk.fBuscarIdDocumento(idDocumento).ToResultadoSdk(_sdk).ThrowIfError();
