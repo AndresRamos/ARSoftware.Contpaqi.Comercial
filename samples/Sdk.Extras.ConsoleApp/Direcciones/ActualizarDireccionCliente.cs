@@ -6,7 +6,7 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 
 namespace Sdk.Extras.ConsoleApp.Direcciones;
 
-public class ActualizarDireccionCliente
+public sealed class ActualizarDireccionCliente
 {
     private readonly IDireccionService _direccionService;
 
@@ -23,7 +23,7 @@ public class ActualizarDireccionCliente
         {
             TipoCatalogo = TipoCatalogoDireccion.Clientes,
             Tipo = TipoDireccion.Fiscal,
-            Calle = "cALLE",
+            Calle = "Calle",
             NumeroExterior = "1",
             NumeroInterior = "1",
             Colonia = "Colonia",

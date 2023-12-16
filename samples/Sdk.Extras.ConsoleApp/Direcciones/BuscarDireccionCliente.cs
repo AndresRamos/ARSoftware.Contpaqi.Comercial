@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Sdk.Extras.ConsoleApp.Direcciones;
 
-public class BuscarDireccionCliente
+public sealed class BuscarDireccionCliente
 {
     private readonly IDireccionRepository<DireccionDto> _direccionRepository;
     private readonly ILogger<BuscarDireccionCliente> _logger;
@@ -19,8 +19,9 @@ public class BuscarDireccionCliente
     public void Buscar()
     {
         var codigoCliente = "PRUEBA";
+        var tipoDireccion = TipoDireccion.Fiscal;
 
-        DireccionDto? direccion = _direccionRepository.BuscarPorCliente(codigoCliente, TipoDireccion.Fiscal);
+        DireccionDto? direccion = _direccionRepository.BuscarPorCliente(codigoCliente, tipoDireccion);
 
         _logger.LogInformation("{@Direccion}", direccion);
     }

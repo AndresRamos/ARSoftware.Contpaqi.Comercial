@@ -4,7 +4,7 @@ using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 
 namespace Sdk.Extras.ConsoleApp.Direcciones;
 
-public class CrearDireccionCliente
+public sealed class CrearDireccionCliente
 {
     private readonly IDireccionService _direccionService;
 
