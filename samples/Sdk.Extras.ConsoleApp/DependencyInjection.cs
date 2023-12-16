@@ -44,6 +44,7 @@ public static class DependencyInjection
         serviceCollection.AddTransient<CancelarDocumento>();
         serviceCollection.AddTransient<CrearDocumentoCargoAbono>();
         serviceCollection.AddTransient<CrearFactura>();
+        serviceCollection.AddTransient<DesbloquearDocumento>();
         serviceCollection.AddTransient<EliminarDocumento>();
         serviceCollection.AddTransient<GenerarDocumentoDigitalDocumento>();
         serviceCollection.AddTransient<SaldarDocumento>();
