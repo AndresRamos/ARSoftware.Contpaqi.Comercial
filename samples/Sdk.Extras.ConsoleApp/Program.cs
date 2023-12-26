@@ -1,4 +1,5 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Common.Mappings;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -11,6 +12,7 @@ IHost host = Host.CreateDefaultBuilder()
     {
         services.AddContpaqiComercialSdkServices();
         services.AddEjemplos();
+        services.AddAutoMapper(typeof(DtoToModelMappings));
     })
     .ConfigureLogging(builder => { builder.ClearProviders(); })
     .UseSerilog((_, loggerConfiguration) =>

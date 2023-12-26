@@ -36,6 +36,17 @@ public class AlmacenService : IAlmacenService
     }
 
     /// <inheritdoc />
+    public void Actualizar(Almacen almacen)
+    {
+        Dictionary<string, string> datosAlmacen = almacen.ToDatosDictionary();
+        datosAlmacen.Remove(nameof(admAlmacenes.CIDALMACEN));
+        if (almacen.Id != 0)
+            Actualizar(almacen.Id, datosAlmacen);
+        else
+            Actualizar(almacen.Codigo, datosAlmacen);
+    }
+
+    /// <inheritdoc />
     public int Crear(Dictionary<string, string> datosAlmacen)
     {
         _sdk.fInsertaAlmacen().ToResultadoSdk(_sdk).ThrowIfError();

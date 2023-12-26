@@ -17,6 +17,7 @@ public class ValorClasificacionService : IValorClasificacionService
         _sdk = sdk;
     }
 
+    /// <inheritdoc />
     public void Actualizar(int idValorClasificacion, Dictionary<string, string> datosValorClasificacion)
     {
         _sdk.fBuscaIdValorClasif(idValorClasificacion).ToResultadoSdk(_sdk).ThrowIfError();
@@ -25,11 +26,13 @@ public class ValorClasificacionService : IValorClasificacionService
         _sdk.fGuardaValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public void Actualizar(string codigoValorClasificacion, ref tValorClasificacion valorClasificacion)
     {
         _sdk.fActualizaValorClasif(codigoValorClasificacion, ref valorClasificacion).ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public int Crear(tValorClasificacion valorClasificacion)
     {
         var idValorClasificacion = 0;
@@ -37,6 +40,7 @@ public class ValorClasificacionService : IValorClasificacionService
         return idValorClasificacion;
     }
 
+    /// <inheritdoc />
     public int Crear(Dictionary<string, string> datosValorClasificacion)
     {
         _sdk.fInsertaValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
@@ -46,12 +50,14 @@ public class ValorClasificacionService : IValorClasificacionService
         return int.Parse(idValorDato);
     }
 
+    /// <inheritdoc />
     public void Eliminar(int idValorClasificacion)
     {
         _sdk.fBuscaIdValorClasif(idValorClasificacion).ToResultadoSdk(_sdk).ThrowIfError();
         _sdk.fBorraValorClasif().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public void Eliminar(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion, string codigoValorClasificacion)
     {
         _sdk.fEliminarValorClasif((int)tipoClasificacion, (int)numeroClasificacion, codigoValorClasificacion)

@@ -14,6 +14,7 @@ public class ClasificacionService : IClasificacionService
         _sdk = sdk;
     }
 
+    /// <inheritdoc />
     public void Actualizar(TipoClasificacion tipoClasificacion, NumeroClasificacion numeroClasificacion,
         Dictionary<string, string> datosClasificacion)
     {
@@ -23,6 +24,7 @@ public class ClasificacionService : IClasificacionService
         _sdk.fGuardaClasificacion().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public void Actualizar(int idClasificacion, Dictionary<string, string> datosClasificacion)
     {
         _sdk.fBuscaIdClasificacion(idClasificacion).ToResultadoSdk(_sdk).ThrowIfError();

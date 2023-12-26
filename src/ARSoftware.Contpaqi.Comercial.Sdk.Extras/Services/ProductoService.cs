@@ -17,11 +17,13 @@ public class ProductoService : IProductoService
         _sdk = sdk;
     }
 
+    /// <inheritdoc />
     public void Actualizar(string codigoProducto, tProducto producto)
     {
         _sdk.fActualizaProducto(codigoProducto, ref producto).ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public void Actualizar(int idProducto, Dictionary<string, string> datosProducto)
     {
         _sdk.fBuscaIdProducto(idProducto).ToResultadoSdk(_sdk).ThrowIfError();
@@ -30,6 +32,7 @@ public class ProductoService : IProductoService
         _sdk.fGuardaProducto().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public void Actualizar(string codigoProducto, Dictionary<string, string> datosProducto)
     {
         _sdk.fBuscaProducto(codigoProducto).ToResultadoSdk(_sdk).ThrowIfError();
@@ -38,6 +41,18 @@ public class ProductoService : IProductoService
         _sdk.fGuardaProducto().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
+    public void Actualizar(Producto producto)
+    {
+        Dictionary<string, string> datosProducto = producto.ToDatosDictionary();
+        datosProducto.Remove(nameof(admProductos.CIDPRODUCTO));
+        if (producto.Id != 0)
+            Actualizar(producto.Id, datosProducto);
+        else
+            Actualizar(producto.Codigo, datosProducto);
+    }
+
+    /// <inheritdoc />
     public int Crear(tProducto producto)
     {
         var idProducto = 0;
@@ -45,6 +60,7 @@ public class ProductoService : IProductoService
         return idProducto;
     }
 
+    /// <inheritdoc />
     public int Crear(Dictionary<string, string> datosProducto)
     {
         _sdk.fInsertaProducto().ToResultadoSdk(_sdk).ThrowIfError();
@@ -67,12 +83,14 @@ public class ProductoService : IProductoService
         return nuevoProductoId;
     }
 
+    /// <inheritdoc />
     public void Eliminar(int idProducto)
     {
         _sdk.fBuscaIdProducto(idProducto).ToResultadoSdk(_sdk).ThrowIfError();
         _sdk.fBorraProducto().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public void Eliminar(string codigoProducto)
     {
         _sdk.fEliminarProducto(codigoProducto).ToResultadoSdk(_sdk).ThrowIfError();

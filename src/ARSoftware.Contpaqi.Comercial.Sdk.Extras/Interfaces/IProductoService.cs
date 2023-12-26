@@ -30,6 +30,13 @@ public interface IProductoService
     void Actualizar(string codigoProducto, Dictionary<string, string> datosProducto);
 
     /// <summary>
+    ///     Actualiza un producto. Se actualizan todos los campos en el modelo por lo que es necesario que todas las
+    ///     propiedades del modelo tengan un valor valido.
+    /// </summary>
+    /// <param name="producto">Producto a actualizar.</param>
+    void Actualizar(Producto producto);
+
+    /// <summary>
     ///     Crea un producto por dato abstracto.
     /// </summary>
     /// <param name="producto">Producto a crear.</param>

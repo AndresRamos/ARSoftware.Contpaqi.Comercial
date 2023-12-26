@@ -19,11 +19,13 @@ public class DireccionService : IDireccionService
         _sdk = sdk;
     }
 
+    /// <inheritdoc />
     public void Actualizar(tDireccion direccion)
     {
         _sdk.fActualizaDireccion(ref direccion).ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public void Actualizar(int idDireccion, Dictionary<string, string> datosDireccion)
     {
         if (!datosDireccion.Any()) return;
@@ -53,6 +55,15 @@ public class DireccionService : IDireccionService
         }
     }
 
+    /// <inheritdoc />
+    public void Actualizar(string codigoClienteProveedor, Direccion direccion)
+    {
+        tDireccion direccionSdk = direccion.ToSdkDireccion();
+        direccionSdk.cCodCteProv = codigoClienteProveedor;
+        Actualizar(direccionSdk);
+    }
+
+    /// <inheritdoc />
     public int Crear(tDireccion direccion)
     {
         var idDireccion = 0;
@@ -60,6 +71,7 @@ public class DireccionService : IDireccionService
         return idDireccion;
     }
 
+    /// <inheritdoc />
     public int Crear(Dictionary<string, string> datosDireccion)
     {
         _sdk.fInsertaDireccion().ToResultadoSdk(_sdk).ThrowIfError();
@@ -69,14 +81,13 @@ public class DireccionService : IDireccionService
         return int.Parse(idDireccionDato);
     }
 
+    /// <inheritdoc />
     public int Crear(string codigoClienteProveedor, Direccion direccion)
     {
         _sdk.fBuscaCteProv(codigoClienteProveedor).ToResultadoSdk(_sdk).ThrowIfError();
         tDireccion sdkDireccion = direccion.ToSdkDireccion();
         sdkDireccion.cCodCteProv = codigoClienteProveedor;
         int nuevaDireccionId = Crear(sdkDireccion);
-        var datosDireccion = new Dictionary<string, string>(direccion.DatosExtra);
-        Actualizar(nuevaDireccionId, datosDireccion);
         return nuevaDireccionId;
     }
 
