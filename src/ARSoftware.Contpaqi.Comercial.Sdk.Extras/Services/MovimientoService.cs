@@ -27,6 +27,18 @@ public class MovimientoService : IMovimientoService
     }
 
     /// <inheritdoc />
+    public void Actualizar(Movimiento movimiento)
+    {
+        Dictionary<string, string> datosMovimiento = movimiento.ToDatosDictionary();
+        datosMovimiento.Remove(nameof(admMovimientos.CIDMOVIMIENTO));
+        datosMovimiento.Remove(nameof(admMovimientos.CIDPRODUCTO));
+        datosMovimiento.Remove(nameof(admMovimientos.CIDALMACEN));
+        datosMovimiento.Remove(nameof(admMovimientos.CTOTAL));
+        datosMovimiento.Remove(nameof(admMovimientos.CNETO));
+        Actualizar(movimiento.Id, datosMovimiento);
+    }
+
+    /// <inheritdoc />
     public int Crear(int idDocumento, tMovimientoDesc movimiento)
     {
         var movimientoId = 0;
