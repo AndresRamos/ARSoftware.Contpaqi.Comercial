@@ -1,4 +1,5 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace Sdk.Extras.ConsoleApp;
@@ -13,6 +14,15 @@ public class EditarAlmacen
     }
 
     public void Editar()
+    {
+        var almacen = new Almacen { Codigo = "PRUEBA", Nombre = "ALMACEN DE PRUEBAS MODIFICADO" };
+
+        almacen.DatosExtra.Add(nameof(admAlmacenes.CTEXTOEXTRA1), "Texto extra 1");
+
+        _almacenService.Actualizar(almacen);
+    }
+
+    public void EditarConDiccionario()
     {
         var codigoAlmacen = "PRUEBA";
 
