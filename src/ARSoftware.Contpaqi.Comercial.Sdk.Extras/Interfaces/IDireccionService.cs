@@ -8,6 +8,7 @@ public interface IDireccionService
 {
     void Actualizar(tDireccion direccion);
     void Actualizar(int idDireccion, Dictionary<string, string> datosDireccion);
+    void Actualizar(string codigoClienteProveedor, Direccion direccion);
     int Crear(tDireccion direccion);
     int Crear(Dictionary<string, string> datosDireccion);
     int Crear(string codigoClienteProveedor, Direccion direccion);

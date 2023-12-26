@@ -1,8 +1,7 @@
 ﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
-using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
-using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Extensions;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace Sdk.Extras.ConsoleApp.Direcciones;
 
@@ -17,7 +16,7 @@ public sealed class ActualizarDireccionCliente
 
     public void ActualizarFiscal()
     {
-        var codigoCliente = "PRUEBA";
+        var codigoCliente = "CTE003";
 
         var direccion = new Direccion
         {
@@ -30,12 +29,16 @@ public sealed class ActualizarDireccionCliente
             Ciudad = "Ciudad",
             Estado = "Estado",
             CodigoPostal = "123456",
-            Pais = "México"
+            Pais = "México",
+            DatosExtra = new Dictionary<string, string>
+            {
+                { nameof(admDomicilios.CTELEFONO1), "1234567890" },
+                { nameof(admDomicilios.CTELEFONO2), "1234567890" },
+                { nameof(admDomicilios.CEMAIL), "sdk@contpaqi.com" },
+                { nameof(admDomicilios.CDIRECCIONWEB), "https://www.contpaqi.com" }
+            }
         };
 
-        tDireccion direccionSdk = direccion.ToSdkDireccion();
-        direccionSdk.cCodCteProv = codigoCliente;
-
-        _direccionService.Actualizar(direccionSdk);
+        _direccionService.Actualizar(codigoCliente, direccion);
     }
 }
