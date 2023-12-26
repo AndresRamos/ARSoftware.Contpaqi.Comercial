@@ -123,6 +123,20 @@ public static class MapExtensions
         };
     }
 
+    public static Dictionary<string, string> ToDatosDictionary(this Producto producto)
+    {
+        return new Dictionary<string, string>(producto.DatosExtra)
+        {
+            { nameof(admProductos.CIDPRODUCTO), producto.Id.ToString() },
+            { nameof(admProductos.CCODIGOPRODUCTO), producto.Codigo },
+            { nameof(admProductos.CNOMBREPRODUCTO), producto.Nombre },
+            { nameof(admProductos.CTIPOPRODUCTO), TipoProductoHelper.ConvertToSdkValue(producto.Tipo).ToString() },
+            { nameof(admProductos.CCONTROLEXISTENCIA), ((int)producto.ControlExistencias).ToString() },
+            { nameof(admProductos.CIDUNIDADBASE), producto.UnidadMedida.Id.ToString() },
+            { nameof(admProductos.CCLAVESAT), producto.ClaveSat }
+        };
+    }
+
     public static tProducto ToSdkProducto(this Producto producto)
     {
         return new tProducto
