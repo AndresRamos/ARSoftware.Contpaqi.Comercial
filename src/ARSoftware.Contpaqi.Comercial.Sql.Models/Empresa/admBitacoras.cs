@@ -38,4 +38,6 @@ public partial class admBitacoras
     public double CIMPORTE02 { get; set; }
 
     public double CIMPORTE03 { get; set; }
+
+    public string EQUIPO { get; set; } = null!;
 }

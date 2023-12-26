@@ -417,6 +417,10 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasDefaultValue("");
+            entity.Property(e => e.EQUIPO)
+                .HasMaxLength(256)
+                .IsUnicode(false)
+                .HasDefaultValue("");
             entity.Property(e => e.FECHA)
                 .HasDefaultValueSql("('18991230')")
                 .HasColumnType("datetime");
