@@ -16,6 +16,7 @@ public class ComercialSdkSesionService : IComercialSdkSesionService
         _sdkErrorRepository = new SdkErrorRepository(sdk);
     }
 
+    /// <inheritdoc />
     public void AbrirEmpresa(string rutaEmpresa)
     {
         if (!CanAbrirEmpresa)
@@ -29,6 +30,7 @@ public class ComercialSdkSesionService : IComercialSdkSesionService
             string error = _sdkErrorRepository.BuscarMensajePorNumero(sdkResult);
             throw new ContpaqiSdkException(sdkResult, error);
         }
+        /// <inheritdoc />
     }
 
     public bool CanAbrirEmpresa => IsSdkInicializado && !IsEmpresaAbierta;
@@ -39,6 +41,7 @@ public class ComercialSdkSesionService : IComercialSdkSesionService
 
     public bool CanTerminarSesion => IsSdkInicializado;
 
+    /// <inheritdoc />
     public void CerrarEmpresa()
     {
         if (!CanCerrarEmpresa)
@@ -48,6 +51,7 @@ public class ComercialSdkSesionService : IComercialSdkSesionService
         IsEmpresaAbierta = false;
     }
 
+    /// <inheritdoc />
     public void IniciarSesionSdk()
     {
         if (!CanIniciarSesion)
@@ -63,6 +67,7 @@ public class ComercialSdkSesionService : IComercialSdkSesionService
         }
     }
 
+    /// <inheritdoc />
     public void IniciarSesionSdk(string nombreUsuario, string contrasena)
     {
         if (!CanIniciarSesion)
@@ -78,6 +83,7 @@ public class ComercialSdkSesionService : IComercialSdkSesionService
         }
     }
 
+    /// <inheritdoc />
     public void IniciarSesionSdk(string nombreUsuario, string contrasena, string nombreUsuarioContabilidad, string contrasenaContabilidad)
     {
         IniciarSesionSdk(nombreUsuario, contrasena);
@@ -100,6 +106,7 @@ public class ComercialSdkSesionService : IComercialSdkSesionService
 
     public bool IsSdkInicializado { get; private set; }
 
+    /// <inheritdoc />
     public void TerminarSesionSdk()
     {
         if (!CanTerminarSesion)
