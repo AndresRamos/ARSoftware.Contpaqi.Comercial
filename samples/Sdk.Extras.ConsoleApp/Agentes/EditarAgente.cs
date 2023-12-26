@@ -1,4 +1,6 @@
-﻿using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
+﻿using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Interfaces;
 using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace Sdk.Extras.ConsoleApp;
@@ -13,6 +15,15 @@ public class EditarAgente
     }
 
     public void Editar()
+    {
+        var agente = new Agente { Codigo = "PRUEBA", Nombre = "AGENTE DE PRUEBAS MODIFICADO", Tipo = TipoAgente.VentasCobro };
+
+        agente.DatosExtra.Add(nameof(admAgentes.CCOMISIONVENTAAGENTE), "10");
+
+        _agenteService.Actualizar(agente);
+    }
+
+    public void EditarConDiccionario()
     {
         var codigoAgente = "PRUEBA";
 

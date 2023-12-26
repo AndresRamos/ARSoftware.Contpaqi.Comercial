@@ -22,6 +22,13 @@ public interface IAgenteService
     void Actualizar(string codigoAgente, Dictionary<string, string> datosAgente);
 
     /// <summary>
+    ///     Actualiza un agente. Se actualizan todos los campos en el modelo por lo que es necesario que todas las propiedades
+    ///     del modelo tengan un valor valido.
+    /// </summary>
+    /// <param name="agente">Agente a actualizar.</param>
+    void Actualizar(Agente agente);
+
+    /// <summary>
     ///     Crea un agente. Los datos del agente se pasan en un diccionario donde la llave es el nombre de la columna de la
     ///     tabla de agentes en la base de datos y el valor es un valor valido para la columna.
     /// </summary>
