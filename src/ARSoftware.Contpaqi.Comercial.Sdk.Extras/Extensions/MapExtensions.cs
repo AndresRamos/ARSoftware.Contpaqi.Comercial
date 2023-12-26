@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
@@ -70,6 +71,30 @@ public static class MapExtensions
             aImporte = (double)documento.Total,
             aCodigoAgente = documento.Agente?.Codigo ?? string.Empty,
             aReferencia = documento.Referencia
+        };
+    }
+
+    public static Dictionary<string, string> ToDatosDictionary(this Documento documento)
+    {
+        return new Dictionary<string, string>(documento.DatosExtra)
+        {
+            { nameof(admDocumentos.CIDDOCUMENTO), documento.Id.ToString() },
+            { nameof(admDocumentos.CIDCONCEPTODOCUMENTO), documento.Concepto.Id.ToString() },
+            { nameof(admDocumentos.CSERIEDOCUMENTO), documento.Serie },
+            { nameof(admDocumentos.CFOLIO), documento.Folio.ToString() },
+            { nameof(admDocumentos.CFECHA), documento.Fecha.ToSdkFecha() },
+            { nameof(admDocumentos.CIDCLIENTEPROVEEDOR), documento.Cliente?.Id.ToString() ?? string.Empty },
+            { nameof(admDocumentos.CIDMONEDA), documento.Moneda.Id.ToString() },
+            { nameof(admDocumentos.CTIPOCAMBIO), documento.TipoCambio.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admDocumentos.CIDAGENTE), documento.Agente?.Id.ToString() ?? string.Empty },
+            { nameof(admDocumentos.CREFERENCIA), documento.Referencia },
+            { nameof(admDocumentos.COBSERVACIONES), documento.Observaciones },
+            { nameof(admDocumentos.CTOTAL), documento.Total.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admDocumentos.CMETODOPAG), documento.FormaPago is not null ? documento.FormaPago.Value : string.Empty },
+            {
+                nameof(admDocumentos.CCANTPARCI),
+                documento.MetodoPago is not null ? MetodoPagoHelper.ConvertToSdkValue(documento.MetodoPago).ToString() : string.Empty
+            }
         };
     }
 
