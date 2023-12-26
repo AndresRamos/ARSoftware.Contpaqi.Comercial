@@ -38,6 +38,16 @@ public class UnidadMedidaService : IUnidadMedidaService
         _sdk.fGuardaUnidad().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    public void Actualizar(UnidadMedida unidad)
+    {
+        Dictionary<string, string> datosUnidad = unidad.ToDatosDictionary();
+        datosUnidad.Remove(nameof(admUnidadesMedidaPeso.CIDUNIDAD));
+        if (unidad.Id != 0)
+            Actualizar(unidad.Id, datosUnidad);
+        else
+            Actualizar(unidad.Nombre, datosUnidad);
+    }
+
     public int Crear(tUnidad unidad)
     {
         var idUnidad = 0;

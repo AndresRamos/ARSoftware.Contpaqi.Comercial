@@ -149,16 +149,19 @@ public static class MapExtensions
         };
 
         if (movimiento.Descuentos is not null)
-            foreach ((string key, string value) in movimiento.Descuentos.ToDatosDictionary())
-                datosMovimiento.TryAdd(key, value);
+        {
+            foreach ((string key, string value) in movimiento.Descuentos.ToDatosDictionary()) datosMovimiento.TryAdd(key, value);
+        }
 
         if (movimiento.Impuestos is not null)
-            foreach ((string key, string value) in movimiento.Impuestos.ToDatosDictionary())
-                datosMovimiento.TryAdd(key, value);
+        {
+            foreach ((string key, string value) in movimiento.Impuestos.ToDatosDictionary()) datosMovimiento.TryAdd(key, value);
+        }
 
         if (movimiento.Retenciones is not null)
-            foreach ((string key, string value) in movimiento.Retenciones.ToDatosDictionary())
-                datosMovimiento.TryAdd(key, value);
+        {
+            foreach ((string key, string value) in movimiento.Retenciones.ToDatosDictionary()) datosMovimiento.TryAdd(key, value);
+        }
 
         return datosMovimiento;
     }
@@ -208,6 +211,17 @@ public static class MapExtensions
     public static tUnidad ToSdkUnidad(this UnidadMedida unidad)
     {
         return new tUnidad { cAbreviatura = unidad.Abreviatura, cNombreUnidad = unidad.Nombre, cDespliegue = string.Empty };
+    }
+
+    public static Dictionary<string, string> ToDatosDictionary(this UnidadMedida unidad)
+    {
+        return new Dictionary<string, string>(unidad.DatosExtra)
+        {
+            { nameof(admUnidadesMedidaPeso.CIDUNIDAD), unidad.Id.ToString() },
+            { nameof(admUnidadesMedidaPeso.CABREVIATURA), unidad.Abreviatura },
+            { nameof(admUnidadesMedidaPeso.CNOMBREUNIDAD), unidad.Nombre },
+            { nameof(admUnidadesMedidaPeso.CCLAVEINT), unidad.ClaveSat }
+        };
     }
 
     public static tDireccion ToSdkDireccion(this Direccion direccion)
