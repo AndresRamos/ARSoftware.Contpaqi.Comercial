@@ -5,16 +5,16 @@ using ARSoftware.Contpaqi.Comercial.Sql.Models.Empresa;
 
 namespace Sdk.Extras.ConsoleApp.Direcciones;
 
-public sealed class ActualizarDireccionCliente
+public sealed class EditarDireccionCliente
 {
     private readonly IDireccionService _direccionService;
 
-    public ActualizarDireccionCliente(IDireccionService direccionService)
+    public EditarDireccionCliente(IDireccionService direccionService)
     {
         _direccionService = direccionService;
     }
 
-    public void ActualizarFiscal()
+    public void EditarFiscal()
     {
         var codigoCliente = "CTE003";
 

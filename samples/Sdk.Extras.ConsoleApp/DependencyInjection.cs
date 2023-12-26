@@ -34,7 +34,7 @@ public static class DependencyInjection
         serviceCollection.AddTransient<BuscarConceptosDocumentoDtoConRepositorio>();
 
         // Direcciones
-        serviceCollection.AddTransient<ActualizarDireccionCliente>();
+        serviceCollection.AddTransient<EditarDireccionCliente>();
         serviceCollection.AddTransient<BuscarDireccionCliente>();
         serviceCollection.AddTransient<CrearDireccionCliente>();
 
@@ -46,6 +46,7 @@ public static class DependencyInjection
         serviceCollection.AddTransient<CrearDocumentoCargoAbono>();
         serviceCollection.AddTransient<CrearFactura>();
         serviceCollection.AddTransient<DesbloquearDocumento>();
+        serviceCollection.AddTransient<EditarDocumento>();
         serviceCollection.AddTransient<EliminarDocumento>();
         serviceCollection.AddTransient<GenerarDocumentoDigitalDocumento>();
         serviceCollection.AddTransient<RelacionarDocumento>();
