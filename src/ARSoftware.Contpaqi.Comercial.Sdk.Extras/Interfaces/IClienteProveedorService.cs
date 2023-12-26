@@ -29,6 +29,14 @@ public interface IClienteProveedorService
     void Actualizar(tCteProv clienteProveedor);
 
     /// <summary>
+    ///     Actualiza un cliente o proveedor. Se actualizan todos los campos en el modelo por lo que es necesario que todas las
+    ///     propiedades
+    ///     del modelo tengan un valor valido.
+    /// </summary>
+    /// <param name="clienteProveedor">Cliente o proveedor a actualizar.</param>
+    void Actualizar(ClienteProveedor clienteProveedor);
+
+    /// <summary>
     ///     Crear un cliente o proveedor por dato abstracto.
     /// </summary>
     /// <param name="clienteProveedor">Cliente o proveedor a actualizar.</param>
