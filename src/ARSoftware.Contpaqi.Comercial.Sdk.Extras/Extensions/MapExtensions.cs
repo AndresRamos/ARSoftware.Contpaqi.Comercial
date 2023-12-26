@@ -167,7 +167,23 @@ public static class MapExtensions
             cCiudad = direccion.Ciudad,
             cEstado = direccion.Estado,
             cCodigoPostal = direccion.CodigoPostal,
-            cPais = direccion.Pais
+            cPais = direccion.Pais,
+            cTelefono1 =
+                direccion.DatosExtra.TryGetValue(nameof(admDomicilios.CTELEFONO1), out string? telefono1) ? telefono1 : string.Empty,
+            cTelefono2 =
+                direccion.DatosExtra.TryGetValue(nameof(admDomicilios.CTELEFONO2), out string? telefono2) ? telefono2 : string.Empty,
+            cTelefono3 =
+                direccion.DatosExtra.TryGetValue(nameof(admDomicilios.CTELEFONO3), out string? telefono3) ? telefono3 : string.Empty,
+            cTelefono4 =
+                direccion.DatosExtra.TryGetValue(nameof(admDomicilios.CTELEFONO4), out string? telefono4) ? telefono4 : string.Empty,
+            cDireccionWeb =
+                direccion.DatosExtra.TryGetValue(nameof(admDomicilios.CDIRECCIONWEB), out string? direccionWeb)
+                    ? direccionWeb
+                    : string.Empty,
+            cEmail = direccion.DatosExtra.TryGetValue(nameof(admDomicilios.CEMAIL), out string? email) ? email : string.Empty,
+            cTextoExtra = direccion.DatosExtra.TryGetValue(nameof(admDomicilios.CTEXTOEXTRA), out string? textoExtra)
+                ? textoExtra
+                : string.Empty
         };
     }
 
