@@ -61,7 +61,11 @@ public sealed class DtoToModelMappings : Profile
             .ForMember(des => des.Observaciones, opt => opt.MapFrom(src => src.COBSERVACIONES))
             .ForMember(des => des.Total, opt => opt.MapFrom(src => src.CTOTAL))
             .ForMember(des => des.FormaPago, opt => opt.ConvertUsing(new FormaPagoEnumValueConverter(), src => src.CMETODOPAG))
-            .ForMember(des => des.MetodoPago, opt => opt.ConvertUsing(new MetodoPagoEnumValueConverter(), src => src.CCANTPARCI));
+            .ForMember(des => des.MetodoPago, opt => opt.ConvertUsing(new MetodoPagoEnumValueConverter(), src => src.CCANTPARCI))
+            .ForPath(des => des.Concepto.Id, opt => opt.MapFrom(src => src.CIDCONCEPTODOCUMENTO))
+            .ForPath(des => des.Cliente.Id, opt => opt.MapFrom(src => src.CIDCLIENTEPROVEEDOR))
+            .ForPath(des => des.Moneda.Id, opt => opt.MapFrom(src => src.CIDMONEDA))
+            .ForPath(des => des.Agente.Id, opt => opt.MapFrom(src => src.CIDAGENTE));
 
         CreateMap<DocumentoModeloDto, DocumentoModelo>()
             .ForMember(des => des.Id, opt => opt.MapFrom(src => src.CIDDOCUMENTODE))
@@ -91,7 +95,9 @@ public sealed class DtoToModelMappings : Profile
             .ForMember(des => des.Retenciones, opt => opt.MapFrom<RetencionesMovimientoValueResolver>())
             .ForMember(des => des.Total, opt => opt.MapFrom(src => src.CTOTAL))
             .ForMember(des => des.Referencia, opt => opt.MapFrom(src => src.CREFERENCIA))
-            .ForMember(des => des.Observaciones, opt => opt.MapFrom(src => src.COBSERVAMOV));
+            .ForMember(des => des.Observaciones, opt => opt.MapFrom(src => src.COBSERVAMOV))
+            .ForPath(des => des.Producto.Id, opt => opt.MapFrom(src => src.CIDPRODUCTO))
+            .ForPath(des => des.Almacen.Id, opt => opt.MapFrom(src => src.CIDALMACEN));
 
         CreateMap<ParametrosDto, Parametros>()
             .ForMember(des => des.Rfc, opt => opt.MapFrom(src => src.CRFCEMPRESA))
@@ -104,7 +110,8 @@ public sealed class DtoToModelMappings : Profile
             .ForMember(des => des.Tipo, opt => opt.MapFrom(src => Enum.Parse<TipoProducto>(src.CTIPOPRODUCTO.ToString())))
             .ForMember(des => des.ControlExistencias,
                 opt => opt.MapFrom(src => Enum.Parse<ControlExistencias>(src.CCONTROLEXISTENCIA.ToString())))
-            .ForMember(des => des.ClaveSat, opt => opt.MapFrom(src => src.CCLAVESAT));
+            .ForMember(des => des.ClaveSat, opt => opt.MapFrom(src => src.CCLAVESAT))
+            .ForPath(des => des.UnidadMedida.Id, opt => opt.MapFrom(src => src.CIDUNIDADBASE));
 
         CreateMap<UnidadMedidaDto, UnidadMedida>()
             .ForMember(des => des.Id, opt => opt.MapFrom(src => src.CIDUNIDAD))

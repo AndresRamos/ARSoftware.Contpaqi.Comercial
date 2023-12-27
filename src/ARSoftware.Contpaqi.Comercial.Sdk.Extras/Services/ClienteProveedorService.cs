@@ -18,6 +18,7 @@ public class ClienteProveedorService : IClienteProveedorService
         _sdk = sdk;
     }
 
+    /// <inheritdoc />
     public void Actualizar(int idClienteProveedor, Dictionary<string, string> datosClienteProveedor)
     {
         _sdk.fBuscaIdCteProv(idClienteProveedor).ToResultadoSdk(_sdk).ThrowIfError();
@@ -26,6 +27,7 @@ public class ClienteProveedorService : IClienteProveedorService
         _sdk.fGuardaCteProv().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public void Actualizar(string codigoClienteProveedor, Dictionary<string, string> datosClienteProveedor)
     {
         _sdk.fBuscaCteProv(codigoClienteProveedor).ToResultadoSdk(_sdk).ThrowIfError();
@@ -34,11 +36,24 @@ public class ClienteProveedorService : IClienteProveedorService
         _sdk.fGuardaCteProv().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public void Actualizar(tCteProv clienteProveedor)
     {
         _sdk.fActualizaCteProv(clienteProveedor.cCodigoCliente, ref clienteProveedor).ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
+    public void Actualizar(ClienteProveedor clienteProveedor)
+    {
+        Dictionary<string, string> datosClienteProveedor = clienteProveedor.ToDatosDictionary();
+        datosClienteProveedor.Remove(nameof(admClientes.CIDCLIENTEPROVEEDOR));
+        if (clienteProveedor.Id != 0)
+            Actualizar(clienteProveedor.Id, datosClienteProveedor);
+        else
+            Actualizar(clienteProveedor.Codigo, datosClienteProveedor);
+    }
+
+    /// <inheritdoc />
     public int Crear(tCteProv clienteProveedor)
     {
         var idClienteProveedor = 0;
@@ -46,6 +61,7 @@ public class ClienteProveedorService : IClienteProveedorService
         return idClienteProveedor;
     }
 
+    /// <inheritdoc />
     public int Crear(Dictionary<string, string> datosClienteProveedor)
     {
         _sdk.fInsertaCteProv().ToResultadoSdk(_sdk).ThrowIfError();
@@ -55,6 +71,7 @@ public class ClienteProveedorService : IClienteProveedorService
         return int.Parse(idClienteProveedorDato);
     }
 
+    /// <inheritdoc />
     public int Crear(ClienteProveedor clienteProveedor)
     {
         tCteProv cliente = clienteProveedor.ToSdkCteProv();
@@ -74,12 +91,14 @@ public class ClienteProveedorService : IClienteProveedorService
         return nuevoClienteId;
     }
 
+    /// <inheritdoc />
     public void Eliminar(int idClienteProveedor)
     {
         _sdk.fBuscaIdCteProv(idClienteProveedor).ToResultadoSdk(_sdk).ThrowIfError();
         _sdk.fBorraCteProv().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public void Eliminar(string codigoClienteProveedor)
     {
         _sdk.fEliminarCteProv(codigoClienteProveedor).ToResultadoSdk(_sdk).ThrowIfError();

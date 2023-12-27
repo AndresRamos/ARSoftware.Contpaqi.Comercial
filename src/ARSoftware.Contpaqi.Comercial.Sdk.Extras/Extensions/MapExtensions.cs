@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Enums;
 using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.Models;
+using ARSoftware.Contpaqi.Comercial.Sdk.Abstractions.ValueObjects;
 using ARSoftware.Contpaqi.Comercial.Sdk.DatosAbstractos;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Helpers;
 using ARSoftware.Contpaqi.Comercial.Sdk.Extras.Models.Enums;
@@ -72,6 +75,30 @@ public static class MapExtensions
         };
     }
 
+    public static Dictionary<string, string> ToDatosDictionary(this Documento documento)
+    {
+        return new Dictionary<string, string>(documento.DatosExtra)
+        {
+            { nameof(admDocumentos.CIDDOCUMENTO), documento.Id.ToString() },
+            { nameof(admDocumentos.CIDCONCEPTODOCUMENTO), documento.Concepto.Id.ToString() },
+            { nameof(admDocumentos.CSERIEDOCUMENTO), documento.Serie },
+            { nameof(admDocumentos.CFOLIO), documento.Folio.ToString() },
+            { nameof(admDocumentos.CFECHA), documento.Fecha.ToSdkFecha() },
+            { nameof(admDocumentos.CIDCLIENTEPROVEEDOR), documento.Cliente?.Id.ToString() ?? string.Empty },
+            { nameof(admDocumentos.CIDMONEDA), documento.Moneda.Id.ToString() },
+            { nameof(admDocumentos.CTIPOCAMBIO), documento.TipoCambio.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admDocumentos.CIDAGENTE), documento.Agente?.Id.ToString() ?? string.Empty },
+            { nameof(admDocumentos.CREFERENCIA), documento.Referencia },
+            { nameof(admDocumentos.COBSERVACIONES), documento.Observaciones },
+            { nameof(admDocumentos.CTOTAL), documento.Total.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admDocumentos.CMETODOPAG), documento.FormaPago is not null ? documento.FormaPago.Value : string.Empty },
+            {
+                nameof(admDocumentos.CCANTPARCI),
+                documento.MetodoPago is not null ? MetodoPagoHelper.ConvertToSdkValue(documento.MetodoPago).ToString() : string.Empty
+            }
+        };
+    }
+
     public static tMovimiento ToSdkMovimiento(this Movimiento movimiento)
     {
         return new tMovimiento
@@ -106,6 +133,39 @@ public static class MapExtensions
         };
     }
 
+    public static Dictionary<string, string> ToDatosDictionary(this Movimiento movimiento)
+    {
+        var datosMovimiento = new Dictionary<string, string>(movimiento.DatosExtra)
+        {
+            { nameof(admMovimientos.CIDMOVIMIENTO), movimiento.Id.ToString() },
+            { nameof(admMovimientos.CIDPRODUCTO), movimiento.Producto.Id.ToString() },
+            { nameof(admMovimientos.CIDALMACEN), movimiento.Almacen?.Id.ToString() ?? "0" },
+            { nameof(admMovimientos.CUNIDADES), movimiento.Unidades.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CPRECIO), movimiento.Precio.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CNETO), movimiento.Subtotal.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CTOTAL), movimiento.Total.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CREFERENCIA), movimiento.Referencia },
+            { nameof(admMovimientos.COBSERVAMOV), movimiento.Observaciones ?? string.Empty }
+        };
+
+        if (movimiento.Descuentos is not null)
+        {
+            foreach ((string key, string value) in movimiento.Descuentos.ToDatosDictionary()) datosMovimiento.TryAdd(key, value);
+        }
+
+        if (movimiento.Impuestos is not null)
+        {
+            foreach ((string key, string value) in movimiento.Impuestos.ToDatosDictionary()) datosMovimiento.TryAdd(key, value);
+        }
+
+        if (movimiento.Retenciones is not null)
+        {
+            foreach ((string key, string value) in movimiento.Retenciones.ToDatosDictionary()) datosMovimiento.TryAdd(key, value);
+        }
+
+        return datosMovimiento;
+    }
+
     public static tSeriesCapas ToSdkSeriesCapas(this SeriesCapas seriesCapas)
     {
         return new tSeriesCapas
@@ -119,6 +179,20 @@ public static class MapExtensions
             aNumeroLote = seriesCapas.NumeroLote,
             aFechaFabricacion = seriesCapas.FechaFabricacion?.ToSdkFecha() ?? string.Empty,
             aFechaCaducidad = seriesCapas.FechaCaducidad?.ToSdkFecha() ?? string.Empty
+        };
+    }
+
+    public static Dictionary<string, string> ToDatosDictionary(this Producto producto)
+    {
+        return new Dictionary<string, string>(producto.DatosExtra)
+        {
+            { nameof(admProductos.CIDPRODUCTO), producto.Id.ToString() },
+            { nameof(admProductos.CCODIGOPRODUCTO), producto.Codigo },
+            { nameof(admProductos.CNOMBREPRODUCTO), producto.Nombre },
+            { nameof(admProductos.CTIPOPRODUCTO), TipoProductoHelper.ConvertToSdkValue(producto.Tipo).ToString() },
+            { nameof(admProductos.CCONTROLEXISTENCIA), ((int)producto.ControlExistencias).ToString() },
+            { nameof(admProductos.CIDUNIDADBASE), producto.UnidadMedida.Id.ToString() },
+            { nameof(admProductos.CCLAVESAT), producto.ClaveSat }
         };
     }
 
@@ -139,12 +213,23 @@ public static class MapExtensions
         return new tUnidad { cAbreviatura = unidad.Abreviatura, cNombreUnidad = unidad.Nombre, cDespliegue = string.Empty };
     }
 
+    public static Dictionary<string, string> ToDatosDictionary(this UnidadMedida unidad)
+    {
+        return new Dictionary<string, string>(unidad.DatosExtra)
+        {
+            { nameof(admUnidadesMedidaPeso.CIDUNIDAD), unidad.Id.ToString() },
+            { nameof(admUnidadesMedidaPeso.CABREVIATURA), unidad.Abreviatura },
+            { nameof(admUnidadesMedidaPeso.CNOMBREUNIDAD), unidad.Nombre },
+            { nameof(admUnidadesMedidaPeso.CCLAVEINT), unidad.ClaveSat }
+        };
+    }
+
     public static tDireccion ToSdkDireccion(this Direccion direccion)
     {
         return new tDireccion
         {
             cTipoCatalogo = (int)direccion.TipoCatalogo,
-            cTipoDireccion = (int)direccion.Tipo,
+            cTipoDireccion = direccion.Tipo == TipoDireccion.Fiscal ? 1 : 2,
             cNombreCalle = direccion.Calle,
             cNumeroExterior = direccion.NumeroExterior,
             cNumeroInterior = direccion.NumeroInterior,
@@ -152,12 +237,73 @@ public static class MapExtensions
             cCiudad = direccion.Ciudad,
             cEstado = direccion.Estado,
             cCodigoPostal = direccion.CodigoPostal,
-            cPais = direccion.Pais
+            cPais = direccion.Pais,
+            cTelefono1 =
+                direccion.DatosExtra.TryGetValue(nameof(admDomicilios.CTELEFONO1), out string? telefono1) ? telefono1 : string.Empty,
+            cTelefono2 =
+                direccion.DatosExtra.TryGetValue(nameof(admDomicilios.CTELEFONO2), out string? telefono2) ? telefono2 : string.Empty,
+            cTelefono3 =
+                direccion.DatosExtra.TryGetValue(nameof(admDomicilios.CTELEFONO3), out string? telefono3) ? telefono3 : string.Empty,
+            cTelefono4 =
+                direccion.DatosExtra.TryGetValue(nameof(admDomicilios.CTELEFONO4), out string? telefono4) ? telefono4 : string.Empty,
+            cDireccionWeb =
+                direccion.DatosExtra.TryGetValue(nameof(admDomicilios.CDIRECCIONWEB), out string? direccionWeb)
+                    ? direccionWeb
+                    : string.Empty,
+            cEmail = direccion.DatosExtra.TryGetValue(nameof(admDomicilios.CEMAIL), out string? email) ? email : string.Empty,
+            cTextoExtra = direccion.DatosExtra.TryGetValue(nameof(admDomicilios.CTEXTOEXTRA), out string? textoExtra)
+                ? textoExtra
+                : string.Empty
         };
     }
 
     public static Moneda ToMoneda(this MonedaEnum monedaEnum)
     {
         return new Moneda { Id = monedaEnum.Value, Nombre = monedaEnum.Name };
+    }
+
+    public static Dictionary<string, string> ToDatosDictionary(this DescuentosMovimiento descuentosMovimiento)
+    {
+        return new Dictionary<string, string>
+        {
+            {
+                nameof(admMovimientos.CPORCENTAJEDESCUENTO1), descuentosMovimiento.Descuento1.Tasa.ToString(CultureInfo.InvariantCulture)
+            },
+            { nameof(admMovimientos.CDESCUENTO1), descuentosMovimiento.Descuento1.Importe.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CPORCENTAJEDESCUENTO2), descuentosMovimiento.Descuento2.Tasa.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CDESCUENTO2), descuentosMovimiento.Descuento2.Importe.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CPORCENTAJEDESCUENTO3), descuentosMovimiento.Descuento3.Tasa.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CDESCUENTO3), descuentosMovimiento.Descuento3.Importe.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CPORCENTAJEDESCUENTO4), descuentosMovimiento.Descuento4.Tasa.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CDESCUENTO4), descuentosMovimiento.Descuento4.Importe.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CPORCENTAJEDESCUENTO5), descuentosMovimiento.Descuento5.Tasa.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CDESCUENTO5), descuentosMovimiento.Descuento5.Importe.ToString(CultureInfo.InvariantCulture) }
+        };
+    }
+
+    public static Dictionary<string, string> ToDatosDictionary(this ImpuestosMovimiento impuestosMovimiento)
+    {
+        return new Dictionary<string, string>
+        {
+            { nameof(admMovimientos.CPORCENTAJEIMPUESTO1), impuestosMovimiento.Impuesto1.Tasa.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CIMPUESTO1), impuestosMovimiento.Impuesto1.Importe.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CPORCENTAJEIMPUESTO2), impuestosMovimiento.Impuesto2.Tasa.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CIMPUESTO2), impuestosMovimiento.Impuesto2.Importe.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CPORCENTAJEIMPUESTO3), impuestosMovimiento.Impuesto3.Tasa.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CIMPUESTO3), impuestosMovimiento.Impuesto3.Importe.ToString(CultureInfo.InvariantCulture) }
+        };
+    }
+
+    public static Dictionary<string, string> ToDatosDictionary(this RetencionesMovimiento retencionesMovimiento)
+    {
+        return new Dictionary<string, string>
+        {
+            {
+                nameof(admMovimientos.CPORCENTAJERETENCION1), retencionesMovimiento.Retencion1.Tasa.ToString(CultureInfo.InvariantCulture)
+            },
+            { nameof(admMovimientos.CRETENCION1), retencionesMovimiento.Retencion1.Importe.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CPORCENTAJERETENCION2), retencionesMovimiento.Retencion2.Tasa.ToString(CultureInfo.InvariantCulture) },
+            { nameof(admMovimientos.CRETENCION2), retencionesMovimiento.Retencion2.Importe.ToString(CultureInfo.InvariantCulture) }
+        };
     }
 }

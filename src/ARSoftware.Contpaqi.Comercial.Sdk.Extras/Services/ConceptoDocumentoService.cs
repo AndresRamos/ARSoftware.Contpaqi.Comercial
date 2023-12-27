@@ -13,6 +13,7 @@ public class ConceptoDocumentoService : IConceptoDocumentoService
         _sdk = sdk;
     }
 
+    /// <inheritdoc />
     public void Actualizar(int idConcepto, Dictionary<string, string> datosConcepto)
     {
         _sdk.fBuscaIdConceptoDocto(idConcepto).ToResultadoSdk(_sdk).ThrowIfError();
@@ -21,6 +22,7 @@ public class ConceptoDocumentoService : IConceptoDocumentoService
         _sdk.fGuardaConceptoDocto().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public void Actualizar(string codigoConcepto, Dictionary<string, string> datosConcepto)
     {
         _sdk.fBuscaConceptoDocto(codigoConcepto).ToResultadoSdk(_sdk).ThrowIfError();

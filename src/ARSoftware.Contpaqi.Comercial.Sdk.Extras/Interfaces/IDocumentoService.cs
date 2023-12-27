@@ -36,6 +36,14 @@ public interface IDocumentoService
     void Actualizar(tLlaveDoc tLlaveDocumento, Dictionary<string, string> datosDocumento);
 
     /// <summary>
+    ///     Actualiza un documento por su llave. El codigo del concepto, serie, y folio deben estar asignados. Solamente se
+    ///     actualiza los datos que son modificables. Solamente se actualizan los campos del documento a 1 nivel de
+    ///     profundidad. No se actualizan los datos de los objectos relacionados.
+    /// </summary>
+    /// <param name="documento">Documento a actualizar.</param>
+    void Actualizar(Documento documento);
+
+    /// <summary>
     ///     Buscar el siguiente folio y serie del concepto de documento.
     /// </summary>
     /// <param name="codigoConcepto">Código del concepto de documento.</param>
@@ -136,6 +144,12 @@ public interface IDocumentoService
     /// </summary>
     /// <param name="idDocumento">Id del documento a desbloquear.</param>
     void DesbloquearDocumento(int idDocumento);
+
+    /// <summary>
+    ///     Desbloquea un documento por su llave.
+    /// </summary>
+    /// <param name="llave">Llave del documento a desbloquear.</param>
+    void DesbloquearDocumento(LlaveDocumento llave);
 
     /// <summary>
     ///     Elimina un documento por su id.

@@ -15,6 +15,12 @@ public interface IMovimientoService
     void Actualizar(int idMovimiento, Dictionary<string, string> datosMovimiento);
 
     /// <summary>
+    ///     Actualiza un movimiento por su id.
+    /// </summary>
+    /// <param name="movimiento">El movimiento a actualizar.</param>
+    void Actualizar(Movimiento movimiento);
+
+    /// <summary>
     ///     Crear un movimiento por dato abstracto.
     /// </summary>
     /// <param name="idDocumento">El id del documento al que se le va a crear el movimiento.</param>

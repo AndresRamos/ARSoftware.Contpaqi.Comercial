@@ -22,6 +22,13 @@ public interface IAlmacenService
     void Actualizar(string codigoAlmacen, Dictionary<string, string> datosAlmacen);
 
     /// <summary>
+    ///     Actualiza un almacén. Se actualizan todos los campos en el modelo por lo que es necesario que todas las propiedades
+    ///     del modelo tengan un valor valido.
+    /// </summary>
+    /// <param name="almacen">Almacén a actualizar.</param>
+    void Actualizar(Almacen almacen);
+
+    /// <summary>
     ///     Crea un almacén. Los datos del almacén se pasan en un diccionario donde la llave es el nombre de la columna de la
     ///     tabla de almacenes en la base de datos y el valor es un valor valido para la columna.
     /// </summary>

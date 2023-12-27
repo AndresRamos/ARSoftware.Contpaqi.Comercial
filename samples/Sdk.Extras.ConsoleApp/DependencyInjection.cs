@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Sdk.Extras.ConsoleApp.Direcciones;
 
 namespace Sdk.Extras.ConsoleApp;
 
@@ -32,14 +33,23 @@ public static class DependencyInjection
         serviceCollection.AddTransient<BuscarConceptosDocumentoConRepositorio>();
         serviceCollection.AddTransient<BuscarConceptosDocumentoDtoConRepositorio>();
 
+        // Direcciones
+        serviceCollection.AddTransient<EditarDireccionCliente>();
+        serviceCollection.AddTransient<BuscarDireccionCliente>();
+        serviceCollection.AddTransient<CrearDireccionCliente>();
+
         // Documentos
         serviceCollection.AddTransient<BuscarDocumentosConRepositorio>();
         serviceCollection.AddTransient<BuscarDocumentosDtoConRepositorio>();
         serviceCollection.AddTransient<CancelarDocumento>();
+        serviceCollection.AddTransient<CrearDocumento>();
         serviceCollection.AddTransient<CrearDocumentoCargoAbono>();
         serviceCollection.AddTransient<CrearFactura>();
+        serviceCollection.AddTransient<DesbloquearDocumento>();
+        serviceCollection.AddTransient<EditarDocumento>();
         serviceCollection.AddTransient<EliminarDocumento>();
         serviceCollection.AddTransient<GenerarDocumentoDigitalDocumento>();
+        serviceCollection.AddTransient<RelacionarDocumento>();
         serviceCollection.AddTransient<SaldarDocumento>();
         serviceCollection.AddTransient<TimbrarDocumento>();
 

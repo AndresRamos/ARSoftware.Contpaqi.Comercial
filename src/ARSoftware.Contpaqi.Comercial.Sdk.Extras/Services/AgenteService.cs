@@ -36,6 +36,17 @@ public class AgenteService : IAgenteService
     }
 
     /// <inheritdoc />
+    public void Actualizar(Agente agente)
+    {
+        Dictionary<string, string> datosAgente = agente.ToDatosDictionary();
+        datosAgente.Remove(nameof(admAgentes.CIDAGENTE));
+        if (agente.Id != 0)
+            Actualizar(agente.Id, datosAgente);
+        else
+            Actualizar(agente.Codigo, datosAgente);
+    }
+
+    /// <inheritdoc />
     public int Crear(Dictionary<string, string> datosAgente)
     {
         _sdk.fInsertaAgente().ToResultadoSdk(_sdk).ThrowIfError();

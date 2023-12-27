@@ -17,11 +17,13 @@ public class UnidadMedidaService : IUnidadMedidaService
         _sdk = sdk;
     }
 
+    /// <inheritdoc />
     public void Actualizar(string nombreUnidad, tUnidad unidad)
     {
         _sdk.fActualizaUnidad(nombreUnidad, ref unidad).ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public void Actualizar(int idUnidad, Dictionary<string, string> datosUnidad)
     {
         _sdk.fBuscaIdUnidad(idUnidad).ToResultadoSdk(_sdk).ThrowIfError();
@@ -30,6 +32,7 @@ public class UnidadMedidaService : IUnidadMedidaService
         _sdk.fGuardaUnidad().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public void Actualizar(string nombreUnidad, Dictionary<string, string> datosUnidad)
     {
         _sdk.fBuscaUnidad(nombreUnidad).ToResultadoSdk(_sdk).ThrowIfError();
@@ -38,6 +41,18 @@ public class UnidadMedidaService : IUnidadMedidaService
         _sdk.fGuardaUnidad().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
+    public void Actualizar(UnidadMedida unidad)
+    {
+        Dictionary<string, string> datosUnidad = unidad.ToDatosDictionary();
+        datosUnidad.Remove(nameof(admUnidadesMedidaPeso.CIDUNIDAD));
+        if (unidad.Id != 0)
+            Actualizar(unidad.Id, datosUnidad);
+        else
+            Actualizar(unidad.Nombre, datosUnidad);
+    }
+
+    /// <inheritdoc />
     public int Crear(tUnidad unidad)
     {
         var idUnidad = 0;
@@ -45,6 +60,7 @@ public class UnidadMedidaService : IUnidadMedidaService
         return idUnidad;
     }
 
+    /// <inheritdoc />
     public int Crear(Dictionary<string, string> datosUnidad)
     {
         _sdk.fInsertaUnidad().ToResultadoSdk(_sdk).ThrowIfError();
@@ -54,6 +70,7 @@ public class UnidadMedidaService : IUnidadMedidaService
         return int.Parse(idUnidadDato);
     }
 
+    /// <inheritdoc />
     public int Crear(UnidadMedida unidad)
     {
         tUnidad unidadSdk = unidad.ToSdkUnidad();
@@ -66,12 +83,14 @@ public class UnidadMedidaService : IUnidadMedidaService
         return nuevaUnidadId;
     }
 
+    /// <inheritdoc />
     public void Eliminar(int idUnidad)
     {
         _sdk.fBuscaIdUnidad(idUnidad).ToResultadoSdk(_sdk).ThrowIfError();
         _sdk.fBorraUnidad().ToResultadoSdk(_sdk).ThrowIfError();
     }
 
+    /// <inheritdoc />
     public void Eliminar(string nombreUnidad)
     {
         _sdk.fEliminarUnidad(nombreUnidad).ToResultadoSdk(_sdk).ThrowIfError();
