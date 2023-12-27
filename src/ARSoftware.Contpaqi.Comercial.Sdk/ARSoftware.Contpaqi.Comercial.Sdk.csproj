@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<Version>6.0.0</Version>
+		<Version>6.1.0</Version>
 		<Authors>AR Software</Authors>
 		<Description>Este proyecto tiene declaradas todas las funciones y clases utilizadas por el SDK de CONTPAQi Comercial, CONTPAQi Adminpaq, y CONTPAQi Factura Electronica.</Description>
 		<Copyright>Copyright © AR Software 2023</Copyright>
