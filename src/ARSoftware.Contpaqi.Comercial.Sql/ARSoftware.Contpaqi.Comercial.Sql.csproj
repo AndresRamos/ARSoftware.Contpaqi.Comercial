@@ -3,10 +3,10 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<Version>6.1.0</Version>
+		<Version>6.1.1</Version>
 		<Authors>AR Software</Authors>
-		<Description>Entity Framework DbContexts para hacer query las bases de datos de CONTPAQi Comercial v9.1.1</Description>
-		<Copyright>Copyright © AR Software 2023</Copyright>
+		<Description>Entity Framework DbContexts para hacer query las bases de datos de CONTPAQi Comercial v9.1.1 Service Pack 1</Description>
+		<Copyright>Copyright © AR Software 2024</Copyright>
 		<RepositoryUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
