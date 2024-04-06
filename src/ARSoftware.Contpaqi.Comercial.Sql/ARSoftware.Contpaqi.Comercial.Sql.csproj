@@ -28,7 +28,7 @@
 	<ItemGroup>
 		<PackageReference Include="Ardalis.Specification" Version="8.0.0" />
 		<PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="8.0.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
