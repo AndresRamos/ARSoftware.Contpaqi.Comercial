@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<Version>6.1.1</Version>
+		<Version>6.2.0</Version>
 		<Authors>AR Software</Authors>
 		<Description>Entity Framework DbContexts para hacer query las bases de datos de CONTPAQi Comercial v9.2.1</Description>
 		<Copyright>Copyright © AR Software 2024</Copyright>
