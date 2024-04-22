@@ -426,4 +426,6 @@ public partial class admParametros
     public string? CREFRESHTOKENCN { get; set; }
 
     public string? CURLWSTORE { get; set; }
+
+    public string CLEYENDON { get; set; } = null!;
 }

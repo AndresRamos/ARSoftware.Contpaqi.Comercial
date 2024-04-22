@@ -2246,6 +2246,9 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
                 .HasMaxLength(60)
                 .IsUnicode(false)
                 .HasDefaultValue("");
+            entity.Property(e => e.CLEYENDON)
+                .IsUnicode(false)
+                .HasDefaultValue("");
             entity.Property(e => e.CLEYENDON1)
                 .HasMaxLength(253)
                 .IsUnicode(false)
