@@ -36,7 +36,7 @@ public class Producto
     /// <summary>
     ///     Unidad de medida base del producto.
     /// </summary>
-    public UnidadMedida UnidadMedida { get; set; } = new();
+    public UnidadMedida? UnidadMedida { get; set; }
 
     /// <summary>
     ///     Clave SAT del producto.
