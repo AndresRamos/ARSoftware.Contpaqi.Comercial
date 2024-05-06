@@ -30,7 +30,6 @@ public class ComercialSdkSesionService : IComercialSdkSesionService
             string error = _sdkErrorRepository.BuscarMensajePorNumero(sdkResult);
             throw new ContpaqiSdkException(sdkResult, error);
         }
-        /// <inheritdoc />
     }
 
     public bool CanAbrirEmpresa => IsSdkInicializado && !IsEmpresaAbierta;

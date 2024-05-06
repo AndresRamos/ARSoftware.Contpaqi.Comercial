@@ -191,7 +191,7 @@ public static class MapExtensions
             { nameof(admProductos.CNOMBREPRODUCTO), producto.Nombre },
             { nameof(admProductos.CTIPOPRODUCTO), TipoProductoHelper.ConvertToSdkValue(producto.Tipo).ToString() },
             { nameof(admProductos.CCONTROLEXISTENCIA), ((int)producto.ControlExistencias).ToString() },
-            { nameof(admProductos.CIDUNIDADBASE), producto.UnidadMedida.Id.ToString() },
+            { nameof(admProductos.CIDUNIDADBASE), producto.UnidadMedida?.Id.ToString() ?? "0" },
             { nameof(admProductos.CCLAVESAT), producto.ClaveSat }
         };
     }
@@ -204,7 +204,7 @@ public static class MapExtensions
             cNombreProducto = producto.Nombre,
             cTipoProducto = TipoProductoHelper.ConvertToSdkValue(producto.Tipo),
             cControlExistencia = (int)producto.ControlExistencias,
-            cCodigoUnidadBase = producto.UnidadMedida.Nombre
+            cCodigoUnidadBase = producto.UnidadMedida?.Nombre ?? string.Empty
         };
     }
 
