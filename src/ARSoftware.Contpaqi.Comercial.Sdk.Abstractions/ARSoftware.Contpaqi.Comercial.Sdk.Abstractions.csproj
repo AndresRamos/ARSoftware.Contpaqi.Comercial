@@ -35,9 +35,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Ardalis.SmartEnum" Version="8.0.0" />
-		<PackageReference Include="Ardalis.SmartEnum.SystemTextJson" Version="8.0.0" />
-		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="Ardalis.SmartEnum" Version="8.2.0" />
+		<PackageReference Include="Ardalis.SmartEnum.SystemTextJson" Version="8.1.0" />
+		<PackageReference Include="AutoMapper" Version="14.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
