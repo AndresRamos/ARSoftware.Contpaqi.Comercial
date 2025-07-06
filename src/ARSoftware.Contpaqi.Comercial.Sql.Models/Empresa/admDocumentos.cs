@@ -186,4 +186,8 @@ public partial class admDocumentos
     public int CIDCOPIADE { get; set; }
 
     public string CVERESQUE { get; set; } = null!;
+
+    public string? CDATOSADICIONALES { get; set; }
+
+    public int CIDAPERTURA { get; set; }
 }

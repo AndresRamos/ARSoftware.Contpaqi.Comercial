@@ -30,4 +30,10 @@ public partial class admAsocCargosAbonosImp
     public double CPROPORC01 { get; set; }
 
     public string CMETODOPAG { get; set; } = null!;
+
+    public string COBJIMPU01 { get; set; } = null!;
+
+    public int CCOMPUTA01 { get; set; }
+
+    public string CNOMIMPLOC { get; set; } = null!;
 }

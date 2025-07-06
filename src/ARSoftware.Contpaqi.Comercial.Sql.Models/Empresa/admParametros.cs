@@ -428,4 +428,8 @@ public partial class admParametros
     public string? CURLWSTORE { get; set; }
 
     public string CLEYENDON { get; set; } = null!;
+
+    public int CUSACORREOOAUTH { get; set; }
+
+    public string CPROVEEDOROAUTH { get; set; } = null!;
 }
