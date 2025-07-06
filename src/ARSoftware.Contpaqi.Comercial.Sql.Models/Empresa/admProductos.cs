@@ -218,4 +218,12 @@ public partial class admProductos
     public string CCLAVESAT { get; set; } = null!;
 
     public double CCANTIDADFISCAL { get; set; }
+
+    public int CUNIDADDIMENSION { get; set; }
+
+    public double CALTO { get; set; }
+
+    public double CLARGO { get; set; }
+
+    public double CANCHO { get; set; }
 }

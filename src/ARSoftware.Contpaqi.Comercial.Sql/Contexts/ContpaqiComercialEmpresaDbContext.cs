@@ -20,6 +20,8 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
 
     public virtual DbSet<admAlmacenes> admAlmacenes { get; set; }
 
+    public virtual DbSet<admAperturas> admAperturas { get; set; }
+
     public virtual DbSet<admAsientosContables> admAsientosContables { get; set; }
 
     public virtual DbSet<admAsocAcumConceptos> admAsocAcumConceptos { get; set; }
@@ -31,6 +33,8 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
     public virtual DbSet<admBanderas> admBanderas { get; set; }
 
     public virtual DbSet<admBitacoras> admBitacoras { get; set; }
+
+    public virtual DbSet<admCajas> admCajas { get; set; }
 
     public virtual DbSet<admCapasProducto> admCapasProducto { get; set; }
 
@@ -72,6 +76,8 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
 
     public virtual DbSet<admFoliosDigitales> admFoliosDigitales { get; set; }
 
+    public virtual DbSet<admFormasPago> admFormasPago { get; set; }
+
     public virtual DbSet<admMaximosMinimos> admMaximosMinimos { get; set; }
 
     public virtual DbSet<admMonedas> admMonedas { get; set; }
@@ -95,6 +101,8 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
     public virtual DbSet<admMovtosInvFisicoSerieCa> admMovtosInvFisicoSerieCa { get; set; }
 
     public virtual DbSet<admNumerosSerie> admNumerosSerie { get; set; }
+
+    public virtual DbSet<admPagoNotas> admPagoNotas { get; set; }
 
     public virtual DbSet<admParametros> admParametros { get; set; }
 
@@ -302,6 +310,45 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
                 .HasDefaultValue("");
         });
 
+        modelBuilder.Entity<admAperturas>(entity =>
+        {
+            entity.HasKey(e => e.CIDAPERTURA);
+
+            entity.HasIndex(e => new { e.CFECHAAPERTURA, e.CIDAPERTURA }, "CFECHAAPERTURA");
+
+            entity.HasIndex(e => new { e.CIDCAJA, e.CIDAPERTURA }, "CIDCAJA");
+
+            entity.Property(e => e.CFECHAAPERTURA)
+                .HasDefaultValueSql("('18991230')")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CFECHACORTE)
+                .HasDefaultValueSql("('18991230')")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CFECHAFACTURA)
+                .HasDefaultValueSql("('18991230')")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CHORAAPERTURA)
+                .HasMaxLength(6)
+                .IsUnicode(false)
+                .HasDefaultValue("000000");
+            entity.Property(e => e.CHORACORTE)
+                .HasMaxLength(6)
+                .IsUnicode(false)
+                .HasDefaultValue("000000");
+            entity.Property(e => e.CTERMINAL)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CTIMESTAMP)
+                .HasMaxLength(23)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CUSUARIO)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+        });
+
         modelBuilder.Entity<admAsientosContables>(entity =>
         {
             entity.HasKey(e => e.CIDASIENTOCONTABLE);
@@ -357,6 +404,10 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
         {
             entity.HasKey(e => new { e.CIDDOCUMENTOABONO, e.CIDDOCUMENTOCARGO, e.CTEXTOTASA });
 
+            entity.HasIndex(e => new { e.CIDDOCUMENTOABONO, e.CESDETALLE }, "IABONODET");
+
+            entity.HasIndex(e => new { e.CIDDOCUMENTOCARGO, e.CESDETALLE }, "ICARGODET");
+
             entity.HasIndex(e => new { e.CIDDOCUMENTOCARGO, e.CIDDOCUMENTOABONO, e.CTEXTOTASA }, "IDOCTOCARGOABONO").IsUnique();
 
             entity.Property(e => e.CTEXTOTASA)
@@ -365,6 +416,14 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
             entity.Property(e => e.CIDAUTOINCSQL).ValueGeneratedOnAdd();
             entity.Property(e => e.CMETODOPAG)
                 .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CNOMIMPLOC)
+                .HasMaxLength(60)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.COBJIMPU01)
+                .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasDefaultValue("");
         });
@@ -446,6 +505,73 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
                 .HasDefaultValue("");
             entity.Property(e => e.USUARIO2)
                 .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+        });
+
+        modelBuilder.Entity<admCajas>(entity =>
+        {
+            entity.HasKey(e => e.CIDCAJA);
+
+            entity.HasIndex(e => e.CCODIGOCAJA, "CCODIGOCAJA").IsUnique();
+
+            entity.HasIndex(e => new { e.CFECHAALTA, e.CIDCAJA }, "CFECHAALTA");
+
+            entity.HasIndex(e => new { e.CIDVALORCLASIFICACION1, e.CIDCAJA }, "CIDVALORCLASIFICACION1");
+
+            entity.HasIndex(e => e.CNOMBRECAJA, "CNOMBRECAJA").IsUnique();
+
+            entity.Property(e => e.CCODIGOCAJA)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CFECHAALTA)
+                .HasDefaultValueSql("('18991230')")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CFECHABAJA)
+                .HasDefaultValueSql("('18991230')")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CFECHAEXTRA)
+                .HasDefaultValueSql("('18991230')")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CNOMBRECAJA)
+                .HasMaxLength(60)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CSERIEDEVN)
+                .HasMaxLength(11)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CSERIENOTA)
+                .HasMaxLength(11)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CTEXTOEXTRA1)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CTEXTOEXTRA2)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CTEXTOEXTRA3)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CTIMESTAMP)
+                .HasMaxLength(23)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.cReporteApertura)
+                .HasMaxLength(60)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.cReporteCorte)
+                .HasMaxLength(60)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.cReporteNota)
+                .HasMaxLength(60)
                 .IsUnicode(false)
                 .HasDefaultValue("");
         });
@@ -818,6 +944,10 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
                 .HasMaxLength(60)
                 .IsUnicode(false)
                 .HasDefaultValue("");
+            entity.Property(e => e.CWHATSAPP)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasDefaultValue("");
         });
 
         modelBuilder.Entity<admComponentesPaquete>(entity =>
@@ -1143,6 +1273,8 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
 
             entity.HasIndex(e => new { e.CFECHAVENCIMIENTO, e.CIDDOCUMENTO }, "CFECHAVENCIMIENTO");
 
+            entity.HasIndex(e => new { e.CIDAPERTURA, e.CIDDOCUMENTO }, "CIDAPERTURA");
+
             entity.HasIndex(e => new { e.CIDCOPIADE, e.CFECHA, e.CIDDOCUMENTO }, "CIDCOPIADE");
 
             entity.HasIndex(e => new { e.CIDCUENTA, e.CFECHA, e.CIDDOCUMENTO }, "CIDCUENTA");
@@ -1199,6 +1331,7 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
                 .HasMaxLength(120)
                 .IsUnicode(false)
                 .HasDefaultValue("");
+            entity.Property(e => e.CDATOSADICIONALES).IsUnicode(false);
             entity.Property(e => e.CDESTINATARIO)
                 .HasMaxLength(60)
                 .IsUnicode(false)
@@ -1672,6 +1805,56 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
                 .HasDefaultValue("");
             entity.Property(e => e.CUUID)
                 .HasMaxLength(60)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+        });
+
+        modelBuilder.Entity<admFormasPago>(entity =>
+        {
+            entity.HasKey(e => e.CIDFORMAPAGO);
+
+            entity.HasIndex(e => e.CCODIGOFORMAPAGO, "CCODIGOFORMA").IsUnique();
+
+            entity.HasIndex(e => new { e.CFECHAALTA, e.CIDFORMAPAGO }, "CFECHAALTA");
+
+            entity.HasIndex(e => e.CNOMBREFORMAPAGO, "CNOMBREFORMAPAGO").IsUnique();
+
+            entity.Property(e => e.CCLAVESAT)
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CCODIGOFORMAPAGO)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CFECHAALTA)
+                .HasDefaultValueSql("('18991230')")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CFECHABAJA)
+                .HasDefaultValueSql("('18991230')")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CFECHAEXTRA)
+                .HasDefaultValueSql("('18991230')")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CIDMONEDA).HasDefaultValue(1);
+            entity.Property(e => e.CNOMBREFORMAPAGO)
+                .HasMaxLength(60)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CTEXTOEXTRA1)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CTEXTOEXTRA2)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CTEXTOEXTRA3)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CTIMESTAMP)
+                .HasMaxLength(23)
                 .IsUnicode(false)
                 .HasDefaultValue("");
         });
@@ -2175,6 +2358,24 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
                 .HasDefaultValue("");
         });
 
+        modelBuilder.Entity<admPagoNotas>(entity =>
+        {
+            entity.HasKey(e => e.CIDPAGO);
+
+            entity.HasIndex(e => new { e.CTIPO, e.CIDDOCUMENTO, e.CIDFORMAPAGO, e.CIDPAGO }, "ITIPODOCTOFORMA");
+
+            entity.Property(e => e.CIDMONEDA).HasDefaultValue(1);
+            entity.Property(e => e.CREFERENCIA)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CTIMESTAMP)
+                .HasMaxLength(23)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CTIPOCAMBIO).HasDefaultValue(1.0);
+        });
+
         modelBuilder.Entity<admParametros>(entity =>
         {
             entity.HasKey(e => e.CIDEMPRESA);
@@ -2422,6 +2623,10 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
                 .IsUnicode(false)
                 .HasDefaultValue("");
             entity.Property(e => e.CNUMDONAT)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasDefaultValue("");
+            entity.Property(e => e.CPROVEEDOROAUTH)
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasDefaultValue("");
@@ -3189,6 +3394,7 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
                 .HasMaxLength(23)
                 .IsUnicode(false)
                 .HasDefaultValue("");
+            entity.Property(e => e.CUNIDADDIMENSION).HasDefaultValue(-1);
         });
 
         modelBuilder.Entity<admProductosDetalles>(entity =>
@@ -3538,7 +3744,7 @@ public partial class ContpaqiComercialEmpresaDbContext : DbContext
                 .IsUnicode(false)
                 .HasDefaultValue("");
             entity.Property(e => e.CFILTROAUX)
-                .HasMaxLength(53)
+                .HasMaxLength(80)
                 .IsUnicode(false)
                 .HasDefaultValue("");
             entity.Property(e => e.CNOMBRENATIVOTABLA1)
