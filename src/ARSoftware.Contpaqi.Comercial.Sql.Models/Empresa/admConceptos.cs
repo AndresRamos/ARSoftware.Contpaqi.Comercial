@@ -400,4 +400,8 @@ public partial class admConceptos
     public int CIDPRSEG08 { get; set; }
 
     public int CUSAOBJIMP { get; set; }
+
+    public int CCONFIEPS { get; set; }
+
+    public int CHABILITARPORTALFACT { get; set; }
 }

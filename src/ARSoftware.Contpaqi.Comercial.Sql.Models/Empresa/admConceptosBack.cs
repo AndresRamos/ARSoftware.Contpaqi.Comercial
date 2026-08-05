@@ -392,4 +392,6 @@ public partial class admConceptosBack
     public string CCLAVESAT { get; set; } = null!;
 
     public int CUSAOBJIMP { get; set; }
+
+    public int CCONFIEPS { get; set; }
 }

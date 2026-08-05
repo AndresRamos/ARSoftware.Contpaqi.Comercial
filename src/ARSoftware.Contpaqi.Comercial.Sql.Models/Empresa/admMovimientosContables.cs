@@ -44,4 +44,12 @@ public partial class admMovimientosContables
     public int CIMPMONDOC { get; set; }
 
     public int CCOMPLEMEN { get; set; }
+
+    public int CBASECONDICION { get; set; }
+
+    public double CVALORMINIMO { get; set; }
+
+    public double CVALORMAXIMO { get; set; }
+
+    public int CORIGENIMPORTES { get; set; }
 }
