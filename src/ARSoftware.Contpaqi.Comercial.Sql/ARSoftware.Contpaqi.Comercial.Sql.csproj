@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<Version>6.2.1</Version>
+		<Version>6.3.0</Version>
 		<Authors>AR Software</Authors>
-		<Description>Entity Framework DbContexts para hacer query las bases de datos de CONTPAQi Comercial v9.2.1</Description>
-		<Copyright>Copyright © AR Software 2024</Copyright>
+		<Description>Entity Framework DbContexts para hacer query las bases de datos de CONTPAQi Comercial v11.2.1</Description>
+		<Copyright>Copyright © AR Software 2026</Copyright>
 		<RepositoryUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
@@ -26,9 +26,9 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="Ardalis.Specification" Version="8.0.0" />
-		<PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="8.0.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+		<PackageReference Include="Ardalis.Specification" Version="9.3.1" />
+		<PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="9.3.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.10" />
 	</ItemGroup>
 
 	<ItemGroup>

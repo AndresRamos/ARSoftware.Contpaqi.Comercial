@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<Version>6.2.1</Version>
+		<Version>6.3.0</Version>
 		<Authors>AR Software</Authors>
 		<Description>Esta libreria contiene las interfaces usadas por los poryectos de SDK y SQL.</Description>
-		<Copyright>Copyright © AR Software 2024</Copyright>
+		<Copyright>Copyright © AR Software 2026</Copyright>
 		<RepositoryUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/AndresRamos/ARSoftware.Contpaqi.Comercial</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
@@ -35,9 +35,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Ardalis.SmartEnum" Version="8.0.0" />
-		<PackageReference Include="Ardalis.SmartEnum.SystemTextJson" Version="8.0.0" />
-		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="Ardalis.SmartEnum" Version="8.2.0" />
+		<PackageReference Include="Ardalis.SmartEnum.SystemTextJson" Version="8.1.0" />
+		<PackageReference Include="AutoMapper" Version="14.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

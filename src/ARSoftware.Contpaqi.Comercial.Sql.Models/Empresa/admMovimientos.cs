@@ -140,4 +140,12 @@ public partial class admMovimientos
     public int CNUMEROCONSOLIDACIONES { get; set; }
 
     public string COBJIMPU01 { get; set; } = null!;
+
+    public int CCONFIMP1 { get; set; }
+
+    public int CCONFIMP2 { get; set; }
+
+    public int CCONFIMP3 { get; set; }
+
+    public int CCONFIMP4 { get; set; }
 }

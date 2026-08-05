@@ -428,4 +428,20 @@ public partial class admParametros
     public string? CURLWSTORE { get; set; }
 
     public string CLEYENDON { get; set; } = null!;
+
+    public int CUSACORREOOAUTH { get; set; }
+
+    public string CPROVEEDOROAUTH { get; set; } = null!;
+
+    public int CUSABUZON { get; set; }
+
+    public string CINBOXID { get; set; } = null!;
+
+    public int CUSAPORTALFACT { get; set; }
+
+    public int CPORTALTIPOFACT { get; set; }
+
+    public int CPORTALDIASFACT { get; set; }
+
+    public string CIDPORTALFACT { get; set; } = null!;
 }

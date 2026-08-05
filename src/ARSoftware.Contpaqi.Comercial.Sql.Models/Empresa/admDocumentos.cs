@@ -186,4 +186,16 @@ public partial class admDocumentos
     public int CIDCOPIADE { get; set; }
 
     public string CVERESQUE { get; set; } = null!;
+
+    public string? CDATOSADICIONALES { get; set; }
+
+    public int CIDAPERTURA { get; set; }
+
+    public int CDOCTOENV { get; set; }
+
+    public string CCODIGOFACTURACION { get; set; } = null!;
+
+    public DateTime CFECHAFACTURACION { get; set; }
+
+    public string CTICKETID { get; set; } = null!;
 }
