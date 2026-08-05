@@ -254,4 +254,6 @@ public partial class admClientes
     public string CREGIMFISC { get; set; } = null!;
 
     public string CWHATSAPP { get; set; } = null!;
+
+    public string CCODIGOALTERNO { get; set; } = null!;
 }
