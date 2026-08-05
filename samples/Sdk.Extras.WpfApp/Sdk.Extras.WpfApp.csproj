@@ -4,13 +4,7 @@
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net10.0-windows</TargetFramework>
 		<UseWPF>true</UseWPF>
-		<Platforms>AnyCPU</Platforms>
-		<Version>2.3.1</Version>
-		<Authors>AR Software</Authors>
-		<Company>AR Software</Company>
-		<Copyright>Copyright © AR Software 2022</Copyright>
 		<PlatformTarget>x86</PlatformTarget>
-		<Description>Aplicacion con ejemplos de como utilizar el SDK</Description>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
